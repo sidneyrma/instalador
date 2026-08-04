@@ -8,7 +8,7 @@ Livro digital sobre **o poder criador da palavra**, baseado nos ensinamentos de 
 |---|---|
 | **`O_Ouro_das_Palavras.docx`** | O livro em Word (formato ABNT) |
 | **`O_Ouro_das_Palavras_previa.pdf`** | Versão PDF da diagramação |
-| **`site/index.html`** | Página web do livro (GitHub Pages) |
+| **`docs/index.html`** | Página web do livro (GitHub Pages) |
 | `fonte_original.txt` | Transcrição original preservada |
 | `build_livro.py` | Script que gera o `.docx` e o `.pdf` |
 | `build_site.py` | Script que gera a página web |
@@ -36,7 +36,7 @@ https://sidneyrma.github.io/instalador/
 
 1. Acesse: **https://github.com/sidneyrma/instalador/settings/pages**
 2. Em **"Source"** (Fonte), selecione **"Deploy from a branch"**
-3. **Branch:** `arena/019fcd27-instalador` · **Pasta:** `/livro/site`
+3. **Branch:** `arena/019fcd27-instalador` · **Pasta:** `/docs`
 4. Clique em **Save**
 
 Em ~1 minuto o livro estará no ar em **https://sidneyrma.github.io/instalador/**

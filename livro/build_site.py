@@ -10,7 +10,11 @@ sys.path.insert(0, str(Path(__file__).parent))
 import build_livro as bl
 
 HERE = Path(__file__).parent
-OUT = HERE / "site" / "index.html"
+# O GitHub Pages (deploy por branch) só serve a pasta /docs ou a raiz do repositório.
+# Publicamos a página em /docs na raiz do repo (raiz = HERE.parent).
+OUT = HERE.parent / "docs" / "index.html"
+DOCX = HERE / "O_Ouro_das_Palavras.docx"
+PDF = HERE / "O_Ouro_das_Palavras_previa.pdf"
 
 TITULO = "O Ouro das Palavras"
 AUTOR = "Joseph Murphy"
@@ -194,8 +198,8 @@ footer .regua{width:3.5rem; height:1px; background:var(--ouro); margin:0 auto 1.
   <p class="autor">{esc(AUTOR)}</p>
   <p class="ano">EDIÇÃO DIGITAL · 2026</p>
   <div class="botoes">
-    <a href="../O_Ouro_das_Palavras.docx" download>⬇ Baixar Word (.docx)</a>
-    <a href="../O_Ouro_das_Palavras_previa.pdf" download>⬇ Baixar PDF</a>
+    <a href="O_Ouro_das_Palavras.docx" download>⬇ Baixar Word (.docx)</a>
+    <a href="O_Ouro_das_Palavras_previa.pdf" download>⬇ Baixar PDF</a>
   </div>
 </header>
 
@@ -234,7 +238,14 @@ footer .regua{width:3.5rem; height:1px; background:var(--ouro); margin:0 auto 1.
     OUT.write_text(html_doc, encoding="utf-8")
     # .nojekyll para o GitHub Pages não ignorar nada
     (OUT.parent / ".nojekyll").write_text("", encoding="utf-8")
+    # cópia dos arquivos para download junto da página
+    import shutil
+    for src in (DOCX, PDF):
+        if src.exists():
+            shutil.copy2(src, OUT.parent / src.name)
     print("Site gerado:", OUT, f"({OUT.stat().st_size:,} bytes)")
+    for f in sorted(OUT.parent.iterdir()):
+        print("  ", f.name, f.stat().st_size)
 
 if __name__ == "__main__":
     build()
