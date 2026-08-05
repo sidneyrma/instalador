@@ -13,6 +13,13 @@ Livro digital sobre **o poder criador da palavra**, baseado nos ensinamentos de 
 | `build_livro.py` | Script que gera o `.docx` e o `.pdf` |
 | `build_site.py` | Script que gera a página web |
 
+> 🔒 **Sobre cópias:** a página web não oferece botões de download e aplica
+> proteção leve contra cópia (seleção de texto, menu de contexto e clipboard).
+> Ela é um **deterrente** — nenhuma página pública na web impede 100% a cópia
+> (ver fonte `Ctrl+U`/DevTools `F12` sempre expõe o texto). Os arquivos
+> originais `.docx`/`.pdf` ficam apenas na pasta `livro/` do repositório
+> (não são servidos pelo site).
+
 ## 🌐 Página web (leitura online)
 
 https://sidneyrma.github.io/instalador/

@@ -104,7 +104,12 @@ body{
   margin:0; background:var(--papel); color:var(--tinta);
   font-family:Georgia,'Times New Roman',Times,serif;
   line-height:1.75; font-size:18px;
+  /* ---- proteção leve contra cópia (deterrente) ----
+     impede seleção de texto com o mouse na maioria dos navegadores.
+     Não é infalível: ver fonte (Ctrl+U) e DevTools (F12) continuam expondo o texto. */
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
 }
+img{-webkit-touch-callout:none; -webkit-user-drag:none}
 #topo{position:absolute; top:0}
 .wrap{max-width:46rem; margin:0 auto; padding:2.4rem 1.4rem 4rem}
 
@@ -124,11 +129,6 @@ body{
   text-transform:uppercase; color:var(--tinta)}
 .capa .ano{margin-top:2.4rem; font-size:.85rem; color:var(--tinta2);
   letter-spacing:.18em}
-.botoes{display:flex; gap:.8rem; flex-wrap:wrap; justify-content:center; margin-top:2.6rem}
-.botoes a{display:inline-block; border:1px solid var(--ouro); color:var(--ouro);
-  padding:.55rem 1.15rem; font-size:.9rem; letter-spacing:.06em;
-  text-decoration:none; border-radius:2px; transition:.2s}
-.botoes a:hover{background:var(--ouro); color:#fff}
 
 /* ---------- SUMÁRIO ---------- */
 h2.toc-titulo{text-align:center; font-size:1.5rem; letter-spacing:.3em;
@@ -168,7 +168,7 @@ footer .regua{width:3.5rem; height:1px; background:var(--ouro); margin:0 auto 1.
 @media print{
   body{background:#fff; font-size:12pt}
   .capa{min-height:auto}
-  .cap-nav,.botoes{display:none}
+  .cap-nav{display:none}
   .capitulo{page-break-before:always; border-top:none; margin-top:0}
 }
 @media (max-width:560px){
@@ -177,6 +177,24 @@ footer .regua{width:3.5rem; height:1px; background:var(--ouro); margin:0 auto 1.
   .toc-pg{margin-left:auto}
 }
 """
+
+    # Script de proteção leve contra cópia (fora do f-string para evitar
+    # conflito de chaves {}). Deterrente: bloqueia menu de contexto e
+    # intercepta cópia. Não é infalível (Ctrl+U / F12 continuam expondo o texto).
+    js_protecao = """<script>
+/* ---- proteção leve contra cópia (deterrente) ----
+   Bloqueia o menu do botão direito e, se alguém copiar, o conteúdo
+   copiado vira um aviso de direitos autorais (em vez do texto do livro).
+   Não é infalível: ver fonte (Ctrl+U) e DevTools (F12) continuam expondo o texto. */
+document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+document.addEventListener('copy', function (e) {
+  e.preventDefault();
+  if (e.clipboardData) {
+    e.clipboardData.setData('text/plain',
+      '© Coleção Oculta — O Ouro das Palavras, de Joseph Murphy. Todos os direitos reservados.');
+  }
+});
+</script>"""
 
     html_doc = f"""<!DOCTYPE html>
 <html lang="pt-BR">
@@ -197,10 +215,6 @@ footer .regua{width:3.5rem; height:1px; background:var(--ouro); margin:0 auto 1.
   <p class="sub">{esc(SUBTITULO)}</p>
   <p class="autor">{esc(AUTOR)}</p>
   <p class="ano">EDIÇÃO DIGITAL · 2026</p>
-  <div class="botoes">
-    <a href="O_Ouro_das_Palavras.docx" download>⬇ Baixar Word (.docx)</a>
-    <a href="O_Ouro_das_Palavras_previa.pdf" download>⬇ Baixar PDF</a>
-  </div>
 </header>
 
 <div class="wrap">
@@ -231,6 +245,7 @@ footer .regua{width:3.5rem; height:1px; background:var(--ouro); margin:0 auto 1.
     <p>Todos os direitos reservados.</p>
   </footer>
 </div>
+{js_protecao}
 </body>
 </html>
 """
@@ -238,14 +253,10 @@ footer .regua{width:3.5rem; height:1px; background:var(--ouro); margin:0 auto 1.
     OUT.write_text(html_doc, encoding="utf-8")
     # .nojekyll para o GitHub Pages não ignorar nada
     (OUT.parent / ".nojekyll").write_text("", encoding="utf-8")
-    # cópia dos arquivos para download junto da página
-    import shutil
-    for src in (DOCX, PDF):
-        if src.exists():
-            shutil.copy2(src, OUT.parent / src.name)
+    # Obs.: os arquivos .docx/.pdf NÃO são copiados para /docs de propósito —
+    # a página não oferece download (proteção contra cópias).
+    # As versões originais continuam em /livro no repositório.
     print("Site gerado:", OUT, f"({OUT.stat().st_size:,} bytes)")
-    for f in sorted(OUT.parent.iterdir()):
-        print("  ", f.name, f.stat().st_size)
 
 if __name__ == "__main__":
     build()
