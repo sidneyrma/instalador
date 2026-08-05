@@ -3,6 +3,7 @@
 Como transformar os protótipos HTML em páginas reais na plataforma **Vendd** (editor baseado no Elementor), seção por seção.
 
 **Arquivos usados:**
+- `prototipo_home.html` — Página principal (Portal + catálogo + trilogia + quiz + mentora + depoimentos + oferta)
 - `prototipo_devocional.html` — Devocional "Um Segundo com Deus" (R$ 9,90)
 - `prototipo_evolucao.html` — Livro "Evolução da Alma" (R$ 19,90 / combo R$ 49,00)
 - `prototipo_anestesia.html` — Livro "Anestesia Mental" (R$ 19,90 / combo R$ 49,00)
@@ -97,12 +98,40 @@ Na Vendd (configurações da página ou conta):
 
 ---
 
+## 5.1 Página principal (home)
+
+O protótipo `prototipo_home.html` tem esta estrutura (reproduza na Vendd):
+
+| Seção | Blocos |
+|---|---|
+| Menu fixo | Header sticky com links (O Portal, Livros, Trilogia, A Mentora, FAQ) + botão CTA dourado |
+| Hero | 2 colunas: título + subtítulo + 2 botões (CTA principal `iVfp2bi` + "Conhecer os livros") + imagem da Trilogia |
+| Confiança | 4 selos em linha |
+| O Portal | 4 cards de benefícios (videoaulas, livros, comunidade, vitalício) + nota de confirmação |
+| Catálogo | 3 cards de produtos (Evolução R$ 19,90, Anestesia R$ 19,90, Devocional R$ 9,90) + linha de parceria Hotmart |
+| Trilogia | Fundo escuro, 2 colunas de módulos (7 itens cada) + CTA |
+| Quiz | 2 colunas: chamada "Você domina o celular..." + botão para a página de Anestesia |
+| Autora | Foto da Laura + bio |
+| Depoimentos | 3 cards |
+| Oferta especial | Card dourado R$ 49,00 com lista de benefícios + garantia 7 dias |
+| FAQ | Acordeão (5 perguntas) |
+| CTA final | Centralizado + botão |
+| Rodapé | Links + WhatsApp + copyright |
+
+**Regras da home:**
+- **UMA oferta principal** no hero (o Portal R$ 49,00) — o resto é catálogo;
+- Os cards de produtos apontam para os checkouts individuais;
+- Sem cronômetro falso, sem "10k+", sem embute do YouTube.
+
+---
+
 ## 6. Ordem recomendada de publicação
 
-1. **Devocional (R$ 9,90)** — produto de entrada, baixa fricção;
-2. **Evolução da Alma (R$ 19,90)** — produto principal;
-3. **Anestesia Mental (R$ 19,90)** — com o quiz;
-4. Sempre oferecendo o **Upgrade para a Experiência Completa (R$ 49,00)** em todas.
+1. **Página principal (home)** — o hub que recebe todo o tráfego;
+2. **Devocional (R$ 9,90)** — produto de entrada, baixa fricção;
+3. **Evolução da Alma (R$ 19,90)** — produto principal;
+4. **Anestesia Mental (R$ 19,90)** — com o quiz;
+5. Sempre oferecendo o **Upgrade para a Experiência Completa (R$ 49,00)** em todas.
 
 ---
 
