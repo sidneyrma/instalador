@@ -88,6 +88,9 @@ def build():
             nav.append('<a class="next" href="#topo">Fim do livro →</a>')
         nav.append('</nav>')
         partes.append("\n".join(nav))
+        # aviso de direitos autorais ao final de cada capítulo
+        partes.append('<p class="copy-chap">© Coleção Oculta &middot; <em>O Ouro das Palavras</em>'
+                      ' &middot; Joseph Murphy — Todos os direitos reservados</p>')
         partes.append('</section>')
         secoes_html.append("\n".join(partes))
 
@@ -160,16 +163,31 @@ h2.toc-titulo{text-align:center; font-size:1.5rem; letter-spacing:.3em;
 .cap-nav a:hover{color:var(--ouro)}
 .cap-nav .topo{color:var(--ouro)}
 
+/* Aviso de direitos autorais ao final de cada capítulo */
+.copy-chap{text-align:center; font-size:.78rem; color:var(--tinta2);
+  margin:2.4rem 0 0; letter-spacing:.05em}
+.copy-chap em{font-style:italic}
+
+/* Página exibida quando alguém tenta imprimir */
+#print-block{display:none; text-align:center; padding:4rem 1.5rem;
+  font-family:Georgia,'Times New Roman',serif; color:var(--tinta)}
+#print-block h1{font-size:1.5rem; margin:.8rem 0}
+#print-block .selo{letter-spacing:.35em; text-transform:uppercase;
+  font-size:.8rem; color:var(--tinta2)}
+#print-block .regua{width:4rem; height:1px; background:var(--ouro); margin:1.4rem auto}
+#print-block p{color:var(--tinta2); font-size:.95rem; margin:.45rem 0}
+
 /* ---------- RODAPÉ ---------- */
 footer{border-top:1px solid var(--linha); margin-top:5rem; padding:2rem 0 3rem;
   text-align:center; color:var(--tinta2); font-size:.85rem}
 footer .regua{width:3.5rem; height:1px; background:var(--ouro); margin:0 auto 1.4rem}
 
 @media print{
-  body{background:#fff; font-size:12pt}
-  .capa{min-height:auto}
-  .cap-nav{display:none}
-  .capitulo{page-break-before:always; border-top:none; margin-top:0}
+  /* Impressão desabilitada: mostra apenas um aviso de direitos autorais
+     em vez do conteúdo do livro. (Deterrente — usuários técnicos podem
+     desativar o CSS ou imprimir por outros meios.) */
+  .capa, .wrap{display:none}
+  #print-block{display:block}
 }
 @media (max-width:560px){
   body{font-size:16.5px; line-height:1.7}
@@ -216,6 +234,15 @@ document.addEventListener('copy', function (e) {
   <p class="autor">{esc(AUTOR)}</p>
   <p class="ano">EDIÇÃO DIGITAL · 2026</p>
 </header>
+
+<div id="print-block">
+  <p class="selo">Coleção Oculta</p>
+  <h1>O Ouro das Palavras</h1>
+  <p style="font-style:italic">Joseph Murphy</p>
+  <div class="regua"></div>
+  <p>Impressão desabilitada para proteger os direitos autorais desta obra.</p>
+  <p>© Coleção Oculta — Todos os direitos reservados.</p>
+</div>
 
 <div class="wrap">
   <h2 class="toc-titulo">Sumário</h2>
