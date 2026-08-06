@@ -42,6 +42,14 @@ def limpar(t: str) -> str:
     t = t.replace("erva da ninha", "erva daninha")
     t = t.replace("Esse silêncio é como a pousada na agricultura.",
                   "Esse silêncio é como o pousio na agricultura.")
+    # nomes próprios corrigidos (transcrição de áudio)
+    t = t.replace("Antoine Dubois", "Émile Coué")
+    t = t.replace("Dmitry Volkov", "Ivan Pavlov")
+    t = t.replace("Neville Boddard", "Neville Goddard")
+    t = t.replace("Charles Hanel", "Charles Haanel")
+    t = t.replace("Carl Dunn", "Carl Jung")
+    t = t.replace("método Kowe", "método Coué")
+    t = t.replace("cantos de Taiki", "cantos de Taizé")
     t = t.replace("O que todos esses os casos demonstram a mesma coisa.",
                   "O que todos esses casos demonstram é a mesma coisa.")
     t = t.replace("Passam silêncio.", "Passem em silêncio.")

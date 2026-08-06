@@ -73,16 +73,16 @@ por não ter certeza — mas acredito que correspondam a:
 
 | Nome no texto | Provável nome real | Nota |
 |---|---|---|
-| Antoine Dubois | **Émile Coué** (terapeuta francês) | "A cada dia, em todos os aspectos, vou melhorando" é a frase famosa de Coué |
-| Dmitry Volkov | **Ivan Pavlov** (fisiologista russo) | Cachorros + campainha = experimento clássico de Pavlov |
-| Neville Boddard | **Neville Goddard** | Mestre da "criação consciente" |
-| Charles Hanel | **Charles Haanel** | Autor de "A Ciência de Ficar Rico" / "A Riqueza Interior" |
-| Carl Dunn | **Carl Jung** | O conceito de "sombra" é de Jung |
-| Método Kowe | **Método Coué** | Repetição ritmada com respiração |
-| Cantos de Taiki | **Cantos de Taizé** | Cantos meditativos da comunidade de Taizé |
+| Antoine Dubois | **Émile Coué** (terapeuta francês) | ✅ **Corrigido** |
+| Dmitry Volkov | **Ivan Pavlov** (fisiologista russo) | ✅ **Corrigido** |
+| Neville Boddard | **Neville Goddard** | ✅ **Corrigido** |
+| Charles Hanel | **Charles Haanel** | ✅ **Corrigido** |
+| Carl Dunn | **Carl Jung** | ✅ **Corrigido** |
+| Método Kowe | **Método Coué** | ✅ **Corrigido** |
+| Cantos de Taiki | **Cantos de Taizé** | ✅ **Corrigido** |
 
-> 💡 **Decisão sua, irmão:** posso corrigir esses nomes na versão publicada (recomendo,
-> para dar mais credibilidade) ou mantê-los. Me avise como prefere.
+> ✅ **Atualização (06/08/2026):** os 7 nomes próprios foram corrigidos na
+> versão publicada (site + docx + página de leitura).
 
 ---
 
