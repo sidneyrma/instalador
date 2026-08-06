@@ -51,8 +51,8 @@
   .nav-cta{padding:11px 22px;font-size:14px;}
   .burger{display:none;background:none;border:none;color:var(--cream);font-size:26px;cursor:pointer;}
   @media(max-width:880px){
-    .navlinks{position:fixed;inset:64px 0 0 0;background:var(--navy);flex-direction:column;padding:28px 24px;gap:20px;transform:translateY(-120%);transition:transform .25s ease;}
-    .navlinks.open{transform:translateY(0);}
+    .navlinks{display:none;position:fixed;inset:64px 0 0 0;background:var(--navy);flex-direction:column;padding:28px 24px;gap:20px;z-index:90;}
+    .navlinks.open{display:flex;}
     .burger{display:block;}
   }
 
