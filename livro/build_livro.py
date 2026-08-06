@@ -40,6 +40,8 @@ def limpar(t: str) -> str:
     t = t.replace("Este ato imaginário, Imaginalate,",
                   "Este ato imaginário, o ato imaginal,")
     t = t.replace("erva da ninha", "erva daninha")
+    t = t.replace("Esse silêncio é como a pousada na agricultura.",
+                  "Esse silêncio é como o pousio na agricultura.")
     t = t.replace("O que todos esses os casos demonstram a mesma coisa.",
                   "O que todos esses casos demonstram é a mesma coisa.")
     t = t.replace("Passam silêncio.", "Passem em silêncio.")
