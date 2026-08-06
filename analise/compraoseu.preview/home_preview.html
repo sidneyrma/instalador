@@ -158,30 +158,37 @@
   .divider{display:flex;align-items:center;gap:14px;justify-content:center;color:var(--gold-dark);margin:0 auto 44px;max-width:200px;}
   .divider::before,.divider::after{content:"";height:1px;flex:1;background:rgba(201,162,75,.4);}
 
-  /* ===== SEÇÃO DESTAQUE: LEIA ANTES DE COMPRAR ===== */
-  .leitura-destaque{background:linear-gradient(160deg,#120b18 0%,var(--navy) 55%,var(--navy-2) 100%);color:#fff;padding:70px 0;position:relative;overflow:hidden;}
-  .leitura-destaque::before{content:"";position:absolute;top:-80px;right:-60px;width:340px;height:340px;background:radial-gradient(circle,rgba(201,162,75,.18),transparent 65%);}
-  .leitura-destaque::after{content:"📖";position:absolute;bottom:-30px;left:-20px;font-size:240px;opacity:.05;transform:rotate(-12deg);}
-  .leitura-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;position:relative;z-index:1;}
-  .leitura-tag{display:inline-block;background:rgba(201,162,75,.15);border:1px solid var(--ouro);color:var(--gold-light,#e3c877);font-size:.75rem;letter-spacing:.24em;text-transform:uppercase;padding:6px 14px;border-radius:30px;margin-bottom:18px;}
-  .leitura-destaque h2{font-family:var(--serif,Georgia,serif);font-size:clamp(1.6rem,3.6vw,2.3rem);line-height:1.2;margin:0 0 14px;}
-  .leitura-destaque h2 em{font-style:italic;color:var(--gold-light,#e3c877);}
-  .leitura-destaque .ld-sub{color:rgba(246,241,231,.82);font-size:1.02rem;max-width:30rem;margin:0 0 20px;}
-  .leitura-destaque .ld-quote{border-left:3px solid var(--ouro);padding:12px 18px;background:rgba(246,241,231,.05);border-radius:0 10px 10px 0;margin:0 0 24px;font-style:italic;color:#e8ecf3;font-size:1.02rem;}
-  .leitura-destaque .ld-quote small{display:block;margin-top:8px;font-style:normal;font-size:.82rem;color:#9fb0c5;}
-  .ld-ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
-  .leitura-destaque .btn{display:inline-block;background:linear-gradient(180deg,#d4a83f,var(--cta,#b8860b));color:#fff;font-weight:700;font-size:1.02rem;padding:15px 30px;border-radius:8px;text-decoration:none;box-shadow:0 6px 18px rgba(201,162,75,.35);transition:.18s;}
-  .leitura-destaque .btn:hover{transform:translateY(-1px);}
-  .leitura-destaque .btn-sec{background:transparent;border:1px solid var(--ouro);box-shadow:none;color:var(--gold-light,#e3c877);}
-  .leitura-destaque .btn-sec:hover{background:rgba(201,162,75,.12);}
-  .ld-livro{text-align:center;}
-  .ld-livro .livro-capa{max-width:300px;margin:0 auto 20px;position:relative;}
-  .ld-livro .livro-capa img{border-radius:12px;box-shadow:0 25px 60px rgba(0,0,0,.5);border:1px solid rgba(201,162,75,.4);}
-  .ld-livro .badge-ler{display:inline-block;background:var(--ouro);color:#1a1a1a;font-weight:700;font-size:.85rem;padding:10px 18px;border-radius:30px;box-shadow:0 8px 24px rgba(201,162,75,.35);}
-  .ld-stats{display:flex;justify-content:center;gap:30px;margin-top:18px;flex-wrap:wrap;}
-  .ld-stats span{font-size:.85rem;color:#c9d2e0;}
-  .ld-stats b{display:block;font-size:1.5rem;color:var(--gold-light,#e3c877);font-family:var(--serif,Georgia,serif);}
-  @media(max-width:880px){.leitura-grid{grid-template-columns:1fr;}.ld-livro{order:-1;}}
+  
+
+  /* ===== BIBLIOTECA DE LEITURA GRATUITA ===== */
+  .biblioteca{background:linear-gradient(170deg,var(--navy) 0%,#120b18 100%);color:#fff;padding:70px 0;position:relative;overflow:hidden;}
+  .biblioteca::before{content:"";position:absolute;top:-100px;right:-80px;width:380px;height:380px;background:radial-gradient(circle,rgba(201,162,75,.16),transparent 65%);}
+  .bib-head{text-align:center;margin-bottom:42px;position:relative;z-index:1;}
+  .bib-tag{display:inline-block;background:rgba(201,162,75,.15);border:1px solid var(--ouro);color:var(--gold-light,#e3c877);font-size:.75rem;letter-spacing:.24em;text-transform:uppercase;padding:6px 14px;border-radius:30px;margin-bottom:16px;}
+  .bib-head h2{font-family:var(--serif,Georgia,serif);font-size:clamp(1.7rem,3.8vw,2.4rem);margin:0 0 10px;}
+  .bib-head p{color:rgba(246,241,231,.75);font-size:1rem;max-width:40rem;margin:0 auto;}
+  .bib-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;position:relative;z-index:1;}
+  .bib-card{background:var(--navy-2,#16283f);border:1px solid rgba(201,162,75,.3);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.2s;box-shadow:0 14px 34px rgba(0,0,0,.3);}
+  .bib-card:hover{transform:translateY(-4px);border-color:var(--ouro);}
+  .bib-capa{height:150px;display:flex;align-items:center;justify-content:center;font-size:3.4rem;background:linear-gradient(150deg,rgba(201,162,75,.22),rgba(201,162,75,.05) 60%);border-bottom:1px solid rgba(201,162,75,.2);}
+  .bib-capa .img-capa{max-width:100%;max-height:100%;object-fit:cover;}
+  .bib-corpo{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1;}
+  .bib-num{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ouro);font-weight:700;margin-bottom:6px;}
+  .bib-corpo h3{font-family:var(--serif,Georgia,serif);font-size:1.2rem;margin:0 0 8px;line-height:1.25;}
+  .bib-corpo .bib-desc{font-size:.88rem;color:rgba(246,241,231,.7);flex:1;margin-bottom:16px;line-height:1.5;}
+  .bib-corpo .bib-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+  .bib-corpo .bib-badge{font-size:.72rem;background:rgba(201,162,75,.12);border:1px solid rgba(201,162,75,.35);color:var(--gold-light,#e3c877);padding:4px 10px;border-radius:20px;}
+  .bib-ctas{display:flex;gap:10px;flex-wrap:wrap;}
+  .bib-ctas .btn{display:inline-block;background:linear-gradient(180deg,#d4a83f,var(--cta,#b8860b));color:#fff;font-weight:700;font-size:.95rem;padding:12px 20px;border-radius:8px;text-decoration:none;text-align:center;flex:1;transition:.18s;}
+  .bib-ctas .btn:hover{transform:translateY(-1px);}
+  .bib-ctas .btn-sec{background:transparent;border:1px solid var(--ouro);color:var(--gold-light,#e3c877);flex:0 0 auto;}
+  .bib-card.em-breve{opacity:.75;border-style:dashed;}
+  .bib-card.em-breve .bib-capa{font-size:2.8rem;filter:grayscale(.4);}
+  .bib-card.em-breve .btn{background:rgba(246,241,231,.12);box-shadow:none;cursor:default;}
+  .bib-foot{text-align:center;margin-top:36px;position:relative;z-index:1;}
+  .bib-foot a{color:var(--gold-light,#e3c877);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--ouro);}
+  .bib-foot a:hover{color:#fff;}
+  @media(max-width:880px){.bib-grid{grid-template-columns:1fr;}}
 
 </style>
 </head><body>
@@ -290,35 +297,104 @@
 </section>
 
 
-<section class="leitura-destaque" id="leitura">
+<section class="biblioteca" id="biblioteca">
   <div class="wrap">
-    <div class="leitura-grid">
-      <div>
-        <span class="leitura-tag">📖 Leitura gratuita</span>
-        <h2>Descubra o poder da sua palavra com <em>O Ouro das Palavras</em></h2>
-        <p class="ld-sub">Baseado nos ensinamentos de Joseph Murphy — um guia para ativar conscientemente o poder que reside em sua boca e em sua mente.</p>
-        <p class="ld-quote">"Sua palavra não é apenas um som. É uma vibração que organiza a substância invisível do universo."
-          <small>— O Ouro das Palavras, Joseph Murphy</small>
-        </p>
-        <div class="ld-ctas">
-          <a class="btn" href="https://www.compraoseu.com/livro01">Começar a leitura — grátis →</a>
-          <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Quero o Portal completo</a>
-        </div>
-      </div>
-      <div class="ld-livro">
-        <div class="livro-capa">
-          <img src="https://i.ibb.co/fdgdkzPr/Capa-Colecao-Autoral16x9jpg.jpg" alt="O Ouro das Palavras — leitura gratuita">
-        </div>
-        <span class="badge-ler">🔒 Leitura protegida · Sem impressão</span>
-        <div class="ld-stats">
-          <span><b>10</b> capítulos</span>
-          <span><b>∞</b> leituras</span>
-          <span><b>0</b> custo</span>
-        </div>
-      </div>
+    <div class="bib-head">
+      <span class="bib-tag">📖 Biblioteca de leitura gratuita</span>
+      <h2>Leia antes de comprar</h2>
+      <p>Conheça o conteúdo das nossas obras antes de adquiri-las. Leitura online protegida — sem cópia, sem impressão.</p>
     </div>
+    <div class="bib-grid">
+
+      <!-- LIVRO 01 -->
+      <div class="bib-card">
+        <div class="bib-capa">📖</div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 01 · Disponível</span>
+          <h3>O Ouro das Palavras</h3>
+          <p class="bib-desc">Baseado nos ensinamentos de Joseph Murphy — o poder criador da palavra e da mente.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">10 capítulos</span>
+            <span class="bib-badge">🔒 Protegido</span>
+          </div>
+          <div class="bib-ctas">
+            <a class="btn" href="https://www.compraoseu.com/livro01">Ler grátis →</a>
+            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVRO 02 -->
+      <div class="bib-card">
+        <div class="bib-capa">🔑</div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 02 · Disponível</span>
+          <h3>O Livro Proibido dos Mestres</h3>
+          <p class="bib-desc">Os ensinamentos que foram escondidos da humanidade — o juramento do silêncio e o mestre interior.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">10 capítulos</span>
+            <span class="bib-badge">🔒 Protegido</span>
+          </div>
+          <div class="bib-ctas">
+            <a class="btn" href="https://www.compraoseu.com/livro02">Ler grátis →</a>
+            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVRO 03 (EM BREVE) -->
+      <div class="bib-card em-breve">
+        <div class="bib-capa">📜</div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 03 · Em breve</span>
+          <h3>Em breve</h3>
+          <p class="bib-desc">Nova obra em preparação para a nossa biblioteca de leitura gratuita.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">Em produção</span>
+          </div>
+          <div class="bib-ctas">
+            <span class="btn" style="flex:1">Em breve</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVRO 04 (EM BREVE) -->
+      <div class="bib-card em-breve">
+        <div class="bib-capa">🕊️</div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 04 · Em breve</span>
+          <h3>Em breve</h3>
+          <p class="bib-desc">Nova obra em preparação para a nossa biblioteca de leitura gratuita.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">Em produção</span>
+          </div>
+          <div class="bib-ctas">
+            <span class="btn" style="flex:1">Em breve</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVRO 05 (EM BREVE) -->
+      <div class="bib-card em-breve">
+        <div class="bib-capa">🌱</div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 05 · Em breve</span>
+          <h3>Em breve</h3>
+          <p class="bib-desc">Nova obra em preparação para a nossa biblioteca de leitura gratuita.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">Em produção</span>
+          </div>
+          <div class="bib-ctas">
+            <span class="btn" style="flex:1">Em breve</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <p class="bib-foot">🔒 Todas as leituras são protegidas — <a href="#biblioteca">sem cópia, sem impressão</a>. Os livros estão disponíveis no <a href="https://pay.kiwify.com.br/iVfp2bi">Portal Missão com Deus</a>.</p>
   </div>
 </section>
+
 
 <section id="trilogia" class="dark">
   <div class="wrap">
