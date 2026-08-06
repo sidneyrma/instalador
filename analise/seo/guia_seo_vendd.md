@@ -15,7 +15,7 @@
 | Campo | Valor (copie e cole) |
 |---|---|
 | **Título** (50-60) | `Missão com Deus — Livros, Devocional e Portal de Estudos` (58) |
-| **Descrição** (150-160) | `Portal Missão com Deus: livros cristãos, devocional e videoaulas para despertar sua fé e transformar sua vida com a Palavra de Deus. Acesse agora.` (152) |
+| **Descrição** (150-160) | `Portal Missão com Deus: livros cristãos, devocional diário e videoaulas para despertar sua fé, transformar sua vida e fortalecer sua caminhada com a Palavra.` (156) |
 | **Keywords** | `missão com deus, livros cristãos, devocional, portal de estudos, despertar espiritual, fé cristã, ensino bíblico, livros evangélicos` |
 | **URL Canônica** | `https://www.compraoseu.com/` |
 
@@ -83,7 +83,7 @@
 | Campo | Valor |
 |---|---|
 | **Título** (50-60) | `Evolução da Alma — Livro Cristão para Vencer Ansiedade` (57) |
-| **Descrição** (150-160) | `Evolução da Alma: livro cristão com preces e orações para vencer a ansiedade, o medo e o estresse. Inclui videoaulas e área de membros.` (154) |
+| **Descrição** (150-160) | `Evolução da Alma: livro cristão com preces e orações para vencer a ansiedade, o medo e o estresse. Inclui videoaulas e acesso à área de membros.` (154) |
 | **Keywords** | `evolução da alma, livro cristão, vencer ansiedade, vencer o medo, estresse, cura emocional, orações, propósito de vida` |
 | **URL Canônica** | `https://www.compraoseu.com/evolucaodaalma` |
 
@@ -116,7 +116,7 @@
 | Campo | Valor |
 |---|---|
 | **Título** (50-60) | `Anestesia Mental — Livro para Vencer o Vício em Celular` (57) |
-| **Descrição** (150-160) | `Anestesia Mental: livro para vencer o vício em celular, recuperar o foco e o silêncio interior com o Reset do Shabat. Acesso imediato.` (147) |
+| **Descrição** (150-160) | `Anestesia Mental: livro para vencer o vício em celular, recuperar o foco e o silêncio interior com o Reset do Shabat. Acesso imediato após o pagamento.` (154) |
 | **Keywords** | `anestesia mental, vício em celular, vício em telas, dependência digital, recuperar o foco, silêncio interior, reset do shabat, livro cristão` |
 | **URL Canônica** | `https://www.compraoseu.com/anestesiamental` |
 
