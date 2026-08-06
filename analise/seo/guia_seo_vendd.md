@@ -83,7 +83,7 @@
 | Campo | Valor |
 |---|---|
 | **Título** (50-60) | `Evolução da Alma — Livro Cristão para Vencer Ansiedade` (57) |
-| **Descrição** (150-160) | `Evolução da Alma: livro cristão com preces e orações para vencer a ansiedade, o medo e o estresse. Inclui videoaulas e acesso à área de membros.` (154) |
+| **Descrição** (150-160) | `Evolução da Alma: livro cristão com preces e orações para vencer a ansiedade, o medo e o estresse. Inclui videoaulas e área de membros da Comunidade.` (159) |
 | **Keywords** | `evolução da alma, livro cristão, vencer ansiedade, vencer o medo, estresse, cura emocional, orações, propósito de vida` |
 | **URL Canônica** | `https://www.compraoseu.com/evolucaodaalma` |
 
