@@ -167,7 +167,9 @@
   .bib-tag{display:inline-block;background:rgba(201,162,75,.15);border:1px solid var(--ouro);color:var(--gold-light,#e3c877);font-size:.75rem;letter-spacing:.24em;text-transform:uppercase;padding:6px 14px;border-radius:30px;margin-bottom:16px;}
   .bib-head h2{font-family:var(--serif,Georgia,serif);font-size:clamp(1.7rem,3.8vw,2.4rem);margin:0 0 10px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.55);}
   .bib-head p{color:rgba(246,241,231,.92);font-size:1rem;max-width:40rem;margin:0 auto;text-shadow:0 1px 4px rgba(0,0,0,.4);}
-  .bib-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;position:relative;z-index:1;}
+  .bib-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:22px;position:relative;z-index:1;}
+  .bib-card{width:calc(33.333% - 16px);min-width:270px;max-width:380px;}
+  @media(max-width:880px){.bib-card{width:100%;max-width:none;}}
   .bib-card{background:linear-gradient(180deg,#1c3150,#16283f);border:1px solid rgba(201,162,75,.45);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.2s;box-shadow:0 14px 34px rgba(0,0,0,.3);}
   .bib-card:hover{transform:translateY(-4px);border-color:var(--ouro);}
   .bib-capa{height:215px;display:flex;align-items:center;justify-content:center;font-size:3.4rem;background:linear-gradient(150deg,rgba(201,162,75,.22),rgba(201,162,75,.05) 60%);border-bottom:1px solid rgba(201,162,75,.2);overflow:hidden;position:relative;}
@@ -454,6 +456,24 @@
         </div>
       </div>
 
+
+      <!-- LIVRO 07: O CAMINHO DO DESPERTAR -->
+      <div class="bib-card">
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/NdPkM40C/capa-despertar.png" alt="O Caminho do Despertar — capa"></div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 07 · Disponível</span>
+          <h3>O Caminho do Despertar</h3>
+          <p class="bib-desc">A Jornada Solitária da Alma — uma obra que reúne a sabedoria dos ensinamentos ocultos, a profundidade da fé e o conhecimento da alma humana.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">12 capítulos</span>
+            <span class="bib-badge">🔒 Protegido</span>
+          </div>
+          <div class="bib-ctas">
+            <a class="btn" href="https://www.compraoseu.com/livro07">Ler grátis →</a>
+            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
+          </div>
+        </div>
+      </div>
     </div>
     <p class="bib-foot">🔒 Todas as leituras são protegidas — <a href="#biblioteca">sem cópia, sem impressão</a>. Os livros estão disponíveis no <a href="https://pay.kiwify.com.br/iVfp2bi">Portal Missão com Deus</a>.</p>
   </div>
@@ -637,6 +657,8 @@
         <div class="quiz-form">
           <label for="quiz-email">✨ Surpresa especial para você:</label>
           <input type="email" id="quiz-email" placeholder="Seu melhor e-mail" required>
+          <label for="quiz-comentario" style="margin-top:6px;">Comentário, depoimento ou sugestão:</label>
+          <textarea id="quiz-comentario" placeholder="Quer escrever algo? Fique à vontade..." rows="3" style="width:100%;padding:12px 14px;border-radius:8px;border:1px solid rgba(201,162,75,.4);background:#fff;color:var(--navy);font-size:1rem;font-family:inherit;margin-bottom:12px;resize:vertical;"></textarea>
           <button class="btn" type="button" onclick="quizEnviar()">Receber minha surpresa →</button>
           <p class="priv">🔒 Seus dados estão seguros. Usaremos apenas para enviar sua surpresa e, se você quiser, para continuar caminhando com você.</p>
         </div>
@@ -865,10 +887,13 @@ function quizEnviar() {
   inputMsg.name = '_subject';
   inputMsg.value = '🏆 Quiz: Novo e-mail captado no site';
 
+  var comentario = document.getElementById('quiz-comentario');
+  var textoComentario = comentario ? comentario.value.trim() : '';
+
   var inputMsg2 = document.createElement('input');
   inputMsg2.type = 'hidden';
   inputMsg2.name = 'mensagem';
-  inputMsg2.value = 'O usuário completou o quiz de autoavaliação e informou o e-mail: ' + email;
+  inputMsg2.value = 'O usuário completou o quiz de autoavaliação. E-mail: ' + email + (textoComentario ? ' | Comentário: ' + textoComentario : '');
 
   var inputCap = document.createElement('input');
   inputCap.type = 'hidden';
