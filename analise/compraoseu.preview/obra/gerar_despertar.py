@@ -8,7 +8,7 @@ import re, html
 from pathlib import Path
 
 HERE = Path(__file__).parent
-SRC = HERE / "O_Caminho_do_Despertar.md"
+SRC = HERE / "O_Caminho_do_Despertar_FINAL.md"
 OUT = HERE / "despertar_preview.html"
 CAPA = "https://i.ibb.co/SEU-LINK/capa-despertar.png"
 
@@ -20,25 +20,21 @@ def esc(t):
     return html.escape(t, quote=False)
 
 def parse_md():
-    """Converte o markdown em estrutura (tipo, texto)."""
+    """Converte o texto humanizado (sem markdown) em estrutura."""
     linhas = SRC.read_text(encoding='utf-8').split('\n')
     estrutura = []
     for l in linhas:
         s = l.strip()
         if not s:
             continue
-        if s.startswith('# '):
-            estrutura.append(("parte", s[2:].strip()))
-        elif s.startswith('## '):
-            estrutura.append(("h2", s[3:].strip()))
-        elif s.startswith('### '):
-            estrutura.append(("h3", s[4:].strip()))
-        elif s.startswith('>'):
-            estrutura.append(("quote", s[1:].strip()))
-        elif s.startswith('- '):
-            estrutura.append(("bullet", s[2:].strip()))
-        elif re.match(r'^\d+\.\s', s):
-            estrutura.append(("bullet", s))
+        if re.match(r'^PARTE [IVX]+ —', s):
+            estrutura.append(("parte", s))
+        elif re.match(r'^CAPÍTULO \d+ —', s):
+            estrutura.append(("h2", s))
+        elif s.upper().startswith(('APRESENTAÇÃO', 'BÔNUS', 'EPÍLOGO')):
+            estrutura.append(("h2", s))
+        elif s.upper().startswith(('REFLExÃO', 'REFLEXÃO')):
+            estrutura.append(("h3", s))
         else:
             estrutura.append(("p", s))
     return estrutura
