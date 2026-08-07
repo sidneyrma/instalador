@@ -1,0 +1,101 @@
+# 🔍 GOOGLE SEARCH CONSOLE — GUIA COMPLETO (Missão com Deus)
+
+**Objetivo:** verificar o site no Google, enviar o sitemap e acompanhar a indexação das páginas.
+
+---
+
+## 1) ADICIONAR O SITE (5 minutos)
+
+1. Acesse **https://search.google.com/search-console** (faça login com sua conta Google);
+2. Clique em **"Adicionar propriedade"**;
+3. Escolha uma das opções:
+
+### 🅰️ Opção recomendada: **Prefixo de URL**
+1. Digite: `https://www.compraoseu.com/`
+2. Clique em **"Continuar"**;
+3. Escolha o **método de verificação: Tag HTML**;
+4. O Google mostra um **meta tag** (ex.: `<meta name="google-site-verification" content="XXXX...">`);
+5. **Copie essa tag** e cole no HEAD da página principal na Vendd;
+6. Clique em **"Verificar"** → pronto!
+
+### 🅱️ Opção alternativa: **Domínio** (verifica www e sem www)
+1. Digite: `compraoseu.com` (sem https);
+2. O Google mostra um **registro TXT** no DNS;
+3. Adicione no seu provedor de domínio (onde comprou o domínio);
+4. Clique em **"Verificar"** → pronto!
+
+> 💡 **Recomendo a Opção A (Tag HTML)** — é a mais simples na Vendd, sem mexer no DNS.
+
+---
+
+## 2) ENVIAR O SITEMAP
+
+### Passo 1 — Publicar o sitemap.xml na Vendd
+O arquivo `sitemap.xml` (deste repositório) precisa estar acessível em:
+```
+https://www.compraoseu.com/sitemap.xml
+```
+**Como fazer na Vendd:**
+- Procure uma opção de **upload de arquivos/arquivos estáticos** na Vendd e suba o `sitemap.xml`;
+- OU verifique se a Vendd gera sitemap automático (muitas plataformas têm "Sitemap automático");
+- Se a Vendd não permitir, use um **sitemap hospedado** (ex.: em outro domínio) — mas o ideal é no próprio domínio.
+
+### Passo 2 — Enviar no Search Console
+1. No painel do GSC, menu lateral → **"Sitemaps"** (ou "Mapas do site");
+2. Em **"Adicionar um novo sitemap"**, digite: `sitemap.xml`;
+3. Clique em **"Enviar"**;
+4. Aguarde — o status deve mudar para **"Sucesso"** (pode levar algumas horas).
+
+---
+
+## 3) VERIFICAR A INDEXAÇÃO
+
+### Inspeção de URL (teste individual)
+1. Menu **"Inspeção de URL"** (barra no topo);
+2. Digite: `https://www.compraoseu.com/` → Enter;
+3. Clique em **"Testar URL ao vivo"**;
+4. Se estiver tudo certo, clique em **"Solicitar indexação"**.
+
+Repita para as páginas principais: `/livro01` a `/livro07`.
+
+### Relatório de páginas
+1. Menu **"Índice" → "Páginas"**;
+2. Veja quantas páginas foram indexadas e se há erros;
+3. Páginas com **"Não encontrado (404)"** = URLs excluídas ou renomeadas (os erros que você viu antes);
+4. Páginas com **"Rastreadas, mas não indexadas"** = são as do `/quiz` (noindex — correto) ou novas (aguardando).
+
+---
+
+## 4) INTERPRETAR OS "ERROS" DO SITEMAP (que você viu)
+
+Os "1 erro" que apareceram nos seus sitemaps anteriores eram provavelmente:
+
+| Erro | Causa | Solução |
+|---|---|---|
+| **URLs antigas excluídas** | Páginas que você removeu da Vendd (ex.: `/obrigado`, `/conectai`, versões antigas) | Deixe-as fora do sitemap (o novo sitemap só tem as 9 atuais) |
+| **Sitemap malformado** | XML com erro de sintaxe | Use o `sitemap.xml` que criei (validado) |
+| **Página noindex no sitemap** | O `/quiz` tem noindex | O novo sitemap ainda o inclui (é aceitável), mas o Google avisa |
+
+**Como limpar:** depois de enviar o sitemap novo, no GSC → Sitemaps → exclua os antigos (clique em "Excluir" ao lado de cada um). O novo substitui.
+
+---
+
+## 5) RECOMENDAÇÕES FINAIS
+
+- ✅ **Envie o sitemap novo** (com as 9 URLs corretas);
+- ✅ **Solicite indexação** das páginas principais após publicar;
+- ⏳ **Aguarde 3-7 dias** para o Google rastrear (páginas novas demoram mais);
+- 📊 Acompanhe em **"Performance"** (cliques, impressões, palavras-chave);
+- 🎯 Se alguma página não indexar em 2 semanas, use a **Inspeção de URL** para solicitar novamente.
+
+---
+
+## 📁 ARQUIVOS CRIADOS
+
+| Arquivo | Uso |
+|---|---|
+| `sitemap.xml` | Enviar no GSC (9 URLs) |
+| `robots.txt` | Orientar buscadores + apontar o sitemap |
+| `guia_search_console.md` | Este guia |
+
+*Guia gerado em 07/08/2026 · Missão com Deus · CompraOSeu*
