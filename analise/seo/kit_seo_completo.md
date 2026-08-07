@@ -217,3 +217,30 @@ Suba as imagens da pasta `analise/seo/` no imgbb e use os links:
 ---
 
 *Kit SEO gerado em 07/08/2026 · Missão com Deus · CompraOSeu*
+
+---
+
+## 📄 PÁGINA 9 — LEITURA LIVRO 07 (`/livro07` — O Caminho do Despertar)
+
+### Metadados Básicos
+| Campo | Valor |
+|---|---|
+| **Título** (52) | `O Caminho do Despertar — A Jornada Solitária da Alma` |
+| **Descrição** (155) | `Leia online O Caminho do Despertar — A Jornada Solitária da Alma. 12 capítulos sobre sabedoria oculta, fé e autoconhecimento. Leitura protegida e gratuita.` |
+| **Keywords** | `caminho do despertar, jornada solitária da alma, despertar espiritual, sabedoria oculta, autoconhecimento, mestre interior, livro espiritual, leitura online grátis` |
+| **URL Canônica** | `https://www.compraoseu.com/livro07` |
+
+### Favicon / OG / Twitter
+- **Favicon:** mesmo `favicon-32.png`
+- **OG Title:** `O Caminho do Despertar — A Jornada Solitária da Alma`
+- **OG Description:** `12 capítulos sobre sabedoria oculta, fé e autoconhecimento para despertar o mestre interior. Leitura online gratuita.`
+- **Imagem OG:** `https://i.ibb.co/NdPkM40C/capa-despertar.png` (a capa mística)
+- **OG Type:** `article`
+- **Twitter Card Type:** `summary_large_image`
+
+### Configurações
+- **noindex:** ❌ DESMARCADO · **nofollow:** ❌ DESMARCADO
+
+---
+
+*Atualizado em 07/08/2026 — adicionada página 9 (livro07)*
