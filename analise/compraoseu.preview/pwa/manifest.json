@@ -1,0 +1,35 @@
+{
+  "name": "Missão com Deus — CompraOSeu",
+  "short_name": "Missão com Deus",
+  "description": "Livros, devocional e portal de estudos para despertar sua mente, fortalecer sua fé e transformar sua vida.",
+  "id": "compraoseu",
+  "start_url": "https://www.compraoseu.com/",
+  "scope": "https://www.compraoseu.com/",
+  "display": "standalone",
+  "display_override": ["standalone", "browser"],
+  "orientation": "portrait",
+  "background_color": "#0e1a2e",
+  "theme_color": "#0e1a2e",
+  "lang": "pt-BR",
+  "categories": ["books", "education", "lifestyle"],
+  "icons": [
+    {
+      "src": "https://i.ibb.co/ICON-PLACEHOLDER/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://i.ibb.co/ICON-PLACEHOLDER/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://i.ibb.co/ICON-PLACEHOLDER/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
