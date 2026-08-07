@@ -200,6 +200,36 @@
   #trilogia .module-col{text-align:center;}
   #trilogia .module-col ol{display:inline-block;text-align:left;}
 
+
+  /* ===== QUIZ DE AUTOAVALIAÇÃO ===== */
+  .quiz-sec{background:linear-gradient(170deg,var(--navy) 0%,#120b18 100%);color:#fff;padding:70px 0;position:relative;overflow:hidden;}
+  .quiz-sec::before{content:"";position:absolute;top:-80px;left:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(201,162,75,.15),transparent 65%);}
+  .quiz-head{text-align:center;margin-bottom:34px;position:relative;z-index:1;}
+  .quiz-tag{display:inline-block;background:rgba(201,162,75,.15);border:1px solid var(--ouro);color:var(--gold-light,#e3c877);font-size:.75rem;letter-spacing:.24em;text-transform:uppercase;padding:6px 14px;border-radius:30px;margin-bottom:16px;}
+  .quiz-head h2{font-family:var(--serif,Georgia,serif);font-size:clamp(1.6rem,3.8vw,2.3rem);margin:0 0 10px;}
+  .quiz-head p{color:rgba(246,241,231,.75);font-size:1rem;max-width:40rem;margin:0 auto;}
+  .quiz-box{max-width:680px;margin:0 auto;background:var(--navy-2,#16283f);border:1px solid rgba(201,162,75,.3);border-radius:16px;padding:30px;position:relative;z-index:1;}
+  .quiz-perg{display:none;}
+  .quiz-perg.ativa{display:block;}
+  .qp-num{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ouro);font-weight:700;margin-bottom:10px;}
+  .qp-titulo{font-size:1.15rem;margin:0 0 18px;line-height:1.4;}
+  .quiz-opcoes label{display:block;border:1px solid rgba(201,162,75,.3);border-radius:10px;padding:13px 16px;margin-bottom:10px;cursor:pointer;transition:.15s;font-size:.98rem;}
+  .quiz-opcoes label:hover{border-color:var(--ouro);background:rgba(201,162,75,.08);}
+  .quiz-opcoes input{margin-right:10px;}
+  .quiz-nav{display:flex;justify-content:space-between;gap:12px;margin-top:20px;flex-wrap:wrap;}
+  .quiz-nav .btn{padding:12px 24px;font-size:.95rem;border:none;cursor:pointer;border-radius:8px;}
+  .quiz-nav .voltar{background:transparent;border:1px solid var(--ouro);color:var(--gold-light,#e3c877);}
+  .quiz-nav .avancar{background:linear-gradient(180deg,#d4a83f,#b8860b);color:#fff;font-weight:700;}
+  .quiz-resultado{display:none;text-align:center;padding:10px 0;}
+  .qr-emoji{font-size:3rem;margin-bottom:10px;}
+  .quiz-resultado h3{font-size:1.4rem;color:var(--gold-light,#e3c877);margin:0 0 10px;}
+  .quiz-resultado p{color:rgba(246,241,231,.85);max-width:32rem;margin:0 auto 20px;}
+  .quiz-form{background:rgba(246,241,231,.06);border:1px solid rgba(201,162,75,.35);border-radius:12px;padding:20px;margin-top:16px;text-align:left;}
+  .quiz-form label{display:block;font-size:.9rem;color:var(--gold-light,#e3c877);margin-bottom:6px;}
+  .quiz-form input{width:100%;padding:12px 14px;border-radius:8px;border:1px solid rgba(201,162,75,.4);background:#fff;color:var(--navy);font-size:1rem;margin-bottom:12px;}
+  .quiz-form .btn{width:100%;padding:13px;font-size:1rem;border:none;border-radius:8px;cursor:pointer;background:linear-gradient(180deg,#d4a83f,#b8860b);color:#fff;font-weight:700;}
+  .quiz-form .priv{font-size:.75rem;color:rgba(246,241,231,.6);margin-top:10px;text-align:center;}
+
 </style>
 </head><body>
 <header class="site">
@@ -508,6 +538,114 @@
   </div>
 </section>
 
+
+<section class="quiz-sec" id="quiz">
+  <div class="wrap">
+    <div class="quiz-head">
+      <span class="quiz-tag">✨ Autoavaliação gratuita</span>
+      <h2>Um segundo de sinceridade com você mesmo</h2>
+      <p>Responda 7 perguntas com o coração aberto. Não há resposta certa ou errada — apenas um convite para olhar para dentro.</p>
+    </div>
+    <div class="quiz-box">
+      <!-- P1 -->
+      <div class="quiz-perg ativa" data-perg="0">
+        <p class="qp-num">Pergunta 1 de 7</p>
+        <p class="qp-titulo">Quando você fica em silêncio, o que costuma aparecer em primeiro lugar?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="q0" value="1"> Pensamentos acelerados e preocupações</label>
+          <label><input type="radio" name="q0" value="2"> Uma sensação de vazio ou cansaço</label>
+          <label><input type="radio" name="q0" value="3"> A percepção de que algo está faltando</label>
+          <label><input type="radio" name="q0" value="4"> Paz — já aprendi a silenciar</label>
+        </div>
+      </div>
+      <!-- P2 -->
+      <div class="quiz-perg" data-perg="1">
+        <p class="qp-num">Pergunta 2 de 7</p>
+        <p class="qp-titulo">Na sua rotina, o que mais rouba a sua atenção?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="q1" value="1"> O celular e as redes sociais</label>
+          <label><input type="radio" name="q1" value="2"> As preocupações com o futuro</label>
+          <label><input type="radio" name="q1" value="3"> As mágoas e lembranças do passado</label>
+          <label><input type="radio" name="q1" value="4"> As tarefas e obrigações do dia</label>
+        </div>
+      </div>
+      <!-- P3 -->
+      <div class="quiz-perg" data-perg="2">
+        <p class="qp-num">Pergunta 3 de 7</p>
+        <p class="qp-titulo">Se você pudesse mudar UMA coisa na sua vida hoje, seria...</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="q2" value="1"> Minha paz interior</label>
+          <label><input type="radio" name="q2" value="2"> Minha situação financeira</label>
+          <label><input type="radio" name="q2" value="3"> Meus relacionamentos</label>
+          <label><input type="radio" name="q2" value="4"> Meu propósito e direção</label>
+        </div>
+      </div>
+      <!-- P4 -->
+      <div class="quiz-perg" data-perg="3">
+        <p class="qp-num">Pergunta 4 de 7</p>
+        <p class="qp-titulo">O que você sente quando pensa em "falar com Deus"?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="q3" value="1"> Não sei como fazer direito</label>
+          <label><input type="radio" name="q3" value="2"> Sinto que Ele está longe de mim</label>
+          <label><input type="radio" name="q3" value="3"> Quero tentar, mas a rotina não deixa</label>
+          <label><input type="radio" name="q3" value="4"> Já é parte da minha vida</label>
+        </div>
+      </div>
+      <!-- P5 -->
+      <div class="quiz-perg" data-perg="4">
+        <p class="qp-num">Pergunta 5 de 7</p>
+        <p class="qp-titulo">Quando algo dá errado, qual é a sua primeira reação?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="q4" value="1"> Me culpo intensamente</label>
+          <label><input type="radio" name="q4" value="2"> Procuro alguém para culpar</label>
+          <label><input type="radio" name="q4" value="3"> Desisto ou adio</label>
+          <label><input type="radio" name="q4" value="4"> Respiro e busco aprender</label>
+        </div>
+      </div>
+      <!-- P6 -->
+      <div class="quiz-perg" data-perg="5">
+        <p class="qp-num">Pergunta 6 de 7</p>
+        <p class="qp-titulo">O que o seu coração mais deseja neste momento?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="q5" value="1"> Serenidade para enfrentar o dia</label>
+          <label><input type="radio" name="q5" value="2"> Clareza sobre o meu propósito</label>
+          <label><input type="radio" name="q5" value="3"> Perdão — para dar ou receber</label>
+          <label><input type="radio" name="q5" value="4"> Força para continuar tentando</label>
+        </div>
+      </div>
+      <!-- P7 -->
+      <div class="quiz-perg" data-perg="6">
+        <p class="qp-num">Pergunta 7 de 7</p>
+        <p class="qp-titulo">Se você desse apenas 5 minutos por dia a Deus, o que acha que mudaria?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="q6" value="1"> Nada — já tentei e não mudou</label>
+          <label><input type="radio" name="q6" value="2"> Talvez algo, mas não tenho certeza</label>
+          <label><input type="radio" name="q6" value="3"> Acredito que mudaria muita coisa</label>
+          <label><input type="radio" name="q6" value="4"> Já vivo isso todos os dias</label>
+        </div>
+      </div>
+
+      <div class="quiz-nav">
+        <button class="btn voltar" id="quiz-voltar" onclick="quizVoltar()" type="button">← Voltar</button>
+        <button class="btn avancar" id="quiz-prox" onclick="quizProx()" type="button">Avançar →</button>
+      </div>
+
+      <div class="quiz-resultado" id="quiz-resultado">
+        <div class="qr-emoji" id="qr-emoji">🌱</div>
+        <h3 id="qr-titulo"></h3>
+        <p id="qr-texto"></p>
+        <div class="quiz-form">
+          <label for="quiz-email">✨ Surpresa especial para você:</label>
+          <input type="email" id="quiz-email" placeholder="Seu melhor e-mail" required>
+          <button class="btn" type="button" onclick="quizEnviar()">Receber minha surpresa →</button>
+          <p class="priv">🔒 Seus dados estão seguros. Usaremos apenas para enviar sua surpresa e, se você quiser, para continuar caminhando com você.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <section>
   <div class="wrap">
     <div class="offer">
@@ -617,4 +755,143 @@
     });
   });
 </script>
+
+<script>
+/* ===== QUIZ DE AUTOAVALIAÇÃO ===== */
+var quizAtual = 0;
+var quizTotal = 7;
+var quizRespostas = {};
+
+function quizMostrar(n) {
+  var perguntas = document.querySelectorAll('.quiz-perg');
+  perguntas.forEach(function(p, i) {
+    p.classList.toggle('ativa', i === n);
+  });
+  document.getElementById('quiz-voltar').style.visibility = n === 0 ? 'hidden' : 'visible';
+  document.getElementById('quiz-prox').textContent = n === quizTotal - 1 ? 'Ver meu resultado ✨' : 'Avançar →';
+}
+
+function quizPegarResposta(n) {
+  var sel = document.querySelector('input[name="q' + n + '"]:checked');
+  return sel ? parseInt(sel.value, 10) : null;
+}
+
+function quizProx() {
+  if (quizPegarResposta(quizAtual) === null) {
+    alert('Escolha uma opção para continuar.');
+    return;
+  }
+  if (quizAtual < quizTotal - 1) {
+    quizAtual++;
+    quizMostrar(quizAtual);
+  } else {
+    quizResultado();
+  }
+}
+
+function quizVoltar() {
+  if (quizAtual > 0) {
+    quizAtual--;
+    quizMostrar(quizAtual);
+  }
+}
+
+function quizResultado() {
+  // soma
+  var soma = 0;
+  for (var i = 0; i < quizTotal; i++) {
+    var v = quizPegarResposta(i);
+    if (v === null) {
+      alert('Volte e responda a pergunta ' + (i + 1) + '.');
+      return;
+    }
+    soma += v;
+  }
+  var max = quizTotal * 4;
+  var media = soma / quizTotal;
+
+  var emoji, titulo, texto;
+  if (media <= 1.6) {
+    emoji = '💔';
+    titulo = 'Sua alma está pedindo atenção';
+    texto = 'Suas respostas revelam um coração que carrega muito — ansiedade, cansaço ou a sensação de estar distante. Mas aqui está a boa notícia: reconhecer isso já é o primeiro despertar. Um segundo sincero com Deus por dia pode começar a mudar tudo.';
+  } else if (media <= 2.6) {
+    emoji = '🌫️';
+    titulo = 'Você está no meio do caminho';
+    texto = 'Há um chamado dentro de você, mas a rotina e as distrações ainda falam mais alto. Você não precisa de uma mudança radical — precisa de constância. Pequenos momentos diários com Deus podem clarear o que parece confuso.';
+  } else if (media <= 3.4) {
+    emoji = '🌱';
+    titulo = 'Você está pronto(a) para dar o próximo passo';
+    texto = 'Suas respostas mostram alguém que deseja evoluir de verdade — com fé, propósito e direção. O próximo passo é transformar esse desejo em prática diária. Um devocional de 30 dias pode ser exatamente o que você precisa.';
+  } else {
+    emoji = '✨';
+    titulo = 'Você já está em um lindo despertar';
+    texto = 'Suas respostas revelam maturidade espiritual e uma conexão real. Continue firmando essa base — e compartilhe essa luz com quem ainda está começando. O Reino se multiplica quando a luz é compartilhada.';
+  }
+
+  document.getElementById('qr-emoji').textContent = emoji;
+  document.getElementById('qr-titulo').textContent = titulo;
+  document.getElementById('qr-texto').textContent = texto;
+
+  document.querySelectorAll('.quiz-perg').forEach(function(p) { p.style.display = 'none'; });
+  document.querySelector('.quiz-nav').style.display = 'none';
+  document.getElementById('quiz-resultado').style.display = 'block';
+  document.getElementById('quiz-resultado').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function quizEnviar() {
+  var email = document.getElementById('quiz-email').value.trim();
+  if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    alert('Por favor, informe um e-mail válido.');
+    return;
+  }
+  var botao = event.target;
+  botao.textContent = 'Enviando...';
+  botao.disabled = true;
+
+  // Envia para o e-mail da equipe (FormSubmit — sem servidor)
+  var form = document.createElement('form');
+  form.method = 'POST';
+  form.action = 'https://formsubmit.co/compraoseu.com@gmail.com';
+  form.style.display = 'none';
+
+  var inputEmail = document.createElement('input');
+  inputEmail.type = 'hidden';
+  inputEmail.name = 'email';
+  inputEmail.value = email;
+
+  var inputMsg = document.createElement('input');
+  inputMsg.type = 'hidden';
+  inputMsg.name = '_subject';
+  inputMsg.value = '🏆 Quiz: Novo e-mail captado no site';
+
+  var inputMsg2 = document.createElement('input');
+  inputMsg2.type = 'hidden';
+  inputMsg2.name = 'mensagem';
+  inputMsg2.value = 'O usuário completou o quiz de autoavaliação e informou o e-mail: ' + email;
+
+  var inputNext = document.createElement('input');
+  inputNext.type = 'hidden';
+  inputNext.name = '_next';
+  inputNext.value = window.location.href;
+
+  form.appendChild(inputEmail);
+  form.appendChild(inputMsg);
+  form.appendChild(inputMsg2);
+  form.appendChild(inputNext);
+  document.body.appendChild(form);
+  form.submit();
+
+  // feedback
+  setTimeout(function() {
+    var box = document.querySelector('.quiz-form');
+    box.innerHTML = '<div style="text-align:center;padding:16px;">' +
+      '<div style="font-size:2.5rem;margin-bottom:8px;">🎁</div>' +
+      '<h3 style="color:var(--gold-light,#e3c877);margin:0 0 8px;">Surpresa a caminho!</h3>' +
+      '<p style="color:rgba(246,241,231,.85);margin:0;">Obrigado pela sinceridade. Em breve entraremos em contato com uma surpresa especial para você. 💛</p>' +
+      '</div>';
+  }, 1200);
+}
+</script>
+
 </body></html>
