@@ -870,14 +870,26 @@ function quizEnviar() {
   inputMsg2.name = 'mensagem';
   inputMsg2.value = 'O usuário completou o quiz de autoavaliação e informou o e-mail: ' + email;
 
+  var inputCap = document.createElement('input');
+  inputCap.type = 'hidden';
+  inputCap.name = '_captcha';
+  inputCap.value = 'false';
+
+  var inputTempl = document.createElement('input');
+  inputTempl.type = 'hidden';
+  inputTempl.name = '_template';
+  inputTempl.value = 'table';
+
   var inputNext = document.createElement('input');
   inputNext.type = 'hidden';
   inputNext.name = '_next';
-  inputNext.value = window.location.href;
+  inputNext.value = 'https://www.compraoseu.com/obrigado-quiz';
 
   form.appendChild(inputEmail);
   form.appendChild(inputMsg);
   form.appendChild(inputMsg2);
+  form.appendChild(inputCap);
+  form.appendChild(inputTempl);
   form.appendChild(inputNext);
   document.body.appendChild(form);
   form.submit();
