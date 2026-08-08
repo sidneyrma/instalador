@@ -103,7 +103,7 @@
 ### OG / Twitter
 - **OG Title:** `A Mente de Cristo — Como Pensar com o Espírito e não com o Mundo`
 - **OG Description:** `17 capítulos baseados nos ensinamentos de Emmet Fox sobre pensar com o espírito. Leitura online gratuita e protegida.`
-- **Imagem OG:** `https://sidneyrma.github.io/instalador/capas/mente_cristo.png` (a capa)
+- **Imagem OG:** `https://sidneyrma.github.io/instalador/capas/mente_cristo.png?v=2` (a capa, versão editada/melhorada)
 - **OG Type:** `article` · **Twitter:** `summary_large_image`
 
 ### Configurações
