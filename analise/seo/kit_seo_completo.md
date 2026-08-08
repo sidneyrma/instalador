@@ -86,19 +86,24 @@
 
 ---
 
-## 📄 PÁGINA 4 — LEITURA LIVRO 03 (`/livro03` — O Caibalion)
+## 📄 PÁGINA 4 — LEITURA LIVRO 03 (`/livro03` — A Mente de Cristo)
+
+> 🔄 **Atualizado em 08/08/2026:** o Livro 03 agora é **A Mente de Cristo** (substitui o
+> Caibalion na biblioteca gratuita). Se a página `/livro03` da Vendd ainda tiver o
+> conteúdo antigo, substitua pelo novo `mente_cristo_preview.html`.
 
 ### Metadados Básicos
 | Campo | Valor |
 |---|---|
-| **Título** (55) | `O Caibalion (Kybalion) — Leitura Online | Missão com Deus` |
-| **Descrição** (158) | `Leia online O Caibalion (Kybalion) — edição definitiva e comentada da filosofia hermética. 15 capítulos + As Sete Leis Cósmicas. Leitura protegida.` |
-| **Keywords** | `caibalion, kybalion, filosofia hermética, sete princípios herméticos, hermes trismegisto, livro esotérico, leitura online` |
+| **Título** (55) | `A Mente de Cristo — Como Pensar com o Espírito · Leitura` |
+| **Descrição** (155) | `Leia online A Mente de Cristo — Como Pensar com o Espírito e não com o Mundo. 17 capítulos baseados nos ensinamentos de Emmet Fox. Leitura gratuita e protegida.` |
+| **Keywords** | `a mente de Cristo, emmet fox, mente de Cristo, pensamento espiritual, renovar a mente, ensinamentos de Jesus, consciência de Cristo, livro cristão, leitura online grátis` |
 | **URL Canônica** | `https://www.compraoseu.com/livro03` |
 
 ### OG / Twitter
-- **OG Title:** `O Caibalion (Kybalion) — Leitura Online`
-- **OG Description:** `A filosofia hermética completa — 15 capítulos + As Sete Leis Cósmicas. Leitura online gratuita.`
+- **OG Title:** `A Mente de Cristo — Como Pensar com o Espírito e não com o Mundo`
+- **OG Description:** `17 capítulos baseados nos ensinamentos de Emmet Fox sobre pensar com o espírito. Leitura online gratuita e protegida.`
+- **Imagem OG:** `https://sidneyrma.github.io/instalador/capas/mente_cristo.png` (a capa)
 - **OG Type:** `article` · **Twitter:** `summary_large_image`
 
 ### Configurações
