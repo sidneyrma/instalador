@@ -1,6 +1,6 @@
 # 🚀 KIT SEO COMPLETO — Preenchimento na Vendd
 
-**Data:** 07/08/2026 · **8 páginas:** Home + 6 leituras + página de agradecimento do quiz
+**Data:** 08/08/2026 · **10 páginas:** Home + 8 leituras (livro01–08) + página de agradecimento do quiz
 
 > ⚠️ **IMPORTANTE (não erre):** deixe **DESMARCADOS** os campos **"Não indexar (noindex)"**
 > e **"Não seguir (nofollow)"** em todas as páginas (exceto a de obrigado — ver nota).
@@ -243,4 +243,31 @@ Suba as imagens da pasta `analise/seo/` no imgbb e use os links:
 
 ---
 
-*Atualizado em 07/08/2026 — adicionada página 9 (livro07)*
+## 📄 PÁGINA 10 — LEITURA LIVRO 08 (`/livro08` — Você e o Universo)
+
+### Metadados Básicos
+| Campo | Valor (copie e cole) |
+|---|---|
+| **Título** (53) | `Você e o Universo — O Inconsciente e as suas Criações` |
+| **Descrição** (154) | `Leia online Você e o Universo — O Inconsciente e as suas Criações. 19 capítulos sobre a mente, o inconsciente e a realidade. Leitura gratuita e protegida.` |
+| **Keywords** | `você e o universo, inconsciente, subconsciente, mente, realidade, poder da mente, crenças, visualização, lei da atração, livro espiritual, leitura online grátis` |
+| **URL Canônica** | `https://www.compraoseu.com/livro08` |
+
+### Favicon / OG / Twitter
+- **Favicon:** mesmo `favicon-32.png`
+- **OG Title:** `Você e o Universo — O Inconsciente e as suas Criações`
+- **OG Description:** `19 capítulos sobre a mente, o inconsciente e a realidade. Leitura online gratuita e protegida.`
+- **Imagem OG:** `https://sidneyrma.github.io/instalador/capas/livro08.png?v=2` (a capa do universo)
+- **OG Type:** `article`
+- **Twitter Card Type:** `summary_large_image`
+
+### Configurações
+- **noindex:** ❌ DESMARCADO · **nofollow:** ❌ DESMARCADO
+
+> 💡 **Dica:** a capa do universo já está pronta em `docs/capas/livro08.png` (600×800,
+> otimizada para web) e é servida pelo GitHub Pages. Use-a como imagem OG — ao
+> compartilhar no WhatsApp, a capa aparece junto do link.
+
+---
+
+*Atualizado em 08/08/2026 — adicionada página 10 (livro08 — Você e o Universo)*

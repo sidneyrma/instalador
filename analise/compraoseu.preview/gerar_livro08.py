@@ -177,9 +177,22 @@ document.addEventListener('keydown', function(e){
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{esc(TITULO)} — {esc(SUBTITULO)} · Leitura Online</title>
-<meta name="description" content="Leia online {esc(TITULO)} — {esc(SUBTITULO)}. 19 capítulos sobre a relação entre mente, inconsciente e realidade. Leitura gratuita e protegida.">
+<title>{esc(TITULO)} — {esc(SUBTITULO)}</title>
+<meta name="description" content="Leia online {esc(TITULO)} — {esc(SUBTITULO)}. 19 capítulos sobre a mente, o inconsciente e a realidade. Leitura gratuita e protegida.">
+<meta name="keywords" content="você e o universo, inconsciente, subconsciente, mente, realidade, poder da mente, crenças, visualização, lei da atração, livro espiritual, leitura online grátis">
 <meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.compraoseu.com/livro08">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{esc(TITULO)} — {esc(SUBTITULO)}">
+<meta property="og:description" content="19 capítulos sobre a mente, o inconsciente e a realidade. Leitura online gratuita e protegida.">
+<meta property="og:image" content="https://sidneyrma.github.io/instalador/capas/livro08.png?v=2">
+<meta property="og:url" content="https://www.compraoseu.com/livro08">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Missão com Deus — CompraOSeu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{esc(TITULO)} — {esc(SUBTITULO)}">
+<meta name="twitter:description" content="19 capítulos sobre a mente, o inconsciente e a realidade. Leitura online gratuita e protegida.">
+<meta name="twitter:image" content="https://sidneyrma.github.io/instalador/capas/livro08.png?v=2">
 <style>{css}</style>
 </head>
 <body>
@@ -199,7 +212,7 @@ document.addEventListener('keydown', function(e){
 </header>
 
 <section class="capa">
-  <img class="capa-livro" src="https://sidneyrma.github.io/instalador/capas/livro08.png" alt="Capa do livro Você e o Universo — O Inconsciente e as suas Criações">
+  <img class="capa-livro" src="https://sidneyrma.github.io/instalador/capas/livro08.png?v=2" alt="Capa do livro Você e o Universo — O Inconsciente e as suas Criações">
   <p class="selo">Coleção Oculta</p>
   <h1>{esc(TITULO)}</h1>
   <p class="sub">{esc(SUBTITULO)}</p>

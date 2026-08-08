@@ -108,9 +108,13 @@ def main():
     os.makedirs(os.path.dirname(OUT_CAPA), exist_ok=True)
     os.makedirs(os.path.dirname(OUT_DOCS), exist_ok=True)
     capa.save(OUT_CAPA)
-    capa.save(OUT_DOCS)
+    # Versão otimizada (PNG-8, 256 cores) para o GitHub Pages — ~60% menor,
+    # diferença visual imperceptível, no mesmo patamar das outras capas da coleção.
+    capa_web = capa.quantize(colors=256, method=Image.Quantize.MEDIANCUT,
+                             dither=Image.Dither.FLOYDSTEINBERG)
+    capa_web.save(OUT_DOCS, optimize=True)
     print('Capa universo salva:', OUT_CAPA, capa.size)
-    print('Capa p/ GitHub Pages:', OUT_DOCS, capa.size)
+    print('Capa p/ GitHub Pages (otimizada):', OUT_DOCS, capa.size)
 
 
 if __name__ == '__main__':
