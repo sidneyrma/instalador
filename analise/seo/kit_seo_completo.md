@@ -90,7 +90,7 @@
 
 > 🔄 **Atualizado em 08/08/2026:** o Livro 03 agora é **A Mente de Cristo** (substitui o
 > Caibalion na biblioteca gratuita). Se a página `/livro03` da Vendd ainda tiver o
-> conteúdo antigo, substitua pelo novo `mente_cristo_preview.html`.
+> conteúdo antigo, substitua pelo novo `paginas/livro03_preview.html`.
 
 ### Metadados Básicos
 | Campo | Valor |

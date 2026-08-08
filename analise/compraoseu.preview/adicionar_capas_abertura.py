@@ -11,6 +11,7 @@ import re
 from pathlib import Path
 
 HERE = Path(__file__).parent
+PAGINAS = HERE.parent.parent / "paginas"
 OBRA = HERE / "obra"
 
 CSS_CAPA = (".capa .capa-livro{width:178px; height:auto; border:2px solid var(--ouro); border-radius:6px;\n"
@@ -57,7 +58,7 @@ def main():
     for item in CONFIG:
         pagina, gerador, capa, alt = item[0], item[1], item[2], item[3]
         css_ancora = item[4] if len(item) > 4 else ".capa .selo{"
-        alvo_pag = HERE / pagina
+        alvo_pag = PAGINAS / pagina
         alvo_ger = HERE / gerador
         for alvo in (alvo_pag, alvo_ger):
             txt = alvo.read_text(encoding="utf-8")
@@ -69,7 +70,7 @@ def main():
                 print(f"· {alvo.relative_to(HERE)} já ok")
 
     # --- livro07 (despertar): padroniza capa-img -> capa-livro ---
-    for alvo in (OBRA / "despertar_preview.html", OBRA / "gerar_despertar.py"):
+    for alvo in (PAGINAS / "livro07_preview.html", OBRA / "gerar_despertar.py"):
         txt = alvo.read_text(encoding="utf-8")
         if ".capa .capa-livro{" not in txt:
             # substitui a regra capa-img pela padrão

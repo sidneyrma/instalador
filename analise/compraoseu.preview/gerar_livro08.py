@@ -7,7 +7,8 @@ import json, re, html
 from pathlib import Path
 
 HERE = Path(__file__).parent
-OUT = HERE / "livro08_preview.html"
+PAGINAS = HERE.parent.parent / "paginas"
+OUT = PAGINAS / "livro08_preview.html"
 DADOS = HERE / "livro08_dados.json"
 
 TITULO = "Você e o Universo"

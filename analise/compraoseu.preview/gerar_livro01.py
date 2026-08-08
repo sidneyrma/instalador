@@ -15,7 +15,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent / "livro"))
 import build_livro as bl
 
 HERE = Path(__file__).parent
-OUT = HERE / "livro01_preview.html"
+PAGINAS = HERE.parent.parent / "paginas"
+OUT = PAGINAS / "livro01_preview.html"
 
 TITULO = "O Ouro das Palavras"
 AUTOR = "Joseph Murphy"

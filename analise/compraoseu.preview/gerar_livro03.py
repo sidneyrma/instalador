@@ -10,7 +10,7 @@ import re, html
 from pathlib import Path
 
 HERE = Path(__file__).parent
-OUT = HERE / "livro03_preview.html"
+OUT = HERE / "caibalion_preview.html"
 LIMPO = HERE / "livro03_limpo.txt"
 
 TITULO = "O Caibalion"

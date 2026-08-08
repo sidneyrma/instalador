@@ -10,7 +10,8 @@ import sys, re, html
 from pathlib import Path
 
 HERE = Path(__file__).parent
-OUT = HERE / "livro02_preview.html"
+PAGINAS = HERE.parent.parent / "paginas"
+OUT = PAGINAS / "livro02_preview.html"
 
 TITULO = "O Livro Proibido dos Mestres"
 SUBTITULO = "Os Ensinamentos que foram escondidos da Humanidade"
