@@ -28,11 +28,25 @@ def paragrafos(texto):
             blocos.append(f'<p>{esc(p)}</p>')
     return "\n".join(blocos)
 
+
+def truncar_paragrafos(texto, limite):
+    """Primeiros parágrafos HTML que cabem em `limite` chars, sem cortar <p> no meio."""
+    html = paragrafos(texto)
+    partes = html.split("\n")
+    acumulado, total = [], 0
+    for p in partes:
+        if total + len(p) + 1 > limite:
+            break
+        acumulado.append(p)
+        total += len(p) + 1
+    return "\n".join(acumulado)
+
+
 def build():
     dados = json.loads(DADOS.read_text(encoding='utf-8'))
 
     # ---- Apresentação ----
-    intro_html = paragrafos(dados["apresentacao"])[:2500]  # primeiros parágrafos
+    intro_html = truncar_paragrafos(dados["apresentacao"], 2500)  # primeiros parágrafos
 
     # ---- Corpo (Jesus te ama, Oração) ----
     corpo_html = ""
@@ -60,7 +74,8 @@ def build():
     ativ_html = paragrafos(dados["atividades"])
 
     # ---- Final ----
-    final_html = paragrafos(dados["final"])[:2000]
+    # trunca em limite de parágrafo (não corta <p> no meio do texto)
+    final_html = truncar_paragrafos(dados["final"], 2000)
 
     css = """
 :root{
@@ -91,6 +106,8 @@ img{-webkit-user-drag:none; -webkit-touch-callout:none}
   background:radial-gradient(900px 500px at 70% -10%, rgba(135,206,235,.3), transparent 60%),
              radial-gradient(700px 400px at 20% 90%, rgba(201,162,75,.25), transparent 60%),
              linear-gradient(170deg,var(--navy) 0%,#123a5e 100%);}
+.capa .capa-livro{width:178px; height:auto; border:2px solid var(--ouro); border-radius:6px;
+  box-shadow:0 18px 44px rgba(0,0,0,.6); margin-bottom:1.8rem; -webkit-user-drag:none}
 .capa .emoji-grande{font-size:4.5rem; margin-bottom:1.2rem}
 .capa h1{font-size:clamp(2rem,6vw,3.4rem); margin:0 0 .6rem; line-height:1.12}
 .capa .sub{font-style:italic; color:#d8e6f2; font-size:1.1rem; margin-bottom:1.8rem; max-width:34rem}
@@ -195,6 +212,7 @@ document.addEventListener('keydown', function(e){
 </header>
 
 <section class="capa">
+  <img class="capa-livro" src="https://i.ibb.co/8DLT57DZ/jesusfalarfilho.jpg" alt="Capa do livro Jesus Quer Falar com Seu Filho">
   <div class="emoji-grande">👶✨</div>
   <h1>{esc(TITULO)}</h1>
   <p class="sub">{esc(SUBTITULO)}</p>

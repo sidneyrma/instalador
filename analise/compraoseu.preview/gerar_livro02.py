@@ -163,6 +163,8 @@ img{-webkit-user-drag:none; -webkit-touch-callout:none}
 .capa{min-height:82vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
   text-align:center; padding:3rem 1.2rem; color:#fff;
   background:radial-gradient(900px 500px at 70% -10%, rgba(201,162,75,.2), transparent 60%), linear-gradient(170deg,var(--navy) 0%,#120b18 100%);}
+.capa .capa-livro{width:178px; height:auto; border:2px solid var(--ouro); border-radius:6px;
+  box-shadow:0 18px 44px rgba(0,0,0,.6); margin-bottom:1.8rem; -webkit-user-drag:none}
 .capa .selo{font-size:.78rem; letter-spacing:.4em; text-transform:uppercase; color:var(--ouro-claro); margin-bottom:1.6rem}
 .capa h1{font-size:clamp(1.9rem,5.5vw,3.2rem); margin:0 0 .6rem; line-height:1.12}
 .capa .sub{font-style:italic; color:#cfd6e2; font-size:1.05rem; margin-bottom:1.8rem; max-width:34rem}
@@ -255,6 +257,7 @@ document.addEventListener('keydown', function(e){
 </header>
 
 <section class="capa">
+  <img class="capa-livro" src="https://sidneyrma.github.io/instalador/capas/livro02.png" alt="Capa do livro O Livro Proibido dos Mestres">
   <p class="selo">Coleção Oculta</p>
   <h1>{esc(TITULO)}</h1>
   <p class="sub">{esc(SUBTITULO)}</p>

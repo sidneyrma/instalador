@@ -103,6 +103,8 @@ img{-webkit-user-drag:none; -webkit-touch-callout:none}
 /* CAPA */
 .capa{min-height:82vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
   text-align:center; padding:3rem 1.2rem; color:#fff}
+.capa .capa-livro{width:178px; height:auto; border:2px solid var(--ouro); border-radius:6px;
+  box-shadow:0 18px 44px rgba(0,0,0,.6); margin-bottom:1.8rem; -webkit-user-drag:none}
 .capa .selo{font-size:.78rem; letter-spacing:.4em; text-transform:uppercase; color:var(--ouro-claro); margin-bottom:1.6rem}
 .capa h1{font-size:clamp(2rem,6vw,3.4rem); margin:0 0 .6rem; line-height:1.1}
 .capa .sub{font-style:italic; color:#cfd6e2; font-size:1.1rem; margin-bottom:1.8rem}
@@ -204,6 +206,7 @@ document.addEventListener('keydown', function(e){
 </header>
 
 <section class="capa">
+  <img class="capa-livro" src="https://sidneyrma.github.io/instalador/capas/livro01.png" alt="Capa do livro O Ouro das Palavras">
   <p class="selo">Coleção Oculta</p>
   <h1>{esc(TITULO)}</h1>
   <p class="sub">{esc(SUBTITULO)}</p>
