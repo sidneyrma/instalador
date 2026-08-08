@@ -163,7 +163,7 @@ document.addEventListener('copy', function(e){
   e.preventDefault();
   if (e.clipboardData){
     e.clipboardData.setData('text/plain',
-      '© Coleção Oculta — Você e o Universo. Todos os direitos reservados. Leitura online em compraoseu.com');
+      '© Coleção do Despertar — Você e o Universo. Todos os direitos reservados. Leitura online em compraoseu.com');
   }
 });
 document.addEventListener('keydown', function(e){
@@ -202,7 +202,7 @@ document.addEventListener('keydown', function(e){
   <h1>{esc(TITULO)}</h1>
   <p style="font-style:italic">{esc(SUBTITULO)}</p>
   <p>Impressão desabilitada para proteger os direitos autorais desta obra.</p>
-  <p>© Coleção Oculta — Todos os direitos reservados.</p>
+  <p>© Coleção do Despertar — Todos os direitos reservados.</p>
 </div>
 
 <header class="topbar">
@@ -214,7 +214,7 @@ document.addEventListener('keydown', function(e){
 
 <section class="capa">
   <img class="capa-livro" src="https://sidneyrma.github.io/instalador/capas/livro08.png?v=2" alt="Capa do livro Você e o Universo — O Inconsciente e as suas Criações">
-  <p class="selo">Coleção Oculta</p>
+  <p class="selo">Coleção do Despertar</p>
   <h1>{esc(TITULO)}</h1>
   <p class="sub">{esc(SUBTITULO)}</p>
   <p class="autor">Leitura online · grátis</p>
@@ -238,7 +238,7 @@ document.addEventListener('keydown', function(e){
 <section id="fim">
   <h2>O Despertar da Consciência</h2>
   <p>A realidade responde ao estado interno que você sustenta. Que este livro desperte em você a consciência dos padrões invisíveis que moldam a sua vida.</p>
-  <p class="cred">© Coleção Oculta · Todos os direitos reservados.<br>Leitura protegida — não é permitido copiar, imprimir ou distribuir este conteúdo.</p>
+  <p class="cred">© Coleção do Despertar · Todos os direitos reservados.<br>Leitura protegida — não é permitido copiar, imprimir ou distribuir este conteúdo.</p>
 </section>
 
 <footer>

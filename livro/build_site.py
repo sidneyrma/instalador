@@ -89,7 +89,7 @@ def build():
         nav.append('</nav>')
         partes.append("\n".join(nav))
         # aviso de direitos autorais ao final de cada capítulo
-        partes.append('<p class="copy-chap">© Coleção Oculta &middot; <em>O Ouro das Palavras</em>'
+        partes.append('<p class="copy-chap">© Coleção do Despertar &middot; <em>O Ouro das Palavras</em>'
                       ' &middot; Joseph Murphy — Todos os direitos reservados</p>')
         partes.append('</section>')
         secoes_html.append("\n".join(partes))
@@ -209,7 +209,7 @@ document.addEventListener('copy', function (e) {
   e.preventDefault();
   if (e.clipboardData) {
     e.clipboardData.setData('text/plain',
-      '© Coleção Oculta — O Ouro das Palavras, de Joseph Murphy. Todos os direitos reservados.');
+      '© Coleção do Despertar — O Ouro das Palavras, de Joseph Murphy. Todos os direitos reservados.');
   }
 });
 </script>"""
@@ -227,7 +227,7 @@ document.addEventListener('copy', function (e) {
 <div id="topo"></div>
 
 <header class="capa">
-  <p class="selo">Coleção Oculta</p>
+  <p class="selo">Coleção do Despertar</p>
   <h1>{esc(TITULO)}</h1>
   <div class="regua"></div>
   <p class="sub">{esc(SUBTITULO)}</p>
@@ -236,12 +236,12 @@ document.addEventListener('copy', function (e) {
 </header>
 
 <div id="print-block">
-  <p class="selo">Coleção Oculta</p>
+  <p class="selo">Coleção do Despertar</p>
   <h1>O Ouro das Palavras</h1>
   <p style="font-style:italic">Joseph Murphy</p>
   <div class="regua"></div>
   <p>Impressão desabilitada para proteger os direitos autorais desta obra.</p>
-  <p>© Coleção Oculta — Todos os direitos reservados.</p>
+  <p>© Coleção do Despertar — Todos os direitos reservados.</p>
 </div>
 
 <div class="wrap">
@@ -267,7 +267,7 @@ document.addEventListener('copy', function (e) {
   <footer>
     <div class="regua"></div>
     <p><strong>{esc(TITULO)}</strong> · {esc(AUTOR)}</p>
-    <p>Baseado nos ensinamentos de Joseph Murphy. Editado e publicado por Coleção Oculta.</p>
+    <p>Baseado nos ensinamentos de Joseph Murphy. Editado e publicado por Coleção do Despertar.</p>
     <p>Diagramação segundo a ABNT NBR 6029 — Apresentação de livros e folhetos.</p>
     <p>Todos os direitos reservados.</p>
   </footer>

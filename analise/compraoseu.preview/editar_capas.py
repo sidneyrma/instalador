@@ -108,7 +108,7 @@ def processar(arquivo):
     f_sub = fonte(26, False)
     centralizar(draw, alvo_w, alvo_h - 92, cfg[1], f_sub, (240, 240, 240, 230))
 
-    # selo "COLLECTIO OCCULTA" pequeno
+    # selo "COLEÇÃO DO DESPERTAR" pequeno
     f_selo = fonte(18, True)
     centralizar(draw, alvo_w, alvo_h - 52, "C O L L E C T I O   O C C U L T A", f_selo, GOLD_CLARO)
 

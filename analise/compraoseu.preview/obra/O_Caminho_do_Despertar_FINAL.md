@@ -3,7 +3,7 @@ A Jornada Solitária da Alma
 
 Uma obra que reúne a sabedoria dos ensinamentos ocultos, a profundidade da fé e o conhecimento da alma humana, para despertar o que há de mais sagrado em você.
 
-Missão com Deus · Coleção Oculta
+Missão com Deus · Coleção do Despertar
 
 APRESENTAÇÃO — A Jornada Solitária
 
@@ -248,7 +248,7 @@ Reflexão do Capítulo 3
 
 Se o mestre interior falasse agora, o que ele diria que você tem ignorado? Onde, na sua vida, você ainda busca fora o que só pode ser encontrado dentro? Qual é o "sussurro" que você tem abafado com o barulho da rotina?
 
-Missão com Deus · Coleção Oculta
+Missão com Deus · Coleção do Despertar
 O Caminho do Despertar — A Jornada Solitária da Alma
 
 PARTE II — O LABORATÓRIO
@@ -888,5 +888,5 @@ E que o mestre interior, agora desperto, guie cada escolha.
 
 A jornada solitária da alma termina aqui, e o despertar começa agora.
 
-Missão com Deus · Coleção Oculta
+Missão com Deus · Coleção do Despertar
 O Caminho do Despertar — A Jornada Solitária da Alma

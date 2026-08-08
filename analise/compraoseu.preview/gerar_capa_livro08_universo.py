@@ -100,7 +100,7 @@ def main():
     desenha_texto_centralizado(d, 668, 'O Inconsciente e as suas Criações', f_sub, CREME)
 
     f_selo = fonte(FONTE_TEXTO, 15)
-    desenha_texto_centralizado(d, 728, 'C O L L E C T I O   O C C U L T A', f_selo, OURO, tracking=1)
+    desenha_texto_centralizado(d, 728, 'C O L E Ç Ã O   D O   D E S P E R T A R', f_selo, OURO, tracking=1)
 
     # ---------------------------------------------------------------
     # 6) Salvar

@@ -170,7 +170,7 @@ document.addEventListener('copy', function(e){
   e.preventDefault();
   if (e.clipboardData){
     e.clipboardData.setData('text/plain',
-      '© Coleção Oculta — O Ouro das Palavras, de Joseph Murphy. Todos os direitos reservados. Leitura online em compraoseu.com');
+      '© Coleção do Despertar — O Ouro das Palavras, de Joseph Murphy. Todos os direitos reservados. Leitura online em compraoseu.com');
   }
 });
 document.addEventListener('keydown', function(e){
@@ -196,7 +196,7 @@ document.addEventListener('keydown', function(e){
   <h1>O Ouro das Palavras</h1>
   <p style="font-style:italic">Joseph Murphy</p>
   <p>Impressão desabilitada para proteger os direitos autorais desta obra.</p>
-  <p>© Coleção Oculta — Todos os direitos reservados.</p>
+  <p>© Coleção do Despertar — Todos os direitos reservados.</p>
 </div>
 
 <header class="topbar">
@@ -208,7 +208,7 @@ document.addEventListener('keydown', function(e){
 
 <section class="capa">
   <img class="capa-livro" src="https://sidneyrma.github.io/instalador/capas/livro01.png" alt="Capa do livro O Ouro das Palavras">
-  <p class="selo">Coleção Oculta</p>
+  <p class="selo">Coleção do Despertar</p>
   <h1>{esc(TITULO)}</h1>
   <p class="sub">{esc(SUBTITULO)}</p>
   <p class="autor">{esc(AUTOR)}</p>
@@ -241,8 +241,8 @@ document.addEventListener('keydown', function(e){
 
 <section id="fim">
   <h2>Aqui termina sua jornada…</h2>
-  <p>…mas começa sua transformação. O Ouro das Palavras, baseado nos ensinamentos de Joseph Murphy, editado e publicado por Coleção Oculta.</p>
-  <p class="cred">© Coleção Oculta · Todos os direitos reservados.<br>Leitura protegida — não é permitido copiar, imprimir ou distribuir este conteúdo.</p>
+  <p>…mas começa sua transformação. O Ouro das Palavras, baseado nos ensinamentos de Joseph Murphy, editado e publicado por Coleção do Despertar.</p>
+  <p class="cred">© Coleção do Despertar · Todos os direitos reservados.<br>Leitura protegida — não é permitido copiar, imprimir ou distribuir este conteúdo.</p>
 </section>
 
 <footer>

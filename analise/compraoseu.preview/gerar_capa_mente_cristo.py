@@ -8,7 +8,7 @@ Melhorias aplicadas:
   3. Realce de brilho, contraste e saturação (a original é escura, média ~40).
   4. Vinheta suave nas bordas (padrão da coleção).
   5. Faixa navy translúcida na base para destacar o título original.
-  6. Selo "COLLECTIO OCCULTA" dourado no topo (identidade da coleção).
+  6. Selo "COLEÇÃO DO DESPERTAR" dourado no topo (identidade da coleção).
   7. Moldura dourada dupla (padrão das demais capas).
   8. Otimização web: PNG-8 (256 cores) em docs/capas/mente_cristo.png.
 
@@ -34,13 +34,13 @@ W, H = 600, 800
 
 
 def desenha_selo(img):
-    """Selo 'COLLECTIO OCCULTA' centralizado no topo, com sombra."""
+    """Selo 'COLEÇÃO DO DESPERTAR' centralizado no topo, com sombra."""
     d = ImageDraw.Draw(img, 'RGBA')
     try:
         f = ImageFont.truetype(FONTE_TEXTO, 15)
     except Exception:
         f = ImageFont.load_default()
-    texto = "C O L L E C T I O   O C C U L T A"
+    texto = "C O L E Ç Ã O   D O   D E S P E R T A R"
     # sombra
     bbox = d.textbbox((0, 0), texto, font=f)
     tw = bbox[2] - bbox[0]

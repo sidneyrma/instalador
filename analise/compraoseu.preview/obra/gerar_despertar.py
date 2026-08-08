@@ -11,7 +11,7 @@ HERE = Path(__file__).parent
 PAGINAS = HERE.parent.parent / "paginas"
 SRC = HERE / "O_Caminho_do_Despertar_FINAL.md"
 OUT = PAGINAS / "livro07_preview.html"
-CAPA = "https://i.ibb.co/SEU-LINK/capa-despertar.png"
+CAPA = "https://sidneyrma.github.io/instalador/capas/capa_despertar.png?v=1"
 
 TITULO = "O Caminho do Despertar"
 SUBTITULO = "A Jornada Solitária da Alma"
@@ -189,7 +189,7 @@ document.addEventListener('copy', function(e){
   e.preventDefault();
   if (e.clipboardData){
     e.clipboardData.setData('text/plain',
-      '© Coleção Oculta — O Caminho do Despertar. Todos os direitos reservados. Leitura online em compraoseu.com');
+      '© Coleção do Despertar — O Caminho do Despertar. Todos os direitos reservados. Leitura online em compraoseu.com');
   }
 });
 document.addEventListener('keydown', function(e){
@@ -215,7 +215,7 @@ document.addEventListener('keydown', function(e){
   <h1>{esc(TITULO)}</h1>
   <p style="font-style:italic">{esc(SUBTITULO)}</p>
   <p>Impressão desabilitada para proteger os direitos autorais desta obra.</p>
-  <p>© Coleção Oculta — Todos os direitos reservados.</p>
+  <p>© Coleção do Despertar — Todos os direitos reservados.</p>
 </div>
 
 <header class="topbar">
@@ -226,8 +226,8 @@ document.addEventListener('keydown', function(e){
 </header>
 
 <section class="capa">
-  <img class="capa-livro" src="https://i.ibb.co/NdPkM40C/capa-despertar.png" alt="Capa do livro O Caminho do Despertar">
-  <p class="selo">Coleção Oculta</p>
+  <img class="capa-livro" src="https://sidneyrma.github.io/instalador/capas/capa_despertar.png?v=1" alt="Capa do livro O Caminho do Despertar">
+  <p class="selo">Coleção do Despertar</p>
   <h1>{esc(TITULO)}</h1>
   <p class="sub">{esc(SUBTITULO)}</p>
   <a class="inicio" href="#sumario">Começar a leitura →</a>
@@ -250,7 +250,7 @@ document.addEventListener('keydown', function(e){
 <section id="fim">
   <h2>A Jornada Contínua</h2>
   <p>Que a Luz do Divino Criador ilumine os seus passos. E que o mestre interior, agora desperto, guie cada escolha.</p>
-  <p class="cred">© Coleção Oculta · Todos os direitos reservados.<br>Leitura protegida — não é permitido copiar, imprimir ou distribuir este conteúdo.</p>
+  <p class="cred">© Coleção do Despertar · Todos os direitos reservados.<br>Leitura protegida — não é permitido copiar, imprimir ou distribuir este conteúdo.</p>
 </section>
 
 <footer>

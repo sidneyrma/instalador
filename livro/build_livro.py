@@ -76,7 +76,7 @@ CAPITULOS = [
 
 INTRO_INICIO = "Vivemos em um mundo que reverencia o que é visível."
 INTRO_FIM = ("Comece agora o Ouro das Palavras baseado nos ensinamentos de Joseph Murphy, "
-             "editado e publicado por Coleção Oculta. Todos os direitos reservados.")
+             "editado e publicado por Coleção do Despertar. Todos os direitos reservados.")
 
 def segmentar(t: str):
     assert INTRO_INICIO in t, "início da introdução não encontrado"
@@ -256,7 +256,7 @@ def gerar_docx(conteudo, caminho):
     cp.author = "Joseph Murphy"
     cp.subject = "O poder criador da palavra"
     cp.keywords = "Joseph Murphy; palavras; decretos; subconsciente; espiritualidade"
-    cp.comments = "Baseado nos ensinamentos de Joseph Murphy. Editado e publicado por Coleção Oculta."
+    cp.comments = "Baseado nos ensinamentos de Joseph Murphy. Editado e publicado por Coleção do Despertar."
 
     def config_sec(sec):
         sec.page_width = Cm(21.0)
@@ -345,14 +345,14 @@ def gerar_docx(conteudo, caminho):
             p.paragraph_format.line_spacing = Pt(18)
 
     # ===== CAPA =====
-    add_par("COLEÇÃO OCULTA", align=WD_ALIGN_PARAGRAPH.CENTER, size=12, bold=True, after=0)
+    add_par("COLEÇÃO DO DESPERTAR", align=WD_ALIGN_PARAGRAPH.CENTER, size=12, bold=True, after=0)
     vazios(5)
     add_par("O OURO DAS PALAVRAS", align=WD_ALIGN_PARAGRAPH.CENTER, size=30, bold=True, after=12)
     add_par("O poder criador da palavra", align=WD_ALIGN_PARAGRAPH.CENTER, size=16, italic=True, after=6)
     vazios(4)
     add_par("JOSEPH MURPHY", align=WD_ALIGN_PARAGRAPH.CENTER, size=18, bold=True)
     vazios(6)
-    add_par("COLEÇÃO OCULTA", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, after=6)
+    add_par("COLEÇÃO DO DESPERTAR", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, after=6)
     add_par("2026", align=WD_ALIGN_PARAGRAPH.CENTER, size=11)
 
     # ===== FOLHA DE ROSTO =====
@@ -361,15 +361,15 @@ def gerar_docx(conteudo, caminho):
     add_par("O Ouro das Palavras", align=WD_ALIGN_PARAGRAPH.CENTER, size=18, bold=True, after=10)
     add_par("O poder criador da palavra", align=WD_ALIGN_PARAGRAPH.CENTER, size=13, italic=True)
     vazios(9)
-    add_par("Coleção Oculta", align=WD_ALIGN_PARAGRAPH.CENTER, size=12, after=4)
+    add_par("Coleção do Despertar", align=WD_ALIGN_PARAGRAPH.CENTER, size=12, after=4)
     add_par("2026", align=WD_ALIGN_PARAGRAPH.CENTER, size=12)
 
     # ===== CRÉDITOS =====
-    add_par("© Coleção Oculta, 2026", align=WD_ALIGN_PARAGRAPH.CENTER, size=10, page_break=True, after=0)
+    add_par("© Coleção do Despertar, 2026", align=WD_ALIGN_PARAGRAPH.CENTER, size=10, page_break=True, after=0)
     vazios(3)
     add_par("O Ouro das Palavras", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, bold=True, after=8)
     add_par("Baseado nos ensinamentos de Joseph Murphy.", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, after=6)
-    add_par("Editado e publicado por Coleção Oculta.", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, after=6)
+    add_par("Editado e publicado por Coleção do Despertar.", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, after=6)
     add_par("Todos os direitos reservados.", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, after=6)
     add_par("Brasil · 2026", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, after=0)
     vazios(3)
@@ -488,14 +488,14 @@ def gerar_pdf(conteudo, caminho, numero_paginas=False, inicio_corpo=None):
 
     # capa
     story += [vazio(4.2*cm),
-              cpar("COLEÇÃO OCULTA", cent, 12, bold=True),
+              cpar("COLEÇÃO DO DESPERTAR", cent, 12, bold=True),
               vazio(2.4*cm),
               cpar("O OURO DAS PALAVRAS", cent, 30, bold=True),
               cpar("O poder criador da palavra", cent, 16, italic=True),
               vazio(1.8*cm),
               cpar("JOSEPH MURPHY", cent, 18, bold=True),
               vazio(3.2*cm),
-              cpar("COLEÇÃO OCULTA", cent, 11),
+              cpar("COLEÇÃO DO DESPERTAR", cent, 11),
               cpar("2026", cent, 11),
               PageBreak()]
     # folha de rosto
@@ -505,16 +505,16 @@ def gerar_pdf(conteudo, caminho, numero_paginas=False, inicio_corpo=None):
               cpar("O Ouro das Palavras", cent, 18, bold=True),
               cpar("O poder criador da palavra", cent, 13, italic=True),
               vazio(4.2*cm),
-              cpar("Coleção Oculta", cent, 12),
+              cpar("Coleção do Despertar", cent, 12),
               cpar("2026", cent, 12),
               PageBreak()]
     # créditos
     story += [vazio(1.6*cm),
-              cpar("© Coleção Oculta, 2026", cent, 10),
+              cpar("© Coleção do Despertar, 2026", cent, 10),
               vazio(1*cm),
               cpar("O Ouro das Palavras", cent, 11, bold=True),
               cpar("Baseado nos ensinamentos de Joseph Murphy.", cent, 11),
-              cpar("Editado e publicado por Coleção Oculta.", cent, 11),
+              cpar("Editado e publicado por Coleção do Despertar.", cent, 11),
               cpar("Todos os direitos reservados.", cent, 11),
               cpar("Brasil · 2026", cent, 11),
               vazio(1*cm),

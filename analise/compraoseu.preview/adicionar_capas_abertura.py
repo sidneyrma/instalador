@@ -3,7 +3,7 @@
 Adiciona a capa do livro na seção de abertura (.capa) de todas as páginas de leitura,
 mantendo o padrão do livro08/mente_cristo:
   <img class="capa-livro" src="..." alt="...">
-  <p class="selo">Coleção Oculta</p> ...
+  <p class="selo">Coleção do Despertar</p> ...
 
 Aplica a mesma mudança nos geradores (.py) para que a regeneração preserve a capa.
 """

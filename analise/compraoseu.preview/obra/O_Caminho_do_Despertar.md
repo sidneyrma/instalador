@@ -3,7 +3,7 @@
 
 *Uma obra que reúne a sabedoria dos ensinamentos ocultos, a profundidade da fé e o conhecimento da alma humana — para despertar o que há de mais sagrado em você.*
 
-**Missão com Deus · Coleção Oculta**
+**Missão com Deus · Coleção do Despertar**
 
 ---
 
@@ -277,7 +277,7 @@ Ele não chegará de fora. Ele será **reconhecido** — no silêncio da sua alm
 
 ---
 
-**Missão com Deus · Coleção Oculta**
+**Missão com Deus · Coleção do Despertar**
 *O Caminho do Despertar — A Jornada Solitária da Alma*
 
 ---
@@ -1020,5 +1020,5 @@ E que o mestre interior, agora desperto, guie cada escolha.
 
 **A jornada solitária da alma termina aqui — e o despertar começa agora.**
 
-*Missão com Deus · Coleção Oculta*
+*Missão com Deus · Coleção do Despertar*
 *O Caminho do Despertar — A Jornada Solitária da Alma*

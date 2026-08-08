@@ -176,7 +176,7 @@ document.addEventListener('copy', function(e){
   e.preventDefault();
   if (e.clipboardData){
     e.clipboardData.setData('text/plain',
-      '© Coleção Oculta — Jesus Quer Falar com Seu Filho. Todos os direitos reservados. Leitura online em compraoseu.com');
+      '© Coleção do Despertar — Jesus Quer Falar com Seu Filho. Todos os direitos reservados. Leitura online em compraoseu.com');
   }
 });
 document.addEventListener('keydown', function(e){
@@ -202,7 +202,7 @@ document.addEventListener('keydown', function(e){
   <h1>{esc(TITULO)}</h1>
   <p style="font-style:italic">{esc(SUBTITULO)}</p>
   <p>Impressão desabilitada para proteger os direitos autorais desta obra.</p>
-  <p>© Coleção Oculta — Todos os direitos reservados.</p>
+  <p>© Coleção do Despertar — Todos os direitos reservados.</p>
 </div>
 
 <header class="topbar">
@@ -283,7 +283,7 @@ document.addEventListener('keydown', function(e){
 <section id="fim">
   <h2>Um abraço cheio de fé e paz! 🤗</h2>
   <p>Que Jesus, seu melhor amigo, esteja sempre pertinho de você, guiando seus passos com luz e proteção.</p>
-  <p class="cred">© Coleção Oculta · Todos os direitos reservados.<br>Leitura protegida — não é permitido copiar, imprimir ou distribuir este conteúdo.</p>
+  <p class="cred">© Coleção do Despertar · Todos os direitos reservados.<br>Leitura protegida — não é permitido copiar, imprimir ou distribuir este conteúdo.</p>
 </section>
 
 <footer>

@@ -221,7 +221,7 @@ document.addEventListener('copy', function(e){
   e.preventDefault();
   if (e.clipboardData){
     e.clipboardData.setData('text/plain',
-      '© Coleção Oculta — O Livro Proibido dos Mestres. Todos os direitos reservados. Leitura online em compraoseu.com');
+      '© Coleção do Despertar — O Livro Proibido dos Mestres. Todos os direitos reservados. Leitura online em compraoseu.com');
   }
 });
 document.addEventListener('keydown', function(e){
@@ -247,7 +247,7 @@ document.addEventListener('keydown', function(e){
   <h1>{esc(TITULO)}</h1>
   <p style="font-style:italic">{esc(SUBTITULO)}</p>
   <p>Impressão desabilitada para proteger os direitos autorais desta obra.</p>
-  <p>© Coleção Oculta — Todos os direitos reservados.</p>
+  <p>© Coleção do Despertar — Todos os direitos reservados.</p>
 </div>
 
 <header class="topbar">
@@ -259,7 +259,7 @@ document.addEventListener('keydown', function(e){
 
 <section class="capa">
   <img class="capa-livro" src="https://sidneyrma.github.io/instalador/capas/livro02.png" alt="Capa do livro O Livro Proibido dos Mestres">
-  <p class="selo">Coleção Oculta</p>
+  <p class="selo">Coleção do Despertar</p>
   <h1>{esc(TITULO)}</h1>
   <p class="sub">{esc(SUBTITULO)}</p>
   <p class="autor">Leitura online · grátis</p>
@@ -283,7 +283,7 @@ document.addEventListener('keydown', function(e){
 <section id="fim">
   <h2>A Jornada termina aqui…</h2>
   <p>…mas o mestre permanece com você para sempre, dentro, vivo, presente, silencioso, eterno.</p>
-  <p class="cred">© Coleção Oculta · Todos os direitos reservados.<br>Leitura protegida — não é permitido copiar, imprimir ou distribuir este conteúdo.</p>
+  <p class="cred">© Coleção do Despertar · Todos os direitos reservados.<br>Leitura protegida — não é permitido copiar, imprimir ou distribuir este conteúdo.</p>
 </section>
 
 <footer>

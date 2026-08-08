@@ -7,7 +7,7 @@ Edições aplicadas:
   1. Remove os escritos vermelhos/brancos cortados na borda direita ("QUA/DES/NAC").
   2. Ajusta para as dimensões padrão da coleção (600x800, proporção 3:4).
   3. Composição no estilo das capas místicas: fundo escuro, moldura dourada,
-     arte central, título em serifa dourada e selo COLLECTIO OCCULTA.
+     arte central, título em serifa dourada e selo COLEÇÃO DO DESPERTAR.
 
 Saídas:
   - analise/compraoseu.preview/imgs/capas_editadas/08_capa.png   (600x800)
