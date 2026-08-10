@@ -7,6 +7,25 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia&display=swap" rel="stylesheet">
 
+<!-- ===== PWA: instalar como app ===== -->
+<link rel="manifest" href="https://www.compraoseu.com/manifest.json">
+<meta name="theme-color" content="#0e1a2e">
+<link rel="apple-touch-icon" href="https://sidneyrma.github.io/instalador/icones/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://sidneyrma.github.io/instalador/icones/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="https://sidneyrma.github.io/instalador/icones/icon-512.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Portal O Despertar">
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('https://www.compraoseu.com/sw.js').catch(function () {});
+    });
+  }
+</script>
+<!-- ===== FIM PWA ===== -->
+
 <style>
   :root{
     --navy:#0e1a2e; --navy-2:#16283f; --navy-3:#1e3352;

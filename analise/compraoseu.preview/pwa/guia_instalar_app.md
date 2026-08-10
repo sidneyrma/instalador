@@ -5,6 +5,13 @@ com ícone na tela inicial** — abrindo direto o site, sem digitar endereço.
 
 ---
 
+## ✅ ESCOLHIDO: Ícone da Opção A (livro aberto com luz dourada)
+
+O ícone do app é um **livro aberto com luz**, no estilo da marca (navy + dourado).
+Já gerado em todas as dimensões necessárias.
+
+---
+
 ## 🎯 CAMINHO RÁPIDO (funciona HOJE, sem código) — recomendo começar por aqui
 
 Qualquer pessoa pode criar o atalho no celular em 10 segundos:
@@ -21,93 +28,68 @@ Qualquer pessoa pode criar o atalho no celular em 10 segundos:
 3. Toque em **"Adicionar à tela inicial"** (ou **"Instalar app"** se o PWA estiver ativo);
 4. Confirme — ícone na tela inicial 📲.
 
-> 💡 Com o PWA completo (passo abaixo), o Chrome oferece o **botão "Instalar"** 
-> automaticamente, e o app abre **em modo tela cheia (sem barra do navegador)** — 
+> 💡 Com o PWA completo (passo abaixo), o Chrome oferece o **botão "Instalar"**
+> automaticamente, e o app abre **em modo tela cheia (sem barra do navegador)** —
 > experiência de aplicativo de verdade.
 
 ---
 
 ## 🛠️ CAMINHO PROFISSIONAL (PWA completo) — código para colar na Vendd
 
-### Passo 1 — Suba os ícones para o imgbb
-1. Acesse **imgbb.com** → Upload;
-2. Suba: `icon-192.png`, `icon-512.png`, `icon-512-maskable.png`, `apple-touch-icon.png`
-   (pasta `pwa/` deste repositório);
-3. Copie os **links diretos** de cada um (terminam em `.png`).
+### Passo 1 — Os ícones já estão prontos no GitHub Pages
 
-### Passo 2 — Atualize o manifest.json
-No arquivo `pwa/manifest.json`, **substitua** `https://i.ibb.co/ICON-PLACEHOLDER/...`
-pelos links reais do imgbb (para cada ícone).
+Os ícones foram gerados e já estão publicados em:
 
-> **Importante:** o manifest precisa estar acessível em `https://www.compraoseu.com/manifest.json`.
-> A Vendd permite **upload de arquivos** (área de mídia/arquivos) — suba o `manifest.json` 
-> atualizado lá. Se a Vendd não permitir, use o **Caminho Alternativo** abaixo.
-
-### Passo 3 — Cole este código no HEAD da página principal (Vendd)
-```html
-<!-- ===== PWA: instalar como app ===== -->
-<link rel="manifest" href="https://www.compraoseu.com/manifest.json">
-
-<!-- Ícone do app no iOS -->
-<link rel="apple-touch-icon" href="https://i.ibb.co/SEU-LINK/apple-touch-icon.png">
-
-<!-- Cor da barra no Android -->
-<meta name="theme-color" content="#0e1a2e">
-
-<!-- iOS: abrir em modo app (tela cheia) -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Missão com Deus">
-<!-- ===== fim PWA ===== -->
-```
-
-### Passo 4 — Publique e teste
-1. Abra `compraoseu.com` no celular (Android/Chrome);
-2. Deve aparecer o **ícone de instalar** (ou o menu ⋮ → "Instalar app");
-3. No iPhone, o "Adicionar à Tela de Início" agora usa o ícone bonito da marca;
-4. O app abre **tela cheia**, com ícone próprio na tela inicial. 📲✨
-
----
-
-## 🔄 CAMINHO ALTERNATIVO (se a Vendd não aceitar arquivo manifest)
-
-Se não conseguir subir o `manifest.json`, use o **manifest embutido (data URI)** no HEAD:
-
-```html
-<link rel="manifest" href='data:application/manifest+json,{"name":"Missão com Deus — CompraOSeu","short_name":"Missão com Deus","start_url":"https://www.compraoseu.com/","display":"standalone","background_color":"%230e1a2e","theme_color":"%230e1a2e","icons":[{"src":"https://i.ibb.co/SEU-LINK/icon-192.png","sizes":"192x192","type":"image/png"},{"src":"https://i.ibb.co/SEU-LINK/icon-512.png","sizes":"512x512","type":"image/png"}]}'>
-```
-
-*(substitua SEU-LINK pelos links reais dos ícones)*
-
----
-
-## ❓ PERGUNTAS FREQUENTES
-
-**Funciona no iPhone?** ✅ Sim — com `apple-touch-icon` + as meta tags, o "Adicionar à
-Tela de Início" cria um app com ícone e abre em tela cheia.
-
-**O app precisa de internet?** Para a leitura online, sim (o conteúdo está no site).
-Uma versão com *offline* exigiria Service Worker — posso preparar depois se quiser.
-
-**O atalho aponta para o quê?** Para `https://www.compraoseu.com/` — o leitor abre direto
-na Home e continua onde parou.
-
-**Isso ajuda a fidelizar leitores?** 🎯 **Muito!** Quem tem o ícone na tela inicial
-volta com 1 toque — sem digitar endereço. É o comportamento de app que retém.
-
----
-
-## 📁 ARQUIVOS (pasta `pwa/`)
-
-| Arquivo | Uso |
+| Ícone | URL |
 |---|---|
-| `manifest.json` | Manifesto do app (edite os links dos ícones) |
-| `icon-192.png` | Ícone Android (192×192) |
-| `icon-512.png` | Ícone Android (512×512) |
-| `icon-512-maskable.png` | Ícone com área segura (máscara) |
-| `apple-touch-icon.png` | Ícone do iOS (180×180) |
+| 192x192 | `https://sidneyrma.github.io/instalador/icones/icon-192.png` |
+| 512x512 | `https://sidneyrma.github.io/instalador/icones/icon-512.png` |
+| 512x512 maskable | `https://sidneyrma.github.io/instalador/icones/icon-512-maskable.png` |
+| Apple touch | `https://sidneyrma.github.io/instalador/icones/apple-touch-icon.png` |
+
+### Passo 2 — O manifest.json
+
+O arquivo `analise/compraoseu.preview/pwa/manifest.json` já está atualizado com os
+links dos ícones (nome: **Portal O Despertar**). Ele precisa estar acessível em:
+```
+https://www.compraoseu.com/manifest.json
+```
+**Como fazer na Vendd:** suba o `manifest.json` na área de arquivos/mídia da Vendd
+e confira se fica acessível nesse endereço. Se a Vendd não permitir, veja o
+**Caminho Alternativo** no fim.
+
+### Passo 3 — Cole o código no HEAD da página principal (Vendd)
+
+Abra o arquivo `analise/compraoseu.preview/pwa/codigo_para_vendd.html` e cole o
+conteúdo no `<head>` da página principal (antes de `</head>`).
+
+### Passo 4 — O service worker (para instalar + offline)
+
+Suba o arquivo `analise/compraoseu.preview/pwa/sw.js` para
+`https://www.compraoseu.com/sw.js` (área de arquivos da Vendd).
+O código do Passo 3 já registra o SW automaticamente.
 
 ---
 
-*Guia gerado em 07/08/2026 · Missão com Deus · CompraOSeu*
+## 🔄 Caminho alternativo (se a Vendd não permitir subir manifest/sw.js)
+
+Mesmo sem o PWA completo, o **Caminho Rápido** (atalho na tela inicial) funciona.
+Para melhorar o ícone do atalho sem o manifest:
+- No **iPhone**: o atalho usa o `apple-touch-icon.png` automaticamente se ele estiver
+  no site — por isso cole no `<head>` o link:
+  `<link rel="apple-touch-icon" href="https://sidneyrma.github.io/instalador/icones/apple-touch-icon.png">`
+- No **Android**: o atalho usa o favicon/ícone padrão do site.
+
+---
+
+## ✅ CHECKLIST
+
+- [ ] Ícones publicados no GitHub Pages (já feito, commit enviado)
+- [ ] `manifest.json` atualizado com os links (já feito)
+- [ ] Subir `manifest.json` e `sw.js` na Vendd (se possível)
+- [ ] Colar o bloco do arquivo `codigo_para_vendd.html` no `<head>` da Home
+- [ ] Testar no celular: abrir o site → "Instalar app" → ícone na tela inicial
+
+---
+
+*Ícone: Opção A (livro aberto com luz) · Portal O Despertar · Missão com Deus*
