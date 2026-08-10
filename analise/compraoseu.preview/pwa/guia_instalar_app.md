@@ -8,87 +8,84 @@ com ícone na tela inicial** — abrindo direto o site, sem digitar endereço.
 ## ✅ ESCOLHIDO: Ícone da Opção A (livro aberto com luz dourada)
 
 O ícone do app é um **livro aberto com luz**, no estilo da marca (navy + dourado).
-Já gerado em todas as dimensões necessárias.
+Já gerado em todas as dimensões necessárias e publicado no GitHub Pages.
 
 ---
 
-## 🎯 CAMINHO RÁPIDO (funciona HOJE, sem código) — recomendo começar por aqui
+## 🎯 A SOLUÇÃO QUE FUNCIONA SEM SUBIR ARQUIVOS NA VENDD
 
-Qualquer pessoa pode criar o atalho no celular em 10 segundos:
+> A Vendd (plataforma de landing pages) **não tem opção de upload de arquivos
+> estáticos** (manifest.json / sw.js). Mas isso **não impede o PWA básico**!
 
-**No iPhone (iOS):**
-1. Abra `compraoseu.com` no Safari;
-2. Toque no botão **Compartilhar** (quadrado com ↑);
-3. Role e toque em **"Adicionar à Tela de Início"**;
-4. Confirme em **"Adicionar"** — aparece um ícone na tela inicial 📲.
+A estratégia: **o `manifest.json` e os ícones ficam no GitHub Pages**
+(que libera acesso cross-origin), e a Home só precisa de um bloco no `<head>`.
 
-**No Android (Chrome):**
-1. Abra `compraoseu.com` no Chrome;
-2. Toque no menu **⋮** (três pontinhos);
-3. Toque em **"Adicionar à tela inicial"** (ou **"Instalar app"** se o PWA estiver ativo);
-4. Confirme — ícone na tela inicial 📲.
+### Como fica:
 
-> 💡 Com o PWA completo (passo abaixo), o Chrome oferece o **botão "Instalar"**
-> automaticamente, e o app abre **em modo tela cheia (sem barra do navegador)** —
-> experiência de aplicativo de verdade.
+| Recurso | Onde está | Como chega |
+|---|---|---|
+| `manifest.json` | GitHub Pages | link `rel="manifest"` na Home |
+| Ícones (192/512/maskable/apple) | GitHub Pages | links no `<head>` da Home |
+| Nome do app | no manifest | "Portal O Despertar" |
+| Ícone do iPhone | `apple-touch-icon.png` | link no `<head>` |
+
+### Passo único na Vendd:
+1. Na página principal, abra o **código/HTML** (ou as Configurações da página);
+2. Cole o conteúdo do arquivo `analise/compraoseu.preview/pwa/codigo_para_vendd.html`
+   no `<head>` (antes do `</head>`);
+3. Salve.
+
+Pronto! O site agora tem manifest + ícones. Os visitantes fazem:
+
+**No Android (Chrome):** abrir `compraoseu.com` → menu **⋮** → **"Adicionar à tela inicial"** →
+o atalho aparece com o **ícone do livro dourado** e o nome **Portal O Despertar** 📲
+
+**No iPhone (Safari):** abrir `compraoseu.com` → botão **Compartilhar** →
+**"Adicionar à Tela de Início"** → o atalho usa o `apple-touch-icon` (livro dourado) 📲
 
 ---
 
-## 🛠️ CAMINHO PROFISSIONAL (PWA completo) — código para colar na Vendd
+## 🛠️ OPCIONAL: PWA COMPLETO (botão "Instalar" automático + offline)
 
-### Passo 1 — Os ícones já estão prontos no GitHub Pages
+Para o Chrome oferecer o **botão "Instalar"** automaticamente e o app funcionar
+**offline**, é necessário o **service worker** (`sw.js`) no **mesmo domínio**
+(`https://www.compraoseu.com/sw.js`). Isso exige upload de arquivo na Vendd.
 
-Os ícones foram gerados e já estão publicados em:
+**Como descobrir se a Vendd permite:**
+1. Acesse o menu **Vendd GPT** (você tem no painel) e pergunte:
+   *"Como faço upload de arquivos estáticos (manifest.json e sw.js) no meu domínio?"*
+2. Ou fale com o **Suporte** da Vendd;
+3. Ou procure em **Configurações** / **Domínios** se há "Arquivos", "Assets" ou "Código personalizado".
 
-| Ícone | URL |
-|---|---|
-| 192x192 | `https://sidneyrma.github.io/instalador/icones/icon-192.png` |
-| 512x512 | `https://sidneyrma.github.io/instalador/icones/icon-512.png` |
-| 512x512 maskable | `https://sidneyrma.github.io/instalador/icones/icon-512-maskable.png` |
-| Apple touch | `https://sidneyrma.github.io/instalador/icones/apple-touch-icon.png` |
-
-### Passo 2 — O manifest.json
-
-O arquivo `analise/compraoseu.preview/pwa/manifest.json` já está atualizado com os
-links dos ícones (nome: **Portal O Despertar**). Ele precisa estar acessível em:
+**Se a Vendd permitir upload:**
+- Suba `manifest.json` e `sw.js` (pasta `pwa/`) para o domínio;
+- Troque na Home o link do manifest para `https://www.compraoseu.com/manifest.json`;
+- Volte a incluir o registro do service worker no `<head>`:
+```html
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('https://www.compraoseu.com/sw.js');
+    });
+  }
+</script>
 ```
-https://www.compraoseu.com/manifest.json
-```
-**Como fazer na Vendd:** suba o `manifest.json` na área de arquivos/mídia da Vendd
-e confira se fica acessível nesse endereço. Se a Vendd não permitir, veja o
-**Caminho Alternativo** no fim.
 
-### Passo 3 — Cole o código no HEAD da página principal (Vendd)
-
-Abra o arquivo `analise/compraoseu.preview/pwa/codigo_para_vendd.html` e cole o
-conteúdo no `<head>` da página principal (antes de `</head>`).
-
-### Passo 4 — O service worker (para instalar + offline)
-
-Suba o arquivo `analise/compraoseu.preview/pwa/sw.js` para
-`https://www.compraoseu.com/sw.js` (área de arquivos da Vendd).
-O código do Passo 3 já registra o SW automaticamente.
-
----
-
-## 🔄 Caminho alternativo (se a Vendd não permitir subir manifest/sw.js)
-
-Mesmo sem o PWA completo, o **Caminho Rápido** (atalho na tela inicial) funciona.
-Para melhorar o ícone do atalho sem o manifest:
-- No **iPhone**: o atalho usa o `apple-touch-icon.png` automaticamente se ele estiver
-  no site — por isso cole no `<head>` o link:
-  `<link rel="apple-touch-icon" href="https://sidneyrma.github.io/instalador/icones/apple-touch-icon.png">`
-- No **Android**: o atalho usa o favicon/ícone padrão do site.
+**Se não permitir:** tudo bem! O **atalho na tela inicial com o ícone bonito**
+(caminho acima) já cobre 90% do benefício — o visitante abre o site com 1 toque
+no ícone do livro, sem digitar endereço. Apenas não terá o modo tela cheia
+automático nem o botão "Instalar" nativo.
 
 ---
 
 ## ✅ CHECKLIST
 
-- [ ] Ícones publicados no GitHub Pages (já feito, commit enviado)
-- [ ] `manifest.json` atualizado com os links (já feito)
-- [ ] Subir `manifest.json` e `sw.js` na Vendd (se possível)
-- [ ] Colar o bloco do arquivo `codigo_para_vendd.html` no `<head>` da Home
-- [ ] Testar no celular: abrir o site → "Instalar app" → ícone na tela inicial
+- [ ] Ícones publicados no GitHub Pages (feito: `docs/icones/`)
+- [ ] `manifest.json` publicado no GitHub Pages (feito: `docs/manifest.json`)
+- [ ] Home com o bloco do `<head>` colado (feito no `paginas/home_preview.html`)
+- [ ] Colar a Home atualizada na Vendd
+- [ ] Testar no celular: adicionar à tela inicial → ícone do livro dourado
+- [ ] (Opcional) Perguntar ao Vendd GPT/Suporte sobre upload de `sw.js`
 
 ---
 
