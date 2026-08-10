@@ -128,23 +128,38 @@ Na página **Sitemaps** do GSC, a forma de excluir varia conforme a versão da i
 
 Repita para TODOS os que têm "1 erro" (obrigado, quiz, livro01 a livro09...).
 
-### Passo 2 — Enviar o sitemap CORRETO (um só arquivo)
+> ⚠️ **IMPORTANTE (correção 10/08):** o campo "Adicionar um novo sitemap" mostra o
+> prefixo `https://www.compraoseu.com/` **fixo e inapagável**. Isso é proposital:
+> **o Google SÓ aceita sitemap no MESMO domínio da propriedade.** Portanto NÃO é
+> possível enviar o sitemap hospedado no GitHub Pages ali — essa opção foi testada
+> e o GSC não permite. Envie apenas `sitemap.xml` (caminho curto) quando o arquivo
+> existir no domínio.
+
+### Passo 2 — Enviar o sitemap CORRETO (quando existir no domínio)
 
 Como a Vendd ainda não permite subir o `sitemap.xml` no domínio (atualização deve sair
-essa semana — confirmação da Gabi), usamos o **sitemap hospedado no GitHub Pages**.
-**O Google aceita sitemap em outro domínio** — é permitido!
+essa semana — confirmação da Gabi), **não há sitemap para enviar neste momento**.
 
-1. Na caixa **"Adicionar um novo sitemap"**, digite o endereço COMPLETO:
-   ```
-   https://sidneyrma.github.io/instalador/sitemap.xml
-   ```
-2. Clique em **"Enviar"**;
-3. O status deve mudar para **"Sucesso"** e as **11 URLs** (Home + livro01 a livro09 + quiz)
-   aparecerão como descobertas (pode levar algumas horas).
+**Enquanto isso, use a INSPEÇÃO DE URL para solicitar indexação de cada página:**
 
-> ℹ️ Este sitemap já está publicado no GitHub Pages (pasta `docs/sitemap.xml`).
-> Quando a Vendd liberar upload, suba o mesmo arquivo em `https://www.compraoseu.com/sitemap.xml`
-> e envie `sitemap.xml` (endereço curto) no GSC — e pode excluir o do GitHub Pages.
+1. No GSC, menu lateral → **"Inspeção de URL"**;
+2. Digite `https://www.compraoseu.com/` → Enter → **"Testar URL ao vivo"**;
+3. Se estiver tudo certo → **"Solicitar indexação"**;
+4. Repita para: `/livro01`, `/livro02`, `/livro03`, `/livro04`, `/livro05`,
+   `/livro06`, `/livro07`, `/livro08`, `/livro09`.
+
+**Quando a Vendd liberar upload (essa semana):**
+
+1. Suba o `sitemap.xml` do repositório em `https://www.compraoseu.com/sitemap.xml`;
+2. Na caixa "Adicionar um novo sitemap", digite apenas:
+   ```
+   sitemap.xml
+   ```
+3. Clique em **"Enviar"** → status deve mudar para **"Sucesso"** e as 11 URLs aparecerão
+   como descobertas (pode levar algumas horas).
+
+**Verifique também:** na Vendd, em Configurações → SEO, se existe "Sitemap automático".
+Se a plataforma gerar um endereço próprio (ex.: /sitemap.xml), ative e use esse endereço.
 
 ---
 
@@ -162,7 +177,7 @@ essa semana — confirmação da Gabi), usamos o **sitemap hospedado no GitHub P
 
 | Arquivo | Uso |
 |---|---|
-| `sitemap.xml` | Enviar no GSC (11 URLs) — também publicado em `docs/sitemap.xml` (GitHub Pages) |
+| `sitemap.xml` | Subir na Vendd quando liberar upload, e enviar `sitemap.xml` no GSC (11 URLs) |
 | `robots.txt` | Orientar buscadores + apontar o sitemap |
 | `guia_search_console.md` | Este guia |
 
