@@ -14,19 +14,19 @@
   "categories": ["books", "education", "lifestyle"],
   "icons": [
     {
-      "src": "https://sidneyrma.github.io/instalador/icones/icon-192.png",
+      "src": "https://i.ibb.co/kCPdtzp/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://sidneyrma.github.io/instalador/icones/icon-512.png",
+      "src": "https://i.ibb.co/chpVZry0/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://sidneyrma.github.io/instalador/icones/icon-512-maskable.png",
+      "src": "https://i.ibb.co/1Y3z7DjP/icon-512-maskable.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

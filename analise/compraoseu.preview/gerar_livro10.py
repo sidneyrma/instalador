@@ -16,7 +16,7 @@ OUT = HERE.parent.parent / "paginas" / "livro10_preview.html"
 TITULO = "O Despertar do Observador"
 SUBTITULO = "As Leis Invisíveis que Moldam a Realidade"
 URL = "https://www.compraoseu.com/livro10"
-CAPA = "https://sidneyrma.github.io/instalador/capas/livro10.png?v=1"
+CAPA = "https://i.ibb.co/vvDgBP2x/livro10.png"
 
 DESC = "Leia online O Despertar do Observador — As Leis Invisíveis que Moldam a Realidade. Uma obra com 32 capítulos que une sabedoria ancestral, metafísica, o poder do pensamento e práticas guiadas para o despertar da consciência. Leitura gratuita e protegida."
 KEYWORDS = "despertar do observador, leis da realidade, metafísica, poder do pensamento, testemunha interior, silêncio criador, autoconhecimento, leis universais, livro espiritual, leitura online grátis"

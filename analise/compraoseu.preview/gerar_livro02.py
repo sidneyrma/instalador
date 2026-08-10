@@ -258,7 +258,7 @@ document.addEventListener('keydown', function(e){
 </header>
 
 <section class="capa">
-  <img class="capa-livro" src="https://sidneyrma.github.io/instalador/capas/livro02.png" alt="Capa do livro O Livro Proibido dos Mestres">
+  <img class="capa-livro" src="https://i.ibb.co/ZpvDv7VS/livro02.png" alt="Capa do livro O Livro Proibido dos Mestres">
   <p class="selo">Coleção do Despertar</p>
   <h1>{esc(TITULO)}</h1>
   <p class="sub">{esc(SUBTITULO)}</p>

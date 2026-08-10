@@ -11,7 +11,7 @@ HERE = Path(__file__).parent
 PAGINAS = HERE.parent.parent / "paginas"
 SRC = HERE / "O_Caminho_do_Despertar_FINAL.md"
 OUT = PAGINAS / "livro07_preview.html"
-CAPA = "https://sidneyrma.github.io/instalador/capas/capa_despertar.png?v=1"
+CAPA = "https://i.ibb.co/XkDfg2N8/Livro07.png"
 
 TITULO = "O Caminho do Despertar"
 SUBTITULO = "A Jornada Solitária da Alma"
@@ -226,7 +226,7 @@ document.addEventListener('keydown', function(e){
 </header>
 
 <section class="capa">
-  <img class="capa-livro" src="https://sidneyrma.github.io/instalador/capas/capa_despertar.png?v=1" alt="Capa do livro O Caminho do Despertar">
+  <img class="capa-livro" src="https://i.ibb.co/XkDfg2N8/Livro07.png" alt="Capa do livro O Caminho do Despertar">
   <p class="selo">Coleção do Despertar</p>
   <h1>{esc(TITULO)}</h1>
   <p class="sub">{esc(SUBTITULO)}</p>

@@ -103,7 +103,7 @@
 ### OG / Twitter
 - **OG Title:** `A Mente de Cristo — Como Pensar com o Espírito e não com o Mundo`
 - **OG Description:** `17 capítulos baseados nos ensinamentos de Emmet Fox sobre pensar com o espírito. Leitura online gratuita e protegida.`
-- **Imagem OG:** `https://sidneyrma.github.io/instalador/capas/mente_cristo.png?v=2` (a capa, versão editada/melhorada)
+- **Imagem OG:** `https://i.ibb.co/vxsHYX2B/livro03.png` (a capa, versão editada/melhorada)
 - **OG Type:** `article` · **Twitter:** `summary_large_image`
 
 ### Configurações
@@ -316,7 +316,7 @@ Suba as imagens da pasta `analise/seo/` no imgbb e use os links:
 - **Favicon:** mesmo `favicon-32.png`
 - **OG Title:** `O Despertar do Observador — As Leis Invisíveis que Moldam a Realidade`
 - **OG Description:** `Uma obra original que une sabedoria ancestral, metafísica e o poder do pensamento para o despertar da consciência. Leitura online gratuita e protegida.`
-- **Imagem OG:** `https://sidneyrma.github.io/instalador/capas/livro10.png` (a capa)
+- **Imagem OG:** `https://i.ibb.co/vvDgBP2x/livro10.png` (a capa)
 - **OG Type:** `article`
 - **Twitter Card Type:** `summary_large_image`
 
