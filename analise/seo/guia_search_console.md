@@ -103,9 +103,54 @@ Os "1 erro" que apareceram nos seus sitemaps anteriores eram provavelmente:
 
 ---
 
-## 5) RECOMENDAÇÕES FINAIS
+## 5) MEUS SITEMAPS ESTÃO COM "1 ERRO" — O QUE FAZER (atualizado 10/08/2026)
 
-- ✅ **Envie o sitemap novo** (com as 11 URLs corretas);
+**Situação:** o GSC mostra vários sitemaps enviados (ex.: `/obrigado`, `/quiz`, `/livro01`...),
+cada um com "1 erro" e "0 páginas descobertas". Isso aconteceu porque cada **página**
+foi enviada como se fosse um sitemap — mas uma página HTML **não é** um sitemap XML.
+O Google tenta ler como XML, falha, e marca "1 erro".
+
+> ✅ **Boa notícia:** sitemap com erro **NÃO impede** a indexação das páginas!
+> O Google ainda encontra e indexa suas páginas pelos links. Mas é melhor limpar.
+
+### Passo 1 — Como EXCLUIR os sitemaps com erro
+
+Na página **Sitemaps** do GSC, a forma de excluir varia conforme a versão da interface:
+
+- **Opção A (interface atual):** passe o mouse sobre a linha do sitemap → aparece um
+  **ícone de lixeira** (🗑) ou um menu **⋮ (três pontinhos)** à direita → clique →
+  **"Excluir" / "Delete"**;
+- **Opção B (interface antiga):** clique no **link do sitemap** (ex.: `/livro01`) → abre
+  a página de detalhes → no canto superior direito há um menu **"Mais" (⋮)** →
+  **"Excluir sitemap"**;
+- **Opção C:** se não houver ícone visível, clique na **caixa de seleção** (checkbox)
+  da linha → no topo da tabela aparece o botão **"Excluir"**.
+
+Repita para TODOS os que têm "1 erro" (obrigado, quiz, livro01 a livro09...).
+
+### Passo 2 — Enviar o sitemap CORRETO (um só arquivo)
+
+Como a Vendd ainda não permite subir o `sitemap.xml` no domínio (atualização deve sair
+essa semana — confirmação da Gabi), usamos o **sitemap hospedado no GitHub Pages**.
+**O Google aceita sitemap em outro domínio** — é permitido!
+
+1. Na caixa **"Adicionar um novo sitemap"**, digite o endereço COMPLETO:
+   ```
+   https://sidneyrma.github.io/instalador/sitemap.xml
+   ```
+2. Clique em **"Enviar"**;
+3. O status deve mudar para **"Sucesso"** e as **11 URLs** (Home + livro01 a livro09 + quiz)
+   aparecerão como descobertas (pode levar algumas horas).
+
+> ℹ️ Este sitemap já está publicado no GitHub Pages (pasta `docs/sitemap.xml`).
+> Quando a Vendd liberar upload, suba o mesmo arquivo em `https://www.compraoseu.com/sitemap.xml`
+> e envie `sitemap.xml` (endereço curto) no GSC — e pode excluir o do GitHub Pages.
+
+---
+
+## 6) RECOMENDAÇÕES FINAIS
+
+- ✅ **Envie o sitemap novo** (com as 11 URLs corretas — ver Passo 2 acima);
 - ✅ **Solicite indexação** das páginas principais após publicar;
 - ⏳ **Aguarde 3-7 dias** para o Google rastrear (páginas novas demoram mais);
 - 📊 Acompanhe em **"Performance"** (cliques, impressões, palavras-chave);
@@ -117,8 +162,8 @@ Os "1 erro" que apareceram nos seus sitemaps anteriores eram provavelmente:
 
 | Arquivo | Uso |
 |---|---|
-| `sitemap.xml` | Enviar no GSC (11 URLs) |
+| `sitemap.xml` | Enviar no GSC (11 URLs) — também publicado em `docs/sitemap.xml` (GitHub Pages) |
 | `robots.txt` | Orientar buscadores + apontar o sitemap |
 | `guia_search_console.md` | Este guia |
 
-*Guia gerado em 07/08/2026 · Missão com Deus · CompraOSeu*
+*Guia atualizado em 10/08/2026 · Portal O Despertar · Missão com Deus · CompraOSeu*
