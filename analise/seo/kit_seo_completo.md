@@ -1,6 +1,6 @@
 # 🚀 KIT SEO COMPLETO — Preenchimento na Vendd
 
-**Data:** 08/08/2026 · **10 páginas:** Home + 8 leituras (livro01–08) + página de agradecimento do quiz
+**Data:** 10/08/2026 · **11 páginas:** Home + 9 leituras (livro01–09) + página de agradecimento do quiz
 
 > ⚠️ **IMPORTANTE (não erre):** deixe **DESMARCADOS** os campos **"Não indexar (noindex)"**
 > e **"Não seguir (nofollow)"** em todas as páginas (exceto a de obrigado — ver nota).
@@ -275,4 +275,27 @@ Suba as imagens da pasta `analise/seo/` no imgbb e use os links:
 
 ---
 
-*Atualizado em 08/08/2026 — adicionada página 10 (livro08 — Você e o Universo)*
+## 📄 PÁGINA 11 — LEITURA LIVRO 09 (`/livro09` — Anestesia Mental)
+
+### Metadados Básicos
+| Campo | Valor (copie e cole) |
+|---|---|
+| **Título** (57) | `Anestesia Mental — e seus Algoritmos da Escravidão · Leitura` |
+| **Descrição** (158) | `Leia online Anestesia Mental e seus Algoritmos da Escravidão — 16 capítulos sobre as correntes invisíveis dos algoritmos e como se libertar em Cristo. Leitura gratuita e protegida.` |
+| **Keywords** | `anestesia mental, algoritmos da escravidão, governo da mente, reset do shabat, detox da alma, libertação mental, autodomínio, livro cristão, leitura online grátis` |
+| **URL Canônica** | `https://www.compraoseu.com/livro09` |
+
+### Favicon / OG / Twitter
+- **Favicon:** mesmo `favicon-32.png`
+- **OG Title:** `Anestesia Mental — e seus Algoritmos da Escravidão`
+- **OG Description:** `16 capítulos sobre as correntes invisíveis dos algoritmos e como se libertar em Cristo. Leitura online gratuita e protegida.`
+- **Imagem OG:** `https://i.ibb.co/MkL2DhsV/capa1080.png` (a capa)
+- **OG Type:** `article`
+- **Twitter Card Type:** `summary_large_image`
+
+### Configurações
+- **noindex:** ❌ DESMARCADO · **nofollow:** ❌ DESMARCADO
+
+---
+
+*Atualizado em 10/08/2026 — adicionadas páginas 10 (livro08) e 11 (livro09 — Anestesia Mental)*
