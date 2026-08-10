@@ -103,7 +103,7 @@
 ### OG / Twitter
 - **OG Title:** `A Mente de Cristo — Como Pensar com o Espírito e não com o Mundo`
 - **OG Description:** `17 capítulos baseados nos ensinamentos de Emmet Fox sobre pensar com o espírito. Leitura online gratuita e protegida.`
-- **Imagem OG:** `https://i.ibb.co/vxsHYX2B/livro03.png` (a capa, versão editada/melhorada)
+- **Imagem OG:** `https://i.ibb.co/0j0gTVr4/livro03.jpg` (a capa, versão editada/melhorada)
 - **OG Type:** `article` · **Twitter:** `summary_large_image`
 
 ### Configurações
@@ -262,15 +262,14 @@ Suba as imagens da pasta `analise/seo/` no imgbb e use os links:
 - **Favicon:** mesmo `favicon-32.png`
 - **OG Title:** `Você e o Universo — O Inconsciente e as suas Criações`
 - **OG Description:** `19 capítulos sobre a mente, o inconsciente e a realidade. Leitura online gratuita e protegida.`
-- **Imagem OG:** `https://sidneyrma.github.io/instalador/capas/livro08.png?v=2` (a capa do universo)
+- **Imagem OG:** `https://i.ibb.co/B0gVM9j/livro08.jpg?v=2` (a capa do universo)
 - **OG Type:** `article`
 - **Twitter Card Type:** `summary_large_image`
 
 ### Configurações
 - **noindex:** ❌ DESMARCADO · **nofollow:** ❌ DESMARCADO
 
-> 💡 **Dica:** a capa do universo já está pronta em `docs/capas/livro08.png` (600×800,
-> otimizada para web) e é servida pelo GitHub Pages. Use-a como imagem OG — ao
+> 💡 **Dica:** use a capa do livro08 (JPG, otimizada para web) como imagem OG — ao
 > compartilhar no WhatsApp, a capa aparece junto do link.
 
 ---
@@ -316,7 +315,7 @@ Suba as imagens da pasta `analise/seo/` no imgbb e use os links:
 - **Favicon:** mesmo `favicon-32.png`
 - **OG Title:** `O Despertar do Observador — As Leis Invisíveis que Moldam a Realidade`
 - **OG Description:** `Uma obra original que une sabedoria ancestral, metafísica e o poder do pensamento para o despertar da consciência. Leitura online gratuita e protegida.`
-- **Imagem OG:** `https://i.ibb.co/vvDgBP2x/livro10.png` (a capa)
+- **Imagem OG:** `https://i.ibb.co/pBDHcTYn/livro10.jpg` (a capa)
 - **OG Type:** `article`
 - **Twitter Card Type:** `summary_large_image`
 

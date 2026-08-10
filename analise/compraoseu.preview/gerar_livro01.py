@@ -207,7 +207,7 @@ document.addEventListener('keydown', function(e){
 </header>
 
 <section class="capa">
-  <img class="capa-livro" src="https://i.ibb.co/1GFYkW3s/livro01.png" alt="Capa do livro O Ouro das Palavras">
+  <img class="capa-livro" src="https://i.ibb.co/4w29Td3m/livro01.jpg" alt="Capa do livro O Ouro das Palavras">
   <p class="selo">Coleção do Despertar</p>
   <h1>{esc(TITULO)}</h1>
   <p class="sub">{esc(SUBTITULO)}</p>

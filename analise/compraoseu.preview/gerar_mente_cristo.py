@@ -15,7 +15,7 @@ DADOS = HERE / "mente_cristo_dados.json"
 TITULO = "A Mente de Cristo"
 SUBTITULO = "Como Pensar com o Espírito e não com o Mundo"
 URL = "https://www.compraoseu.com/livro03"          # posição do card na Home (Livro 03)
-CAPA = "https://i.ibb.co/vxsHYX2B/livro03.png"
+CAPA = "https://i.ibb.co/0j0gTVr4/livro03.jpg"
 
 DESC = "Leia online A Mente de Cristo — Como Pensar com o Espírito e não com o Mundo. 17 capítulos baseados nos ensinamentos de Emmet Fox. Leitura gratuita e protegida."
 KEYWORDS = "a mente de Cristo, emmet fox, mente de Cristo, pensamento espiritual, renovar a mente, ensinamentos de Jesus, consciência de Cristo, livro cristão, leitura online grátis"
