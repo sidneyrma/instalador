@@ -10,7 +10,7 @@ import re, html
 from pathlib import Path
 
 HERE = Path(__file__).parent
-SRC = HERE.parent / "livro10" / "obra_livro10_completa.md"
+SRC = HERE.parent / "livro10" / "obra_livro10_completa_v2.md"
 OUT = HERE.parent.parent / "paginas" / "livro10_preview.html"
 
 TITULO = "O Despertar do Observador"
@@ -18,7 +18,7 @@ SUBTITULO = "As Leis Invisíveis que Moldam a Realidade"
 URL = "https://www.compraoseu.com/livro10"
 CAPA = "https://sidneyrma.github.io/instalador/capas/livro10.png?v=1"
 
-DESC = "Leia online O Despertar do Observador — As Leis Invisíveis que Moldam a Realidade. Uma obra que une a sabedoria ancestral, a metafísica e o poder do pensamento para o despertar da consciência. Leitura gratuita e protegida."
+DESC = "Leia online O Despertar do Observador — As Leis Invisíveis que Moldam a Realidade. Uma obra com 32 capítulos que une sabedoria ancestral, metafísica, o poder do pensamento e práticas guiadas para o despertar da consciência. Leitura gratuita e protegida."
 KEYWORDS = "despertar do observador, leis da realidade, metafísica, poder do pensamento, testemunha interior, silêncio criador, autoconhecimento, leis universais, livro espiritual, leitura online grátis"
 
 
@@ -231,14 +231,14 @@ document.addEventListener('keydown', function(e){
 <link rel="canonical" href="{URL}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="{esc(TITULO)} — {esc(SUBTITULO)}">
-<meta property="og:description" content="Uma obra que une a sabedoria ancestral, a metafísica e o poder do pensamento para o despertar da consciência. Leitura online gratuita e protegida.">
+<meta property="og:description" content="Uma obra com 32 capítulos que une sabedoria ancestral, metafísica, o poder do pensamento e práticas guiadas para o despertar da consciência. Leitura online gratuita e protegida.">
 <meta property="og:image" content="{CAPA or URL}">
 <meta property="og:url" content="{URL}">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Missão com Deus — CompraOSeu">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc(TITULO)} — {esc(SUBTITULO)}">
-<meta name="twitter:description" content="Uma obra que une a sabedoria ancestral, a metafísica e o poder do pensamento para o despertar da consciência. Leitura online gratuita e protegida.">
+<meta name="twitter:description" content="Uma obra com 32 capítulos que une sabedoria ancestral, metafísica, o poder do pensamento e práticas guiadas para o despertar da consciência. Leitura online gratuita e protegida.">
 <meta name="twitter:image" content="{CAPA or URL}">
 <style>{css}</style>
 </head>
