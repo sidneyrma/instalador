@@ -24,6 +24,29 @@
 3. Adicione no seu provedor de domínio (onde comprou o domínio);
 4. Clique em **"Verificar"** → pronto!
 
+### 🅲 Se você escolheu "Domínio" e apareceu a janela da **Cloudflare**:
+
+> **Você está aqui!** O Google detectou que o DNS do `compraoseu.com` está na Cloudflare
+> e mostra: *"Valide a propriedade do domínio através do registo de DNS"* com os botões
+> **"Iniciar validação"** e **"Validar mais tarde"**.
+
+**Caminho 1 — Rápido (recomendado, se você tem acesso à conta Cloudflare):**
+1. Clique em **"Iniciar validação"**;
+2. O Google pede para você **autorizar o acesso à sua conta Cloudflare** (você faz login na Cloudflare com o e-mail de lá);
+3. Confirme a permissão → o Google adiciona o registro TXT sozinho;
+4. Aguarde a validação concluir (não feche a aba). ✅
+
+**Caminho 2 — Manual (se não lembra do acesso à Cloudflare):**
+1. Clique em **"Validar mais tarde"**;
+2. No painel, a propriedade aparece como **"Não verificado"**;
+3. Acesse o painel da **Cloudflare** (onde o domínio está) → **DNS → Registros**;
+4. Adicione um registro do tipo **TXT** com o valor que o Google mostrou;
+5. Volte ao Search Console → **"Verificar"**.
+
+> 💡 **Alternativa ainda mais simples:** se preferir não mexer no DNS, remova essa
+> propriedade de domínio e crie uma do tipo **Prefixo de URL** (`https://www.compraoseu.com/`)
+> com verificação por **Tag HTML** na Vendd (Opção A acima).
+
 > 💡 **Recomendo a Opção A (Tag HTML)** — é a mais simples na Vendd, sem mexer no DNS.
 
 ---
