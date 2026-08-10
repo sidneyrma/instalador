@@ -1,6 +1,6 @@
 # 🚀 KIT SEO COMPLETO — Preenchimento na Vendd
 
-**Data:** 10/08/2026 · **11 páginas:** Home + 9 leituras (livro01–09) + página de agradecimento do quiz
+**Data:** 10/08/2026 · **12 páginas:** Home + 10 leituras (livro01–10) + página de agradecimento do quiz
 
 > ⚠️ **IMPORTANTE (não erre):** deixe **DESMARCADOS** os campos **"Não indexar (noindex)"**
 > e **"Não seguir (nofollow)"** em todas as páginas (exceto a de obrigado — ver nota).
@@ -298,4 +298,32 @@ Suba as imagens da pasta `analise/seo/` no imgbb e use os links:
 
 ---
 
-*Atualizado em 10/08/2026 — adicionadas páginas 10 (livro08) e 11 (livro09 — Anestesia Mental)*
+
+
+---
+
+## 📄 PÁGINA 12 — LEITURA LIVRO 10 (`/livro10` — O Despertar do Observador)
+
+### Metadados Básicos
+| Campo | Valor (copie e cole) |
+|---|---|
+| **Título** (58) | `O Despertar do Observador — As Leis Invisíveis da Realidade` |
+| **Descrição** (158) | `Leia online O Despertar do Observador — As Leis Invisíveis que Moldam a Realidade. Uma obra original que une sabedoria ancestral, metafísica e poder do pensamento. Leitura gratuita e protegida.` |
+| **Keywords** | `despertar do observador, leis da realidade, metafísica, poder do pensamento, testemunha interior, silêncio criador, autoconhecimento, leis universais, livro espiritual, leitura online grátis` |
+| **URL Canônica** | `https://www.compraoseu.com/livro10` |
+
+### Favicon / OG / Twitter
+- **Favicon:** mesmo `favicon-32.png`
+- **OG Title:** `O Despertar do Observador — As Leis Invisíveis que Moldam a Realidade`
+- **OG Description:** `Uma obra original que une sabedoria ancestral, metafísica e o poder do pensamento para o despertar da consciência. Leitura online gratuita e protegida.`
+- **Imagem OG:** `https://sidneyrma.github.io/instalador/capas/livro10.png` (a capa)
+- **OG Type:** `article`
+- **Twitter Card Type:** `summary_large_image`
+
+### Configurações
+- **noindex:** ❌ DESMARCADO · **nofollow:** ❌ DESMARCADO
+
+---
+
+*Atualizado em 10/08/2026 — adicionada página 12 (livro10 — O Despertar do Observador)*
+

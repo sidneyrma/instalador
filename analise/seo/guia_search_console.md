@@ -79,7 +79,7 @@ https://www.compraoseu.com/sitemap.xml
 3. Clique em **"Testar URL ao vivo"**;
 4. Se estiver tudo certo, clique em **"Solicitar indexação"**.
 
-Repita para as páginas principais: `/livro01` a `/livro09`.
+Repita para as páginas principais: `/livro01` a `/livro10`.
 
 ### Relatório de páginas
 1. Menu **"Índice" → "Páginas"**;
@@ -165,7 +165,7 @@ Se a plataforma gerar um endereço próprio (ex.: /sitemap.xml), ative e use ess
 
 ## 6) RECOMENDAÇÕES FINAIS
 
-- ✅ **Envie o sitemap novo** (com as 11 URLs corretas — ver Passo 2 acima);
+- ✅ **Envie o sitemap novo** (com as 12 URLs corretas — ver Passo 2 acima);
 - ✅ **Solicite indexação** das páginas principais após publicar;
 - ⏳ **Aguarde 3-7 dias** para o Google rastrear (páginas novas demoram mais);
 - 📊 Acompanhe em **"Performance"** (cliques, impressões, palavras-chave);
