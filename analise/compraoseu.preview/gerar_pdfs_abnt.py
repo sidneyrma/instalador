@@ -38,8 +38,8 @@ OUT_DIR = HERE.parent.parent / "edicoes" / "abnt"
 LIVROS = [
     ("livro01_preview.html", "livro01", "O Ouro das Palavras",
      "Baseado nos ensinamentos de Joseph Murphy", "O poder criador da palavra"),
-    ("livro02_preview.html", "livro02", "O Livro Proibido dos Mestres",
-     "Coleção do Despertar", "Os Ensinamentos que foram escondidos da Humanidade"),
+    ("livro02_preview.html", "livro02", "A Sabedoria dos Mestres",
+     "Coleção do Despertar", "O Despertar do Conhecimento que Liberta a Alma"),
     ("livro03_preview.html", "livro03", "A Mente de Cristo",
      "Baseado nos ensinamentos de Emmet Fox", "Como Pensar com o Espírito e não com o Mundo"),
     ("livro05_preview.html", "livro05", "Evolução da Alma",

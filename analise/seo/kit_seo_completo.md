@@ -71,14 +71,14 @@
 ### Metadados Básicos
 | Campo | Valor |
 |---|---|
-| **Título** (57) | `O Livro Proibido dos Mestres — Leitura Online` |
-| **Descrição** (155) | `Leia online O Livro Proibido dos Mestres — os ensinamentos que foram escondidos da humanidade. 10 capítulos sobre sabedoria oculta. Leitura protegida.` |
-| **Keywords** | `livro proibido dos mestres, ensinamentos ocultos, sabedoria espiritual, juramento do silêncio, leitura online grátis` |
+| **Título** (55) | `A Sabedoria dos Mestres — O Despertar do Conhecimento` |
+| **Descrição** (158) | `Leia online A Sabedoria dos Mestres — O Despertar do Conhecimento que Liberta a Alma. Uma obra original sobre vibração, manifestação e o mestre interior. Leitura protegida.` |
+| **Keywords** | `sabedoria dos mestres, mestre interior, vibração, manifestação, leis da vida, autoconhecimento, espelho, livro espiritual, leitura online grátis` |
 | **URL Canônica** | `https://www.compraoseu.com/livro02` |
 
 ### OG / Twitter
-- **OG Title:** `O Livro Proibido dos Mestres — Leitura Online`
-- **OG Description:** `Os ensinamentos escondidos da humanidade, em 10 capítulos. Leitura online gratuita e protegida.`
+- **OG Title:** `A Sabedoria dos Mestres — O Despertar do Conhecimento`
+- **OG Description:** `Uma obra original sobre vibração, manifestação e o retorno do mestre interior. Leitura online gratuita e protegida.`
 - **OG Type:** `article` · **Twitter:** `summary_large_image`
 
 ### Configurações

@@ -13,8 +13,8 @@ HERE = Path(__file__).parent
 PAGINAS = HERE.parent.parent / "paginas"
 OUT = PAGINAS / "livro02_preview.html"
 
-TITULO = "O Livro Proibido dos Mestres"
-SUBTITULO = "Os Ensinamentos que foram escondidos da Humanidade"
+TITULO = "A Sabedoria dos Mestres"
+SUBTITULO = "O Despertar do Conhecimento que Liberta a Alma"
 
 def esc(t):
     return html.escape(t, quote=False)
