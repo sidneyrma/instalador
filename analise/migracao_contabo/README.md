@@ -155,6 +155,58 @@ Nenhum comando de terminal, nenhum Putty, nenhum conhecimento de Linux. Se eu es
 
 ---
 
+## 🛠️ SE O NGINX NÃO INICIA: "bind() to 0.0.0.0:80 failed (Address already in use)"
+
+**Sintoma:** ao iniciar/reiniciar o Nginx, aparece:
+```
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+```
+
+**O que significa:** a **porta 80** (porta padrão dos sites) já está ocupada por outro programa
+(geralmente o chatbot `app.compraoseu.com`, o Apache, ou um Nginx antigo). Dois programas não podem
+usar a mesma porta ao mesmo tempo.
+
+### Passo 1 — Descobrir quem está na porta 80
+
+No aaPanel, abra o menu **Terminal** e digite:
+```
+ss -tulpn | grep ':80'
+```
+Se o comando não existir, use:
+```
+netstat -tulpn | grep ':80'
+```
+
+### Passo 2 — Interpretar o resultado
+
+| Se mostrar... | Significa | O que fazer |
+|---|---|---|
+| `nginx` | Já existe um Nginx rodando | `nginx -s stop` (ou pelo painel: parar e iniciar) |
+| `httpd` ou `apache2` | O Apache está rodando (não precisamos dele) | Parar/desabilitar o Apache no painel (Software Store → Apache → Stop/Disable) |
+| `node` ou `python` (processo do chatbot) | O chatbot `app.compraoseu.com` está na porta 80 | Ver Passo 3 (mover o chatbot para outra porta) |
+| `openlitespeed` | OpenLiteSpeed rodando | Parar/desabilitar no painel |
+
+### Passo 3 — Se o chatbot (node/python) estiver na porta 80
+
+O ideal é **não derrubar o chatbot**, mas sim **mover ele para outra porta** (ex.: 3000) e deixar
+a porta 80 livre para o site. Depois, o Nginx faz a "ponte" (proxy): quem acessar
+`app.compraoseu.com` é levado ao chatbot na porta 3000.
+
+Onde fica a configuração do chatbot:
+- Se foi criado no aaPanel como **Node Project** ou **Python Project**: abra o projeto no painel,
+  em **Configurações** troque a porta de `80` para `3000` e reinicie;
+- Se roda com Docker/terminal: no arquivo de configuração do app, mude a porta e reinicie.
+
+Depois, no **Config** do site `app.compraoseu.com`, adicione um proxy reverso para `127.0.0.1:3000`
+(opção **Reverse proxy** no painel do site).
+
+### Passo 4 — Iniciar o Nginx
+
+Depois de liberar a porta 80, no painel: **Website → compraoseu.com → Reload/Restart** (ou no
+software Nginx → Start). Ele deve iniciar sem erro.
+
+---
+
 ## ⚠️ Cuidados e garantias
 
 - **E-mail não muda**: o contato é `compraoseu.com@gmail.com` (Gmail), não usa o domínio. Nada quebra.
