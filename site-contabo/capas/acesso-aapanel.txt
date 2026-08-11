@@ -1,0 +1,4 @@
+ACESSAR O APANEL
+aaPanel Internal Address: https://212.28.182.86:16057/1a283a1e
+username: gr9toonu
+password: 298abed2
