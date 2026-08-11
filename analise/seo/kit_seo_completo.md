@@ -48,15 +48,15 @@
 ### Metadados Básicos
 | Campo | Valor |
 |---|---|
-| **Título** (57) | `O Ouro das Palavras — Joseph Murphy · Leitura Online` |
-| **Descrição** (155) | `Leia online O Ouro das Palavras, baseado nos ensinamentos de Joseph Murphy. 10 capítulos sobre o poder criador da palavra. Leitura protegida e gratuita.` |
-| **Keywords** | `ouro das palavras, joseph murphy, poder da palavra, decretos, subconsciente, livro espiritual, leitura online grátis` |
+| **Título** (56) | `O Verbo que Transforma — O Poder da Palavra e da Fé` |
+| **Descrição** (158) | `Leia online O Verbo que Transforma — O Poder Criador da Palavra e da Fé. Uma obra original sobre a palavra, a mente profunda e a fé. Leitura protegida e gratuita.` |
+| **Keywords** | `o verbo que transforma, poder da palavra, palavra e fé, mente profunda, declarações, abundância, saúde, superação, livro espiritual, leitura online grátis` |
 | **URL Canônica** | `https://www.compraoseu.com/livro01` |
 
 ### Favicon / OG / Twitter
 - **Favicon:** mesmo `favicon-32.png`
-- **OG Title:** `O Ouro das Palavras — Joseph Murphy · Leitura Online`
-- **OG Description:** `10 capítulos sobre o poder criador da palavra, baseados em Joseph Murphy. Leitura online gratuita e protegida.`
+- **OG Title:** `O Verbo que Transforma — O Poder da Palavra e da Fé`
+- **OG Description:** `Uma obra original sobre o poder criador da palavra e da fé, para a saúde, a abundância e a superação. Leitura online gratuita.`
 - **Imagem OG:** `https://i.ibb.co/SEU-LINK/og-image-1200x630.png` (ou a capa do livro)
 - **OG Type:** `article`
 - **Twitter Card Type:** `summary_large_image`

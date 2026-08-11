@@ -36,8 +36,8 @@ OUT_DIR = HERE.parent.parent / "edicoes" / "abnt"
 
 # Livros: (arquivo html, slug, título, autor/editora, subtítulo)
 LIVROS = [
-    ("livro01_preview.html", "livro01", "O Ouro das Palavras",
-     "Baseado nos ensinamentos de Joseph Murphy", "O poder criador da palavra"),
+    ("livro01_preview.html", "livro01", "O Verbo que Transforma",
+     "Coleção do Despertar", "O Poder Criador da Palavra e da Fé"),
     ("livro02_preview.html", "livro02", "A Sabedoria dos Mestres",
      "Coleção do Despertar", "O Despertar do Conhecimento que Liberta a Alma"),
     ("livro03_preview.html", "livro03", "A Mente de Cristo",

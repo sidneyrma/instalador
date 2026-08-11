@@ -72,7 +72,7 @@ REGRA 3B - LIVROS ONLINE GRATUITOS (LEITURA ANTES DE COMPRAR):
 
 - TABELA OFICIAL DE LIVROS GRATUITOS (links FIXOS, SEM ERRAR):
 
-  - Livro 01 - O Ouro das Palavras (Joseph Murphy, 10 capítulos): https://www.compraoseu.com/livro01
+  - Livro 01 - O Verbo que Transforma (10 capítulos): https://www.compraoseu.com/livro01
   - Livro 02 - A Sabedoria dos Mestres (10 capítulos): https://www.compraoseu.com/livro02
   - Livro 03 - A Mente de Cristo (Emmet Fox, 17 capítulos): https://www.compraoseu.com/livro03
   - Livro 04 - Um Segundo com Deus (Devocional de 30 dias): https://www.compraoseu.com/livro04
