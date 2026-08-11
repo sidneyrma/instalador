@@ -1,0 +1,32 @@
+📖 PÁGINAS PRONTAS — MISSÃO COM DEUS · COMPRAOSEU
+
+Estes são os 4 arquivos COMPLETOS das páginas (HTML + CSS + JS tudo junto).
+Para usar na Vendd: baixe o arquivo, abra no editor e cole o conteúdo inteiro
+na página (caixa BODY/corpo). Cada página já está com os checkouts corretos,
+menu responsivo (☰ no celular), SEO e identidade visual da marca.
+
+📄 ARQUIVOS:
+
+1. home_preview.html        → Página principal (Portal + livros + bônus)
+   URL: www.compraoseu.com/
+
+2. evolucao_preview.html    → Livro Evolução da Alma (R$ 19,90)
+   URL: www.compraoseu.com/evolucaodaalma
+
+3. anestesia_preview.html   → Livro Anestesia Mental (R$ 19,90)
+   URL: www.compraoseu.com/anestesiamental
+
+4. devocional_preview.html  → Devocional Um Segundo com Deus (R$ 9,90)
+   URL: www.compraoseu.com/um-segundo-com-deus
+
+✅ CHECKOUTS (confira se batem com a Kiwify):
+   Portal .......... R$ 49,00 -> pay.kiwify.com.br/iVfp2bi
+   Evolução ........ R$ 19,90 -> pay.kiwify.com.br/ptH32K9
+   Anestesia ....... R$ 19,90 -> pay.kiwify.com.br/NCf1jh4
+   Devocional ...... R$ 9,90  -> pay.kiwify.com.br/CF9nhFx
+
+🔗 LINKS PÚBLICOS (para visualizar/ler):
+   https://sidneyrma.github.io/instalador/analise/compraoseu.preview/home_preview.html
+   (troque "home_preview" pelo nome dos outros arquivos)
+
+Geração: 05/08/2026 · Missão com Deus · CompraOSeu
