@@ -106,6 +106,55 @@ Hoje o domínio aponta para a Vendd. Vamos apontar para a Contabo:
 
 ---
 
+## 🌐 SEUS REGISTROS DNS (Hostinger) — EXPLICADOS
+
+Estes são os registros que você mostrou (Hostinger). Vou explicar cada um em palavras simples:
+
+| Tipo | Nome | Conteúdo | O que faz |
+|---|---|---|---|
+| A | `@` | **Subdomínio Vendd** | Faz `compraoseu.com` abrir o site. Hoje aponta para a Vendd (por isso o site abre). |
+| A | `www` | **Subdomínio Vendd** | Faz `www.compraoseu.com` abrir o site (mesma coisa do de cima). |
+| TXT | `compraoseu` | `facebook-domain-verification=...` | Só uma verificação do Facebook. Não interfere em nada. |
+| A | `app` | `212.28.182.86` | `app.compraoseu.com` → **seu servidor Contabo** (chatbot Laura). |
+| A | `api` | `212.28.182.86` | `api.compraoseu.com` → Contabo. |
+| A | `apioficial` | `212.28.182.86` | `apioficial.compraoseu.com` → Contabo. |
+
+### ✅ Resposta direta para sua dúvida
+
+**Para `compraoseu.com` continuar abrindo, NÃO precisa mudar NADA no DNS.**
+Os registros `@` e `www` apontam para a Vendd — é exatamente por isso que o site abre hoje
+(mesmo com o conteúdo antigo). Enquanto você não trocar esses dois, nada muda no site atual.
+
+### 🔁 Se um dia você migrar (e só se quiser)
+
+A mudança é **só nesses 2 registros** (`@` e `www`), trocando o conteúdo de:
+- **"Subdomínio Vendd"** → **`212.28.182.86`** (o IP da Contabo, que já aparece nos registros app/api)
+
+E para voltar atrás? É só trocar de novo. Leva **2 cliques** na Hostinger. Não é definitivo, não quebra nada.
+
+### 🛡️ O caminho mais seguro de todos (recomendado)
+
+Se um dia quiser migrar sem nenhum susto:
+1. Crie um **subdomínio de teste** na Hostinger (botão "Criar subdomínio"), ex.: `teste.compraoseu.com`;
+2. Aponte ele para `212.28.182.86` (a Contabo);
+3. Suba o site (`site-contabo/`) na pasta desse subdomínio no aaPanel;
+4. Confira tudo em `teste.compraoseu.com`;
+5. Só quando estiver 100% satisfeito, troque os 2 registros principais.
+
+**O site atual (Vendd) não é afetado em nenhum momento.** Você só "vira a chave" quando quiser.
+
+### 💻 Você NÃO precisa de Putty (nem de terminal)
+
+O aaPanel é um **painel que abre no navegador** (como um site). Você:
+- Envia os arquivos pelo **gerenciador de arquivos do painel** (ou arrasta o `.zip` e extrai);
+- Configura tudo com **botões** (SSL, domínios);
+- O DNS é feito na **Hostinger** com botões também.
+
+Nenhum comando de terminal, nenhum Putty, nenhum conhecimento de Linux. Se eu estiver te guiando,
+é só seguir os cliques.
+
+---
+
 ## ⚠️ Cuidados e garantias
 
 - **E-mail não muda**: o contato é `compraoseu.com@gmail.com` (Gmail), não usa o domínio. Nada quebra.
