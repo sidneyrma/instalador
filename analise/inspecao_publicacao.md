@@ -32,6 +32,28 @@ O irmão informou que os códigos foram atualizados na plataforma da Vendd. Nave
 
 ---
 
+## 🔬 DIAGNÓSTICO TÉCNICO — POR QUE O SITE NÃO ATUALIZA (11/08/2026)
+
+O irmão confirmou que os códigos estão **corretos e salvos** no painel da Vendd, conferidos um a um. Então o problema NÃO é o conteúdo. Testes feitos hoje:
+
+1. **Acesso por servidor externo (fetch_page)** — vindo de fora do navegador do irmão, o site continua mostrando a versão ANTIGA (Home, /livro01=livro06, /livro02, /livro08). Logo, **não é cache do navegador ou do celular do irmão**.
+2. **Acesso com parâmetro anti-cache `?nocache=11082026`** — continua vindo a versão ANTIGA. Isso indica **cache no servidor/CDN da plataforma** (que ignora o parâmetro), e não no navegador.
+
+### Causas mais prováveis (em ordem):
+1. **Cache do sistema/CDN da Vendd** (mais provável): a plataforma guarda uma cópia pronta do site e leva tempo (30-40 min ou mais) para refletir alterações. A própria equipe da Vendd (Gabi) informou que atualizações da plataforma saem "essa semana" — pode haver atraso global de propagação.
+2. **Salvar ≠ Publicar**: em muitas plataformas, "Salvar" guarda apenas o rascunho. Verificar se a página tem botão **"Publicar" / "Atualizar site"** além de "Salvar".
+3. **Página duplicada**: pode haver DUAS páginas com a mesma URL no painel da Vendd; a que está ativa/associada ao domínio pode ser a outra (a antiga).
+4. **Cache do Cloudflare/DNS**: se o domínio compraoseu.com está com proxy do Cloudflare ativo (nuvem laranja), o cache também pode segurar a versão antiga.
+
+### Testes que o irmão pode fazer agora:
+- Acessar o site pelo **celular com dados móveis** (Wi-Fi desligado), em **janela anônima** → se continuar antigo, é servidor/CDN, não o dispositivo dele.
+- No painel da Vendd, procurar botão **"Limpar cache" / "Publicar alterações"** e clicar.
+- Verificar se o editor mostra **"Salvo"** ou **"Publicado"** (status da página).
+- Verificar se **não existe página duplicada** com o mesmo nome/URL.
+- Enviar mensagem ao suporte (Gabi): pedir para **forçar a invalidação/atualização do cache do CDN** nas URLs `/`, `/livro01`, `/livro02` e `/livro08`.
+
+---
+
 ## 🚨 RESULTADO DA INSPEÇÃO ANTERIOR (11/08/2026, madrugada)
 
 | Página | Estado PUBLICADO | Estado LOCAL (correto) | Ação |
