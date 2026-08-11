@@ -52,6 +52,11 @@ O irmão confirmou que os códigos estão **corretos e salvos** no painel da Ven
 - Verificar se **não existe página duplicada** com o mesmo nome/URL.
 - Enviar mensagem ao suporte (Gabi): pedir para **forçar a invalidação/atualização do cache do CDN** nas URLs `/`, `/livro01`, `/livro02` e `/livro08`.
 
+### ✅ CONFIRMAÇÃO DO USUÁRIO (11/08/2026)
+O irmão testou o site pelo **celular com DADOS MÓVEIS** (sem Wi-Fi, em outra rede) e confirmou que a página **continua desatualizada**. Somado aos testes de servidor externo e parâmetro anti-cache, fica **confirmado**: a versão antiga está sendo entregue pelo servidor/CDN da plataforma Vendd (ou a publicação não saiu do rascunho). Não é cache do navegador, do celular ou da rede do usuário.
+
+**Ação em andamento:** o usuário vai acionar o suporte da Vendd (Gabi) solicitando invalidação/atualização do cache do CDN nas URLs `/`, `/livro01`, `/livro02` e `/livro08`.
+
 ---
 
 ## 🚨 RESULTADO DA INSPEÇÃO ANTERIOR (11/08/2026, madrugada)
