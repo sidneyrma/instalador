@@ -253,24 +253,23 @@ Suba as imagens da pasta `analise/seo/` no imgbb e use os links:
 ### Metadados Básicos
 | Campo | Valor (copie e cole) |
 |---|---|
-| **Título** (53) | `Você e o Universo — O Inconsciente e as suas Criações` |
-| **Descrição** (154) | `Leia online Você e o Universo — O Inconsciente e as suas Criações. 19 capítulos sobre a mente, o inconsciente e a realidade. Leitura gratuita e protegida.` |
-| **Keywords** | `você e o universo, inconsciente, subconsciente, mente, realidade, poder da mente, crenças, visualização, lei da atração, livro espiritual, leitura online grátis` |
+| **Título** (56) | `O Arquiteto da Realidade — O Poder da Mente Criadora` |
+| **Descrição** (157) | `Leia online O Arquiteto da Realidade — O Poder da Mente que Cria o Mundo que Você Vive. Uma obra original sobre crenças, mente profunda e o estado do criador. Leitura protegida.` |
+| **Keywords** | `arquiteto da realidade, poder da mente, crenças, subconsciente, reprogramação, visualização, rituais, identidade, transformação, livro espiritual, leitura online grátis` |
 | **URL Canônica** | `https://www.compraoseu.com/livro08` |
 
 ### Favicon / OG / Twitter
 - **Favicon:** mesmo `favicon-32.png`
-- **OG Title:** `Você e o Universo — O Inconsciente e as suas Criações`
-- **OG Description:** `19 capítulos sobre a mente, o inconsciente e a realidade. Leitura online gratuita e protegida.`
-- **Imagem OG:** `https://i.ibb.co/B0gVM9j/livro08.jpg?v=2` (a capa do universo)
+- **OG Title:** `O Arquiteto da Realidade — O Poder da Mente Criadora`
+- **OG Description:** `Uma obra original sobre crenças, mente profunda, rituais de transformação e o estado do criador. Leitura online gratuita.`
+- **Imagem OG:** `https://sidneyrma.github.io/instalador/capas/livro08.png?v=4?v=2` (a capa do universo)
 - **OG Type:** `article`
 - **Twitter Card Type:** `summary_large_image`
 
 ### Configurações
 - **noindex:** ❌ DESMARCADO · **nofollow:** ❌ DESMARCADO
 
-> 💡 **Dica:** use a capa do livro08 (JPG, otimizada para web) como imagem OG — ao
-> compartilhar no WhatsApp, a capa aparece junto do link.
+
 
 ---
 

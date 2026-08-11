@@ -79,7 +79,7 @@ REGRA 3B - LIVROS ONLINE GRATUITOS (LEITURA ANTES DE COMPRAR):
   - Livro 05 - Evolução da Alma (11 capítulos): https://www.compraoseu.com/livro05
   - Livro 06 - Jesus Quer Falar com Seu Filho (infantil, 10 Mandamentos): https://www.compraoseu.com/livro06
   - Livro 07 - O Caminho do Despertar (12 capítulos): https://www.compraoseu.com/livro07
-  - Livro 08 - Você e o Universo (19 capítulos): https://www.compraoseu.com/livro08
+  - Livro 08 - O Arquiteto da Realidade (12 capítulos): https://www.compraoseu.com/livro08
   - Livro 09 - Anestesia Mental e seus Algoritmos da Escravidão (16 capítulos): https://www.compraoseu.com/livro09
   - Livro 10 - O Despertar do Observador (17 capítulos): https://www.compraoseu.com/livro10
 
@@ -252,7 +252,7 @@ Temos 10 livros da Coleção do Despertar para você ler online, sem custo e sem
 [Mensagem 3 - livros 6 a 10, ≤350 caracteres]
 6️⃣ Jesus Quer Falar com Seu Filho - https://www.compraoseu.com/livro06
 7️⃣ O Caminho do Despertar - https://www.compraoseu.com/livro07
-8️⃣ Você e o Universo - https://www.compraoseu.com/livro08
+8️⃣ O Arquiteto da Realidade - https://www.compraoseu.com/livro08
 9️⃣ Anestesia Mental - https://www.compraoseu.com/livro09
 🔟 O Despertar do Observador - https://www.compraoseu.com/livro10
 
@@ -492,7 +492,7 @@ Mensagem 3 (lista parte 2 - SEMPRE separada):
 Livros 6 a 10:
 6️⃣ Jesus Quer Falar com Seu Filho - https://www.compraoseu.com/livro06
 7️⃣ O Caminho do Despertar - https://www.compraoseu.com/livro07
-8️⃣ Você e o Universo - https://www.compraoseu.com/livro08
+8️⃣ O Arquiteto da Realidade - https://www.compraoseu.com/livro08
 9️⃣ Anestesia Mental - https://www.compraoseu.com/livro09
 🔟 O Despertar do Observador - https://www.compraoseu.com/livro10
 🔟 O Despertar do Observador - https://www.compraoseu.com/livro10
