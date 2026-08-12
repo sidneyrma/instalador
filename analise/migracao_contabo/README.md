@@ -377,6 +377,23 @@ domain not bound". **Solução:** no aaPanel, criar/iniciar o site `app.compraos
    para o `https://` funcionar (o navegador força https e falha sem certificado).
 
 ---
+## ✅ ATUALIZAÇÃO 12/08 (tarde): SITE NO AR COM HTTPS E 10 LIVROS CONFIRMADOS
+
+**Acesso real confirmado:**
+- `https://compraoseu.com/` → Portal O Despertar com **todos os 10 livros** (inclusive 09 Anestesia
+  Mental e 10 O Despertar do Observador, que abrem normalmente);
+- **SSL Let's Encrypt ATIVO** (emitido pelo usuário; expira 2026-11-10, renovação automática);
+- O que o usuário ainda vê (versão antiga com 8 livros) é **cache do navegador/ISP** (Claro Santa
+  Cruz do Sul ainda não propagou; only Seattle/NY atualizados no whatsmydns). Usar `https://` +
+  `ipconfig /flushdns` + dados móveis. Propagação completa pode levar até 24-48h.
+
+**Chatbot Laura:** o app rodava como processo (Node/Python, portas 3000/4000/5000/6000) SEM site
+criado no aaPanel. Quando o Nginx assumiu a porta 80, as visitas a app.compraoseu.com caem no Nginx
+sem server block → "Website not found". **Solução:** Website → Add site → `app.compraoseu.com` →
+**Reverse Proxy** → `http://127.0.0.1:3000` (ou a porta correta do frontend) → iniciar e testar.
+
+---
+
 ## ⚠️ Cuidados e garantias
 
 - **E-mail não muda**: o contato é `compraoseu.com@gmail.com` (Gmail), não usa o domínio. Nada quebra.
