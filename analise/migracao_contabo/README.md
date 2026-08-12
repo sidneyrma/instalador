@@ -359,6 +359,24 @@ domain not bound". **Solução:** no aaPanel, criar/iniciar o site `app.compraos
 
 ---
 
+## 📌 ORIENTAÇÃO FINAL (12/08, manhã) — NÃO excluir na Vendd, NÃO reverter
+
+- **NÃO excluir o domínio na Vendd**: a tela "Status ativo" deles é visão antiga; o DNS já está na
+  HostGator (registrar). Excluir lá não muda nada e pode confundir.
+- **NÃO reverter o DNS**: reverter voltaria as páginas antigas da Vendd e NÃO resolveria o chatbot
+  (o problema da Laura é no aaPanel, não no DNS).
+- **DNS confirmado via dns.google (12/08):** `compraoseu.com` → `212.28.182.86` e
+  `app.compraoseu.com` → `212.28.182.86` ✅
+- **Propagação parcial é normal**: TTL antigo era 14400 (4h); pode levar até 24–48h para completar
+  no mundo. No computador: `ipconfig /flushdns` + testar `http://` (http explícito) em aba anônima.
+
+**Ações pendentes (2):**
+1. **Chatbot Laura**: criar/iniciar no aaPanel o site `app.compraoseu.com` com **proxy reverso**
+   para `127.0.0.1:3000` (porta do chatbot). Verificar se o site do app já existia na lista.
+2. **SSL**: emitir **Let's Encrypt** no aaPanel (compraoseu.com + www) e ativar **Force HTTPS**,
+   para o `https://` funcionar (o navegador força https e falha sem certificado).
+
+---
 ## ⚠️ Cuidados e garantias
 
 - **E-mail não muda**: o contato é `compraoseu.com@gmail.com` (Gmail), não usa o domínio. Nada quebra.
