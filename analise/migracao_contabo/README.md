@@ -207,6 +207,48 @@ software Nginx → Start). Ele deve iniciar sem erro.
 
 ---
 
+## 🌐 SEU DNS ESTÁ NO CLOUDFLARE (descoberta em 12/08/2026)
+
+O domínio `compraoseu.com` tem os nameservers:
+- `adele.ns.cloudflare.com`
+- `jarred.ns.cloudflare.com`
+
+**Isso significa que a "Zona de DNS" ativa (os registros A, TXT, etc.) é gerenciada no CLOUDFLARE** (dash.cloudflare.com), e NÃO na HostGator. A tela "Registros DNS" que você viu antes (com coluna "Proxy" Ativo/Inativo) é a do Cloudflare.
+
+### ⚠️ IMPORTANTE: NÃO clicar em "Configurar" na tela "Sem hospedagem (apenas Zona de DNS)" da HostGator
+
+Essa opção **troca os nameservers** do domínio de Cloudflare para os da HostGator. Se isso acontecer:
+- A zona DNS do Cloudflare (com os registros do site, do chatbot e do Facebook) **deixa de valer**;
+- O chatbot `app.compraoseu.com` **pode parar** (os registros app/api/apioficial não serão recriados automaticamente);
+- O site atual pode quebrar de forma brusca.
+
+**Ação correta:** clicar em **"Manter configuração"** e sair dessa tela. Os nameservers do Cloudflare devem **permanecer**. A mudança de IP é feita DENTRO do Cloudflare, não na HostGator.
+
+### ✅ Passo a passo para apontar para a Contabo (dentro do Cloudflare)
+
+1. Acesse `dash.cloudflare.com` e faça login;
+2. Clique no domínio **compraoseu.com**;
+3. Menu **DNS → Records** (Registros);
+4. Localize o registro **A** com nome **`@`** → clique em **Editar** (lápis):
+   - **Content/IP:** `212.28.182.86` (era "Subdomínio Vendd" / IP da Vendd)
+   - **Proxy status:** deixe **cinza** (DNS only) durante o teste — importante para não ter cache do Cloudflare segurando a versão antiga;
+   - Salvar;
+5. Faça o mesmo para o registro **A** com nome **`www`** → `212.28.182.86` → cinza → Salvar;
+6. **NÃO mexer** nos registros `app`, `api`, `apioficial` (já apontam para `212.28.182.86` — é o chatbot);
+7. **NÃO apagar** o registro TXT do Facebook (não atrapalha);
+8. A propagação é rápida (5–30 min), porque os nameservers já são do Cloudflare e o TTL costuma ser baixo.
+
+### 📌 Depois da propagação
+
+- Teste `http://compraoseu.com` (limpe o cache / modo anônimo / dados móveis);
+- Se abrir a Home nova → **a chave virou!** 🎉
+- Emita o **SSL Let's Encrypt** no aaPanel (Website → compraoseu.com → SSL → Apply) — agora o domínio aponta para a Contabo, o certificado valida;
+- Ative **Force HTTPS** no aaPanel;
+- Remova a linha do arquivo `hosts` do computador (não é mais necessária);
+- Depois de tudo estável, se quiser, pode ligar o **proxy laranja** do Cloudflare (CDN + SSL Full/strict) para ganhar velocidade global — mas só depois de confirmar que tudo funciona.
+
+---
+
 ## ⚠️ Cuidados e garantias
 
 - **E-mail não muda**: o contato é `compraoseu.com@gmail.com` (Gmail), não usa o domínio. Nada quebra.
