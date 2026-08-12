@@ -258,6 +258,31 @@ Nginx na porta 80. Se o chatbot rodava na porta 80 e não sobe mais:
 
 ---
 
+## 🔍 DIAGNÓSTICO EXATO DO DNS (12/08, confirmado via dns.google)
+
+| Domínio | Resolve para | Status |
+|---|---|---|
+| `compraoseu.com` | `162.240.81.81` (HostGator) | DNS JÁ na HostGator (troca aplicada) |
+| `www.compraoseu.com` | CNAME → compraoseu.com | Ok |
+| `app.compraoseu.com` | NXDOMAIN (não existe) | ❌ Chatbot parado por falta de registro |
+
+**Observações:**
+- A tela com coluna "Proxy Ativo/Inativo" que o usuário vê é do **Cloudflare antigo** (não vale mais);
+- As páginas "ainda abrem com a versão antiga" por **cache do navegador / propagação parcial**;
+- O chatbot (`app.compraoseu.com`) roda nas **portas 3000/4000/5000/6000** no servidor Contabo
+  (não na 80, então não conflita com o Nginx); o que parou foi o **DNS** (registro `app` não existe na HostGator).
+
+**Ações na Zona de DNS da HostGator:**
+1. Editar o registro **A** `compraoseu.com`: `162.240.81.81` → **`212.28.182.86`**;
+2. Adicionar **A** `app` → `212.28.182.86`; **A** `api` → `212.28.182.86`; **A** `apioficial` → `212.28.182.86`;
+3. Manter **CNAME** `www` → `compraoseu.com`;
+4. (Opcional) **TXT** `compraoseu` → `facebook-domain-verification=epyw87lqmrn22sfib3ac9ypq7zttpf`.
+
+**No servidor (aaPanel):** confirmar que o site/projeto do `app.compraoseu.com` está **Running**
+e que o Nginx tem o **proxy reverso** `app.compraoseu.com → 127.0.0.1:3000` (ou a porta do chatbot).
+
+---
+
 ## ⚠️ Cuidados e garantias
 
 - **E-mail não muda**: o contato é `compraoseu.com@gmail.com` (Gmail), não usa o domínio. Nada quebra.
