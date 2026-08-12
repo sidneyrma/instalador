@@ -315,6 +315,23 @@ e que o Nginx tem o **proxy reverso** `app.compraoseu.com → 127.0.0.1:3000` (o
 **Status:** aguardando o usuário testar as páginas (`http://compraoseu.com`, `/livro01`, `/livro03`, `app.compraoseu.com`) e, se tudo certo, emitir SSL Let's Encrypt + Force HTTPS no aaPanel.
 
 ---
+## 🔍 SITUAÇÃO APÓS A TROCA (12/08, noite) — site "como antes" e app fora
+
+**DNS confirmado:** `compraoseu.com` e `www` → `212.28.182.86` (Contabo) ✅
+
+**Se o usuário ainda vê a página antiga:**
+1. **Cache do navegador/celular** — testar com dados móveis (Wi-Fi off) + modo anônimo + limpar cache;
+2. **Servidor com arquivos antigos** — o `site-contabo.zip` enviado ao servidor é de ANTES das últimas
+   atualizações (livro03 A Mente Renovada + capa clara). **Solução:** reenviar o `site-contabo.zip` NOVO
+   (do repositório) e extrair SUBSTITUINDO em `/www/wwwroot/compraoseu.com`.
+
+**app.compraoseu.com fora:**
+1. Propagação do registro `app` ainda em andamento (TTL 4h);
+2. No aaPanel: confirmar que o site/projeto do `app.compraoseu.com` está **Running** e que o Nginx
+   tem **proxy reverso** `app.compraoseu.com → 127.0.0.1:3000` (chatbot usa portas 3000+).
+
+---
+
 ## ⚠️ Cuidados e garantias
 
 - **E-mail não muda**: o contato é `compraoseu.com@gmail.com` (Gmail), não usa o domínio. Nada quebra.
