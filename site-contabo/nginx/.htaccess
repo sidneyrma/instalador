@@ -1,0 +1,27 @@
+# ============================================================
+# .htaccess — alternativa se o servidor usar APACHE (não Nginx)
+# ============================================================
+# Coloque este arquivo junto com o index.html na pasta do site.
+# Ele faz as URLs bonitas funcionarem: /livro01 -> livro01.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Se o arquivo/diretório existe, usa direto
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Remove a extensão .html da URL
+    RewriteRule ^([^\.]+)$ $1.html [NC,L]
+</IfModule>
+
+# Proteção simples contra listar pastas
+Options -Indexes
+
+# Cache de imagens e ícones
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/png "access plus 7 days"
+    ExpiresByType image/jpeg "access plus 7 days"
+    ExpiresByType image/x-icon "access plus 7 days"
+</IfModule>

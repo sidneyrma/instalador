@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jesus Quer Falar com Seu Filho — Leitura Online | Missão com Deus</title>
+<meta name="description" content="Leia online Jesus Quer Falar com Seu Filho — uma obra infantil cristã que ensina os Mandamentos e o amor de Jesus às crianças. Leitura protegida.">
+<meta name="robots" content="index, follow">
+<style>
+:root{
+  --navy:#0e1a2e; --navy2:#16283f;
+  --ouro:#c9a24b; --ouro-claro:#e3c877;
+  --papel:#fdf9f0; --tinta:#3a2f28; --tinta2:#7a6a58;
+  --linha:#eadfc8; --cta:#b8860b;
+  --doce:#ff9e5e; --ceu:#87ceeb; --verde:#8bc34a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--navy); color:var(--tinta);
+  font-family:Georgia,'Times New Roman',Times,serif; line-height:1.8;
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
+}
+img{-webkit-user-drag:none; -webkit-touch-callout:none}
+.wrap{max-width:46rem; margin:0 auto}
+
+.topbar{background:var(--navy); border-bottom:3px solid var(--ouro); position:sticky; top:0; z-index:50}
+.topbar .wrap{display:flex; align-items:center; justify-content:space-between; padding:.8rem 1.2rem; gap:10px}
+.topbar .logo{color:#fff; font-size:1.05rem; text-decoration:none}
+.topbar .logo span{color:var(--ouro)}
+.topbar .ler{color:var(--ouro-claro); font-size:.78rem; letter-spacing:.2em; text-transform:uppercase}
+
+.capa{min-height:82vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:3rem 1.2rem; color:#fff;
+  background:radial-gradient(900px 500px at 70% -10%, rgba(135,206,235,.3), transparent 60%),
+             radial-gradient(700px 400px at 20% 90%, rgba(201,162,75,.25), transparent 60%),
+             linear-gradient(170deg,var(--navy) 0%,#123a5e 100%);}
+.capa .capa-livro{width:178px; height:auto; border:2px solid var(--ouro); border-radius:6px;
+  box-shadow:0 18px 44px rgba(0,0,0,.6); margin-bottom:1.8rem; -webkit-user-drag:none}
+.capa .emoji-grande{font-size:4.5rem; margin-bottom:1.2rem}
+.capa h1{font-size:clamp(2rem,6vw,3.4rem); margin:0 0 .6rem; line-height:1.12}
+.capa .sub{font-style:italic; color:#d8e6f2; font-size:1.1rem; margin-bottom:1.8rem; max-width:34rem}
+.capa .versiculo-capa{font-size:.95rem; color:#c9a24b; font-style:italic; margin-bottom:2rem; max-width:28rem}
+.capa .inicio{display:inline-block; background:linear-gradient(180deg,#ff9e5e,#e07b2f); color:#fff;
+  font-weight:700; padding:16px 34px; border-radius:50px; text-decoration:none; font-size:1.1rem;
+  box-shadow:0 8px 24px rgba(255,158,94,.4)}
+.capa .aviso{font-size:.78rem; color:#8fa0b8; margin-top:1.4rem; max-width:26rem; line-height:1.5}
+
+#sumario{background:var(--navy2); color:#fff; padding:3rem 1.2rem}
+#sumario h2{text-align:center; color:var(--ouro); font-size:1.4rem; letter-spacing:.2em; text-transform:uppercase; margin-bottom:1.4rem}
+#sumario ul{list-style:none; padding:0; margin:0 auto; max-width:34rem}
+#sumario li{border-bottom:1px solid rgba(201,162,75,.25)}
+#sumario a{display:block; color:#e8ecf3; text-decoration:none; padding:.8rem .4rem; font-size:1rem}
+#sumario a:hover{color:var(--ouro-claro); padding-left:.8rem}
+
+.leitura{background:var(--papel); padding:2.6rem 1.2rem 4rem}
+.leitura .wrap{background:#fff; border:1px solid var(--linha); border-radius:16px;
+  padding:2.2rem 1.6rem; box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.capitulo{margin-top:2.5rem; padding-top:1.8rem; border-top:1px solid var(--linha)}
+.cap-titulo{font-size:1.5rem; color:var(--navy); margin:0 0 1.2rem}
+.cap-titulo.centro{text-align:center}
+.capitulo p{margin:0 0 1rem; text-align:justify}
+
+.mandamento{display:flex; gap:14px; align-items:flex-start; background:#fdf6e9;
+  border:1px solid var(--linha); border-radius:14px; padding:16px; margin:0 0 14px}
+.mand-num{flex:0 0 auto; width:38px; height:38px; border-radius:50%; background:var(--ouro);
+  color:#fff; font-weight:800; font-size:1.1rem; display:flex; align-items:center; justify-content:center}
+.mand-titulo{font-size:1.05rem; color:var(--navy); margin:0 0 6px}
+.mand-corpo p{margin:0 0 8px; font-size:.98rem}
+.mand-corpo p:last-child{margin:0}
+
+.atividades{background:#eef7ee; border:2px dashed var(--verde); border-radius:14px; padding:18px}
+.cap-nav{display:flex; justify-content:space-between; gap:.6rem; flex-wrap:wrap; margin-top:2.4rem;
+  font-size:.88rem; font-family:system-ui,sans-serif}
+.cap-nav a{color:var(--navy2); text-decoration:none; border-bottom:1px dotted var(--ouro)}
+.cap-nav a:hover{color:var(--cta)}
+
+#fim{background:var(--navy); color:#fff; text-align:center; padding:4rem 1.2rem}
+#fim h2{font-size:1.5rem; margin-bottom:.8rem}
+#fim p{color:#c4cdda; max-width:32rem; margin:0 auto 1.6rem}
+#fim .cred{font-size:.82rem; color:#8fa0b8; margin-top:1.6rem; line-height:1.6}
+
+footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2rem; font-size:.8rem}
+
+#print-block{display:none; text-align:center; padding:4rem 1.5rem; font-family:Georgia,serif; color:var(--tinta)}
+#print-block h1{font-size:1.5rem; margin:.8rem 0}
+#print-block p{color:var(--tinta2); font-size:.95rem}
+@media print{
+  .topbar,.capa,#sumario,.leitura,footer{display:none}
+  #print-block{display:block}
+}
+
+@media (max-width:560px){
+  body{font-size:17px}
+  .leitura .wrap{padding:1.4rem 1rem}
+  .cap-titulo{font-size:1.3rem}
+  .mandamento{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div id="print-block">
+  <h1>Jesus Quer Falar com Seu Filho</h1>
+  <p style="font-style:italic">Uma obra infantil de amor, fé e ensinamentos bíblicos</p>
+  <p>Impressão desabilitada para proteger os direitos autorais desta obra.</p>
+  <p>© Coleção do Despertar — Todos os direitos reservados.</p>
+</div>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="#">Missão <span>com Deus</span></a>
+    <span class="ler">Leitura infantil</span>
+  </div>
+</header>
+
+<section class="capa">
+  <img class="capa-livro" src="https://i.ibb.co/8DLT57DZ/jesusfalarfilho.jpg" alt="Capa do livro Jesus Quer Falar com Seu Filho">
+  <div class="emoji-grande">👶✨</div>
+  <h1>Jesus Quer Falar com Seu Filho</h1>
+  <p class="sub">Uma obra infantil de amor, fé e ensinamentos bíblicos</p>
+  <p class="versiculo-capa">"Deixem vir a mim as criancinhas, pois delas é o Reino de Deus." — Lucas 18:16</p>
+  <a class="inicio" href="#introducao">Começar a leitura →</a>
+  <p class="aviso">🔒 Leitura protegida: não é possível copiar, imprimir ou baixar este conteúdo.</p>
+</section>
+
+<section id="sumario">
+  <h2>Sumário</h2>
+  <ul>
+    <li><a href="#introducao">Apresentação</a></li>
+    <li><a href="#corpo">Jesus te ama</a></li>
+    <li class="toc-parte" style="color:var(--ouro);font-weight:700;padding:.9rem .4rem .4rem;">Os 10 Mandamentos</li>
+    <li><a href="#mand-1">1. Ame a Deus sobre todas as coisas</a></li>
+    <li><a href="#mand-2">2. Adore somente a Deus</a></li>
+    <li><a href="#mand-3">3. Fale o nome de Deus com respeito</a></li>
+    <li><a href="#mand-4">4. Guarde o dia de descanso para Deus</a></li>
+    <li><a href="#mand-5">5. Honre seu pai e sua mãe</a></li>
+    <li><a href="#mand-6">6. Não machuque ninguém</a></li>
+    <li><a href="#mand-7">7. Seja fiel, verdadeiro e respeite</a></li>
+    <li><a href="#mand-8">8. Não pegue nada que não é seu</a></li>
+    <li><a href="#mand-9">9. Não minta nem fale mal dos outros</a></li>
+    <li><a href="#mand-10">10. Não deseje o que é dos outros</a></li>
+    <li><a href="#atividades">Atividades</a></li>
+    <li><a href="#final">Oração Final</a></li>
+  </ul>
+</section>
+
+<main class="leitura">
+  <div class="wrap">
+    <section class="capitulo" id="introducao">
+      <h2 class="cap-titulo centro">Apresentação 🌈</h2>
+<p>Jesus Quer Falar com Seu Filho "Deixem vir a mim as criancinhas, pois delas é o Reino de Deus." (Lucas 18:16) Este e-book é um presente cheio de amor, fé e alegria para o coração das criancinhas. Jesus quer falar com você, amiguinho(a), com palavras doces que enchem sua alma de luz. Aqui, cada página é como uma chave de sabedoria que abre o coração para a verdade do Evangelho.</p>
+<p>As histórias, os desenhos e as atividades foram feitas com muito carinho, para te ensinar o bem. Você vai aprender sobre amor, amizade, respeito, fé e como caminhar com Jesus todos os dias.</p>
+<p>As ilustrações foram criadas para colorir com alegria, enquanto sua alma se enche de esperança. Compartilhe este momento com sua família e sinta como é lindo estar pertinho de Jesus! Vamos começar juntos essa jornada de luz? Jesus está te esperando com um sorriso no coração!</p>
+<p>Um Mundo de Cores e Amor Ilustrações Encantadoras Desenhos vibrantes com traços infantis que capturam a atenção das crianças.</p>
+<p>Jesus e as Crianças Jesus sorridente rodeado por crianças de diferentes partes do mundo, promovendo união e amor.</p>
+<p>Natureza e Magia Paisagens com céu azul, arco-íris, animais e flores que convidam à imaginação.</p>
+<p>Histórias Curtas e Inspiradoras Contos Acessíveis Histórias simples que revelam o amor de Jesus de forma clara e cativante.</p>
+<p>Lições de Vida Ensinos sobre bondade, amizade e fé para a vida cotidiana das crianças.</p>
+<p>Personagens Queridos Figuras que ajudam a criar uma conexão emocional com os pequenos leitores.</p>
+<p>Atividades Interativas e Divertidas Atividades Atividades que estimulam o raciocínio e a conexão com as histórias bíblicas.</p>
+<p>Desenhos para Colorir Promove a criatividade enquanto as crianças aprendem sobre Jesus e seus ensinamentos.</p>
+<p>Aprendizado em Família Momentos de interação que fortalecem os laços enquanto a fé é compartilhada.</p>
+<p>Sobre o E-book Este e-book foi criado com amor para ensinar a Palavra de Deus às crianças.</p>
+<p>Ele pode ser usado no celular, tablet, computador ou impresso em casa, se desejar. Evangelize com responsabilidade e continue espalhando a luz de Jesus! As atividades também podem ser feitas em um caderno ou folha em branco.</p>
+<p>Este material é um presente especial que acompanha o livro "Evolução da Alma", e é destinado para uso pessoal ou familiar.</p>
+      <nav class="cap-nav"><a href="#sumario">Sumário</a><a href="#corpo">Próximo →</a></nav>
+    </section>
+
+    <section class="capitulo" id="corpo">
+      <h2 class="cap-titulo centro">Jesus te ama 💛</h2>
+<p>Jesus te ama e quer ser seu amigo Jesus ama todas as crianças e quer ser o seu melhor amigo! Ele cuida de você, da sua família e caminha sempre ao seu lado, mesmo quando você não vê.</p>
+<p>Lúcia, uma menina tímida, encontrou coragem conversando com Jesus, seu amigo invisível. E você também pode falar com ele sempre que quiser, com o coração aberto! Oração: "Senhor Jesus, eu te amo.</p>
+<p>Abençoa meu papai, minha mamãe, meus irmãozinhos e toda a minha família. Fica comigo todos os dias e me ensina a ser uma criança feliz, obediente e cheia de amor.</p>
+<p>Amém." "Ensina a criança no caminho em que deve andar, e ainda quando for velho não se desviará dele." Provérbios 22:6 Atividade: Desenhe você e Jesus brincando juntos! Use sua criatividade! Pode ser numa folha branca, no seu caderno ou até aqui mesmo no e-book, se estiver no tablet ou celular.</p>
+<p>Jesus vai adorar ver seu desenho cheio de amor!</p>
+<p>Use sua criatividade e pinte com as cores do amor de Jesus! Colorir é alegria! Faça esse desenho brilhar com suas cores favoritas.</p>
+<p>Pinte sua família aqui e escreva o nome de cada um com carinho.</p>
+<p>Como Conversar com Deus Jesus disse: "Quando você for orar, entre no seu quarto, feche a porta e ore ao seu Pai em segredo. E o seu Pai, que vê o que você faz em segredo, o recompensará." 3 (Mateus 6:6, adaptado) Passo 1: Encontre um lugar especial e tranquilo Jesus ensinou que podemos falar com Jesus em secreto.</p>
+<p>Pode ser seu quarto, um cantinho com um travesseiro ou até o lugar onde você se sente em paz.</p>
+<p>Esse é o meu cantinho com Jesus! Passo 2: Feche os olhos e imagine Jesus pertinho de você Jesus está sempre com você, mesmo que você não o veja.</p>
+<p>Ele ouve cada palavra e sente seu coração.</p>
+<p>Oi Jesus, estou aqui pra conversar com você.</p>
+<p>Passo 3: Comece agradecendo a Deus Antes de pedir qualquer coisa, agradeça! Fale sobre as coisas boas que Ele fez hoje.</p>
+<p>Obrigado, jesus, pela minha família, pela comida, pelos meus amigos e por mais um dia.</p>
+<p>Passo 4: Conte para Jesus o que está sentindo Você pode contar tudo! Se está feliz, triste, com medo ou com dúvida&amp; Jesus quer ouvir! Jesus, hoje eu fiquei triste com algo&amp; mas eu sei que você pode me ajudar.</p>
+<p>Um Guia de Oração para Crianças Passo 5: Peça força, coragem e sabedoria Peça para Jesus te ajudar a ser uma criança cheia de amor, bondade e coragem para fazer o bem.</p>
+<p>Jesus, me ajuda a ser forte, obediente e cheio de amor como você.</p>
+<p>Passo 6: Ore pela sua família e por outras pessoas Fale com Jesus sobre sua mamãe, seu papai, irmãos, avós, coleguinhas&amp; e até por quem te chateou.</p>
+<p>Abençoa a minha família e ajuda todo mundo a conhecer seu amor.</p>
+<p>Passo 7: Finalize com amor e fé Diga que ama Jesus e confia nele. E termine com um Amém bem forte! Eu te amo, Jesus! Amém.</p>
+<p>Oração exemplo para repetir com o coração: Papai do Céu, muito obrigado por este dia. Obrigado por cuidar de mim. Me dá força pra fazer o bem, coragem pra obedecer e um coração cheio de amor.</p>
+<p>Abençoa minha família e todas as crianças do mundo.</p>
+<p>Eu confio em ti, Jesus. Amém!</p>
+<p>Jesus está te esperando de braços abertos, com um sorriso cheio de amor! Mas para chegar até ele, você precisa fazer boas escolhas no caminho. Neste desenho, você vai traçar uma linha iniciando onde Jesus está até chegar onde está a cruz do amor.</p>
+<p>Mas atenção! Existem caminhos que parecem certos, mas acabam em distrações como preguiça, brigas ou ficar longe da oração.</p>
+<p>Use seu lápis com calma e atenção, pensando: Será que esse caminho me aproxima de Jesus? Ore em silêncio antes de começar: Jesus, me mostra o caminho certo para chegar até você.</p>
+<p>Depois, com muito carinho, trace o caminho que você acredita ser o certo. E se errar, não tem problema! Apague e tente de novo. O importante é nunca desistir de buscar a Jesus!</p>
+<p>Os 10 Mandamentos contados com amor e histórias Vamos conhecer os 10 mandamentos de Deus com histórias e exemplos do seu dia a dia! Ame a Deus sobre todas as coisas. 1.</p>
+<p>Adore somente a Deus. 2.</p>
+<p>Fale o nome de Deus com respeito e amor. 3.</p>
+<p>Guarde o dia de descanso para Deus. 4.</p>
+<p>Honre seu pai e sua mãe. 5.</p>
+<p>Não machuque ninguém com ações ou palavras. 6.</p>
+<p>Seja fiel, verdadeiro e respeite as pessoas. 7.</p>
+<p>Não pegue nada que não é seu. 8.</p>
+<p>Não minta nem fale mal dos outros ou dos amiguinhos. 9.</p>
+<p>Não deseje o que é dos outros ou dos seus amiguinhos. 10.</p>
+
+      <nav class="cap-nav"><a href="#introducao">← Anterior</a><a href="#mand-1">Os Mandamentos →</a></nav>
+    </section>
+
+    <section class="capitulo" id="mandamentos">
+      <h2 class="cap-titulo centro">Os 10 Mandamentos 📜</h2>
+      <p style="text-align:center;color:var(--tinta2);margin-bottom:1.6rem">Contados com amor e histórias, do jeitinho que as crianças entendem.</p>
+
+        <div class="mandamento" id="mand-1">
+          <div class="mand-num">1</div>
+          <div class="mand-corpo">
+            <h3 class="mand-titulo">Ame a Deus sobre todas as coisas</h3>
+            <p>Explicação amorosa Deus é o nosso Papai do Céu, que nos ama mais do que qualquer pessoa no mundo! Ele está sempre com a gente, mesmo quando não podemos vê-Lo. Quando você ama a Deus de verdade, Ele se torna seu melhor amigo, e nada é mais importante do que estar com Ele, conversar com Ele e confiar em Seu amor todos os dias! Versículo para o coração "Ame o Senhor seu Deus com todo o seu coração, com toda a sua alma e com todas as suas forças." (Lucas 10:27 3 adaptado para crianças) História encantada para inspirar: Pedro e a Estrelinha de Gratidão Pedro era um menino que amava olhar o céu todas as noites. Um dia, quando estava muito triste, ele orou dizendo: "Deus, o Senhor me ama mesmo?" Na mesma hora, uma estrelinha começou a brilhar só para ele! Pedro sorriu e agradeceu. Ele percebeu que Deus o escutava e cuidava dele sempre. Desde então, todas as noites ele agradecia a Deus por tudo: pelo pão, pela mamãe, pelo papai e até pelo seu cachorrinho Bolinha! Lição: Deus está sempre ouvindo. Quando amamos a Deus de verdade, agradecemos e confiamos Nele todos os dias! História Bíblica adaptada A Obediência de Noé Deus pediu a Noé que construísse um barco gigante chamado arca, pois uma chuva muito forte viria. As pessoas riam dele, mas Noé amava e confiava tanto em Deus que obedeceu, mesmo sem ver nuvens no céu! E quando a chuva chegou, quem estava seguro era Noé, sua família e os animaizinhos! Lição: Quem ama a Deus faz o que Ele pede, mesmo quando não entende tudo.</p>
+<p>Versículo especial "Noé fez tudo como Deus mandou." (Gênesis 6:22 3 adaptado)</p>
+          </div>
+        </div>
+
+        <div class="mandamento" id="mand-2">
+          <div class="mand-num">2</div>
+          <div class="mand-corpo">
+            <h3 class="mand-titulo">Adore somente a Deus</h3>
+            <p>Explicação amorosa Deus é único! Ele é o Criador de tudo o que existe: o céu, o mar, os animais, as estrelas e até você! Ele quer que nosso coração esteja inteirinho com Ele. Por isso, não devemos adorar imagens, brinquedos, celulares, super-heróis ou qualquer outra coisa mais do que a Ele. Só Deus merece o nosso amor mais forte e sincero.</p>
+<p>Versículo para o coração: "Adorem somente o Senhor, seu Deus." (Deuteronômio 6:13 3 adaptado) História encantada para inspirar Sofia e a Boneca de Ouro Sofia ganhou uma boneca muito linda, com vestido brilhante e cabelinho dourado. Ela gostava tanto da boneca que até esquecia de orar e conversar com Deus. Um dia, sua vovó disse: Sofia, o seu coraçãozinho ainda tem espaço para Deus? Sofia pensou, e naquela noite orou pedindo perdão e dizendo: Deus, o Senhor é mais importante que qualquer brinquedo! Ela continuou amando sua boneca, mas agora dava o primeiro lugar em tudo para Deus! Lição: Nada é mais importante que Deus. Ele deve ser o primeiro no nosso coração.</p>
+<p>História Bíblica adaptada O Bezerro de Ouro Quando Moisés subiu ao monte para falar com Deus, o povo ficou impaciente e fez um bezerro de ouro para adorar. Deus ficou muito triste, pois eles se esqueceram do Seu amor e poder.</p>
+<p>Mas Moisés voltou com as tábuas da Lei e ensinou o povo a amar e adorar somente o verdadeiro Deus.</p>
+<p>Versículo especial: "Não façam ídolos nem imagens para adorar." (Êxodo 20:4 3 adaptado)</p>
+          </div>
+        </div>
+
+        <div class="mandamento" id="mand-3">
+          <div class="mand-num">3</div>
+          <div class="mand-corpo">
+            <h3 class="mand-titulo">Fale o nome de Deus com</h3>
+            <p>respeito e amor Explicação amorosa: O nome de Deus é sagrado! Ele é o nosso Criador, nosso Pai, e Seu nome deve ser falado com carinho, amor e respeito.</p>
+<p>Brincar, zombar ou usar o nome de Deus de qualquer jeito deixa o coração Dele triste. Toda vez que falamos de Deus, devemos lembrar que estamos falando de algo muito especial e santo! Versículo para o coração: "Pai nosso que estás no céu, santificado seja o teu nome." (Mateus 6:9) História encantada para inspirar: Dudu e o Nome Mais Lindo do Mundo Dudu ouviu uns amigos brincando com o nome de Deus no parquinho. Ele ficou confuso, mas naquela noite perguntou à sua mãe: Mamãe, por que não podemos brincar com o nome de Deus? Ela respondeu com um sorriso: Porque o nome Dele é o mais lindo que existe! É o nome que cura, que protege e que ama.</p>
+<p>No outro dia, Dudu contou isso aos amigos e disse: Vamos guardar o nome de Deus só para coisas boas, tá? Lição: O nome de Deus é sagrado! Devemos usá-lo com reverência, amor e alegria, como quem fala com o melhor Pai do mundo.</p>
+<p>História Bíblica adaptada: A Coragem de Davi Davi era só um menino, mas acreditava tanto no poder de Deus que não teve medo de enfrentar o gigante Golias.</p>
+<p>Enquanto todos duvidavam, Davi dizia com confiança: "O Senhor está comigo! Ele venceu o gigante com apenas uma pedrinha, mostrando que o nome do Senhor é poderoso e digno de confiança.</p>
+<p>Versículo especial: "O Senhor é a minha força!" (Salmo 28:7 3 adaptado)</p>
+          </div>
+        </div>
+
+        <div class="mandamento" id="mand-4">
+          <div class="mand-num">4</div>
+          <div class="mand-corpo">
+            <h3 class="mand-titulo">Guarde o dia de descanso para Deus</h3>
+            <p>Explicação amorosa: Deus nos deu um dia especial para descansar, para estar com a família e, principalmente, para estar pertinho Dele! Esse dia é um presente, onde podemos ir à igreja, cantar, orar e agradecer a Deus por tudo.</p>
+<p>Brinquedos, internet e televisão são legais, mas o domingo é do Senhor! Que tal separar um tempinho só para Ele? Versículo para o coração: "Lembre-se de guardar um dia especial para o Senhor." (Êxodo 20:8 3 adaptado) História encantada para inspirar: Lara e o Domingo do Coração Lara adorava brincar no domingo, mas um dia sua vovó disse: Lara, você sabia que o domingo é um presente de Deus para ficarmos com Ele? Lara pensou, e naquele domingo preparou uma oração, fez um desenho para Jesus e foi com a família à igreja. Depois disso, ela passou a chamar o domingo de "o dia do coração feliz"! Lição: O domingo é o dia do Senhor! Quando guardamos esse dia para Deus, nosso coração fica mais leve e cheio de paz.</p>
+<p>História Bíblica adaptada: A Bondade de Jesus com as Crianças Um dia, algumas pessoas tentaram impedir que as crianças chegassem perto de Jesus. Mas Ele disse: Deixem que elas venham a mim! Jesus abraçou cada uma com carinho e abençoou seus coraçõezinhos. Ele ama estar com as crianças, principalmente no dia separado só para Ele.</p>
+<p>Versículo especial: "Deixem as crianças virem a mim." (Mateus 19:14)</p>
+          </div>
+        </div>
+
+        <div class="mandamento" id="mand-5">
+          <div class="mand-num">5</div>
+          <div class="mand-corpo">
+            <h3 class="mand-titulo">Honre seu pai e sua mãe</h3>
+            <p>Explicação amorosa: Papai e mamãe são os primeiros presentes que Deus nos deu! Quando a gente obedece, escuta, ajuda e respeita nossos pais, estamos dizendo para Deus: "Eu te amo!" Mesmo quando não entendemos ou não gostamos de algo, devemos lembrar que obedecer aos pais é como dar um abraço em Deus.</p>
+<p>Versículo para o coração: "Filhos, obedeçam aos seus pais, pois isso agrada ao Senhor." (Colossenses 3:20 3 adaptado) História encantada para inspirar: O Segredo da Flor Azul Luan queria brincar o dia inteiro e não gostava de arrumar o quarto. Um dia, sua mãe contou que toda vez que ele obedecia, uma flor azul nascia no jardim dos céus. No dia seguinte, ele acordou animado, arrumou a cama, ajudou a pôr a mesa e ouviu com carinho. Na oração da noite, ele disse: Jesus, cuide bem da minha flor azul no céu, tá? Lição: Quando obedecemos com amor, fazemos florescer alegria no céu e no coração de Deus.</p>
+<p>História Bíblica adaptada: A Confiança de Ester Ester ouviu os conselhos de seu primo Mardoqueu como se fossem de um pai. Ela confiou, orou e foi muito corajosa. Por causa da sua obediência, salvou o povo de Deus! Lição: Obedecer e ouvir quem cuida de nós pode salvar vidas e trazer bênçãos! Versículo especial: "Quem sabe não foi para este momento que você nasceu?" (Ester 4:14 3 adaptado)</p>
+          </div>
+        </div>
+
+        <div class="mandamento" id="mand-6">
+          <div class="mand-num">6</div>
+          <div class="mand-corpo">
+            <h3 class="mand-titulo">Não machuque ninguém com</h3>
+            <p>ações ou palavras.</p>
+<p>Explicação amorosa: Jesus quer que sejamos mensageiros da paz! Nada de bater, brigar, xingar ou empurrar. Quando somos bondosos, espalhamos amor como estrelinhas no céu. Se alguém nos machucar, a gente não devolve o mal, mas entrega a dor a Jesus e continua sendo luz! Versículo para o coração: "Felizes os que promovem a paz, pois serão chamados filhos de Deus." (Mateus 5:9) História encantada para inspirar: Bia, o Urso e o Abraço da Paz Bia ficou brava com o irmão e jogou seu ursinho no chão. O ursinho quebrou! Ela chorou e disse: Jesus, me ajuda a não machucar mais.</p>
+<p>Naquela noite, ela fez um desenho de um coração gigante escrito: "Paz!" E deu de presente para o irmão com um abraço apertado.</p>
+<p>Jesus sorriu no céu.</p>
+<p>Lição: Quem ama, cuida! Jesus nos chama para ajudar, consolar e proteger, nunca machucar.</p>
+<p>História Bíblica adaptada: O Bom Samaritano Um homem foi ferido e deixado sozinho na estrada. Muitas pessoas passaram, mas só o Samaritano parou, cuidou e levou-o para um lugar seguro.</p>
+<p>Jesus nos ensina que ser bom é cuidar mesmo de quem a gente não conhece! Versículo especial: "Ame o próximo como a si mesmo." (Lucas 10:27 3 adaptado)</p>
+          </div>
+        </div>
+
+        <div class="mandamento" id="mand-7">
+          <div class="mand-num">7</div>
+          <div class="mand-corpo">
+            <h3 class="mand-titulo">Seja fiel, verdadeiro e respeite as</h3>
+            <p>pessoas Explicação amorosa: Ser fiel é guardar o amor e a confiança no coração. É cuidar bem das amizades, falar sempre a verdade e ser uma pessoa em quem Jesus pode confiar. Mentiras e traições fazem dodói no coração, mas a verdade é como uma luz que brilha sem parar! Versículo para o coração: "Seja o seu sim, sim; e o seu não, não." (Mateus 5:37) História encantada para inspirar: A Promessa do Pássaro Azul Lia encontrou um passarinho machucado e prometeu cuidar dele.</p>
+<p>Mesmo cansada, alimentava e limpava sua asinha todos os dias. Quando o pássaro sarou, voou até o céu, deixando uma pena azul no quarto de Lia, como um "obrigado" especial do céu.</p>
+<p>Lição: Quando somos fiéis no amor e na verdade, até os anjos se alegram! História Bíblica adaptada: A Verdade de Daniel Daniel orava todos os dias, mesmo quando foi proibido. Ele preferiu agradar a Deus do que agradar aos homens. Foi fiel e verdadeiro, e por isso Deus fechou a boca dos leões! Lição: Quando somos fiéis, Deus nos protege e honra nossa coragem.</p>
+<p>Versículo especial: "Deus salva os que são fiéis." (Daniel 6:23 3 adaptado) Atividade criativa: Desenhe você e Jesus brincando juntos! Pode ser na praia, no parquinho, no campo com flores&amp; Use sua imaginação e muito amor! Jesus vai amar ver seu coração colorido em forma de desenho.</p>
+          </div>
+        </div>
+
+        <div class="mandamento" id="mand-8">
+          <div class="mand-num">8</div>
+          <div class="mand-corpo">
+            <h3 class="mand-titulo">Não pegue nada que não é seu</h3>
+            <p>Explicação amorosa: Se algo não é seu, mesmo que seja pequeno, não pegue! Ser honesto é ser amigo da verdade e da luz. Quando devolvemos algo ou resistimos à tentação, Deus faz uma festa no céu só por isso! Versículo para o coração: "Quem é fiel no pouco, será fiel no muito." (Lucas 16:10) História encantada para inspirar: A Frutinha da Escolha João estava com muita fome e viu uma maçã caída no quintal do vizinho.</p>
+<p>Ele quase pegou, mas lembrou: Jesus está me vendo. Eu quero fazer o certo! Voltou para casa, e sua mãe tinha acabado de assar uma torta de maçã! Lição: Deus recompensa quem escolhe a honestidade, mesmo quando ninguém está olhando.</p>
+<p>História Bíblica adaptada: A Honestidade de Zaqueu Zaqueu cobrava dinheiro demais das pessoas, mas ao encontrar Jesus, o coração dele mudou. Ele devolveu tudo e ainda ajudou os pobres.</p>
+<p>Lição: Deus se alegra quando reconhecemos nossos erros e começamos uma nova vida.</p>
+<p>Versículo especial: "Hoje a salvação chegou a esta casa." (Lucas 19:9 3 adaptado)</p>
+          </div>
+        </div>
+
+        <div class="mandamento" id="mand-9">
+          <div class="mand-num">9</div>
+          <div class="mand-corpo">
+            <h3 class="mand-titulo">Não minta nem fale mal dos outros ou</h3>
+            <p>dos amiguinhos Explicação amorosa: Falar a verdade é como plantar flores no coração. Quando contamos mentiras ou falamos mal dos coleguinhas, nosso coração fica pesado como uma pedra. Mas quando dizemos a verdade com amor e bondade, estamos sendo como Jesus! Versículo para o coração: "Afaste-se da mentira e fale sempre a verdade com amor." (Efésios 4:25 3 adaptado) História encantada para inspirar: A Tartaruguinha e o Segredo Lili, a tartaruguinha, escondeu que quebrou o vaso da vovó.</p>
+<p>Mas quando contou a verdade, mesmo com medo, sentiu seu coração leve como uma nuvem.</p>
+<p>Lição: A verdade liberta e traz paz. Quando erramos, é melhor contar com amor e pedir perdão.</p>
+<p>História Bíblica adaptada: A Escolha de Ananias e Safira Eles disseram que haviam dado todo o dinheiro da venda para ajudar a igreja, mas isso não era verdade. Deus viu a mentira, e todos aprenderam que a sinceridade é muito importante para o coração de Deus.</p>
+<p>Lição: Deus se entristece com a mentira. Melhor é ser verdadeiro sempre! Versículo especial: "Vocês não mentiram para os homens, mas para Deus." (Atos 5:4 3 adaptado) Atividade criativa: Desenhe uma flor que nasce quando você diz a verdade! Escolha cores lindas e pense em como a verdade deixa nosso coração feliz e florido.</p>
+          </div>
+        </div>
+
+        <div class="mandamento" id="mand-10">
+          <div class="mand-num">10</div>
+          <div class="mand-corpo">
+            <h3 class="mand-titulo">Não deseje o que é dos outros ou dos</h3>
+            <p>seus amiguinhos Explicação amorosa: Deus quer que a gente se alegre com o que temos.</p>
+<p>Ficar com inveja ou querer o brinquedo, a roupa ou a casa dos outros faz mal ao coração. A gratidão é o segredo da alegria! Cada coisa que você tem é um presente de Deus só pra você.</p>
+<p>Versículo para o coração: "Estejam contentes com o que têm, pois Deus prometeu: nunca os deixarei." (Hebreus 13:5 3 adaptado) História encantada para inspirar: O Ursinho do Coração Lucas queria o ursinho novo do seu amigo.</p>
+<p>Mas quando agradeceu a Deus pelo brinquedo que já tinha, seu ursinho brilhou como nunca! Lição: Quando agradecemos, tudo se torna mais bonito e cheio de valor! História Bíblica adaptada: A Inveja dos Irmãos de José Os irmãos de José ficaram com inveja da túnica colorida que ele ganhou e o venderam como escravo. Mas Deus tinha um plano: José perdoou seus irmãos e se tornou um grande líder.</p>
+<p>Lição: A inveja machuca, mas o perdão e o amor curam. Devemos valorizar o que temos! Versículo especial: "Alegrem-se com os que se alegram." (Romanos 12:15 3 adaptado) Atividade criativa: Desenhe uma caixinha de gratidão! Imagine que dentro dela estão todos os presentes que Deus já te deu: sua família, sua casa, seus brinquedos, seus amigos...</p>
+<p>Desenhe e agradeça!</p>
+          </div>
+        </div>
+      <nav class="cap-nav"><a href="#corpo">← Anterior</a><a href="#atividades">Atividades →</a></nav>
+    </section>
+
+    <section class="capitulo" id="atividades">
+      <h2 class="cap-titulo centro">Atividades 🎨</h2>
+      <div class="atividades">
+<p>Atividades: Amiguinhos de Jesus em ação! "Você aprendeu coisas lindas! Agora é hora de praticar com o coração cheio de alegria!" 1. Ame a Deus sobre todas as coisas Atividade: Desenhe um coração gigante e, dentro dele, escreva ou desenhe tudo que você ama. Depois, faça um desenho de Deus no topo, mostrando que Ele está acima de tudo o que você ama! Dica de Oração: "Jesus, eu Te coloco em primeiro lugar no meu coração!" 2. Adore somente a Deus Atividade: Monte um "altar de adoração" usando papel, cola e recortes: desenhe ou cole imagens que representam oração, louvor, Bíblia e Jesus. Desafio: Liste três coisas que às vezes tomam o seu tempo com Deus (como celular, joguinhos ou televisão). Missão: Prometa dar mais tempo ao Papai do Céu todos os dias. 3. Fale o nome de Deus com respeito e amor Atividade: Escreva os nomes de Deus com letras grandes e coloridas: "Jesus", "Pai", "Espírito Santo", "Deus de Amor"... Depois, enfeite com brilho, flores ou estrelinhas e guarde com carinho como um cartaz de honra. Desafio: Sempre que ouvir alguém falando o nome de Deus, lembre-se: Ele merece respeito e amor! 4. Guarde o dia de descanso para Deus Atividade: Desenhe o domingo mais lindo que você já teve com sua família e com Deus. Pode ser indo à igreja, almoçando com a família ou orando juntinho. Missão: Escreva 3 coisas que você pode fazer no domingo para agradar a Deus (como: ajudar em casa, orar, ir à missa ou culto, dar um abraço na mamãe). 5. Honre seu pai e sua mãe Atividade: Faça um cartão especial para o papai e a mamãe.</p>
+<p>Escreva: "Eu amo vocês porque&amp;" e complete com seu coração. Desafio: Entregue o cartão num momento especial e diga: "Hoje eu quero obedecer com amor!" 7 7 7 7 6. Não machuque ninguém Atividade: Desenhe duas mãos abertas com corações no centro. Dentro de cada coração, escreva palavras que trazem paz, como: amor, desculpa, perdão, abraço, alegria. Missão: Sempre que ficar bravo, respire fundo e pense: "Jesus me quer como mensageiro da paz." 7. Respeite as pessoas (seja fiel e verdadeiro) Atividade: Pinte um "Arco-Íris da Verdade" com 7 cores. Em cada cor, escreva ou desenhe algo que você pode fazer para mostrar fidelidade e verdade: Ex: dizer a verdade, ajudar um amigo, guardar segredos bons... Versículo: "Seja o seu sim, sim; e o seu não, não." 3 (Mateus 5:37) 8. Não pegue nada que não é seu Atividade: Desenhe um cofre do coração honesto. Dentro dele, escreva atitudes que mostram honestidade: Devolver o que achou Contar a verdade Não colar na prova Esperar a vez Desafio: Pratique uma dessas atitudes nesta semana e depois agradeça a Deus em oração. 9. Não minta nem fale mal dos outros Atividade: Desenhe uma flor com 5 pétalas. Em cada uma, escreva palavras bonitas para usar com os amiguinhos, como: "você é especial", "me desculpe", "obrigado", "você é importante", "Deus te ama". Desafio: Espalhe essas palavras com seus amigos e veja a alegria florescer! 10. Não deseje o que é dos outros Atividade: Faça a "Caixinha da Gratidão"! Pegue uma caixinha (de sapato, papel ou desenhada), e escreva bilhetinhos com o que você tem e agradece a Deus: Minha cama, meus pais, meu brinquedo favorito, minha escola, minha comida... Missão: Abra a caixinha toda vez que sentir inveja e diga: "Obrigado, Deus, por tudo que já me deu!"</p>
+<p>Atividades: Vamos ver o que você aprendeu com Jesus? Responda com o coração e com alegria. Você pode escrever, desenhar ou até conversar com alguém da sua família sobre isso! 1. Ame a Deus sobre todas as coisas Pergunta: Quem é o seu melhor amigo no céu? Você conversa com Ele todos os dias? (Dica: Desenhe você orando ou agradecendo a Deus por algo especial.) 2. Adore somente a Deus Pergunta: Você conhece alguém que ama muito algo (um brinquedo, um jogo) e se esquece de Deus? Como podemos mostrar que só Deus merece o primeiro lugar no nosso coração? 3. Fale o nome de Deus com respeito e amor Pergunta: Você já ouviu alguém falar o nome de Deus de forma desrespeitosa? O que você sentiu? Como podemos ensinar os amiguinhos a falarem o nome de Deus com amor? 4. Guarde o dia de descanso para Deus Pergunta: O que você mais gosta de fazer no domingo (ou no dia que sua família guarda para Deus)? Como você pode tornar esse dia ainda mais especial para Jesus? 5. Honre seu pai e sua mãe Pergunta: Você já fez algo que deixou o papai ou a mamãe muito felizes? Desenhe ou escreva uma atitude que mostra amor e respeito por eles. 6. Não machuque ninguém com ações ou palavras Pergunta: Você já viu alguém triste porque foi machucado com palavras ou brigas? O que você pode fazer para levar paz onde há briga? 7. Respeite as pessoas 3 Seja fiel e verdadeiro Pergunta: Por que é importante ser fiel aos nossos amigos e falar sempre a verdade? Você se lembra de um momento em que foi verdadeiro, mesmo com medo? 8. Não pegue nada que não é seu Pergunta: O que devemos fazer quando encontramos algo que não é nosso? Você já devolveu algo para alguém e sentiu o coração feliz por isso? 9. Não minta nem fale mal dos outros Pergunta: Como você se sentiria se alguém inventasse uma mentira sobre você? Desenhe ou escreva uma forma de pedir desculpas quando erramos. 10. Não deseje o que é dos outros Pergunta: Você já quis muito um brinquedo ou roupa de alguém? Como podemos ser gratos por aquilo que temos e deixar a inveja bem longe do coração?</p>
+<p>Pinte os amiguinhos de Jesus e escreva os nomes dos seus melhores amigos.</p>
+<p>Pinte os amiguinhos de Jesus e escreva os nomes dos seus melhores amigos.</p>
+<p>Caça-palavras: "Mandamentos do Amor de Deus" Palavras para encontrar: Instrução: Encontre no meio das letras as palavras que Deus nos ensinou! Elas estão escondidas na horizontal, vertical ou diagonal.</p>
+<p>DEUS AMOR VERDADE PAZ HONRA OBEDIÊNCIA RESPEITO FAMÍLIA FÉ JESUS</p>
+<p>Pinte Jesus e escreva um pedido ou um sonho que você deseja para ele.</p>
+<p>Jesus ama ouvir o que você sente. Fale com Ele com o coração cheio de esperança!</p>
+      </div>
+      <nav class="cap-nav"><a href="#mandamentos">← Anterior</a><a href="#final">Oração Final →</a></nav>
+    </section>
+
+    <section class="capitulo" id="final">
+      <h2 class="cap-titulo centro">Oração Final 🙏</h2>
+<p>Agradecimentos Finais Agradecemos a Deus por permitir que este e-book chegasse até você.</p>
+<p>Com ele, desejamos plantar sementinhas de fé, amor e esperança no coração das crianças e suas famílias.</p>
+<p>Cada ensinamento aqui é uma luz do Céu para guiar os primeiros passos no caminho do Senhor.</p>
+<p>Que este material inspire momentos de carinho, aprendizado e oração entre pais e filhos, professores e alunos, e todos que desejam seguir Jesus com um coração puro e alegre.</p>
+<p>Compartilhe com Amor Se este e-book tocou seu coração, compartilhe com outras famílias que também desejam ensinar os mandamentos e valores cristãos às crianças.</p>
+<p>Evangelizar é espalhar a luz de Jesus com simplicidade, generosidade e amor.</p>
+<p>Agradecimento aos Pais e Responsáveis: Queridos pais e responsáveis, Nosso mais sincero agradecimento por permitir que este material alcance o coração de sua criança.</p>
+<p>Vocês são instrumentos de Deus na formação espiritual dos pequenos, e sua dedicação ecoa no Reino dos Céus.</p>
+<p>Este e-book foi feito com amor e zelo, como uma semente de fé que, com carinho e oração, florescerá no coração de cada criança.</p>
+<p>Continuem guiando seus filhos com o olhar voltado para Cristo.</p>
+<p>Que Deus os abençoe, fortaleça e encha seus lares de paz, união e sabedoria.</p>
+<p>Com gratidão, amor e fé, Equipe compraoseu.com Jesus Quer Falar com Seu Filho</p>
+<p>Oração Final Inspirada pelo Espírito Santo Oração do Anjo da Guarda Santo Anjo do Senhor, meu zeloso guardador, Se a ti me confiou a piedade divina, Sempre me rege, me guarda, me governa, me ilumina.</p>
+<p>Amém.</p>
+<p>Querido(a) amiguinho(a), Você chegou ao final deste livrinho especial... mas a caminhada com Jesus continua todos os dias! Nunca se esqueça de que você é uma bênção, amado(a) por Deus e guardado(a) pelos anjos.</p>
+<p>Que o Espírito Santo encha seu coração de sabedoria, alegria e muito amor.</p>
+      <nav class="cap-nav"><a href="#atividades">← Anterior</a><a href="#sumario">Sumário</a></nav>
+    </section>
+  </div>
+</main>
+
+<section id="fim">
+  <h2>Um abraço cheio de fé e paz! 🤗</h2>
+  <p>Que Jesus, seu melhor amigo, esteja sempre pertinho de você, guiando seus passos com luz e proteção.</p>
+  <p class="cred">© Coleção do Despertar · Todos os direitos reservados.<br>Leitura protegida — não é permitido copiar, imprimir ou distribuir este conteúdo.</p>
+</section>
+
+<footer>
+  <p>Missão com Deus · CompraOSeu — Desperte sua mente, fortaleça sua fé, transforme sua vida.</p>
+</footer>
+
+<script>
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('copy', function(e){
+  e.preventDefault();
+  if (e.clipboardData){
+    e.clipboardData.setData('text/plain',
+      '© Coleção do Despertar — Jesus Quer Falar com Seu Filho. Todos os direitos reservados. Leitura online em compraoseu.com');
+  }
+});
+document.addEventListener('keydown', function(e){
+  if ((e.ctrlKey||e.metaKey) && (e.key==='p'||e.key==='P'||e.key==='s'||e.key==='S')){
+    e.preventDefault();
+  }
+});
+</script>
+</body>
+</html>
