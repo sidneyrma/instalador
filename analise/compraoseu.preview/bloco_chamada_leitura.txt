@@ -1,0 +1,41 @@
+LEIA UM TRECHO GRÁTIS — BLOCO PARA INSERIR NA HOME (compraoseu.com)
+
+Como usar:
+1. Abra a Home na Vendd (editor);
+2. Adicione um novo bloco de HTML/texto;
+3. Cole o código abaixo;
+4. Publica e testa.
+
+O bloco cria uma seção "📖 Leia antes de comprar" com um botão que leva
+para a página de leitura (compraoseu.com/livro01).
+
+========================================================================
+<!-- ====== BLOCO: LEIA ANTES DE COMPRAR ====== -->
+<section style="background:#0e1a2e; padding:56px 20px; text-align:center;">
+  <div style="max-width:720px; margin:0 auto; color:#fff;">
+    <p style="letter-spacing:.3em; text-transform:uppercase; font-size:.8rem; color:#c9a24b; margin:0 0 12px;">📖 Leitura gratuita</p>
+    <h2 style="font-family:Georgia,serif; font-size:clamp(1.5rem,4vw,2rem); margin:0 0 12px;">Leia antes de comprar</h2>
+    <p style="color:#c9d2e0; font-size:1rem; margin:0 0 8px;">
+      Conheça <strong style="color:#e3c877;">O Ouro das Palavras</strong>,
+      baseado nos ensinamentos de Joseph Murphy — disponível para leitura
+      online, com conteúdo protegido (sem cópia e sem impressão).
+    </p>
+    <p style="color:#8fa0b8; font-size:.85rem; margin:0 0 26px;">
+      🔒 Leitura protegida · Não é possível copiar, imprimir ou baixar
+    </p>
+    <a href="https://www.compraoseu.com/livro01"
+       style="display:inline-block; background:linear-gradient(180deg,#d4a83f,#b8860b); color:#fff;
+              font-weight:700; padding:16px 34px; border-radius:8px; text-decoration:none; font-size:1.05rem;">
+      Começar a leitura →
+    </a>
+  </div>
+</section>
+<!-- ====== FIM DO BLOCO ====== -->
+========================================================================
+
+Opcional — onde colocar na Home:
+- Recomendo logo abaixo da seção "Nossas obras" (catálogo), para o visitante
+  que ainda não decidiu ter a opção de conhecer o conteúdo antes de comprar.
+
+Depois de publicar, confirme que o link "compraoseu.com/livro01" aponta
+para a página de leitura criada na Vendd (livro01_preview.html).
