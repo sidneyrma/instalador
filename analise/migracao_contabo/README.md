@@ -305,6 +305,16 @@ e que o Nginx tem o **proxy reverso** `app.compraoseu.com → 127.0.0.1:3000` (o
 
 ---
 
+## ✅ PROPAGAÇÃO MUNDIAL CONFIRMADA (12/08, noite)
+
+- `compraoseu.com` resolve para `212.28.182.86` (Contabo) via dns.google (TTL ~14.100s);
+- Relatório de propagação (whatsmydns-style) mostra múltiplas localidades já apontando para
+  `212.28.182.86`: San Jose, Dallas, New York, Boston (EUA), Espanha, e outras em propagação;
+- **A chave virou:** o domínio está saindo da Vendd e indo para a Contabo.
+
+**Status:** aguardando o usuário testar as páginas (`http://compraoseu.com`, `/livro01`, `/livro03`, `app.compraoseu.com`) e, se tudo certo, emitir SSL Let's Encrypt + Force HTTPS no aaPanel.
+
+---
 ## ⚠️ Cuidados e garantias
 
 - **E-mail não muda**: o contato é `compraoseu.com@gmail.com` (Gmail), não usa o domínio. Nada quebra.
