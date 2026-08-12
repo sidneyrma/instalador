@@ -105,7 +105,7 @@
 ### OG / Twitter
 - **OG Title:** `A Mente Renovada — O Pensar com Cristo que Transforma a Vida`
 - **OG Description:** `Uma obra original da Coleção do Despertar sobre a renovação da mente, o governo do pensamento, a oração e a gratidão. Leitura online gratuita e protegida.`
-- **Imagem OG:** `https://sidneyrma.github.io/instalador/capas/livro03.png?v=3` (capa nova)
+- **Imagem OG:** `https://sidneyrma.github.io/instalador/capas/livro03.png?v=4` (capa nova)
 - **OG Type:** `article` · **Twitter:** `summary_large_image`
 
 ### Configurações

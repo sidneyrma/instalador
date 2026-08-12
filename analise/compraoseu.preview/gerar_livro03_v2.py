@@ -16,7 +16,7 @@ OUT = HERE.parent.parent / "paginas" / "livro03_preview.html"
 TITULO = "A Mente Renovada"
 SUBTITULO = "O Pensar com Cristo que Transforma a Vida"
 URL = "https://www.compraoseu.com/livro03"
-CAPA = "https://sidneyrma.github.io/instalador/capas/livro03.png?v=3"
+CAPA = "https://sidneyrma.github.io/instalador/capas/livro03.png?v=4"
 
 DESC = "Leia online A Mente Renovada — O Pensar com Cristo que Transforma a Vida. Uma obra original da Coleção do Despertar sobre a renovação da mente, o governo do pensamento, a oração e a gratidão. Leitura gratuita e protegida."
 KEYWORDS = "a mente renovada, mente de cristo, renovação da mente, romanos 12 2, pensamento e fé, oração, gratidão, reino de deus dentro de vós, livro espiritual, leitura online grátis"
