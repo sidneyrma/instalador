@@ -207,6 +207,37 @@ software Nginx → Start). Ele deve iniciar sem erro.
 
 ---
 
+## 🌐 DESCOBERTA: ZONA DNS ESTÁ NA CONTA CLOUDFLARE DA VENDD (12/08/2026)
+
+Ao acessar o Cloudflare com a conta `Compraoseu.com@gmail.com`, **o domínio NÃO aparece**
+(seção "Inscrições" vazia; busca sem resultado). Os nameservers `adele.ns.cloudflare.com`
+e `jarred.ns.cloudflare.com` apontam para uma conta Cloudflare **de outra pessoa** (provavelmente
+da Vendd). Ou seja: a Vendd controla a zona DNS do domínio, e pode estar com **cache (proxy laranja)**
+segurando as versões antigas das páginas. **Isso explica por que as atualizações nunca saem.**
+
+### ✅ Solução: assumir o DNS na HostGator (registrar)
+
+A HostGator é o **registrar** do domínio. Usando a opção **"Sem hospedagem (apenas Zona de DNS)"**,
+troca-se os nameservers de Cloudflare para a HostGator e o controle volta para o dono.
+
+**Passos:**
+1. Na HostGator: **Alterar plataforma → "Sem hospedagem (apenas Zona de DNS)" → Configurar**
+   (aceita a troca de nameservers);
+2. Aguardar 5–15 min;
+3. Na **Zona de DNS** da HostGator, adicionar:
+   - `A @ → 212.28.182.86` (Contabo)
+   - `A www → 212.28.182.86` (Contabo)
+   - `A app → 212.28.182.86` (chatbot, continua)
+   - `A api → 212.28.182.86` (chatbot, continua)
+   - `A apioficial → 212.28.182.86` (chatbot, continua)
+   - `TXT compraoseu → facebook-domain-verification=epyw87lqmrn22sfib3ac9ypq7zttpf` (opcional, verificação do Facebook)
+4. Testar `http://compraoseu.com` no celular (dados móveis) → deve abrir a Home nova da Contabo.
+
+**Riscos (passageiros):** site pode ficar instável por alguns minutos/horas durante a propagação;
+a verificação do Facebook precisa ser recriada se o TXT não for copiado. Tudo reversível.
+
+---
+
 ## ⚠️ Cuidados e garantias
 
 - **E-mail não muda**: o contato é `compraoseu.com@gmail.com` (Gmail), não usa o domínio. Nada quebra.
