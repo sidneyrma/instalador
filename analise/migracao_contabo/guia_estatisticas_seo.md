@@ -21,6 +21,23 @@ O script `gerar_estatisticas.py` lê esse log e gera **`stats.html`** com:
 4. **Atualização automática (opcional):** aaPanel → **Cron** → Shell → a cada 6h:
    `python3 /home/deploy/gerar_estatisticas.py`.
 
+### 🔧 Se o stats.html der 404 (solução — causa: redirect para www)
+
+**Sintoma:** `curl -I https://compraoseu.com/stats.html` responde **301** com
+`location: http://www.compraoseu.com/stats.html` e o navegador dá 404.
+
+**Causa:** existe um **redirect** de `compraoseu.com` → `www.compraoseu.com` (em http),
+e o `www` não serve os arquivos com https.
+
+**Solução (aaPanel):**
+1. Site `compraoseu.com` → **Redirect** → remover qualquer regra que envie
+   `compraoseu.com` → `www.compraoseu.com` (o correto é não ter redirect, ou ter o inverso);
+2. **Website** → se existir um site **separado** `www.compraoseu.com`, **excluir**;
+3. Site `compraoseu.com` → **Domain Manager** → confirmar que `www.compraoseu.com` está na lista;
+4. **Reload** no Nginx;
+5. Testar: `curl -I https://compraoseu.com/stats.html` → deve responder **200**.
+
+---
 ### 🔒 Proteção
 A página já tem `noindex` (não aparece no Google). Se quiser senha, use auth básico no Nginx
 ou renomeie para um nome difícil.
