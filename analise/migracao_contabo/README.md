@@ -283,6 +283,28 @@ e que o Nginx tem o **proxy reverso** `app.compraoseu.com → 127.0.0.1:3000` (o
 
 ---
 
+## ✅ MARCO: DOMÍNIO APONTA PARA A CONTABO (12/08, noite)
+
+**O usuário editou a Zona de DNS da HostGator e confirmou:**
+- **A `compraoseu.com` → `212.28.182.86`** ✅ (agora aponta para a Contabo!)
+- **A `app` → `212.28.182.86`** ✅ (chatbot Laura volta)
+- **A `api` → `212.28.182.86`** ✅
+- **A `apioficial` → `212.28.182.86`** ✅
+- **CNAME `www` → `compraoseu.com`** ✅ (mantido)
+- CNAME `ftp`, `mail` e MX (opcionais, não atrapalham)
+
+**Verificação via dns.google (12/08):** `compraoseu.com` resolve para `212.28.182.86`
+(a propagação do registro A principal **já ocorreu**).
+
+**Próximos passos (após propagação total):**
+1. Testar `http://compraoseu.com` no celular (dados móveis) → deve abrir a Home nova da Contabo;
+2. Emitir **SSL Let's Encrypt** no aaPanel (Website → compraoseu.com → SSL → Apply) e ativar **Force HTTPS**;
+3. Confirmar que `app.compraoseu.com` volta (proxy reverso no Nginx para a porta do chatbot);
+4. Remover a linha do `hosts` do computador + `ipconfig /flushdns`;
+5. (Opcional) Recriar TXT do Facebook se precisar da verificação.
+
+---
+
 ## ⚠️ Cuidados e garantias
 
 - **E-mail não muda**: o contato é `compraoseu.com@gmail.com` (Gmail), não usa o domínio. Nada quebra.
