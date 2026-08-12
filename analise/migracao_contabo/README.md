@@ -332,6 +332,33 @@ e que o Nginx tem o **proxy reverso** `app.compraoseu.com → 127.0.0.1:3000` (o
 
 ---
 
+## 🎉 MARCO HISTÓRICO: SITE NO AR NA CONTABO (12/08, confirmado por acesso real)
+
+**Acesso real a `http://compraoseu.com` confirmou:**
+- Título: "Portal O Despertar" ✅
+- Livro 01: O Verbo que Transforma (capa v=7) ✅
+- Livro 02: A Sabedoria dos Mestres ✅
+- Livro 03: A Mente Renovada (capa clara v=4) ✅
+- Livro 08: O Arquiteto da Realidade ✅
+- Livro 10: O Despertar do Observador ✅
+- Todos os 10 livros, botões Kiwify, quiz e estrutura completos ✅
+
+**A VENDD NÃO ESTÁ MAIS NO CONTROLE do site.** O site novo está no ar no servidor Contabo,
+com todas as atualizações. A versão "antiga" que o usuário via era cache do navegador/propagação.
+
+**app.compraoseu.com:** DNS funciona (chega ao servidor), mas aparece "Website not found —
+domain not bound". **Solução:** no aaPanel, criar/iniciar o site `app.compraoseu.com` com
+**proxy reverso** para `127.0.0.1:3000` (ou a porta do chatbot: 3000/4000/5000/6000).
+
+**Próximos passos:**
+1. Resolver o `app.compraoseu.com` (criar/ligar site + proxy reverso);
+2. Emitir **SSL Let's Encrypt** no aaPanel (compraoseu.com e www) + **Force HTTPS**;
+3. Remover a linha do `hosts` do computador + `ipconfig /flushdns`;
+4. (Opcional) TXT do Facebook;
+5. Google Search Console: enviar sitemap.xml.
+
+---
+
 ## ⚠️ Cuidados e garantias
 
 - **E-mail não muda**: o contato é `compraoseu.com@gmail.com` (Gmail), não usa o domínio. Nada quebra.
