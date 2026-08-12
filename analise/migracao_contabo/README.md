@@ -238,6 +238,26 @@ a verificação do Facebook precisa ser recriada se o TXT não for copiado. Tudo
 
 ---
 
+## ⚠️ PROBLEMA CONHECIDO: app.compraoseu.com parou (chatbot Laura) — SOLUÇÃO
+
+**Sintoma:** `app.compraoseu.com` não abre (ERR_CONNECTION_REFUSED ou não resolve).
+
+**Causa (confirmada em 12/08):** os registros `app`, `api`, `apioficial` → `212.28.182.86`
+estavam na **zona DNS do Cloudflare da Vendd**. Ao trocar os nameservers de Cloudflare →
+HostGator, esses registros **se perderam** (a HostGator não os tinha).
+
+**Solução (na Zona de DNS da HostGator):** adicionar 3 registros A:
+- `A app → 212.28.182.86`
+- `A api → 212.28.182.86`
+- `A apioficial → 212.28.182.86`
+
+**Verificar também no servidor (aaPanel):** o serviço do chatbot pode ter conflitado com o
+Nginx na porta 80. Se o chatbot rodava na porta 80 e não sobe mais:
+1. Mover o chatbot para a porta **3000** (configuração do app/projeto no aaPanel);
+2. No Nginx, criar um proxy reverso: `app.compraoseu.com` → `127.0.0.1:3000`.
+
+---
+
 ## ⚠️ Cuidados e garantias
 
 - **E-mail não muda**: o contato é `compraoseu.com@gmail.com` (Gmail), não usa o domínio. Nada quebra.
