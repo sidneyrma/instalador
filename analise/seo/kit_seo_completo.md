@@ -86,24 +86,26 @@
 
 ---
 
-## 📄 PÁGINA 4 — LEITURA LIVRO 03 (`/livro03` — A Mente de Cristo)
+## 📄 PÁGINA 4 — LEITURA LIVRO 03 (`/livro03` — A Mente Renovada)
 
-> 🔄 **Atualizado em 08/08/2026:** o Livro 03 agora é **A Mente de Cristo** (substitui o
-> Caibalion na biblioteca gratuita). Se a página `/livro03` da Vendd ainda tiver o
-> conteúdo antigo, substitua pelo novo `paginas/livro03_preview.html`.
+> 🔄 **Atualizado em 11/08/2026:** o Livro 03 agora é **A Mente Renovada** — obra
+> original da Coleção do Despertar (17 capítulos, 3 partes, texto 100% reescrito,
+> preservando os ensinamentos bíblicos sobre a renovação da mente). Substitui o
+> conteúdo anterior. Se a página `/livro03` da Vendd ainda tiver o conteúdo antigo,
+> substitua pelo novo `paginas/livro03_preview.html`.
 
 ### Metadados Básicos
 | Campo | Valor |
 |---|---|
-| **Título** (55) | `A Mente de Cristo — Como Pensar com o Espírito · Leitura` |
-| **Descrição** (155) | `Leia online A Mente de Cristo — Como Pensar com o Espírito e não com o Mundo. 17 capítulos baseados nos ensinamentos de Emmet Fox. Leitura gratuita e protegida.` |
-| **Keywords** | `a mente de Cristo, emmet fox, mente de Cristo, pensamento espiritual, renovar a mente, ensinamentos de Jesus, consciência de Cristo, livro cristão, leitura online grátis` |
+| **Título** (55) | `A Mente Renovada — O Pensar com Cristo que Transforma a Vida` |
+| **Descrição** (155) | `Leia online A Mente Renovada — O Pensar com Cristo que Transforma a Vida. Obra original sobre a renovação da mente, o governo do pensamento, a oração e a gratidão. Leitura gratuita e protegida.` |
+| **Keywords** | `a mente renovada, mente de cristo, renovação da mente, romanos 12 2, pensamento e fé, oração, gratidão, reino de deus dentro de vós, livro espiritual, leitura online grátis` |
 | **URL Canônica** | `https://www.compraoseu.com/livro03` |
 
 ### OG / Twitter
-- **OG Title:** `A Mente de Cristo — Como Pensar com o Espírito e não com o Mundo`
-- **OG Description:** `17 capítulos baseados nos ensinamentos de Emmet Fox sobre pensar com o espírito. Leitura online gratuita e protegida.`
-- **Imagem OG:** `https://i.ibb.co/0j0gTVr4/livro03.jpg` (a capa, versão editada/melhorada)
+- **OG Title:** `A Mente Renovada — O Pensar com Cristo que Transforma a Vida`
+- **OG Description:** `Uma obra original da Coleção do Despertar sobre a renovação da mente, o governo do pensamento, a oração e a gratidão. Leitura online gratuita e protegida.`
+- **Imagem OG:** `https://sidneyrma.github.io/instalador/capas/livro03.png?v=3` (capa nova)
 - **OG Type:** `article` · **Twitter:** `summary_large_image`
 
 ### Configurações
