@@ -163,7 +163,7 @@ def montar_html(res):
     <div class="card"><div class="v">{total_geral}</div><div class="l">Acessos (páginas)</div></div>
     <div class="card"><div class="v">{total_home}</div><div class="l">Visitas à Home</div></div>
     <div class="card"><div class="v">{total_livros}</div><div class="l">Acessos aos livros</div></div>
-    <div class="card"><div class="v">{len([1 for p,_ in PAGINAS.items() if contagens.get(p,0)>0])}</div><div class="l">Livros lidos</div></div>
+    <div class="card"><div class="v">{sum(1 for p,_ in PAGINAS.items() if p.startswith("/livro") and contagens.get(p,0)>0)}</div><div class="l">Livros lidos</div></div>
   </div>
 
   <h2>🏆 Ranking (Home + Livros + Quiz)</h2>
