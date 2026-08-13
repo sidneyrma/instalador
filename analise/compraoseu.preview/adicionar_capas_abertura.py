@@ -20,13 +20,13 @@ CSS_CAPA = (".capa .capa-livro{width:178px; height:auto; border:2px solid var(--
 # (página, gerador, url da capa, alt)
 CONFIG = [
     ("livro01_preview.html", "gerar_livro01.py",
-     "https://sidneyrma.github.io/instalador/capas/livro01.png",
+     "https://i.ibb.co/b52wmSGm/livro01jpg.jpg",
      "Capa do livro O Ouro das Palavras"),
     ("livro02_preview.html", "gerar_livro02.py",
-     "https://sidneyrma.github.io/instalador/capas/livro02.png",
+     "https://i.ibb.co/W42S6bX0/livro02jpg.jpg",
      "Capa do livro O Livro Proibido dos Mestres"),
     ("livro03_preview.html", "gerar_livro03.py",
-     "https://sidneyrma.github.io/instalador/capas/livro03.png",
+     "https://i.ibb.co/20jLgxZN/livro03jpg.jpg",
      "Capa do livro O Caibalion"),
     ("devocional_preview.html", "gerar_devocional.py",
      "https://i.ibb.co/Kx1mKFv6/umsegundocdeusjpg.jpg",

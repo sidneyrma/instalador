@@ -16,7 +16,7 @@ OUT = HERE.parent.parent / "paginas" / "livro01_preview.html"
 TITULO = "O Verbo que Transforma"
 SUBTITULO = "O Poder Criador da Palavra e da Fé"
 URL = "https://www.compraoseu.com/livro01"
-CAPA = "https://sidneyrma.github.io/instalador/capas/livro01.png?v=7"
+CAPA = "https://i.ibb.co/b52wmSGm/livro01jpg.jpg"
 
 DESC = "Leia online O Verbo que Transforma — O Poder Criador da Palavra e da Fé. Uma obra original sobre o poder da palavra, a mente profunda e a fé para a saúde, a abundância e a superação. Leitura gratuita e protegida."
 KEYWORDS = "o verbo que transforma, poder da palavra, palavra e fé, mente profunda, declarações, abundância, saúde, superação de crises, livro espiritual, leitura online grátis"

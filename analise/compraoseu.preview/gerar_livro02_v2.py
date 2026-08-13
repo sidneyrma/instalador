@@ -16,7 +16,7 @@ OUT = HERE.parent.parent / "paginas" / "livro02_preview.html"
 TITULO = "A Sabedoria dos Mestres"
 SUBTITULO = "O Despertar do Conhecimento que Liberta a Alma"
 URL = "https://www.compraoseu.com/livro02"
-CAPA = "https://sidneyrma.github.io/instalador/capas/livro02.png?v=3"
+CAPA = "https://i.ibb.co/W42S6bX0/livro02jpg.jpg"
 
 DESC = "Leia online A Sabedoria dos Mestres — O Despertar do Conhecimento que Liberta a Alma. Uma obra original sobre as leis da vibração, a linguagem do universo e o retorno do mestre interior. Leitura gratuita e protegida."
 KEYWORDS = "sabedoria dos mestres, mestre interior, vibração, manifestação, leis da vida, autoconhecimento, espelho, três portais, livro espiritual, leitura online grátis"

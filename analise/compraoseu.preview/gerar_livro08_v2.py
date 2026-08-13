@@ -16,7 +16,7 @@ OUT = HERE.parent.parent / "paginas" / "livro08_preview.html"
 TITULO = "O Arquiteto da Realidade"
 SUBTITULO = "O Poder da Mente que Cria o Mundo que Você Vive"
 URL = "https://www.compraoseu.com/livro08"
-CAPA = "https://sidneyrma.github.io/instalador/capas/livro08.png?v=4"
+CAPA = "https://i.ibb.co/mV3S1m78/livro08jpg.jpg"
 
 DESC = "Leia online O Arquiteto da Realidade — O Poder da Mente que Cria o Mundo que Você Vive. Uma obra original sobre crenças, mente profunda, rituais de transformação e o estado do criador. Leitura gratuita e protegida."
 KEYWORDS = "arquiteto da realidade, poder da mente, crenças, subconsciente, reprogramação, visualização, rituais, identidade, transformação, livro espiritual, leitura online grátis"

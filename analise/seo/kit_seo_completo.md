@@ -105,7 +105,7 @@
 ### OG / Twitter
 - **OG Title:** `A Mente Renovada — O Pensar com Cristo que Transforma a Vida`
 - **OG Description:** `Uma obra original da Coleção do Despertar sobre a renovação da mente, o governo do pensamento, a oração e a gratidão. Leitura online gratuita e protegida.`
-- **Imagem OG:** `https://sidneyrma.github.io/instalador/capas/livro03.png?v=4` (capa nova)
+- **Imagem OG:** `https://i.ibb.co/20jLgxZN/livro03jpg.jpg` (capa nova)
 - **OG Type:** `article` · **Twitter:** `summary_large_image`
 
 ### Configurações
@@ -264,7 +264,7 @@ Suba as imagens da pasta `analise/seo/` no imgbb e use os links:
 - **Favicon:** mesmo `favicon-32.png`
 - **OG Title:** `O Arquiteto da Realidade — O Poder da Mente Criadora`
 - **OG Description:** `Uma obra original sobre crenças, mente profunda, rituais de transformação e o estado do criador. Leitura online gratuita.`
-- **Imagem OG:** `https://sidneyrma.github.io/instalador/capas/livro08.png?v=4?v=2` (a capa do universo)
+- **Imagem OG:** `https://i.ibb.co/mV3S1m78/livro08jpg.jpg` (a capa do universo)
 - **OG Type:** `article`
 - **Twitter Card Type:** `summary_large_image`
 
