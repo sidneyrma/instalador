@@ -1,9 +1,8 @@
 # 📚 EDIÇÕES ABNT PROTEGIDAS — Coleção do Despertar
 
-**Pasta:** `edicoes/abnt/`
-
-Estas são as edições em PDF dos livros da Coleção do Despertar, formatadas segundo
-o padrão ABNT de editoras brasileiras, **protegidas contra cópia e impressão**.
+> **Status (13/08/2026):** os PDFs ABNT **foram removidos do repositório** para
+> deixá-lo mais leve (o usuário mantém cópias locais). Eles podem ser **regenerados
+> a qualquer momento** com o script abaixo — as páginas HTML continuam no repositório.
 
 ## 📄 Formato (padrão ABNT de livros físicos)
 
@@ -18,41 +17,38 @@ o padrão ABNT de editoras brasileiras, **protegidas contra cópia e impressão*
 
 ## 🛡️ Proteção
 
-- **Cópia bloqueada** (seleção e extração de texto desativadas);
-- **Impressão bloqueada**;
-- **Modificação bloqueada**;
-- O leitor consegue **apenas abrir e ler** o PDF.
+- Cópia bloqueada (seleção e extração de texto desativadas);
+- Impressão bloqueada;
+- Modificação bloqueada;
+- O leitor consegue apenas abrir e ler o PDF.
 - Senha de dono: `colegiododespertar2026` (para eventuais ajustes internos).
 
 > ⚠️ Como qualquer PDF, leitores muito avançados podem tentar contornar a proteção.
-> Este é um **deterrente** e um selo de zelo, não uma barreira absoluta.
-> O uso pretendido é: **documentação das obras** e futura **doação** de materiais
-> formatados, conforme permissão.
+> É um deterrente e um selo de zelo, não uma barreira absoluta.
 
-## 📖 Livros incluídos
+## 📖 Livros gerados (antes da remoção)
 
-| Arquivo | Livro | Páginas |
-|---|---|---|
-| `livro01.pdf` | O Ouro das Palavras (Joseph Murphy) | 45 |
-| `livro02.pdf` | O Livro Proibido dos Mestres | 65 |
-| `livro03.pdf` | A Mente de Cristo (Emmet Fox) | 59 |
-| `livro05.pdf` | Evolução da Alma | 93 |
-| `livro07.pdf` | O Caminho do Despertar | 45 |
-| `livro08.pdf` | Você e o Universo | 105 |
-| `livro09.pdf` | Anestesia Mental | 83 |
-| `livro10.pdf` | O Despertar do Observador | 104 |
+| Arquivo | Livro |
+|---|---|
+| `livro01.pdf` | O Verbo que Transforma |
+| `livro02.pdf` | A Sabedoria dos Mestres |
+| `livro03.pdf` | A Mente Renovada |
+| `livro05.pdf` | Evolução da Alma |
+| `livro07.pdf` | O Caminho do Despertar |
+| `livro08.pdf` | O Arquiteto da Realidade |
+| `livro09.pdf` | Anestesia Mental |
+| `livro10.pdf` | O Despertar do Observador |
 
-> **Não incluídos por pedido:** Devocional (livro04) e Jesus Quer Falar com Seu Filho
-> (livro06) — possuem imagens e atividades que não fazem sentido em PDF de texto puro.
+> **Não incluídos:** Devocional (livro04) e Jesus Quer Falar com Seu Filho
+> (livro06) — possuem imagens/atividades que não fazem sentido em PDF de texto puro.
 
-## 🔄 Regenerar
+## 🔄 Regenerar (quando precisar)
 
 ```bash
 pyenv/bin/python analise/compraoseu.preview/gerar_pdfs_abnt.py
 ```
 
-O script lê as páginas HTML já validadas (`paginas/livroXX_preview.html`) e gera os
-PDFs com proteção. Qualquer atualização dos livros nas páginas se reflete nos PDFs
-após rodar o script.
+O script lê as páginas HTML (`paginas/livroXX_preview.html`) e gera os PDFs com
+proteção. Qualquer atualização dos livros se reflete nos PDFs após rodar o script.
 
 *Coleção do Despertar · Missão com Deus · CompraOSeu · 2026*
