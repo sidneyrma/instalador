@@ -3,26 +3,26 @@
 Gera o painel de estatísticas de acesso do site compraoseu.com.
 
 Lê o log do Nginx (padrão aaPanel) e conta os acessos por página:
-- /            -> Home (a "ponte" que leva a todos os livros)
+- /            -> Home
 - /livro01 ... /livro10 -> cada livro
 - /quiz        -> quiz
-- outras       -> demais páginas
+
+Inclui:
+- Acessos de HOJE (até agora) e de ONTEM, com comparação (%);
+- Acessos por página, com coluna "Hoje";
+- Acessos por dia (últimos 7).
+
+IMPORTANTE: o painel é uma "fotografia" do momento em que o script roda.
+Para atualizar sozinho, agende no aaPanel:
+  Cron -> Shell -> a cada 1h:  python3 /home/deploy/gerar_estatisticas.py
 
 Gera: /www/wwwroot/compraoseu.com/stats.html
-
-Como usar no servidor (aaPanel):
-1. Suba este arquivo para /home/deploy/gerar_estatisticas.py
-2. Terminal do aaPanel:
-     python3 /home/deploy/gerar_estatisticas.py
-3. Cron (opcional, a cada 6h):
-     python3 /home/deploy/gerar_estatisticas.py
-4. Acesse https://compraoseu.com/stats.html
 """
 import os
 import re
 import html
 from collections import Counter, OrderedDict
-from datetime import datetime
+from datetime import datetime, timedelta
 
 LOG = '/www/wwwlogs/compraoseu.com.log'
 OUT = '/www/wwwroot/compraoseu.com/stats.html'
@@ -47,11 +47,16 @@ RE_EXT = re.compile(r'\.(png|jpg|jpeg|gif|svg|ico|css|js|woff2?|webp|xml|json|tx
 
 
 def analisar():
-    contagens = Counter()
+    contagens = Counter()          # total por página
+    contagens_hoje = Counter()     # hoje por página
     total_geral = 0
     data_inicio = None
     data_fim = None
     por_dia = Counter()
+
+    agora = datetime.now()
+    hoje_str = agora.strftime('%d/%m/%Y')
+    ontem = (agora - timedelta(days=1)).strftime('%d/%m/%Y')
 
     if not os.path.exists(LOG):
         return None, 'Log não encontrado: ' + LOG
@@ -76,37 +81,59 @@ def analisar():
                 dt = datetime.strptime(data.split(' ')[0], '%d/%b/%Y:%H:%M:%S')
                 chave_dia = dt.strftime('%d/%m/%Y')
                 por_dia[chave_dia] += 1
+                if chave_dia == hoje_str and (path.startswith('/livro') or path == '/' or path == '/quiz'):
+                    contagens_hoje[path] += 1
                 if data_inicio is None or dt < data_inicio:
                     data_inicio = dt
                 if data_fim is None or dt > data_fim:
                     data_fim = dt
             except Exception:
                 pass
-    return (contagens, total_geral, data_inicio, data_fim, por_dia), None
+
+    total_hoje = por_dia.get(hoje_str, 0)
+    total_ontem = por_dia.get(ontem, 0)
+    if total_ontem > 0:
+        variacao = ((total_hoje - total_ontem) / total_ontem) * 100
+    else:
+        variacao = 100.0 if total_hoje > 0 else 0.0
+
+    return (contagens, total_geral, data_inicio, data_fim, por_dia,
+            contagens_hoje, total_hoje, total_ontem, variacao, hoje_str, ontem), None
 
 
 def montar_html(res):
-    contagens, total_geral, data_inicio, data_fim, por_dia = res
+    (contagens, total_geral, data_inicio, data_fim, por_dia,
+     contagens_hoje, total_hoje, total_ontem, variacao, hoje_str, ontem) = res
+
+    # Seta de variação
+    if variacao > 0:
+        seta = '📈'
+    elif variacao < 0:
+        seta = '📉'
+    else:
+        seta = '➖'
 
     itens = []
     for path, nome in PAGINAS.items():
-        itens.append((path, nome, contagens.get(path, 0)))
+        itens.append((path, nome, contagens.get(path, 0), contagens_hoje.get(path, 0)))
     itens_ordenados = sorted(itens, key=lambda x: -x[2])
 
     linhas = []
-    for i, (path, nome, n) in enumerate(itens_ordenados, 1):
+    for i, (path, nome, n, n_hoje) in enumerate(itens_ordenados, 1):
         pct = (n / total_geral * 100) if total_geral else 0
         medalha = {1: '🥇', 2: '🥈', 3: '🥉'}.get(i, '')
+        hoje_txt = f'<span style="color:#7fe0a3">({n_hoje} hoje)</span>' if n_hoje else ''
         linhas.append(f"""
         <tr>
           <td class="num">{medalha} {i}</td>
           <td><a href="https://compraoseu.com{path}">{html.escape(nome)}</a><br><span class="url">{path}</span></td>
-          <td class="num">{n}</td>
+          <td class="num">{n} {hoje_txt}</td>
           <td class="num">{pct:.1f}%</td>
           <td><div class="barra"><div class="fill" style="width:{min(100,pct)}%"></div></div></td>
         </tr>""")
 
     dias = por_dia.most_common(7)
+    dias.sort(key=lambda x: x[0], reverse=True)  # mais recente primeiro
     linhas_dias = '\n'.join(
         f'<tr><td>{d}</td><td class="num">{n}</td></tr>' for d, n in dias
     ) or '<tr><td colspan="2">Sem dados diários</td></tr>'
@@ -120,6 +147,7 @@ def montar_html(res):
 
     total_livros = sum(contagens.get(p, 0) for p, _ in PAGINAS.items() if p.startswith('/livro'))
     total_home = contagens.get('/', 0)
+    livros_lidos = sum(1 for p, _ in PAGINAS.items() if p.startswith('/livro') and contagens.get(p, 0) > 0)
 
     periodo = '—'
     if data_inicio and data_fim:
@@ -136,13 +164,14 @@ def montar_html(res):
   :root {{ --navy:#0e1a2e; --gold:#c9a24b; --cream:#faf6ee; }}
   * {{ box-sizing:border-box; }}
   body {{ margin:0; font-family:'Segoe UI',system-ui,sans-serif; background:var(--navy); color:#e8ecf3; line-height:1.5; }}
-  .wrap {{ max-width:920px; margin:0 auto; padding:24px 16px 60px; }}
+  .wrap {{ max-width:960px; margin:0 auto; padding:24px 16px 60px; }}
   h1 {{ color:var(--gold); font-size:1.6rem; margin-bottom:4px; }}
   .sub {{ color:#9fb0c8; font-size:.9rem; margin-bottom:24px; }}
-  .cards {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-bottom:28px; }}
+  .cards {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:28px; }}
   .card {{ background:#16283f; border:1px solid rgba(201,162,75,.25); border-radius:10px; padding:16px; text-align:center; }}
-  .card .v {{ font-size:1.7rem; font-weight:700; color:var(--gold); }}
-  .card .l {{ font-size:.78rem; color:#9fb0c8; text-transform:uppercase; letter-spacing:.06em; }}
+  .card .v {{ font-size:1.6rem; font-weight:700; color:var(--gold); }}
+  .card .l {{ font-size:.75rem; color:#9fb0c8; text-transform:uppercase; letter-spacing:.06em; }}
+  .card.destaque {{ border-color:var(--gold); background:linear-gradient(180deg,#1a2c47,#16283f); }}
   table {{ width:100%; border-collapse:collapse; background:#16283f; border-radius:10px; overflow:hidden; }}
   th {{ background:rgba(201,162,75,.15); color:var(--gold); text-align:left; padding:10px 12px; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; }}
   td {{ padding:10px 12px; border-top:1px solid rgba(201,162,75,.15); font-size:.92rem; vertical-align:middle; }}
@@ -151,6 +180,11 @@ def montar_html(res):
   .barra {{ background:#0e1a2e; border-radius:6px; height:12px; overflow:hidden; min-width:120px; }}
   .fill {{ background:linear-gradient(90deg,#c9a24b,#e3c877); height:100%; border-radius:6px; }}
   h2 {{ color:var(--gold); font-size:1.15rem; margin:32px 0 12px; }}
+  .comparacao {{ background:#16283f; border:1px solid rgba(201,162,75,.25); border-radius:10px; padding:16px 20px; margin-bottom:28px; display:flex; gap:24px; flex-wrap:wrap; align-items:center; }}
+  .comparacao .bloco {{ flex:1; min-width:130px; }}
+  .comparacao .rot {{ font-size:.75rem; color:#9fb0c8; text-transform:uppercase; letter-spacing:.05em; }}
+  .comparacao .val {{ font-size:1.5rem; font-weight:700; color:#fff; }}
+  .comparacao .val.gold {{ color:var(--gold); }}
   footer {{ text-align:center; color:#7f92ad; font-size:.78rem; margin-top:40px; }}
 </style>
 </head>
@@ -159,16 +193,35 @@ def montar_html(res):
   <h1>📊 Estatísticas de Acesso</h1>
   <p class="sub">Portal O Despertar · compraoseu.com · gerado em {datetime.now().strftime('%d/%m/%Y %H:%M')}</p>
 
+  <div class="comparacao">
+    <div class="bloco">
+      <div class="rot">Ontem ({ontem})</div>
+      <div class="val">{total_ontem}</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">Hoje até agora ({hoje_str})</div>
+      <div class="val gold">{total_hoje}</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">Variação</div>
+      <div class="val gold">{seta} {variacao:+.1f}%</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">Total geral</div>
+      <div class="val">{total_geral}</div>
+    </div>
+  </div>
+
   <div class="cards">
-    <div class="card"><div class="v">{total_geral}</div><div class="l">Acessos (páginas)</div></div>
-    <div class="card"><div class="v">{total_home}</div><div class="l">Visitas à Home</div></div>
-    <div class="card"><div class="v">{total_livros}</div><div class="l">Acessos aos livros</div></div>
-    <div class="card"><div class="v">{sum(1 for p,_ in PAGINAS.items() if p.startswith("/livro") and contagens.get(p,0)>0)}</div><div class="l">Livros lidos</div></div>
+    <div class="card destaque"><div class="v">{total_home}</div><div class="l">Visitas à Home</div></div>
+    <div class="card destaque"><div class="v">{total_livros}</div><div class="l">Acessos aos livros</div></div>
+    <div class="card"><div class="v">{livros_lidos}</div><div class="l">Livros lidos</div></div>
+    <div class="card"><div class="v">{contagens.get('/quiz',0)}</div><div class="l">Quiz</div></div>
   </div>
 
   <h2>🏆 Ranking (Home + Livros + Quiz)</h2>
   <table>
-    <tr><th>#</th><th>Página</th><th>Acessos</th><th>%</th><th>Distribuição</th></tr>
+    <tr><th>#</th><th>Página</th><th>Acessos (total · hoje)</th><th>%</th><th>Distribuição</th></tr>
     {''.join(linhas)}
   </table>
 
@@ -185,7 +238,7 @@ def montar_html(res):
   </table>
 
   <footer>Período registrado: {periodo} · Missão com Deus · Coleção do Despertar<br>
-  Página protegida (noindex) — apenas para o administrador.</footer>
+  Painel atualizado pelo script (cron). Página protegida (noindex) — apenas para o administrador.</footer>
 </div>
 </body>
 </html>"""
