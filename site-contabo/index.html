@@ -262,6 +262,12 @@
 
   .bib-capa.inteiro{height:300px;}
   .bib-capa.inteiro .capa-img{object-fit:contain;padding:8px;}
+
+  .countdown{display:flex;justify-content:center;gap:8px;margin:14px 0 4px;flex-wrap:wrap;}
+  .countdown .cd-item{background:#0e1a2e;border:1px solid rgba(201,162,75,.5);border-radius:10px;padding:8px 6px;min-width:58px;text-align:center;}
+  .countdown .cd-num{font-size:1.3rem;font-weight:700;color:#e3c877;line-height:1.1;font-family:Georgia,serif;}
+  .countdown .cd-lab{font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:#9fb0c8;margin-top:2px;}
+  .cd-titulo{font-size:.78rem;color:#e3c877;letter-spacing:.12em;text-transform:uppercase;text-align:center;margin:6px 0 0;}
 </style>
 </head><body>
 <header class="site">
@@ -403,6 +409,13 @@
           <div class="bib-badges">
             <span class="bib-badge">20 capítulos</span>
             <span class="bib-badge">✨ Em breve</span>
+          </div>
+          <p class="cd-titulo">📅 Lançamento em 27 de agosto</p>
+          <div class="countdown" id="countdown-livro11">
+            <div class="cd-item"><div class="cd-num" id="cd-dias">--</div><div class="cd-lab">dias</div></div>
+            <div class="cd-item"><div class="cd-num" id="cd-horas">--</div><div class="cd-lab">horas</div></div>
+            <div class="cd-item"><div class="cd-num" id="cd-min">--</div><div class="cd-lab">min</div></div>
+            <div class="cd-item"><div class="cd-num" id="cd-seg">--</div><div class="cd-lab">seg</div></div>
           </div>
           <div class="bib-ctas">
             <a class="btn" href="#" style="pointer-events:none;opacity:.75;">Em breve</a>
@@ -1106,4 +1119,38 @@ function quizEnviar() {
 }
 </script>
 
+
+<script>
+// Cronômetro de contagem regressiva — Lançamento em 27/08/2026
+(function(){
+  var alvo = new Date('2026-08-27T00:00:00-03:00').getTime();
+  var diasEl = document.getElementById('cd-dias');
+  var horasEl = document.getElementById('cd-horas');
+  var minEl = document.getElementById('cd-min');
+  var segEl = document.getElementById('cd-seg');
+  if(!diasEl) return;
+  function atualizar(){
+    var agora = new Date().getTime();
+    var diff = alvo - agora;
+    if(diff <= 0){
+      diasEl.textContent = '00';
+      horasEl.textContent = '00';
+      minEl.textContent = '00';
+      segEl.textContent = '00';
+      return;
+    }
+    var dias = Math.floor(diff / (1000*60*60*24));
+    var horas = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    var min = Math.floor((diff % (1000*60*60)) / (1000*60));
+    var seg = Math.floor((diff % (1000*60)) / 1000);
+    var p = function(n){ return n < 10 ? '0'+n : n; };
+    diasEl.textContent = p(dias);
+    horasEl.textContent = p(horas);
+    minEl.textContent = p(min);
+    segEl.textContent = p(seg);
+  }
+  atualizar();
+  setInterval(atualizar, 1000);
+})();
+</script>
 </body></html>
