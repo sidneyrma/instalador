@@ -268,6 +268,22 @@
   .countdown .cd-num{font-size:1.3rem;font-weight:700;color:#e3c877;line-height:1.1;font-family:Georgia,serif;}
   .countdown .cd-lab{font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:#9fb0c8;margin-top:2px;}
   .cd-titulo{font-size:.78rem;color:#e3c877;letter-spacing:.12em;text-transform:uppercase;text-align:center;margin:6px 0 0;}
+
+  /* ===== Banner de novidade da leitura ===== */
+  #banner-novidade{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-3) 100%);border-top:3px solid var(--gold);border-bottom:1px solid rgba(201,162,75,.35);padding:26px 0;position:relative;overflow:hidden}
+  #banner-novidade::after{content:"📖";position:absolute;right:-18px;bottom:-24px;font-size:150px;opacity:.06;transform:rotate(-12deg);pointer-events:none}
+  .bn-inner{display:flex;align-items:center;gap:18px;max-width:64rem;margin:0 auto;padding:0;position:relative;z-index:1}
+  .bn-icone{font-size:2.1rem;flex-shrink:0;background:rgba(201,162,75,.14);border:1px solid rgba(201,162,75,.45);border-radius:50%;width:64px;height:64px;display:flex;align-items:center;justify-content:center}
+  .bn-texto{flex:1;min-width:0;color:var(--cream-2)}
+  .bn-texto strong{display:block;font-family:var(--serif);font-size:1.15rem;color:var(--gold-light);margin-bottom:4px;letter-spacing:.02em}
+  .bn-texto span{display:block;font-size:.92rem;line-height:1.55;color:rgba(246,241,231,.85);max-width:46rem}
+  .bn-cta{flex-shrink:0;background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:var(--navy);font-weight:700;font-size:.85rem;padding:12px 20px;border-radius:10px;text-decoration:none;box-shadow:0 10px 22px -8px rgba(184,134,11,.55);white-space:nowrap}
+  .bn-cta:hover{transform:translateY(-1px)}
+  @media (max-width:640px){
+    .bn-inner{flex-direction:column;text-align:center}
+    .bn-texto span{max-width:100%}
+  }
+
 </style>
 </head><body>
 <header class="site">
@@ -400,6 +416,20 @@
   </div>
 </section>
 
+
+
+<div id="banner-novidade">
+  <div class="wrap">
+    <div class="bn-inner">
+      <span class="bn-icone">✨</span>
+      <div class="bn-texto">
+        <strong>Novidade: leitura que não se perde</strong>
+        <span>Agora você pode ler nossos livros online e, sempre que abrir novamente, continuar exatamente do ponto em que parou. Letras no seu tamanho, tela confortável e fita dourada para marcar o lugar.</span>
+      </div>
+      <a class="bn-cta" href="#biblioteca">Explorar os livros →</a>
+    </div>
+  </div>
+</div>
 
 <section class="biblioteca" id="biblioteca">
   <div class="wrap">

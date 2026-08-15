@@ -322,3 +322,40 @@ antes de tocar no conteúdo.
   recebem o `<span class="marca">` e o JavaScript ficou defensivo (não lança
   erro se o marcador não existir), garantindo o funcionamento da marcação
   "✓ lido" e "▶ aqui" em todas as páginas.
+
+## 14. Purificação dos livros 03, 07 e 10 + banner de novidade na Home
+
+**Purificação (03, 07, 10):** removidas todas as marcas de formatação do
+conteúdo, deixando a linguagem pura e humanizada:
+
+- Travessões em referências bíblicas: " — Mateus 7:6" passou a "(Mateus 7:6)"
+  (37 ocorrências no livro 07).
+- Títulos de capítulos e partes: "CAPÍTULO 1 — X" passou a "CAPÍTULO 1: X",
+  "PARTE I — O CHAMADO" passou a "PARTE I: O CHAMADO".
+- Títulos de capa e dados estruturados: " — " passou a ": ".
+- Rodapé: "© Coleção do Despertar — Todos os direitos reservados" passou a
+  "© Coleção do Despertar. Todos os direitos reservados".
+- Prosa restante: " — " passou a ", " (pontuação suave).
+- Asteriscos de markdown: "**O Que Observar Hoje:**" virou
+  "<strong>O Que Observar Hoje:</strong>" (17 blocos no livro 03) e a frase
+  final "*Fim da obra...*" virou "<em>Fim da obra...</em>".
+- Zero reticências e zero setas no conteúdo (as setas restantes são apenas da
+  navegação: "Começar a leitura →", "← Anterior", "Próximo →").
+
+Aplicado em 9 arquivos: originais (paginas/livro03-07-10_preview.html),
+versões com leitor (paginas/livro03-07-10_leitor_preview.html) e publicadas
+(site-contabo/livro03-07-10.html). Gerador:
+`analise/compraoseu.preview/purificar_livros_03_07_10.py`.
+
+Observação honesta: os demais livros (01, 02, 04, 05, 06, 08, 09 e 11) ainda
+contêm algumas marcas herdadas do conteúdo original (principalmente
+travessões); a purificação deles fica para uma próxima rodada, se o autor
+aprová-la.
+
+**Banner de novidade na Home:** adicionada uma faixa dourada sobre fundo navy
+logo acima da biblioteca, com o texto "Novidade: leitura que não se perde",
+explicando que agora os livros lembram onde o leitor parou, com letras no seu
+tamanho, tela confortável e fita dourada, e botão "Explorar os livros →" que
+leva à seção da biblioteca. Aplicado em paginas/home_preview.html e
+site-contabo/index.html (gerador:
+`analise/compraoseu.preview/adicionar_banner_novidade.py`).
