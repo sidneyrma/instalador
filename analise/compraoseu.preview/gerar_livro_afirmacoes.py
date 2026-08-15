@@ -110,26 +110,18 @@ ORACOES = [
 ]
 
 ORACOES_DE_FE = [
-    {'titulo': 'A Oração do Pai Nosso (a oração que Jesus ensinou)', 'icone': '🙏', 'orao': 'Pai nosso que estás nos céus, santificado seja o teu nome. Venha o teu Reino, seja feita a tua vontade, assim na terra como no céu. O pão nosso de cada dia nos dá hoje. Perdoa-nos as nossas dívidas, assim como nós perdoamos aos nossos devedores. E não nos conduzas à tentação, mas livra-nos do mal, porque teu é o Reino, o poder e a glória para sempre. Amém.'},
-    {'titulo': 'Oração a São Miguel Arcanjo (defesa espiritual)', 'icone': '🛡️', 'orao': 'São Miguel Arcanjo, defendei-nos no combate, sede o nosso refúgio contra a maldade e as ciladas do demônio. Que Deus o repreenda, nós humildemente o pedimos; e vós, príncipe da milícia celeste, pelo poder divino, precipitai ao inferno a Satanás e aos outros espíritos malignos que andam pelo mundo para perder as almas. Amém.'},
-    {'titulo': 'Oração de São Bento (proteção contra o mal)', 'icone': '✝️', 'orao': 'A Cruz Sagrada seja a minha luz, não seja o dragão o meu guia. Retira-te, satanás, nunca me aconselhes coisas vãs. É mal o que me ofereces, bebe tu mesmo o teu veneno. Ó Deus, que concedestes a São Bento a graça de ser exemplo de vida santa, dai-nos a sua proteção contra as armadilhas do inimigo e a sua intercessão em nossas necessidades. Amém.'},
-    {'titulo': 'Salmo 91 (o escudo bíblico de proteção)', 'icone': '📖', 'orao': 'Aquele que habita no esconderijo do Altíssimo, à sombra do Onipotente descansará. Direi do Senhor: Ele é o meu Deus, o meu refúgio, a minha fortaleza, e nele confiarei. Porque ele te livrará do laço do passarinheiro e da peste perniciosa. Ele te cobrirá com as suas penas, e debaixo das suas asas estarás seguro; a sua verdade é escudo e broquel. Não temerás os terrores da noite, nem a seta que voa de dia. Porque aos seus anjos dará ordem a teu respeito, para te guardarem em todos os teus caminhos. Amém.'},
-    {'titulo': 'Oração de Santo Expedito (causas urgentes e finanças)', 'icone': '💼', 'orao': 'Meu Santo Expedito das causas justas e urgentes, intercedei por mim junto ao Senhor Jesus. Vós que sois o santo dos aflitos, dos desesperados, dos que precisam de solução rápida, vinde em meu auxílio. Ajudai-me a resolver os meus problemas financeiros e as minhas necessidades urgentes. Sede a minha fortaleza e a minha esperança. Amém.'},
-    {'titulo': 'Oração a São Jorge (caminhos abertos)', 'icone': '🗡️', 'orao': 'São Jorge, valente soldado de Cristo, que vencestes o dragão, ajudai-me a vencer os obstáculos da minha vida. Abri os meus caminhos profissionais, afastai as invejas, as traições e as concorrências desleais. Dai-me coragem, fé e perseverança. Que eu vença com a vossa proteção e com a bênção de Deus. Amém.'},
-    {'titulo': 'Oração do Trabalhador a São José (emprego e sustento)', 'icone': '🛠️', 'orao': 'Glorioso São José, modelo dos trabalhadores, que sustentastes com o vosso trabalho a Sagrada Família, protegei o meu trabalho e o da minha família. Abençoai as nossas mãos, dai-nos emprego digno, estabilidade e sustento para o nosso lar. Ensinai-nos a trabalhar com amor e honestidade. Amém.'},
-    {'titulo': 'Oração à Sagrada Família (paz no lar)', 'icone': '🏡', 'orao': 'Sagrada Família de Nazaré, modelo de amor, união e diálogo, abençoai a nossa família. Afastai as brigas, as incompreensões e as divisões. Que em nosso lar reine a paz, o respeito e o amor, como reinou na vossa casa. Que cada membro da nossa família cresça na fé e no amor a Deus. Amém.'},
-    {'titulo': 'Oração de Santo António (reconciliação e afetos)', 'icone': '❤️', 'orao': 'Santo António, santo das causas impossíveis e das coisas perdidas, ajudai-me a encontrar a paz nos meus relacionamentos. Curai as mágoas, reconciliai os corações, restaurai a harmonia nos meus afetos. Intercedei por mim nas minhas necessidades e concedei-me a graça que tanto preciso. Amém.'},
-    {'titulo': 'Oração de São Francisco de Assis (instrumento de paz)', 'icone': '🕊️', 'orao': 'Senhor, fazei de mim um instrumento da vossa paz. Onde houver ódio, que eu leve o amor; onde houver ofensa, que eu leve o perdão; onde houver discórdia, que eu leve a união; onde houver dúvida, que eu leve a fé; onde houver desespero, que eu leve a esperança; onde houver trevas, que eu leve a luz. Ó Mestre, fazei que eu procure mais consolar do que ser consolado, compreender do que ser compreendido, amar do que ser amado. Pois é dando que se recebe, é perdoando que se é perdoado, e é morrendo que se vive para a vida eterna. Amém.'},
-    {'titulo': 'Oração a São Rafael Arcanjo (cura do corpo e da alma)', 'icone': '🩺', 'orao': 'São Rafael Arcanjo, chamado o médico de Deus, que fostes enviado para curar as doenças do corpo e da alma, intercedei por nós. Curai as nossas enfermidades físicas e emocionais, restaurai a nossa saúde, a nossa paz e a nossa alegria. Conduzi-nos ao Senhor Jesus, o médico dos médicos. Amém.'},
-    {'titulo': 'Oração a São Peregrino (doenças graves)', 'icone': '🙏', 'orao': 'São Peregrino, que experimentastes em vós o poder curador de Deus e fostes curado de uma doença grave, protegei aqueles que sofrem com doenças graves e crónicas. Dai-lhes fé, esperança e coragem. Intercedei por eles junto a Deus, para que, se for da sua vontade, recebam a cura. Amém.'},
-    {'titulo': 'Oração da Serenidade (ansiedade e stress)', 'icone': '🌊', 'orao': 'Concedei-me, Senhor, a serenidade necessária para aceitar as coisas que não posso modificar, coragem para modificar aquelas que posso, e sabedoria para distinguir umas das outras. Vive um dia de cada vez, desfrutando um momento de cada vez, aceitando as dificuldades como o caminho para a paz. Amém.'},
-    {'titulo': 'Oração a São Judas Tadeu (causas impossíveis)', 'icone': '⚡', 'orao': 'São Judas Tadeu, santo das causas impossíveis e desesperadas, intercedei por mim nesta hora de aflição. Vós que conheceis o meu problema e a minha necessidade, ajudai-me a não perder a esperança. Rogai por mim ao Senhor Jesus, para que eu receba a graça e a solução que tanto preciso. Amém.'},
-    {'titulo': 'Oração a Santa Rita de Cássia (aflições extremas)', 'icone': '🌹', 'orao': 'Santa Rita de Cássia, santa das causas impossíveis, padroeira dos aflitos e dos desesperados, intercedei por mim junto a Deus. Nas minhas angústias e aflições extremas, sede o meu refúgio e o meu consolo. Alcançai-me a graça de que tanto necessito, se for para o meu bem e para a glória de Deus. Amém.'},
-    {'titulo': 'Salve-Rainha', 'icone': '👑', 'orao': 'Salve, Rainha, Mãe de misericórdia, vida, doçura e esperança nossa, salve! A vós bradamos, os degredados filhos de Eva. A vós suspiramos, gemendo e chorando neste vale de lágrimas. Eia, pois, advogada nossa, esses vossos olhos misericordiosos a nós volvei. E, depois deste desterro, mostrai-nos Jesus, bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce Virgem Maria. Rogai por nós, Santa Mãe de Deus, para que sejamos dignos das promessas de Cristo. Amém.'},
-    {'titulo': 'Oração do Santo Anjo da Guarda', 'icone': '😇', 'orao': 'Santo Anjo do Senhor, meu zeloso guardador, já que a ti me confiou a piedade divina, hoje e sempre me governa, rege, guarda e ilumina. Amém.'},
-    {'titulo': 'Glória ao Pai', 'icone': '✨', 'orao': 'Glória ao Pai, ao Filho e ao Espírito Santo. Como era no princípio, agora e sempre. Amém.'},
-    {'titulo': 'Creio (Credo Apostólico)', 'icone': '📜', 'orao': 'Creio em Deus Pai, todo-poderoso, Criador do céu e da terra. Creio em Jesus Cristo, seu único Filho, nosso Senhor, que foi concebido pelo Espírito Santo, nasceu da virgem Maria, padeceu sob Pôncio Pilatos, foi crucificado, morto e sepultado; desceu ao Hades; ressuscitou dos mortos ao terceiro dia; subiu aos céus e está sentado à direita de Deus Pai todo-poderoso, de onde há de vir para julgar os vivos e os mortos. Creio no Espírito Santo, na santa Igreja universal, na comunhão dos santos, na remissão dos pecados, na ressurreição da carne e na vida eterna. Amém.'},
+    {'titulo': 'Oração de Proteção (baseada no Salmo 91)', 'icone': '🛡️', 'orao': 'Senhor Deus Altíssimo, tu és o meu refúgio e a minha fortaleza, em ti confio. Tu me livras do laço do inimigo e da palavra destruidora. Sob as tuas asas encontro abrigo, e a tua verdade é o meu escudo. Não temerei os terrores da noite, nem a seta que voa de dia, porque ordenaste aos teus anjos que me guardem em todos os meus caminhos. Em nome de Jesus, amém.'},
+    {'titulo': 'Oração de Autoridade no Nome de Jesus', 'icone': '✝️', 'orao': 'Senhor Jesus, tu és o nome que está acima de todo nome, e diante de ti todo joelho se dobra, no céu, na terra e debaixo da terra. Pela autoridade do teu nome, eu declaro que todo medo, toda ansiedade, toda opressão e todo mal se curvam diante de ti. Nada me atingirá, porque estou escondido em ti. Que a tua paz, que excede todo entendimento, guarde o meu coração e a minha mente. Amém.'},
+    {'titulo': 'Oração de Cura do Corpo e da Alma', 'icone': '🩺', 'orao': 'Senhor Jesus, pelas tuas feridas fui curado. Tu levaste as minhas dores e carregaste as minhas enfermidades. Toca o meu corpo, sara as minhas emoções, renova as minhas forças. Derrama a tua vida em cada célula do meu ser. Que a tua paz invada a minha alma e a tua saúde flua em mim. Confio em ti, meu médico e meu Senhor. Amém.'},
+    {'titulo': 'Oração pela Família', 'icone': '🏡', 'orao': 'Senhor, eu e a minha casa serviremos ao Senhor. Abençoa a minha família, une os nossos corações, afasta de nós toda divisão, brigas e incompreensão. Que o amor, o respeito e o diálogo reinem no nosso lar. Protege cada membro da minha família, guia os nossos passos e faz de nós um instrumento do teu amor. Em nome de Jesus, amém.'},
+    {'titulo': 'Oração de Trabalho e Provisão', 'icone': '💼', 'orao': 'Senhor, tu és a minha provisão e o meu provedor. Abençoa o trabalho das minhas mãos, abre portas que nenhum homem pode fechar, e guia-me nos caminhos profissionais. Dai-me sabedoria, diligência e honestidade. Eu busco primeiro o teu Reino, e confio que todas as coisas me serão acrescentadas segundo a tua vontade. Em nome de Jesus, amém.'},
+    {'titulo': 'Oração de Paz e Serenidade', 'icone': '🌊', 'orao': 'Senhor, tu és a minha paz. A tua paz, que excede todo entendimento, guarda o meu coração e a minha mente em Cristo Jesus. Não ando ansioso por coisa alguma, mas em tudo, pela oração e súplica, apresento os meus pedidos a ti. Entrego as minhas preocupações, confio no teu cuidado, e descanso em ti, porque tu cuidas de mim. Amém.'},
+    {'titulo': 'Oração por Causas Difíceis', 'icone': '⚡', 'orao': 'Senhor Jesus, para ti nada é impossível. Tu és o Deus que faz caminho onde não há caminho, que abre portas que ninguém pode fechar. Apresento diante de ti esta causa que parece sem solução. Aumenta a minha fé, dá-me esperança e paciência. Eu creio que estás agindo, mesmo quando não vejo. Que a tua vontade seja feita, e que a tua glória se manifeste. Amém.'},
+    {'titulo': 'Oração de Gratidão e Louvor', 'icone': '🙌', 'orao': 'Senhor, em tudo eu dou graças, porque esta é a tua vontade para mim. Bendigo o teu nome por cada bênção, por cada desafio, por cada aprendizado. Toda boa dádiva vem de ti. Que o meu coração seja cheio de gratidão, e que o meu louvor suba como incenso diante de ti. Obrigado pelo teu amor que nunca falha. Em nome de Jesus, amém.'},
+    {'titulo': 'Oração de Perdão e Recomeço', 'icone': '❤️', 'orao': 'Senhor, cria em mim um coração puro e renova em mim um espírito estável. Perdoa as minhas falhas, como eu perdoo aqueles que me feriram. Ajuda-me a amar os meus inimigos, a bendizer os que me maldizem e a orar por aqueles que me perseguem, como Jesus ensinou. Restitui-me a alegria da tua salvação e sustenta-me com um espírito voluntário. Amém.'},
+    {'titulo': 'Oração de Entrega e Confiança', 'icone': '🤲', 'orao': 'Senhor, entrego a minha vida nas tuas mãos. Não a minha vontade, mas a tua seja feita. Confio no teu plano, mesmo quando não entendo. Tu conheces o meu futuro, tu seguras o meu amanhã. Ensina-me a viver um dia de cada vez, confiando na tua bondade. Que eu descanse em ti, porque tu és o meu pastor e nada me faltará. Em nome de Jesus, amém.'},
 ]
+
 
 VERSICULOS = [
     ('Posso todas as coisas naquele que me fortalece.', 'Filipenses 4:13'),
@@ -153,10 +145,11 @@ def build():
         toc.append(f'<li><a href="#cat-{i}">{cat["icone"]} {esc(cat["titulo"])}</a></li>')
     toc.append('<li class="toc-parte">🙏 Orações</li>')
     toc.append('<li><a href="#oracoes">Orações para o dia a dia</a></li>')
-    toc.append('<li><a href="#oracoes-fe">Orações manifestadas pelo poder da Fé</a></li>')
     toc.append('<li class="toc-parte">📖 Versículos</li>')
     toc.append('<li><a href="#versiculos">Versículos de declaração</a></li>')
     toc.append('<li><a href="#como-usar">Como usar este guia</a></li>')
+    toc.append('<li class="toc-parte">🙌 Orações de Fé</li>')
+    toc.append('<li><a href="#oracoes-fe">Orações no Nome de Jesus (toque para abrir)</a></li>')
     toc_html = '\n'.join(toc)
 
     corpo = []
@@ -215,16 +208,7 @@ def build():
     sec.append('</section>')
     corpo.append('\n'.join(sec))
 
-    # Orações de Fé
-    sec = ['<section class="capitulo" id="oracoes-fe">']
-    sec.append('<p class="cap-num">🙏 Orações de Fé</p>')
-    sec.append('<h2 class="cap-titulo">Orações manifestadas pelo poder da Fé</h2>')
-    sec.append('<p>Orações da tradição cristã, reunidas para fortalecer a fé em cada área da vida. Ore com o coração aberto, confiando no poder de Deus.</p>')
-    for oracao in ORACOES_DE_FE:
-        sec.append(f'<div class="box oracao"><h3>{oracao["icone"]} {esc(oracao["titulo"])}</h3><p>{esc(oracao["orao"])}</p></div>')
-    sec.append('<nav class="cap-nav"><a href="#oracoes">← Anterior</a><a href="#sumario">Sumário</a><a href="#versiculos">Próximo →</a></nav>')
-    sec.append('</section>')
-    corpo.append('\n'.join(sec))
+
 
     # Versículos
     sec = ['<section class="capitulo" id="versiculos">']
@@ -232,7 +216,7 @@ def build():
     sec.append('<h2 class="cap-titulo">Versículos de declaração</h2>')
     for texto, ref in VERSICULOS:
         sec.append(f'<div class="box versiculo"><p>"{esc(texto)}" <span class="ref">({esc(ref)})</span></p></div>')
-    sec.append('<nav class="cap-nav"><a href="#oracoes-fe">← Anterior</a><a href="#sumario">Sumário</a><a href="#como-usar">Próximo →</a></nav>')
+    sec.append('<nav class="cap-nav"><a href="#oracoes">← Anterior</a><a href="#sumario">Sumário</a><a href="#como-usar">Próximo →</a></nav>')
     sec.append('</section>')
     corpo.append('\n'.join(sec))
 
@@ -244,7 +228,18 @@ def build():
     sec.append('<p><strong>Ao longo do dia:</strong> quando um pensamento negativo vier, substitua por uma declaração da Palavra.</p>')
     sec.append('<p><strong>À noite:</strong> ore com uma das orações do guia, do dia ou das orações de fé.</p>')
     sec.append('<p><strong>Sempre alinhado à Palavra:</strong> as afirmações não são mantras vazios, são verdades de Deus aplicadas à vida.</p>')
-    sec.append('<nav class="cap-nav"><a href="#versiculos">← Anterior</a><a href="#sumario">Sumário</a><a href="#fim">Fim</a></nav>')
+    sec.append('<nav class="cap-nav"><a href="#versiculos">← Anterior</a><a href="#sumario">Sumário</a><a href="#oracoes-fe">Próximo →</a></nav>')
+    sec.append('</section>')
+    corpo.append('\n'.join(sec))
+
+    # Orações de Fé (formato FAQ - por último)
+    sec = ['<section class="capitulo" id="oracoes-fe">']
+    sec.append('<p class="cap-num">🙏 Orações de Fé</p>')
+    sec.append('<h2 class="cap-titulo">Orações no Nome de Jesus</h2>')
+    sec.append('<p>Orações baseadas no Evangelho, professando o poder e a autoridade no nome que está acima de todo nome. Toque em cada oração para abrir e fechar.</p>')
+    for oracao in ORACOES_DE_FE:
+        sec.append(f'<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle(\'aberto\')"><span>{oracao["icone"]} {esc(oracao["titulo"])}</span><span class="seta">▼</span></div><div class="faq-a"><p>{esc(oracao["orao"])}</p></div></div>')
+    sec.append('<nav class="cap-nav"><a href="#como-usar">← Anterior</a><a href="#sumario">Sumário</a><a href="#fim">Fim</a></nav>')
     sec.append('</section>')
     corpo.append('\n'.join(sec))
 
@@ -319,6 +314,13 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
   .leitura .wrap{padding:1.4rem 1rem}
   .cap-titulo{font-size:1.3rem}
 }
+  /* FAQ (accordion) das Orações de Fé */
+  .faq-item{background:#faf6ee;border:1px solid #e4dccb;border-radius:10px;margin-bottom:10px;overflow:hidden;}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer;font-weight:700;color:#0e1a2e;font-size:1rem;background:#fdf6e3;}
+  .faq-q .seta{transition:transform .2s;color:#b8860b;font-size:1.1rem;}
+  .faq-item.aberto .faq-q .seta{transform:rotate(180deg);}
+  .faq-a{display:none;padding:14px 18px;color:#2b2620;font-size:.95rem;line-height:1.7;background:#fff;}
+  .faq-item.aberto .faq-a{display:block;}
 """
 
     html_doc = f"""<!DOCTYPE html>
