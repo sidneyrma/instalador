@@ -80,7 +80,8 @@ praticamente todos os navegadores modernos suportam.
 
 ## Próximo passo
 
-O leitor já foi aplicado no livro de Afirmações
-(`paginas/livro_afirmacoes_leitor_preview.html`) como piloto, com proteção
-ativa. Quando o senhor aprovar, instalo em todos os livros: livro01 a livro11
-e o livro de Afirmações, cada um com a proteção verificada um por um.
+O leitor já foi aplicado em **todos os livros** do Portal: livro01 a
+livro11 (previews `paginas/livroXX_leitor_preview.html` e páginas publicadas
+`site-contabo/livroXX.html`) e no livro de Afirmações. Cada página teve a
+proteção conferida: livros 01 a 10 e Afirmações protegidos; livro 11 sem
+proteção (versão do autor em avaliação).

@@ -275,3 +275,35 @@ proteção) permanece intacta para o senhor marcar e copiar à vontade.
 
 Quando o senhor aprovar, aplicamos o mesmo leitor aos demais livros
 (livro01 a livro11), sempre conferindo a proteção um por um.
+
+## 12. Aplicado em todos os livros (atualização geral)
+
+Com a aprovação do piloto, o Leitor do Despertar foi aplicado em **todos os
+livros** do Portal:
+
+- `paginas/livro01` a `livro10_leitor_preview.html` — versões com leitor e
+  proteção ativa (como ficará no site), para conferência.
+- `paginas/livro11_leitor_preview.html` — versão com leitor, **sem proteção**
+  (versão do autor em avaliação, para marcar e copiar).
+- `site-contabo/livro01.html` a `livro11.html` — páginas publicadas atualizadas
+  no lugar, prontas para envio ao servidor.
+- O livro de Afirmações já havia recebido o leitor
+  (`paginas/livro_afirmacoes_leitor_preview.html`).
+
+Gerador: `analise/compraoseu.preview/integrar_leitor_livros.py` (processa
+previews e site-contabo em um único comando).
+
+Verificações finais (23 arquivos):
+
+- JavaScript válido em todos (node --check).
+- Trilha de seções por livro: 14 (livro01), 13 (livro02), 22 (livro03),
+  31 (livro04), 33 (livro05), 15 (livro06, incluindo os 10 mandamentos),
+  15 (livro07), 17 (livro08), 30 (livro09), 40 (livro10), 23 (livro11).
+- Sumário com marcas ✓/▶ em todos.
+- Proteção conforme o estado de cada arquivo: livros 01 a 10 e Afirmações
+  protegidos; livro 11 sem proteção (versão do autor).
+
+Observação honesta: alguns livros (03, 07 e 10) ainda contêm travessões e
+asteriscos herdados da formatação original do conteúdo (não introduzidos pelo
+leitor). A limpeza dessas marcas é uma tarefa à parte, a combinar com o autor
+antes de tocar no conteúdo.
