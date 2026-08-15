@@ -80,7 +80,7 @@ praticamente todos os navegadores modernos suportam.
 
 ## Próximo passo
 
-Quando o senhor aprovar, aplico o leitor em um livro piloto (sugiro o livro de
-Afirmações ou o Livro 05, Jesus Quer Falar com Seu Filho), testo no celular e
-depois instalo em todos os livros: livro01 a livro11 e o livro de Afirmações.
-Cada livro recebe a mesma experiência, com a proteção verificada um por um.
+O leitor já foi aplicado no livro de Afirmações
+(`paginas/livro_afirmacoes_leitor_preview.html`) como piloto, com proteção
+ativa. Quando o senhor aprovar, instalo em todos os livros: livro01 a livro11
+e o livro de Afirmações, cada um com a proteção verificada um por um.

@@ -251,3 +251,27 @@ visão. O senhor pode testar no celular:
 7. A− / A+ continuam funcionando, com a letra lembrada.
 8. Toda a proteção continua ativa (sem seleção, sem clique direito, sem
    imprimir).
+
+## 11. Aplicado no livro de Afirmações (piloto)
+
+O leitor foi integrado ao **livro de Afirmações**, gerando o arquivo
+`paginas/livro_afirmacoes_leitor_preview.html` pelo script
+`analise/compraoseu.preview/integrar_leitor_afirmacoes.py`.
+
+O que o piloto inclui, em cima do conteúdo já purificado:
+
+- 14 seções de leitura (Abertura, Gratidão, 8 categorias, Orações do dia,
+  Versículos, Como usar e Orações de Fé em FAQ).
+- Lembrar onde parou, com balão "Continuar de onde parei" ao reabrir.
+- Fita dourada lateral, trilha de seções (14 pontinhos), A− / A / A+,
+  modos Dia / Sépia / Noite, balões de dicas e sumário com ✓ e "aqui".
+- Barra de progresso dourada no topo e estatística "Seção · % · faltam ~min".
+- **Proteção ativada**, como ficará no site: sem seleção, sem clique direito,
+  sem Ctrl+C/P/S e impressão bloqueada com aviso.
+- FAQ das 10 Orações de Fé preservado (toca para abrir e fechar).
+
+A versão original `paginas/livro_afirmacoes_preview.html` (avaliação, sem
+proteção) permanece intacta para o senhor marcar e copiar à vontade.
+
+Quando o senhor aprovar, aplicamos o mesmo leitor aos demais livros
+(livro01 a livro11), sempre conferindo a proteção um por um.
