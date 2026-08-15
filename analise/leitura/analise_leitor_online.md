@@ -403,3 +403,27 @@ produção). Validação com parser HTML: todas as tags balanceadas.
 **Validação final geral (39 arquivos)**: JavaScript válido em todos, HTML com
 tags balanceadas, zero marcas de IA no conteúdo, âncoras do sumário apontando
 para IDs existentes, sitemap com 12 URLs, preview servindo tudo com HTTP 200.
+
+## 17. Eliminação dos resquícios de markdown (headings) em todos os livros
+
+A pedido do autor, que encontrou "### O Que Observar Hoje" no Livro 06
+(na verdade o padrão era "#### O Que Observar Hoje"), foi feita uma varredura
+completa em todas as páginas:
+
+- **228 ocorrências** de "#### O Que Observar Hoje" encontradas nos livros
+  01 (10), 02 (10), 08 (12) e 10 (44), em cada versão (preview, com leitor e
+  publicada no site-contabo).
+- Convertidas para **negrito**: `<strong>O Que Observar Hoje</strong>`, como o
+  autor pediu ("apenas negrita a frase").
+- Outros padrões verificados e descartados como falsos positivos: `_` (de
+  atributos HTML como target="_blank"), `> ` (fim de tags HTML), `[` (texto
+  legítimo "[nome da pessoa]" no livro 05), `/* */` (comentários de script).
+- Resultado: **zero resquícios de markdown** no conteúdo de todos os livros.
+- Gerador: `analise/compraoseu.preview/purificar_markdown_restante.py`
+  (protege <script> e <style>; aplica apenas em texto puro).
+
+Observação de integridade: durante o desenvolvimento, uma primeira versão do
+gerador tocou indevidamente nos comentários de JavaScript; o erro foi
+revertido integralmente (git checkout) e o gerador corrigido, com validação
+posterior: JavaScript íntegro em todos os 39 arquivos, HTML balanceado,
+âncoras intactas.
