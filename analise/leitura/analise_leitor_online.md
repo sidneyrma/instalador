@@ -378,3 +378,28 @@ adicionados **balõezinhos de dicas (pop-ups)** na Home (preview e produção):
   logo abaixo do cabeçalho fixo, sem cobrir o menu.
 
 Gerador: `analise/compraoseu.preview/adicionar_popups_dicas_home.py`.
+
+## 16. Perfeição total: purificação de todos os livros + Home validada
+
+**Purificação completa dos 11 livros** (gerador:
+`analise/compraoseu.preview/purificar_todos_livros.py`):
+
+- Livros 01, 02, 04, 05, 06, 08, 09 e 11 também foram purificados (os 03, 07 e
+  10 já estavam): travessões de referências bíblicas viraram parênteses,
+  títulos (Capítulo, Parte, Dia, APRESENTAÇÃO, EPÍLOGO, BÔNUS) viraram
+  dois-pontos, citações com autores viraram parênteses, diálogo bíblico sem
+  travessão, ciclo do livro 09 com vírgulas, reticências viraram vírgulas ou
+  ponto, e a frase final do livro 11 ficou em itálico.
+- Resultado: **zero travessões, asteriscos e reticências no conteúdo de todos
+  os 11 livros** (originais, com leitor e publicados no site-contabo). As
+  únicas setas restantes são de navegação ("Começar a leitura →",
+  "← Anterior", "Próximo →"), conforme permitido.
+- Aplicado em 33 arquivos (11 originais + 11 com leitor + 11 publicados).
+
+**Correção do HTML da Home**: a seção da biblioteca tinha uma `<div class="wrap">`
+sem fechamento (erro pré-existente). Corrigida nas duas Homes (preview e
+produção). Validação com parser HTML: todas as tags balanceadas.
+
+**Validação final geral (39 arquivos)**: JavaScript válido em todos, HTML com
+tags balanceadas, zero marcas de IA no conteúdo, âncoras do sumário apontando
+para IDs existentes, sitemap com 12 URLs, preview servindo tudo com HTTP 200.
