@@ -57,6 +57,8 @@ def analisar():
     agora = datetime.now()
     hoje_str = agora.strftime('%d/%m/%Y')
     ontem = (agora - timedelta(days=1)).strftime('%d/%m/%Y')
+    data_ontem = agora.date() - timedelta(days=1)
+    acessos_ontem_mesmo_horario = 0
 
     if not os.path.exists(LOG):
         return None, 'Log não encontrado: ' + LOG
@@ -83,6 +85,8 @@ def analisar():
                 por_dia[chave_dia] += 1
                 if chave_dia == hoje_str and (path.startswith('/livro') or path == '/' or path == '/quiz'):
                     contagens_hoje[path] += 1
+                if dt.date() == data_ontem and (dt.hour, dt.minute) <= (agora.hour, agora.minute):
+                    acessos_ontem_mesmo_horario += 1
                 if data_inicio is None or dt < data_inicio:
                     data_inicio = dt
                 if data_fim is None or dt > data_fim:
@@ -92,18 +96,29 @@ def analisar():
 
     total_hoje = por_dia.get(hoje_str, 0)
     total_ontem = por_dia.get(ontem, 0)
-    if total_ontem > 0:
-        variacao = ((total_hoje - total_ontem) / total_ontem) * 100
+    # Variação JUSTA: hoje (parcial) contra ONTEM ATÉ O MESMO HORÁRIO.
+    # Comparar o parcial com o dia inteiro de ontem é injusto (mostra queda
+    # falsa no início do dia); esta comparação é a que reflete o ritmo real.
+    if acessos_ontem_mesmo_horario > 0:
+        variacao = ((total_hoje - acessos_ontem_mesmo_horario) / acessos_ontem_mesmo_horario) * 100
     else:
         variacao = 100.0 if total_hoje > 0 else 0.0
+    # Projeção honesta do dia: ritmo atual (por hora) estendido para 24h
+    horas_decorridas = agora.hour + agora.minute / 60.0
+    if horas_decorridas > 0:
+        projecao = int(round(total_hoje / horas_decorridas * 24))
+    else:
+        projecao = total_hoje
 
     return (contagens, total_geral, data_inicio, data_fim, por_dia,
-            contagens_hoje, total_hoje, total_ontem, variacao, hoje_str, ontem), None
+            contagens_hoje, total_hoje, total_ontem, variacao, hoje_str, ontem,
+            acessos_ontem_mesmo_horario, projecao), None
 
 
 def montar_html(res):
     (contagens, total_geral, data_inicio, data_fim, por_dia,
-     contagens_hoje, total_hoje, total_ontem, variacao, hoje_str, ontem) = res
+     contagens_hoje, total_hoje, total_ontem, variacao, hoje_str, ontem,
+     ontem_mesmo_horario, projecao) = res
 
     # Seta de variação
     if variacao > 0:
@@ -195,7 +210,7 @@ def montar_html(res):
 
   <div class="comparacao">
     <div class="bloco">
-      <div class="rot">Ontem ({ontem})</div>
+      <div class="rot">Ontem completo ({ontem})</div>
       <div class="val">{total_ontem}</div>
     </div>
     <div class="bloco">
@@ -203,14 +218,23 @@ def montar_html(res):
       <div class="val gold">{total_hoje}</div>
     </div>
     <div class="bloco">
-      <div class="rot">Variação</div>
+      <div class="rot">Ontem até este horário</div>
+      <div class="val">{ontem_mesmo_horario}</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">Variação (justa)</div>
       <div class="val gold">{seta} {variacao:+.1f}%</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">Projeção do dia</div>
+      <div class="val gold">~{projecao}</div>
     </div>
     <div class="bloco">
       <div class="rot">Total geral</div>
       <div class="val">{total_geral}</div>
     </div>
   </div>
+  <p style="font-size:.8rem;color:#9fb0c8;margin:-18px 0 24px;">Comparação justa: hoje (parcial) contra ontem até o mesmo horário do dia. A projeção estima o total do dia pelo ritmo atual. (O número de ontem completo é mostrado apenas como referência.)</p>
 
   <div class="cards">
     <div class="card destaque"><div class="v">{total_home}</div><div class="l">Visitas à Home</div></div>

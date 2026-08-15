@@ -98,3 +98,31 @@ o **lançamento do Livro 11** em 27/08.
 
 *"E conheceremos a verdade, e a verdade nos libertará."* (João 8:32) — esta
 avaliação foi feita com essa verdade, para que o senhor decida com clareza.
+
+## 7. Ajustes feitos após esta avaliação (15/08 tarde)
+
+1. **Painel de estatísticas corrigido (gerar_estatisticas.py):**
+   - A "Variação" agora compara **hoje (parcial) contra ONTEM ATÉ O MESMO
+     HORÁRIO** (antes comparava com o dia inteiro de ontem, o que gerava a
+     leitura enganosa de "-37,6%" no meio do dia);
+   - Adicionado o cartão **"Ontem até este horário"** e a **"Projeção do dia"**
+     (ritmo atual estendido para 24h);
+   - Nota explicativa no rodapé do painel;
+   - Testado com log simulado (variação justa -24,1% em vez de -37,6% e
+     projeção ~859, com os mesmos dados).
+   - Para aplicar no servidor: substituir `/home/deploy/gerar_estatisticas.py`
+     pela nova versão e rodar `python3 /home/deploy/gerar_estatisticas.py`.
+
+2. **Cron do stats:** o autor configurou a cada 1 hora (com início 00:00 e
+   intervalo de 30 min, conforme as opções do aaPanel). Está ótimo: o script
+   sobrescreve o mesmo stats.html (não acumula); apenas o log do Nginx cresce
+   (rotação do aaPanel + sugestão de limpar logs com mais de 30 dias).
+
+3. **Notificação do Google Search Console ("Estamos validando as correções do
+   problema de Indexação de páginas"):** o Google detectou 3 páginas com erro
+   404 (URLs antigas, provavelmente anteriores às correções de links e do
+   quiz) e, como as correções foram feitas, iniciou a validação automática.
+   Isso é um SINAL POSITIVO: significa que o Google rastreia o site, reconheceu
+   as correções e vai confirmar se as páginas agora respondem 200. Pode levar
+   alguns dias; nenhuma ação é necessária. Quando concluir, o GSC enviará
+   mensagem. Continuar as inspeções diárias normalmente.

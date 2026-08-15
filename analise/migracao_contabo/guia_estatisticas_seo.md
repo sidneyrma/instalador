@@ -18,8 +18,19 @@ O script `gerar_estatisticas.py` lê esse log e gera **`stats.html`** com:
    `analise/compraoseu.preview/gerar_estatisticas.py` (do repositório no GitHub);
 2. **Teste no Terminal:** `python3 /home/deploy/gerar_estatisticas.py`;
 3. **Acesse:** `https://compraoseu.com/stats.html`;
-4. **Atualização automática (opcional):** aaPanel → **Cron** → Shell → a cada 6h:
-   `python3 /home/deploy/gerar_estatisticas.py`.
+4. **Atualização automática (opcional):** aaPanel → **Cron** → Shell → a cada 1 hora
+   (ou a cada 30 min, se quiser leitura mais fresca):
+   `python3 /home/deploy/gerar_estatisticas.py`
+   (o script sobrescreve o mesmo stats.html; não acumula arquivos. Só o log do
+   Nginx cresce — o aaPanel faz rotação; opcional: cron mensal
+   `find /www/wwwlogs -name "*.log" -mtime +30 -delete`).
+
+### 📊 Sobre a "Variação" do painel (comparação justa)
+
+Desde a versão atualizada, o painel compara **hoje (parcial) contra ontem até o
+mesmo horário**, e ainda mostra a **projeção do dia** (ritmo atual estendido
+para 24h). Isso evita a leitura enganosa de "queda" no meio do dia (comparar
+parcial com o dia inteiro de ontem sempre mostra queda de manhã).
 
 ### 🔧 Se o stats.html der 404 (solução — causa: redirect para www)
 
