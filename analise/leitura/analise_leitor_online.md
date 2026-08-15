@@ -231,7 +231,7 @@ página, com seleção, clique direito, atalhos e impressão bloqueados.
 **Tecnologia resumida em uma palavra: localStorage.** É a memória do navegador
 que guarda pequenos dados por site; suportada por praticamente todos os
 navegadores modernos, com limite em torno de 5 MB por domínio, mais do que
-suficiente para posições de leitura [2](https://codigofacil.com.br/localstorage-e-o-sessionstorage/). Para anotações longas no futuro,
+suficiente para posições de leitura [4](https://codigofacil.com.br/localstorage-e-o-sessionstorage/). Para anotações longas no futuro,
 existe o IndexedDB (banco de dados dentro do navegador) e, para sincronizar
 entre aparelhos, um pequeno serviço com login. Nada disso é necessário agora.
 
