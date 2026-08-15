@@ -30,7 +30,7 @@ TITULOS = {
 }
 
 CSS = """
-  #continue-lendo{max-width:50rem;margin:-34px auto 0;padding:0 1.2rem;position:relative;z-index:5}
+  #continue-lendo{max-width:50rem;margin:18px auto 0;padding:0 1.2rem;position:relative;z-index:5}
   .cl-cartao{display:flex;align-items:center;gap:12px;background:linear-gradient(180deg,#fffdf5,#fdf6e3);border:1px solid var(--gold);border-left:5px solid var(--gold);border-radius:12px;padding:8px 10px 8px 16px;color:var(--navy);box-shadow:0 10px 28px rgba(14,26,46,.22);font-family:var(--sans)}
   .cl-cartao:hover{transform:translateY(-1px);box-shadow:0 12px 30px rgba(14,26,46,.28)}
   .cl-cartao-link{display:flex;align-items:center;gap:12px;flex:1;min-width:0;text-decoration:none;color:inherit}
@@ -56,6 +56,11 @@ JS_TEMPLATE = """<script>
         if(!raw){ continue; }
         var p = JSON.parse(raw);
         if(!p || !p.scrollY || p.scrollY <= 60){ continue; }
+        if(p.porcentagem >= 99){
+          // livro terminado: limpa o progresso e não sugere mais
+          try{ localStorage.removeItem("despertar_progresso_" + slug); }catch(e){}
+          continue;
+        }
         if(!melhor || (p.data || "") > (melhor.data || "")){ melhor = {slug:slug, p:p}; }
       }catch(e){}
     }

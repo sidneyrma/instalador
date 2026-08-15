@@ -242,3 +242,33 @@ item no sumário; gerador adicionar_mensagens_fe.py; mapa do leitor atualizado
 (integrar_leitor_afirmacoes.py) e versão com leitor regenerada.
 Validação: 22 faq-items no total (10 orações + 12 mensagens), zero marcas de
 IA, JS íntegro, HTML balanceado nas duas versões (preview e com leitor).
+
+## 12. BUG do botão ✕ do cartão "Continue lendo" — corrigido (15/08 noite)
+
+**Problema relatado pelo autor:** o cartão "Continue lendo" (que aparece na
+Home quando o leitor já está lendo um livro) não fechava ao clicar no ✕, e
+ficava sobreposto à lista de benefícios do hero (⚡ Acesso imediato, etc.).
+
+**Causa encontrada (olhos de águia):** o bloco de JavaScript do botão de
+fechar havia sido inserido **dentro do script errado** (o do cronômetro do
+Livro 11, que roda ANTES do script que cria o cartão). Quando ele procurava
+o botão ✕, o botão ainda não existia, então o listener nunca era anexado.
+Por isso o clique não fazia nada.
+
+**Correções aplicadas (produção + preview):**
+1. Bloco do ✕ removido do script do countdown e colocado **no script correto**
+   (o do cartão), logo após a criação do botão.
+2. **Proteção de livro terminado:** se o progresso salvo estiver em 99% ou
+   mais, o progresso é limpo (localStorage) e o cartão NÃO aparece mais.
+   Comportamento: quando o leitor termina o livro, o cartão não volta.
+3. **Comportamento do fechar:** ao clicar no ✕, o cartão some e fica salvo
+   (localStorage "despertar_continue_fechado"); ao reabrir a página, NÃO
+   aparece de novo (a menos que o leitor limpe os dados do navegador).
+4. **Posição ajustada:** margem do cartão mudou de -34px (que sobrepunha o
+   hero) para 18px (respira logo abaixo do hero, sem cobrir os benefícios).
+5. Gerador adicionar_continue_lendo.py atualizado (margem + proteção 99%)
+   para futuras regenerações.
+
+Validação: bloco errado ausente do countdown, listener presente no script do
+MAPA, proteção 99% presente, JS íntegro, margem nova, nas duas Homes.
+Zip regenerado.
