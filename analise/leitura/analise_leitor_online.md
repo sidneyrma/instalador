@@ -486,3 +486,34 @@ app" (ou "Adicionar à tela inicial") fica disponível e o prompt passa a
 aparecer com o uso. Os balõezinhos de dicas ficam no topo da página e não
 tampam o prompt nativo de instalação, que o navegador exibe na parte de baixo
 da tela.
+
+## 20. Instalação como app (PWA) no site ao vivo + botão "Instalar app"
+
+**Verificação do site ao vivo (compraoseu.com):**
+- sw.js no ar JÁ é a versão v3 (com /livro11 e skipWaiting) — confirmado.
+- manifest.json no ar está correto (ícones locais, display standalone) — confirmado.
+- O prompt de instalação não aparece na primeira visita porque o Chrome/Android
+  exige critérios de engajamento (algumas visitas e tempo de uso). Isso é
+  comportamento padrão do navegador, não um erro do código.
+
+**Solução implementada (padrão recomendado pelo Google):**
+- Botão flutuante "📲 Instalar app" nas duas Homes (produção e preview), que
+  captura o evento `beforeinstallprompt`. Quando o navegador está pronto para
+  instalar, o botão aparece no canto inferior direito e instala com um toque.
+- Após instalar (evento `appinstalled`), o botão some e o estado fica salvo.
+- No iOS (Safari) o `beforeinstallprompt` não existe; o caminho é
+  "Adicionar à Tela de Início" no menu do navegador (já validado pelo autor,
+  funcionando 100%).
+
+**Sobre o arquivo site-contabo.zip.2892951.upload.tmp:**
+- É um resíduo de upload do aaPanel; PODE ser apagado com segurança.
+
+**Sobre a pasta capas/ no servidor:**
+- Nenhum arquivo do site referencia /capas/ (todas as capas são servidas do
+  imgbb). As imagens antigas de capas/ podem ser apagadas para liberar espaço.
+- NÃO apagar: icones/ (usada pelo manifest), ebooks/ (usada pelo e-book do
+  quiz), nginx/, .well-known.
+
+**Nginx:** para arquivos estáticos (HTML/JS/PNG) não é obrigatório reiniciar o
+nginx, mas é inofensivo e recomendado no aaPanel após atualizar os arquivos
+(Website > compraoseu.com > ... ou Nginx > Restart).

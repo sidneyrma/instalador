@@ -316,6 +316,18 @@
     .pd-balao .pd-cta{width:100%}
   }
 
+
+  /* ===== Botão Instalar app (PWA) ===== */
+  #instalar-app{
+    display:none; position:fixed; right:16px; bottom:84px; z-index:65;
+    background:linear-gradient(135deg,var(--gold-light),var(--gold-dark)); color:var(--navy);
+    border:none; border-radius:50px; padding:11px 18px; font-size:.82rem; font-weight:700;
+    font-family:var(--sans); cursor:pointer; box-shadow:0 10px 24px -6px rgba(184,134,11,.65);
+    align-items:center; gap:7px;
+  }
+  #instalar-app:hover{transform:translateY(-1px)}
+  @media (max-width:560px){ #instalar-app{bottom:80px; right:12px} }
+
 </style>
 </head><body>
 <div id="popup-dicas" aria-live="polite"></div>
@@ -1327,6 +1339,40 @@ function quizEnviar() {
       navigator.serviceWorker.register("/sw.js").catch(function(){});
     });
   }
+</script>
+
+
+<script>
+(function(){
+  var btn = document.createElement("button");
+  btn.id = "instalar-app";
+  btn.type = "button";
+  btn.innerHTML = '📲 Instalar app';
+  document.body.appendChild(btn);
+  var evento = null;
+  window.addEventListener("beforeinstallprompt", function(e){
+    e.preventDefault();
+    evento = e;
+    try{
+      if(localStorage.getItem("despertar_app_instalado") === "1"){ return; }
+    }catch(err){}
+    btn.style.display = "flex";
+  });
+  btn.addEventListener("click", function(){
+    if(!evento){ return; }
+    evento.prompt();
+    evento.userChoice.then(function(escolha){
+      if(escolha.outcome === "accepted"){
+        btn.style.display = "none";
+        try{ localStorage.setItem("despertar_app_instalado", "1"); }catch(err){}
+      }
+    });
+  });
+  window.addEventListener("appinstalled", function(){
+    btn.style.display = "none";
+    try{ localStorage.setItem("despertar_app_instalado", "1"); }catch(err){}
+  });
+})();
 </script>
 
 </body></html>
