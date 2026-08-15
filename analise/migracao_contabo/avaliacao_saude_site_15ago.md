@@ -152,3 +152,44 @@ páginas 404.
 **Atenção:** os leitores que já têm o progresso salvo no navegador terão o
 cartão corrigido ao recarregar a página; os links antigos (404) não ficam
 gravados em lugar nenhum, apenas eram montados em tempo de execução.
+
+## 9. Consultoria: mudanças na Home (quiz + texto do hero)
+
+**Pedido do autor:** (a) subir o quiz para logo abaixo do card "Livros online e
+gratuitos" (na seção portal), tornando-o mais acessível; (b) trocar o texto do
+selo do hero "🔑 A Chave de Governo da sua mente começa aqui" por algo que
+engaje sobre a leitura gratuita.
+
+**Minha orientação (aval):**
+
+1. **Subir o quiz — SIM, com entusiasmo.** Hoje o quiz tem só 9 acessos no
+   total, porque está no fim da página (ninguém chega lá). Ele é a melhor
+   porta de engajamento: 7 perguntas, resultado, presente do e-book e
+   redireciona para o livro05. Posicioná-lo logo após o card "Livros online e
+   gratuitos" (ainda dentro da seção "O que é o portal", antes dos cards de
+   Videoaulas/Comunidade) faz o visitante interagir com o site em segundos.
+
+2. **Texto do selo do hero — SIM, trocar.** "A Chave de Governo da sua mente
+   começa aqui" é bom, mas fala do Portal (venda); o hero precisa falar da
+   leitura GRÁTIS (o gancho). Sugestões de frases (escolha uma ou me diga que
+   eu adapto):
+
+   - "📖 Leia livros online e grátis, direto no seu navegador"
+   - "📖 Livros gratuitos para ler agora, sem cadastro"
+   - "📖 Sua leitura gratuita começa aqui"
+   - "✨ Leia de graça. Volte quando quiser. Continue de onde parou."
+
+   A última é a que mais conversa com o nosso diferencial (o leitor que
+   lembra onde parou). Recomendo: **"✨ Leia de graça, continue de onde parou"**
+   (curto, desperta curiosidade e já apresenta o Leitor do Despertar).
+
+3. **Detalhe importante ao subir o quiz:** o quiz tem estilo próprio
+   (quiz-sec, fundo navy escuro) que combina com o fim da página. Ao movê-lo
+   para o meio, preciso adaptar o visual para não "quebrar" o fluxo (manter o
+   fundo escuro pode ficar lindo como faixa de contraste entre o portal claro
+   e a biblioteca). Vou testar e ajustar.
+
+4. **Não mudar mais nada na ordem dos cards** — a seção de livros, o banner e
+   os pop-ups ficam como estão (funcionando bem).
+
+**Aguardando o aval do autor para aplicar os itens 1 e 2.**
