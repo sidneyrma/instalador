@@ -451,3 +451,38 @@ Diagnóstico completo:
    Hoje"; convertidos para negrito markdown `**O Que Observar Hoje**`
    (equivalentes aos <strong> das páginas), para o autor não encontrar a
    marcação em nenhum material que leia.
+
+## 19. Vistoria PWA (instalar como app) e arquivo temporário no servidor
+
+**Arquivo site-contabo.zip.2892951.upload.tmp no servidor:** é um resíduo de
+upload do aaPanel (nome padrão de upload em andamento/interrompido). Não é um
+pacote válido e pode ser EXCLUÍDO com segurança pelo gerenciador de arquivos.
+Recomendação: reenviar o site-contabo.zip atualizado e extrair por cima.
+
+**Diagnóstico do PWA (instalar como app):**
+- O manifest.json já estava correto (nome, start_url "/", display standalone,
+  ícones 192/512/maskable apontando para icones/ locais).
+- O sw.js já existia com fetch handler, porém o Service Worker NÃO estava
+  registrado no index.html. Sem o registro, o Chrome/Android não reconhece o
+  site como instalável e não oferece a instalação automática de forma
+  confiável (por isso no celular da filha não apareceu; no celular do autor
+  aparecia porque ele acessa com frequência e o Chrome já o considerava
+  engajado).
+- Correção aplicada: registro do Service Worker (`navigator.serviceWorker.
+  register("/sw.js")`) no index.html (produção) e home_preview.html (preview).
+- Ícones corrigidos: apple-touch-icon e icons apontavam para o imgbb (serviço
+  externo); agora apontam para os arquivos locais /icones/ (mais rápido e
+  confiável).
+- sw.js atualizado: cache v3 (força atualização nos aparelhos já instalados)
+  e /livro11 adicionado à lista de pré-cache.
+- Validação: JS íntegro nas Homes, sw.js válido, manifest JSON válido, zip
+  regenerado com manifest.json, sw.js e os 5 ícones.
+
+**Observação honesta sobre o prompt de instalação:** mesmo com tudo correto,
+o navegador Android só sugere a instalação automaticamente após critérios de
+engajamento (algumas visitas e tempo de uso). Na primeira visita ele não
+aparece de imediato, mas com o Service Worker registrado a opção "Instalar
+app" (ou "Adicionar à tela inicial") fica disponível e o prompt passa a
+aparecer com o uso. Os balõezinhos de dicas ficam no topo da página e não
+tampam o prompt nativo de instalação, que o navegador exibe na parte de baixo
+da tela.

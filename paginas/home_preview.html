@@ -10,9 +10,9 @@
 <!-- ===== PWA: instalar como app ===== -->
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0e1a2e">
-<link rel="apple-touch-icon" href="https://i.ibb.co/hxnvcxtg/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="https://i.ibb.co/kCPdtzp/icon-192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="https://i.ibb.co/chpVZry0/icon-512.png">
+<link rel="apple-touch-icon" href="/icones/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icones/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/icones/icon-512.png">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -1318,6 +1318,15 @@ function quizEnviar() {
     setTimeout(function(){ mostrar(d, i); }, 1600 + i * 3600);
   });
 })();
+</script>
+
+
+<script>
+  if("serviceWorker" in navigator){
+    window.addEventListener("load", function(){
+      navigator.serviceWorker.register("/sw.js").catch(function(){});
+    });
+  }
 </script>
 
 </body></html>
