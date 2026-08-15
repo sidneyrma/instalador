@@ -46,7 +46,8 @@ leu, com o texto sempre fechado dentro da nossa página protegida.**
 E mais, para o futuro (depois que o senhor aprovar o básico):
 
 9. **"Continue lendo" na Home**: a página inicial mostra "Você estava em: O
-   Verbo que Transforma, Capítulo 4. Continuar?" em um toque.
+   Verbo que Transforma, Capítulo 4. Continuar?" em um toque. **Já
+   implementado** (cartão dourado abaixo do hero, lê o progresso salvo).
 10. **Compartilhar capítulo**: envia o link do capítulo (não o texto) pelo
     WhatsApp, para divulgação orgânica.
 11. **Sincronizar entre aparelhos** (evolução futura, exige login): se a pessoa

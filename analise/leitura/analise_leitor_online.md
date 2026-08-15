@@ -307,3 +307,18 @@ Observação honesta: alguns livros (03, 07 e 10) ainda contêm travessões e
 asteriscos herdados da formatação original do conteúdo (não introduzidos pelo
 leitor). A limpeza dessas marcas é uma tarefa à parte, a combinar com o autor
 antes de tocar no conteúdo.
+
+## 13. Home com "Continue lendo" e página EU SOU
+
+- **Home** (`paginas/home_preview.html` e `site-contabo/index.html`): adicionado
+  o cartão dourado **"Continue lendo"** abaixo do hero. Ele lê o progresso
+  salvo em cada livro (localStorage `despertar_progresso_livroXX`) e mostra o
+  livro, a seção, a posição percentual e o botão "Continuar lendo →", levando o
+  leitor direto à página. Aparece somente quando há progresso salvo; sem
+  progresso, a Home permanece igual.
+- **Estudos EU SOU** (`paginas/eusou_estudos_leitor_preview.html`): gerada a
+  versão com leitor (7 seções), sem proteção (versão de estudo do autor).
+- Correção importante aplicada nos dois geradores: os itens do sumário agora
+  recebem o `<span class="marca">` e o JavaScript ficou defensivo (não lança
+  erro se o marcador não existir), garantindo o funcionamento da marcação
+  "✓ lido" e "▶ aqui" em todas as páginas.

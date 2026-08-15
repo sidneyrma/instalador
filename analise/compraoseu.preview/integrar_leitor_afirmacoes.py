@@ -180,10 +180,12 @@ html = html.replace(TOPBAR_ANTIGO, TOPBAR_NOVO, 1)
 html = html.replace("</header>\n\n<section class=\"capa\">",
                     "</header>\n\n<div id=\"baloes\"></div>\n<div id=\"trilha\"></div>\n<div id=\"fita-lateral\"></div>\n\n<section class=\"capa\" id=\"capa\">", 1)
 
-# ============ 7. ids nas li do sumário (para as marcas de leitura) ============ #
+# ============ 7. ids nas li do sumário + span de marca de leitura ============ #
 def marcar_li(m):
     return '<li id="li-' + m.group(1) + '"><a href="#' + m.group(1) + '">'
 html = re.sub(r'<li><a href="#([a-z0-9-]+)">', marcar_li, html)
+html = re.sub(r'(<li id="li-[a-z0-9-]+"><a href="#[a-z0-9-]+">.*?)</li>',
+              r'\1<span class="marca"></span></li>', html, flags=re.S)
 
 # ============ 8. Botão marcador + script antes de </body> ============ #
 SCRIPT = """<script>
@@ -348,8 +350,9 @@ SCRIPT = """<script>
       var lido = window.scrollY + window.innerHeight >= fim - 30;
       var li = document.getElementById("li-" + (c.id || ("sec" + i)));
       if(li){
-        if(lido){ li.className = "lido"; li.querySelector(".marca").textContent = "✓ lido"; }
-        else{ li.className = ""; li.querySelector(".marca").textContent = ""; }
+        var marca = li.querySelector(".marca");
+        if(lido){ li.className = "lido"; if(marca){ marca.textContent = "✓ lido"; } }
+        else{ li.className = ""; if(marca){ marca.textContent = ""; } }
       }
     });
     pontos.forEach(function(pt, i){
@@ -360,7 +363,8 @@ SCRIPT = """<script>
     var liAtual = document.getElementById("li-" + idAtual);
     if(liAtual){
       liAtual.className = "aqui";
-      if(!liAtual.querySelector(".marca").textContent){ liAtual.querySelector(".marca").textContent = "▶ aqui"; }
+      var marcaAtual = liAtual.querySelector(".marca");
+      if(marcaAtual && !marcaAtual.textContent){ marcaAtual.textContent = "▶ aqui"; }
     }
 
     var palavrasLidas = Math.round((p / 100) * totalPalavras);

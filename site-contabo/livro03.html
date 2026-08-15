@@ -286,25 +286,25 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
   <ul>
 <li class="toc-parte">Abertura</li>
 <li class="toc-parte">PARTE I: O CHAMADO À RENOVAÇÃO</li>
-<li id="li-cap-1"><a href="#cap-1">Capítulo 1 — A Mente que o Mundo Moldou</a></li>
-<li id="li-cap-2"><a href="#cap-2">Capítulo 2 — O Convite que Vem de Dentro</a></li>
-<li id="li-cap-3"><a href="#cap-3">Capítulo 3 — Não Vos Conformeis com Este Mundo</a></li>
-<li id="li-cap-4"><a href="#cap-4">Capítulo 4 — A Mente que Houve em Cristo</a></li>
+<li id="li-cap-1"><a href="#cap-1">Capítulo 1 — A Mente que o Mundo Moldou</a><span class="marca"></span></li>
+<li id="li-cap-2"><a href="#cap-2">Capítulo 2 — O Convite que Vem de Dentro</a><span class="marca"></span></li>
+<li id="li-cap-3"><a href="#cap-3">Capítulo 3 — Não Vos Conformeis com Este Mundo</a><span class="marca"></span></li>
+<li id="li-cap-4"><a href="#cap-4">Capítulo 4 — A Mente que Houve em Cristo</a><span class="marca"></span></li>
 <li class="toc-parte">PARTE II: O GOVERNO DO PENSAMENTO</li>
-<li id="li-cap-5"><a href="#cap-5">Capítulo 5 — O Reino de Deus Está Dentro de Vós</a></li>
-<li id="li-cap-6"><a href="#cap-6">Capítulo 6 — Como um Homem Pensa, Assim Ele É</a></li>
-<li id="li-cap-7"><a href="#cap-7">Capítulo 7 — O Poder da Palavra e da Fé</a></li>
-<li id="li-cap-8"><a href="#cap-8">Capítulo 8 — Arrependei-vos: a Mudança de Mente</a></li>
+<li id="li-cap-5"><a href="#cap-5">Capítulo 5 — O Reino de Deus Está Dentro de Vós</a><span class="marca"></span></li>
+<li id="li-cap-6"><a href="#cap-6">Capítulo 6 — Como um Homem Pensa, Assim Ele É</a><span class="marca"></span></li>
+<li id="li-cap-7"><a href="#cap-7">Capítulo 7 — O Poder da Palavra e da Fé</a><span class="marca"></span></li>
+<li id="li-cap-8"><a href="#cap-8">Capítulo 8 — Arrependei-vos: a Mudança de Mente</a><span class="marca"></span></li>
 <li class="toc-parte">PARTE III: O VIVER DA MENTE RENOVADA</li>
-<li id="li-cap-9"><a href="#cap-9">Capítulo 9 — Vós Sois a Luz do Mundo</a></li>
-<li id="li-cap-10"><a href="#cap-10">Capítulo 10 — O Olho Único e o Coração Limpo</a></li>
-<li id="li-cap-11"><a href="#cap-11">Capítulo 11 — Orai Sem Cessar</a></li>
-<li id="li-cap-12"><a href="#cap-12">Capítulo 12 — Jesus e a Lei Mental</a></li>
-<li id="li-cap-13"><a href="#cap-13">Capítulo 13 — A Mente Renovada e o Corpo Saudável</a></li>
-<li id="li-cap-14"><a href="#cap-14">Capítulo 14 — Não Temas, Apenas Crê</a></li>
-<li id="li-cap-15"><a href="#cap-15">Capítulo 15 — Cristo em Vós, a Esperança da Glória</a></li>
-<li id="li-cap-16"><a href="#cap-16">Capítulo 16 — O Poder da Gratidão</a></li>
-<li id="li-cap-17"><a href="#cap-17">Capítulo 17 — A Unidade com Deus e a Paz que Excede o Entendimento</a></li>
+<li id="li-cap-9"><a href="#cap-9">Capítulo 9 — Vós Sois a Luz do Mundo</a><span class="marca"></span></li>
+<li id="li-cap-10"><a href="#cap-10">Capítulo 10 — O Olho Único e o Coração Limpo</a><span class="marca"></span></li>
+<li id="li-cap-11"><a href="#cap-11">Capítulo 11 — Orai Sem Cessar</a><span class="marca"></span></li>
+<li id="li-cap-12"><a href="#cap-12">Capítulo 12 — Jesus e a Lei Mental</a><span class="marca"></span></li>
+<li id="li-cap-13"><a href="#cap-13">Capítulo 13 — A Mente Renovada e o Corpo Saudável</a><span class="marca"></span></li>
+<li id="li-cap-14"><a href="#cap-14">Capítulo 14 — Não Temas, Apenas Crê</a><span class="marca"></span></li>
+<li id="li-cap-15"><a href="#cap-15">Capítulo 15 — Cristo em Vós, a Esperança da Glória</a><span class="marca"></span></li>
+<li id="li-cap-16"><a href="#cap-16">Capítulo 16 — O Poder da Gratidão</a><span class="marca"></span></li>
+<li id="li-cap-17"><a href="#cap-17">Capítulo 17 — A Unidade com Deus e a Paz que Excede o Entendimento</a><span class="marca"></span></li>
 <li class="toc-parte">Oração Final</li>
   </ul>
 </section>
@@ -883,8 +883,9 @@ document.addEventListener('keydown', function(e){
       var lido = window.scrollY + window.innerHeight >= fim - 30;
       var li = document.getElementById("li-" + (c.id || ("sec" + i)));
       if(li){
-        if(lido){ li.className = "lido"; li.querySelector(".marca").textContent = "✓ lido"; }
-        else{ li.className = ""; li.querySelector(".marca").textContent = ""; }
+        var marca = li.querySelector(".marca");
+        if(lido){ li.className = "lido"; if(marca){ marca.textContent = "✓ lido"; } }
+        else{ li.className = ""; if(marca){ marca.textContent = ""; } }
       }
     });
     pontos.forEach(function(pt, i){
@@ -895,7 +896,8 @@ document.addEventListener('keydown', function(e){
     var liAtual = document.getElementById("li-" + idAtual);
     if(liAtual){
       liAtual.className = "aqui";
-      if(!liAtual.querySelector(".marca").textContent){ liAtual.querySelector(".marca").textContent = "▶ aqui"; }
+      var marcaAtual = liAtual.querySelector(".marca");
+      if(marcaAtual && !marcaAtual.textContent){ marcaAtual.textContent = "▶ aqui"; }
     }
 
     var palavrasLidas = Math.round((p / 100) * totalPalavras);

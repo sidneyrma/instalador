@@ -286,20 +286,20 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
   <ul>
 <li class="toc-parte">PRÓLOGO</li>
 <li class="toc-parte">PARTE I</li>
-<li id="li-cap-1"><a href="#cap-1">Capítulo 1 — O Sistema que Quase Ninguém Percebe</a></li>
-<li id="li-cap-2"><a href="#cap-2">Capítulo 2 — O Erro de Pedir ao Universo</a></li>
-<li id="li-cap-3"><a href="#cap-3">Capítulo 3 — A Linguagem que o Universo Entende</a></li>
-<li id="li-cap-4"><a href="#cap-4">Capítulo 4 — O Poder das Crenças</a></li>
-<li id="li-cap-5"><a href="#cap-5">Capítulo 5 — A Mente que se Molda</a></li>
+<li id="li-cap-1"><a href="#cap-1">Capítulo 1 — O Sistema que Quase Ninguém Percebe</a><span class="marca"></span></li>
+<li id="li-cap-2"><a href="#cap-2">Capítulo 2 — O Erro de Pedir ao Universo</a><span class="marca"></span></li>
+<li id="li-cap-3"><a href="#cap-3">Capítulo 3 — A Linguagem que o Universo Entende</a><span class="marca"></span></li>
+<li id="li-cap-4"><a href="#cap-4">Capítulo 4 — O Poder das Crenças</a><span class="marca"></span></li>
+<li id="li-cap-5"><a href="#cap-5">Capítulo 5 — A Mente que se Molda</a><span class="marca"></span></li>
 <li class="toc-parte">PARTE II</li>
-<li id="li-cap-6"><a href="#cap-6">Capítulo 6 — O Ritual do Comando Matinal</a></li>
-<li id="li-cap-7"><a href="#cap-7">Capítulo 7 — O Ritual do Espelho</a></li>
-<li id="li-cap-8"><a href="#cap-8">Capítulo 8 — O Ritual da Visualização</a></li>
-<li id="li-cap-9"><a href="#cap-9">Capítulo 9 — O Ritual Noturno</a></li>
-<li id="li-cap-10"><a href="#cap-10">Capítulo 10 — O Diário da Transformação</a></li>
+<li id="li-cap-6"><a href="#cap-6">Capítulo 6 — O Ritual do Comando Matinal</a><span class="marca"></span></li>
+<li id="li-cap-7"><a href="#cap-7">Capítulo 7 — O Ritual do Espelho</a><span class="marca"></span></li>
+<li id="li-cap-8"><a href="#cap-8">Capítulo 8 — O Ritual da Visualização</a><span class="marca"></span></li>
+<li id="li-cap-9"><a href="#cap-9">Capítulo 9 — O Ritual Noturno</a><span class="marca"></span></li>
+<li id="li-cap-10"><a href="#cap-10">Capítulo 10 — O Diário da Transformação</a><span class="marca"></span></li>
 <li class="toc-parte">PARTE III</li>
-<li id="li-cap-11"><a href="#cap-11">Capítulo 11 — O Ponto de Virada</a></li>
-<li id="li-cap-12"><a href="#cap-12">Capítulo 12 — O Estado do Criador</a></li>
+<li id="li-cap-11"><a href="#cap-11">Capítulo 11 — O Ponto de Virada</a><span class="marca"></span></li>
+<li id="li-cap-12"><a href="#cap-12">Capítulo 12 — O Estado do Criador</a><span class="marca"></span></li>
 <li class="toc-parte">EPÍLOGO</li>
   </ul>
 </section>
@@ -798,8 +798,9 @@ document.addEventListener('keydown', function(e){
       var lido = window.scrollY + window.innerHeight >= fim - 30;
       var li = document.getElementById("li-" + (c.id || ("sec" + i)));
       if(li){
-        if(lido){ li.className = "lido"; li.querySelector(".marca").textContent = "✓ lido"; }
-        else{ li.className = ""; li.querySelector(".marca").textContent = ""; }
+        var marca = li.querySelector(".marca");
+        if(lido){ li.className = "lido"; if(marca){ marca.textContent = "✓ lido"; } }
+        else{ li.className = ""; if(marca){ marca.textContent = ""; } }
       }
     });
     pontos.forEach(function(pt, i){
@@ -810,7 +811,8 @@ document.addEventListener('keydown', function(e){
     var liAtual = document.getElementById("li-" + idAtual);
     if(liAtual){
       liAtual.className = "aqui";
-      if(!liAtual.querySelector(".marca").textContent){ liAtual.querySelector(".marca").textContent = "▶ aqui"; }
+      var marcaAtual = liAtual.querySelector(".marca");
+      if(marcaAtual && !marcaAtual.textContent){ marcaAtual.textContent = "▶ aqui"; }
     }
 
     var palavrasLidas = Math.round((p / 100) * totalPalavras);

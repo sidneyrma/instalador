@@ -292,22 +292,22 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <li class="toc-parte">A ESSÊNCIA DA TRILOGIA</li>
 <li class="toc-parte">PRINCÍPIOS DO DESPERTAR</li>
 <li class="toc-parte">REVISÃO</li>
-<li id="li-cap-1"><a href="#cap-1">Capítulo 1 — O Algoritmo da Anestesia Mental</a></li>
-<li id="li-cap-2"><a href="#cap-2">Capítulo 2 — O Governo do Pensamento</a></li>
-<li id="li-cap-3"><a href="#cap-3">Capítulo 3 — O Poder do Isolamento e o Casulo</a></li>
-<li id="li-cap-4"><a href="#cap-4">Capítulo 4 — Governo do Tempo e Disciplina</a></li>
-<li id="li-cap-5"><a href="#cap-5">Capítulo 5 — O Autodomínio e o Governo da Vontade</a></li>
-<li id="li-cap-6"><a href="#cap-6">Capítulo 6 — O Legado da Maturidade e a Inteireza</a></li>
-<li id="li-cap-7"><a href="#cap-7">Capítulo 7 — Detox da Alma e o Reset do Shabat</a></li>
-<li id="li-cap-8"><a href="#cap-8">Capítulo 8 — A Estética do Silêncio e o Comando Final</a></li>
-<li id="li-cap-9"><a href="#cap-9">Capítulo 9 — A Engenharia do Algoritmo da Alma</a></li>
-<li id="li-cap-10"><a href="#cap-10">Capítulo 10 — Anestesia Mental e o Despertar Coletivo</a></li>
-<li id="li-cap-11"><a href="#cap-11">Capítulo 11 — A Disciplina da Alma: O Algoritmo da Vitória</a></li>
-<li id="li-cap-12"><a href="#cap-12">Capítulo 12 — A Coragem de Ser Inteiro no Mundo Fragmentado</a></li>
-<li id="li-cap-13"><a href="#cap-13">Capítulo 13 — Ansiedade Espiritual e Exaustão Digital</a></li>
-<li id="li-cap-14"><a href="#cap-14">Capítulo 14 — A Estética do Silêncio: Ouvindo a Voz no Vácuo Digital</a></li>
-<li id="li-cap-15"><a href="#cap-15">Capítulo 15 — O Comando Final: Viva a Vida em Alta Definição</a></li>
-<li id="li-cap-16"><a href="#cap-16">Capítulo 16 — Checklist Final de Reprogramação Mental</a></li>
+<li id="li-cap-1"><a href="#cap-1">Capítulo 1 — O Algoritmo da Anestesia Mental</a><span class="marca"></span></li>
+<li id="li-cap-2"><a href="#cap-2">Capítulo 2 — O Governo do Pensamento</a><span class="marca"></span></li>
+<li id="li-cap-3"><a href="#cap-3">Capítulo 3 — O Poder do Isolamento e o Casulo</a><span class="marca"></span></li>
+<li id="li-cap-4"><a href="#cap-4">Capítulo 4 — Governo do Tempo e Disciplina</a><span class="marca"></span></li>
+<li id="li-cap-5"><a href="#cap-5">Capítulo 5 — O Autodomínio e o Governo da Vontade</a><span class="marca"></span></li>
+<li id="li-cap-6"><a href="#cap-6">Capítulo 6 — O Legado da Maturidade e a Inteireza</a><span class="marca"></span></li>
+<li id="li-cap-7"><a href="#cap-7">Capítulo 7 — Detox da Alma e o Reset do Shabat</a><span class="marca"></span></li>
+<li id="li-cap-8"><a href="#cap-8">Capítulo 8 — A Estética do Silêncio e o Comando Final</a><span class="marca"></span></li>
+<li id="li-cap-9"><a href="#cap-9">Capítulo 9 — A Engenharia do Algoritmo da Alma</a><span class="marca"></span></li>
+<li id="li-cap-10"><a href="#cap-10">Capítulo 10 — Anestesia Mental e o Despertar Coletivo</a><span class="marca"></span></li>
+<li id="li-cap-11"><a href="#cap-11">Capítulo 11 — A Disciplina da Alma: O Algoritmo da Vitória</a><span class="marca"></span></li>
+<li id="li-cap-12"><a href="#cap-12">Capítulo 12 — A Coragem de Ser Inteiro no Mundo Fragmentado</a><span class="marca"></span></li>
+<li id="li-cap-13"><a href="#cap-13">Capítulo 13 — Ansiedade Espiritual e Exaustão Digital</a><span class="marca"></span></li>
+<li id="li-cap-14"><a href="#cap-14">Capítulo 14 — A Estética do Silêncio: Ouvindo a Voz no Vácuo Digital</a><span class="marca"></span></li>
+<li id="li-cap-15"><a href="#cap-15">Capítulo 15 — O Comando Final: Viva a Vida em Alta Definição</a><span class="marca"></span></li>
+<li id="li-cap-16"><a href="#cap-16">Capítulo 16 — Checklist Final de Reprogramação Mental</a><span class="marca"></span></li>
 <li class="toc-parte">CASO DE USO</li>
 <li class="toc-parte">O PROTOCOLO DA ETERNIDADE</li>
 <li class="toc-parte">CADERNO DE ATIVAÇÃO</li>
@@ -1420,8 +1420,9 @@ document.addEventListener('keydown', function(e){
       var lido = window.scrollY + window.innerHeight >= fim - 30;
       var li = document.getElementById("li-" + (c.id || ("sec" + i)));
       if(li){
-        if(lido){ li.className = "lido"; li.querySelector(".marca").textContent = "✓ lido"; }
-        else{ li.className = ""; li.querySelector(".marca").textContent = ""; }
+        var marca = li.querySelector(".marca");
+        if(lido){ li.className = "lido"; if(marca){ marca.textContent = "✓ lido"; } }
+        else{ li.className = ""; if(marca){ marca.textContent = ""; } }
       }
     });
     pontos.forEach(function(pt, i){
@@ -1432,7 +1433,8 @@ document.addEventListener('keydown', function(e){
     var liAtual = document.getElementById("li-" + idAtual);
     if(liAtual){
       liAtual.className = "aqui";
-      if(!liAtual.querySelector(".marca").textContent){ liAtual.querySelector(".marca").textContent = "▶ aqui"; }
+      var marcaAtual = liAtual.querySelector(".marca");
+      if(marcaAtual && !marcaAtual.textContent){ marcaAtual.textContent = "▶ aqui"; }
     }
 
     var palavrasLidas = Math.round((p / 100) * totalPalavras);

@@ -286,17 +286,17 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
   <ul>
 <li class="toc-parte">PRÓLOGO</li>
 <li class="toc-parte">PARTE I</li>
-<li id="li-cap-1"><a href="#cap-1">Capítulo 1 — O Princípio que Cria</a></li>
-<li id="li-cap-2"><a href="#cap-2">Capítulo 2 — A Vibração da Palavra</a></li>
-<li id="li-cap-3"><a href="#cap-3">Capítulo 3 — O Laboratório Interior</a></li>
+<li id="li-cap-1"><a href="#cap-1">Capítulo 1 — O Princípio que Cria</a><span class="marca"></span></li>
+<li id="li-cap-2"><a href="#cap-2">Capítulo 2 — A Vibração da Palavra</a><span class="marca"></span></li>
+<li id="li-cap-3"><a href="#cap-3">Capítulo 3 — O Laboratório Interior</a><span class="marca"></span></li>
 <li class="toc-parte">PARTE II</li>
-<li id="li-cap-4"><a href="#cap-4">Capítulo 4 — Palavras para a Saúde</a></li>
-<li id="li-cap-5"><a href="#cap-5">Capítulo 5 — Palavras para a Abundância</a></li>
-<li id="li-cap-6"><a href="#cap-6">Capítulo 6 — Palavras para os Relacionamentos</a></li>
-<li id="li-cap-7"><a href="#cap-7">Capítulo 7 — Quando a Palavra Parece Falhar</a></li>
-<li id="li-cap-8"><a href="#cap-8">Capítulo 8 — A Palavra Coletiva</a></li>
-<li id="li-cap-9"><a href="#cap-9">Capítulo 9 — Transmutar Crises em Plataformas</a></li>
-<li id="li-cap-10"><a href="#cap-10">Capítulo 10 — O Ritual Diário do Verbo</a></li>
+<li id="li-cap-4"><a href="#cap-4">Capítulo 4 — Palavras para a Saúde</a><span class="marca"></span></li>
+<li id="li-cap-5"><a href="#cap-5">Capítulo 5 — Palavras para a Abundância</a><span class="marca"></span></li>
+<li id="li-cap-6"><a href="#cap-6">Capítulo 6 — Palavras para os Relacionamentos</a><span class="marca"></span></li>
+<li id="li-cap-7"><a href="#cap-7">Capítulo 7 — Quando a Palavra Parece Falhar</a><span class="marca"></span></li>
+<li id="li-cap-8"><a href="#cap-8">Capítulo 8 — A Palavra Coletiva</a><span class="marca"></span></li>
+<li id="li-cap-9"><a href="#cap-9">Capítulo 9 — Transmutar Crises em Plataformas</a><span class="marca"></span></li>
+<li id="li-cap-10"><a href="#cap-10">Capítulo 10 — O Ritual Diário do Verbo</a><span class="marca"></span></li>
 <li class="toc-parte">EPÍLOGO</li>
   </ul>
 </section>
@@ -761,8 +761,9 @@ document.addEventListener('keydown', function(e){
       var lido = window.scrollY + window.innerHeight >= fim - 30;
       var li = document.getElementById("li-" + (c.id || ("sec" + i)));
       if(li){
-        if(lido){ li.className = "lido"; li.querySelector(".marca").textContent = "✓ lido"; }
-        else{ li.className = ""; li.querySelector(".marca").textContent = ""; }
+        var marca = li.querySelector(".marca");
+        if(lido){ li.className = "lido"; if(marca){ marca.textContent = "✓ lido"; } }
+        else{ li.className = ""; if(marca){ marca.textContent = ""; } }
       }
     });
     pontos.forEach(function(pt, i){
@@ -773,7 +774,8 @@ document.addEventListener('keydown', function(e){
     var liAtual = document.getElementById("li-" + idAtual);
     if(liAtual){
       liAtual.className = "aqui";
-      if(!liAtual.querySelector(".marca").textContent){ liAtual.querySelector(".marca").textContent = "▶ aqui"; }
+      var marcaAtual = liAtual.querySelector(".marca");
+      if(marcaAtual && !marcaAtual.textContent){ marcaAtual.textContent = "▶ aqui"; }
     }
 
     var palavrasLidas = Math.round((p / 100) * totalPalavras);

@@ -213,23 +213,23 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
   <h2>Sumário</h2>
   <ul>
 <li class="toc-parte">🙌 Gratidão</li>
-<li id="li-gratidao"><a href="#gratidao">Versículos e mensagens de gratidão</a></li>
+<li id="li-gratidao"><a href="#gratidao">Versículos e mensagens de gratidão</a><span class="marca"></span></li>
 <li class="toc-parte">📂 Categorias de Afirmações</li>
-<li id="li-cat-1"><a href="#cat-1">🩺 Saúde e Cura</a></li>
-<li id="li-cat-2"><a href="#cat-2">🌿 Rejuvenescimento e Vitalidade</a></li>
-<li id="li-cat-3"><a href="#cat-3">🕊️ Paz e Emoções (ansiedade, medo)</a></li>
-<li id="li-cat-4"><a href="#cat-4">💛 Prosperidade e Provisão</a></li>
-<li id="li-cat-5"><a href="#cat-5">👑 Identidade em Cristo (quem eu sou)</a></li>
-<li id="li-cat-6"><a href="#cat-6">🛡️ Proteção e Segurança</a></li>
-<li id="li-cat-7"><a href="#cat-7">💪 Força e Superação</a></li>
-<li id="li-cat-8"><a href="#cat-8">❤️ Relacionamentos e Perdão</a></li>
+<li id="li-cat-1"><a href="#cat-1">🩺 Saúde e Cura</a><span class="marca"></span></li>
+<li id="li-cat-2"><a href="#cat-2">🌿 Rejuvenescimento e Vitalidade</a><span class="marca"></span></li>
+<li id="li-cat-3"><a href="#cat-3">🕊️ Paz e Emoções (ansiedade, medo)</a><span class="marca"></span></li>
+<li id="li-cat-4"><a href="#cat-4">💛 Prosperidade e Provisão</a><span class="marca"></span></li>
+<li id="li-cat-5"><a href="#cat-5">👑 Identidade em Cristo (quem eu sou)</a><span class="marca"></span></li>
+<li id="li-cat-6"><a href="#cat-6">🛡️ Proteção e Segurança</a><span class="marca"></span></li>
+<li id="li-cat-7"><a href="#cat-7">💪 Força e Superação</a><span class="marca"></span></li>
+<li id="li-cat-8"><a href="#cat-8">❤️ Relacionamentos e Perdão</a><span class="marca"></span></li>
 <li class="toc-parte">🙏 Orações</li>
-<li id="li-oracoes"><a href="#oracoes">Orações para o dia a dia</a></li>
+<li id="li-oracoes"><a href="#oracoes">Orações para o dia a dia</a><span class="marca"></span></li>
 <li class="toc-parte">📖 Versículos</li>
-<li id="li-versiculos"><a href="#versiculos">Versículos de declaração</a></li>
-<li id="li-como-usar"><a href="#como-usar">Como usar este guia</a></li>
+<li id="li-versiculos"><a href="#versiculos">Versículos de declaração</a><span class="marca"></span></li>
+<li id="li-como-usar"><a href="#como-usar">Como usar este guia</a><span class="marca"></span></li>
 <li class="toc-parte">🙌 Orações de Fé</li>
-<li id="li-oracoes-fe"><a href="#oracoes-fe">Orações no Nome de Jesus (toque para abrir)</a></li>
+<li id="li-oracoes-fe"><a href="#oracoes-fe">Orações no Nome de Jesus (toque para abrir)</a><span class="marca"></span></li>
   </ul>
 </section>
 
@@ -629,8 +629,9 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
       var lido = window.scrollY + window.innerHeight >= fim - 30;
       var li = document.getElementById("li-" + (c.id || ("sec" + i)));
       if(li){
-        if(lido){ li.className = "lido"; li.querySelector(".marca").textContent = "✓ lido"; }
-        else{ li.className = ""; li.querySelector(".marca").textContent = ""; }
+        var marca = li.querySelector(".marca");
+        if(lido){ li.className = "lido"; if(marca){ marca.textContent = "✓ lido"; } }
+        else{ li.className = ""; if(marca){ marca.textContent = ""; } }
       }
     });
     pontos.forEach(function(pt, i){
@@ -641,7 +642,8 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
     var liAtual = document.getElementById("li-" + idAtual);
     if(liAtual){
       liAtual.className = "aqui";
-      if(!liAtual.querySelector(".marca").textContent){ liAtual.querySelector(".marca").textContent = "▶ aqui"; }
+      var marcaAtual = liAtual.querySelector(".marca");
+      if(marcaAtual && !marcaAtual.textContent){ marcaAtual.textContent = "▶ aqui"; }
     }
 
     var palavrasLidas = Math.round((p / 100) * totalPalavras);

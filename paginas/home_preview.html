@@ -316,6 +316,19 @@
   </div>
 </div>
 
+<style>
+  #continue-lendo{max-width:50rem;margin:-34px auto 0;padding:0 1.2rem;position:relative;z-index:5}
+  .cl-cartao{display:flex;align-items:center;gap:12px;background:linear-gradient(180deg,#fffdf5,#fdf6e3);border:1px solid var(--gold);border-left:5px solid var(--gold);border-radius:12px;padding:13px 16px;text-decoration:none;color:var(--navy);box-shadow:0 10px 28px rgba(14,26,46,.22);font-family:var(--sans)}
+  .cl-cartao:hover{transform:translateY(-1px);box-shadow:0 12px 30px rgba(14,26,46,.28)}
+  .cl-icone{font-size:1.4rem;flex-shrink:0}
+  .cl-texto{flex:1;min-width:0}
+  .cl-titulo{display:block;font-weight:700;font-size:.92rem;margin-bottom:2px}
+  .cl-detalhe{display:block;font-size:.78rem;color:var(--muted)}
+  .cl-cta{background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:var(--navy);font-weight:700;font-size:.8rem;padding:9px 14px;border-radius:8px;white-space:nowrap}
+  @media (max-width:560px){.cl-cta{display:none}}
+</style>
+<div id="continue-lendo"></div>
+
 <section id="portal">
   <div class="wrap">
     <div class="section-head">
@@ -1151,6 +1164,48 @@ function quizEnviar() {
   }
   atualizar();
   setInterval(atualizar, 1000);
+})();
+</script>
+<script>
+(function(){
+  var MAPA = {
+    livro01:{url:"livrolivro01_leitor_preview.html",titulo:"O Verbo que Transforma"},
+    livro02:{url:"livrolivro02_leitor_preview.html",titulo:"A Sabedoria dos Mestres"},
+    livro03:{url:"livrolivro03_leitor_preview.html",titulo:"A Mente Renovada"},
+    livro04:{url:"livrolivro04_leitor_preview.html",titulo:"Um Segundo com Deus"},
+    livro05:{url:"livrolivro05_leitor_preview.html",titulo:"Evolução da Alma"},
+    livro06:{url:"livrolivro06_leitor_preview.html",titulo:"Jesus Quer Falar com Seu Filho"},
+    livro07:{url:"livrolivro07_leitor_preview.html",titulo:"O Caminho do Despertar"},
+    livro08:{url:"livrolivro08_leitor_preview.html",titulo:"O Arquiteto da Realidade"},
+    livro09:{url:"livrolivro09_leitor_preview.html",titulo:"Anestesia Mental"},
+    livro10:{url:"livrolivro10_leitor_preview.html",titulo:"O Despertar do Observador"},
+    livro11:{url:"livrolivro11_leitor_preview.html",titulo:"O Novo Testamento como nunca lido"},
+  };
+  function melhorProgresso(){
+    var melhor = null;
+    for (var slug in MAPA){
+      try{
+        var raw = localStorage.getItem("despertar_progresso_" + slug);
+        if(!raw){ continue; }
+        var p = JSON.parse(raw);
+        if(!p || !p.scrollY || p.scrollY <= 60){ continue; }
+        if(!melhor || (p.data || "") > (melhor.data || "")){ melhor = {slug:slug, p:p}; }
+      }catch(e){}
+    }
+    return melhor;
+  }
+  var m = melhorProgresso();
+  var el = document.getElementById("continue-lendo");
+  if(m && el){
+    var info = MAPA[m.slug];
+    var secao = (m.p.titulo || "a leitura");
+    var pct = (m.p.porcentagem || 0);
+    el.innerHTML = '<a class="cl-cartao" href="' + info.url + '">' +
+      '<span class="cl-icone">📖</span>' +
+      '<span class="cl-texto"><span class="cl-titulo">Você estava lendo: ' + info.titulo + '</span>' +
+      '<span class="cl-detalhe">' + secao + ' · posição ' + pct + '% · continue sem se perder</span></span>' +
+      '<span class="cl-cta">Continuar lendo →</span></a>';
+  }
 })();
 </script>
 </body></html>

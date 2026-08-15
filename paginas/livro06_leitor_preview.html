@@ -282,21 +282,21 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <section id="sumario">
   <h2>Sumário</h2>
   <ul>
-    <li id="li-introducao"><a href="#introducao">Apresentação</a></li>
-    <li id="li-corpo"><a href="#corpo">Jesus te ama</a></li>
+    <li id="li-introducao"><a href="#introducao">Apresentação</a><span class="marca"></span></li>
+    <li id="li-corpo"><a href="#corpo">Jesus te ama</a><span class="marca"></span></li>
     <li class="toc-parte" style="color:var(--ouro);font-weight:700;padding:.9rem .4rem .4rem;">Os 10 Mandamentos</li>
-    <li id="li-mand-1"><a href="#mand-1">1. Ame a Deus sobre todas as coisas</a></li>
-    <li id="li-mand-2"><a href="#mand-2">2. Adore somente a Deus</a></li>
-    <li id="li-mand-3"><a href="#mand-3">3. Fale o nome de Deus com respeito</a></li>
-    <li id="li-mand-4"><a href="#mand-4">4. Guarde o dia de descanso para Deus</a></li>
-    <li id="li-mand-5"><a href="#mand-5">5. Honre seu pai e sua mãe</a></li>
-    <li id="li-mand-6"><a href="#mand-6">6. Não machuque ninguém</a></li>
-    <li id="li-mand-7"><a href="#mand-7">7. Seja fiel, verdadeiro e respeite</a></li>
-    <li id="li-mand-8"><a href="#mand-8">8. Não pegue nada que não é seu</a></li>
-    <li id="li-mand-9"><a href="#mand-9">9. Não minta nem fale mal dos outros</a></li>
-    <li id="li-mand-10"><a href="#mand-10">10. Não deseje o que é dos outros</a></li>
-    <li id="li-atividades"><a href="#atividades">Atividades</a></li>
-    <li id="li-final"><a href="#final">Oração Final</a></li>
+    <li id="li-mand-1"><a href="#mand-1">1. Ame a Deus sobre todas as coisas</a><span class="marca"></span></li>
+    <li id="li-mand-2"><a href="#mand-2">2. Adore somente a Deus</a><span class="marca"></span></li>
+    <li id="li-mand-3"><a href="#mand-3">3. Fale o nome de Deus com respeito</a><span class="marca"></span></li>
+    <li id="li-mand-4"><a href="#mand-4">4. Guarde o dia de descanso para Deus</a><span class="marca"></span></li>
+    <li id="li-mand-5"><a href="#mand-5">5. Honre seu pai e sua mãe</a><span class="marca"></span></li>
+    <li id="li-mand-6"><a href="#mand-6">6. Não machuque ninguém</a><span class="marca"></span></li>
+    <li id="li-mand-7"><a href="#mand-7">7. Seja fiel, verdadeiro e respeite</a><span class="marca"></span></li>
+    <li id="li-mand-8"><a href="#mand-8">8. Não pegue nada que não é seu</a><span class="marca"></span></li>
+    <li id="li-mand-9"><a href="#mand-9">9. Não minta nem fale mal dos outros</a><span class="marca"></span></li>
+    <li id="li-mand-10"><a href="#mand-10">10. Não deseje o que é dos outros</a><span class="marca"></span></li>
+    <li id="li-atividades"><a href="#atividades">Atividades</a><span class="marca"></span></li>
+    <li id="li-final"><a href="#final">Oração Final</a><span class="marca"></span></li>
   </ul>
 </section>
 
@@ -706,8 +706,9 @@ document.addEventListener('keydown', function(e){
       var lido = window.scrollY + window.innerHeight >= fim - 30;
       var li = document.getElementById("li-" + (c.id || ("sec" + i)));
       if(li){
-        if(lido){ li.className = "lido"; li.querySelector(".marca").textContent = "✓ lido"; }
-        else{ li.className = ""; li.querySelector(".marca").textContent = ""; }
+        var marca = li.querySelector(".marca");
+        if(lido){ li.className = "lido"; if(marca){ marca.textContent = "✓ lido"; } }
+        else{ li.className = ""; if(marca){ marca.textContent = ""; } }
       }
     });
     pontos.forEach(function(pt, i){
@@ -718,7 +719,8 @@ document.addEventListener('keydown', function(e){
     var liAtual = document.getElementById("li-" + idAtual);
     if(liAtual){
       liAtual.className = "aqui";
-      if(!liAtual.querySelector(".marca").textContent){ liAtual.querySelector(".marca").textContent = "▶ aqui"; }
+      var marcaAtual = liAtual.querySelector(".marca");
+      if(marcaAtual && !marcaAtual.textContent){ marcaAtual.textContent = "▶ aqui"; }
     }
 
     var palavrasLidas = Math.round((p / 100) * totalPalavras);
