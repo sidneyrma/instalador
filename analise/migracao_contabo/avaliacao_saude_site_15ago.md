@@ -193,3 +193,24 @@ engaje sobre a leitura gratuita.
    os pop-ups ficam como estão (funcionando bem).
 
 **Aguardando o aval do autor para aplicar os itens 1 e 2.**
+
+## 10. Mudanças aprovadas e aplicadas na Home (15/08, tarde)
+
+Com o aval do autor, foram aplicadas as duas mudanças planejadas + um reforço:
+
+1. **Quiz subiu de posição**: a seção <section id="quiz"> foi movida do fim da
+   página para logo após a seção "O que é o portal" (antes de #livros). Agora
+   o visitante encontra o quiz logo no início, bem acessível. Visual mantido
+   (faixa escura de contraste navy/gold entre o portal claro e a biblioteca).
+2. **Selo do hero trocado**: "🔑 A Chave de Governo da sua mente começa aqui"
+   virou "✨ Leia de graça, continue de onde parou" — fala da leitura gratuita
+   e já apresenta o Leitor do Despertar (diferencial).
+3. **Brinde anunciado no topo do quiz**: adicionada a faixa "🎁 Ao final, o
+   E-book infantil Jesus Quer Falar com Seu Filho de presente" logo abaixo do
+   texto de abertura, para engajar o visitante a completar as 7 perguntas e
+   preencher o e-mail (FormSubmit → compraoseu.com@gmail.com; botão "Baixar
+   meu E-book grátis" → /ebooks/jesus-quer-falar.pdf).
+
+Validação: ordem das seções portal → quiz → livros → biblioteca; selo novo
+presente; brinde presente; JavaScript íntegro; HTML balanceado nas duas Homes
+(preview e produção). Zip regenerado.
