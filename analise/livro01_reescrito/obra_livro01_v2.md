@@ -50,7 +50,7 @@ Por isso, o princípio que cria não é uma técnica de manipulação do mundo, 
 
 Comece pequeno. Não tente mudar a sua vida inteira com uma declaração grandiosa. Escolha uma área, uma frase, um momento. E comece a declarar, com fé, o que deseja ver florescer. A semente que você planta hoje, com a palavra certa, é a colheita de amanhã.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, preste atenção às suas palavras, especialmente as que você diz sobre si mesmo. A cada hora, pergunte-se: o que estou declarando sobre a minha vida agora?
 
@@ -82,7 +82,7 @@ Existe também a afinação do ambiente. Uma palavra dita com irritação desafi
 
 Quando você compreende que a palavra é vibração, começa a afinar a vida diariamente. Antes de falar, pergunte-se: como está a minha afinação agora? Estou em paz, em fé, em gratidão? E afine-se: respire, solte, alinhe. Depois, fale. A palavra afinada é música; a música transforma.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, escolha três palavras que deseja semear: paz, gratidão, coragem. E pronuncie-as, ao longo do dia, sentindo cada uma. Quando disser "paz", sinta a paz. Quando disser "gratidão", sinta a gratidão. Quando disser "coragem", sinta a coragem.
 
@@ -116,7 +116,7 @@ O laboratório interior responde à constância, não à intensidade. Uma visita
 
 Comece com o que é possível. Não precisa de horas de prática. Precisa de constância: alguns minutos pela manhã, algumas pausas ao longo do dia, uma revisão à noite. O jardim responde ao jardineiro que aparece todos os dias, mesmo que por pouco tempo. E o jardineiro que aparece todos os dias, com o tempo, transforma o jardim.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, visite o seu jardim interior. Observe, sem julgamento, quais sementes você tem alimentado: pensamentos de medo ou de fé? Imagens de falta ou de abundância? Palavras de limitação ou de possibilidade?
 
@@ -154,7 +154,7 @@ A palavra de saúde também se estende aos hábitos. Não adianta declarar saúd
 
 E há a dimensão da entrega. Declarar saúde é também entregar: entregar a preocupação, entregar o controle excessivo, entregar o medo. A entrega não é abandono; é confiança. É fazer a parte humana, com cuidado e sabedoria, e confiar a parte maior, com fé. A palavra de saúde, dita com essa confiança, é uma das orações mais poderosas que existem.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, fale com o seu corpo como quem fala com um amigo querido. Abençoe-o, agradeça-lhe, declare vida e renovação.
 
@@ -188,7 +188,7 @@ A abundância também é uma circulação. O que você recebe, circula; o que ci
 
 Quando você alinha a linguagem, a gratidão e a generosidade, a abundância deixa de ser um sonho distante e se torna uma direção concreta. Não é garantia de riqueza fácil, mas é a preparação do campo para a colheita que a vida prepara para quem semeia com fé.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, pratique a linguagem da abundância. Sempre que perceber uma queixa de escassez, troque-a por uma declaração de gratidão: "sou grato pelo que tenho, e aberto ao que vem".
 
@@ -220,7 +220,7 @@ A palavra de bênção, por outro lado, tem o poder de curar e de transformar. U
 
 E a palavra que você dirige aos outros, primeiro ecoa em você. Quando abençoa, é abençoado. Quando fere, fere-se. A palavra é uma boomerangue, e o campo onde ela retorna é o seu próprio coração. Escolher palavras de bênção é escolher, ao mesmo tempo, a própria bênção.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, pratique a bênção silenciosa. Escolha uma pessoa com quem você tem dificuldade e, em silêncio, deseje-lhe o bem. Sustente bons sentimentos por ela, mesmo que por um instante.
 
@@ -256,7 +256,7 @@ E existe a falha de identidade. As palavras que você declara podem estar à fre
 
 Quando a palavra parece falhar, não desista. Examine a paciência, a direção, a identidade. E continue. A colheita não chega para quem desiste na espera, mas para quem persevera na semeadura, ajustando o arco, alimentando a raiz, confiando no processo.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, se houver uma área da sua vida onde a palavra parece não estar funcionando, faça uma auditoria honesta: o tempo está sendo respeitado? A vibração dominante está alinhada? A identidade profunda foi tocada? Há ação concreta?
 
@@ -288,7 +288,7 @@ A palavra coletiva também exige responsabilidade. Cada voz contribui para o cor
 
 Na sua casa, na sua comunidade, no seu círculo, as palavras que você oferece compõem a música do ambiente. Ofereça notas de esperança, de fé, de união. E descubra que a sua voz, somada a outras vozes alinhadas, tem um poder que a voz solitária não imagina. A palavra coletiva é a força da união, e a união é uma das maiores forças da criação.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, observe as palavras que circulam no seu ambiente: na sua casa, no seu trabalho, no seu círculo. Elas são de esperança ou de medo? De construção ou de demolição?
 
@@ -322,7 +322,7 @@ A crise também forja. A força que não é testada permanece em potencial; a fo
 
 A transmutação da crise em plataforma é a arte de transformar o fogo em forja. Não negar a dor, não fugir do desafio, não se vitimizar. Mas declarar, com fé: isto está me forjando, isto está me ensinando, isto vai me tornar mais forte. E, com a palavra certa e a ação constante, a crise, que parecia um fim, se torna o início de algo maior.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, se houver uma crise ou dificuldade na sua vida, ou na vida de alguém próximo, pratique a transmutação pela linguagem: troque uma frase de derrota por uma de travessia.
 
@@ -354,7 +354,7 @@ O ritual também cria um espaço sagrado no cotidiano. No meio da correria, das 
 
 Comece hoje. Não espere o momento perfeito, a motivação perfeita, o dia perfeito. Comece com o que tem, com o que é possível. E amanhã, repita. E depois, repita. A palavra que transforma é uma prática, e a prática é uma escolha diária. A sua vida inteira pode ser uma declaração viva, se você sustentar o ritual com constância e fé.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, inicie o seu ritual diário do verbo. Ao acordar, declare as sementes do dia. Ao longo do dia, faça pequenas pausas conscientes. Antes de dormir, agradeça e entregue.
 

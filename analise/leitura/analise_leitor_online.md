@@ -427,3 +427,27 @@ gerador tocou indevidamente nos comentários de JavaScript; o erro foi
 revertido integralmente (git checkout) e o gerador corrigido, com validação
 posterior: JavaScript íntegro em todos os 39 arquivos, HTML balanceado,
 âncoras intactas.
+
+## 18. Verificação da marcação "O Que Observar Hoje" (o que o autor viu no ar)
+
+O autor relatou ter visto "### O Que Observar Hoje" no livro 06 (na numeração
+da Home, o Livro 06 é "O Verbo que Transforma", cujo arquivo é
+site-contabo/livro01.html).
+
+Diagnóstico completo:
+
+1. **Arquivos locais (paginas/ e site-contabo/)**: já estavam purificados no
+   commit anterior (228 ocorrências de "#### O Que Observar Hoje" convertidas
+   para `<strong>O Que Observar Hoje</strong>` nos livros 01, 02, 08 e 10).
+   Nova validação: zero marcas "#" em texto puro em todos os 39 arquivos;
+   JavaScript íntegro em todos.
+2. **Site publicado (compraoseu.com)**: a versão no ar AINDA exibe a marcação,
+   porque o servidor está com um pacote anterior à purificação (o leitor já
+   está no ar, mas o conteúdo ainda tem "####"). Confirmação feita lendo a
+   página pública https://compraoseu.com/livro01 (Livro 06 da Home).
+   Solução: enviar o site-contabo.zip atualizado (regenerado nesta rodada).
+3. **Arquivos-fonte Markdown** (analise/livro01_reescrito/obra_livro01_v2.md,
+   livro02, livro08, livro10 e partes): também tinham "#### O Que Observar
+   Hoje"; convertidos para negrito markdown `**O Que Observar Hoje**`
+   (equivalentes aos <strong> das páginas), para o autor não encontrar a
+   marcação em nenhum material que leia.

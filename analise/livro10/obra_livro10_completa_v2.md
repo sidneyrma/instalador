@@ -68,7 +68,7 @@ A segunda é a jornada deste livro: aprender a observar, a compreender as leis q
 
 Se você escolheu a segunda, continue lendo. E saiba que essa escolha, por si só, já é um ato de despertar. Porque a maioria das pessoas nunca chega a perceber que existe uma escolha.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Antes de avançar, faça uma pausa. Olhe para a palma da sua mão. Observe as linhas, a textura, o movimento dos dedos. Agora lembre-se do que você acabou de ler: por baixo dessa forma aparentemente sólida, existe um campo de energia em movimento constante. A sua mão não é um objeto parado; é um processo, um fluxo, uma dança de partículas e ondas que se mantém em equilíbrio.
 
@@ -112,7 +112,7 @@ Com o tempo, essa prática se torna natural. A testemunha deixa de ser um concei
 
 A testemunha não é um estado distante e inalcançável, reservado para santos e sábios. É o que você é, o tempo todo, sob todas as camadas de ruído. O trabalho não é adquirir algo novo. O trabalho é reconhecer o que sempre esteve aí, coberto, esperando apenas que você parasse de olhar para os pensamentos e olhasse para quem os pensa.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Durante o dia de hoje, escolha um momento em que uma emoção forte aparecer. Pode ser no trânsito, numa conversa, numa notícia, numa lembrança. Quando ela surgir, não a reprima, não a julgue, não a alimente. Apenas observe. Sinta onde ela se manifesta no corpo. Note a sua intensidade. E perceba: há alguém observando essa emoção. Você é esse alguém.
 
@@ -154,7 +154,7 @@ O erro silencioso da humanidade pode ser corrigido, mas não com uma fórmula m�
 
 E essa correção começa agora, com uma decisão simples: a partir de hoje, você não é mais vítima das circunstâncias. Você é o observador que escolhe como olhar. E quando o observador muda, a realidade responde. Sempre respondeu.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Escolha uma situação que costuma tirar você do sério: o trânsito, uma fila, uma pessoa específica, um tipo de notícia. Quando ela aparecer hoje, em vez de reagir no automático, faça uma pausa e pergunte: o que está sendo refletido aqui? O que, em mim, está ecoando nessa situação?
 
@@ -201,7 +201,7 @@ O princípio do mentalismo não pede que você controle todos os pensamentos, pe
 
 Porque o universo é mental. E a sua mente é a sua parcela desse universo. Governar a mente é o primeiro ato de governo sobre a própria vida. E quem governa a mente, governa o jardim. E quem governa o jardim, colhe o que planta. Essa é a promessa, e também a responsabilidade, do mentalismo.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Durante o dia de hoje, preste atenção às suas sementes. A cada hora, faça uma pausa de alguns segundos e pergunte: o que estou plantando agora? Preocupação ou confiança? Comparação ou gratidão? Medo ou fé?
 
@@ -237,7 +237,7 @@ O espelho pode assustar, porque mostra o que muitas vezes preferimos não ver. P
 
 Quando o interno muda, o externo, cedo ou tarde, acompanha. Não porque o mundo se curve, mas porque o reflexo acompanha a imagem. Essa é a promessa da lei do espelho: você não muda o mundo lutando contra ele, mas transformando o que ele reflete. E essa transformação, ao contrário do que se poderia imaginar, começa com os menores gestos: uma escolha diferente, um pensamento substituído, uma reação observada, um silêncio cultivado.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Escolha uma pessoa ou situação que costuma despertar em você uma reação forte e desconfortável. Hoje, quando essa reação surgir, não a alimente e não a reprima. Apenas faça a pergunta do espelho: o que isso está refletindo de mim?
 
@@ -271,7 +271,7 @@ Você não atrai o que quer, você ressoa com o que é. Essa é uma das frases m
 
 Ritmo, polaridade e vibração formam um trio que ensina a arte de viver: aceitar o ciclo, abraçar os opostos, elevar a frequência. Quem domina essas três artes deixa de ser joguete das circunstâncias e começa a dançar com a vida, em vez de ser arrastado por ela. E dançar com a vida, ao contrário do que se poderia pensar, não é fugir dos ritmos difíceis. É confiar neles, atravessá-los com consciência, e descobrir que cada fase do ciclo tem o seu presente, se você souber recebê-lo.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Observe os ritmos do seu dia. Note como a energia sobe e desce, como há momentos de clareza e momentos de névoa, momentos de atividade e momentos de cansaço. Em vez de lutar contra os momentos baixos, respeite-os. Quando a energia estiver baixa, descanse. Quando estiver alta, construa.
 
@@ -305,7 +305,7 @@ Pensamento, palavra e ação formam a tríade da criação. O pensamento concebe
 
 A diferença entre o criador consciente e o criador inconsciente não é talento, não é sorte, não é privilégio. É consciência. É saber que você está sempre criando, e escolher, conscientemente, o que criar. É perceber que cada pensamento é uma semente, cada palavra é uma mão que planta, cada ação é uma colheita, e que você é, ao mesmo tempo, o jardineiro, o campo e a colheita.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, preste atenção às suas palavras, especialmente as que você diz sobre si mesmo. Cada vez que perceber uma frase negativa, uma queixa, um decreto de limitação, faça uma pausa e reformule-a conscientemente. Não em negação, mas em direção. Em vez de não consigo, diga vou tentar de outro jeito. Em vez de isso nunca funciona para mim, diga estou aprendendo o que funciona.
 
@@ -343,7 +343,7 @@ Há uma prática simples para começar a cooperar conscientemente com o campo: a
 
 O campo invisível não é uma teoria distante, é a sua realidade cotidiana. Você está imerso nele como o peixe está imerso na água, sem perceber a água porque nunca esteve fora dela. Mas quando começa a perceber, quando começa a cooperar, quando começa a alinhar, a vida ganha uma nova dimensão. Não porque o campo mude, mas porque você aprendeu a navegar nele.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Observe o seu diálogo silencioso com o campo. Ao longo do dia, note o que você transmite: preocupação, gratidão, medo, confiança, queixa, louvor? Não julgue, apenas observe, como quem sintoniza um rádio e verifica a estação.
 
@@ -386,7 +386,7 @@ Esse conhecimento progressivo é um dos caminhos mais antigos do despertar. Ele 
 
 Quando você conhece as cinco camadas, a vida ganha uma nova profundidade. As dores do corpo não são mais a sua história completa; são experiências que a testemunha atravessa. As tempestades da mente não são mais o seu destino; são climas que passam. As emoções não são mais o seu senhor; são mensageiras que informam. Você aprende a navegar entre as camadas, a usar cada uma com sabedoria, e a descansar, quando precisa, na camada mais profunda, onde tudo é silêncio e paz, e de onde a vida, vista de verdade, faz sentido.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, faça um exercício de descida pelas camadas. Em um momento de silêncio, observe primeiro o corpo: sinta o peso na cadeira, a temperatura da pele, o ritmo do coração. Depois observe a respiração: o ar entrando e saindo, o fluxo constante. Depois observe a mente: os pensamentos chegando e partindo, sem segui-los. Depois observe a intuição, a sensação de saber algo sem saber como sabe. E finalmente, descanse no silêncio que resta, quando todas as camadas se aquietam.
 
@@ -420,7 +420,7 @@ No caminho do despertar, a respiração é companheira constante, sempre dispon�
 
 E quando você aprende a respirar com consciência, descobre que a respiração não é apenas uma função biológica. É uma oração sem palavras, uma meditação em movimento, uma presença contínua. Cada respiração consciente é um retorno ao centro, um lembrete de que você está vivo, um reconhecimento de que o presente é o único lugar onde a vida acontece. E é nesse presente, ancorado pela respiração, que todo o resto deste livro encontra o seu chão.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, em três momentos diferentes do dia, pare e pratique o ritmo de quatro tempos: inspire contando até quatro, segure contando até quatro, expire contando até quatro, permaneça vazio contando até quatro. Repita cinco vezes em cada momento.
 
@@ -450,7 +450,7 @@ As sete irradiações são o alfabeto da alma. Conhecê-las é aprender a ler a 
 
 Existe uma prática para descobrir a sua estrutura predominante: a observação do que alimenta ou esvazia você. Observe as atividades que realizou ao longo da vida, os momentos em que se sentiu profundamente realizado e os momentos em que se sentiu esvaziado. O que estava fazendo? Que tipo de atividade? As respostas revelam a sua estrutura. Se a oração e a comunhão alimentam você, sua alma é congregadora. Se aprender e ensinar alimentam, é expansora. Se criar e inovar alimentam, é geradora. Se organizar e ordenar alimentam, é direcionadora. Se a sua atividade atual esvazia você, talvez seja hora de olhar com honestidade para a sua estrutura e encontrar o seu lugar no jardim.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, reflita sobre as atividades que alimentam a sua alma e as que a esvaziam. Faça uma lista mental: o que me faz sentir vivo? O que me faz sentir drenado?
 
@@ -484,7 +484,7 @@ Quando o fogo interior é bem usado, ele se torna o motor da libertação. Cada 
 
 O fogo interior é também a resposta à pergunta de como transformar conhecimento em vida. De nada adianta saber as leis descritas neste livro se não houver o fogo que as transforma em prática. O conhecimento sem prática é entretenimento intelectual, é poeira que se acumula. O conhecimento com prática é alquimia, é ouro que se revela. E o fogo que faz essa transformação é a disciplina, a constância, a disposição de aplicar, dia após dia, o que se aprendeu.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, escolha uma pequena prática de disciplina, algo simples que você possa sustentar: cinco minutos de silêncio, uma caminhada, um hábito saudável, uma palavra a menos de reclamação, um compromisso mantido.
 
@@ -522,7 +522,7 @@ O que qualifica um ouvinte não é o intelecto, é a disposição. O mesmo ensin
 
 Desejo, renúncia e escuta formam uma tríade de amadurecimento, três passos de uma mesma dança. O desejo mostra a direção, como o farol mostra o porto. A renúncia liberta o centro, como o mergulhador solta o lastro para subir. E a escuta recebe o que é essencial, como a terra aberta recebe a semente. Quem percorre esses três passos, quem dança essa dança, descobre que nada precisava ser acrescentado. Tudo precisava ser reconhecido. E o que precisava ser reconhecido nunca esteve longe.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, observe os seus desejos com olhos novos. Quando um desejo surgir, não o reprima e não o persiga cegamente. Apenas pergunte: o que estou realmente procurando por trás disso? Qual é a necessidade mais profunda que esse desejo aponta?
 
@@ -556,7 +556,7 @@ A chave mestra pede uma decisão: tomar posse do próprio sentir. Observar quais
 
 Quando a emoção é governada, tudo o mais começa a se alinhar. O pensamento encontra a força para se materializar. A palavra encontra o peso para se cumprir. A ação encontra a energia para se sustentar. E a vida, que parecia resistir, começa a cooperar, porque a chave mestra finalmente girou na fechadura certa.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, quando uma emoção forte surgir, pratique a observação sem resistência. Não a reprima, não a alimente. Apenas observe: onde ela está no corpo? Que forma tem? Que mensagem carrega?
 
@@ -588,7 +588,7 @@ O silêncio criador é a porta de entrada para a camada mais profunda do ser, a 
 
 E quando você descobre o silêncio criador, descobre também que ele está sempre disponível, a qualquer hora, em qualquer lugar. No trânsito, na fila, no intervalo, na noite sem sono. Cada momento de espera pode ser um momento de silêncio, cada pausa pode ser uma porta. E cada porta aberta para o silêncio é uma porta aberta para a criação, para a intuição, para a paz, para você mesmo.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, reserve três momentos de silêncio, de um a três minutos cada. Pode ser ao acordar, no meio do dia, antes de dormir. Sem celular, sem música, sem distrações. Apenas sente, respire e observe.
 
@@ -620,7 +620,7 @@ Cultivar o alinhamento é um exercício diário, uma prática constante de retor
 
 Existe uma prática simples de alinhamento matinal que pode transformar o seu dia: antes de se levantar, ou durante o café, feche os olhos e pergunte-se: o que eu quero viver hoje? Sinta a resposta, não apenas pense nela. Depois pergunte-se: o que eu sinto em relação a isso? Seja honesto, mesmo que a resposta seja medo ou dúvida. E depois pergunte-se: qual é o primeiro passo, o menor passo, que eu posso dar hoje nessa direção? Sinta esse passo, pense nele, comprometa-se com ele. Essa tríade, querer, sentir, agir, alinhada de manhã, é uma semente poderosa para o dia inteiro.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, observe os seus sinais de desalinhamento. Cada vez que sentir irritação, tédio, cansaço sem causa ou procrastinação, faça uma pausa e pergunte: o que está desalinhado agora? O que eu estou pensando, sentindo ou fazendo que não está em harmonia?
 
@@ -652,7 +652,7 @@ Quando o observador muda, a realidade responde. Sempre respondeu. O novo operado
 
 O novo operador não é perfeito. Ele falha, aprende, recomeça, cai, levanta, se desalinha, se realinha. Mas cada recomeço é mais rápido, cada queda é mais leve, cada retorno é mais consciente, cada erro é mais fecundo. E é essa constância, mais do que qualquer perfeição, que o torna um criador: a disposição de continuar, de afinar, de se alinhar, de praticar, de silenciar, de escolher, até que a vida, que sempre ecoou o seu interior, passe a ecoar a sua verdade, e a sua verdade, finalmente, seja a sua vida.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, reconheça o operador que existe em você. Em cada escolha, por menor que seja, lembre-se: você pode reagir ou pode responder, pode sofrer ou pode aprender, pode ser levado ou pode escolher.
 

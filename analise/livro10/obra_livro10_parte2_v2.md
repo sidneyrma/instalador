@@ -40,7 +40,7 @@ O princípio do mentalismo não pede que você controle todos os pensamentos, pe
 
 Porque o universo é mental. E a sua mente é a sua parcela desse universo. Governar a mente é o primeiro ato de governo sobre a própria vida. E quem governa a mente, governa o jardim. E quem governa o jardim, colhe o que planta. Essa é a promessa, e também a responsabilidade, do mentalismo.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Durante o dia de hoje, preste atenção às suas sementes. A cada hora, faça uma pausa de alguns segundos e pergunte: o que estou plantando agora? Preocupação ou confiança? Comparação ou gratidão? Medo ou fé?
 
@@ -76,7 +76,7 @@ O espelho pode assustar, porque mostra o que muitas vezes preferimos não ver. P
 
 Quando o interno muda, o externo, cedo ou tarde, acompanha. Não porque o mundo se curve, mas porque o reflexo acompanha a imagem. Essa é a promessa da lei do espelho: você não muda o mundo lutando contra ele, mas transformando o que ele reflete. E essa transformação, ao contrário do que se poderia imaginar, começa com os menores gestos: uma escolha diferente, um pensamento substituído, uma reação observada, um silêncio cultivado.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Escolha uma pessoa ou situação que costuma despertar em você uma reação forte e desconfortável. Hoje, quando essa reação surgir, não a alimente e não a reprima. Apenas faça a pergunta do espelho: o que isso está refletindo de mim?
 
@@ -110,7 +110,7 @@ Você não atrai o que quer, você ressoa com o que é. Essa é uma das frases m
 
 Ritmo, polaridade e vibração formam um trio que ensina a arte de viver: aceitar o ciclo, abraçar os opostos, elevar a frequência. Quem domina essas três artes deixa de ser joguete das circunstâncias e começa a dançar com a vida, em vez de ser arrastado por ela. E dançar com a vida, ao contrário do que se poderia pensar, não é fugir dos ritmos difíceis. É confiar neles, atravessá-los com consciência, e descobrir que cada fase do ciclo tem o seu presente, se você souber recebê-lo.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Observe os ritmos do seu dia. Note como a energia sobe e desce, como há momentos de clareza e momentos de névoa, momentos de atividade e momentos de cansaço. Em vez de lutar contra os momentos baixos, respeite-os. Quando a energia estiver baixa, descanse. Quando estiver alta, construa.
 
@@ -144,7 +144,7 @@ Pensamento, palavra e ação formam a tríade da criação. O pensamento concebe
 
 A diferença entre o criador consciente e o criador inconsciente não é talento, não é sorte, não é privilégio. É consciência. É saber que você está sempre criando, e escolher, conscientemente, o que criar. É perceber que cada pensamento é uma semente, cada palavra é uma mão que planta, cada ação é uma colheita, e que você é, ao mesmo tempo, o jardineiro, o campo e a colheita.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, preste atenção às suas palavras, especialmente as que você diz sobre si mesmo. Cada vez que perceber uma frase negativa, uma queixa, um decreto de limitação, faça uma pausa e reformule-a conscientemente. Não em negação, mas em direção. Em vez de não consigo, diga vou tentar de outro jeito. Em vez de isso nunca funciona para mim, diga estou aprendendo o que funciona.
 
@@ -182,7 +182,7 @@ Há uma prática simples para começar a cooperar conscientemente com o campo: a
 
 O campo invisível não é uma teoria distante, é a sua realidade cotidiana. Você está imerso nele como o peixe está imerso na água, sem perceber a água porque nunca esteve fora dela. Mas quando começa a perceber, quando começa a cooperar, quando começa a alinhar, a vida ganha uma nova dimensão. Não porque o campo mude, mas porque você aprendeu a navegar nele.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Observe o seu diálogo silencioso com o campo. Ao longo do dia, note o que você transmite: preocupação, gratidão, medo, confiança, queixa, louvor? Não julgue, apenas observe, como quem sintoniza um rádio e verifica a estação.
 

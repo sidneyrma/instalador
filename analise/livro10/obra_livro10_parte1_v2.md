@@ -68,7 +68,7 @@ A segunda é a jornada deste livro: aprender a observar, a compreender as leis q
 
 Se você escolheu a segunda, continue lendo. E saiba que essa escolha, por si só, já é um ato de despertar. Porque a maioria das pessoas nunca chega a perceber que existe uma escolha.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Antes de avançar, faça uma pausa. Olhe para a palma da sua mão. Observe as linhas, a textura, o movimento dos dedos. Agora lembre-se do que você acabou de ler: por baixo dessa forma aparentemente sólida, existe um campo de energia em movimento constante. A sua mão não é um objeto parado; é um processo, um fluxo, uma dança de partículas e ondas que se mantém em equilíbrio.
 
@@ -112,7 +112,7 @@ Com o tempo, essa prática se torna natural. A testemunha deixa de ser um concei
 
 A testemunha não é um estado distante e inalcançável, reservado para santos e sábios. É o que você é, o tempo todo, sob todas as camadas de ruído. O trabalho não é adquirir algo novo. O trabalho é reconhecer o que sempre esteve aí, coberto, esperando apenas que você parasse de olhar para os pensamentos e olhasse para quem os pensa.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Durante o dia de hoje, escolha um momento em que uma emoção forte aparecer. Pode ser no trânsito, numa conversa, numa notícia, numa lembrança. Quando ela surgir, não a reprima, não a julgue, não a alimente. Apenas observe. Sinta onde ela se manifesta no corpo. Note a sua intensidade. E perceba: há alguém observando essa emoção. Você é esse alguém.
 
@@ -154,7 +154,7 @@ O erro silencioso da humanidade pode ser corrigido, mas não com uma fórmula m�
 
 E essa correção começa agora, com uma decisão simples: a partir de hoje, você não é mais vítima das circunstâncias. Você é o observador que escolhe como olhar. E quando o observador muda, a realidade responde. Sempre respondeu.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Escolha uma situação que costuma tirar você do sério: o trânsito, uma fila, uma pessoa específica, um tipo de notícia. Quando ela aparecer hoje, em vez de reagir no automático, faça uma pausa e pergunte: o que está sendo refletido aqui? O que, em mim, está ecoando nessa situação?
 

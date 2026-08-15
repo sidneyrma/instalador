@@ -54,7 +54,7 @@ Por isso, ao iniciar esta jornada, faça um compromisso consigo mesmo: o comprom
 
 O silêncio não é vazio. É plenitude em repouso. E é dele que nasce toda sabedoria.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Escolha um momento de silêncio hoje, ainda que breve. Sem celular, sem música, sem distrações. Sente-se confortavelmente, respire fundo e simplesmente observe. Observe os seus pensamentos passando, sem segui-los. Observe a sua respiração, sem forçá-la. Observe o espaço ao seu redor, sem julgá-lo.
 
@@ -92,7 +92,7 @@ Essa audição não é para gerar culpa, mas para gerar consciência. E a consci
 
 O código das vibrações não é uma sentença, é um convite. O convite a se tornar o compositor da própria vida, em vez de apenas ecoar as músicas alheias. E a composição começa com uma nota: a nota da sua próxima escolha.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, preste atenção à sua vibração. A cada poucas horas, pergunte-se: que frequência estou sustentando agora? Medo ou confiança? Escassez ou gratidão? Pressa ou paz?
 
@@ -130,7 +130,7 @@ A linguagem do universo também fala através do corpo. A tensão que surge sem 
 
 E, no fim, a linguagem mais alta do universo é o amor. O amor que atrai, que cura, que conecta, que revela. Quando você ama o que faz, as portas se abrem. Quando ama as pessoas, os encontros se multiplicam. Quando ama a verdade, a verdade se mostra. O amor é a língua materna do universo, e quem a fala, é compreendido em toda parte.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, pratique a atenção aos sinais. Ao longo do dia, observe as coincidências, os padrões, as mensagens que parecem chegar no momento certo. Não force interpretações, apenas note.
 
@@ -168,7 +168,7 @@ A geometria das emoções também se manifesta no corpo. A raiva contrai os ombr
 
 Quando você compreende que a emoção tem forma e direção, deixa de ser governado por ela e passa a governá-la. Não por repressão, mas por canalização. E o mundo, que responde à forma da sua energia, começa a refletir os desenhos mais belos.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, quando uma emoção forte surgir, pratique a observação: onde ela está no corpo? Que forma tem? Que movimento? Apenas observe, sem julgar.
 
@@ -208,7 +208,7 @@ Os três portais também se aplicam às pequenas coisas. Você observa o que com
 
 Quando os três portais se tornam hábito, a transformação deixa de ser um evento e se torna um modo de vida. Você não espera mais a grande oportunidade, a grande virada, o grande momento. Você cria, a cada dia, com pequenos passos alinhados, a vida que deseja viver. E, um dia, olha para trás e percebe que a montanha foi atravessada, uma formiga de cada vez.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, atravesse os três portais em pequena escala. Escolha uma área da sua vida que deseja transformar. Observe: o que está acontecendo nessa área, sem julgamento? Direcione: o que eu quero de verdade para ela? Aja: qual é o menor passo alinhado que posso dar hoje?
 
@@ -244,7 +244,7 @@ E existe a palavra não dita que se torna oração. A oração silenciosa, suste
 
 Quando você domina a palavra não dita, as suas palavras ditas ganham mais peso. Quem fala pouco e sustenta muito, é ouvido com mais atenção. Quem silencia com sabedoria, quando fala, fala ao coração. E quem aprende a ouvir o silêncio, descobre que ele nunca esteve vazio: estava cheio de mensagens esperando um ouvinte.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, pratique a palavra não dita. Escolha uma intenção positiva para alguém, e sustente-a em silêncio, com o coração. Pode ser uma pessoa próxima ou alguém que você nem conhece bem. Pense com amor, visualize com clareza, libere com confiança. Não diga nada em voz alta.
 
@@ -282,7 +282,7 @@ A quarta lei esquecida é a do tempo fértil. Tudo tem o seu tempo, e o tempo n�
 
 E a quinta lei esquecida é a da gratidão antecipada. Agradecer antes de receber é declarar confiança. Agradecer depois de receber é confirmar presença. A gratidão é o selo que autentica a manifestação, porque alinha a vibração com o recebimento. Quem agradece, abre a mão; quem exige, fecha o punho. E a vida só entrega a quem tem a mão aberta.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, escolha um desejo sincero e pratique a primeira lei: sustente-o com gratidão, como se já estivesse em movimento. Não peça com urgência; declare com confiança. Sinta a gratidão, não apenas pense nela.
 
@@ -318,7 +318,7 @@ Redescobrir o mapa não é um luxo; é uma necessidade. Porque a alma desalinhad
 
 Se você sente que algo está errado, que a vida está pesada, que o trabalho não faz sentido, talvez não seja você o problema. Talvez seja o lugar. E a boa notícia é que o lugar pode ser mudado. A árvore pode ser transplantada. O mapa pode ser relido. A jornada pode ser retomada, na direção da clareira.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, faça três perguntas ao seu coração: o que me faz vibrar? O que as minhas dores me ensinaram? Como posso servir com o que tenho de mais autêntico?
 
@@ -352,7 +352,7 @@ Existe também o espelho positivo, que é o mais generoso. As pessoas que você 
 
 E o espelho final é a própria vida. As situações que se repetem, os padrões que retornam, as lições que insistem, são espelhos que refletem o que ainda não foi integrado. Quando a lição é aprendida, o espelho muda; quando o padrão é transformado, a situação se dissolve. A vida é um espelho infinito, e a jornada do despertar é a arte de aprender a ler o que ele reflete.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, escolha uma pessoa ou situação que costuma despertar em você uma reação forte. Quando a reação surgir, em vez de reagir no automático, faça a pergunta do espelho: o que isso reflete de mim?
 
@@ -392,7 +392,7 @@ O retorno não é um evento único; é um lembrete diário. Um sussurro gentil q
 
 Este livro termina aqui, mas a jornada continua. A chave está em suas mãos. A porta está à sua frente. E o mestre, que sempre esteve dentro, aguarda o seu reconhecimento. Vá. Abra a porta. E viva a vida que a sua alma veio viver.
 
-#### O Que Observar Hoje
+**O Que Observar Hoje**
 
 Hoje, pratique o retorno. Em cada momento de escolha, lembre-se: você pode reagir ou pode responder, pode repetir ou pode escolher, pode se afogar ou pode observar.
 
