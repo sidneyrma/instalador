@@ -66,7 +66,14 @@ JS_TEMPLATE = """<script>
     }
     return melhor;
   }
-  var m = melhorProgresso();
+  var fechado = false;
+  try{
+    var fechouEm = parseInt(localStorage.getItem("despertar_continue_fechado"), 10);
+    if(fechouEm && Date.now() - fechouEm < 7 * 24 * 60 * 60 * 1000){
+      fechado = true; // fechou há menos de 7 dias: não incomoda de novo
+    }
+  }catch(e){}
+  var m = fechado ? null : melhorProgresso();
   var el = document.getElementById("continue-lendo");
   if(m && el){
     var info = MAPA[m.slug];
@@ -84,7 +91,10 @@ JS_TEMPLATE = """<script>
       fechar.addEventListener("click", function(){
         var c = document.getElementById("continue-lendo");
         if(c){ c.style.display = "none"; }
-        try{ localStorage.setItem("despertar_continue_fechado", "1"); }catch(e){}
+        // Fechar esconde por 7 dias; depois volta a sugerir (a menos que o
+        // livro esteja terminado). Assim o leitor não é incomodado agora,
+        // mas também não perde a lembrança para sempre.
+        try{ localStorage.setItem("despertar_continue_fechado", String(Date.now())); }catch(e){}
       });
     }
   }

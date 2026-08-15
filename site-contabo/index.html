@@ -1284,7 +1284,12 @@ function quizEnviar() {
     return melhor;
   }
   var fechado = false;
-  try{ fechado = localStorage.getItem("despertar_continue_fechado") === "1"; }catch(e){}
+  try{
+    var fechouEm = parseInt(localStorage.getItem("despertar_continue_fechado"), 10);
+    if(fechouEm && Date.now() - fechouEm < 7 * 24 * 60 * 60 * 1000){
+      fechado = true;
+    }
+  }catch(e){}
   var m = fechado ? null : melhorProgresso();
   var el = document.getElementById("continue-lendo");
   if(m && el){
@@ -1304,7 +1309,7 @@ function quizEnviar() {
       fecharBtn.addEventListener("click", function(){
         var c = document.getElementById("continue-lendo");
         if(c){ c.style.display = "none"; }
-        try{ localStorage.setItem("despertar_continue_fechado", "1"); }catch(e){}
+        try{ localStorage.setItem("despertar_continue_fechado", String(Date.now())); }catch(e){}
       });
     }
   }
