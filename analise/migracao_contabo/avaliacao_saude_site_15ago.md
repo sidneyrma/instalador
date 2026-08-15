@@ -272,3 +272,27 @@ Por isso o clique não fazia nada.
 Validação: bloco errado ausente do countdown, listener presente no script do
 MAPA, proteção 99% presente, JS íntegro, margem nova, nas duas Homes.
 Zip regenerado.
+
+## 13. Melhoria final: fechar esconde por 7 dias (e depois volta a sugerir)
+
+Respondendo à pergunta do autor ("se fechar, na próxima vez que entrar não
+será lembrado? precisaria limpar os dados?"), foi aplicada a melhoria:
+
+- Ao clicar no ✕, o cartão guarda um **timestamp** (não mais "1" fixo) em
+  "despertar_continue_fechado".
+- Ao abrir a Home: se fechou há **menos de 7 dias**, o cartão não aparece
+  (respeita quem não quer ver agora). Se já passaram **7 dias** e ainda existe
+  leitura em andamento, o cartão **volta a aparecer** (o leitor não perde a
+  lembrança para sempre, sem precisar limpar os dados do navegador).
+- Livro terminado (progresso >= 99%): o progresso é limpo e o cartão **nunca
+  mais** sugere aquele livro (não faz sentido sugerir livro já concluído).
+
+**Opinião do agente sobre "manter ✕ vs notificação no topo (estilo GSC)":**
+- RECOMENDAÇÃO: **manter o ✕**. O cartão já funciona como a notificação no
+  topo (fica discreto logo abaixo do menu, como o banner do Google Search
+  Console), mas com aparência mais acolhedora e a opção de dispensar. Sem o
+  ✕, o leitor ficaria "preso" à sugestão sem poder fechá-la, o que incomoda.
+- O equilíbrio ideal é exatamente o implementado: pode fechar (respeito) e
+  volta depois de 7 dias se ainda houver leitura (não perde o leitor).
+
+Validação: JS íntegro nas duas Homes; zip regenerado (commit 67f8230).
