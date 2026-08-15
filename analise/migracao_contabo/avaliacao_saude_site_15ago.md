@@ -126,3 +126,29 @@ avaliação foi feita com essa verdade, para que o senhor decida com clareza.
    as correções e vai confirmar se as páginas agora respondem 200. Pode levar
    alguns dias; nenhuma ação é necessária. Quando concluir, o GSC enviará
    mensagem. Continuar as inspeções diárias normalmente.
+
+## 8. BUG CRÍTICO CORRIGIDO — links "livrolivroXX" (15/08, urgência)
+
+**Problema:** o balão "Continue lendo" da Home estava montando links
+duplicados (`/livrolivro05`, `/livrolivro06`, `/livrolivro09`...) levando a
+páginas 404.
+
+**Causa:** no gerador `adicionar_continue_lendo.py`, o `url_fmt` já continha
+"livro" (`/livro%s`) e o slug também era "livroXX" (`livro05`), resultando em
+`/livrolivro05`.
+
+**Correção aplicada:**
+1. Gerador corrigido: `url_fmt % slug[5:]` (usa só o número).
+2. Links corrigidos nas duas Homes: `/livrolivroXX` → `/livroXX` e
+   `livrolivroXX_leitor_preview.html` → `livroXX_leitor_preview.html`.
+3. Validação: nenhuma ocorrência de "livrolivro" em site-contabo/ e paginas/;
+   JavaScript íntegro nas duas Homes.
+4. Botão de fechar (✕) adicionado ao cartão "Continue lendo": o leitor pode
+   fechar a sugestão se não quiser ir naquele momento; fica guardado
+   (localStorage "despertar_continue_fechado") para não reaparecer.
+5. Estrutura do cartão reajustada: container div + link interno + botão de
+   fechar, com CSS atualizado (cl-cartao-link e cl-fechar).
+
+**Atenção:** os leitores que já têm o progresso salvo no navegador terão o
+cartão corrigido ao recarregar a página; os links antigos (404) não ficam
+gravados em lugar nenhum, apenas eram montados em tempo de execução.

@@ -31,13 +31,16 @@ TITULOS = {
 
 CSS = """
   #continue-lendo{max-width:50rem;margin:-34px auto 0;padding:0 1.2rem;position:relative;z-index:5}
-  .cl-cartao{display:flex;align-items:center;gap:12px;background:linear-gradient(180deg,#fffdf5,#fdf6e3);border:1px solid var(--gold);border-left:5px solid var(--gold);border-radius:12px;padding:13px 16px;text-decoration:none;color:var(--navy);box-shadow:0 10px 28px rgba(14,26,46,.22);font-family:var(--sans)}
+  .cl-cartao{display:flex;align-items:center;gap:12px;background:linear-gradient(180deg,#fffdf5,#fdf6e3);border:1px solid var(--gold);border-left:5px solid var(--gold);border-radius:12px;padding:8px 10px 8px 16px;color:var(--navy);box-shadow:0 10px 28px rgba(14,26,46,.22);font-family:var(--sans)}
   .cl-cartao:hover{transform:translateY(-1px);box-shadow:0 12px 30px rgba(14,26,46,.28)}
+  .cl-cartao-link{display:flex;align-items:center;gap:12px;flex:1;min-width:0;text-decoration:none;color:inherit}
   .cl-icone{font-size:1.4rem;flex-shrink:0}
   .cl-texto{flex:1;min-width:0}
   .cl-titulo{display:block;font-weight:700;font-size:.92rem;margin-bottom:2px}
   .cl-detalhe{display:block;font-size:.78rem;color:var(--muted)}
   .cl-cta{background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:var(--navy);font-weight:700;font-size:.8rem;padding:9px 14px;border-radius:8px;white-space:nowrap}
+  .cl-fechar{background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;line-height:1;padding:6px;flex-shrink:0}
+  .cl-fechar:hover{color:var(--gold-dark)}
   @media (max-width:560px){.cl-cta{display:none}}
 """
 
@@ -64,11 +67,21 @@ JS_TEMPLATE = """<script>
     var info = MAPA[m.slug];
     var secao = (m.p.titulo || "a leitura");
     var pct = (m.p.porcentagem || 0);
-    el.innerHTML = '<a class="cl-cartao" href="' + info.url + '">' +
+    el.innerHTML = '<div class="cl-cartao">' +
+      '<a class="cl-cartao-link" href="' + info.url + '">' +
       '<span class="cl-icone">📖</span>' +
       '<span class="cl-texto"><span class="cl-titulo">Você estava lendo: ' + info.titulo + '</span>' +
       '<span class="cl-detalhe">' + secao + ' · posição ' + pct + '% · continue sem se perder</span></span>' +
-      '<span class="cl-cta">Continuar lendo →</span></a>';
+      '<span class="cl-cta">Continuar lendo →</span></a>' +
+      '<button class="cl-fechar" id="cl-fechar" aria-label="Fechar sugestão" title="Fechar">✕</button></div>';
+    var fechar = document.getElementById("cl-fechar");
+    if(fechar){
+      fechar.addEventListener("click", function(){
+        var c = document.getElementById("continue-lendo");
+        if(c){ c.style.display = "none"; }
+        try{ localStorage.setItem("despertar_continue_fechado", "1"); }catch(e){}
+      });
+    }
   }
 })();
 </script>
@@ -85,7 +98,8 @@ def aplicar(arquivo, url_fmt):
     assert '<section id="portal">' in html, "portal não encontrado em " + arquivo.name
     html = html.replace('<section id="portal">', bloco + '<section id="portal">', 1)
     # 2. JS antes de </body>
-    entradas = "".join('    %s:{url:"%s",titulo:"%s"},\n' % (slug, url_fmt % slug, TITULOS[slug]) for slug in TITULOS)
+    # slug já é "livroXX"; o formato deve receber só o número (ex.: "05")
+    entradas = "".join('    %s:{url:"%s",titulo:"%s"},\n' % (slug, url_fmt % slug[5:], TITULOS[slug]) for slug in TITULOS)
     js = JS_TEMPLATE.replace("%%ENTRADAS%%", entradas)
     assert "</body>" in html, "sem </body> em " + arquivo.name
     html = html.replace("</body>", js + "</body>", 1)
