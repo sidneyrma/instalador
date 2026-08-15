@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Gera a página HTML do Guia de Afirmações 'EU SOU', organizado por categorias
-(saúde, rejuvenescimento, paz, prosperidade, identidade, proteção, força,
-relacionamentos) + orações + versículos. Mesmo padrão de navegação do Livro 11.
+Gera a página HTML do livro 'Comece o dia com Afirmações, Declarações e Orações'.
+Inclui: gratidão, 8 categorias de afirmações, orações do dia, orações de fé e versículos.
 """
 import re, html
 from pathlib import Path
@@ -10,110 +9,91 @@ from pathlib import Path
 ROOT = Path('/home/user/instalador')
 OUT = ROOT / 'paginas' / 'livro_afirmacoes_preview.html'
 
-TITULO = 'Guia de Afirmações, Declarações e Orações'
-SUBTITULO = 'As palavras poderosas do eu interior na natureza de Deus'
+TITULO = 'Comece o dia com Afirmações, Declarações e Orações'
+SUBTITULO = 'Versículos, gratidão, afirmações e orações para fortalecer a sua fé'
 
 def esc(t):
     return html.escape(t, quote=False)
 
-def slugify(txt):
-    s = re.sub(r'[^a-z0-9]+', '-', txt.lower()).strip('-')
-    return s[:60] or 'secao'
+GRATIDAO = [
+    'Em tudo dai graças, porque esta é a vontade de Deus em Cristo Jesus para convosco. (1 Tessalonicenses 5:18)',
+    'Bendize, ó minha alma, ao Senhor, e não te esqueças de nenhum dos seus benefícios. Ele perdoa todas as tuas iniquidades e sara todas as tuas enfermidades. (Salmo 103:2-3)',
+    'Entrai pelas portas dele com gratidão e nos seus átrios com louvor; louvai-o e bendizei o seu nome. (Salmo 100:4)',
+    'Toda a boa dádiva e todo o dom perfeito vem do alto, descendo do Pai das luzes. (Tiago 1:17)',
+    'Obrigado, Senhor, pelo dom da vida, pelo ar que respiro, pelo pão de cada dia e pelo teu amor que nunca falha.',
+    'Obrigado, Senhor, porque até nas dificuldades tu estás comigo, e todas as coisas cooperam para o meu bem. (Romanos 8:28)',
+    'Obrigado, Pai, pela família, pelos amigos e pelas pessoas que colocas no meu caminho como bênção.',
+    'Comece o dia agradecendo. A gratidão abre as portas do céu e transforma o coração.',
+]
 
-# ============ CATEGORIAS (organizadas por tema) ============
 CATEGORIAS = [
-    {
-        'titulo': 'Saúde e Cura',
-        'icone': '🩺',
-        'afirmacoes': [
-            'Eu sou curado pelas feridas de Jesus. (Isaías 53:5)',
-            'Eu sou templo do Espírito Santo, e a vida de Deus flui em mim. (1 Coríntios 6:19)',
-            'Eu sou renovado em saúde, porque o Senhor é o meu médico.',
-            'Eu sou forte, resiliente e capaz de superar qualquer desafio.',
-            'Senhor, tu és o médico de minha alma e de meu corpo. Renova minha mente e sara minhas emoções.',
-        ],
-    },
-    {
-        'titulo': 'Rejuvenescimento e Vitalidade',
-        'icone': '🌿',
-        'afirmacoes': [
-            'Eu sou renovado como a águia, e as minhas forças se renovam. (Isaías 40:31)',
-            'Eu sou nova criatura em Cristo, e cada dia a minha vitalidade é renovada. (2 Coríntios 5:17)',
-            'Eu sou cheio de vida, porque o Espírito que habita em mim é vida.',
-            'Eu sou jovem no coração, porque a alegria do Senhor é a minha força. (Neemias 8:10)',
-            'Eu sou restaurado em corpo, alma e espírito, porque Deus é o restaurador da minha vida.',
-        ],
-    },
-    {
-        'titulo': 'Paz e Emoções (ansiedade, medo)',
-        'icone': '🕊️',
-        'afirmacoes': [
-            'Eu sou guardado pela paz de Deus, que excede todo entendimento. (Filipenses 4:7)',
-            'Eu sou livre do medo, porque Deus não me deu espírito de temor. (2 Timóteo 1:7)',
-            'Eu sou tranquilo, porque o Senhor está comigo e nada me faltará. (Salmo 23:1)',
-            'Eu sou a consciência que observa os pensamentos, e essa consciência é de Deus.',
-            'Eu sou pacificador, porque sou filho de Deus. (Mateus 5:9)',
-            'Senhor, quando o medo bater à porta, envia a fé para atender.',
-        ],
-    },
-    {
-        'titulo': 'Prosperidade e Provisão',
-        'icone': '💛',
-        'afirmacoes': [
-            'Eu sou próspero na vontade de Deus, porque Ele supre todas as minhas necessidades. (Filipenses 4:19)',
-            'Eu sou um canal limpo de riqueza infinita.',
-            'Eu sou abençoado para ser bênção. (Gênesis 12:2)',
-            'Eu sou o templo do verbo dourado, e a provisão de Deus flui em minha vida.',
-            'Eu sou grato, porque todas as coisas cooperam para o bem. (Romanos 8:28)',
-        ],
-    },
-    {
-        'titulo': 'Identidade em Cristo (quem eu sou)',
-        'icone': '👑',
-        'afirmacoes': [
-            'Eu sou filho amado de Deus.',
-            'Eu sou mais que vencedor em Cristo Jesus. (Romanos 8:37)',
-            'Eu sou luz do mundo. (Mateus 5:14)',
-            'Eu sou sal da terra. (Mateus 5:13)',
-            'Eu sou amado com amor eterno. (Jeremias 31:3)',
-            'Eu sou digno(a) de amor, paz e felicidade.',
-            'Eu sou cidadão do Reino de Deus.',
-            'Eu sou esperança viva pela ressurreição de Jesus. (1 Pedro 1:3)',
-        ],
-    },
-    {
-        'titulo': 'Proteção e Segurança',
-        'icone': '🛡️',
-        'afirmacoes': [
-            'Eu sou guardado pelo Senhor, que é o meu refúgio e fortaleza. (Salmo 46:1)',
-            'Eu sou protegido debaixo das asas do Altíssimo. (Salmo 91)',
-            'Eu sou seguro, porque o Senhor é o meu pastor. (Salmo 23:1)',
-            'Eu sou livre, porque Cristo me libertou. (Gálatas 5:1)',
-            'Eu sou ovelha do Bom Pastor, e nada me faltará.',
-        ],
-    },
-    {
-        'titulo': 'Força e Superação',
-        'icone': '💪',
-        'afirmacoes': [
-            'Eu sou forte na força do Senhor. (Efésios 6:10)',
-            'Eu posso todas as coisas naquele que me fortalece. (Filipenses 4:13)',
-            'Eu sou capaz, porque Deus está comigo.',
-            'Eu sou alguém que cria oportunidades e encontra soluções.',
-            'Eu sou uma pessoa capaz de crescer e evoluir.',
-        ],
-    },
-    {
-        'titulo': 'Relacionamentos e Perdão',
-        'icone': '❤️',
-        'afirmacoes': [
-            'Eu sou perdoado, porque Cristo me perdoou. (Efésios 4:32)',
-            'Eu sou próximo de qualquer pessoa que precisa de mim, onde quer que ela esteja.',
-            'Eu sou amoroso, porque o amor de Deus foi derramado no meu coração. (Romanos 5:5)',
-            'Eu sou compassivo, porque fui compadecido por Deus.',
-            'Eu sou um instrumento de paz, porque sou filho do Príncipe da Paz.',
-        ],
-    },
+    {'titulo': 'Saúde e Cura', 'icone': '🩺', 'afirmacoes': [
+        'Eu sou curado pelas feridas de Jesus. (Isaías 53:5)',
+        'Eu sou templo do Espírito Santo, e a vida de Deus flui em mim. (1 Coríntios 6:19)',
+        'Eu sou renovado em saúde, porque o Senhor é o meu médico.',
+        'Eu sou forte, resiliente e capaz de superar qualquer desafio.',
+        'Senhor, tu és o médico de minha alma e de meu corpo. Renova minha mente e sara minhas emoções.',
+    ]},
+    {'titulo': 'Rejuvenescimento e Vitalidade', 'icone': '🌿', 'afirmacoes': [
+        'Eu sou renovado como a águia, e as minhas forças se renovam. (Isaías 40:31)',
+        'Eu sou nova criatura em Cristo, e cada dia a minha vitalidade é renovada. (2 Coríntios 5:17)',
+        'Eu sou cheio de vida, porque o Espírito que habita em mim é vida.',
+        'Eu sou jovem no coração, porque a alegria do Senhor é a minha força. (Neemias 8:10)',
+        'Eu sou restaurado em corpo, alma e espírito, porque Deus é o restaurador da minha vida.',
+    ]},
+    {'titulo': 'Paz e Emoções (ansiedade, medo)', 'icone': '🕊️', 'afirmacoes': [
+        'Eu sou guardado pela paz de Deus, que excede todo entendimento. (Filipenses 4:7)',
+        'Eu sou livre do medo, porque Deus não me deu espírito de temor. (2 Timóteo 1:7)',
+        'Eu sou tranquilo, porque o Senhor está comigo e nada me faltará. (Salmo 23:1)',
+        'Eu sou a consciência que observa os pensamentos, e essa consciência é de Deus.',
+        'Eu sou pacificador, porque sou filho de Deus. (Mateus 5:9)',
+        'Senhor, quando o medo bater à porta, envia a fé para atender.',
+        'Não andeis ansiosos pelo dia de amanhã, nem pela vossa vida, pelo que haveis de comer ou beber, nem pelo corpo, pelo que haveis de vestir. Olhai para as aves do céu, que não semeiam nem colhem, e o Pai celestial as alimenta. Buscai primeiro o Reino de Deus, e todas estas coisas vos serão acrescentadas. (Mateus 6:25-34)',
+        'Jesus disse: Não andeis ansiosos pela vossa vida. O vosso Pai celestial sabe que necessitais de todas estas coisas. (Mateus 6:25, 32)',
+    ]},
+    {'titulo': 'Prosperidade e Provisão', 'icone': '💛', 'afirmacoes': [
+        'Eu sou próspero na vontade de Deus, porque Ele supre todas as minhas necessidades. (Filipenses 4:19)',
+        'Eu sou um canal limpo de riqueza infinita.',
+        'Eu sou abençoado para ser bênção. (Gênesis 12:2)',
+        'Eu sou o templo do verbo dourado, e a provisão de Deus flui em minha vida.',
+        'Eu sou grato, porque todas as coisas cooperam para o bem. (Romanos 8:28)',
+    ]},
+    {'titulo': 'Identidade em Cristo (quem eu sou)', 'icone': '👑', 'afirmacoes': [
+        'Eu sou filho amado de Deus.',
+        'Eu sou mais que vencedor em Cristo Jesus. (Romanos 8:37)',
+        'Eu sou luz do mundo. (Mateus 5:14)',
+        'Eu sou sal da terra. (Mateus 5:13)',
+        'Eu sou amado com amor eterno. (Jeremias 31:3)',
+        'Eu sou digno(a) de amor, paz e felicidade.',
+        'Eu sou cidadão do Reino de Deus.',
+        'Eu sou esperança viva pela ressurreição de Jesus. (1 Pedro 1:3)',
+    ]},
+    {'titulo': 'Proteção e Segurança', 'icone': '🛡️', 'afirmacoes': [
+        'Eu sou guardado pelo Senhor, que é o meu refúgio e fortaleza. (Salmo 46:1)',
+        'Eu sou protegido debaixo das asas do Altíssimo. (Salmo 91)',
+        'Eu sou seguro, porque o Senhor é o meu pastor. (Salmo 23:1)',
+        'Eu sou livre, porque Cristo me libertou. (Gálatas 5:1)',
+        'Eu sou ovelha do Bom Pastor, e nada me faltará. (Salmo 23:1)',
+        'O Senhor é o meu pastor, nada me faltará. Deitar-me faz em verdes pastos, guia-me mansamente a águas tranquilas. Refrigera a minha alma, guia-me pelas veredas da justiça por amor do seu nome. Ainda que eu andasse pelo vale da sombra da morte, não temeria mal algum, porque tu estás comigo; a tua vara e o teu cajado me consolam. (Salmo 23)',
+        'Preparas uma mesa perante mim na presença dos meus inimigos, unges a minha cabeça com óleo, o meu cálice transborda. Certamente que a bondade e a misericórdia me seguirão todos os dias da minha vida, e habitarei na casa do Senhor por longos dias. (Salmo 23:5-6)',
+    ]},
+    {'titulo': 'Força e Superação', 'icone': '💪', 'afirmacoes': [
+        'Eu sou forte na força do Senhor. (Efésios 6:10)',
+        'Eu posso todas as coisas naquele que me fortalece. (Filipenses 4:13)',
+        'Eu sou capaz, porque Deus está comigo.',
+        'Eu sou alguém que cria oportunidades e encontra soluções.',
+        'Eu sou uma pessoa capaz de crescer e evoluir.',
+    ]},
+    {'titulo': 'Relacionamentos e Perdão', 'icone': '❤️', 'afirmacoes': [
+        'Eu sou perdoado, porque Cristo me perdoou. (Efésios 4:32)',
+        'Eu sou próximo de qualquer pessoa que precisa de mim, onde quer que ela esteja.',
+        'Eu sou amoroso, porque o amor de Deus foi derramado no meu coração. (Romanos 5:5)',
+        'Eu sou compassivo, porque fui compadecido por Deus.',
+        'Eu sou um instrumento de paz, porque sou filho do Príncipe da Paz.',
+        'Cria em mim, ó Deus, um coração puro e renova em mim um espírito estável. Não me lances fora da tua presença e não retires de mim o teu Santo Espírito. Restitui-me a alegria da tua salvação e sustenta-me com um espírito voluntário. (Salmo 51:10-12)',
+        'Jesus disse: Amai os vossos inimigos, bendizei os que vos maldizem, fazei bem aos que vos odeiam e orai pelos que vos maltratam e vos perseguem, para que sejais filhos do vosso Pai que está nos céus. (Mateus 5:44-45)',
+        'Perdoa-nos as nossas dívidas, assim como nós perdoamos aos nossos devedores. (Mateus 6:12)',
+    ]},
 ]
 
 ORACOES = [
@@ -127,6 +107,28 @@ ORACOES = [
     'Senhor, prepara o solo do meu coração. Arranca as pedras, remove os espinhos, ara a terra com a tua Palavra. Que eu ouça, compreenda e retenha os teus ensinamentos.',
     'Senhor Jesus, eu quero te seguir, mas muitas vezes tenho medo da cruz. Ajuda-me a confiar que o teu caminho é o caminho da vida.',
     'Senhor, obrigado pelos talentos que me confiaste. Ajuda-me a não os enterrar por medo, mas a multiplicá-los com fé e coragem, para a tua glória.',
+]
+
+ORACOES_DE_FE = [
+    {'titulo': 'A Oração do Pai Nosso (a oração que Jesus ensinou)', 'icone': '🙏', 'orao': 'Pai nosso que estás nos céus, santificado seja o teu nome. Venha o teu Reino, seja feita a tua vontade, assim na terra como no céu. O pão nosso de cada dia nos dá hoje. Perdoa-nos as nossas dívidas, assim como nós perdoamos aos nossos devedores. E não nos conduzas à tentação, mas livra-nos do mal, porque teu é o Reino, o poder e a glória para sempre. Amém.'},
+    {'titulo': 'Oração a São Miguel Arcanjo (defesa espiritual)', 'icone': '🛡️', 'orao': 'São Miguel Arcanjo, defendei-nos no combate, sede o nosso refúgio contra a maldade e as ciladas do demônio. Que Deus o repreenda, nós humildemente o pedimos; e vós, príncipe da milícia celeste, pelo poder divino, precipitai ao inferno a Satanás e aos outros espíritos malignos que andam pelo mundo para perder as almas. Amém.'},
+    {'titulo': 'Oração de São Bento (proteção contra o mal)', 'icone': '✝️', 'orao': 'A Cruz Sagrada seja a minha luz, não seja o dragão o meu guia. Retira-te, satanás, nunca me aconselhes coisas vãs. É mal o que me ofereces, bebe tu mesmo o teu veneno. Ó Deus, que concedestes a São Bento a graça de ser exemplo de vida santa, dai-nos a sua proteção contra as armadilhas do inimigo e a sua intercessão em nossas necessidades. Amém.'},
+    {'titulo': 'Salmo 91 (o escudo bíblico de proteção)', 'icone': '📖', 'orao': 'Aquele que habita no esconderijo do Altíssimo, à sombra do Onipotente descansará. Direi do Senhor: Ele é o meu Deus, o meu refúgio, a minha fortaleza, e nele confiarei. Porque ele te livrará do laço do passarinheiro e da peste perniciosa. Ele te cobrirá com as suas penas, e debaixo das suas asas estarás seguro; a sua verdade é escudo e broquel. Não temerás os terrores da noite, nem a seta que voa de dia. Porque aos seus anjos dará ordem a teu respeito, para te guardarem em todos os teus caminhos. Amém.'},
+    {'titulo': 'Oração de Santo Expedito (causas urgentes e finanças)', 'icone': '💼', 'orao': 'Meu Santo Expedito das causas justas e urgentes, intercedei por mim junto ao Senhor Jesus. Vós que sois o santo dos aflitos, dos desesperados, dos que precisam de solução rápida, vinde em meu auxílio. Ajudai-me a resolver os meus problemas financeiros e as minhas necessidades urgentes. Sede a minha fortaleza e a minha esperança. Amém.'},
+    {'titulo': 'Oração a São Jorge (caminhos abertos)', 'icone': '🗡️', 'orao': 'São Jorge, valente soldado de Cristo, que vencestes o dragão, ajudai-me a vencer os obstáculos da minha vida. Abri os meus caminhos profissionais, afastai as invejas, as traições e as concorrências desleais. Dai-me coragem, fé e perseverança. Que eu vença com a vossa proteção e com a bênção de Deus. Amém.'},
+    {'titulo': 'Oração do Trabalhador a São José (emprego e sustento)', 'icone': '🛠️', 'orao': 'Glorioso São José, modelo dos trabalhadores, que sustentastes com o vosso trabalho a Sagrada Família, protegei o meu trabalho e o da minha família. Abençoai as nossas mãos, dai-nos emprego digno, estabilidade e sustento para o nosso lar. Ensinai-nos a trabalhar com amor e honestidade. Amém.'},
+    {'titulo': 'Oração à Sagrada Família (paz no lar)', 'icone': '🏡', 'orao': 'Sagrada Família de Nazaré, modelo de amor, união e diálogo, abençoai a nossa família. Afastai as brigas, as incompreensões e as divisões. Que em nosso lar reine a paz, o respeito e o amor, como reinou na vossa casa. Que cada membro da nossa família cresça na fé e no amor a Deus. Amém.'},
+    {'titulo': 'Oração de Santo António (reconciliação e afetos)', 'icone': '❤️', 'orao': 'Santo António, santo das causas impossíveis e das coisas perdidas, ajudai-me a encontrar a paz nos meus relacionamentos. Curai as mágoas, reconciliai os corações, restaurai a harmonia nos meus afetos. Intercedei por mim nas minhas necessidades e concedei-me a graça que tanto preciso. Amém.'},
+    {'titulo': 'Oração de São Francisco de Assis (instrumento de paz)', 'icone': '🕊️', 'orao': 'Senhor, fazei de mim um instrumento da vossa paz. Onde houver ódio, que eu leve o amor; onde houver ofensa, que eu leve o perdão; onde houver discórdia, que eu leve a união; onde houver dúvida, que eu leve a fé; onde houver desespero, que eu leve a esperança; onde houver trevas, que eu leve a luz. Ó Mestre, fazei que eu procure mais consolar do que ser consolado, compreender do que ser compreendido, amar do que ser amado. Pois é dando que se recebe, é perdoando que se é perdoado, e é morrendo que se vive para a vida eterna. Amém.'},
+    {'titulo': 'Oração a São Rafael Arcanjo (cura do corpo e da alma)', 'icone': '🩺', 'orao': 'São Rafael Arcanjo, chamado o médico de Deus, que fostes enviado para curar as doenças do corpo e da alma, intercedei por nós. Curai as nossas enfermidades físicas e emocionais, restaurai a nossa saúde, a nossa paz e a nossa alegria. Conduzi-nos ao Senhor Jesus, o médico dos médicos. Amém.'},
+    {'titulo': 'Oração a São Peregrino (doenças graves)', 'icone': '🙏', 'orao': 'São Peregrino, que experimentastes em vós o poder curador de Deus e fostes curado de uma doença grave, protegei aqueles que sofrem com doenças graves e crónicas. Dai-lhes fé, esperança e coragem. Intercedei por eles junto a Deus, para que, se for da sua vontade, recebam a cura. Amém.'},
+    {'titulo': 'Oração da Serenidade (ansiedade e stress)', 'icone': '🌊', 'orao': 'Concedei-me, Senhor, a serenidade necessária para aceitar as coisas que não posso modificar, coragem para modificar aquelas que posso, e sabedoria para distinguir umas das outras. Vive um dia de cada vez, desfrutando um momento de cada vez, aceitando as dificuldades como o caminho para a paz. Amém.'},
+    {'titulo': 'Oração a São Judas Tadeu (causas impossíveis)', 'icone': '⚡', 'orao': 'São Judas Tadeu, santo das causas impossíveis e desesperadas, intercedei por mim nesta hora de aflição. Vós que conheceis o meu problema e a minha necessidade, ajudai-me a não perder a esperança. Rogai por mim ao Senhor Jesus, para que eu receba a graça e a solução que tanto preciso. Amém.'},
+    {'titulo': 'Oração a Santa Rita de Cássia (aflições extremas)', 'icone': '🌹', 'orao': 'Santa Rita de Cássia, santa das causas impossíveis, padroeira dos aflitos e dos desesperados, intercedei por mim junto a Deus. Nas minhas angústias e aflições extremas, sede o meu refúgio e o meu consolo. Alcançai-me a graça de que tanto necessito, se for para o meu bem e para a glória de Deus. Amém.'},
+    {'titulo': 'Salve-Rainha', 'icone': '👑', 'orao': 'Salve, Rainha, Mãe de misericórdia, vida, doçura e esperança nossa, salve! A vós bradamos, os degredados filhos de Eva. A vós suspiramos, gemendo e chorando neste vale de lágrimas. Eia, pois, advogada nossa, esses vossos olhos misericordiosos a nós volvei. E, depois deste desterro, mostrai-nos Jesus, bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce Virgem Maria. Rogai por nós, Santa Mãe de Deus, para que sejamos dignos das promessas de Cristo. Amém.'},
+    {'titulo': 'Oração do Santo Anjo da Guarda', 'icone': '😇', 'orao': 'Santo Anjo do Senhor, meu zeloso guardador, já que a ti me confiou a piedade divina, hoje e sempre me governa, rege, guarda e ilumina. Amém.'},
+    {'titulo': 'Glória ao Pai', 'icone': '✨', 'orao': 'Glória ao Pai, ao Filho e ao Espírito Santo. Como era no princípio, agora e sempre. Amém.'},
+    {'titulo': 'Creio (Credo Apostólico)', 'icone': '📜', 'orao': 'Creio em Deus Pai, todo-poderoso, Criador do céu e da terra. Creio em Jesus Cristo, seu único Filho, nosso Senhor, que foi concebido pelo Espírito Santo, nasceu da virgem Maria, padeceu sob Pôncio Pilatos, foi crucificado, morto e sepultado; desceu ao Hades; ressuscitou dos mortos ao terceiro dia; subiu aos céus e está sentado à direita de Deus Pai todo-poderoso, de onde há de vir para julgar os vivos e os mortos. Creio no Espírito Santo, na santa Igreja universal, na comunhão dos santos, na remissão dos pecados, na ressurreição da carne e na vida eterna. Amém.'},
 ]
 
 VERSICULOS = [
@@ -143,28 +145,41 @@ VERSICULOS = [
 ]
 
 def build():
-    # Sumário (categorias + orações + versículos)
-    toc = ['<li class="toc-parte">📂 Categorias de Afirmações</li>']
+    # Sumário
+    toc = ['<li class="toc-parte">🙌 Gratidão</li>']
+    toc.append('<li><a href="#gratidao">Versículos e mensagens de gratidão</a></li>')
+    toc.append('<li class="toc-parte">📂 Categorias de Afirmações</li>')
     for i, cat in enumerate(CATEGORIAS, 1):
         toc.append(f'<li><a href="#cat-{i}">{cat["icone"]} {esc(cat["titulo"])}</a></li>')
     toc.append('<li class="toc-parte">🙏 Orações</li>')
     toc.append('<li><a href="#oracoes">Orações para o dia a dia</a></li>')
+    toc.append('<li><a href="#oracoes-fe">Orações manifestadas pelo poder da Fé</a></li>')
     toc.append('<li class="toc-parte">📖 Versículos</li>')
     toc.append('<li><a href="#versiculos">Versículos de declaração</a></li>')
     toc.append('<li><a href="#como-usar">Como usar este guia</a></li>')
     toc_html = '\n'.join(toc)
 
-    # Corpo
     corpo = []
 
     # Abertura
     corpo.append('''<section class="capitulo" id="abertura">
       <p class="cap-num">Coleção do Despertar</p>
       <h2 class="cap-titulo">Sobre este guia</h2>
-      <p>Este guia reúne as afirmações, declarações e orações encontradas nas obras da Coleção do Despertar. É um material para uso pessoal e para futuras publicações. O poder da palavra é um tema central dos nossos livros: a Bíblia ensina que a morte e a vida estão no poder da língua (Provérbios 18:21), e que a fé vem pelo ouvir a Palavra de Deus.</p>
+      <p>Este guia reúne versículos, mensagens de gratidão, afirmações e orações para você começar cada dia na presença de Deus. O poder da palavra é um tema central dos nossos livros: a Bíblia ensina que a morte e a vida estão no poder da língua (Provérbios 18:21).</p>
       <div class="box aviso"><h3>Atenção</h3><p>As afirmações devem ser usadas alinhadas à Palavra de Deus. O nome "EU SOU" é o nome sagrado de Deus (Êxodo 3:14). Quando declaramos, declaramos quem somos em Cristo, não uma autossuficiência vazia.</p></div>
-      <nav class="cap-nav"><a href="#sumario">Sumário</a><a href="#cat-1">Próximo →</a></nav>
+      <nav class="cap-nav"><a href="#sumario">Sumário</a><a href="#gratidao">Próximo →</a></nav>
     </section>''')
+
+    # Gratidão
+    sec = ['<section class="capitulo" id="gratidao">']
+    sec.append('<p class="cap-num">🙌 Gratidão</p>')
+    sec.append('<h2 class="cap-titulo">Versículos e mensagens de gratidão</h2>')
+    sec.append('<p>A gratidão é a porta que abre o coração para as bênçãos de Deus. Comece o dia agradecendo, e tudo ao seu redor se transforma.</p>')
+    for msg in GRATIDAO:
+        sec.append(f'<p class="afirmacao">🙏 {esc(msg)}</p>')
+    sec.append('<nav class="cap-nav"><a href="#abertura">← Anterior</a><a href="#sumario">Sumário</a><a href="#cat-1">Próximo →</a></nav>')
+    sec.append('</section>')
+    corpo.append('\n'.join(sec))
 
     # Categorias
     for i, cat in enumerate(CATEGORIAS, 1):
@@ -179,7 +194,7 @@ def build():
         if i > 1:
             nav.append(f'<a href="#cat-{i-1}">← Anterior</a>')
         else:
-            nav.append('<a href="#abertura">← Início</a>')
+            nav.append('<a href="#gratidao">← Anterior</a>')
         nav.append('<a href="#sumario">Sumário</a>')
         if i < len(CATEGORIAS):
             nav.append(f'<a href="#cat-{i+1}">Próximo →</a>')
@@ -190,13 +205,24 @@ def build():
         sec.append('</section>')
         corpo.append('\n'.join(sec))
 
-    # Orações
+    # Orações do dia
     sec = ['<section class="capitulo" id="oracoes">']
     sec.append('<p class="cap-num">🙏 Orações</p>')
     sec.append('<h2 class="cap-titulo">Orações para o dia a dia</h2>')
     for oracao in ORACOES:
         sec.append(f'<div class="box oracao"><p>{esc(oracao)}</p></div>')
-    sec.append('<nav class="cap-nav"><a href="#cat-8">← Anterior</a><a href="#sumario">Sumário</a><a href="#versiculos">Próximo →</a></nav>')
+    sec.append('<nav class="cap-nav"><a href="#cat-8">← Anterior</a><a href="#sumario">Sumário</a><a href="#oracoes-fe">Próximo →</a></nav>')
+    sec.append('</section>')
+    corpo.append('\n'.join(sec))
+
+    # Orações de Fé
+    sec = ['<section class="capitulo" id="oracoes-fe">']
+    sec.append('<p class="cap-num">🙏 Orações de Fé</p>')
+    sec.append('<h2 class="cap-titulo">Orações manifestadas pelo poder da Fé</h2>')
+    sec.append('<p>Orações da tradição cristã, reunidas para fortalecer a fé em cada área da vida. Ore com o coração aberto, confiando no poder de Deus.</p>')
+    for oracao in ORACOES_DE_FE:
+        sec.append(f'<div class="box oracao"><h3>{oracao["icone"]} {esc(oracao["titulo"])}</h3><p>{esc(oracao["orao"])}</p></div>')
+    sec.append('<nav class="cap-nav"><a href="#oracoes">← Anterior</a><a href="#sumario">Sumário</a><a href="#versiculos">Próximo →</a></nav>')
     sec.append('</section>')
     corpo.append('\n'.join(sec))
 
@@ -206,7 +232,7 @@ def build():
     sec.append('<h2 class="cap-titulo">Versículos de declaração</h2>')
     for texto, ref in VERSICULOS:
         sec.append(f'<div class="box versiculo"><p>"{esc(texto)}" <span class="ref">({esc(ref)})</span></p></div>')
-    sec.append('<nav class="cap-nav"><a href="#oracoes">← Anterior</a><a href="#sumario">Sumário</a><a href="#como-usar">Próximo →</a></nav>')
+    sec.append('<nav class="cap-nav"><a href="#oracoes-fe">← Anterior</a><a href="#sumario">Sumário</a><a href="#como-usar">Próximo →</a></nav>')
     sec.append('</section>')
     corpo.append('\n'.join(sec))
 
@@ -214,9 +240,9 @@ def build():
     sec = ['<section class="capitulo" id="como-usar">']
     sec.append('<p class="cap-num">📌 Guia de uso</p>')
     sec.append('<h2 class="cap-titulo">Como usar este guia</h2>')
-    sec.append('<p><strong>Pela manhã:</strong> escolha 1-2 afirmações e repita com fé, em voz alta.</p>')
+    sec.append('<p><strong>Pela manhã:</strong> comece agradecendo (seção Gratidão) e escolha 1-2 afirmações para repetir com fé, em voz alta.</p>')
     sec.append('<p><strong>Ao longo do dia:</strong> quando um pensamento negativo vier, substitua por uma declaração da Palavra.</p>')
-    sec.append('<p><strong>À noite:</strong> ore com uma das orações do guia.</p>')
+    sec.append('<p><strong>À noite:</strong> ore com uma das orações do guia, do dia ou das orações de fé.</p>')
     sec.append('<p><strong>Sempre alinhado à Palavra:</strong> as afirmações não são mantras vazios, são verdades de Deus aplicadas à vida.</p>')
     sec.append('<nav class="cap-nav"><a href="#versiculos">← Anterior</a><a href="#sumario">Sumário</a><a href="#fim">Fim</a></nav>')
     sec.append('</section>')
@@ -301,7 +327,7 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(TITULO)} — {esc(SUBTITULO)}</title>
-<meta name="description" content="{esc(TITULO)}. As palavras poderosas do eu interior na natureza de Deus, organizadas por categorias: saúde, rejuvenescimento, paz, prosperidade, identidade, proteção, força e relacionamentos.">
+<meta name="description" content="{esc(TITULO)}. Versículos, gratidão, afirmações e orações para começar o dia na presença de Deus.">
 <style>{css}</style>
 </head>
 <body>
@@ -309,7 +335,7 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <header class="topbar">
   <div class="wrap">
     <a class="logo" href="#">Missão <span>com Deus</span></a>
-    <span class="ler">Guia de Afirmações</span>
+    <span class="ler">Comece o dia</span>
   </div>
 </header>
 
@@ -319,7 +345,7 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
   <p class="sub">{esc(SUBTITULO)}</p>
   <p class="autor">Compilado das obras do Portal · Versão de leitura</p>
   <a class="inicio" href="#sumario">Começar a leitura →</a>
-  <p class="aviso2">✨ Afirmações, declarações e orações para fortalecer a fé.</p>
+  <p class="aviso2">✨ Versículos, gratidão, afirmações e orações para fortalecer a fé.</p>
 </section>
 
 <section id="sumario">
@@ -353,7 +379,7 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(html_doc, encoding='utf-8')
     print("Gerado:", OUT, f"({OUT.stat().st_size:,} bytes)")
-    print(f"Categorias: {len(CATEGORIAS)} | Orações: {len(ORACOES)} | Versículos: {len(VERSICULOS)}")
+    print(f"Categorias: {len(CATEGORIAS)} | Orações do dia: {len(ORACOES)} | Orações de fé: {len(ORACOES_DE_FE)} | Versículos: {len(VERSICULOS)}")
 
 if __name__ == '__main__':
     build()
