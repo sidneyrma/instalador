@@ -214,3 +214,31 @@ Com o aval do autor, foram aplicadas as duas mudanças planejadas + um reforço:
 Validação: ordem das seções portal → quiz → livros → biblioteca; selo novo
 presente; brinde presente; JavaScript íntegro; HTML balanceado nas duas Homes
 (preview e produção). Zip regenerado.
+
+## 11. Coletânea "Mensagens de Fé para o Dia a Dia" (análise sincera + criação)
+
+**Pedido do autor:** criar, na página do livro de Afirmações, uma coletânea de
+mensagens de fé com versículos (no estilo das que usamos nas conversas), em
+formato FAQ (abrir/fechar), organizada por situações do dia a dia, "mais abaixo
+do guia".
+
+**Análise sincera (para não papagaiar a página):**
+- A página já tinha: Gratidão, 8 categorias de afirmações (com versículos),
+  Orações do dia, Versículos de declaração e Orações de Fé (FAQ).
+- O risco de redundância era real: repetir afirmações ou os mesmos versículos
+  tornaria a página inchada e sem propósito novo.
+- Decisão: criar mensagens **curtas de ânimo** (tom de "mensagem do dia",
+  diferente das declarações EU SOU e das orações), organizadas por situações
+  concretas (manhã, trabalho, ansiedade, tristeza, medo, família, noite,
+  recomeço, cansaço, espera, confiança, preocupações), com **12 versículos que
+  NÃO estavam na página** (verificado: Salmo 118:24, Colossenses 3:23,
+  Filipenses 4:6-7, Salmo 34:18, Isaías 41:10, Josué 24:15, Salmo 4:8,
+  Lamentações 3:22-23, Mateus 11:28, Gálatas 6:9, Provérbios 3:5-6, 1 Pedro 5:7).
+- Posição: ANTES das Orações de Fé (mantendo a decisão anterior de as orações
+  ficarem por último); se o autor preferir após, é um movimento simples.
+
+**Implementação:** seção <section id="mensagens-dia"> em FAQ (12 itens) +
+item no sumário; gerador adicionar_mensagens_fe.py; mapa do leitor atualizado
+(integrar_leitor_afirmacoes.py) e versão com leitor regenerada.
+Validação: 22 faq-items no total (10 orações + 12 mensagens), zero marcas de
+IA, JS íntegro, HTML balanceado nas duas versões (preview e com leitor).

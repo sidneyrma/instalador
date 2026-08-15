@@ -212,7 +212,8 @@ SCRIPT = """<script>
     "oracoes": "Orações do dia",
     "versiculos": "Versículos",
     "como-usar": "Como usar",
-    "oracoes-fe": "Orações de Fé"
+    "oracoes-fe": "Orações de Fé",
+    "mensagens-dia": "Mensagens de Fé"
   };
 
   function guardar(chave, valor){ try{ localStorage.setItem(chave, JSON.stringify(valor)); }catch(e){} }
