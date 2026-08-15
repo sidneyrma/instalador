@@ -359,3 +359,22 @@ tamanho, tela confortável e fita dourada, e botão "Explorar os livros →" que
 leva à seção da biblioteca. Aplicado em paginas/home_preview.html e
 site-contabo/index.html (gerador:
 `analise/compraoseu.preview/adicionar_banner_novidade.py`).
+
+## 15. Balõezinhos de dicas na Home
+
+Seguindo a sugestão de levar as dicas do leitor para a página inicial, foram
+adicionados **balõezinhos de dicas (pop-ups)** na Home (preview e produção):
+
+- Aparecem apenas na primeira visita (localStorage `despertar_dicas_home`),
+  um de cada vez, e somem sozinhos após alguns segundos (ou com o ✕).
+- Quatro dicas que despertam curiosidade e levam à biblioteca:
+  1. Ler online e continuar de onde parou.
+  2. A fita dourada que marca o lugar.
+  3. Letras no seu tamanho (A−/A+) e pontinhos que pulam capítulos.
+  4. Telas Dia, Sépia e Noite.
+- Cada balão tem o botão **"Ver livros →"**, que rola suavemente até a seção
+  #biblioteca e fecha o balão.
+- Visual consistente com a identidade do portal (navy + dourado), posicionado
+  logo abaixo do cabeçalho fixo, sem cobrir o menu.
+
+Gerador: `analise/compraoseu.preview/adicionar_popups_dicas_home.py`.
