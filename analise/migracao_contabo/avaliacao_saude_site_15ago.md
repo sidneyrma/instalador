@@ -296,3 +296,28 @@ será lembrado? precisaria limpar os dados?"), foi aplicada a melhoria:
   volta depois de 7 dias se ainda houver leitura (não perde o leitor).
 
 Validação: JS íntegro nas duas Homes; zip regenerado (commit 67f8230).
+
+## 14. Home mais limpa (aprovado pelo autor) — 15/08 noite
+
+Com o aval do autor, a Home foi simplificada (celular mais leve):
+
+1. **Hero com 3 linhas** (removido "🔒 Pagamento seguro via Kiwify", que já
+   aparece nos botões de compra):
+   - ⚡ Acesso imediato
+   - 📱 Leia no celular, tablet ou PC
+   - 🛡️ Garantia incondicional de 7 dias
+2. **4 cards do portal removidos** (Confia no Senhor, Missão com propósito,
+   Mais livros a caminho, Devocional por R$ 9,90). O pedido de apoio NÃO se
+   perdeu: o card "Apoio" continua na biblioteca ("Apoiar com R$ 9,90").
+   O portal ficou com 5 cards: Livros online e gratuitos (destaque),
+   Videoaulas guiadas, Livros e materiais, Comunidade de estudos,
+   Acesso vitalício.
+3. **Banner "Novidade" removido e fundido na seção de livros**: o texto da
+   novidade agora está no cabeçalho da biblioteca, logo abaixo de "Leia antes
+   de comprar", sem emoji ✨ e sem botão "Explorar os livros" (os livros estão
+   logo abaixo). CSS do banner removido (código morto eliminado).
+
+Validação: hero com exatamente 3 itens; cards do portal = 5; zero referências
+a banner-novidade/.bn-; mensagem presente na biblioteca; JS íntegro; HTML
+balanceado; ordem portal -> quiz -> livros -> biblioteca mantida. Zip
+regenerado.
