@@ -74,3 +74,43 @@ mesmo horário, projetando ~1.440 — o nível do pico de lançamento!
 
 *"O Senhor é quem dá força ao seu povo; o Senhor abençoará o seu povo com
 paz."* (Salmos 29:11)
+
+## Vistoria técnica completa do leitor (16/08)
+
+Inspeção profunda solicitada pelo autor, com olhos de águia:
+
+**1. Leitores dos livros (12 arquivos — previews):**
+- JavaScript válido em TODOS (node --check) — 0 erros.
+- HTML balanceado em TODOS — 0 erros.
+- Recursos presentes em todos: barra de progresso, fita dourada (id="fita-lateral"),
+  trilha de capítulos (id="trilha"), modos Dia/Sépia/Noite (data-modo),
+  balões de dicas (criados via JS: className="balao", mostrarDicas,
+  "Continuar de onde parei", fechar balão).
+- Os "balões" não aparecem no HTML estático porque são criados
+  dinamicamente pelo JavaScript (comportamento correto).
+
+**2. Livros publicados (site-contabo/livro01-11.html):**
+- 11/11 com leitor completo (despertar_progresso_, fita, trilha, stats).
+
+**3. Home (produção e preview):**
+- JS válido, HTML balanceado.
+- Lógica dos 7 dias confirmada: ao fechar, grava timestamp
+  (despertar_continue_fechado = Date.now()); ao abrir, se fechou há menos de
+  7 dias, não mostra; se passou 7 dias e há leitura em andamento, volta.
+- Cartão "Continue lendo" presente, popups de dicas presentes, botão
+  "Instalar app" (beforeinstallprompt) presente, Service Worker registrado.
+
+**4. Pacote site-contabo.zip:**
+- Contém index.html atualizado (cartão corrigido, 7 dias), livro01.html e
+  livro10.html com leitor, sw.js e manifest.json.
+- Zero ocorrências de "livrolivro" (bug corrigido).
+
+**5. Site no ar:**
+- https://compraoseu.com/livro10 exibe o balão "📖 Seu lugar fica salvo.
+  Feche e volte quando quiser; retomamos do ponto exato." — o leitor está
+  funcionando no servidor.
+- Conteúdo purificado (títulos com dois-pontos, sem marcas).
+
+**Conclusão:** o leitor está fluido e profissional. Para garantir a versão
+mais recente da Home (cartão corrigido + 7 dias), enviar o site-contabo.zip
+atual (16/08 16:15) ao servidor e extrair por cima.
