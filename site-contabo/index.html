@@ -892,7 +892,7 @@
       <div class="eq-mensagem" id="eq-mensagem"></div>
       <div class="eq-resultado" id="eq-resultado"></div>
       <div class="eq-comentarios" id="eq-comentarios"></div>
-      <p class="eq-aviso">🔒 Votação anônima. Usamos apenas para entender melhor os nossos leitores e melhorar o portal.</p>
+      <p class="eq-aviso">🔒 Votação anônima. Quem deixar o e-mail recebe resposta. Para conversar na hora, fale conosco no <a href="https://wa.me/5528999111493?text=Ol%C3%A1%2C%20escrevi%20na%20enquete%20do%20Portal%20e%20quero%20tirar%20uma%20d%C3%BAvida" style="color:var(--gold-dark);font-weight:700;text-decoration:underline">WhatsApp 💬</a>.</p>
     </div>
   </div>
 </section>
@@ -1509,7 +1509,7 @@ function quizEnviar() {
     var rotulo = document.querySelector('.eq-sub');
     var botao = document.getElementById("eq-enviar");
     opcoes.forEach(function(op){ op.style.display = "none"; });
-    if(rotulo){ rotulo.textContent = "💬 Quer enviar uma mensagem sobre os livros ou a leitura? Fique à vontade!"; }
+    if(rotulo){ rotulo.innerHTML = "💬 Quer enviar uma mensagem sobre os livros ou a leitura? Fique à vontade! Ou <a href=\"https://wa.me/5528999111493?text=Ol%C3%A1%2C%20quero%20falar%20sobre%20os%20livros%20do%20Portal\" style=\"color:var(--gold-dark);font-weight:700;text-decoration:underline\">converse no WhatsApp</a>."; }
     if(botao){ botao.textContent = "💬 Enviar mensagem"; }
     var ta = document.getElementById("eq-comentario");
     if(ta){ ta.placeholder = "Escreva sua mensagem ou dúvida sobre os livros..."; }

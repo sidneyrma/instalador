@@ -350,3 +350,26 @@ anônima (não há e-mail do leitor). E os e-mails do FormSubmit não chegavam.
 **Como responder os irmãos:** ao receber o e-mail de notificação com o campo
 "E-mail do leitor", responder diretamente para esse endereço (ou pelo
 WhatsApp do portal, se o leitor deixar o número no comentário).
+
+## As 3 portas de resposta aos leitores (17/08)
+
+Como o autor pode responder os irmãos e irmãs que participam da enquete:
+
+1. **E-mail opcional na enquete** (campo "Seu e-mail (opcional) — se quiser
+   uma resposta sobre os livros"): o leitor deixa o e-mail, ele vai na
+   notificação FormSubmit ("E-mail do leitor (para responder)") e o autor
+   responde direto. Privado (não aparece na página).
+2. **WhatsApp do Portal** (wa.me/5528999111493): botão flutuante na Home +
+   link no rodapé + NOVOS links na própria enquete:
+   - No aviso: "Quem deixar o e-mail recebe resposta. Para conversar na hora,
+     fale conosco no WhatsApp 💬."
+   - No modo mensagem: "Ou converse no WhatsApp." (com link).
+3. **Comentário público** (seção "Comentários dos leitores"): o autor pode
+   responder no próximo comentário ou via as portas acima.
+
+Com essas três portas, nenhum irmão fica sem resposta: quem quer rapidez usa
+o WhatsApp; quem prefere formal usa o e-mail; quem só quer deixar um
+recado público, comenta.
+
+Validação: JS/HTML íntegros nas duas Homes; gerador atualizado; zip
+regenerado.
