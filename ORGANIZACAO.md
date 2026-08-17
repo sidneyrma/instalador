@@ -1,6 +1,10 @@
 # 🗂️ ORGANIZAÇÃO DO REPOSITÓRIO — COMPRAOSEU / MISSÃO COM DEUS
 
-**Data da organização:** 11/08/2026
+**Data da organização:** 11/08/2026 (atualizado 17/08/2026)
+
+> ⚠️ **IMPORTANTE:** antes de ler este arquivo, leia **`MEMORIA_PROJETO.md`**
+> (o arquivo-MÃE de continuidade entre chats — contém o histórico completo,
+> estado atual do site, pendências e padrões do autor).
 
 ---
 
