@@ -277,3 +277,31 @@ Lista do servidor (aaPanel) mostra:
 3. Testar https://compraoseu.com/enquete.php (deve mostrar a página bonita).
 4. Votar em aba anônima (o navegador guardou 'despertar_enquete_votada' do 1º
    teste e bloqueia novo voto).
+
+## Correção da página da enquete + modo mensagem (17/08)
+
+**Problema:** ao abrir https://compraoseu.com/enquete.php o navegador mostrava
+o CÓDIGO (HTML como texto) em vez da página bonita.
+
+**Causa:** o header 'Content-Type: application/json' era enviado no topo do
+arquivo para TODAS as respostas, inclusive a página HTML. O navegador recebia
+HTML com tipo json e exibia o código em vez de renderizar.
+
+**Correção:** o Content-Type agora é definido por resposta:
+- GET com página (navegador): header('Content-Type: text/html') antes do echo
+  da página bonita.
+- GET via fetch / ?json=1: header application/json + JSON.
+- POST / 405: header application/json.
+
+**Novidade (ideia do autor): modo mensagem sem voto**
+- Quem já votou (localStorage despertar_enquete_votada) vê a enquete em "modo
+  mensagem": as opções somem e aparece só o campo "💬 Quer enviar uma mensagem
+  sobre os livros ou a leitura? Fique à vontade!" com o botão "💬 Enviar
+  mensagem".
+- No PHP, um POST sem opção válida mas com comentário salva apenas o
+  comentário (votos NÃO incrementa); responde com "so_mensagem": true.
+- Fallback FormSubmit também adaptado (assunto "Mensagem do Portal").
+
+**Validação:** lógica testada (réplica): 2 votos + 2 comentários (mensagens
+não contam como voto); JS/HTML íntegros nas duas Homes; PHP balanceado.
+Zip regenerado SEM arquivos de dados (não zera votos).

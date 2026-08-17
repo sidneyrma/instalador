@@ -11,8 +11,10 @@
  *         https://compraoseu.com/enquete.php?json=1  (JSON puro)
  */
 
-header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
+
+// O Content-Type é definido por resposta (JSON ou HTML), não aqui no topo,
+// para que a página bonita (text/html) renderize corretamente no navegador.
 
 $ARQUIVO = __DIR__ . '/enquete_dados.json';
 $ARQUIVO_IP = __DIR__ . '/enquete_ips.json';
@@ -182,14 +184,17 @@ if ($metodo === 'GET') {
     $aceita = isset($_SERVER['HTTP_ACCEPT']) ? $_SERVER['HTTP_ACCEPT'] : '';
     $quer_json = isset($_GET['json']);
     if ($quer_json || strpos($aceita, 'text/html') === false) {
+        header('Content-Type: application/json; charset=utf-8');
         echo json_encode($json, JSON_UNESCAPED_UNICODE);
         exit;
     }
+    header('Content-Type: text/html; charset=utf-8');
     echo pagina_resultado($json);
     exit;
 }
 
 if ($metodo === 'POST') {
+    header('Content-Type: application/json; charset=utf-8');
     $corpo = file_get_contents('php://input');
     $req = json_decode($corpo, true);
     if (!is_array($req)) {
@@ -199,13 +204,25 @@ if ($metodo === 'POST') {
     }
 
     $voto = isset($req['voto']) ? $req['voto'] : '';
-    if (!isset($OPCOES[$voto])) {
+    $comentario = isset($req['comentario']) ? trim(strip_tags($req['comentario'])) : '';
+    if ($comentario !== '') {
+        if (function_exists('mb_substr')) {
+            $comentario = mb_substr($comentario, 0, 500);
+        } else {
+            $comentario = substr($comentario, 0, 500);
+        }
+    }
+
+    // MODO MENSAGEM: quem já votou (ou não escolheu opção) pode enviar apenas
+    // um comentário/mensagem, SEM contabilizar voto. O voto é opcional.
+    $eh_voto = isset($OPCOES[$voto]);
+    if (!$eh_voto && $comentario === '') {
         http_response_code(400);
-        echo json_encode(array('erro' => 'Opcao de voto invalida'), JSON_UNESCAPED_UNICODE);
+        echo json_encode(array('erro' => 'Envie uma opcao de voto ou uma mensagem.'), JSON_UNESCAPED_UNICODE);
         exit;
     }
 
-    // Proteção leve: no mínimo 30 segundos entre votos do mesmo IP
+    // Proteção leve: no mínimo 30 segundos entre ações do mesmo IP
     $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'desconhecido';
     $ips = array();
     if (file_exists($ARQUIVO_IP)) {
@@ -216,25 +233,19 @@ if ($metodo === 'POST') {
     $agora = time();
     if (isset($ips[$ip]) && ($agora - $ips[$ip]) < 30) {
         http_response_code(429);
-        echo json_encode(array('erro' => 'Aguarde alguns segundos antes de votar novamente'), JSON_UNESCAPED_UNICODE);
+        echo json_encode(array('erro' => 'Aguarde alguns segundos antes de enviar novamente'), JSON_UNESCAPED_UNICODE);
         exit;
     }
     $ips[$ip] = $agora;
     @file_put_contents($ARQUIVO_IP, json_encode($ips));
 
-    $novo = array(
-        'votos' => 1,
-        'opcoes' => array($voto => 1)
-    );
-
-    // Comentário opcional (máx. 500 caracteres)
-    $comentario = isset($req['comentario']) ? trim(strip_tags($req['comentario'])) : '';
+    // Monta a alteração: voto (se houver) e/ou comentário
+    $novo = array('votos' => 0, 'opcoes' => array());
+    if ($eh_voto) {
+        $novo['votos'] = 1;
+        $novo['opcoes'][$voto] = 1;
+    }
     if ($comentario !== '') {
-        if (function_exists('mb_substr')) {
-            $comentario = mb_substr($comentario, 0, 500);
-        } else {
-            $comentario = substr($comentario, 0, 500);
-        }
         $novo['comentarios'] = array(array(
             'texto' => $comentario,
             'data' => date('d/m/Y H:i')
@@ -244,13 +255,16 @@ if ($metodo === 'POST') {
     $salvo = salvar_dados($ARQUIVO, $novo);
     if ($salvo === false) {
         http_response_code(500);
-        echo json_encode(array('erro' => 'Nao foi possivel salvar o voto. Verifique a permissao de escrita do diretorio.'), JSON_UNESCAPED_UNICODE);
+        echo json_encode(array('erro' => 'Nao foi possivel salvar. Verifique a permissao de escrita do diretorio.'), JSON_UNESCAPED_UNICODE);
         exit;
     }
 
-    echo json_encode(resultado_json($salvo), JSON_UNESCAPED_UNICODE);
+    $resposta = resultado_json($salvo);
+    $resposta['so_mensagem'] = !$eh_voto;
+    echo json_encode($resposta, JSON_UNESCAPED_UNICODE);
     exit;
 }
 
 http_response_code(405);
+header('Content-Type: application/json; charset=utf-8');
 echo json_encode(array('erro' => 'Metodo nao permitido'), JSON_UNESCAPED_UNICODE);

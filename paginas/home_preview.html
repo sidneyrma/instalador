@@ -1495,25 +1495,48 @@ function quizEnviar() {
       });
   }
 
+  // Modo mensagem: quem já votou pode enviar apenas uma mensagem/comentário
+  // (sem contabilizar voto). O sistema detecta e mostra só o campo de texto.
+  function modoMensagem(){
+    var opcoes = document.querySelectorAll('.eq-opcoes .eq-op');
+    var rotulo = document.querySelector('.eq-sub');
+    var botao = document.getElementById("eq-enviar");
+    opcoes.forEach(function(op){ op.style.display = "none"; });
+    if(rotulo){ rotulo.textContent = "💬 Quer enviar uma mensagem sobre os livros ou a leitura? Fique à vontade!"; }
+    if(botao){ botao.textContent = "💬 Enviar mensagem"; }
+    var ta = document.getElementById("eq-comentario");
+    if(ta){ ta.placeholder = "Escreva sua mensagem ou dúvida sobre os livros..."; }
+  }
+  if(jaVotou){ modoMensagem(); }
+
   form.addEventListener("submit", function(e){
     e.preventDefault();
+    var comentario = document.getElementById("eq-comentario").value.trim();
+
+    if(jaVotou){
+      // Quem já votou: envia SÓ a mensagem (sem voto)
+      if(!comentario){
+        msg.textContent = "✍️ Escreva sua mensagem antes de enviar.";
+        msg.className = "eq-mensagem visivel";
+        return;
+      }
+      enviar({ comentario: comentario }, "💛 Mensagem enviada! Obrigado por escrever para nós.", true);
+      return;
+    }
+
     var escolhido = form.querySelector('input[name="eq-voto"]:checked');
     if(!escolhido){
       msg.textContent = "🙏 Toque em uma das opções acima para votar.";
       msg.className = "eq-mensagem visivel";
       return;
     }
-    if(jaVotou){
-      msg.textContent = "💛 Você já participou! Obrigado por contribuir.";
-      msg.className = "eq-mensagem visivel ok";
-      return;
-    }
     var voto = escolhido.value;
-    var comentario = document.getElementById("eq-comentario").value.trim();
-
     var payload = { voto: voto };
     if(comentario){ payload.comentario = comentario; }
+    enviar(payload, "💛 Obrigado por participar! Seu voto foi registrado.", false);
+  });
 
+  function enviar(payload, textoOk, soMensagem){
     fetch("enquete.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -1523,30 +1546,33 @@ function quizEnviar() {
     .then(function(res){
       if(res.ok){
         aplicarResultados(res.d);
-        msg.textContent = "💛 Obrigado por participar! Seu voto foi registrado.";
+        msg.textContent = textoOk;
         msg.className = "eq-mensagem visivel ok";
         try{ localStorage.setItem("despertar_enquete_votada", "1"); }catch(err){}
-        form.querySelectorAll('input[name="eq-voto"]').forEach(function(i){ i.disabled = true; });
+        if(!soMensagem){
+          form.querySelectorAll('input[name="eq-voto"]').forEach(function(i){ i.disabled = true; });
+        }
+        document.getElementById("eq-comentario").value = "";
       }else{
         throw new Error(res.d && res.d.erro ? res.d.erro : "erro");
       }
     })
     .catch(function(err){
-      // Fallback: envia por e-mail via FormSubmit
+      // Fallback honesto: envia por e-mail via FormSubmit
       var url = "https://formsubmit.co/ajax/compraoseu.com@gmail.com";
       var dados = {
-        _subject: "📊 Voto na enquete do Portal",
+        _subject: soMensagem ? "💬 Mensagem do Portal (enquete)" : "📊 Voto na enquete do Portal",
         _template: "table",
         _captcha: "false",
-        Voto: OPCOES[voto] || voto,
-        Comentario: comentario || "(sem comentário)"
+        Mensagem: payload.comentario || "(sem mensagem)",
+        Voto: payload.voto ? (OPCOES[payload.voto] || payload.voto) : "(sem voto, só mensagem)"
       };
       fetch(url, { method:"POST", headers:{ "Content-Type":"application/json", "Accept":"application/json" }, body: JSON.stringify(dados) })
-        .then(function(){ msg.textContent = "💛 Obrigado! Seu voto foi enviado (por e-mail). Os percentuais ao vivo voltam quando ativarmos a votação no servidor."; msg.className = "eq-mensagem visivel ok"; })
-        .catch(function(){ msg.textContent = "🙏 Obrigado pela sua participação! Se quiser, envie seu voto para contato@compraoseu.com."; msg.className = "eq-mensagem visivel ok"; });
+        .then(function(){ msg.textContent = soMensagem ? "💛 Mensagem enviada (por e-mail)! Obrigado." : "💛 Obrigado! Seu voto foi enviado (por e-mail)."; msg.className = "eq-mensagem visivel ok"; })
+        .catch(function(){ msg.textContent = "🙏 Obrigado! Se quiser, envie para contato@compraoseu.com."; msg.className = "eq-mensagem visivel ok"; });
       try{ localStorage.setItem("despertar_enquete_votada", "1"); }catch(err){}
     });
-  });
+  }
 
   carregar();
 })();
