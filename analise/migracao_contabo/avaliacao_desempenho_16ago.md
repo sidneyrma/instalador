@@ -194,3 +194,35 @@ A pedido do autor, o card "Livros online e gratuitos" foi refinado:
 
 Validação: JS íntegro, HTML balanceado, ícone removido, convite presente,
 botões presentes nas duas Homes; zip regenerado.
+
+## CORREÇÃO: voto não computado + visualização da enquete (17/08)
+
+**Problema:** o autor votou, mas o JSON mostrava votos:0.
+
+**Causa (2 fatores):**
+1. O site-contabo.zip continha enquete_dados.json com "votos": 0. Ao extrair o
+   zip por cima no servidor, o arquivo com os votos reais era SOBRESCRITO,
+   zerando a contagem.
+2. Se a permissão de escrita não estiver definida (dono www), o PHP falha ao
+   gravar (o @fopen silencia o erro).
+
+**Correções aplicadas:**
+1. **enquete.php robustecido:** cria o arquivo de dados automaticamente com
+   chmod 0664 se não existir; se o fopen falhar, tenta criar e reabre.
+2. **Zip recriado SEM enquete_dados.json e enquete_ips.json** (excluídos) —
+   assim, ao extrair por cima, os votos do servidor NÃO são mais zerados.
+3. **Visualização melhorada:** ao abrir enquete.php no NAVEGADOR (não via
+   fetch), mostra uma página bonita com barras de percentual, contagem e
+   comentários, em vez de JSON cru. As requisições da Home (fetch, Accept
+   application/json) continuam recebendo JSON.
+
+**Para o servidor (passos):**
+1. Enviar o site-contabo.zip novo (só atualiza o enquete.php; NÃO sobrescreve
+   os dados de votos) e extrair por cima.
+2. No Terminal do aaPanel, garantir permissão de escrita:
+   chown www:www /www/wwwroot/compraoseu.com/enquete_dados.json
+   chmod 664 /www/wwwroot/compraoseu.com/enquete_dados.json
+   (o PHP agora tenta criar sozinho, mas o chown garante)
+3. Testar: abrir https://compraoseu.com/enquete.php no navegador → deve
+   mostrar a página bonita (ou JSON se via fetch).
+4. Votar de novo em aba anônima → o voto deve subir.

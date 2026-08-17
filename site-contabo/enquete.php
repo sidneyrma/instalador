@@ -30,8 +30,17 @@ function dados_iniciais() {
     );
 }
 
+function criar_arquivo($arq) {
+    $ok = @file_put_contents($arq, json_encode(dados_iniciais(), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    if ($ok !== false) {
+        @chmod($arq, 0664);
+    }
+    return $ok !== false;
+}
+
 function ler_dados($arq) {
     if (!file_exists($arq)) {
+        criar_arquivo($arq);
         return dados_iniciais();
     }
     $t = @file_get_contents($arq);
@@ -44,6 +53,10 @@ function ler_dados($arq) {
 
 function salvar_dados($arq, $dados) {
     $fp = @fopen($arq, 'c+');
+    if (!$fp) {
+        criar_arquivo($arq);
+        $fp = @fopen($arq, 'c+');
+    }
     if (!$fp) {
         return false;
     }
@@ -90,10 +103,58 @@ function resultado_json($dados) {
     return $res;
 }
 
+function pagina_resultado($res) {
+    $tot = $res['votos'];
+    $linhas = '';
+    foreach ($res['opcoes'] as $chave => $op) {
+        $p = isset($res['percentuais'][$chave]) ? $res['percentuais'][$chave] : 0;
+        $n = $op['votos'];
+        $linhas .= '<div class="linha"><div class="rot">' . htmlspecialchars($op['rotulo'], ENT_QUOTES, 'UTF-8') . '</div>'
+                 . '<div class="barra"><div class="fill" style="width:' . $p . '%"></div></div>'
+                 . '<div class="pct">' . $p . '% (' . $n . ')</div></div>';
+    }
+    $com = '';
+    if (!empty($res['comentarios'])) {
+        $com = '<div class="com"><h3>Comentários dos leitores</h3>';
+        foreach ($res['comentarios'] as $c) {
+            $com .= '<div class="c"><span>💬 ' . htmlspecialchars($c['texto'], ENT_QUOTES, 'UTF-8') . '</span><em>' . $c['data'] . '</em></div>';
+        }
+        $com .= '</div>';
+    }
+    return '<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8">'
+         . '<meta name="viewport" content="width=device-width, initial-scale=1">'
+         . '<meta name="robots" content="noindex, nofollow">'
+         . '<title>Enquete — Portal O Despertar</title>'
+         . '<style>body{margin:0;font-family:Georgia,serif;background:#0e1a2e;color:#e8ecf3;padding:32px 16px}'
+         . '.wrap{max-width:620px;margin:0 auto;background:#16283f;border:1px solid rgba(201,162,75,.3);border-radius:16px;padding:28px}'
+         . 'h1{color:#c9a24b;font-size:1.4rem;margin:0 0 6px}h2{color:#e3c877;font-size:1.05rem;font-weight:normal;margin:0 0 22px}'
+         . '.linha{margin-bottom:16px}.rot{font-size:.92rem;margin-bottom:6px}.barra{height:14px;background:#0e1a2e;border-radius:8px;overflow:hidden}'
+         . '.fill{height:100%;background:linear-gradient(90deg,#c9a24b,#e3c877);border-radius:8px;transition:width .5s}'
+         . '.pct{font-size:.8rem;color:#9fb0c8;margin-top:4px;text-align:right}'
+         . '.tot{text-align:center;color:#9fb0c8;font-size:.85rem;margin-top:22px}'
+         . '.com{border-top:1px dashed rgba(201,162,75,.4);margin-top:22px;padding-top:16px}'
+         . '.com h3{color:#c9a24b;font-size:.9rem;margin:0 0 10px}.c{font-size:.85rem;color:#c4cdda;padding:6px 0;border-bottom:1px dotted rgba(201,162,75,.2)}'
+         . '.c em{color:#c9a24b;font-size:.75rem;margin-left:8px;font-style:normal}</style></head><body><div class="wrap">'
+         . '<h1>📊 Enquete do Portal</h1><h2>O que você achou da leitura online com marcadores?</h2>'
+         . $linhas
+         . '<div class="tot">' . $tot . ($tot === 1 ? ' voto' : ' votos') . ' até agora</div>'
+         . $com
+         . '</div></body></html>';
+}
+
 $metodo = $_SERVER['REQUEST_METHOD'];
 
 if ($metodo === 'GET') {
-    echo json_encode(resultado_json(ler_dados($ARQUIVO)), JSON_UNESCAPED_UNICODE);
+    $dados = ler_dados($ARQUIVO);
+    $json = resultado_json($dados);
+    // Se o acesso é de um navegador (não uma requisição fetch da Home),
+    // mostra uma página bonita com barras e percentuais.
+    $aceita = isset($_SERVER['HTTP_ACCEPT']) ? $_SERVER['HTTP_ACCEPT'] : '';
+    if (strpos($aceita, 'text/html') !== false) {
+        echo pagina_resultado($json);
+        exit;
+    }
+    echo json_encode($json, JSON_UNESCAPED_UNICODE);
     exit;
 }
 
