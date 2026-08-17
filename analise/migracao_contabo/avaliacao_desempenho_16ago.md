@@ -114,3 +114,41 @@ Inspeção profunda solicitada pelo autor, com olhos de águia:
 **Conclusão:** o leitor está fluido e profissional. Para garantir a versão
 mais recente da Home (cartão corrigido + 7 dias), enviar o site-contabo.zip
 atual (16/08 16:15) ao servidor e extrair por cima.
+
+## Enquete de participação na Home (16/08)
+
+**O que foi criado:**
+- Seção "📊 Participe — Sua opinião faz a diferença" na Home, entre a
+  biblioteca e a trilogia.
+- Pergunta: "O que você achou da leitura online com marcadores?" com 4 opções
+  (Amei / Gostei / Parece útil / Ainda não usei).
+- **Percentuais ao vivo** com barras de progresso douradas (atualizam a cada
+  voto).
+- Campo de comentário opcional: "Qual livro você está lendo? Está gostando?
+  Tem alguma dúvida ou sugestão?" — o comentário aparece na seção
+  "Comentários dos leitores".
+- Proteção: 1 voto por navegador (localStorage) + intervalo mínimo de 30s
+  entre votos do mesmo IP (enquete_ips.json).
+
+**Como funciona (endpoint):**
+- site-contabo/enquete.php — recebe GET (resultados) e POST (voto), guarda em
+  enquete_dados.json (JSON), devolve percentuais.
+- Fallback honesto: se o PHP não estiver ativo no servidor, o voto/comentário
+  vai por e-mail via FormSubmit (compraoseu.com@gmail.com) e a enquete avisa.
+
+**Para ativar no servidor (aaPanel):**
+1. Enviar o site-contabo.zip (ou os arquivos enquete.php, enquete_dados.json e
+   o index.html atualizado) e extrair por cima.
+2. Garantir que o site compraoseu.com tenha versão PHP selecionada:
+   Website → compraoseu.com → "PHP version" → escolher 7.4 ou 8.x → salvar.
+3. Garantir permissão de escrita no arquivo enquete_dados.json (o PHP precisa
+   gravar os votos): no Gerenciador de Arquivos, botão direito no arquivo →
+   Permissão → 664, dono www (ou rodar no Terminal:
+   `chown www:www /www/wwwroot/compraoseu.com/enquete_dados.json`).
+4. Testar: abrir https://compraoseu.com/enquete.php no navegador → deve
+   mostrar um JSON com "votos": 0.
+
+**Validação:** lógica de votação testada (réplica em Python): percentuais
+corretos (67/33 com 3 votos), comentários e total funcionando. JS das Homes
+íntegro, HTML balanceado. Sem PHP no sandbox, a sintaxe foi revisada
+cuidadosamente (balanceamento de chaves/parênteses, pontos críticos).
