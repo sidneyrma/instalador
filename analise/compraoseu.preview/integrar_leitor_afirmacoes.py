@@ -12,8 +12,8 @@ import re
 import pathlib
 
 RAIZ = pathlib.Path(__file__).resolve().parents[2]
-ORIG = RAIZ / "paginas" / "livro_afirmacoes_preview.html"
-DEST = RAIZ / "paginas" / "livro_afirmacoes_leitor_preview.html"
+ORIG = RAIZ / "paginas" / "livro12_preview.html"
+DEST = RAIZ / "paginas" / "livro12_leitor_preview.html"
 
 html = ORIG.read_text(encoding="utf-8")
 original = html

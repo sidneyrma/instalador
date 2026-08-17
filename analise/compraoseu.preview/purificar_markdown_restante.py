@@ -26,7 +26,7 @@ for n in range(1, 12):
     nome = f"livro{n:02d}"
     ARQUIVOS += [f"paginas/{nome}_preview.html", f"paginas/{nome}_leitor_preview.html",
                  f"site-contabo/{nome}.html"]
-ARQUIVOS += ["paginas/livro_afirmacoes_preview.html", "paginas/livro_afirmacoes_leitor_preview.html",
+ARQUIVOS += ["paginas/livro12_preview.html", "paginas/livro12_leitor_preview.html",
              "paginas/eusou_estudos_preview.html", "paginas/eusou_estudos_leitor_preview.html",
              "paginas/home_preview.html", "site-contabo/index.html"]
 

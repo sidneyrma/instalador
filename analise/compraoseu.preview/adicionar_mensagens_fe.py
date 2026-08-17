@@ -17,7 +17,7 @@ Uso: python3 adicionar_mensagens_fé.py
 import pathlib
 
 RAIZ = pathlib.Path(__file__).resolve().parents[2]
-ORIG = RAIZ / "paginas" / "livro_afirmacoes_preview.html"
+ORIG = RAIZ / "paginas" / "livro12_preview.html"
 
 # (emoji, situação, mensagem, versículo texto, referência)
 MENSAGENS = [

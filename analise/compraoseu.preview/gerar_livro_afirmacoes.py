@@ -7,7 +7,7 @@ import re, html
 from pathlib import Path
 
 ROOT = Path('/home/user/instalador')
-OUT = ROOT / 'paginas' / 'livro_afirmacoes_preview.html'
+OUT = ROOT / 'paginas' / 'livro12_preview.html'
 
 TITULO = 'Comece o dia com Afirmações, Declarações e Orações'
 SUBTITULO = 'Versículos, gratidão, afirmações e orações para fortalecer a sua fé'
