@@ -28,6 +28,24 @@
 
 ---
 
+## 🩺 SAÚDE DO SERVIDOR (17/08, 2ª checagem) — ATUALIZADO
+
+- **PM2:** `su - deploy -c "pm2 list"` mostra os 3 processos ONLINE:
+  conectai-apioficial (porta 6000, 105MB), conectai-backend (4000, 210MB),
+  conectai-frontend (3000, 57MB). Chatbot 100% saudável.
+- **apioficial.compraoseu.com = Webhooks do WhatsApp** (confirmado no mapa
+  acima). NÃO APAGAR o site: os webhooks do WhatsApp Business dependem dessa
+  URL estática. O autor DESATIVOU o SSL dele (certificado inexistente) — ok,
+  mas rodar `nginx -t` no Terminal para confirmar "syntax is ok" antes de
+  qualquer reload do nginx.
+- **Enquete:** total 232 vs soma das opções 115 (inconsistência de testes).
+  Recomendado ZERAR para dados 100% confiáveis:
+  cd /www/wwwroot/compraoseu.com
+  echo '{"votos":0,"opcoes":{"amei":0,"gostei":0,"util":0,"nao_usei":0},"comentarios":[]}' > enquete_dados.json
+  chown www:www enquete_dados.json && chmod 664 enquete_dados.json
+
+---
+
 ## 📁 ESTRUTURA DO SITE PRINCIPAL (compraoseu.com)
 
 ### Tecnologia
