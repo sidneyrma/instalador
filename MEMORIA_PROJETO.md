@@ -99,6 +99,12 @@
 - [ ] Atualizar sitemap.xml
 - [ ] Testar todos os 11 livros no novo domínio
 
+**Guia completo criado:** `analise/migracao_contabo/guia_novo_dominio_missaocomdeus.md`
+(passos de DNS, SSL, cópia de arquivos, Nginx, redirect 301, sitemap,
+ajustes de nome + seção sobre BACKUPS com resposta honesta: sites são leves
+~4MB, servidor tem espaço de sobra, backups não comprometem desempenho;
+chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
+
 ---
 
 ## 📌 COMO INICIAR NOVO CHAT
