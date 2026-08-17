@@ -152,3 +152,16 @@ atual (16/08 16:15) ao servidor e extrair por cima.
 corretos (67/33 com 3 votos), comentários e total funcionando. JS das Homes
 íntegro, HTML balanceado. Sem PHP no sandbox, a sintaxe foi revisada
 cuidadosamente (balanceamento de chaves/parênteses, pontos críticos).
+
+## Enquete: contagem de votos oculta (16/08)
+
+A pedido do autor, a quantidade de votos não fica mais visível na página:
+
+- Removida a barra de meta ("🎯 Meta: 100 participações") e o contador
+  ("X votos até agora" / "1 voto").
+- O carregamento da página agora é silencioso (só confirma que o endpoint
+  responde; nada é exibido antes do voto).
+- Os PERCENTUAIS por opção só aparecem APÓS o voto (a pessoa vota e vê o
+  resultado) — mantém a gratificação sem expor a contagem geral.
+- CSS morto (eq-meta, eq-total) removido; JS/HTML validados; gerador
+  adicionar_enquete.py atualizado; zip regenerado.

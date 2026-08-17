@@ -45,17 +45,11 @@ CSS_ENQUETE = """
   .eq-mensagem.visivel{display:flex}
   .eq-mensagem.ok{color:#2e7d32}
   .eq-resultado{margin-top:16px;display:none}
-  .eq-resultado .eq-total{font-size:.8rem;color:var(--muted);text-align:center;margin-top:12px}
   .eq-comentarios{margin-top:14px;border-top:1px dashed rgba(201,162,75,.4);padding-top:12px;display:none}
   .eq-comentarios h4{font-size:.85rem;color:var(--gold-dark);margin:0 0 8px;letter-spacing:.05em;text-transform:uppercase}
   .eq-comentarios .eq-c{font-size:.85rem;color:var(--muted);padding:7px 0;border-bottom:1px dotted rgba(201,162,75,.25)}
   .eq-comentarios .eq-c:last-child{border-bottom:none}
   .eq-aviso{font-size:.75rem;color:var(--muted);margin-top:14px;text-align:center}
-  .eq-meta{margin-top:18px;padding-top:14px;border-top:1px dashed rgba(201,162,75,.4)}
-  .eq-meta-topo{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:var(--navy);font-weight:600;margin-bottom:6px;gap:10px;flex-wrap:wrap}
-  .eq-meta-barra{height:10px;background:var(--cream);border:1px solid rgba(201,162,75,.35);border-radius:8px;overflow:hidden}
-  .eq-meta-fill{height:100%;background:linear-gradient(90deg,var(--gold-light),var(--gold-dark));border-radius:8px;transition:width .6s ease}
-  .eq-meta-convite{margin:10px 0 0;font-size:.88rem;color:var(--gold-dark);font-weight:600;text-align:center}
 """
 
 HTML_ENQUETE = """
@@ -113,8 +107,6 @@ JS_ENQUETE = """
       if(pctEl){ pctEl.textContent = tot > 0 ? p + "%" : ""; }
       if(barEl){ barEl.style.width = (tot > 0 ? p : 0) + "%"; }
     }
-    var totalEl = document.querySelector(".eq-total");
-    if(totalEl){ totalEl.textContent = tot + (tot === 1 ? " voto" : " votos"); }
     // comentários recentes
     if(d.comentarios && d.comentarios.length){
       var h = "";
@@ -124,22 +116,12 @@ JS_ENQUETE = """
     }
   }
 
-  var META = 100;
   function carregar(){
+    // A contagem de votos fica OCULTA na página (pedido do autor).
+    // Antes de votar, nada é exibido; após o voto, os percentuais aparecem.
     fetch("enquete.php", { cache:"no-store" })
       .then(function(r){ if(!r.ok){ throw new Error("offline"); } return r.json(); })
-      .then(function(d){
-        aplicarResultados(d);
-        var box = document.querySelector(".enquete-box");
-        var n = d.votos || 0;
-        var meta = document.createElement("div");
-        meta.className = "eq-meta";
-        var pctMeta = Math.min(100, Math.round(n / META * 100));
-        meta.innerHTML = '<div class="eq-meta-topo"><span>🎯 Meta: ' + META + ' participações</span><span>' + n + ' voto' + (n === 1 ? "" : "s") + ' (' + pctMeta + '%)</span></div>' +
-          '<div class="eq-meta-barra"><div class="eq-meta-fill" style="width:' + pctMeta + '%"></div></div>' +
-          (n < 5 ? '<p class="eq-meta-convite">💛 Seja um dos primeiros a participar e ajude outros leitores a descobrir a novidade!</p>' : "");
-        box.appendChild(meta);
-      })
+      .then(function(){ /* silencioso: só confirma que o endpoint está ativo */ })
       .catch(function(){
         // Fallback honesto: PHP indisponível -> voto segue por e-mail
         msg.textContent = "📧 A votação ao vivo ainda não está ativa neste momento. Seu voto e comentário podem ser enviados por e-mail normalmente.";
