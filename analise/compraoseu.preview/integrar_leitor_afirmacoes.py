@@ -138,8 +138,9 @@ CSS_LEITOR = """
   }
   @media (max-width:560px){
     .controles button{min-width:30px; padding:0 6px}
+    .controles .bt-txt{display:none}
     #trilha{right:3px}
-    #stats-leitura{font-size:.64rem}
+    #stats-leitura{display:none}
   }
 """
 assert "</style>" in html
@@ -160,7 +161,7 @@ assert TOPBAR_ANTIGO in html, "topbar antigo não encontrado"
 TOPBAR_NOVO = """<header class="topbar">
   <div class="wrap">
     <div class="linha1">
-      <a class="logo" href="#capa">Missão <span>com Deus</span> · Afirmações</a>
+      <a class="logo" href="#capa">Missão <span>com Deus</span></a>
       <span id="stats-leitura">Início da leitura</span>
     </div>
     <div class="controles">
@@ -168,8 +169,8 @@ TOPBAR_NOVO = """<header class="topbar">
       <button id="btn-padrao" title="Tamanho original" class="ativo">A</button>
       <button id="btn-mais" title="Aumentar letras">A+</button>
       <span class="sep"></span>
-      <button id="btn-fita" title="Colocar ou remover a fita dourada">🎗️ Fita</button>
-      <button id="btn-modo" title="Mudar a cor da tela (Dia, Sépia, Noite)">🎨 Dia</button>
+      <button id="btn-fita" title="Colocar ou remover a fita dourada"><span class="bt-ic">🎗️</span><span class="bt-txt"> Fita</span></button>
+      <button id="btn-modo" title="Mudar a cor da tela (Dia, Sépia, Noite)"><span class="bt-ic">🎨</span><span class="bt-txt"> Dia</span></button>
       <button id="btn-dicas" title="Ver dicas de leitura">💡</button>
     </div>
   </div>
