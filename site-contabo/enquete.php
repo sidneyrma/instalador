@@ -205,6 +205,10 @@ if ($metodo === 'POST') {
 
     $voto = isset($req['voto']) ? $req['voto'] : '';
     $comentario = isset($req['comentario']) ? trim(strip_tags($req['comentario'])) : '';
+    $email = isset($req['email']) ? trim(strip_tags($req['email'])) : '';
+    if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $email = ''; // e-mail inválido: ignora, mas não bloqueia
+    }
     if ($comentario !== '') {
         if (function_exists('mb_substr')) {
             $comentario = mb_substr($comentario, 0, 500);
@@ -248,7 +252,8 @@ if ($metodo === 'POST') {
     if ($comentario !== '') {
         $novo['comentarios'] = array(array(
             'texto' => $comentario,
-            'data' => date('d/m/Y H:i')
+            'data' => date('d/m/Y H:i'),
+            'email' => $email  // privado: usado apenas para responder
         ));
     }
 

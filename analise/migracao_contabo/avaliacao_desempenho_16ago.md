@@ -322,3 +322,31 @@ notificação via FormSubmit SEMPRE, em paralelo:
 - Best-effort: não altera a mensagem exibida na página.
 
 Aplicado nas duas Homes e no gerador; JS/HTML validados; zip regenerado.
+
+## Campo de e-mail para responder os leitores (17/08)
+
+**Problema:** o autor perguntou como responder os irmãos se a enquete é
+anônima (não há e-mail do leitor). E os e-mails do FormSubmit não chegavam.
+
+**Solução aplicada:**
+1. **Campo de e-mail OPCIONAL** na enquete: "Seu e-mail (opcional) — se quiser
+   uma resposta sobre os livros". O leitor só informa se quiser resposta.
+2. **Privacidade:** o e-mail NÃO aparece publicamente na página de comentários
+   (só o texto e a data). Fica salvo no arquivo de dados (campo 'email') e vai
+   no e-mail de notificação ("E-mail do leitor (para responder)").
+3. **Validação:** e-mail inválido é ignorado (não bloqueia o voto).
+
+**Sobre o FormSubmit não chegar:**
+- O sandbox não alcança formsubmit.co (HTTP 000) — limitação da rede do
+  sandbox, não do site. No navegador do visitante funciona.
+- IMPORTANTE (primeira vez): o FormSubmit exige CONFIRMAÇÃO do e-mail
+  destinatário. Ao enviar o primeiro formulário, ele manda um e-mail de
+  ativação para compraoseu.com@gmail.com ("Confirm your email" / "Activate").
+  Se não confirmar, os e-mails não chegam (ou vão para o spam).
+- Verificar a caixa de SPAM/Lixeira do Gmail.
+- Testar depois: fazer um voto/comentário novo no site (aba anônima) → deve
+  chegar e-mail com "📊 Voto na enquete do Portal" ou "💬 Mensagem do Portal".
+
+**Como responder os irmãos:** ao receber o e-mail de notificação com o campo
+"E-mail do leitor", responder diretamente para esse endereço (ou pelo
+WhatsApp do portal, se o leitor deixar o número no comentário).

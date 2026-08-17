@@ -39,6 +39,9 @@ CSS_ENQUETE = """
   .eq-comentario{margin-top:16px}
   .eq-comentario textarea{width:100%;padding:11px 13px;border:1px solid rgba(201,162,75,.4);border-radius:10px;font-family:var(--sans);font-size:.92rem;color:var(--navy);resize:vertical;min-height:64px}
   .eq-comentario textarea:focus{outline:none;border-color:var(--gold)}
+  .eq-email{margin-top:10px}
+  .eq-email input{width:100%;padding:11px 13px;border:1px solid rgba(201,162,75,.4);border-radius:10px;font-family:var(--sans);font-size:.92rem;color:var(--navy)}
+  .eq-email input:focus{outline:none;border-color:var(--gold)}
   .eq-acoes{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap}
   .eq-acoes .btn{padding:12px 22px;font-size:.92rem}
   .eq-mensagem{margin-top:14px;font-size:.88rem;color:var(--muted);display:none;align-items:center;gap:8px;line-height:1.5}
@@ -72,6 +75,9 @@ HTML_ENQUETE = """
         </div>
         <div class="eq-comentario">
           <textarea id="eq-comentario" placeholder="Conte mais (opcional): qual livro você está lendo? Está gostando? Tem alguma dúvida ou sugestão?"></textarea>
+        </div>
+        <div class="eq-email">
+          <input type="email" id="eq-email" placeholder="Seu e-mail (opcional) — se quiser uma resposta sobre os livros" autocomplete="email">
         </div>
         <div class="eq-acoes">
           <button type="submit" class="btn btn-gold" id="eq-enviar">Votar e participar</button>
@@ -154,7 +160,10 @@ JS_ENQUETE = """
         msg.className = "eq-mensagem visivel";
         return;
       }
-      enviar({ comentario: comentario }, "💛 Mensagem enviada! Obrigado por escrever para nós.", true);
+      var email = document.getElementById("eq-email").value.trim();
+      var payload = { comentario: comentario };
+      if(email){ payload.email = email; }
+      enviar(payload, "💛 Mensagem enviada! Obrigado por escrever para nós.", true);
       return;
     }
 
@@ -165,8 +174,10 @@ JS_ENQUETE = """
       return;
     }
     var voto = escolhido.value;
+    var email = document.getElementById("eq-email").value.trim();
     var payload = { voto: voto };
     if(comentario){ payload.comentario = comentario; }
+    if(email){ payload.email = email; }
     enviar(payload, "💛 Obrigado por participar! Seu voto foi registrado.", false);
   });
 
@@ -179,7 +190,8 @@ JS_ENQUETE = """
       _template: "table",
       _captcha: "false",
       Mensagem: payload.comentario || "(sem mensagem)",
-      Voto: payload.voto ? (OPCOES[payload.voto] || payload.voto) : "(sem voto, só mensagem)"
+      Voto: payload.voto ? (OPCOES[payload.voto] || payload.voto) : "(sem voto, só mensagem)",
+      "E-mail do leitor (para responder)": payload.email || "(não informado)"
     };
     // Best-effort: não altera a mensagem da página; só tenta enviar.
     fetch(url, { method:"POST", headers:{ "Content-Type":"application/json", "Accept":"application/json" }, body: JSON.stringify(dados) }).catch(function(){});
