@@ -226,3 +226,32 @@ botões presentes nas duas Homes; zip regenerado.
 3. Testar: abrir https://compraoseu.com/enquete.php no navegador → deve
    mostrar a página bonita (ou JSON se via fetch).
 4. Votar de novo em aba anônima → o voto deve subir.
+
+## Visual da enquete v2 (17/08) — página de resultado estilo stats.html
+
+O autor relatou que o voto não foi computado e que a página mostrava JSON cru.
+
+**Diagnóstico:** o servidor ainda estava com a VERSÃO ANTIGA do enquete.php
+(sem a página bonita) — a nova ainda não tinha sido enviada. Além disso, o
+navegador do autor guardou "despertar_enquete_votada"="1" do primeiro teste,
+então ao tentar votar de novo a página mostra "Você já participou" sem enviar
+o voto (e o primeiro voto foi zerado quando o zip antigo sobrescreveu o
+arquivo de dados).
+
+**Melhorias no enquete.php v2:**
+1. Página de resultado NO ESTILO stats.html: fundo navy, cartão com barras
+   douradas de percentual, emojis por opção, total em destaque, comentários e
+   botão "← Voltar para o site" (https://compraoseu.com/#enquete).
+2. Acesso direto no navegador → página bonita; fetch da Home / ?json=1 → JSON.
+3. Gravação ATÔMICA: arquivo temporário + rename (evita corromper o JSON).
+4. Log de erros (enquete_erro.log) para diagnosticar permissões.
+5. Cria o arquivo de dados sozinho (chmod 664) se não existir.
+
+**Para o servidor:**
+1. Enviar o site-contabo.zip NOVO (contém só o enquete.php atualizado; NÃO
+   contém enquete_dados.json/enquete_ips.json para não zerar votos) e extrair
+   por cima.
+2. Terminal: chown www:www enquete_dados.json; chmod 664 enquete_dados.json
+   (se o arquivo existir). O PHP tenta criar sozinho se não existir.
+3. Testar: https://compraoseu.com/enquete.php → deve mostrar a PÁGINA BONITA.
+4. Para votar de novo: usar aba anônima (o navegador guardou "já participou").
