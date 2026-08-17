@@ -111,6 +111,12 @@
   .card-destaque h3{font-size:24px;color:var(--gold-light);margin-bottom:8px;}
   .card-destaque p{color:#c9d4e4;font-size:15.5px;margin:0;max-width:560px;}
   .card-destaque .btn{padding:14px 26px;font-size:15px;white-space:nowrap;}
+
+  .card-destaque .cd-acoes{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .card-destaque .btn{padding:13px 22px;font-size:14.5px;white-space:nowrap}
+  .btn-enquete{background:transparent;border:2px solid var(--gold);color:var(--gold-light)}
+  .btn-enquete:hover{background:var(--gold);color:var(--navy)}
+  @media(max-width:560px){ .card-destaque .cd-acoes{width:100%} .card-destaque .btn{flex:1;justify-content:center;text-align:center} }
   @media(max-width:560px){ .card-destaque{padding:24px 20px;} .card-destaque .ic{font-size:44px;} }
 
   .section-head{text-align:center;max-width:640px;margin:0 auto 48px;}
@@ -427,7 +433,10 @@
           <h3>Livros online e gratuitos</h3>
           <p>Leia as obras da Coleção do Despertar gratuitamente, direto no seu navegador, sem custo, sem cadastro e com leitura protegida. Uma porta aberta para o seu despertar.</p>
         </div>
-        <a class="btn btn-gold" href="#biblioteca">Ir para os livros</a>
+        <div class="cd-acoes">
+          <a class="btn btn-gold" href="#biblioteca">Ir para os livros</a>
+          <a class="btn btn-enquete" href="#enquete">💬 Participar da enquete</a>
+        </div>
       </div>
       <div class="card"><span class="ic">🎥</span><h3>Videoaulas guiadas</h3><p>Imersão teórica e prática com ensinamentos profundos de fácil linguagem que tocam a alma.</p></div>
       <div class="card"><span class="ic">📚</span><h3>Livros e materiais</h3><p>Trilogia Evolução da Alma + Anestesia Mental, para ler e baixar.</p></div>

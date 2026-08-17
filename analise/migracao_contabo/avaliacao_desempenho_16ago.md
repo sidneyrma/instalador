@@ -165,3 +165,16 @@ A pedido do autor, a quantidade de votos não fica mais visível na página:
   resultado) — mantém a gratificação sem expor a contagem geral.
 - CSS morto (eq-meta, eq-total) removido; JS/HTML validados; gerador
   adicionar_enquete.py atualizado; zip regenerado.
+
+## Chamada para a enquete no card "Livros online e gratuitos" (16/08)
+
+A pedido do autor, o card-destaque "Livros online e gratuitos" (seção portal)
+agora tem DOIS botões lado a lado:
+
+- "Ir para os livros" (#biblioteca) — já existia;
+- "💬 Participar da enquete" (#enquete) — NOVO, com estilo outline dourado
+  (btn-enquete), ao lado do primeiro.
+
+Os botões ficam em um contêiner flex (cd-acoes) com gap; no celular ocupam a
+largura total, um embaixo do outro (flex:1 + wrap). Validado: JS íntegro,
+HTML balanceado nas duas Homes; zip regenerado.
