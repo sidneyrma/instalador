@@ -120,3 +120,27 @@ Conteúdo espiritual acessível a todos.
 Integrado com Chatbox Laura (WhatsApp).
 Construído com fé, persistência e amor.
 "Até a consumação" — Mateus 28:20
+
+## 📖 LIVRO 12 — Comece o dia com Afirmações, Declarações e Orações (17/08)
+
+- **Arquivo publicado:** site-contabo/livro12.html (gerado de
+  paginas/livro_afirmacoes_leitor_preview.html — versão com LEITOR e PROTEÇÃO;
+  é a mais atualizada. A versão paginas/livro_afirmacoes_preview.html é a de
+  AVALIAÇÃO, sem leitor/proteção, para o autor marcar/copiar).
+- **Conteúdo:** 15 seções, 22 itens FAQ (10 Orações de Fé + 12 Mensagens para
+  o Dia a Dia), 100% humanizado e purificado.
+- **Acesso:** SOMENTE pelo hero da Home (botão "📖 Ler o livro de Afirmações"
+  → /livro12). AINDA NÃO entra na biblioteca, no sitemap nem nos cards.
+- **Decisão do autor:** dar visibilidade ao Livro 12 antes de publicá-lo na
+  biblioteca, para não parecer que está "vendendo a Palavra".
+
+## 🎯 HERO DA HOME — novo CTA (17/08)
+
+- **Botão principal (dourado):** "📖 Começar pelo Devocional de 30 dias" →
+  #devocional (âncora criada no card do Devocional, seção "Nossas obras").
+- **Botão secundário:** "📖 Ler o livro de Afirmações" → /livro12 (produção)
+  ou livro_afirmacoes_leitor_preview.html (preview).
+- **Nota engajadora (substitui a nota de preço):** "Comece o seu dia com uma
+  palavra de Jesus para a sua vida. E ao descer, conheça também a Trilogia da
+  Alma." — hero menos comercial, acolhe primeiro.
+- **Venda continua** nas seções abaixo (Nossas obras, cards, trilogia, apoio).
