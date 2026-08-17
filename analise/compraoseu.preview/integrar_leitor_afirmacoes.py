@@ -64,6 +64,7 @@ CSS_LEITOR = """
     background:linear-gradient(90deg,#c9a24b,#e3c877);
     z-index:100; border-radius:0 3px 3px 0; transition:width .15s linear;
   }
+  .topbar .wrap{flex-wrap:wrap; gap:6px}
   .topbar .linha1{display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%}
   #stats-leitura{color:var(--ouro-claro); font-size:.7rem; letter-spacing:.05em; font-family:system-ui,sans-serif; white-space:nowrap}
   .controles{display:flex; align-items:center; gap:5px; flex-wrap:wrap; font-family:system-ui,sans-serif}
@@ -138,9 +139,8 @@ CSS_LEITOR = """
   }
   @media (max-width:560px){
     .controles button{min-width:30px; padding:0 6px}
-    .controles .bt-txt{display:none}
     #trilha{right:3px}
-    #stats-leitura{display:none}
+    #stats-leitura{font-size:.62rem}
   }
 """
 assert "</style>" in html
@@ -169,8 +169,8 @@ TOPBAR_NOVO = """<header class="topbar">
       <button id="btn-padrao" title="Tamanho original" class="ativo">A</button>
       <button id="btn-mais" title="Aumentar letras">A+</button>
       <span class="sep"></span>
-      <button id="btn-fita" title="Colocar ou remover a fita dourada"><span class="bt-ic">🎗️</span><span class="bt-txt"> Fita</span></button>
-      <button id="btn-modo" title="Mudar a cor da tela (Dia, Sépia, Noite)"><span class="bt-ic">🎨</span><span class="bt-txt"> Dia</span></button>
+      <button id="btn-fita" title="Colocar ou remover a fita dourada">🎗️ Fita</button>
+      <button id="btn-modo" title="Mudar a cor da tela (Dia, Sépia, Noite)">🎨 Dia</button>
       <button id="btn-dicas" title="Ver dicas de leitura">💡</button>
     </div>
   </div>
