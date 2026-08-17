@@ -170,6 +170,21 @@ JS_ENQUETE = """
     enviar(payload, "💛 Obrigado por participar! Seu voto foi registrado.", false);
   });
 
+  // Envia o e-mail de notificação (FormSubmit) — SEMPRE, em paralelo com o
+  // salvamento no PHP, para o autor receber cada voto/comentário.
+  function notificarEmail(payload, soMensagem){
+    var url = "https://formsubmit.co/ajax/compraoseu.com@gmail.com";
+    var dados = {
+      _subject: soMensagem ? "💬 Mensagem do Portal (enquete)" : "📊 Voto na enquete do Portal",
+      _template: "table",
+      _captcha: "false",
+      Mensagem: payload.comentario || "(sem mensagem)",
+      Voto: payload.voto ? (OPCOES[payload.voto] || payload.voto) : "(sem voto, só mensagem)"
+    };
+    // Best-effort: não altera a mensagem da página; só tenta enviar.
+    fetch(url, { method:"POST", headers:{ "Content-Type":"application/json", "Accept":"application/json" }, body: JSON.stringify(dados) }).catch(function(){});
+  }
+
   function enviar(payload, textoOk, soMensagem){
     fetch("enquete.php", {
       method: "POST",
@@ -182,6 +197,7 @@ JS_ENQUETE = """
         aplicarResultados(res.d);
         msg.textContent = textoOk;
         msg.className = "eq-mensagem visivel ok";
+        notificarEmail(payload, soMensagem); // notifica por e-mail mesmo com sucesso
         try{ localStorage.setItem("despertar_enquete_votada", "1"); }catch(err){}
         if(!soMensagem){
           form.querySelectorAll('input[name="eq-voto"]').forEach(function(i){ i.disabled = true; });
@@ -192,18 +208,10 @@ JS_ENQUETE = """
       }
     })
     .catch(function(err){
-      // Fallback honesto: envia por e-mail via FormSubmit
-      var url = "https://formsubmit.co/ajax/compraoseu.com@gmail.com";
-      var dados = {
-        _subject: soMensagem ? "💬 Mensagem do Portal (enquete)" : "📊 Voto na enquete do Portal",
-        _template: "table",
-        _captcha: "false",
-        Mensagem: payload.comentario || "(sem mensagem)",
-        Voto: payload.voto ? (OPCOES[payload.voto] || payload.voto) : "(sem voto, só mensagem)"
-      };
-      fetch(url, { method:"POST", headers:{ "Content-Type":"application/json", "Accept":"application/json" }, body: JSON.stringify(dados) })
-        .then(function(){ msg.textContent = soMensagem ? "💛 Mensagem enviada (por e-mail)! Obrigado." : "💛 Obrigado! Seu voto foi enviado (por e-mail)."; msg.className = "eq-mensagem visivel ok"; })
-        .catch(function(){ msg.textContent = "🙏 Obrigado! Se quiser, envie para contato@compraoseu.com."; msg.className = "eq-mensagem visivel ok"; });
+      // Fallback honesto: se o PHP falhou, envia por e-mail via FormSubmit
+      notificarEmail(payload, soMensagem);
+      msg.textContent = soMensagem ? "💛 Mensagem enviada (por e-mail)! Obrigado." : "💛 Obrigado! Seu voto foi enviado (por e-mail).";
+      msg.className = "eq-mensagem visivel ok";
       try{ localStorage.setItem("despertar_enquete_votada", "1"); }catch(err){}
     });
   }

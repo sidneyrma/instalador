@@ -305,3 +305,20 @@ HTML com tipo json e exibia o código em vez de renderizar.
 **Validação:** lógica testada (réplica): 2 votos + 2 comentários (mensagens
 não contam como voto); JS/HTML íntegros nas duas Homes; PHP balanceado.
 Zip regenerado SEM arquivos de dados (não zera votos).
+
+## Correção: comentários/votos não chegavam ao e-mail (17/08)
+
+**Problema:** o autor relatou que os comentários de teste apareciam na página
+(o PHP salvava), mas NÃO chegavam ao e-mail.
+
+**Causa:** o envio via FormSubmit estava apenas no .catch() do fetch para o
+enquete.php — ou seja, só disparava quando o PHP FALHAVA. Como o PHP passou a
+funcionar, o .catch() nunca era acionado e nenhum e-mail era enviado.
+
+**Correção:** criada a função notificarEmail(payload, soMensagem) que envia a
+notificação via FormSubmit SEMPRE, em paralelo:
+- Chamada dentro do .then() de sucesso (notifica mesmo com o PHP funcionando);
+- Mantida também no .catch() (fallback quando o PHP falhar);
+- Best-effort: não altera a mensagem exibida na página.
+
+Aplicado nas duas Homes e no gerador; JS/HTML validados; zip regenerado.
