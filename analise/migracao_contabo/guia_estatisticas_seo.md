@@ -91,3 +91,25 @@ ou renomeie para um nome difícil.
 | `analise/seo/kit_seo_completo.md` | Metadados (PÁGINAS 1–12) |
 
 *"A sabedoria é a coisa principal; adquire, pois, a sabedoria"* (Provérbios 4:7).
+
+## 🐘 Instalação do PHP no aaPanel (para a enquete)
+
+O site foi criado como "Pure static" (sem PHP), por isso a enquete não tem onde
+guardar votos até o PHP ser ativado.
+
+**Versão recomendada: PHP 8.1** (ou 8.2). Qualquer versão de 7.4+ funciona
+para a enquete; 8.1 é o equilíbrio ideal (madura, estável, leve). Evitar 8.5
+(muito recente) e 7.x (fim de vida).
+
+**Passos no aaPanel:**
+1. App Store / Software Store → **PHP-8.1** → **Instalar** (deixar padrão).
+   Instalar APENAS UMA versão (cada uma ocupa ~50-100 MB; não acumular).
+2. **Sites** → `compraoseu.com` → **Configuração** → **PHP Version** → 8.1 → Salvar.
+3. Enviar o site-contabo.zip atualizado (com enquete.php e enquete_dados.json)
+   e extrair por cima.
+4. Garantir permissão de escrita no arquivo de votos:
+   Terminal: `chown www:www /www/wwwroot/compraoseu.com/enquete_dados.json`
+5. Testar: https://compraoseu.com/enquete.php deve responder JSON com "votos":0.
+
+**Desnecessário:** "Segurança do código PHP" (R$ 34,80) é opcional/pago — não é
+necessária para a enquete.
