@@ -255,3 +255,25 @@ arquivo de dados).
    (se o arquivo existir). O PHP tenta criar sozinho se não existir.
 3. Testar: https://compraoseu.com/enquete.php → deve mostrar a PÁGINA BONITA.
 4. Para votar de novo: usar aba anônima (o navegador guardou "já participou").
+
+## Permissões dos arquivos da enquete (17/08) — confirmado
+
+Lista do servidor (aaPanel) mostra:
+- Pastas: 755, dono www — OK
+- Arquivos: 644, dono www — OK
+- enquete.php: 644/www — OK (mas versão ANTIGA ainda no servidor)
+- enquete_dados.json: 644/www — já existe, NÃO precisa subir de novo
+- enquete_ips.json: 644/www — já existe, NÃO precisa subir de novo
+- Órfãos para apagar: enquete.php.old, site-contabo.zip.enquete.old,
+  site-contabo.zip (o zip não precisa ficar no servidor)
+
+**Procedimento (confirmado com o autor):**
+1. Subir APENAS o enquete.php NOVO (v2, com página bonita) — o zip novo NÃO
+   contém os arquivos de dados (não zera votos).
+2. No Terminal:
+   cd /www/wwwroot/compraoseu.com
+   chown www:www enquete_dados.json enquete_ips.json
+   chmod 664 enquete_dados.json enquete_ips.json
+3. Testar https://compraoseu.com/enquete.php (deve mostrar a página bonita).
+4. Votar em aba anônima (o navegador guardou 'despertar_enquete_votada' do 1º
+   teste e bloqueia novo voto).
