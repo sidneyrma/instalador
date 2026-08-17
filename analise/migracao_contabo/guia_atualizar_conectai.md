@@ -92,3 +92,40 @@ pm2 restart all
 | `/home/deploy/conectai/api_oficial` | 6000 | API oficial WhatsApp |
 
 *"Tudo o que fizerdes, fazei-o de todo o coração, como ao Senhor"* (Colossenses 3:23).
+
+## 🔎 VERIFICAR: site api.compraoseu.com sumiu da lista + chatbot
+
+**Sintoma:** na lista de Sites do aaPanel aparecem 3 sites (apioficial, app,
+compraoseu.com) e o api.compraoseu.com não aparece. O chatbot (Conectaí) não é
+listado.
+
+**Verificação feita (16/08):**
+- https://api.compraoseu.com/ RESPONDE com {"error":"ERR_SESSION_EXPIRED"} →
+  é a resposta normal do backend (porta 4000) — o serviço ESTÁ VIVO.
+- https://app.compraoseu.com/ abre a tela de login do Conectaí v5.0 → o
+  frontend (porta 3000) ESTÁ VIVO.
+- Ou seja: o desaparecimento é apenas da LISTA do painel (provavelmente
+  filtro/ordenação/paginação), não do serviço. O Nginx continua servindo.
+
+**Como confirmar no aaPanel (sem risco):**
+1. Na lista de Sites, clique no ícone de **recarregar** (ou F5) e verifique se
+   há **paginação/filtro** (ex.: "1/2") ou uma caixa de **busca** — procure por
+   "api".
+2. **Terminal** do aaPanel:
+   ```
+   ls /www/server/panel/vhost/nginx/ | grep api
+   ls /www/wwwroot/ | grep api
+   pm2 list
+   ```
+   Se o arquivo de config (api.compraoseu.com.conf) existir e o pm2 mostrar
+   conectai-frontend/backend/apioficial rodando, está tudo certo.
+3. Se realmente o site não existir mais na lista, RECRIE sem deletar nada:
+   Sites → Add site → api.compraoseu.com → "Reverse proxy" → 127.0.0.1:4000
+   (não toque nos arquivos existentes; o config antigo já faz o proxy, então a
+   recriação é só para o painel reconhecer).
+
+**Chatbot:** o widget não está embutido no index.html do compraoseu.com (o
+Conectaí é um app próprio em app.compraoseu.com com login). Se o senhor usava
+um botão/script do chat na Home, ele pode ter sido removido nas últimas
+atualizações; verificar em Sites → app.compraoseu.com se o serviço está OK e,
+se houver um snippet de widget da Conectaí, reaplicá-lo no index.html.
