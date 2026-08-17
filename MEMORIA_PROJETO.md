@@ -99,6 +99,12 @@
 - [ ] Atualizar sitemap.xml
 - [ ] Testar todos os 11 livros no novo domínio
 
+**Servidor (17/08):** o autor executou `apt update && apt upgrade -y` no
+servidor (atualização segura dos pacotes). O comando `docker ps -a` NÃO foi
+rodado e NÃO é necessário (o servidor não usa Docker; site = Nginx/PHP,
+chatbot = Node/PM2). Comandos úteis de verificação: `pm2 list`, `df -h`,
+`nginx -t`.
+
 **Guia completo criado:** `analise/migracao_contabo/guia_novo_dominio_missaocomdeus.md`
 (passos de DNS, SSL, cópia de arquivos, Nginx, redirect 301, sitemap,
 ajustes de nome + seção sobre BACKUPS com resposta honesta: sites são leves
