@@ -178,3 +178,19 @@ agora tem DOIS botões lado a lado:
 Os botões ficam em um contêiner flex (cd-acoes) com gap; no celular ocupam a
 largura total, um embaixo do outro (flex:1 + wrap). Validado: JS íntegro,
 HTML balanceado nas duas Homes; zip regenerado.
+
+## Card destaque refinado (16/08, 2ª rodada)
+
+A pedido do autor, o card "Livros online e gratuitos" foi refinado:
+
+- **Ícone SVG do livro REMOVIDO** (a frase "Livros online e gratuitos" já
+  fala por si) — ganha mais espaço/tela no celular.
+- **Chamada convidativa adicionada** abaixo do parágrafo:
+  "💬 E você? Conte o que achou da nova leitura com marcadores e ajude outros
+  leitores, em menos de 1 minuto." (estilo .cd-convite, itálico dourado).
+- **Dois botões lado a lado** (já da rodada anterior):
+  "Ir para os livros" (#biblioteca) e "💬 Participar da enquete" (#enquete),
+  em contêiner flex — lado a lado no desktop, empilhados no celular.
+
+Validação: JS íntegro, HTML balanceado, ícone removido, convite presente,
+botões presentes nas duas Homes; zip regenerado.
