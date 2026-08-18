@@ -182,6 +182,24 @@ chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
 
 ---
 
+## 🚫 LIVRO 11 (Novo Testamento) FORA DO AR até o lançamento (18/08)
+
+- **Descoberta:** o arquivo site-contabo/livro11.html (contém "O Novo
+  Testamento como nunca lido", o Livro 01 da Home com countdown até 27/08)
+  estava acessível em /livro11, SEM proteção (versão do autor).
+- **DECISÃO (com o autor): APAGAR o arquivo livro11.html dos DOIS domínios**
+  (compraoseu.com e missaocomdeus.com.br) até o lançamento.
+  - Não se perde nada: está salvo no GitHub.
+  - No lançamento (27/08), subir a versão PROTEGIDA (após autor aprovar a
+    leitura).
+  - Card da Home continua "Em breve" sem link; sitemap NÃO lista /livro11
+    (verificado) — Google não rastreia.
+  - sw.js tem /livro11 no cache (inofensivo; arquivo não existe).
+- **Card "Livro 11 · Disponível" da Home (A Sabedoria dos Mestres) é OUTRO
+  livro (arquivo livro02.html) — permanece no ar normalmente.**
+
+---
+
 ## 📊 STATS COM VISITAS REAIS (18/08, 2ª rodada)
 
 - **gerar_estatisticas.py atualizado** para separar BOTS de visitas HUMANAS:
