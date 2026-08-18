@@ -172,10 +172,15 @@ Construído com fé, persistência e amor.
   - Geradores atualizados para os novos nomes.
 - **Conteúdo:** 15 seções, 22 itens FAQ (10 Orações de Fé + 12 Mensagens para
   o Dia a Dia), 100% humanizado e purificado.
-- **Acesso:** SOMENTE pelo hero da Home (botão "📖 Ler o livro de Afirmações"
-  → /livro12). AINDA NÃO entra na biblioteca, no sitemap nem nos cards.
-- **Decisão do autor:** dar visibilidade ao Livro 12 antes de publicá-lo na
-  biblioteca, para não parecer que está "vendendo a Palavra".
+- **Acesso (atualizado 18/08):** ALÉM do hero, o Livro 12 agora tem CARD na
+  biblioteca (depois do Livro 11, antes do card Apoio): selo "Livro 12 ·
+  Disponível", capa https://i.ibb.co/6RRTBY06/livro12.jpg, badges "Mensagens
+  diárias" e "🔒 Protegido", botões "Ler grátis" → /livro12 e "Portal" →
+  https://pay.kiwify.com.br/iVfp2bi.
+- **Capa do livro:** adicionada a imagem .capa-livro no topo da seção capa
+  (padrão dos livros 04/05/09/10), com CSS .capa .capa-livro.
+- **Decisão anterior do autor:** dar visibilidade antes de publicar na
+  biblioteca — cumprida; agora está na biblioteca como o 12º livro.
 
 ## 🎯 HERO DA HOME — novo CTA (17/08)
 
