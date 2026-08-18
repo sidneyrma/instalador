@@ -1,5 +1,5 @@
 # MEMÓRIA DO PROJETO — MISSÃO COM DEUS
-## Atualizado em: 17/08/2026
+## Atualizado em: 18/08/2026
 
 ---
 
@@ -252,3 +252,47 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
   - Vídeos do autor estão como "Não listado" (unlisted) no YouTube → canal
     protegido; iframe usa youtube-nocookie (privacidade). JS/HTML OK; zip
     regenerado.
+
+---
+
+## 📖 LIVRO 12 — REORGANIZAÇÃO + EDIÇÕES (18/08, 2ª sessão)
+
+Pedidos do autor aplicados em site-contabo/livro12.html e
+paginas/livro12_leitor_preview.html (script:
+analise/compraoseu.preview/ajustar_livro12_estrutura.py):
+
+- **"Como usar este guia" SUBIU por inteiro** para dentro da página
+  "Sobre este guia" (abaixo do box Atenção). Deixou de ser página separada;
+  âncora antiga #como-usar preservada (span) para links salvos.
+- **"Mensagens para o Dia a Dia" e "Orações no Nome de Jesus" SUBIRAM**
+  para logo depois de "Sobre este guia" (antes da Gratidão). Sumário
+  reordenado na mesma sequência. A **videoaula permanece no FIM**.
+- **Paz e Emoções:** mensagem longa de Mateus 6 encurtada — "Não andeis
+  ansiosos pelo dia de amanhã, nem pela vossa vida. (Mateus 6:25-34)" —
+  padrão de apenas lembrar a passagem.
+- **Proteção e Segurança:** removidas as DUAS partes longas do Salmo 23
+  ("O Senhor é o meu pastor... Deitar-me faz..." e "Preparas uma mesa...").
+  Ficaram só as afirmações curtas.
+- **Relacionamentos e Perdão:** Salmo 51 encurtado até "Não me lances fora
+  da tua presença. (Salmo 51:10-11)"; Mateus encurtado até "fazei bem aos
+  que vos odeiam. (Mateus 5:44)".
+- Navegação Anterior/Próximo refeita na nova ordem; "como-usar" removido do
+  mapa NOMES do leitor. JS/HTML validados; zip regenerado (sem dados da
+  enquete).
+
+## 📱 MENU MOBILE DA HOME (18/08)
+
+- Antes: ao tocar nos três traços (☰), o menu abria em tela cheia,
+  centralizado, com links brancos.
+- Agora: menu abre como CARTÃO ALINHADO À DIREITA (debaixo do ☰), com
+  borda e sombra, e os links em DOURADO (var(--gold-light)) para melhor
+  leitura. Botão "Entrar no Portal" continua como botão dourado.
+- Aplicado em site-contabo/index.html e paginas/home_preview.html.
+
+## ⚠️ NOTA DE CONTINUIDADE (18/08)
+
+O autor abriu novo chat (branch arena/01a01525-instalador) e trouxe todo o
+trabalho da branch arena/019fcd27-instalador via merge fast-forward — nada
+se perdeu. O zip que o autor baixou antes NÃO continha estas mudanças
+porque elas ainda não haviam sido feitas (o chat anterior encerrou antes).
+Agora estão feitas e dentro do site-contabo.zip.
