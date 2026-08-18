@@ -97,6 +97,23 @@
 
 ---
 
+## 🎉🎉 SITE NOVO 100% NO AR — INCLUINDO www (18/08, vitória final)
+
+- **https://www.missaocomdeus.com.br CONFIRMADO FUNCIONANDO** (verificado por
+  fetch ao vivo): Home completa + 12 livros + quiz + enquete, com links www.
+- **nginx -t:** "syntax is ok / test is successful". Avisos "conflicting
+  server name" são inofensivos (duplicidade Certbot × aaPanel, nginx ignora).
+- **Como resolveu o problema:** os arquivos manuais do Certbot
+  (/etc/nginx/sites-available/conectai-apioficial, conectai-frontend,
+  conectai-backend) referenciavam certificados Let's Encrypt que não existiam
+  mais. Correção: sed removeu as linhas ssl_certificate e trocou
+  `listen 443 ssl;` por `listen 80;` (webhooks internos funcionam em HTTP).
+  Backups .bak criados. O painel não mostrava esses arquivos (fora do aaPanel).
+- **Falta (decisões do autor):** redirect 301 compraoseu→missaocomdeus (ou
+  manter os dois); GSC nova propriedade; sitemap com novo domínio.
+
+---
+
 ## 🎉 SITE NOVO NO AR (18/08, confirmado)
 
 - **https://missaocomdeus.com.br ESTÁ NO AR e funcionando** (verificado por
