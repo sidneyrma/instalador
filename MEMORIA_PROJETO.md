@@ -209,6 +209,12 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
 - **Chaves novas:** ansiedade/magoas/medo/paz (PHP, HTML e JS atualizados).
 - Aplicado em site-contabo/index.html, paginas/home_preview.html, enquete.php
   e gerador adicionar_enquete.py. JS/HTML/PHP validados. zip regenerado.
+- **CHAVE NOVA (18/08, 2ª rodada):** localStorage trocado de
+  despertar_enquete_votada → despertar_enquete_votada_v2. Motivo: quem votou
+  na enquete ANTIGA (leitura online) ficava preso no modo mensagem na nova
+  pergunta. Com a chave v2, todos podem votar na nova enquete (batalha da
+  mente) sem limpar o navegador. O autor confirmou que na janela anônima
+  funcionava; agora funciona no navegador normal também.
 
 ---
 

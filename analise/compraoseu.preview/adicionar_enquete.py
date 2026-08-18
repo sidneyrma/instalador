@@ -98,7 +98,7 @@ JS_ENQUETE = """
   "use strict";
   var OPCOES = { ansiedade:"😰 Ansiedade e preocupação", magoas:"😔 Mágoas e lembranças do passado", medo:"😨 Medo do futuro", paz:"🕊️ Falta de paz e propósito" };
   var jaVotou = false;
-  try{ jaVotou = localStorage.getItem("despertar_enquete_votada") === "1"; }catch(e){}
+  try{ jaVotou = localStorage.getItem("despertar_enquete_votada_v2") === "1"; }catch(e){}
   var form = document.getElementById("eq-form");
   var msg = document.getElementById("eq-mensagem");
   var resultDiv = document.getElementById("eq-resultado");
@@ -219,7 +219,7 @@ JS_ENQUETE = """
         msg.textContent = textoOk;
         msg.className = "eq-mensagem visivel ok";
         notificarEmail(payload, soMensagem); // notifica por e-mail mesmo com sucesso
-        try{ localStorage.setItem("despertar_enquete_votada", "1"); }catch(err){}
+        try{ localStorage.setItem("despertar_enquete_votada_v2", "1"); }catch(err){}
         if(!soMensagem){
           form.querySelectorAll('input[name="eq-voto"]').forEach(function(i){ i.disabled = true; });
         }
@@ -233,7 +233,7 @@ JS_ENQUETE = """
       notificarEmail(payload, soMensagem);
       msg.textContent = soMensagem ? "💛 Mensagem enviada (por e-mail)! Obrigado." : "💛 Obrigado! Seu voto foi enviado (por e-mail).";
       msg.className = "eq-mensagem visivel ok";
-      try{ localStorage.setItem("despertar_enquete_votada", "1"); }catch(err){}
+      try{ localStorage.setItem("despertar_enquete_votada_v2", "1"); }catch(err){}
     });
   }
 
