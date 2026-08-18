@@ -97,7 +97,25 @@
 
 ---
 
-## 🆕 NOVO DOMÍNIO — missaocomdeus.com.br
+## 🆕 NOVO DOMÍNIO — missaocomdeus.com.br — ✅ LIBERADO (18/08)
+
+- **NOTÍCIA:** a HostGator confirmou que o domínio foi LIBERADO para
+  gerenciamento. Próximos passos (ver guia_novo_dominio_missaocomdeus.md):
+  1. Apontar DNS na HostGator: A `missaocomdeus.com.br` → 212.28.182.86 e
+     A `www.missaocomdeus.com.br` → 212.28.182.86.
+  2. Aguardar propagação (verificar em dnschecker.org).
+  3. SSL Let's Encrypt no aaPanel (site missaocomdeus.com.br).
+  4. Copiar os arquivos do site (site-contabo.zip) para
+     /www/wwwroot/missaocomdeus.com.br/ e extrair.
+  5. Nginx: try_files $uri $uri.html $uri/index.html =404.
+  6. Decidir: redirect 301 de compraoseu.com → missaocomdeus.com.br
+     (recomendado, preserva SEO) ou manter os dois.
+  7. Atualizar sitemap.xml + adicionar propriedade no Google Search Console.
+  8. Testar os 12 livros + enquete + e-book do quiz no novo domínio.
+- **PR para o main:** PR #2 aberto (arena → main). Autor fará merge no fim
+  do dia.
+
+---
 
 - **Registrado em:** 17/08/2026
 - **Registrar:** HostGator Brasil
