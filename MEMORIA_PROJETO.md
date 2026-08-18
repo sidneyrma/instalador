@@ -182,6 +182,19 @@ chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
 
 ---
 
+## 🏆 REDIRECT 301 CONFIRMADO (18/08) — site UNIFICADO
+
+- **compraoseu.com e www.compraoseu.com → missaocomdeus.com.br (301)** com
+  `(www\.)?compraoseu\.com` + `$request_uri` (preserva o caminho).
+- **Confirmado ao vivo:** compraoseu.com/livro05 → missaocomdeus.com.br/livro05
+  (abre a Evolução da Alma no novo domínio, links internos atualizados).
+- **nginx -t:** syntax is ok (avisos "conflicting server name" inofensivos,
+  do Certbot × aaPanel).
+- **Próximo passo (combinado):** notificar.php (e-mail 100% nosso via PHP,
+  sem FormSubmit) → depois GSC nova propriedade + sitemap do novo domínio.
+
+---
+
 ## ✅ FORM SUBMIT ATIVADO (18/08) — e-mails funcionando
 
 - **FormSubmit ATIVADO com sucesso** ("Form Activated") para
