@@ -282,6 +282,13 @@ def main():
         f.write(doc)
     print('✅ stats.html gerado em', OUT)
     print('   Acesse: https://compraoseu.com/stats.html')
+    # Espelhamento: copia o stats.html também para o site novo (se existir)
+    OUT2 = '/www/wwwroot/missaocomdeus.com.br/stats.html'
+    if os.path.isdir(os.path.dirname(OUT2)):
+        with open(OUT2, 'w', encoding='utf-8') as f:
+            f.write(doc)
+        print('✅ stats.html copiado para', OUT2)
+        print('   Acesse: https://missaocomdeus.com.br/stats.html')
 
 
 if __name__ == '__main__':

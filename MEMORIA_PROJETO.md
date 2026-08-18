@@ -182,6 +182,23 @@ chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
 
 ---
 
+## 🔁 REGRA DE ESPELHAMENTO (18/08) — IMPORTANTE
+
+- **A partir de agora, TODA atualização do site deve ser aplicada nos DOIS
+  domínios:** compraoseu.com e missaocomdeus.com.br (mesmos arquivos na
+  pasta /www/wwwroot/<domínio>/).
+- O **gerar_estatisticas.py** foi atualizado para gerar o stats.html no
+  compraoseu.com E COPIAR para /www/wwwroot/missaocomdeus.com.br/stats.html
+  (espelhamento automático ao rodar o comando).
+- A **enquete** NÃO deve ser zerada (decisão do autor: preservar quem já
+  respondeu). O arquivo enquete_dados.json no servidor está com a estrutura
+  nova (ansiedade/magoas/medo/paz) e votos preservados (99 em 18/08).
+- **Redirect 301** compraoseu.com → missaocomdeus.com.br: guia em
+  analise/migracao_contabo/guia_redirect_novo_dominio.md (decisão do autor
+  se aplica agora ou mantém os dois).
+
+---
+
 ## 📌 COMO INICIAR NOVO CHAT
 
 Ao abrir novo chat, informe:

@@ -164,7 +164,7 @@ function pagina_resultado($res) {
          . '.voltar:hover{opacity:.92}'
          . '.rodape{text-align:center;color:#7f8ca1;font-size:.75rem;margin-top:16px}'
          . '</style></head><body><div class="wrap">'
-         . '<div class="topo"><div class="selo">Portal O Despertar</div><h1>📊 Enquete de participação</h1><p>O que você achou da leitura online com marcadores?</p></div>'
+         . '<div class="topo"><div class="selo">Portal O Despertar</div><h1>📊 Enquete de participação</h1><p>Qual é a maior batalha da sua mente hoje?</p></div>'
          . '<div class="card">'
          . $linhas
          . '<div class="tot"><b>' . $tot . '</b> ' . ($tot === 1 ? 'voto' : 'votos') . ' até agora</div>'
