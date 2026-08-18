@@ -187,3 +187,32 @@ Construído com fé, persistência e amor.
   palavra de Jesus para a sua vida. E ao descer, conheça também a Trilogia da
   Alma." — hero menos comercial, acolhe primeiro.
 - **Venda continua** nas seções abaixo (Nossas obras, cards, trilogia, apoio).
+
+---
+
+## 🎥 CANAL YOUTUBE + AULAS GRÁTIS (18/08)
+
+- **Canal:** @portal.o.despertar (título "Missão com Deus"). Sandbox acessou
+  o título, mas o corpo do canal retorna 401 (YouTube bloqueia automação);
+  Studio exige login (não acessível daqui).
+- **Estrutura Kiwify (confirmada):** Evolução da Alma R$19,90 (só as aulas
+  dela) · Anestesia Mental R$19,90 (só as dele) · Pacote completo R$49,00.
+- **Ideia do autor (aguardando aval):** liberar aulas-grátis (teaser) embaixo
+  dos livros online, com links diretos youtu.be:
+  - Anestesia Mental (livro online): Módulo 04 "O Impulso sem Consciência"
+    https://youtu.be/fO5RIdrFzMw
+  - Anestesia Mental (grátis): Módulo 02 "O Despertar da Consciência"
+    https://youtu.be/YSw_MY8NNZI
+  - Evolução da Alma: Módulo 02 "O Despertar da Alma"
+    https://youtu.be/ZwBDxpnFV6s
+  - Evolução da Alma (grátis): Módulo 04 "Perdão como libertação da alma"
+    https://youtu.be/fO5RIdrFzMw (mesmo link do primeiro — conferir)
+- **VERDADE TÉCNICA (honestidade):** um link de vídeo público NÃO esconde o
+  canal — ao clicar, o YouTube mostra o canal e a aba de vídeos. Caminhos:
+  (a) marcar as aulas pagas como NÃO LISTADAS (unlisted) → somem da lista
+  pública do canal e funcionam por link dentro da Kiwify (resolve o problema
+  do autor com a Kiwify); (b) embutir o vídeo na nossa página (iframe
+  youtube-nocookie) para tocar sem sair do site; (c) aceitar a descoberta do
+  canal (conteúdo grátis vira marketing — pode ser positivo).
+- **Decisão pendente:** autor escolher se aplico blocos "Aula grátis" nas
+  páginas dos livros e se marca as aulas pagas como não listadas.
