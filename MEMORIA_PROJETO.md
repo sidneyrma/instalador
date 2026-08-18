@@ -190,6 +190,28 @@ Construído com fé, persistência e amor.
 
 ---
 
+## 📊 ENQUETE NOVA — "Qual é a maior batalha da sua mente hoje?" (18/08)
+
+Pergunta de baixa fricção e alta especificidade (pré-segmentação do funil:
+cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
+(que também trocou ideia com outro modelo — união de conselhos).
+
+- **Pergunta:** "Qual é a maior batalha da sua mente hoje?"
+- **Opções:** 😰 Ansiedade e preocupação · 😔 Mágoas e lembranças do passado
+  · 😨 Medo do futuro · 🕊️ Falta de paz e propósito
+- **Comentário em camadas (ajuste do Claude):**
+  1. Durante o voto (pergunta única, leve): "Quer compartilhar? (opcional) O
+     que você tem feito para vencer essa batalha?"
+  2. Após o resultado (segundo microcompromisso): convite "X% também lutam
+     com isso — você já leu algo que te ajudou?" (foca no campo de comentário)
+- **Privacidade:** e-mail opcional; aviso que relatos podem ser usados com
+  anonimato. Estrutura mantida (PHP, FormSubmit, modo mensagem, WhatsApp).
+- **Chaves novas:** ansiedade/magoas/medo/paz (PHP, HTML e JS atualizados).
+- Aplicado em site-contabo/index.html, paginas/home_preview.html, enquete.php
+  e gerador adicionar_enquete.py. JS/HTML/PHP validados. zip regenerado.
+
+---
+
 ## 🎥 CANAL YOUTUBE + AULAS GRÁTIS (18/08)
 
 - **Canal:** @portal.o.despertar (título "Missão com Deus"). Sandbox acessou

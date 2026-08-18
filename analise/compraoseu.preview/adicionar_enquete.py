@@ -64,20 +64,20 @@ HTML_ENQUETE = """
       <p>Leva menos de um minuto e ajuda a melhorar a experiência de todos os leitores.</p>
     </div>
     <div class="enquete-box" id="enquete-box">
-      <h3>O que você achou da leitura online com marcadores?</h3>
-      <p class="eq-sub">Agora você continua de onde parou, com a fita dourada e as letras no seu tamanho.</p>
+      <h3>Qual é a maior batalha da sua mente hoje?</h3>
+      <p class="eq-sub">Responda com o coração aberto. Não há resposta certa ou errada, apenas um convite para olhar para dentro.</p>
       <form id="eq-form">
         <div class="eq-opcoes">
-          <label class="eq-op"><input type="radio" name="eq-voto" value="amei"><span class="eq-label">😍 Amei, me ajuda muito a continuar a leitura</span><span class="eq-pct" data-pct="amei"></span><span class="eq-barra" data-barra="amei"></span></label>
-          <label class="eq-op"><input type="radio" name="eq-voto" value="gostei"><span class="eq-label">😊 Gostei, é muito prático</span><span class="eq-pct" data-pct="gostei"></span><span class="eq-barra" data-barra="gostei"></span></label>
-          <label class="eq-op"><input type="radio" name="eq-voto" value="util"><span class="eq-label">👍 Parece útil, ainda estou descobrindo</span><span class="eq-pct" data-pct="util"></span><span class="eq-barra" data-barra="util"></span></label>
-          <label class="eq-op"><input type="radio" name="eq-voto" value="nao_usei"><span class="eq-label">🤔 Ainda não usei a leitura online</span><span class="eq-pct" data-pct="nao_usei"></span><span class="eq-barra" data-barra="nao_usei"></span></label>
+          <label class="eq-op"><input type="radio" name="eq-voto" value="ansiedade"><span class="eq-label">😰 Ansiedade e preocupação</span><span class="eq-pct" data-pct="ansiedade"></span><span class="eq-barra" data-barra="ansiedade"></span></label>
+          <label class="eq-op"><input type="radio" name="eq-voto" value="magoas"><span class="eq-label">😔 Mágoas e lembranças do passado</span><span class="eq-pct" data-pct="magoas"></span><span class="eq-barra" data-barra="magoas"></span></label>
+          <label class="eq-op"><input type="radio" name="eq-voto" value="medo"><span class="eq-label">😨 Medo do futuro</span><span class="eq-pct" data-pct="medo"></span><span class="eq-barra" data-barra="medo"></span></label>
+          <label class="eq-op"><input type="radio" name="eq-voto" value="paz"><span class="eq-label">🕊️ Falta de paz e propósito</span><span class="eq-pct" data-pct="paz"></span><span class="eq-barra" data-barra="paz"></span></label>
         </div>
         <div class="eq-comentario">
-          <textarea id="eq-comentario" placeholder="Conte mais (opcional): qual livro você está lendo? Está gostando? Tem alguma dúvida ou sugestão?"></textarea>
+          <textarea id="eq-comentario" placeholder="Quer compartilhar? (opcional) O que você tem feito para vencer essa batalha?"></textarea>
         </div>
         <div class="eq-email">
-          <input type="email" id="eq-email" placeholder="Seu e-mail (opcional) — se quiser uma resposta sobre os livros" autocomplete="email">
+          <input type="email" id="eq-email" placeholder="Seu e-mail (opcional) — se quiser uma resposta" autocomplete="email">
         </div>
         <div class="eq-acoes">
           <button type="submit" class="btn btn-gold" id="eq-enviar">Votar e participar</button>
@@ -96,7 +96,7 @@ JS_ENQUETE = """
 <script>
 (function(){
   "use strict";
-  var OPCOES = { amei:"😍 Amei, me ajuda muito", gostei:"😊 Gostei, é muito prático", util:"👍 Parece útil", nao_usei:"🤔 Ainda não usei" };
+  var OPCOES = { ansiedade:"😰 Ansiedade e preocupação", magoas:"😔 Mágoas e lembranças do passado", medo:"😨 Medo do futuro", paz:"🕊️ Falta de paz e propósito" };
   var jaVotou = false;
   try{ jaVotou = localStorage.getItem("despertar_enquete_votada") === "1"; }catch(e){}
   var form = document.getElementById("eq-form");
@@ -120,7 +120,16 @@ JS_ENQUETE = """
       comDiv.innerHTML = '<h4>Comentários dos leitores</h4>' + h;
       comDiv.style.display = "block";
     }
-  }
+    // SEGUNDA CAMADA (pós-resultado): convite a compartilhar leitura que ajudou
+    var convite = document.getElementById("eq-convite2");
+    if(!convite && tot > 0){
+      convite = document.createElement("div");
+      convite.id = "eq-convite2";
+      convite.style.cssText = "margin-top:14px;padding:12px 14px;background:rgba(201,162,75,.08);border:1px dashed rgba(201,162,75,.4);border-radius:10px;font-size:.88rem;color:var(--navy);text-align:center;";
+      convite.innerHTML = "💛 <b>" + tot + "% também lutam com isso.</b> E você, já leu algo que te ajudou nessa batalha? <a href=\"#enquete\" onclick=\"document.getElementById('eq-comentario').focus();return false;\" style=\"color:var(--gold-dark);font-weight:700;text-decoration:underline\">Compartilhe aqui</a> (opcional).";
+      var box = document.querySelector(".enquete-box");
+      if(box){ box.appendChild(convite); }
+    }
 
   function carregar(){
     // A contagem de votos fica OCULTA na página (pedido do autor).

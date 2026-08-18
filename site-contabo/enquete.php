@@ -21,16 +21,16 @@ $ARQUIVO_IP = __DIR__ . '/enquete_ips.json';
 $ARQUIVO_ERRO = __DIR__ . '/enquete_erro.log';
 
 $OPCOES = array(
-    'amei'     => 'Amei, me ajuda muito a continuar a leitura',
-    'gostei'   => 'Gostei, e muito prático',
-    'util'     => 'Ainda estou descobrindo, mas parece util',
-    'nao_usei' => 'Ainda nao usei a leitura online'
+    'ansiedade' => 'Ansiedade e preocupacao',
+    'magoas'    => 'Magoas e lembrancas do passado',
+    'medo'      => 'Medo do futuro',
+    'paz'       => 'Falta de paz e proposito'
 );
 
 function dados_iniciais() {
     return array(
         'votos' => 0,
-        'opcoes' => array('amei' => 0, 'gostei' => 0, 'util' => 0, 'nao_usei' => 0),
+        'opcoes' => array('ansiedade' => 0, 'magoas' => 0, 'medo' => 0, 'paz' => 0),
         'comentarios' => array()
     );
 }
@@ -121,7 +121,7 @@ function resultado_json($dados) {
 function pagina_resultado($res) {
     $tot = $res['votos'];
     $linhas = '';
-    $emoji = array('amei' => '😍', 'gostei' => '😊', 'util' => '👍', 'nao_usei' => '🤔');
+    $emoji = array('ansiedade' => '😰', 'magoas' => '😔', 'medo' => '😨', 'paz' => '🕊️');
     foreach ($res['opcoes'] as $chave => $op) {
         $p = isset($res['percentuais'][$chave]) ? $res['percentuais'][$chave] : 0;
         $n = $op['votos'];
