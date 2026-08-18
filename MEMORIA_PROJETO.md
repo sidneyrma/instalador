@@ -214,5 +214,13 @@ Construído com fé, persistência e amor.
   do autor com a Kiwify); (b) embutir o vídeo na nossa página (iframe
   youtube-nocookie) para tocar sem sair do site; (c) aceitar a descoberta do
   canal (conteúdo grátis vira marketing — pode ser positivo).
-- **Decisão pendente:** autor escolher se aplico blocos "Aula grátis" nas
-  páginas dos livros e se marca as aulas pagas como não listadas.
+- **✅ APLICADO (18/08):** blocos "🎬 Aula grátis do canal" com iframe
+  youtube-nocookie inseridos antes da seção #fim:
+  - livro05 (Evolução da Alma): Módulo 04 — Perdão como libertação da alma
+    (fO5RIdrFzMw)
+  - livro09 (Anestesia Mental): Módulo 04 — O Impulso sem Consciência
+    (f_GxlRva2CQ — link CORRIGIDO pelo autor)
+  - Aplicado em site-contabo/livro05.html, livro09.html e previews com leitor.
+  - Vídeos do autor estão como "Não listado" (unlisted) no YouTube → canal
+    protegido; iframe usa youtube-nocookie (privacidade). JS/HTML OK; zip
+    regenerado.
