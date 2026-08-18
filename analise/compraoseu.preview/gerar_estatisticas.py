@@ -4,7 +4,7 @@ Gera o painel de estatísticas de acesso do site compraoseu.com.
 
 Lê o log do Nginx (padrão aaPanel) e conta os acessos por página:
 - /            -> Home
-- /livro01 ... /livro10 -> cada livro
+- /livro01 ... /livro12 -> cada livro
 - /quiz        -> quiz
 
 Inclui:
@@ -39,6 +39,8 @@ PAGINAS = OrderedDict([
     ('/livro08', 'Livro 08 — O Arquiteto da Realidade'),
     ('/livro09', 'Livro 09 — Anestesia Mental'),
     ('/livro10', 'Livro 10 — O Despertar do Observador'),
+    ('/livro11', 'Livro 11 — O Novo Testamento como nunca lido'),
+    ('/livro12', 'Livro 12 — Comece o dia com Afirmações, Declarações e Orações'),
     ('/quiz', 'Quiz — Autoavaliação'),
 ])
 
