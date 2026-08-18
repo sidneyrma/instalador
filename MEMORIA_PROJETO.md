@@ -97,6 +97,22 @@
 
 ---
 
+## 🎉 SITE NOVO NO AR (18/08, confirmado)
+
+- **https://missaocomdeus.com.br ESTÁ NO AR e funcionando** (verificado por
+  fetch ao vivo): Home completa (hero, quiz, biblioteca com 12 livros,
+  enquete) e livro12 com capa + sumário + aula grátis.
+- **DNS propagado:** missaocomdeus.com.br e www → 212.28.182.86 ✅
+- **SSL ativo** (Let's Encrypt), **PHP 8.1 ativo** no config do site.
+- **try_files adicionado** (URLs bonitas /livroXX sem .html).
+- **NOTA nginx -t:** ainda acusa erro do apioficial.compraoseu.com
+  (certificado antigo inexistente no config) — NÃO afeta o site novo; limpar
+  depois removendo as linhas ssl_certificate do config do apioficial.
+- **Navegador do autor:** se der NXDOMAIN, é cache local (usar janela
+  anônima ou digitar sem acento: missaocomdeus.com.br).
+
+---
+
 ## 🆕 NOVO DOMÍNIO — missaocomdeus.com.br — ✅ LIBERADO (18/08)
 
 - **NOTÍCIA:** a HostGator confirmou que o domínio foi LIBERADO para
