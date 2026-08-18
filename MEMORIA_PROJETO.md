@@ -182,6 +182,24 @@ chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
 
 ---
 
+## 📊 STATS COM VISITAS REAIS (18/08, 2ª rodada)
+
+- **gerar_estatisticas.py atualizado** para separar BOTS de visitas HUMANAS:
+  - Filtra URLs de ataque (wp-login, .env, wp-admin, xmlrpc, 222.php,
+    info.php, scanners...) e User-Agents de bots (python-requests, sqlmap,
+    curl, Googlebot, etc.).
+  - Novo painel mostra: Total geral (bruto) + **👥 Visitas REAIS (sem bots)**
+    + **🤖 Bots/ataques bloqueados**, além de variação e projeção REAIS.
+  - Testado com log simulado (30 reais + 40 bots → separou corretamente).
+- **PARA ATIVAR no servidor:** subir o script novo para
+  /home/deploy/gerar_estatisticas.py e rodar
+  `python3 /home/deploy/gerar_estatisticas.py` (gera no compraoseu e copia
+  para o missaocomdeus — espelhamento).
+- Com isso o autor verá os números VERDADEIROS de irmãos (ex.: dos ~1600
+  brutos, as visitas reais são ~600).
+
+---
+
 ## 🏆 REDIRECT 301 CONFIRMADO (18/08) — site UNIFICADO
 
 - **compraoseu.com e www.compraoseu.com → missaocomdeus.com.br (301)** com
