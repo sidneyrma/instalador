@@ -182,6 +182,20 @@ chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
 
 ---
 
+## ✅ FORM SUBMIT ATIVADO (18/08) — e-mails funcionando
+
+- **FormSubmit ATIVADO com sucesso** ("Form Activated") para
+  https://missaocomdeus.com.br/ — os e-mails de votos/comentários do quiz e
+  da enquete chegam normalmente em compraoseu.com@gmail.com.
+- A ativação foi feita a partir do site missaocomdeus.com.br (por isso o
+  "Form at: missaocomdeus.com.br").
+- **PLANO FUTURO (em segundo plano, decidido com o autor):** criar um
+  endpoint próprio `notificar.php` (e-mail via PHP no nosso servidor) para
+  ficar 100% sob nosso controle, sem depender do FormSubmit. Fazer DEPOIS do
+  redirect do domínio (prioridade: unificar o site primeiro).
+
+---
+
 ## 🔁 REGRA DE ESPELHAMENTO (18/08) — IMPORTANTE
 
 - **A partir de agora, TODA atualização do site deve ser aplicada nos DOIS
