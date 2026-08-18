@@ -2,5 +2,7 @@ User-agent: *
 Allow: /
 
 Disallow: /quiz
+Disallow: /stats.html
+Disallow: /enquete.php
 
-Sitemap: https://www.compraoseu.com/sitemap.xml
+Sitemap: https://missaocomdeus.com.br/sitemap.xml

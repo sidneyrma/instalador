@@ -182,6 +182,20 @@ chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
 
 ---
 
+## 🚀 SEO NOVO DOMÍNIO (18/08) — sitemap e robots atualizados
+
+- **sitemap.xml** → https://missaocomdeus.com.br/ (13 URLs: Home + livro01-10 +
+  livro12 + quiz). livro11 EXCLUÍDO (lançamento 27/08).
+- **robots.txt** → aponta sitemap novo; bloqueia /quiz, /stats.html,
+  /enquete.php.
+- **Guia criado:** analise/migracao_contabo/guia_seo_novo_dominio.md (GSC:
+  adicionar propriedade, enviar sitemap, solicitar indexação 1-2/dia,
+  palavras-chave alvo).
+- Pendente: autor adicionar a propriedade no GSC (tag HTML ou DNS) e enviar
+  o sitemap; títulos das páginas ainda "Portal O Despertar" (ajustar depois).
+
+---
+
 ## 🚫 LIVRO 11 (Novo Testamento) FORA DO AR até o lançamento (18/08)
 
 - **Descoberta:** o arquivo site-contabo/livro11.html (contém "O Novo
