@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prospecto: Portal O Despertar | Missão com Deus</title>
+<meta name="description" content="Conheça o Portal O Despertar: livros online gratuitos, devocional e portal de estudos para despertar sua mente, fortalecer sua fé e transformar sua vida.">
+<style>
+:root{
+  --navy:#0e1a2e; --navy2:#16283f; --navy3:#1e3352;
+  --ouro:#c9a24b; --ouro-claro:#e3c877; --ouro-escuro:#b8860b;
+  --creme:#faf6ee; --creme2:#f1e8d9; --tinta:#2b2620; --tinta2:#6b6255;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Georgia,'Times New Roman',serif;background:var(--creme);color:var(--tinta);line-height:1.7}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+a{text-decoration:none;color:inherit}
+
+/* ===== CAPA ===== */
+.capa{background:linear-gradient(160deg,var(--navy) 0%,#120b18 100%);color:#fff;padding:80px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.capa::before{content:"";position:absolute;top:-100px;left:-60px;width:350px;height:350px;background:radial-gradient(circle,rgba(201,162,75,.18),transparent 65%)}
+.capa::after{content:"";position:absolute;bottom:-120px;right:-60px;width:350px;height:350px;background:radial-gradient(circle,rgba(201,162,75,.12),transparent 65%)}
+.capa .selo{display:inline-block;border:1px solid var(--ouro);color:var(--ouro-claro);padding:8px 20px;border-radius:30px;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;margin-bottom:28px}
+.capa h1{font-size:clamp(2.2rem,6vw,3.4rem);line-height:1.1;margin-bottom:16px;font-weight:700}
+.capa h1 span{color:var(--ouro)}
+.capa .sub{font-size:1.15rem;color:#cfd6e2;font-style:italic;margin-bottom:32px;max-width:36rem;margin-left:auto;margin-right:auto}
+.capa .btn{display:inline-block;background:linear-gradient(180deg,#d4a83f,var(--ouro-escuro));color:#fff;font-weight:700;padding:16px 36px;border-radius:10px;font-size:1.05rem;margin:6px}
+.capa .btn-sec{background:transparent;border:2px solid var(--ouro);color:var(--ouro-claro)}
+.capa .aviso{font-size:.85rem;color:#8fa0b8;margin-top:24px}
+
+/* ===== SEÇÕES ===== */
+.sec{padding:60px 0}
+.sec-titulo{text-align:center;font-size:1.8rem;color:var(--navy);margin-bottom:10px}
+.sec-sub{text-align:center;color:var(--tinta2);max-width:40rem;margin:0 auto 40px}
+.sec.dark{background:linear-gradient(170deg,var(--navy) 0%,#120b18 100%);color:#fff}
+.sec.dark .sec-titulo{color:var(--ouro)}
+.sec.dark .sec-sub{color:#9fb0c8}
+
+/* ===== CARDS ===== */
+.grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
+.card{background:#fff;border:1px solid #e4dccb;border-radius:14px;padding:24px;width:calc(33.333% - 20px);min-width:240px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.card .icone{font-size:2.4rem;margin-bottom:10px}
+.card h3{color:var(--navy);font-size:1.1rem;margin-bottom:8px}
+.card p{color:var(--tinta2);font-size:.92rem}
+.card.dark{background:var(--navy2);border-color:rgba(201,162,75,.3)}
+.card.dark h3{color:var(--ouro-claro)}
+.card.dark p{color:#9fb0c8}
+
+/* ===== LIVROS ===== */
+.livros{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.livro{background:#fff;border:1px solid #e4dccb;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 6px 16px rgba(0,0,0,.05)}
+.livro .capaimg{height:200px;object-fit:cover;width:100%}
+.livro .info{padding:16px 18px}
+.livro .num{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ouro-escuro);font-weight:700}
+.livro h3{color:var(--navy);font-size:1.05rem;margin:6px 0}
+.livro p{color:var(--tinta2);font-size:.88rem}
+.livro .badge{display:inline-block;background:rgba(201,162,75,.15);color:var(--ouro-escuro);border-radius:20px;padding:3px 12px;font-size:.72rem;margin-top:10px;font-weight:600}
+
+/* ===== DESTAQUE ===== */
+.destaque{background:linear-gradient(150deg,rgba(201,162,75,.18),rgba(201,162,75,.05) 60%);border:1px solid rgba(201,162,75,.5);border-radius:16px;padding:36px;text-align:center;margin:40px 0}
+.destaque h3{color:var(--navy);font-size:1.4rem;margin-bottom:12px}
+.destaque p{color:var(--tinta2);max-width:34rem;margin:0 auto 20px}
+.destaque .btn{display:inline-block;background:linear-gradient(180deg,#d4a83f,var(--ouro-escuro));color:#fff;font-weight:700;padding:14px 32px;border-radius:10px;font-size:1rem}
+
+/* ===== BENEFÍCIOS ===== */
+.bens{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:20px}
+.ben{background:var(--navy2);border:1px solid rgba(201,162,75,.3);border-radius:12px;padding:20px;text-align:center}
+.ben .ic{font-size:2rem;margin-bottom:8px}
+.ben h4{color:var(--ouro-claro);font-size:.95rem;margin-bottom:6px}
+.ben p{color:#9fb0c8;font-size:.82rem}
+
+/* ===== CTA FINAL ===== */
+.cta{background:linear-gradient(160deg,var(--navy) 0%,#120b18 100%);color:#fff;text-align:center;padding:70px 24px}
+.cta h2{font-size:1.8rem;color:var(--ouro);margin-bottom:12px}
+.cta p{color:#c4cdda;max-width:34rem;margin:0 auto 28px}
+.cta .btn{display:inline-block;background:linear-gradient(180deg,#d4a83f,var(--ouro-escuro));color:#fff;font-weight:700;padding:16px 38px;border-radius:10px;font-size:1.1rem}
+
+/* ===== RODAPÉ ===== */
+footer{background:#0a1322;color:#7f8ca1;text-align:center;padding:28px 24px;font-size:.82rem}
+footer .contato{margin-top:8px;font-size:.9rem;color:#9fb0c8}
+@media(max-width:640px){
+  .card{width:100%}
+  .livros{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== CAPA ===== -->
+<section class="capa">
+  <span class="selo">Coleção do Despertar</span>
+  <h1>Portal <span>O Despertar</span></h1>
+  <p class="sub">Desperte sua mente, fortaleça sua fé, transforme sua vida. Livros online gratuitos, devocional e portal de estudos unindo a verdade bíblica à compreensão do comportamento humano.</p>
+  <a class="btn" href="https://compraoseu.com" target="_blank" rel="noopener">Visitar o Portal</a>
+  <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" rel="noopener">Acesso completo R$ 49,00</a>
+  <p class="aviso">De R$ 98,00 por R$ 49,00 · pagamento único · acesso vitalício</p>
+</section>
+
+<!-- ===== MISSÃO ===== -->
+<section class="sec">
+  <div class="wrap">
+    <h2 class="sec-titulo">A Nossa Missão</h2>
+    <p class="sec-sub">Uma missão com Deus: levar a Palavra, a fé e o autoconhecimento a todos os corações que precisam despertar, com leitura gratuita e acesso acessível.</p>
+    <div class="grid">
+      <div class="card"><div class="icone">📖</div><h3>Livros online e gratuitos</h3><p>Leia as obras da Coleção do Despertar direto no navegador, sem custo, sem cadastro e com leitura protegida.</p></div>
+      <div class="card"><div class="icone">🎥</div><h3>Videoaulas guiadas</h3><p>Imersão teórica e prática com ensinamentos profundos em linguagem simples que tocam a alma.</p></div>
+      <div class="card"><div class="icone">👥</div><h3>Comunidade de estudos</h3><p>Um ambiente para crescer junto e sustentar a sua jornada de despertar.</p></div>
+      <div class="card"><div class="icone">♾️</div><h3>Acesso vitalício</h3><p>O Portal é seu para sempre, no seu ritmo, quando quiser.</p></div>
+      <div class="card"><div class="icone">🙏</div><h3>Confia no Senhor</h3><p>"Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento." (Provérbios 3:5-6)</p></div>
+      <div class="card"><div class="icone">💛</div><h3>Missão com propósito</h3><p>Cada aquisição ajuda a manter a obra viva e a leitura gratuita aberta para todos.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIVROS ===== -->
+<section class="sec dark">
+  <div class="wrap">
+    <h2 class="sec-titulo">A Coleção do Despertar</h2>
+    <p class="sec-sub">Dez obras com leitura online gratuita, mais o lançamento que está por vir. Conheça e leia antes de comprar.</p>
+    <div class="livros">
+      <div class="livro">
+        <img class="capaimg" src="https://i.ibb.co/9myJ3XXb/livro01.jpg" alt="O Novo Testamento como nunca lido">
+        <div class="info"><span class="num">Em breve</span><h3>O Novo Testamento como nunca lido</h3><p>Uma jornada simples pelas Boas Novas de Cristo, com as passagens mais faladas, as parábolas e os sermões explicados.</p><span class="badge">✨ Em breve · 27/08</span></div>
+      </div>
+      <div class="livro">
+        <img class="capaimg" src="https://i.ibb.co/kgBz01dc/livro05jpg.jpg" alt="Evolução da Alma">
+        <div class="info"><span class="num">Disponível</span><h3>Evolução da Alma</h3><p>Caminhos para o autoconhecimento, fé e transformação pessoal.</p><span class="badge">🔒 Leitura gratuita</span></div>
+      </div>
+      <div class="livro">
+        <img class="capaimg" src="https://i.ibb.co/mF2Hyq7z/livro-09.jpg" alt="Anestesia Mental">
+        <div class="info"><span class="num">Disponível</span><h3>Anestesia Mental</h3><p>Quebre as correntes invisíveis dos algoritmos e retome a soberania da mente.</p><span class="badge">🔒 Leitura gratuita</span></div>
+      </div>
+      <div class="livro">
+        <img class="capaimg" src="https://i.ibb.co/LdbL0QdH/livro04jpg.jpg" alt="Um Segundo com Deus">
+        <div class="info"><span class="num">Disponível</span><h3>Um Segundo com Deus</h3><p>30 dias de conexão diária, reflexões, orações e versículos. E-book original com imagens inspiradoras.</p><span class="badge">🔒 Leitura gratuita</span></div>
+      </div>
+      <div class="livro">
+        <img class="capaimg" src="https://i.ibb.co/3yJsHjnn/livro06.jpg" alt="Jesus Quer Falar com Seu Filho">
+        <div class="info"><span class="num">Disponível</span><h3>Jesus Quer Falar com Seu Filho</h3><p>Obra infantil cristã com os Mandamentos, atividades para pintar e desenhar, e o amor de Jesus.</p><span class="badge">🔒 Leitura gratuita</span></div>
+      </div>
+      <div class="livro">
+        <img class="capaimg" src="https://i.ibb.co/23CJFpyq/livro06.jpg" alt="O Verbo que Transforma">
+        <div class="info"><span class="num">Disponível</span><h3>O Verbo que Transforma</h3><p>O poder criador da palavra e da fé para a saúde, a abundância e a superação.</p><span class="badge">🔒 Leitura gratuita</span></div>
+      </div>
+      <div class="livro">
+        <img class="capaimg" src="https://i.ibb.co/TB1L9fv9/livro07.jpg" alt="A Mente Renovada">
+        <div class="info"><span class="num">Disponível</span><h3>A Mente Renovada</h3><p>O pensar com Cristo que transforma a vida, a oração, a gratidão e a unidade com Deus.</p><span class="badge">🔒 Leitura gratuita</span></div>
+      </div>
+      <div class="livro">
+        <img class="capaimg" src="https://i.ibb.co/Gf7WWL6H/livro08.jpg" alt="O Caminho do Despertar">
+        <div class="info"><span class="num">Disponível</span><h3>O Caminho do Despertar</h3><p>A jornada solitária da alma, a sabedoria dos ensinamentos e a fé.</p><span class="badge">🔒 Leitura gratuita</span></div>
+      </div>
+      <div class="livro">
+        <img class="capaimg" src="https://i.ibb.co/vCz5jKND/livro09.jpg" alt="O Arquiteto da Realidade">
+        <div class="info"><span class="num">Disponível</span><h3>O Arquiteto da Realidade</h3><p>O poder da mente que cria o mundo que você vive, crenças e mente profunda.</p><span class="badge">🔒 Leitura gratuita</span></div>
+      </div>
+      <div class="livro">
+        <img class="capaimg" src="https://i.ibb.co/ZRXwG60f/livro10.jpg" alt="O Despertar do Observador">
+        <div class="info"><span class="num">Disponível</span><h3>O Despertar do Observador</h3><p>As leis invisíveis que moldam a realidade, sabedoria ancestral e práticas para o despertar.</p><span class="badge">🔒 Leitura gratuita</span></div>
+      </div>
+      <div class="livro">
+        <img class="capaimg" src="https://i.ibb.co/0jS3KGHc/livro11.jpg" alt="A Sabedoria dos Mestres">
+        <div class="info"><span class="num">Disponível</span><h3>A Sabedoria dos Mestres</h3><p>O despertar do conhecimento que liberta a alma, as leis da vibração e o mestre interior.</p><span class="badge">🔒 Leitura gratuita</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DESTAQUE QUIZ ===== -->
+<section class="sec">
+  <div class="wrap">
+    <div class="destaque">
+      <h3>✨ Autoavaliação gratuita</h3>
+      <p>Responda 7 perguntas com o coração aberto e receba um presente especial: o E-book infantil "Jesus Quer Falar com Seu Filho". Não há resposta certa ou errada, apenas um convite para olhar para dentro.</p>
+      <a class="btn" href="https://compraoseu.com/#quiz" target="_blank" rel="noopener">Fazer a autoavaliação</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BENEFÍCIOS ===== -->
+<section class="sec dark">
+  <div class="wrap">
+    <h2 class="sec-titulo">Por que o Portal O Despertar?</h2>
+    <p class="sec-sub">Tudo o que você precisa para iniciar ou aprofundar a sua jornada de fé e autoconhecimento.</p>
+    <div class="bens">
+      <div class="ben"><div class="ic">📚</div><h4>10 livros gratuitos</h4><p>Leitura online protegida, sem custo e sem cadastro.</p></div>
+      <div class="ben"><div class="ic">🎓</div><h4>Portal de ensino</h4><p>Área do aluno com aulas e cronograma de estudos.</p></div>
+      <div class="ben"><div class="ic">🔒</div><h4>Compra segura</h4><p>Pagamento via Kiwify, Pix com liberação imediata.</p></div>
+      <div class="ben"><div class="ic">🛡️</div><h4>Garantia de 7 dias</h4><p>Risco zero: devolvemos 100% se não fizer sentido para você.</p></div>
+      <div class="ben"><div class="ic">📱</div><h4>Leia em qualquer lugar</h4><p>Celular, tablet ou computador, no seu ritmo.</p></div>
+      <div class="ben"><div class="ic">♾️</div><h4>Acesso vitalício</h4><p>O Portal é seu para sempre.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="cta">
+  <h2>O portal está aberto. Entre e desperte sua alma em Deus.</h2>
+  <p>O convite foi feito. A chave de governo da sua mente está à sua frente. Escolha o caminho que fizer sentido para o seu momento.</p>
+  <a class="btn" href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" rel="noopener">Acesso completo: R$ 49,00</a>
+</section>
+
+<footer>
+  <p>Missão com Deus · CompraOSeu: Desperte sua mente, fortaleça sua fé, transforme sua vida.</p>
+  <p>© 2024-2026 Missão com Deus · CompraOSeu.com · Coleção do Despertar</p>
+  <p class="contato">✉️ compraoseu.com@gmail.com · 💬 WhatsApp: (28) 99911-1493</p>
+</footer>
+
+</body>
+</html>

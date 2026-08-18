@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leitor do Despertar: demonstração do marcador, letras e dicas</title>
+<meta name="description" content="Protótipo do leitor dos livros: marcar onde parou, aumentar e diminuir as letras e dicas de leitura. Proteção mantida.">
+<style>
+:root{
+  --navy:#0e1a2e; --navy2:#16283f;
+  --ouro:#c9a24b; --ouro-claro:#e3c877;
+  --papel:#faf6ee; --tinta:#2b2620; --tinta2:#6b6255;
+  --linha:#e4dccb; --cta:#b8860b;
+  --tamanho-fonte:100%;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--navy); color:var(--tinta);
+  font-family:Georgia,'Times New Roman',Times,serif; line-height:1.75;
+  font-size:var(--tamanho-fonte);
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
+}
+/* ===== Barra de progresso dourada no topo ===== */
+#barra-progresso{
+  position:fixed; top:0; left:0; height:4px; width:0%;
+  background:linear-gradient(90deg,#c9a24b,#e3c877);
+  z-index:100; border-radius:0 3px 3px 0; transition:width .15s linear;
+}
+/* ===== Topbar com os controles ===== */
+.topbar{
+  background:var(--navy); border-bottom:3px solid var(--ouro);
+  position:sticky; top:0; z-index:50;
+}
+.topbar .wrap{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.7rem 1.2rem; gap:10px; flex-wrap:wrap;
+}
+.topbar .logo{color:#fff; font-size:1rem; text-decoration:none}
+.topbar .logo span{color:var(--ouro)}
+.controles{display:flex; align-items:center; gap:6px; font-family:system-ui,sans-serif}
+.controles .rotulo{color:#8fa0b8; font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; margin-right:2px}
+.controles button{
+  background:var(--navy2); color:#fff; border:1px solid rgba(201,162,75,.5);
+  border-radius:6px; min-width:36px; height:32px; cursor:pointer;
+  font-size:.95rem; font-weight:700; font-family:Georgia,serif; line-height:1;
+}
+.controles button:hover{background:var(--ouro); color:var(--navy)}
+.controles button.ativo{background:var(--ouro); color:var(--navy)}
+.wrap{max-width:46rem; margin:0 auto}
+/* ===== Capa de demonstração ===== */
+.capa{
+  min-height:55vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:3rem 1.2rem; color:#fff;
+  background:radial-gradient(900px 500px at 70% -10%, rgba(201,162,75,.2), transparent 60%), linear-gradient(170deg,var(--navy) 0%,#120b18 100%);
+}
+.capa .selo{font-size:.75rem; letter-spacing:.4em; text-transform:uppercase; color:var(--ouro-claro); margin-bottom:1.4rem}
+.capa h1{font-size:clamp(1.7rem,5vw,2.6rem); margin:0 0 .6rem; line-height:1.12}
+.capa .sub{font-style:italic; color:#cfd6e2; font-size:1.05rem; margin-bottom:1.6rem; max-width:32rem}
+.capa .inicio{display:inline-block; background:linear-gradient(180deg,#d4a83f,var(--cta)); color:#fff;
+  font-weight:700; padding:13px 28px; border-radius:8px; text-decoration:none; font-size:1rem}
+.capa .aviso2{font-size:.76rem; color:#8fa0b8; margin-top:1.3rem; max-width:26rem; line-height:1.5}
+/* ===== Sumário ===== */
+#sumario{background:var(--navy2); color:#fff; padding:2.6rem 1.2rem}
+#sumario h2{text-align:center; color:var(--ouro); font-size:1.3rem; letter-spacing:.2em; text-transform:uppercase; margin-bottom:1.2rem}
+#sumario ul{list-style:none; padding:0; margin:0 auto; max-width:34rem}
+#sumario li{border-bottom:1px solid rgba(201,162,75,.25)}
+#sumario a{display:block; color:#e8ecf3; text-decoration:none; padding:.8rem .4rem; font-size:1rem}
+#sumario a:hover{color:var(--ouro-claro); padding-left:.8rem}
+/* ===== Leitura ===== */
+.leitura{background:var(--papel); padding:2.4rem 1.2rem 3.6rem}
+.leitura .wrap{background:#fff; border:1px solid var(--linha); border-radius:12px;
+  padding:2.2rem 1.6rem; box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.capitulo{margin-top:2.6rem; padding-top:1.8rem; border-top:1px solid var(--linha)}
+.cap-num{letter-spacing:.3em; text-transform:uppercase; font-size:.78rem; color:var(--ouro); margin:0 0 .5rem}
+.cap-titulo{font-size:1.45rem; color:var(--navy); margin:0 0 1rem}
+.capitulo p{margin:0 0 1rem; text-align:justify}
+.box.versiculo{background:#fdf6e3; border-left:4px solid var(--ouro); border-radius:8px; padding:.9rem 1.1rem; margin:1.1rem 0}
+.box.versiculo p{margin:0; text-align:left}
+.ref{color:var(--cta); font-style:italic; font-size:.9rem}
+/* ===== Botão flutuante do marcador manual ===== */
+#botao-marcador{
+  position:fixed; right:14px; bottom:14px; z-index:60;
+  background:var(--navy); color:var(--ouro-claro); border:1px solid var(--ouro);
+  border-radius:50px; padding:10px 16px; font-size:.8rem; cursor:pointer;
+  font-family:system-ui,sans-serif; box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+#botao-marcador:hover{background:var(--ouro); color:var(--navy)}
+/* ===== Balões no topo (dicas e continuar lendo) ===== */
+#baloes{position:fixed; top:12px; left:0; right:0; z-index:90; display:flex; flex-direction:column; align-items:center; gap:8px; pointer-events:none}
+.balao{
+  pointer-events:auto; max-width:92%; width:420px;
+  background:#fffdf5; border:1px solid var(--ouro); border-left:5px solid var(--ouro);
+  border-radius:10px; padding:10px 14px; font-size:.86rem; line-height:1.45;
+  color:var(--navy); font-family:system-ui,sans-serif;
+  box-shadow:0 8px 24px rgba(0,0,0,.28);
+  display:flex; align-items:center; gap:10px;
+  animation:balaoEntra .35s ease;
+}
+.balao .emoji{font-size:1.15rem}
+.balao .texto{flex:1}
+.balao .texto b{color:var(--cta)}
+.balao .fechar{
+  background:none; border:none; color:var(--tinta2); font-size:1.05rem; cursor:pointer; line-height:1; padding:4px;
+}
+.balao .fechar:hover{color:var(--cta)}
+.balao .acao{
+  background:linear-gradient(180deg,#d4a83f,var(--cta)); color:#fff; border:none;
+  border-radius:6px; padding:7px 12px; font-size:.78rem; font-weight:700; cursor:pointer; font-family:system-ui,sans-serif; white-space:nowrap;
+}
+.balao.saindo{animation:balaoSai .3s ease forwards}
+@keyframes balaoEntra{from{opacity:0; transform:translateY(-14px)} to{opacity:1; transform:translateY(0)}}
+@keyframes balaoSai{from{opacity:1} to{opacity:0; transform:translateY(-10px)}}
+/* ===== Fim ===== */
+#fim{background:var(--navy); color:#fff; text-align:center; padding:3.4rem 1.2rem}
+#fim h2{font-size:1.4rem; margin-bottom:.8rem}
+#fim p{color:#c4cdda; max-width:32rem; margin:0 auto 1.4rem}
+#fim .cred{font-size:.8rem; color:#8fa0b8; margin-top:1.4rem; line-height:1.6}
+footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.4rem 1.2rem; font-size:.78rem}
+/* ===== Proteção: impressão mostra aviso ===== */
+@media print{
+  body::before{
+    content:"Livro protegido. A impressão não está disponível nesta obra. Obrigado pela compreensão.";
+    display:block; position:fixed; inset:0; background:#fff; color:#333;
+    font-size:18px; text-align:center; padding-top:40vh; z-index:9999;
+  }
+  .topbar,.capa,#sumario,.leitura,#fim,footer,#baloes,#botao-marcador,#barra-progresso{display:none !important}
+}
+@media (max-width:560px){
+  body{font-size:calc(var(--tamanho-fonte)*.98)}
+  .leitura .wrap{padding:1.3rem .95rem}
+  .cap-titulo{font-size:1.28rem}
+  .controles .rotulo{display:none}
+}
+</style>
+</head>
+<body>
+<div id="barra-progresso"></div>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="#capa">O <span>Despertar</span> · Leitor</a>
+    <div class="controles">
+      <span class="rotulo">Letras</span>
+      <button id="btn-menos" title="Diminuir letras">A−</button>
+      <button id="btn-padrao" title="Tamanho original" class="ativo">A</button>
+      <button id="btn-mais" title="Aumentar letras">A+</button>
+      <button id="btn-dicas" title="Ver dicas de leitura">💡</button>
+    </div>
+  </div>
+</header>
+
+<div id="baloes"></div>
+
+<section class="capa" id="capa">
+  <div class="selo">Demonstração do novo leitor</div>
+  <h1>Leitura com conforto e memória</h1>
+  <p class="sub">Marque onde parou, aumente as letras e receba dicas suaves, tudo sem abrir mão da proteção da obra.</p>
+  <a class="inicio" href="#sumario">Começar a leitura →</a>
+  <p class="aviso2">Teste: role até um capítulo, feche a página e reabra. Um balão vai perguntar se quer continuar de onde parou.</p>
+</section>
+
+<section id="sumario">
+  <div class="wrap">
+    <h2>Sumário</h2>
+    <ul>
+      <li><a href="#capitulo-1">Capítulo 1: O coração que ouve</a></li>
+      <li><a href="#capitulo-2">Capítulo 2: A paz que guarda</a></li>
+      <li><a href="#capitulo-3">Capítulo 3: O recomeço de cada dia</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="leitura">
+  <div class="wrap">
+    <div class="capitulo" id="capitulo-1">
+      <p class="cap-num">Capítulo 1</p>
+      <h2 class="cap-titulo">O coração que ouve</h2>
+      <p>Há uma diferença entre escutar e ouvir. Escutar é deixar que as palavras cheguem aos ouvidos. Ouvir é permitir que elas alcancem o coração. Na correria dos dias, poucas pessoas realmente ouvem, porque o silêncio assusta e a pressa domina.</p>
+      <p>Quando você abre este livro, está fazendo um convite a si mesmo: o convite de parar, respirar e ouvir. Não ouvir apenas o que está escrito, mas o que a vida, o que Deus e o que a sua própria alma estão tentando lhe dizer em meio ao ruído.</p>
+      <div class="box versiculo"><p>"Inclinai o vosso ouvido, e vinde a mim; ouvi, e a vossa alma viverá." <span class="ref">(Isaías 55:3)</span></p></div>
+      <p>O coração que ouve é o coração que se transforma. Ele não tem pressa de responder, não tem medo de silenciar. Ele sabe que toda mudança verdadeira começa em uma escuta profunda, honesta e paciente.</p>
+      <p>Neste primeiro capítulo, convido você a fazer uma pausa. Desligue as notificações por alguns minutos. Respire fundo. E deixe que as próximas páginas encontrem um lugar tranquilo dentro de você.</p>
+    </div>
+
+    <div class="capitulo" id="capitulo-2">
+      <p class="cap-num">Capítulo 2</p>
+      <h2 class="cap-titulo">A paz que guarda</h2>
+      <p>Existe uma paz que depende das circunstâncias e uma paz que independe delas. A primeira vai e vem conforme o vento. A segunda permanece, porque não nasce do que acontece ao redor, mas do que acontece dentro de quem confia.</p>
+      <p>Há dias em que o peso parece maior que a esperança. São dias de perguntas sem resposta e caminhos sem visibilidade. É exatamente nesses dias que a paz verdadeira se revela, não como fuga, mas como presença.</p>
+      <div class="box versiculo"><p>"E a paz de Deus, que excede todo o entendimento, guardará os vossos corações e os vossos sentimentos." <span class="ref">(Filipenses 4:7)</span></p></div>
+      <p>Guardar não é fechar. Guardar é proteger o que é precioso. A paz de Deus guarda o coração como um jardineiro guarda a semente: com paciência, com cuidado e com a certeza de que a vida virá no tempo certo.</p>
+      <p>Hoje, diante do que não está sob o seu controle, faça uma escolha simples: entregue. Entregar não é desistir, é confiar. É dizer em silêncio: eu fiz a minha parte, e o resto está em mãos maiores que as minhas.</p>
+    </div>
+
+    <div class="capitulo" id="capitulo-3">
+      <p class="cap-num">Capítulo 3</p>
+      <h2 class="cap-titulo">O recomeço de cada dia</h2>
+      <p>Cada manhã é uma porta que se abre. O que aconteceu ontem não precisa definir o que será hoje. O erro de ontem vira aprendizado, a dor de ontem vira compaixão, e o cansaço de ontem vira descanso, quando você aceita recomeçar.</p>
+      <p>Recomeçar não é apagar a história, é escrever a próxima página. É olhar para trás com gratidão pelo que ensinou e para frente com confiança pelo que ainda pode ser construído.</p>
+      <div class="box versiculo"><p>"As misericórdias do Senhor são a causa de não sermos consumidos, porque as suas misericórdias não têm fim; renovam-se cada manhã." <span class="ref">(Lamentações 3:22-23)</span></p></div>
+      <p>Não importa onde você parou, importa que você está disposto a continuar. E é por isso que este leitor lembra o seu lugar: para que você nunca precise recomeçar do zero, a não ser quando desejar.</p>
+      <p>Que este livro seja um companheiro de jornada: discreto, fiel e sempre pronto a retomar, bem no ponto em que você deixou, com a letra no tamanho que lhe faz bem.</p>
+    </div>
+  </div>
+</section>
+
+<section id="fim">
+  <h2>Fim da demonstração</h2>
+  <p>Feche esta página e reabra para ver o marcador em ação. Ou toque no botão do marcador ao lado para guardar este ponto.</p>
+  <p class="cred">O Despertar · Coleção do Despertar · compraoseu.com</p>
+</section>
+
+<button id="botao-marcador" title="Guardar ponto de leitura">📍 Marcar ponto</button>
+
+<footer>Proteção ativa: seleção, cópia e impressão bloqueadas. Marcador, letras e dicas funcionam no seu aparelho.</footer>
+
+<script>
+(function(){
+  "use strict";
+  /* ============================================================
+     CONFIGURAÇÃO: troque estas chaves em cada livro real
+     ex.: "despertar_progresso_livro05"
+  ============================================================ */
+  var CHAVE_PROGRESSO = "despertar_progresso_demo";
+  var CHAVE_FONTE     = "despertar_fonte_demo";
+  var CHAVE_DICAS     = "despertar_dicas_demo";
+  var CHAVE_MARCADOR  = "despertar_marcador_demo";
+
+  function guardar(chave, valor){
+    try{ localStorage.setItem(chave, JSON.stringify(valor)); }
+    catch(e){ /* modo anônimo: segue sem salvar */ }
+  }
+  function ler(chave){
+    try{
+      var v = localStorage.getItem(chave);
+      return v ? JSON.parse(v) : null;
+    }catch(e){ return null; }
+  }
+  function remover(chave){
+    try{ localStorage.removeItem(chave); }catch(e){}
+  }
+
+  var corpo = document.body;
+  var baloes = document.getElementById("baloes");
+
+  /* ============ 1. BALÕES NO TOPO ============ */
+  function mostrarBalao(html, duracao){
+    var b = document.createElement("div");
+    b.className = "balao";
+    b.innerHTML = html +
+      '<button class="fechar" aria-label="Fechar">✕</button>';
+    var fechar = b.querySelector(".fechar");
+    fechar.addEventListener("click", function(){
+      b.classList.add("saindo");
+      setTimeout(function(){ if(b.parentNode) b.parentNode.removeChild(b); }, 300);
+    });
+    baloes.appendChild(b);
+    if(duracao){
+      setTimeout(function(){
+        if(b.parentNode){ b.classList.add("saindo"); setTimeout(function(){ if(b.parentNode) b.parentNode.removeChild(b); }, 300); }
+      }, duracao);
+    }
+    return b;
+  }
+
+  /* Dicas da primeira visita */
+  function mostrarDicas(){
+    var dicas = [
+      { e:"📖", t:"<b>Seu lugar fica salvo aqui.</b> Feche o livro e volte quando quiser; retomamos do ponto exato." },
+      { e:"🔍", t:"Use <b>A−</b> e <b>A+</b> no topo para ajustar o tamanho das letras ao seu conforto." },
+      { e:"📍", t:"Toque em <b>Marcar ponto</b> para guardar um trecho especial. Tudo fica no seu aparelho." }
+    ];
+    var vistos = ler(CHAVE_DICAS);
+    var jaViu = vistos && vistos.v === 1;
+    if(!jaViu){ guardar(CHAVE_DICAS, { v:1 }); }
+    dicas.forEach(function(d, i){
+      setTimeout(function(){ mostrarBalao('<span class="emoji">'+d.e+'</span><span class="texto">'+d.t+'</span>', 5000); }, i*3200);
+    });
+  }
+  document.getElementById("btn-dicas").addEventListener("click", function(){
+    mostrarBalao('<span class="emoji">📖</span><span class="texto">Seu lugar fica salvo. Use <b>A−</b> e <b>A+</b> para as letras e <b>📍 Marcar ponto</b> para guardar um trecho.</span>', 6000);
+  });
+
+  /* ============ 2. PROGRESSO + MARCADOR AUTOMÁTICO ============ */
+  var barra = document.getElementById("barra-progresso");
+  var ultimoSalvamento = 0;
+  var secaoAtual = "Capítulo 1";
+
+  function atualizarProgresso(){
+    var total = corpo.scrollHeight - window.innerHeight;
+    var p = total > 0 ? Math.round((window.scrollY / total) * 100) : 0;
+    barra.style.width = p + "%";
+    if(p > 98){ remover(CHAVE_PROGRESSO); return; }
+    var agora = Date.now();
+    if(agora - ultimoSalvamento > 1500){
+      ultimoSalvamento = agora;
+      guardar(CHAVE_PROGRESSO, {
+        secao: secaoAtual.toLowerCase().replace(/[^a-z0-9]+/g,"-"),
+        titulo: secaoAtual,
+        scrollY: Math.round(window.scrollY),
+        porcentagem: p,
+        data: new Date().toISOString()
+      });
+    }
+  }
+
+  /* IntersectionObserver: descobre em qual capítulo o leitor está */
+  var secoes = document.querySelectorAll(".capitulo");
+  if("IntersectionObserver" in window){
+    var obs = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(en){
+        if(en.isIntersecting){
+          var t = en.target.querySelector(".cap-titulo");
+          secaoAtual = t ? t.textContent : en.target.id;
+        }
+      });
+    }, { rootMargin: "-35% 0px -55% 0px" });
+    secoes.forEach(function(s){ obs.observe(s); });
+  }
+
+  var rolagemAgendada = false;
+  window.addEventListener("scroll", function(){
+    atualizarProgresso();
+    if(!rolagemAgendada){
+      rolagemAgendada = true;
+      setTimeout(function(){ rolagemAgendada = false; }, 300);
+    }
+  }, { passive:true });
+  atualizarProgresso();
+
+  /* Ao abrir: oferece continuar de onde parou */
+  function oferecerContinuacao(){
+    var prog = ler(CHAVE_PROGRESSO);
+    if(prog && prog.scrollY > 60){
+      var b = mostrarBalao(
+        '<span class="emoji">📖</span>' +
+        '<span class="texto">Você parou em <b>' + prog.titulo + '</b> (posição ' + prog.porcentagem + '%).<br>' +
+        '<button class="acao" id="acao-continuar">Continuar de onde parei</button></span>',
+        15000
+      );
+      var botao = b.querySelector("#acao-continuar");
+      botao.addEventListener("click", function(){
+        window.scrollTo({ top: prog.scrollY, behavior:"smooth" });
+        b.classList.add("saindo");
+        setTimeout(function(){ if(b.parentNode) b.parentNode.removeChild(b); }, 300);
+      });
+    }
+  }
+
+  /* Marcador manual */
+  document.getElementById("botao-marcador").addEventListener("click", function(){
+    guardar(CHAVE_MARCADOR, { scrollY: Math.round(window.scrollY), titulo: secaoAtual, data: new Date().toISOString() });
+    mostrarBalao('<span class="emoji">📍</span><span class="texto">Ponto guardado em <b>' + secaoAtual + '</b>. Toque em "Marcar ponto" de novo para atualizar.</span>', 4000);
+    var el = document.getElementById("botao-marcador");
+    el.textContent = "📍 Ponto guardado";
+    setTimeout(function(){ el.textContent = "📍 Marcar ponto"; }, 2500);
+  });
+
+  /* ============ 3. TAMANHO DAS LETRAS ============ */
+  var niveis = [90, 100, 112, 125, 140, 160];
+  var indice = 1;
+  var salvo = ler(CHAVE_FONTE);
+  if(salvo && niveis.indexOf(salvo.n) >= 0){ indice = niveis.indexOf(salvo.n); }
+  aplicarFonte();
+
+  function aplicarFonte(){
+    document.documentElement.style.setProperty("--tamanho-fonte", niveis[indice] + "%");
+    guardar(CHAVE_FONTE, { n: niveis[indice] });
+    var ativos = [document.getElementById("btn-padrao")];
+    ativos.forEach(function(b){ b.classList.remove("ativo"); });
+    if(niveis[indice] === 100){ document.getElementById("btn-padrao").classList.add("ativo"); }
+  }
+  document.getElementById("btn-mais").addEventListener("click", function(){
+    if(indice < niveis.length - 1){ indice++; aplicarFonte(); }
+    else{ mostrarBalao('<span class="emoji">🔍</span><span class="texto">Este é o maior tamanho disponível (160%).</span>', 3000); }
+  });
+  document.getElementById("btn-menos").addEventListener("click", function(){
+    if(indice > 0){ indice--; aplicarFonte(); }
+    else{ mostrarBalao('<span class="emoji">🔍</span><span class="texto">Este é o menor tamanho disponível (90%).</span>', 3000); }
+  });
+  document.getElementById("btn-padrao").addEventListener("click", function(){
+    indice = 1; aplicarFonte();
+  });
+
+  /* ============ 4. PROTEÇÃO MANTIDA ============ */
+  document.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+  document.addEventListener("keydown", function(e){
+    if((e.ctrlKey || e.metaKey) && ["c","p","s","u","a"].indexOf(String(e.key).toLowerCase()) >= 0){
+      e.preventDefault();
+    }
+  });
+
+  /* Inicia */
+  mostrarDicas();
+  setTimeout(oferecerContinuacao, 900);
+})();
+</script>
+</body>
+</html>

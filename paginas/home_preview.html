@@ -1,0 +1,1614 @@
+<!DOCTYPE html><html lang='pt-BR'><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal O Despertar | Desperte sua mente, fortaleça sua fé, transforme sua vida</title>
+<meta name="description" content="Portal O Despertar: videoaulas, livros e uma comunidade de estudos que une fé cristã e neurociência do comportamento. Trilogia Evolução da Alma + Anestesia Mental por R$ 49,00.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia&display=swap" rel="stylesheet">
+
+<!-- ===== PWA: instalar como app ===== -->
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0e1a2e">
+<link rel="apple-touch-icon" href="/icones/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icones/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/icones/icon-512.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Portal O Despertar">
+<!-- ===== FIM PWA ===== -->
+
+<style>
+  :root{
+    --navy:#0e1a2e; --navy-2:#16283f; --navy-3:#1e3352;
+    --gold:#c9a24b; --gold-light:#e3c877; --gold-dark:#b8860b;
+    --cream:#f6f1e7; --cream-2:#fffaf0;
+    --ink:#1c1a15; --muted:#5c5646;
+    --serif: Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, Segoe UI, Roboto, sans-serif;
+    --radius: 14px;
+    --shadow: 0 18px 40px -18px rgba(14,26,46,.35);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.6;}
+  img{max-width:100%;display:block;}
+  a{text-decoration:none;color:inherit;}
+  h1,h2,h3,h4{font-family:var(--serif);margin:0 0 .5em;line-height:1.15;color:var(--navy);}
+  p{margin:0 0 1em;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+  section{padding:88px 0;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--gold-dark);margin-bottom:16px;}
+  .eyebrow::before{content:"🔑";font-size:14px;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 30px;border-radius:999px;font-weight:700;font-size:16px;cursor:pointer;border:2px solid transparent;transition:transform .15s ease, box-shadow .15s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-gold{background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:var(--navy);box-shadow:0 12px 28px -10px rgba(184,134,11,.55);}
+  .btn-gold:hover{box-shadow:0 16px 34px -10px rgba(184,134,11,.7);}
+  .btn-ghost{background:transparent;border-color:rgba(14,26,46,.25);color:var(--navy);}
+  .btn-ghost:hover{border-color:var(--navy);}
+  .btn-ghost-light{background:transparent;border-color:rgba(246,241,231,.4);color:var(--cream);}
+  .btn-ghost-light:hover{border-color:var(--gold-light);color:var(--gold-light);}
+  .btn-block{width:100%;}
+  small.note{display:block;font-size:13px;color:var(--muted);margin-top:10px;}
+
+  /* HEADER */
+  header.site{position:sticky;top:0;z-index:50;background:rgba(14,26,46,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,162,75,.18);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1140px;margin:0 auto;}
+  .logo{font-family:var(--serif);font-size:20px;color:var(--cream-2);letter-spacing:.02em;}
+  .logo b{color:var(--gold-light);}
+  .navlinks{display:flex;align-items:center;gap:28px;}
+  .navlinks a{color:rgba(246,241,231,.82);font-size:14.5px;font-weight:500;}
+  .navlinks a:hover{color:var(--gold-light);}
+  .nav-cta{padding:11px 22px;font-size:14px;}
+  .burger{display:none;background:none;border:none;color:var(--cream);font-size:26px;cursor:pointer;}
+  @media(max-width:880px){
+    .navlinks{display:none;position:fixed;top:64px;right:12px;left:auto;bottom:auto;background:var(--navy);flex-direction:column;align-items:flex-end;text-align:right;padding:22px 26px;gap:18px;z-index:90;min-width:230px;border:1px solid rgba(201,162,75,.5);border-radius:14px;box-shadow:0 16px 38px rgba(0,0,0,.55);}
+    .navlinks.open{display:flex;}
+    .navlinks a:not(.nav-cta){color:var(--gold-light);font-weight:600;}
+    .navlinks a:not(.nav-cta):hover{color:var(--gold);}
+    .burger{display:block;}
+  }
+
+  /* HERO */
+  .hero{background:radial-gradient(1200px 600px at 80% -10%, rgba(201,162,75,.18), transparent 60%), linear-gradient(180deg,var(--navy),var(--navy-2));color:var(--cream-2);padding:96px 0 76px;position:relative;overflow:hidden;}
+  .hero::after{content:"🔑";position:absolute;right:-40px;top:20px;font-size:340px;opacity:.045;transform:rotate(18deg);pointer-events:none;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative;z-index:1;}
+  .hero h1{color:var(--cream-2);font-size:44px;}
+  .hero h1 em{color:var(--gold-light);font-style:normal;}
+  .hero p.lead{font-size:18px;color:rgba(246,241,231,.82);max-width:520px;}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px;}
+  .hero-visual{position:relative;}
+  .hero-visual img{border-radius:var(--radius);box-shadow:var(--shadow);}
+  .hero-badge{position:absolute;bottom:-18px;left:-18px;background:var(--cream-2);color:var(--navy);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow);font-size:13px;font-weight:600;max-width:200px;}
+  @media(max-width:880px){ .hero-grid{grid-template-columns:1fr;} .hero h1{font-size:32px;} .hero{padding:60px 0 52px;} }
+
+  /* TRUST BAR */
+  .trust{background:var(--navy-2);color:var(--cream-2);padding:22px 0;}
+  .trust ul{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;list-style:none;margin:0;padding:0;font-size:14px;font-weight:500;}
+  .trust li{display:flex;align-items:center;gap:8px;color:rgba(246,241,231,.9);}
+
+  /* GENERIC CARD GRID */
+  .grid{display:grid;gap:26px;}
+  .grid-4{grid-template-columns:repeat(4,1fr);}
+  .grid-3{grid-template-columns:repeat(3,1fr);}
+  .grid-2{grid-template-columns:repeat(2,1fr);}
+  @media(max-width:880px){ .grid-4,.grid-3,.grid-2{grid-template-columns:1fr;} }
+
+  .card{background:var(--cream-2);border:1px solid rgba(14,26,46,.08);border-radius:var(--radius);padding:28px;}
+  .card .ic{font-size:28px;margin-bottom:12px;display:block;}
+  .card h3{font-size:18px;margin-bottom:8px;}
+  .card p{color:var(--muted);font-size:14.5px;margin:0;}
+  .card .btn{margin-top:16px;padding:12px 22px;font-size:14px;display:inline-flex;}
+  .card-cta{border:1px solid rgba(201,162,75,.55);background:linear-gradient(180deg,#fffaf0,#fdf3df);display:flex;flex-direction:column;}
+  .card-cta .btn{margin-top:auto;}
+
+  /* CARD DESTAQUE - livros online e gratuitos */
+  .card-destaque{grid-column:1/-1;display:flex;align-items:center;gap:26px;flex-wrap:wrap;
+    background:linear-gradient(135deg,var(--navy) 0%,#1e3352 60%,#3a2f1e 100%);
+    border:1px solid rgba(201,162,75,.55);border-radius:var(--radius);
+    padding:30px 34px;color:var(--cream-2);box-shadow:0 18px 44px -18px rgba(14,26,46,.55);}
+  .card-destaque .ic{font-size:54px;line-height:1;filter:drop-shadow(0 4px 14px rgba(201,162,75,.45));}
+  .card-destaque .cd-txt{flex:1;min-width:260px;}
+  .card-destaque h3{font-size:24px;color:var(--gold-light);margin-bottom:8px;}
+  .card-destaque p{color:#c9d4e4;font-size:15.5px;margin:0;max-width:560px;}
+  .card-destaque .btn{padding:14px 26px;font-size:15px;white-space:nowrap;}
+
+  .card-destaque .cd-convite{color:var(--gold-light);font-size:.9rem;font-style:italic;margin-top:8px;opacity:.95}
+
+  .card-destaque .cd-acoes{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .card-destaque .btn{padding:13px 22px;font-size:14.5px;white-space:nowrap}
+  .btn-enquete{background:transparent;border:2px solid var(--gold);color:var(--gold-light)}
+  .btn-enquete:hover{background:var(--gold);color:var(--navy)}
+  @media(max-width:560px){ .card-destaque .cd-acoes{width:100%} .card-destaque .btn{flex:1;justify-content:center;text-align:center} }
+  @media(max-width:560px){ .card-destaque{padding:24px 20px;} .card-destaque .ic{font-size:44px;} }
+
+  .section-head{text-align:center;max-width:640px;margin:0 auto 48px;}
+  .section-head h2{font-size:32px;}
+  .section-head p{color:var(--muted);font-size:16px;}
+
+  /* PRODUCT CARDS */
+  .product{background:var(--cream-2);border:1px solid rgba(14,26,46,.08);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+  .product img{aspect-ratio:3/4;object-fit:cover;}
+  .product .pbody{padding:22px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .product .tag{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--gold-dark);font-weight:700;}
+  .product h3{font-size:19px;margin-bottom:2px;}
+  .product p{color:var(--muted);font-size:14px;flex:1;}
+  .price-row{display:flex;align-items:baseline;gap:8px;margin:6px 0 12px;}
+  .price-old{color:var(--muted);text-decoration:line-through;font-size:14px;}
+  .price-new{font-family:var(--serif);font-size:26px;color:var(--navy);font-weight:700;}
+
+  /* DARK SECTION (trilogia) */
+  .dark{background:linear-gradient(180deg,var(--navy),var(--navy-3));color:var(--cream-2);}
+  .dark h2,.dark h3{color:var(--cream-2);}
+  .dark .section-head p{color:rgba(246,241,231,.72);}
+  .module-col h4{color:var(--gold-light);font-family:var(--sans);font-size:13px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px;}
+  .module-col ol{list-style:none;margin:0;padding:0;counter-reset:mod;}
+  .module-col li{counter-increment:mod;padding:12px 0;border-bottom:1px solid rgba(246,241,231,.1);display:flex;gap:12px;font-size:14.5px;color:rgba(246,241,231,.88);}
+  .module-col li::before{content:counter(mod,decimal-leading-zero);color:var(--gold);font-family:var(--serif);font-weight:700;flex-shrink:0;}
+
+  /* OFFER */
+  .offer{background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:20px;padding:48px;color:var(--cream-2);display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;box-shadow:var(--shadow);}
+  .offer h2{color:var(--gold-light);font-size:28px;}
+  .offer ul{list-style:none;margin:18px 0;padding:0;display:grid;gap:10px;}
+  .offer ul li{display:flex;gap:10px;font-size:15px;color:rgba(246,241,231,.92);}
+  .offer-price{background:rgba(246,241,231,.06);border:1px solid rgba(201,162,75,.35);border-radius:16px;padding:28px;text-align:center;}
+  .offer-price .old{color:rgba(246,241,231,.6);text-decoration:line-through;font-size:15px;}
+  .offer-price .new{font-family:var(--serif);font-size:44px;color:var(--gold-light);margin:4px 0 18px;}
+  @media(max-width:880px){ .offer{grid-template-columns:1fr;padding:30px;} }
+
+  /* GUARANTEE */
+  .guarantee{display:flex;align-items:center;gap:24px;background:var(--cream-2);border:2px dashed var(--gold-dark);border-radius:var(--radius);padding:30px;}
+  .guarantee .seal{flex-shrink:0;width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--navy);font-family:var(--serif);font-weight:700;line-height:1.05;text-align:center;box-shadow:var(--shadow);}
+  .guarantee .seal span{font-size:22px;}
+  .guarantee .seal small{font-size:11px;font-weight:600;}
+  @media(max-width:640px){ .guarantee{flex-direction:column;text-align:center;} }
+
+  /* TESTIMONIALS */
+  .quote-card{background:var(--cream-2);border-radius:var(--radius);padding:26px;border:1px solid rgba(14,26,46,.08);}
+  .quote-card p.q{font-family:var(--serif);font-size:17px;color:var(--navy);}
+  .quote-card .who{font-size:13.5px;color:var(--muted);font-weight:600;}
+  .placeholder-note{text-align:center;color:var(--muted);font-size:13px;margin-top:18px;font-style:italic;}
+
+  /* FAQ */
+  .faq-item{border-bottom:1px solid rgba(14,26,46,.12);}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;padding:20px 4px;cursor:pointer;font-weight:600;font-size:16px;color:var(--navy);}
+  .faq-q .plus{transition:transform .2s ease;color:var(--gold-dark);font-size:20px;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;font-size:14.5px;color:var(--muted);}
+  .faq-a p{padding-bottom:18px;}
+  .faq-item.open .faq-a{max-height:400px;}
+
+  /* CTA FINAL */
+  .cta-final{background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:var(--navy);text-align:center;padding:70px 0;}
+  .cta-final h2{color:var(--navy);font-size:30px;}
+
+  footer.site{background:var(--navy);color:rgba(246,241,231,.7);padding:48px 0 28px;font-size:13.5px;}
+  .footer-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;margin-bottom:24px;}
+  footer.site a{color:rgba(246,241,231,.75);}
+  footer.site a:hover{color:var(--gold-light);}
+  .foot-links{display:flex;gap:20px;flex-wrap:wrap;}
+  .foot-bottom{border-top:1px solid rgba(246,241,231,.12);padding-top:20px;text-align:center;color:rgba(246,241,231,.5);}
+
+  .wa-float{position:fixed;bottom:22px;right:22px;z-index:60;background:#25D366;color:#fff;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 10px 24px -6px rgba(0,0,0,.35);}
+
+  .divider{display:flex;align-items:center;gap:14px;justify-content:center;color:var(--gold-dark);margin:0 auto 44px;max-width:200px;}
+  .divider::before,.divider::after{content:"";height:1px;flex:1;background:rgba(201,162,75,.4);}
+
+  
+
+  /* ===== BIBLIOTECA DE LEITURA GRATUITA ===== */
+  .biblioteca{background:linear-gradient(170deg,var(--navy) 0%,#120b18 100%);color:#fff;padding:70px 0;position:relative;overflow:hidden;}
+  .biblioteca::before{content:"";position:absolute;top:-100px;right:-80px;width:380px;height:380px;background:radial-gradient(circle,rgba(201,162,75,.16),transparent 65%);}
+  .bib-head{text-align:center;margin-bottom:42px;position:relative;z-index:1;}
+  .bib-tag{display:inline-block;background:rgba(201,162,75,.15);border:1px solid var(--ouro);color:var(--gold-light,#e3c877);font-size:.75rem;letter-spacing:.24em;text-transform:uppercase;padding:6px 14px;border-radius:30px;margin-bottom:16px;}
+  .bib-head h2{font-family:var(--serif,Georgia,serif);font-size:clamp(1.7rem,3.8vw,2.4rem);margin:0 0 10px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.55);}
+  .bib-head p{color:rgba(246,241,231,.92);font-size:1rem;max-width:40rem;margin:0 auto;text-shadow:0 1px 4px rgba(0,0,0,.4);}
+  .bib-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:22px;position:relative;z-index:1;}
+  .bib-card{width:calc(33.333% - 16px);min-width:270px;max-width:380px;}
+  @media(max-width:880px){.bib-card{width:100%;max-width:none;}}
+  .bib-card{background:linear-gradient(180deg,#1c3150,#16283f);border:1px solid rgba(201,162,75,.45);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.2s;box-shadow:0 14px 34px rgba(0,0,0,.3);}
+  .bib-card:hover{transform:translateY(-4px);border-color:var(--ouro);}
+  .bib-capa{height:215px;display:flex;align-items:center;justify-content:center;font-size:3.4rem;background:linear-gradient(150deg,rgba(201,162,75,.22),rgba(201,162,75,.05) 60%);border-bottom:1px solid rgba(201,162,75,.2);overflow:hidden;position:relative;}
+  .bib-capa .capa-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease;filter:brightness(1.02) contrast(1.02);}
+  .bib-card:hover .capa-img{transform:scale(1.05);}
+  .bib-capa .capa-emoji{font-size:3.4rem;display:block;}
+  .bib-card.em-breve .capa-img{filter:grayscale(.5);opacity:.7;}
+  .bib-corpo{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1;}
+  .bib-num{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light,#e3c877);font-weight:700;margin-bottom:6px;text-shadow:0 1px 3px rgba(0,0,0,.5);}
+  .bib-corpo h3{font-family:var(--serif,Georgia,serif);font-size:1.22rem;margin:0 0 8px;line-height:1.25;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.55);}
+  .bib-corpo .bib-desc{font-size:.9rem;color:rgba(246,241,231,.92);flex:1;margin-bottom:16px;line-height:1.55;text-shadow:0 1px 3px rgba(0,0,0,.4);}
+  .bib-corpo .bib-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+  .bib-corpo .bib-badge{font-size:.72rem;background:rgba(201,162,75,.12);border:1px solid rgba(201,162,75,.35);color:var(--gold-light,#e3c877);padding:4px 10px;border-radius:20px;}
+  .bib-ctas{display:flex;gap:10px;flex-wrap:wrap;}
+  .bib-ctas .btn{display:inline-block;background:linear-gradient(180deg,#d4a83f,var(--cta,#b8860b));color:#fff;font-weight:700;font-size:.95rem;padding:12px 20px;border-radius:8px;text-decoration:none;text-align:center;flex:1;transition:.18s;}
+  .bib-ctas .btn:hover{transform:translateY(-1px);}
+  .bib-ctas .btn-sec{background:transparent;border:1px solid var(--ouro);color:var(--gold-light,#e3c877);flex:0 0 auto;}
+  .bib-card.em-breve{opacity:.75;border-style:dashed;}
+  .bib-card.em-breve .bib-capa{font-size:2.8rem;filter:grayscale(.4);}
+  .bib-card.em-breve .btn{background:rgba(246,241,231,.12);box-shadow:none;cursor:default;}
+  .bib-foot{text-align:center;margin-top:36px;position:relative;z-index:1;}
+  .bib-foot a{color:var(--gold-light,#e3c877);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--ouro);}
+  .bib-foot a:hover{color:#fff;}
+  @media(max-width:880px){.bib-grid{grid-template-columns:1fr;}}
+
+
+  /* TRILOGIA centralizada */
+  #trilogia .section-head{text-align:center;}
+  #trilogia .section-head h2, #trilogia .section-head p{text-align:center;}
+  #trilogia .module-col{text-align:center;}
+  #trilogia .module-col ol{display:inline-block;text-align:left;}
+
+
+  /* ===== QUIZ DE AUTOAVALIAÇÃO ===== */
+  .quiz-sec{background:linear-gradient(170deg,var(--navy) 0%,#120b18 100%);color:#fff;padding:70px 0;position:relative;overflow:hidden;}
+  .quiz-sec::before{content:"";position:absolute;top:-80px;left:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(201,162,75,.15),transparent 65%);}
+  .quiz-head{text-align:center;margin-bottom:34px;position:relative;z-index:1;}
+  .quiz-tag{display:inline-block;background:rgba(201,162,75,.15);border:1px solid var(--ouro);color:var(--gold-light,#e3c877);font-size:.75rem;letter-spacing:.24em;text-transform:uppercase;padding:6px 14px;border-radius:30px;margin-bottom:16px;}
+  .quiz-head h2{font-family:var(--serif,Georgia,serif);font-size:clamp(1.6rem,3.8vw,2.3rem);margin:0 0 10px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.55);}
+  .quiz-head p{color:rgba(246,241,231,.92);font-size:1rem;max-width:40rem;margin:0 auto;text-shadow:0 1px 4px rgba(0,0,0,.4);}
+  .quiz-box{max-width:680px;margin:0 auto;background:var(--navy-2,#16283f);border:1px solid rgba(201,162,75,.3);border-radius:16px;padding:30px;position:relative;z-index:1;}
+  .quiz-perg{display:none;}
+  .quiz-perg.ativa{display:block;}
+  .qp-num{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ouro);font-weight:700;margin-bottom:10px;}
+  .qp-titulo{font-size:1.15rem;margin:0 0 18px;line-height:1.4;}
+  .quiz-opcoes label{display:block;border:1px solid rgba(201,162,75,.3);border-radius:10px;padding:13px 16px;margin-bottom:10px;cursor:pointer;transition:.15s;font-size:.98rem;}
+  .quiz-opcoes label:hover{border-color:var(--ouro);background:rgba(201,162,75,.08);}
+  .quiz-opcoes input{margin-right:10px;}
+  .quiz-nav{display:flex;justify-content:space-between;gap:12px;margin-top:20px;flex-wrap:wrap;}
+  .quiz-nav .btn{padding:12px 24px;font-size:.95rem;border:none;cursor:pointer;border-radius:8px;}
+  .quiz-nav .voltar{background:transparent;border:1px solid var(--ouro);color:var(--gold-light,#e3c877);}
+  .quiz-nav .avancar{background:linear-gradient(180deg,#d4a83f,#b8860b);color:#fff;font-weight:700;}
+  .quiz-resultado{display:none;text-align:center;padding:10px 0;}
+  .qr-emoji{font-size:3rem;margin-bottom:10px;}
+  .quiz-resultado h3{font-size:1.4rem;color:var(--gold-light,#e3c877);margin:0 0 10px;}
+  .quiz-resultado p{color:rgba(246,241,231,.85);max-width:32rem;margin:0 auto 20px;}
+  .quiz-form{background:rgba(246,241,231,.06);border:1px solid rgba(201,162,75,.35);border-radius:12px;padding:20px;margin-top:16px;text-align:left;}
+  .quiz-form label{display:block;font-size:.9rem;color:var(--gold-light,#e3c877);margin-bottom:6px;}
+  .quiz-form input{width:100%;padding:12px 14px;border-radius:8px;border:1px solid rgba(201,162,75,.4);background:#fff;color:var(--navy);font-size:1rem;margin-bottom:12px;}
+  .quiz-form .btn{width:100%;padding:13px;font-size:1rem;border:none;border-radius:8px;cursor:pointer;background:linear-gradient(180deg,#d4a83f,#b8860b);color:#fff;font-weight:700;}
+  .quiz-form .priv{font-size:.75rem;color:rgba(246,241,231,.6);margin-top:10px;text-align:center;}
+
+
+  .bib-capa.inteiro{height:300px;}
+  .bib-capa.inteiro .capa-img{object-fit:contain;padding:8px;}
+
+  .countdown{display:flex;justify-content:center;gap:8px;margin:14px 0 4px;flex-wrap:wrap;}
+  .countdown .cd-item{background:#0e1a2e;border:1px solid rgba(201,162,75,.5);border-radius:10px;padding:8px 6px;min-width:58px;text-align:center;}
+  .countdown .cd-num{font-size:1.3rem;font-weight:700;color:#e3c877;line-height:1.1;font-family:Georgia,serif;}
+  .countdown .cd-lab{font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:#9fb0c8;margin-top:2px;}
+  .cd-titulo{font-size:.78rem;color:#e3c877;letter-spacing:.12em;text-transform:uppercase;text-align:center;margin:6px 0 0;}
+
+  /* ===== Balõezinhos de dicas na Home ===== */
+  #popup-dicas{position:fixed;top:76px;left:0;right:0;z-index:75;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;padding:0 14px}
+  .pd-balao{
+    pointer-events:auto;max-width:480px;width:100%;
+    background:#fffdf5;border:1px solid var(--gold);border-left:5px solid var(--gold);
+    border-radius:12px;padding:12px 14px;font-size:.88rem;line-height:1.5;
+    color:var(--navy);font-family:var(--sans);
+    box-shadow:0 14px 34px rgba(14,26,46,.35);
+    display:flex;align-items:center;gap:11px;
+    animation:pdEntra .4s ease;
+  }
+  .pd-balao .pd-emoji{font-size:1.3rem;flex-shrink:0}
+  .pd-balao .pd-texto{flex:1;min-width:0}
+  .pd-balao .pd-texto b{color:var(--gold-dark)}
+  .pd-balao .pd-fechar{background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;line-height:1;padding:4px;flex-shrink:0}
+  .pd-balao .pd-fechar:hover{color:var(--gold-dark)}
+  .pd-balao .pd-cta{
+    background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:var(--navy);
+    border:none;border-radius:8px;padding:8px 13px;font-size:.78rem;font-weight:700;
+    cursor:pointer;font-family:var(--sans);white-space:nowrap;flex-shrink:0;
+    box-shadow:0 6px 16px -6px rgba(184,134,11,.6);
+  }
+  .pd-balao.saindo{animation:pdSai .35s ease forwards}
+  @keyframes pdEntra{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes pdSai{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-12px)}}
+  @media (max-width:560px){
+    #popup-dicas{top:70px}
+    .pd-balao{flex-wrap:wrap}
+    .pd-balao .pd-cta{width:100%}
+  }
+
+
+  /* ===== Botão Instalar app (PWA) ===== */
+  #instalar-app{
+    display:none; position:fixed; right:16px; bottom:84px; z-index:65;
+    background:linear-gradient(135deg,var(--gold-light),var(--gold-dark)); color:var(--navy);
+    border:none; border-radius:50px; padding:11px 18px; font-size:.82rem; font-weight:700;
+    font-family:var(--sans); cursor:pointer; box-shadow:0 10px 24px -6px rgba(184,134,11,.65);
+    align-items:center; gap:7px;
+  }
+  #instalar-app:hover{transform:translateY(-1px)}
+  @media (max-width:560px){ #instalar-app{bottom:80px; right:12px} }
+
+
+  /* ===== Enquete de participação ===== */
+  .enquete-sec{background:var(--cream-2);padding:70px 0;position:relative;overflow:hidden}
+  .enquete-sec::before{content:"💬";position:absolute;right:-26px;bottom:-30px;font-size:170px;opacity:.05;transform:rotate(-10deg);pointer-events:none}
+  .enquete-box{max-width:680px;margin:0 auto;background:#fff;border:1px solid rgba(201,162,75,.35);border-radius:16px;padding:28px 26px;box-shadow:var(--shadow);position:relative;z-index:1}
+  .enquete-box h3{font-family:var(--serif);color:var(--navy);font-size:1.25rem;margin:0 0 6px;line-height:1.3}
+  .enquete-box .eq-sub{color:var(--muted);font-size:.9rem;margin:0 0 18px}
+  .eq-opcoes{display:flex;flex-direction:column;gap:9px}
+  .eq-op{
+    display:flex;align-items:center;gap:11px;text-align:left;width:100%;
+    background:var(--cream);border:1px solid rgba(201,162,75,.4);border-radius:10px;
+    padding:12px 14px;cursor:pointer;font-family:var(--sans);font-size:.95rem;color:var(--navy);
+    transition:.15s;position:relative;overflow:hidden;
+  }
+  .eq-op:hover{border-color:var(--gold);background:#fff;transform:translateY(-1px)}
+  .eq-op input{margin:0;accent-color:var(--gold-dark)}
+  .eq-op .eq-label{flex:1;min-width:0}
+  .eq-op .eq-pct{font-weight:700;color:var(--gold-dark);font-size:.85rem;white-space:nowrap}
+  .eq-op .eq-barra{position:absolute;left:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--gold-light),var(--gold-dark));width:0%;transition:width .6s ease;border-radius:3px}
+  .eq-op.selecionada{border-color:var(--gold);background:#fffdf5}
+  .eq-comentario{margin-top:16px}
+  .eq-comentario textarea{width:100%;padding:11px 13px;border:1px solid rgba(201,162,75,.4);border-radius:10px;font-family:var(--sans);font-size:.92rem;color:var(--navy);resize:vertical;min-height:64px}
+  .eq-comentario textarea:focus{outline:none;border-color:var(--gold)}
+
+  .eq-email{margin-top:10px}
+  .eq-email input{width:100%;padding:11px 13px;border:1px solid rgba(201,162,75,.4);border-radius:10px;font-family:var(--sans);font-size:.92rem;color:var(--navy)}
+  .eq-email input:focus{outline:none;border-color:var(--gold)}
+  .eq-acoes{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap}
+  .eq-acoes .btn{padding:12px 22px;font-size:.92rem}
+  .eq-mensagem{margin-top:14px;font-size:.88rem;color:var(--muted);display:none;align-items:center;gap:8px;line-height:1.5}
+  .eq-mensagem.visivel{display:flex}
+  .eq-mensagem.ok{color:#2e7d32}
+  .eq-resultado{margin-top:16px;display:none}
+  .eq-comentarios{margin-top:14px;border-top:1px dashed rgba(201,162,75,.4);padding-top:12px;display:none}
+  .eq-comentarios h4{font-size:.85rem;color:var(--gold-dark);margin:0 0 8px;letter-spacing:.05em;text-transform:uppercase}
+  .eq-comentarios .eq-c{font-size:.85rem;color:var(--muted);padding:7px 0;border-bottom:1px dotted rgba(201,162,75,.25)}
+  .eq-comentarios .eq-c:last-child{border-bottom:none}
+
+  .eq-aviso{font-size:.75rem;color:var(--muted);margin-top:14px;text-align:center}
+
+</style>
+</head><body>
+<div id="popup-dicas" aria-live="polite"></div>
+
+<header class="site">
+  <div class="nav">
+    <a href="#" class="logo">Portal O <b>Despertar</b></a>
+    <nav class="navlinks" id="navlinks">
+      <a href="#portal">O Portal</a>
+      <a href="#livros">Livros</a>
+      <a href="#biblioteca">Biblioteca gratuita</a>
+      <a href="#trilogia">Trilogia</a>
+      <a href="#mentora">A Mentora</a>
+      <a href="#faq">Dúvidas</a>
+      <a class="btn btn-gold nav-cta" href="https://dashboard.kiwify.com.br/courses">🔓 Entrar no Portal</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Fé cristã + neurociência do comportamento</span>
+      <h1>Chegou a hora do seu <em>despertar</em></h1>
+      <p class="lead">Videoaulas, livros e uma comunidade de estudos que unem a verdade bíblica ao estudo do comportamento humano, para você retomar o governo da sua mente e viver com propósito.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-gold" href="#devocional">📖 Começar pelo Devocional de 30 dias</a>
+        <a class="btn btn-ghost-light" href="livro12_leitor_preview.html">📖 Ler o livro de Afirmações</a>
+      </div>
+      <small class="note">Comece o seu dia com uma palavra de Jesus para a sua vida. E ao descer, conheça também a Trilogia da Alma.</small>
+    </div>
+    <div class="hero-visual">
+      <img src="https://i.ibb.co/wNwtX4Qj/livro-J01.jpg" alt="O Novo Testamento como nunca lido - Jesus lava os pés">
+      <div class="hero-badge">✨ Leia de graça, continue de onde parou</div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <ul>
+      <li>⚡ Acesso imediato</li>
+      <li>📱 Leia no celular, tablet ou PC</li>
+      <li>🛡️ Garantia incondicional de 7 dias</li>
+    </ul>
+  </div>
+</div>
+
+<style>
+  #continue-lendo{max-width:50rem;margin:18px auto 0;padding:0 1.2rem;position:relative;z-index:5}
+  .cl-cartao{display:flex;align-items:center;gap:12px;background:linear-gradient(180deg,#fffdf5,#fdf6e3);border:1px solid var(--gold);border-left:5px solid var(--gold);border-radius:12px;padding:8px 10px 8px 16px;color:var(--navy);box-shadow:0 10px 28px rgba(14,26,46,.22);font-family:var(--sans)}
+  .cl-cartao:hover{transform:translateY(-1px);box-shadow:0 12px 30px rgba(14,26,46,.28)}
+  .cl-cartao-link{display:flex;align-items:center;gap:12px;flex:1;min-width:0;text-decoration:none;color:inherit}
+  .cl-icone{font-size:1.4rem;flex-shrink:0}
+  .cl-texto{flex:1;min-width:0}
+  .cl-titulo{display:block;font-weight:700;font-size:.92rem;margin-bottom:2px}
+  .cl-detalhe{display:block;font-size:.78rem;color:var(--muted)}
+  .cl-cta{background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:var(--navy);font-weight:700;font-size:.8rem;padding:9px 14px;border-radius:8px;white-space:nowrap}
+  .cl-fechar{background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;line-height:1;padding:6px;flex-shrink:0}
+  .cl-fechar:hover{color:var(--gold-dark)}
+  @media (max-width:560px){.cl-cta{display:none}}
+</style>
+<div id="continue-lendo"></div>
+
+<section id="portal">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">O que é o portal</span>
+      <h2>O Portal Missão com Deus</h2>
+      <p>Ao adquirir qualquer uma das nossas obras, você garante acesso ao Portal, com cronograma exclusivo de estudos na área de membros.</p>
+    </div>
+    <div class="grid grid-4">
+      <div class="card-destaque">
+        <div class="cd-txt">
+          <h3>Livros online e gratuitos</h3>
+          <p>Leia as obras da Coleção do Despertar gratuitamente, direto no seu navegador, sem custo, sem cadastro e com leitura protegida. Uma porta aberta para o seu despertar.</p>
+          <p class="cd-convite">💬 Qual é a maior batalha da sua mente hoje? Responda em 1 minuto e descubra que você não está sozinho.</p>
+        </div>
+        <div class="cd-acoes">
+          <a class="btn btn-gold" href="#biblioteca">Ir para os livros</a>
+          <a class="btn btn-enquete" href="#enquete">💬 Participar da enquete</a>
+        </div>
+      </div>
+      <div class="card"><span class="ic">🎥</span><h3>Videoaulas guiadas</h3><p>Imersão teórica e prática com ensinamentos profundos de fácil linguagem que tocam a alma.</p></div>
+      <div class="card"><span class="ic">📚</span><h3>Livros e materiais</h3><p>Trilogia Evolução da Alma + Anestesia Mental, para ler e baixar.</p></div>
+      <div class="card"><span class="ic">👥</span><h3>Comunidade de estudos</h3><p>Um ambiente para crescer junto e sustentar sua jornada.</p></div>
+      <div class="card"><span class="ic">♾️</span><h3>Acesso vitalício</h3><p>O Portal é seu para sempre no seu ritmo, quando quiser.</p></div>
+    </div> 
+  </div>
+</section>
+
+<section class="quiz-sec" id="quiz">
+  <div class="wrap">
+    <div class="quiz-head">
+      <span class="quiz-tag">✨ Autoavaliação gratuita</span>
+      <h2>Um segundo de sinceridade com você mesmo</h2>
+      <p>Responda 7 perguntas com o coração aberto. Não há resposta certa ou errada, apenas um convite para olhar para dentro.</p>
+      <p style="margin-top:16px;"><span style="display:inline-block;background:rgba(201,162,75,.18);border:1px solid var(--ouro);color:var(--gold-light,#e3c877);padding:9px 18px;border-radius:30px;font-size:.9rem;letter-spacing:.02em;">🎁 Ao final, o E-book infantil <strong>Jesus Quer Falar com Seu Filho</strong> de presente</span></p>
+    </div>
+    <div class="quiz-box">
+      <!-- P1 -->
+      <div class="quiz-perg ativa" data-perg="0">
+        <p class="qp-num">Pergunta 1 de 7</p>
+        <p class="qp-titulo">Quando você fica em silêncio, o que costuma aparecer em primeiro lugar?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="q0" value="1"> Pensamentos acelerados e preocupações</label>
+          <label><input type="radio" name="q0" value="2"> Uma sensação de vazio ou cansaço</label>
+          <label><input type="radio" name="q0" value="3"> A percepção de que algo está faltando</label>
+          <label><input type="radio" name="q0" value="4"> Paz, já aprendi a silenciar</label>
+        </div>
+      </div>
+      <!-- P2 -->
+      <div class="quiz-perg" data-perg="1">
+        <p class="qp-num">Pergunta 2 de 7</p>
+        <p class="qp-titulo">Na sua rotina, o que mais rouba a sua atenção?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="q1" value="1"> O celular e as redes sociais</label>
+          <label><input type="radio" name="q1" value="2"> As preocupações com o futuro</label>
+          <label><input type="radio" name="q1" value="3"> As mágoas e lembranças do passado</label>
+          <label><input type="radio" name="q1" value="4"> As tarefas e obrigações do dia</label>
+        </div>
+      </div>
+      <!-- P3 -->
+      <div class="quiz-perg" data-perg="2">
+        <p class="qp-num">Pergunta 3 de 7</p>
+        <p class="qp-titulo">Se você pudesse mudar UMA coisa na sua vida hoje, seria...</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="q2" value="1"> Minha paz interior</label>
+          <label><input type="radio" name="q2" value="2"> Minha situação financeira</label>
+          <label><input type="radio" name="q2" value="3"> Meus relacionamentos</label>
+          <label><input type="radio" name="q2" value="4"> Meu propósito e direção</label>
+        </div>
+      </div>
+      <!-- P4 -->
+      <div class="quiz-perg" data-perg="3">
+        <p class="qp-num">Pergunta 4 de 7</p>
+        <p class="qp-titulo">O que você sente quando pensa em "falar com Deus"?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="q3" value="1"> Não sei como fazer direito</label>
+          <label><input type="radio" name="q3" value="2"> Sinto que Ele está longe de mim</label>
+          <label><input type="radio" name="q3" value="3"> Quero tentar, mas a rotina não deixa</label>
+          <label><input type="radio" name="q3" value="4"> Já é parte da minha vida</label>
+        </div>
+      </div>
+      <!-- P5 -->
+      <div class="quiz-perg" data-perg="4">
+        <p class="qp-num">Pergunta 5 de 7</p>
+        <p class="qp-titulo">Quando algo dá errado, qual é a sua primeira reação?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="q4" value="1"> Me culpo intensamente</label>
+          <label><input type="radio" name="q4" value="2"> Procuro alguém para culpar</label>
+          <label><input type="radio" name="q4" value="3"> Desisto ou adio</label>
+          <label><input type="radio" name="q4" value="4"> Respiro e busco aprender</label>
+        </div>
+      </div>
+      <!-- P6 -->
+      <div class="quiz-perg" data-perg="5">
+        <p class="qp-num">Pergunta 6 de 7</p>
+        <p class="qp-titulo">O que o seu coração mais deseja neste momento?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="q5" value="1"> Serenidade para enfrentar o dia</label>
+          <label><input type="radio" name="q5" value="2"> Clareza sobre o meu propósito</label>
+          <label><input type="radio" name="q5" value="3"> Perdão, para dar ou receber</label>
+          <label><input type="radio" name="q5" value="4"> Força para continuar tentando</label>
+        </div>
+      </div>
+      <!-- P7 -->
+      <div class="quiz-perg" data-perg="6">
+        <p class="qp-num">Pergunta 7 de 7</p>
+        <p class="qp-titulo">Se você desse apenas 5 minutos por dia a Deus, o que acha que mudaria?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="q6" value="1"> Nada, já tentei e não mudou</label>
+          <label><input type="radio" name="q6" value="2"> Talvez algo, mas não tenho certeza</label>
+          <label><input type="radio" name="q6" value="3"> Acredito que mudaria muita coisa</label>
+          <label><input type="radio" name="q6" value="4"> Já vivo isso todos os dias</label>
+        </div>
+      </div>
+
+      <div class="quiz-nav">
+        <button class="btn voltar" id="quiz-voltar" onclick="quizVoltar()" type="button">← Voltar</button>
+        <button class="btn avancar" id="quiz-prox" onclick="quizProx()" type="button">Avançar</button>
+      </div>
+
+      <div class="quiz-resultado" id="quiz-resultado">
+        <div class="qr-emoji" id="qr-emoji">🌱</div>
+        <h3 id="qr-titulo"></h3>
+        <p id="qr-texto"></p>
+        <div class="quiz-form">
+          <label for="quiz-email">✨ Caso queira ganhar o E-book "Jesus Quer Falar com Seu Filho", preencha seu e-mail e no comentário digite: Eu quero o E-book</label>
+          <input type="email" id="quiz-email" placeholder="Seu melhor e-mail" required>
+          <label for="quiz-comentario" style="margin-top:6px;">Comentário, depoimento ou sugestão:</label>
+          <textarea id="quiz-comentario" placeholder="Quer escrever algo? Fique à vontade..." rows="3" style="width:100%;padding:12px 14px;border-radius:8px;border:1px solid rgba(201,162,75,.4);background:#fff;color:var(--navy);font-size:1rem;font-family:inherit;margin-bottom:12px;resize:vertical;"></textarea>
+          <button class="btn" type="button" onclick="quizEnviar()">Receber minha surpresa</button>
+          <p class="priv">🔒 Seus dados estão seguros. Usaremos apenas para enviar sua surpresa e, se você quiser, para continuar caminhando com você.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="livros" style="background:var(--cream-2);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Nossas obras</span>
+      <h2>Escolha por onde começar</h2>
+      <p>Cada obra já inclui acesso ao Portal. Ou garanta a experiência completa mais abaixo.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="product">
+        <img src="https://i.ibb.co/kgBz01dc/livro05jpg.jpg" alt="Livro Evolução da Alma">
+        <div class="pbody">
+          <span class="tag">Livro · 60% OFF</span>
+          <h3>Evolução da Alma</h3>
+          <p>Cure sua alma, retome a consciência e domine suas emoções.</p>
+          <div class="price-row"><span class="price-old">R$ 49,90</span><span class="price-new">R$ 19,90</span></div>
+          <a class="btn btn-gold btn-block" href="https://pay.kiwify.com.br/ptH32K9">Adquirir agora</a>
+        </div>
+      </div>
+      <div class="product">
+        <img src="https://i.ibb.co/mF2Hyq7z/livro-09.jpg" alt="Livro Anestesia Mental">
+        <div class="pbody">
+          <span class="tag">Livro · 60% OFF</span>
+          <h3>Anestesia Mental</h3>
+          <p>Quebre as correntes invisíveis dos algoritmos e retome a soberania da mente.</p>
+          <div class="price-row"><span class="price-old">R$ 49,90</span><span class="price-new">R$ 19,90</span></div>
+          <a class="btn btn-gold btn-block" href="https://pay.kiwify.com.br/NCf1jh4">Adquirir agora</a>
+        </div>
+      </div>
+      <div class="product" id="devocional">
+        <img src="https://i.ibb.co/LdbL0QdH/livro04jpg.jpg" alt="Devocional Um Segundo com Deus">
+        <div class="pbody">
+          <span class="tag">Devocional · 30 dias</span>
+          <h3>Um Segundo com Deus</h3>
+          <p>30 dias de conexão diária. Silencie o ruído do mundo e ouça a voz que importa.</p>
+          <div class="price-row"><span class="price-old">R$ 19,90</span><span class="price-new">R$ 9,90</span></div>
+          <a class="btn btn-gold btn-block" href="https://pay.kiwify.com.br/CF9nhFx">Adquirir agora</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<section class="biblioteca" id="biblioteca">
+  <div class="wrap">
+    <div class="bib-head">
+      <span class="bib-tag">📖 Biblioteca de leitura gratuita</span>
+      <h2>Leia antes de comprar</h2>
+      <p>Conheça o conteúdo das nossas obras antes de adquiri-las. Leitura online protegida, sem cópia e sem impressão.</p>
+      <p>Agora você pode ler nossos livros online e, sempre que abrir novamente, continuar exatamente do ponto em que parou. Letras no seu tamanho, tela confortável e fita dourada para marcar o lugar.</p>
+    </div>
+    <div class="bib-grid">
+
+
+
+      <!-- LIVRO 01 -->
+      <div class="bib-card">
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/9myJ3XXb/livro01.jpg" alt="O Novo Testamento como nunca lido - capa"></div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 01 · Em breve</span>
+          <h3>O Novo Testamento como nunca lido</h3>
+          <p class="bib-desc">Uma jornada simples pelas Boas Novas de Cristo, com as passagens mais faladas, as parábolas e os sermões explicados para despertar a fé.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">20 capítulos</span>
+            <span class="bib-badge">✨ Em breve</span>
+          </div>
+          <p class="cd-titulo">📅 Lançamento em 27 de agosto</p>
+          <div class="countdown" id="countdown-livro11">
+            <div class="cd-item"><div class="cd-num" id="cd-dias">--</div><div class="cd-lab">dias</div></div>
+            <div class="cd-item"><div class="cd-num" id="cd-horas">--</div><div class="cd-lab">horas</div></div>
+            <div class="cd-item"><div class="cd-num" id="cd-min">--</div><div class="cd-lab">min</div></div>
+            <div class="cd-item"><div class="cd-num" id="cd-seg">--</div><div class="cd-lab">seg</div></div>
+          </div>
+          <div class="bib-ctas">
+            <a class="btn" href="#" style="pointer-events:none;opacity:.75;">Em breve</a>
+            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
+          </div>
+        </div>
+      </div>
+
+<!-- LIVRO 02 -->
+      <div class="bib-card">
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/kgBz01dc/livro05jpg.jpg" alt="Evolução da Alma - capa"></div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 02 · Disponível</span>
+          <h3>Evolução da Alma</h3>
+          <p class="bib-desc">Cure sua alma, retome a consciência e domine suas emoções, com preces, orações e ensinamentos bíblicos.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">11 capítulos</span>
+            <span class="bib-badge">🔒 Protegido</span>
+          </div>
+          <div class="bib-ctas">
+            <a class="btn" href="https://www.compraoseu.com/livro05">Ler grátis</a>
+            <a class="btn btn-sec" href="https://pay.kiwify.com.br/ptH32K9">Comprar</a>
+          </div>
+        </div>
+      </div>
+
+<!-- LIVRO 03 -->
+      <div class="bib-card">
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/mF2Hyq7z/livro-09.jpg" alt="Anestesia Mental e seus Algoritmos da Escravidão - capa"></div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 03 · Disponível</span>
+          <h3>Anestesia Mental</h3>
+          <p class="bib-desc">e seus Algoritmos da Escravidão, 16 capítulos sobre as correntes invisíveis que controlam sua mente e como se libertar em Cristo.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">16 capítulos</span>
+            <span class="bib-badge">🔒 Protegido</span>
+          </div>
+          <div class="bib-ctas">
+            <a class="btn" href="https://www.compraoseu.com/livro09">Ler grátis</a>
+            <a class="btn btn-sec" href="https://pay.kiwify.com.br/NCf1jh4">Comprar</a>
+          </div>
+        </div>
+      </div>
+
+<!-- LIVRO 04 -->
+      <div class="bib-card">
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/LdbL0QdH/livro04jpg.jpg" alt="Um Segundo com Deus - Devocional"></div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 04 · Disponível</span>
+          <h3>Um Segundo com Deus</h3>
+          <p class="bib-desc">30 dias de conexão diária, reflexões, orações e versículos para renovar sua fé. O E-book original contém imagens inspiradoras e um visual profissional.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">30 dias</span>
+            <span class="bib-badge">🔒 Protegido</span>
+          </div>
+          <div class="bib-ctas">
+            <a class="btn" href="https://www.compraoseu.com/livro04">Ler grátis</a>
+            <a class="btn btn-sec" href="https://pay.kiwify.com.br/CF9nhFx">Comprar</a>
+          </div>
+        </div>
+      </div>
+
+<!-- LIVRO 05 -->
+      <div class="bib-card">
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/3yJsHjnn/livro06.jpg" alt="Jesus Quer Falar com Seu Filho - capa"></div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 05 · Disponível</span>
+          <h3>Jesus Quer Falar com Seu Filho</h3>
+          <p class="bib-desc">Uma obra infantil cristã que ensina os Mandamentos, valores bíblicos e o amor de Jesus às crianças. O E-book original contém imagens inspiradoras e atividades para o seu filho fazer, pintar e desenhar.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">10 Mandamentos</span>
+            <span class="bib-badge">🔒 Protegido</span>
+          </div>
+          <div class="bib-ctas">
+            <a class="btn" href="https://www.compraoseu.com/livro06">Ler grátis</a>
+            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
+          </div>
+        </div>
+      </div>
+
+<!-- LIVRO 06 -->
+      <div class="bib-card">
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/23CJFpyq/livro06.jpg" alt="O Verbo que Transforma - capa"></div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 06 · Disponível</span>
+          <h3>O Verbo que Transforma</h3>
+          <p class="bib-desc">O Poder Criador da Palavra e da Fé, uma obra original sobre a palavra, a mente profunda e a fé para a saúde, a abundância e a superação.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">10 capítulos</span>
+            <span class="bib-badge">🔒 Protegido</span>
+          </div>
+          <div class="bib-ctas">
+            <a class="btn" href="https://www.compraoseu.com/livro01">Ler grátis</a>
+            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
+          </div>
+        </div>
+      </div>
+
+<!-- LIVRO 07 -->
+      <div class="bib-card">
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/TB1L9fv9/livro07.jpg" alt="A Mente Renovada - capa"></div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 07 · Disponível</span>
+          <h3>A Mente Renovada</h3>
+          <p class="bib-desc">O pensar com Cristo que transforma a vida, 17 capítulos sobre a renovação da mente, o governo do pensamento, a oração, a gratidão e a unidade com Deus.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">17 capítulos</span>
+            <span class="bib-badge">🔒 Protegido</span>
+          </div>
+          <div class="bib-ctas">
+            <a class="btn" href="https://www.compraoseu.com/livro03">Ler grátis</a>
+            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
+          </div>
+        </div>
+      </div>
+
+<!-- LIVRO 08 -->
+      <div class="bib-card">
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/Gf7WWL6H/livro08.jpg" alt="O Caminho do Despertar - capa"></div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 08 · Disponível</span>
+          <h3>O Caminho do Despertar</h3>
+          <p class="bib-desc">A Jornada Solitária da Alma, uma obra que reúne a sabedoria dos ensinamentos ocultos, a profundidade da fé e o conhecimento da alma humana.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">12 capítulos</span>
+            <span class="bib-badge">🔒 Protegido</span>
+          </div>
+          <div class="bib-ctas">
+            <a class="btn" href="https://www.compraoseu.com/livro07">Ler grátis</a>
+            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
+          </div>
+        </div>
+      </div>
+
+<!-- LIVRO 09 -->
+      <div class="bib-card">
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/vCz5jKND/livro09.jpg" alt="O Arquiteto da Realidade - capa"></div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 09 · Disponível</span>
+          <h3>O Arquiteto da Realidade</h3>
+          <p class="bib-desc">O Poder da Mente que Cria o Mundo que Você Vive, uma obra original sobre crenças, mente profunda e o estado do criador.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">12 capítulos</span>
+            <span class="bib-badge">🔒 Protegido</span>
+          </div>
+          <div class="bib-ctas">
+            <a class="btn" href="https://www.compraoseu.com/livro08">Ler grátis</a>
+            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
+          </div>
+        </div>
+      </div>
+
+<!-- LIVRO 10 -->
+      <div class="bib-card">
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/ZRXwG60f/livro10.jpg" alt="O Despertar do Observador - capa"></div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 10 · Disponível</span>
+          <h3>O Despertar do Observador</h3>
+          <p class="bib-desc">As Leis Invisíveis que Moldam a Realidade, uma obra original que une sabedoria ancestral, metafísica, o poder do pensamento e práticas para o despertar da consciência.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">32 capítulos</span>
+            <span class="bib-badge">🔒 Protegido</span>
+          </div>
+          <div class="bib-ctas">
+            <a class="btn" href="https://www.compraoseu.com/livro10">Ler grátis</a>
+            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
+          </div>
+        </div>
+      </div>
+
+<!-- LIVRO 11 -->
+      <div class="bib-card">
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/0jS3KGHc/livro11.jpg" alt="A Sabedoria dos Mestres - capa"></div>
+        <div class="bib-corpo">
+          <span class="bib-num">Livro 11 · Disponível</span>
+          <h3>A Sabedoria dos Mestres</h3>
+          <p class="bib-desc">O Despertar do Conhecimento que Liberta a Alma, uma obra original sobre as leis da vibração, a linguagem do universo e o mestre interior.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">10 capítulos</span>
+            <span class="bib-badge">🔒 Protegido</span>
+          </div>
+          <div class="bib-ctas">
+            <a class="btn" href="https://www.compraoseu.com/livro02">Ler grátis</a>
+            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
+          </div>
+        </div>
+      </div>
+      <!-- CARD APOIO -->
+      <div class="bib-card">
+        <div class="bib-capa inteiro"><img class="capa-img" src="https://i.ibb.co/WWfW18pY/ajuda.jpg" alt="Ajude o Portal O Despertar"></div>
+        <div class="bib-corpo">
+          <span class="bib-num">🙏 Apoie o Portal</span>
+          <h3>Ajude a manter esta obra viva</h3>
+          <p class="bib-desc">Cada contribuição mantém o Portal aberto e a leitura gratuita disponível para todos que precisam despertar.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">💛 Missão com Deus</span>
+          </div>
+          <div class="bib-ctas">
+            <a class="btn" href="https://pay.kiwify.com.br/CF9nhFx">Apoiar com R$ 9,90</a>
+            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD GARANTIA -->
+      <div class="bib-card">
+        <div class="bib-capa inteiro"><img class="capa-img" src="https://i.ibb.co/xqftx9DS/7dias.jpg" alt="Garantia incondicional de 7 dias"></div>
+        <div class="bib-corpo">
+          <span class="bib-num">🛡️ Garantia</span>
+          <h3>7 dias de garantia incondicional</h3>
+          <p class="bib-desc">Se não fizer sentido para você, devolvemos 100% do investimento, sem perguntas e sem burocracia.</p>
+          <div class="bib-badges">
+            <span class="bib-badge">🛡️ Risco zero</span>
+          </div>
+          <div class="bib-ctas">
+            <a class="btn" href="https://pay.kiwify.com.br/iVfp2bi">Garantir meu acesso</a>
+          </div>
+        </div>
+      </div>
+
+    <p class="bib-foot">🔒 Todas as leituras são protegidas: <a href="#biblioteca">sem cópia, sem impressão</a>. Os livros estão disponíveis no <a href="https://pay.kiwify.com.br/iVfp2bi">Portal Missão com Deus</a>.</p>
+  </div>
+  </div>
+</section>
+
+
+
+<section class="enquete-sec" id="enquete">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">📊 Participe</span>
+      <h2>Sua opinião faz a diferença</h2>
+      <p>Leva menos de um minuto e ajuda a melhorar a experiência de todos os leitores.</p>
+    </div>
+    <div class="enquete-box" id="enquete-box">
+      <h3>Qual é a maior batalha da sua mente hoje?</h3>
+      <p class="eq-sub">Responda com o coração aberto. Não há resposta certa ou errada, apenas um convite para olhar para dentro.</p>
+      <form id="eq-form">
+        <div class="eq-opcoes">
+          <label class="eq-op"><input type="radio" name="eq-voto" value="ansiedade"><span class="eq-label">😰 Ansiedade e preocupação</span><span class="eq-pct" data-pct="ansiedade"></span><span class="eq-barra" data-barra="ansiedade"></span></label>
+          <label class="eq-op"><input type="radio" name="eq-voto" value="magoas"><span class="eq-label">😔 Mágoas e lembranças do passado</span><span class="eq-pct" data-pct="magoas"></span><span class="eq-barra" data-barra="magoas"></span></label>
+          <label class="eq-op"><input type="radio" name="eq-voto" value="medo"><span class="eq-label">😨 Medo do futuro</span><span class="eq-pct" data-pct="medo"></span><span class="eq-barra" data-barra="medo"></span></label>
+          <label class="eq-op"><input type="radio" name="eq-voto" value="paz"><span class="eq-label">🕊️ Falta de paz e propósito</span><span class="eq-pct" data-pct="paz"></span><span class="eq-barra" data-barra="paz"></span></label>
+        </div>
+        <div class="eq-comentario">
+          <textarea id="eq-comentario" placeholder="Quer compartilhar? (opcional) O que você tem feito para vencer essa batalha?"></textarea>
+        </div>
+        <div class="eq-email">
+          <input type="email" id="eq-email" placeholder="Seu e-mail (opcional) — se quiser uma resposta" autocomplete="email">
+        </div>
+        <div class="eq-acoes">
+          <button type="submit" class="btn btn-gold" id="eq-enviar">Votar e participar</button>
+        </div>
+      </form>
+      <div class="eq-mensagem" id="eq-mensagem"></div>
+      <div class="eq-resultado" id="eq-resultado"></div>
+      <div class="eq-comentarios" id="eq-comentarios"></div>
+      <p class="eq-aviso">🔒 Votação anônima. Quem deixar o e-mail recebe resposta. Para conversar na hora, fale conosco no <a href="https://wa.me/5528999111493?text=Ol%C3%A1%2C%20escrevi%20na%20enquete%20do%20Portal%20e%20quero%20tirar%20uma%20d%C3%BAvida" style="color:var(--gold-dark);font-weight:700;text-decoration:underline">WhatsApp 💬</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="trilogia" class="dark">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Sua jornada começa aqui</span>
+      <h2>A Trilogia da Alma</h2>
+      <p>Confira o cronograma exclusivo de estudos disponível na área de membros.</p>
+    </div>
+    <div class="grid grid-2">
+      <div class="module-col">
+        <h4>🌱 Trilogia Evolução da Alma</h4>
+        <ol>
+          <li>Bem-vindo(a) ao nosso Portal</li>
+          <li>O Despertar da Alma</li>
+          <li>A Superação das dificuldades emocionais</li>
+          <li>O Perdão como libertação da alma</li>
+          <li>O Propósito em ação</li>
+          <li>A Persistência na evolução constante</li>
+          <li>Vivendo em Luz, Propósito e Liberdade</li>
+        </ol>
+      </div>
+      <div class="module-col">
+        <h4>🧠 Anestesia Mental</h4>
+        <ol>
+          <li>Bem-vindo(a) ao nosso Portal</li>
+          <li>A Anestesia Mental</li>
+          <li>O Governo da Mente</li>
+          <li>O Impulso sem Consciência</li>
+          <li>O Despertar da Consciência</li>
+          <li>O Reset do Shabat</li>
+          <li>A Liberdade da Alma</li>
+        </ol>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a class="btn btn-gold" href="https://pay.kiwify.com.br/iVfp2bi">Quero evoluir minha alma - R$ 49,00</a>
+    </div>
+  </div>
+</section>
+
+<section id="mentora">
+  <div class="wrap grid grid-2" style="align-items:center;">
+    <img src="https://i.ibb.co/rfHDVQhk/Laura-Pod-Castjpg.jpg" alt="Laura, escritora e mentora" style="border-radius:var(--radius);box-shadow:var(--shadow);">
+    <div>
+      <span class="eyebrow">A missão com Deus & mentora</span>
+      <h2>Laura: Fé e Ciência em unidade</h2>
+      <p>Mestra em unir as verdades bíblicas aos estudos modernos de neurociência e comportamento humano. A missão da Laura é guiar sua alma em direção ao despertar, unindo o conhecimento acadêmico à profundidade do espírito.</p>
+      <a class="btn btn-ghost" href="#livros">Conhecer as obras da Laura</a>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--cream-2);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Uma palavra ao seu coração</span>
+      <h2>Se você chegou até aqui, há algo dentro de você pedindo para despertar</h2>
+    </div>
+    <div style="max-width:720px; margin:0 auto; text-align:center;">
+      <p style="font-size:1.08rem; line-height:1.8; color:var(--tinta);">
+        Não importa onde você está hoje, na ansiedade, na dúvida, no cansaço de tentar
+        e não ver mudança. O fato de você estar lendo estas palavras já é um primeiro passo.
+        E o primeiro passo, por menor que pareça, é o que Deus usa para começar uma obra eterna em você.
+      </p>
+      <p style="font-size:1.08rem; line-height:1.8; color:var(--tinta); margin-top:14px;">
+        Não pedimos que você acredite em nós. Pedimos apenas que dê a si mesmo(a) a chance de
+        <strong>um segundo com Deus</strong>, porque é exatamente nesse segundo que a transformação começa.
+      </p>
+      <div style="margin-top:26px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a class="btn btn-gold" href="https://pay.kiwify.com.br/CF9nhFx" style="padding:14px 28px;">🌱 Começar pelo Devocional - R$ 9,90</a>
+        <a class="btn btn-gold" href="https://pay.kiwify.com.br/iVfp2bi" style="padding:14px 28px;">🔓 Acesso completo ao Portal - R$ 49,00</a>
+      </div>
+      <p style="font-size:.85rem; color:var(--tinta2); margin-top:18px;">
+        Escolha o caminho que fizer sentido para o seu momento. Qualquer um deles é um passo na direção certa, e nós estaremos aqui, caminhando com você.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section>
+  <div class="wrap">
+    <div class="offer">
+      <div>
+        <span class="eyebrow" style="color:var(--gold-light);">Oferta especial</span>
+        <h2>A experiência completa do Portal</h2>
+        <p style="color:rgba(246,241,231,.8);">Mais do que livros: o passaporte para o Portal Missão com Deus.</p>
+        <img src="https://i.ibb.co/fdgdkzPr/Capa-Colecao-Autoral16x9jpg.jpg" alt="Coleção completa: Trilogia Evolução da Alma + Anestesia Mental" style="width:100%;border-radius:14px;margin:18px 0;border:1px solid rgba(201,162,75,.35);box-shadow:0 10px 30px rgba(0,0,0,.3);">
+        <ul>
+          <li>✅ Trilogia Evolução da Alma completa</li>
+          <li>✅ Livro Anestesia Mental incluso</li>
+          <li>✅ Portal de Ensino + Área do Aluno com aulas exclusivas</li>
+          <li>✅ Acesso imediato a todos os módulos</li>
+          <li>✅ Acesso vitalício</li>
+        </ul>
+      </div>
+      <div class="offer-price">
+        <div class="old">De R$ 98,00</div>
+        <div class="new">R$ 49,00</div>
+        <a class="btn btn-gold btn-block" href="https://pay.kiwify.com.br/iVfp2bi">Garantir acesso completo</a>
+        <small class="note" style="color:rgba(246,241,231,.65);">🔒 Compra 100% segura via Kiwify</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--cream-2);">
+  <div class="wrap">
+    <div class="guarantee">
+      <div class="seal"><span>7</span><small>DIAS<br>GARANTIA</small></div>
+      <div>
+        <h3 style="margin-bottom:6px;">Risco zero para o seu despertar</h3>
+        <p style="margin:0;color:var(--muted);">Se em até 7 dias você sentir que o Portal não é para o seu momento, devolvemos 100% do seu investimento, sem perguntas. Nosso compromisso é com a sua evolução.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap" style="max-width:760px;">
+    <div class="section-head">
+      <span class="eyebrow">Dúvidas frequentes</span>
+      <h2>Perguntas sobre o Portal</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q"><span>Como faço para ter acesso à Área do Aluno?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Assim que sua compra é confirmada, você recebe um e-mail automático da Kiwify com seus dados de acesso exclusivos para entrar no Portal.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>O acesso é imediato? Como recebo os livros?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Sim! O Pix libera na hora. Você recebe os dados de acesso por e-mail, com entrega imediata dos livros digitais e acesso vitalício à Área de Alunos.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Tenho garantia de satisfação?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Sim. Você tem 7 dias de garantia incondicional. Se sentir que não é para o seu momento, devolvemos 100% do investimento, sem perguntas.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Quais são as formas de pagamento?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Via Kiwify: cartão de crédito (parcelamento em até 12x) e Pix com liberação imediata.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Preciso de ajuda. Como falo com a equipe?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Fale conosco pelo WhatsApp ou envie um e-mail. A equipe está pronta para te acolher.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <h2>O portal está aberto. Entre e desperte sua alma em Deus.</h2>
+    <p style="color:rgba(14,26,46,.75);">O convite foi feito. A chave de governo está à sua frente.</p>
+    <a class="btn" style="background:var(--navy);color:var(--cream-2);" href="https://pay.kiwify.com.br/iVfp2bi">Adquirir meu acesso - R$ 49,00</a>
+    <a class="btn" style="background:var(--gold);color:var(--navy);" href="https://dashboard.kiwify.com.br/courses">🔓 Entrar no Portal</a>
+  </div>
+</section>
+
+<!--
+  ============================================================
+  DEPOIMENTOS REAIS (modelo pronto para colar, com autorização)
+  Os e-mails e comentários que chegam pelo quiz são a fonte.
+  Ao receber um elogio real de um leitor, peça permissão e cole aqui:
+
+  <section style="background:var(--cream-2);">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Leitores que despertaram</span>
+        <h2>O que dizem quem já caminha com a gente</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="quote-card">
+          <p class="q">"..."</p>
+          <p class="who">Nome, cidade</p>
+        </div>
+      </div>
+      <p class="placeholder-note">Depoimentos reais de leitores, publicados com autorização.</p>
+    </div>
+  </section>
+  ============================================================
+-->
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:8px;">Portal O <b>Despertar</b></div>
+        <p style="max-width:280px;">Desperte sua mente, fortaleça sua fé, transforme sua vida.</p>
+      </div>
+      <div class="foot-links">
+        <a href="#portal">O Portal</a>
+        <a href="#livros">Livros</a>
+        <a href="#trilogia">Trilogia</a>
+        <a href="#faq">FAQ</a>
+        <a href="/cdn-cgi/l/email-protection#8fece0e2fffdeee0fceafaa1ece0e2cfe8e2eee6e3a1ece0e2">Fale conosco</a>
+        <a href="https://wa.me/5528999111493">WhatsApp</a>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2024-2026 Missão com Deus · CompraOSeu.com. Todos os direitos reservados. Resultados variam conforme dedicação individual.</div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/5528999111493?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Portal%20Miss%C3%A3o%20com%20Deus." aria-label="Falar no WhatsApp">💬</a>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  document.getElementById('burger').addEventListener('click', function(){
+    document.getElementById('navlinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click', function(){
+      q.parentElement.classList.toggle('open');
+    });
+  });
+</script>
+
+<script>
+/* ===== QUIZ DE AUTOAVALIAÇÃO ===== */
+var quizAtual = 0;
+var quizTotal = 7;
+var quizRespostas = {};
+
+function quizMostrar(n) {
+  var perguntas = document.querySelectorAll('.quiz-perg');
+  perguntas.forEach(function(p, i) {
+    p.classList.toggle('ativa', i === n);
+  });
+  document.getElementById('quiz-voltar').style.visibility = n === 0 ? 'hidden' : 'visible';
+  document.getElementById('quiz-prox').textContent = n === quizTotal - 1 ? 'Ver meu resultado ✨' : 'Avançar';
+}
+
+function quizPegarResposta(n) {
+  var sel = document.querySelector('input[name="q' + n + '"]:checked');
+  return sel ? parseInt(sel.value, 10) : null;
+}
+
+function quizProx() {
+  if (quizPegarResposta(quizAtual) === null) {
+    alert('Escolha uma opção para continuar.');
+    return;
+  }
+  if (quizAtual < quizTotal - 1) {
+    quizAtual++;
+    quizMostrar(quizAtual);
+  } else {
+    quizResultado();
+  }
+}
+
+function quizVoltar() {
+  if (quizAtual > 0) {
+    quizAtual--;
+    quizMostrar(quizAtual);
+  }
+}
+
+function quizResultado() {
+  // soma
+  var soma = 0;
+  for (var i = 0; i < quizTotal; i++) {
+    var v = quizPegarResposta(i);
+    if (v === null) {
+      alert('Volte e responda a pergunta ' + (i + 1) + '.');
+      return;
+    }
+    soma += v;
+  }
+  var max = quizTotal * 4;
+  var media = soma / quizTotal;
+
+  var emoji, titulo, texto;
+  if (media <= 1.6) {
+    emoji = '💔';
+    titulo = 'Sua alma está pedindo atenção';
+    texto = 'Suas respostas revelam um coração que carrega muito, ansiedade, cansaço ou a sensação de estar distante. Mas aqui está a boa notícia: reconhecer isso já é o primeiro despertar. Um segundo sincero com Deus por dia pode começar a mudar tudo.';
+  } else if (media <= 2.6) {
+    emoji = '🌫️';
+    titulo = 'Você está no meio do caminho';
+    texto = 'Há um chamado dentro de você, mas a rotina e as distrações ainda falam mais alto. Você não precisa de uma mudança radical, precisa de constância. Pequenos momentos diários com Deus podem clarear o que parece confuso.';
+  } else if (media <= 3.4) {
+    emoji = '🌱';
+    titulo = 'Você está pronto(a) para dar o próximo passo';
+    texto = 'Suas respostas mostram alguém que deseja evoluir de verdade, com fé, propósito e direção. O próximo passo é transformar esse desejo em prática diária. Um devocional de 30 dias pode ser exatamente o que você precisa.';
+  } else {
+    emoji = '✨';
+    titulo = 'Você já está em um lindo despertar';
+    texto = 'Suas respostas revelam maturidade espiritual e uma conexão real. Continue firmando essa base e compartilhe essa luz com quem ainda está começando. O Reino se multiplica quando a luz é compartilhada.';
+  }
+
+  document.getElementById('qr-emoji').textContent = emoji;
+  document.getElementById('qr-titulo').textContent = titulo;
+  document.getElementById('qr-texto').textContent = texto;
+
+  document.querySelectorAll('.quiz-perg').forEach(function(p) { p.style.display = 'none'; });
+  document.querySelector('.quiz-nav').style.display = 'none';
+  document.getElementById('quiz-resultado').style.display = 'block';
+  document.getElementById('quiz-resultado').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function quizEnviar() {
+  var email = document.getElementById('quiz-email').value.trim();
+  if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    alert('Por favor, informe um e-mail válido.');
+    return;
+  }
+  var botao = event.target;
+  botao.textContent = 'Enviando...';
+  botao.disabled = true;
+
+  // Envia para o e-mail da equipe (FormSubmit, sem servidor)
+  var form = document.createElement('form');
+  form.method = 'POST';
+  form.action = 'https://formsubmit.co/compraoseu.com@gmail.com';
+  form.style.display = 'none';
+
+  var inputEmail = document.createElement('input');
+  inputEmail.type = 'hidden';
+  inputEmail.name = 'email';
+  inputEmail.value = email;
+
+  var inputMsg = document.createElement('input');
+  inputMsg.type = 'hidden';
+  inputMsg.name = '_subject';
+  inputMsg.value = '🏆 Quiz: Novo e-mail captado no site';
+
+  var comentario = document.getElementById('quiz-comentario');
+  var textoComentario = comentario ? comentario.value.trim() : '';
+
+  var inputMsg2 = document.createElement('input');
+  inputMsg2.type = 'hidden';
+  inputMsg2.name = 'mensagem';
+  inputMsg2.value = 'O usuário completou o quiz de autoavaliação. E-mail: ' + email + (textoComentario ? ' | Comentário: ' + textoComentario : '');
+
+  var inputCap = document.createElement('input');
+  inputCap.type = 'hidden';
+  inputCap.name = '_captcha';
+  inputCap.value = 'false';
+
+  var inputTempl = document.createElement('input');
+  inputTempl.type = 'hidden';
+  inputTempl.name = '_template';
+  inputTempl.value = 'table';
+
+  var inputNext = document.createElement('input');
+  inputNext.type = 'hidden';
+  inputNext.name = '_next';
+  inputNext.value = 'https://www.compraoseu.com/livro05';
+
+  form.appendChild(inputEmail);
+  form.appendChild(inputMsg);
+  form.appendChild(inputMsg2);
+  form.appendChild(inputCap);
+  form.appendChild(inputTempl);
+  form.appendChild(inputNext);
+  document.body.appendChild(form);
+  form.submit();
+
+  // feedback
+  setTimeout(function() {
+    var box = document.querySelector('.quiz-form');
+    box.innerHTML = '<div style="text-align:center;padding:16px;">' +
+      '<div style="font-size:2.5rem;margin-bottom:8px;">🎁</div>' +
+      '<h3 style="color:var(--gold-light,#e3c877);margin:0 0 8px;">Sua surpresa chegou!</h3>' +
+      '<p style="color:rgba(246,241,231,.85);margin:0 0 16px;">Obrigado pela sinceridade! Como presente, aqui está o E-book infantil <strong>Jesus Quer Falar com Seu Filho</strong>, com imagens inspiradoras e atividades para pintar e desenhar. 💛</p>' +
+      '<a href="https://compraoseu.com/ebooks/jesus-quer-falar.pdf" target="_blank" rel="noopener" style="display:inline-block;background:linear-gradient(180deg,#d4a83f,#b8860b);color:#fff;font-weight:700;padding:14px 28px;border-radius:8px;text-decoration:none;font-size:1rem;">📖 Baixar meu E-book grátis</a>' +
+      '<p style="color:rgba(246,241,231,.6);margin:14px 0 0;font-size:.85rem;">Este presente é da nossa missão com Deus. Que o amor de Jesus alcance o coração da sua família!</p>' +
+      '</div>';
+  }, 1200);
+}
+</script>
+
+
+<script>
+// Cronômetro de contagem regressiva — Lançamento em 27/08/2026
+(function(){
+  var alvo = new Date('2026-08-27T00:00:00-03:00').getTime();
+  var diasEl = document.getElementById('cd-dias');
+  var horasEl = document.getElementById('cd-horas');
+  var minEl = document.getElementById('cd-min');
+  var segEl = document.getElementById('cd-seg');
+  if(!diasEl) return;
+  function atualizar(){
+    var agora = new Date().getTime();
+    var diff = alvo - agora;
+    if(diff <= 0){
+      diasEl.textContent = '00';
+      horasEl.textContent = '00';
+      minEl.textContent = '00';
+      segEl.textContent = '00';
+      return;
+    }
+    var dias = Math.floor(diff / (1000*60*60*24));
+    var horas = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    var min = Math.floor((diff % (1000*60*60)) / (1000*60));
+    var seg = Math.floor((diff % (1000*60)) / 1000);
+    var p = function(n){ return n < 10 ? '0'+n : n; };
+    diasEl.textContent = p(dias);
+    horasEl.textContent = p(horas);
+    minEl.textContent = p(min);
+    segEl.textContent = p(seg);
+  }
+  atualizar();
+  setInterval(atualizar, 1000);
+
+})();
+</script>
+<script>
+(function(){
+  var MAPA = {
+    livro01:{url:"livro01_leitor_preview.html",titulo:"O Verbo que Transforma"},
+    livro02:{url:"livro02_leitor_preview.html",titulo:"A Sabedoria dos Mestres"},
+    livro03:{url:"livro03_leitor_preview.html",titulo:"A Mente Renovada"},
+    livro04:{url:"livro04_leitor_preview.html",titulo:"Um Segundo com Deus"},
+    livro05:{url:"livro05_leitor_preview.html",titulo:"Evolução da Alma"},
+    livro06:{url:"livro06_leitor_preview.html",titulo:"Jesus Quer Falar com Seu Filho"},
+    livro07:{url:"livro07_leitor_preview.html",titulo:"O Caminho do Despertar"},
+    livro08:{url:"livro08_leitor_preview.html",titulo:"O Arquiteto da Realidade"},
+    livro09:{url:"livro09_leitor_preview.html",titulo:"Anestesia Mental"},
+    livro10:{url:"livro10_leitor_preview.html",titulo:"O Despertar do Observador"},
+    livro11:{url:"livro11_leitor_preview.html",titulo:"O Novo Testamento como nunca lido"},
+  };
+  function melhorProgresso(){
+    var melhor = null;
+    for (var slug in MAPA){
+      try{
+        var raw = localStorage.getItem("despertar_progresso_" + slug);
+        if(!raw){ continue; }
+        var p = JSON.parse(raw);
+        if(!p || !p.scrollY || p.scrollY <= 60){ continue; }
+        if(p.porcentagem >= 99){
+          // livro terminado: limpa o progresso e não sugere mais
+          localStorage.removeItem("despertar_progresso_" + slug);
+          continue;
+        }
+        if(!melhor || (p.data || "") > (melhor.data || "")){ melhor = {slug:slug, p:p}; }
+      }catch(e){}
+    }
+    return melhor;
+  }
+  var fechado = false;
+  try{
+    var fechouEm = parseInt(localStorage.getItem("despertar_continue_fechado"), 10);
+    if(fechouEm && Date.now() - fechouEm < 7 * 24 * 60 * 60 * 1000){
+      fechado = true;
+    }
+  }catch(e){}
+  var m = fechado ? null : melhorProgresso();
+  var el = document.getElementById("continue-lendo");
+  if(m && el){
+    var info = MAPA[m.slug];
+    var secao = (m.p.titulo || "a leitura");
+    var pct = (m.p.porcentagem || 0);
+    el.innerHTML = '<div class="cl-cartao">' +
+      '<a class="cl-cartao-link" href="' + info.url + '">' +
+      '<span class="cl-icone">📖</span>' +
+      '<span class="cl-texto"><span class="cl-titulo">Você estava lendo: ' + info.titulo + '</span>' +
+      '<span class="cl-detalhe">' + secao + ' · posição ' + pct + '% · continue sem se perder</span></span>' +
+      '<span class="cl-cta">Continuar lendo →</span></a>' +
+      '<button class="cl-fechar" id="cl-fechar" aria-label="Fechar sugestão" title="Fechar">✕</button></div>';
+
+    var fecharBtn = document.getElementById("cl-fechar");
+    if(fecharBtn){
+      fecharBtn.addEventListener("click", function(){
+        var c = document.getElementById("continue-lendo");
+        if(c){ c.style.display = "none"; }
+        try{ localStorage.setItem("despertar_continue_fechado", String(Date.now())); }catch(e){}
+      });
+    }
+  }
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var CHAVE = "despertar_dicas_home";
+  try{
+    if(localStorage.getItem(CHAVE) === "1"){ return; }
+  }catch(e){ return; }
+  var dicas = [
+    { e:"📖", t:"Agora você pode ler <b>nossos livros online</b> e, ao voltar, continuar exatamente de onde parou." },
+    { e:"🎗️", t:"A <b>fita dourada</b> marca o seu lugar na leitura, como a faixa de um livro físico." },
+    { e:"🔍", t:"<b>Letras no seu tamanho</b> (A− e A+) e pontinhos dourados que pulam entre os capítulos." },
+    { e:"🎨", t:"Tela confortável: <b>Dia, Sépia e Noite</b>, do jeito que faz bem aos seus olhos." }
+  ];
+  var cont = document.getElementById("popup-dicas");
+  if(!cont){ return; }
+  function fechar(b){
+    if(!b.parentNode){ return; }
+    b.classList.add("saindo");
+    setTimeout(function(){ if(b.parentNode){ b.parentNode.removeChild(b); } }, 350);
+  }
+  function mostrar(d, i){
+    var b = document.createElement("div");
+    b.className = "pd-balao";
+    b.innerHTML = '<span class="pd-emoji">' + d.e + '</span>' +
+      '<span class="pd-texto">' + d.t + '</span>' +
+      '<button class="pd-cta" type="button">Ver livros →</button>' +
+      '<button class="pd-fechar" type="button" aria-label="Fechar dica">✕</button>';
+    var cta = b.querySelector(".pd-cta");
+    var fech = b.querySelector(".pd-fechar");
+    cta.addEventListener("click", function(){
+      fechar(b);
+      var alvo = document.getElementById("biblioteca");
+      if(alvo){ alvo.scrollIntoView({ behavior:"smooth", block:"start" }); }
+      else{ window.scrollTo({ top: document.body.scrollHeight, behavior:"smooth" }); }
+    });
+    fech.addEventListener("click", function(){ fechar(b); });
+    cont.appendChild(b);
+    var t = setTimeout(function(){ fechar(b); }, 7000);
+    b.addEventListener("mouseenter", function(){ clearTimeout(t); });
+  }
+  try{ localStorage.setItem(CHAVE, "1"); }catch(e){}
+  dicas.forEach(function(d, i){
+    setTimeout(function(){ mostrar(d, i); }, 1600 + i * 3600);
+  });
+})();
+</script>
+
+
+<script>
+  if("serviceWorker" in navigator){
+    window.addEventListener("load", function(){
+      navigator.serviceWorker.register("/sw.js").catch(function(){});
+    });
+  }
+</script>
+
+
+<script>
+(function(){
+  var btn = document.createElement("button");
+  btn.id = "instalar-app";
+  btn.type = "button";
+  btn.innerHTML = '📲 Instalar app';
+  document.body.appendChild(btn);
+  var evento = null;
+  window.addEventListener("beforeinstallprompt", function(e){
+    e.preventDefault();
+    evento = e;
+    try{
+      if(localStorage.getItem("despertar_app_instalado") === "1"){ return; }
+    }catch(err){}
+    btn.style.display = "flex";
+  });
+  btn.addEventListener("click", function(){
+    if(!evento){ return; }
+    evento.prompt();
+    evento.userChoice.then(function(escolha){
+      if(escolha.outcome === "accepted"){
+        btn.style.display = "none";
+        try{ localStorage.setItem("despertar_app_instalado", "1"); }catch(err){}
+      }
+    });
+  });
+  window.addEventListener("appinstalled", function(){
+    btn.style.display = "none";
+    try{ localStorage.setItem("despertar_app_instalado", "1"); }catch(err){}
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  "use strict";
+  var OPCOES = { ansiedade:"😰 Ansiedade e preocupação", magoas:"😔 Mágoas e lembranças do passado", medo:"😨 Medo do futuro", paz:"🕊️ Falta de paz e propósito" };
+  var jaVotou = false;
+  try{ jaVotou = localStorage.getItem("despertar_enquete_votada_v2") === "1"; }catch(e){}
+  var form = document.getElementById("eq-form");
+  var msg = document.getElementById("eq-mensagem");
+  var resultDiv = document.getElementById("eq-resultado");
+  var comDiv = document.getElementById("eq-comentarios");
+
+  function aplicarResultados(d){
+    var tot = d.votos || 0;
+    for (var chave in OPCOES){
+      var pctEl = document.querySelector('[data-pct="' + chave + '"]');
+      var barEl = document.querySelector('[data-barra="' + chave + '"]');
+      var p = (d.percentuais && d.percentuais[chave]) ? d.percentuais[chave] : 0;
+      if(pctEl){ pctEl.textContent = tot > 0 ? p + "%" : ""; }
+      if(barEl){ barEl.style.width = (tot > 0 ? p : 0) + "%"; }
+    }
+    // comentários recentes
+    if(d.comentarios && d.comentarios.length){
+      var h = "";
+      d.comentarios.forEach(function(c){ h += '<div class="eq-c">💬 ' + c.texto + ' <span style="color:var(--gold-dark)">· ' + c.data + '</span></div>'; });
+      comDiv.innerHTML = '<h4>Comentários dos leitores</h4>' + h;
+      comDiv.style.display = "block";
+    }
+    // SEGUNDA CAMADA (pós-resultado): convite a compartilhar leitura que ajudou
+    var convite = document.getElementById("eq-convite2");
+    if(!convite && tot > 0){
+      convite = document.createElement("div");
+      convite.id = "eq-convite2";
+      convite.style.cssText = "margin-top:14px;padding:12px 14px;background:rgba(201,162,75,.08);border:1px dashed rgba(201,162,75,.4);border-radius:10px;font-size:.88rem;color:var(--navy);text-align:center;";
+      convite.innerHTML = "💛 <b>" + tot + "% também lutam com isso.</b> E você, já leu algo que te ajudou nessa batalha? <a href=\"#enquete\" onclick=\"document.getElementById('eq-comentario').focus();return false;\" style=\"color:var(--gold-dark);font-weight:700;text-decoration:underline\">Compartilhe aqui</a> (opcional).";
+      var box = document.querySelector(".enquete-box");
+      if(box){ box.appendChild(convite); }
+    }
+  }
+
+  function carregar(){
+    // A contagem de votos fica OCULTA na página (pedido do autor).
+    // Antes de votar, nada é exibido; após o voto, os percentuais aparecem.
+    fetch("enquete.php", { cache:"no-store" })
+      .then(function(r){ if(!r.ok){ throw new Error("offline"); } return r.json(); })
+      .then(function(){ /* silencioso: só confirma que o endpoint está ativo */ })
+      .catch(function(){
+        // Fallback honesto: PHP indisponível -> voto segue por e-mail
+        msg.textContent = "📧 A votação ao vivo ainda não está ativa neste momento. Seu voto e comentário podem ser enviados por e-mail normalmente.";
+        msg.className = "eq-mensagem visivel";
+      });
+  }
+
+  // Modo mensagem: quem já votou pode enviar apenas uma mensagem/comentário
+  // (sem contabilizar voto). O sistema detecta e mostra só o campo de texto.
+  function modoMensagem(){
+    var opcoes = document.querySelectorAll('.eq-opcoes .eq-op');
+    var rotulo = document.querySelector('.eq-sub');
+    var botao = document.getElementById("eq-enviar");
+    opcoes.forEach(function(op){ op.style.display = "none"; });
+    if(rotulo){ rotulo.innerHTML = "💬 Quer enviar uma mensagem sobre os livros ou a leitura? Fique à vontade! Ou <a href=\"https://wa.me/5528999111493?text=Ol%C3%A1%2C%20quero%20falar%20sobre%20os%20livros%20do%20Portal\" style=\"color:var(--gold-dark);font-weight:700;text-decoration:underline\">converse no WhatsApp</a>."; }
+    if(botao){ botao.textContent = "💬 Enviar mensagem"; }
+    var ta = document.getElementById("eq-comentario");
+    if(ta){ ta.placeholder = "Escreva sua mensagem ou dúvida sobre os livros..."; }
+  }
+  if(jaVotou){ modoMensagem(); }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var comentario = document.getElementById("eq-comentario").value.trim();
+
+    if(jaVotou){
+      // Quem já votou: envia SÓ a mensagem (sem voto)
+      if(!comentario){
+        msg.textContent = "✍️ Escreva sua mensagem antes de enviar.";
+        msg.className = "eq-mensagem visivel";
+        return;
+      }
+      var email = document.getElementById("eq-email").value.trim();
+      var payload = { comentario: comentario };
+      if(email){ payload.email = email; }
+      enviar(payload, "💛 Mensagem enviada! Obrigado por escrever para nós.", true);
+      return;
+    }
+
+    var escolhido = form.querySelector('input[name="eq-voto"]:checked');
+    if(!escolhido){
+      msg.textContent = "🙏 Toque em uma das opções acima para votar.";
+      msg.className = "eq-mensagem visivel";
+      return;
+    }
+    var voto = escolhido.value;
+    var email = document.getElementById("eq-email").value.trim();
+    var payload = { voto: voto };
+    if(comentario){ payload.comentario = comentario; }
+    if(email){ payload.email = email; }
+    enviar(payload, "💛 Obrigado por participar! Seu voto foi registrado.", false);
+  });
+
+  // Envia o e-mail de notificação (FormSubmit) — SEMPRE, em paralelo com o
+  // salvamento no PHP, para o autor receber cada voto/comentário.
+  function notificarEmail(payload, soMensagem){
+    var url = "https://formsubmit.co/ajax/compraoseu.com@gmail.com";
+    var dados = {
+      _subject: soMensagem ? "💬 Mensagem do Portal (enquete)" : "📊 Voto na enquete do Portal",
+      _template: "table",
+      _captcha: "false",
+      Mensagem: payload.comentario || "(sem mensagem)",
+      Voto: payload.voto ? (OPCOES[payload.voto] || payload.voto) : "(sem voto, só mensagem)",
+      "E-mail do leitor (para responder)": payload.email || "(não informado)"
+    };
+    // Best-effort: não altera a mensagem da página; só tenta enviar.
+    fetch(url, { method:"POST", headers:{ "Content-Type":"application/json", "Accept":"application/json" }, body: JSON.stringify(dados) }).catch(function(){});
+  }
+
+  function enviar(payload, textoOk, soMensagem){
+    fetch("enquete.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+    .then(function(r){ return r.json().then(function(d){ return {ok:r.ok, d:d}; }); })
+    .then(function(res){
+      if(res.ok){
+        aplicarResultados(res.d);
+        msg.textContent = textoOk;
+        msg.className = "eq-mensagem visivel ok";
+        notificarEmail(payload, soMensagem); // notifica por e-mail mesmo com sucesso
+        try{ localStorage.setItem("despertar_enquete_votada_v2", "1"); }catch(err){}
+        if(!soMensagem){
+          form.querySelectorAll('input[name="eq-voto"]').forEach(function(i){ i.disabled = true; });
+        }
+        document.getElementById("eq-comentario").value = "";
+      }else{
+        throw new Error(res.d && res.d.erro ? res.d.erro : "erro");
+      }
+    })
+    .catch(function(err){
+      // Fallback honesto: se o PHP falhou, envia por e-mail via FormSubmit
+      notificarEmail(payload, soMensagem);
+      msg.textContent = soMensagem ? "💛 Mensagem enviada (por e-mail)! Obrigado." : "💛 Obrigado! Seu voto foi enviado (por e-mail).";
+      msg.className = "eq-mensagem visivel ok";
+      try{ localStorage.setItem("despertar_enquete_votada_v2", "1"); }catch(err){}
+    });
+  }
+
+  carregar();
+})();
+</script>
+
+</body></html>
