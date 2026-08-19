@@ -182,6 +182,19 @@ chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
 
 ---
 
+## 🎉 notificar.php NO AR E FUNCIONANDO (19/08) — controle total CONQUISTADO
+
+- **E-mail da enquete chegou pelo NOSSO servidor:** remetente
+  "Missão com Deus <no-reply@missaocomdeus.com.br>", com a mensagem do
+  leitor e o "E-mail do leitor (para responder)" (ex.: lurdes.zenop@gmail.com).
+- O fluxo completo está funcionando: voto/comentário → notificar.php
+  (mail() via postfix) → e-mail no Gmail do autor, com SPF aprovado.
+- **O quiz continua pelo FormSubmit** (form HTML) — opcional migrar depois.
+- **CONTROLE TOTAL DOS E-MAILS: CONQUISTADO!** (postfix + SPF + notificar.php
+  + PHP sendmail_path). Plano dos 3 passos concluído.
+
+---
+
 ## 🏆 POSTFIX + SPF + E-MAIL OK (19/08) — envio próprio FUNCIONANDO
 
 - **Postfix instalado** no servidor (myhostname/myorigin = missaocomdeus.com.br).
