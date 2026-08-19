@@ -193,17 +193,30 @@ JS_ENQUETE = """
   // Envia o e-mail de notificação (FormSubmit) — SEMPRE, em paralelo com o
   // salvamento no PHP, para o autor receber cada voto/comentário.
   function notificarEmail(payload, soMensagem){
-    var url = "https://formsubmit.co/ajax/compraoseu.com@gmail.com";
-    var dados = {
-      _subject: soMensagem ? "💬 Mensagem do Portal (enquete)" : "📊 Voto na enquete do Portal",
-      _template: "table",
-      _captcha: "false",
-      Mensagem: payload.comentario || "(sem mensagem)",
-      Voto: payload.voto ? (OPCOES[payload.voto] || payload.voto) : "(sem voto, só mensagem)",
-      "E-mail do leitor (para responder)": payload.email || "(não informado)"
+    // 1º: tenta o nosso servidor (notificar.php) — controle total
+    var nosso = {
+      voto: payload.voto || "",
+      mensagem: payload.comentario || "",
+      email: payload.email || "",
+      so_mensagem: soMensagem ? 1 : 0
     };
-    // Best-effort: não altera a mensagem da página; só tenta enviar.
-    fetch(url, { method:"POST", headers:{ "Content-Type":"application/json", "Accept":"application/json" }, body: JSON.stringify(dados) }).catch(function(){});
+    fetch("notificar.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(nosso)
+    }).catch(function(){
+      // Fallback: se o mail() do servidor falhar, usa FormSubmit
+      var url = "https://formsubmit.co/ajax/compraoseu.com@gmail.com";
+      var dados = {
+        _subject: soMensagem ? "💬 Mensagem do Portal (enquete)" : "📊 Voto na enquete do Portal",
+        _template: "table",
+        _captcha: "false",
+        Mensagem: payload.comentario || "(sem mensagem)",
+        Voto: payload.voto ? (OPCOES[payload.voto] || payload.voto) : "(sem voto, só mensagem)",
+        "E-mail do leitor (para responder)": payload.email || "(não informado)"
+      };
+      fetch(url, { method:"POST", headers:{ "Content-Type":"application/json", "Accept":"application/json" }, body: JSON.stringify(dados) }).catch(function(){});
+    });
   }
 
   function enviar(payload, textoOk, soMensagem){

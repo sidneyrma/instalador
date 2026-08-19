@@ -182,6 +182,21 @@ chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
 
 ---
 
+## 📧 notificar.php CRIADO (19/08) — e-mail 100% nosso
+
+- **site-contabo/notificar.php criado:** endpoint que envia os e-mails dos
+  votos/comentários direto pelo PHP (mail()), sem depender do FormSubmit.
+- **Fluxo:** a enquete chama notificar.php PRIMEIRO (controle total); se o
+  mail() do servidor falhar, usa FormSubmit como FALLBACK (código antigo).
+- **Proteção:** 5s entre envios do mesmo IP (reusa enquete_ips.json).
+- **PARA ATIVAR no servidor:** subir o zip novo (notificar.php + index.html
+  atualizado) nos dois domínios; o mail() do PHP precisa estar habilitado no
+  aaPanel (PHP.ini → mail function / SMTP). Se mail() falhar, continua
+  caindo no FormSubmit (que está ativado e funcionando).
+- Testado: JS válido, fallback preservado. zip regenerado.
+
+---
+
 ## 🚀 SEO NOVO DOMÍNIO (18/08) — sitemap e robots atualizados
 
 - **sitemap.xml** → https://missaocomdeus.com.br/ (13 URLs: Home + livro01-10 +
