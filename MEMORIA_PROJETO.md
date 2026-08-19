@@ -320,6 +320,20 @@ chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
 
 ---
 
+## 💾 BACKUP — GUIA CRIADO (19/08)
+
+- **analise/migracao_contabo/guia_backup_completo.md criado** com todos os
+  comandos de backup para salvar no notebook:
+  - GitHub já é o backup principal (site-contabo.zip a cada atualização).
+  - Backup do chatbot CONECTAÍ (em /home/deploy/conectai — NÃO está no GitHub
+    nem no backup do painel!) — zip + baixar.
+  - Backup dos configs nginx/php (pasta backup_configs).
+  - Votos da enquete (enquete_dados.json) ficam no servidor (zip não inclui
+    de propósito).
+  - Rotina: semanal chatbot + configs; mensal repositório GitHub.
+
+---
+
 ## 📌 COMO INICIAR NOVO CHAT
 
 Ao abrir novo chat, informe:
