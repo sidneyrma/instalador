@@ -182,6 +182,22 @@ chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
 
 ---
 
+## 🏆 POSTFIX + SPF + E-MAIL OK (19/08) — envio próprio FUNCIONANDO
+
+- **Postfix instalado** no servidor (myhostname/myorigin = missaocomdeus.com.br).
+- **SPF adicionado na HostGator:** TXT `v=spf1 ip4:212.28.182.86 ~all`
+  (autoriza o IP do servidor a enviar e-mails do domínio).
+- **E-mail de teste CHEGOU ao Gmail** (status=sent no mail.log — Gmail aceitou).
+- **PHP já configurado:** sendmail_path = /usr/sbin/sendmail -t -i (linha 1094
+  do php.ini do PHP 8.1). PHP-FPM reiniciado.
+- **notificar.php está pronto para funcionar** (envia votos/comentários via
+  mail() do PHP, sem FormSubmit; fallback FormSubmit mantido).
+- **PARA FINALIZAR:** subir o site-contabo.zip atualizado (notificar.php +
+  index.html) nos dois domínios e testar um voto na enquete (e-mail deve vir
+  de no-reply@missaocomdeus.com.br).
+
+---
+
 ## 📧 notificar.php CRIADO (19/08) — e-mail 100% nosso
 
 - **site-contabo/notificar.php criado:** endpoint que envia os e-mails dos
