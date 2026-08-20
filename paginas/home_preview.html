@@ -87,14 +87,14 @@
   .hero{background:radial-gradient(1200px 600px at 80% -10%, rgba(201,162,75,.18), transparent 60%), linear-gradient(180deg,var(--navy),var(--navy-2));color:var(--cream-2);padding:96px 0 76px;position:relative;overflow:hidden;}
   .hero::after{content:"🔑";position:absolute;right:-40px;top:20px;font-size:340px;opacity:.045;transform:rotate(18deg);pointer-events:none;}
   .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative;z-index:1;}
-  .hero h1{color:var(--cream-2);font-size:44px;}
+  .hero h1{color:var(--cream-2);font-size:40px;}
   .hero h1 em{color:var(--gold-light);font-style:normal;}
-  .hero p.lead{font-size:18px;color:rgba(246,241,231,.82);max-width:520px;}
+  .hero p.lead{font-size:17px;color:rgba(246,241,231,.82);max-width:520px;}
   .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px;}
   .hero-visual{position:relative;}
   .hero-visual img{border-radius:var(--radius);box-shadow:var(--shadow);}
   .hero-badge{position:absolute;bottom:-18px;left:-18px;background:var(--cream-2);color:var(--navy);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow);font-size:13px;font-weight:600;max-width:200px;}
-  @media(max-width:880px){ .hero-grid{grid-template-columns:1fr;} .hero h1{font-size:32px;} .hero{padding:60px 0 52px;} }
+  @media(max-width:880px){ .hero-grid{grid-template-columns:1fr;} .hero h1{font-size:32px;} .hero p.lead{font-size:18px;} .hero{padding:60px 0 52px;} }
 
   /* TRUST BAR */
   .trust{background:var(--navy-2);color:var(--cream-2);padding:22px 0;}
@@ -386,11 +386,11 @@
 /* ===== PAIS E FILHOS: CONVERSAS QUE PROTEGEM (sanfona + roteiro) ===== */
   .pais-sec{background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%);padding:80px 0;position:relative;overflow:hidden;}
   .pais-sec::before{content:"";position:absolute;top:-90px;left:-70px;width:340px;height:340px;background:radial-gradient(circle,rgba(201,162,75,.16),transparent 65%);}
-  .pf-cartao{max-width:720px;margin:0 auto;background:#fff;border:1px solid rgba(201,162,75,.35);border-radius:16px;padding:28px;box-shadow:var(--shadow);position:relative;z-index:1;}
+  .pf-cartao{max-width:680px;margin:0 auto;background:#fff;border:1px solid rgba(201,162,75,.35);border-radius:16px;padding:24px;box-shadow:var(--shadow);position:relative;z-index:1;}
   .pf-convite{text-align:center;padding:10px 6px;}
   .pf-convite p{color:var(--muted);font-size:1rem;margin:0 0 18px;max-width:34rem;margin-left:auto;margin-right:auto;}
-  .pf-aviso{background:#fdecea;border-left:5px solid #c0392b;border-radius:8px;padding:14px 16px;font-size:.88rem;color:#7b241c;margin-bottom:16px;line-height:1.6;}
-  .pf-abertura{background:#fdf6e3;border-left:5px solid var(--ouro);border-radius:8px;padding:14px 16px;font-style:italic;font-size:.98rem;color:var(--navy);margin-bottom:20px;line-height:1.7;}
+  .pf-aviso{background:#fdecea;border-left:4px solid #c0392b;border-radius:8px;padding:10px 14px;font-size:.8rem;color:#7b241c;margin-bottom:14px;line-height:1.55;}
+  .pf-abertura{background:#fdf6e3;border-left:4px solid var(--ouro);border-radius:8px;padding:12px 16px;font-style:italic;font-size:.92rem;color:var(--navy);margin-bottom:16px;line-height:1.65;}
   .pf-progresso{margin:18px 0 14px;}
   .pf-rotulo{display:flex;justify-content:space-between;gap:10px;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dark);font-weight:700;margin-bottom:8px;}
   .pf-trilha{height:6px;background:rgba(201,162,75,.18);border-radius:6px;overflow:hidden;}
@@ -402,7 +402,7 @@
   .pf-opcoes label{display:flex;align-items:flex-start;gap:10px;border:1px solid rgba(201,162,75,.35);border-radius:10px;padding:12px 14px;margin-bottom:9px;cursor:pointer;font-size:.95rem;color:var(--ink);transition:.15s;}
   .pf-opcoes label:hover{border-color:var(--ouro);background:#fffdf5;}
   .pf-opcoes input{margin-top:4px;}
-  .pf-dica{font-size:.85rem;color:#6b6255;font-style:italic;background:var(--cream-2);border-left:3px solid var(--ouro);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0 0;line-height:1.6;}
+  .pf-dica{font-size:.8rem;color:#6b6255;font-style:italic;background:var(--cream-2);border-left:3px solid var(--ouro);padding:8px 12px;border-radius:0 8px 8px 0;margin:12px 0 0;line-height:1.55;}
   .pf-nav{display:flex;justify-content:space-between;gap:12px;margin-top:20px;}
   .pf-nav .btn{padding:12px 24px;font-size:.95rem;border:none;cursor:pointer;border-radius:8px;}
   .pf-voltar{background:transparent;border:1px solid var(--ouro);color:var(--gold-dark,#b8860b);}

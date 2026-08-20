@@ -813,3 +813,24 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
   de "texto grande no notebook" vem do .lead 18px e do h1 44px (comuns
   em landing pages). Se o autor quiser, ajuste fino opcional: .lead para
   17px e h1 para 40px (não feito — aguardando decisão).
+
+---
+
+## 🔤 AJUSTE FINO DA FONTE + APRESENTAÇÃO DO ROTEIRO (20/08, rodada final)
+
+- **Fonte (pedido do autor, "suavidade"):** hero h1 44→40px e parágrafo
+  de destaque (.lead) 18→17px SOMENTE no desktop. No celular TUDO
+  INTACTO: h1 32px e lead 18px via media query 880px (adicionado
+  `.hero p.lead{font-size:18px}` no media query). Padrão da web mantido.
+- **Apresentação do roteiro Pais e Filhos:** o autor achou a visualização
+  ruim ao abrir (aviso + abertura ocupavam a tela). O roteiro SEMPRE
+  começa FECHADO (hidden confirmado por teste jsdom: só o convite e o
+  botão "Iniciar o roteiro" aparecem; aviso/abertura NÃO aparecem antes
+  do clique). Ao abrir, agora mais compacto e elegante:
+  - pf-cartao 720→680px, padding 24px;
+  - pf-aviso menor (.8rem, padding 10px 14px);
+  - pf-abertura menor (.92rem, padding 12px 16px);
+  - pf-dica menor (.8rem, padding 8px 12px).
+- Testes jsdom verdes: estado inicial fechado, abre no clique com
+  pergunta 1 ativa, menu, quiz e FAQ intactos. CSS crítico íntegro
+  (chaves 310/310). Zip regenerado (sem livro11). Commit + push.
