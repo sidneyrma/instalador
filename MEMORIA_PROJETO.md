@@ -320,6 +320,22 @@ chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
 
 ---
 
+## 🐛 BUG DO E-MAIL DA ENQUETE CORRIGIDO (19/08) — FALLBACK HTTP
+
+- **Problema:** o e-mail da enquete não chegava quando o voto era feito pelo
+  site (só via curl no terminal).
+- **Causa raiz (encontrada):** a função notificarEmail() tinha apenas
+  `.catch()`. Quando o notificar.php retorna ERRO HTTP (500, ex.: mail()
+  falhou), o fetch RESOLVE (não rejeita) — então o fallback do FormSubmit
+  NUNCA disparava. Resultado: nenhum e-mail.
+- **Correção:** adicionada verificação `.then(function(r){ if(!r.ok){
+  fallback(); } })` — se o notificar.php responder erro HTTP OU houver erro
+  de rede, o fallback do FormSubmit dispara. Aplicada nas duas Homes e no
+  gerador. JS validado. zip regenerado.
+- **Para aplicar:** subir o index.html atualizado nos dois domínios.
+
+---
+
 ## 💾 BACKUP — GUIA CRIADO (19/08)
 
 - **analise/migracao_contabo/guia_backup_completo.md criado** com todos os

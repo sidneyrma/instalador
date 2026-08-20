@@ -200,11 +200,7 @@ JS_ENQUETE = """
       email: payload.email || "",
       so_mensagem: soMensagem ? 1 : 0
     };
-    fetch("notificar.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(nosso)
-    }).catch(function(){
+    function fallback(){
       // Fallback: se o mail() do servidor falhar, usa FormSubmit
       var url = "https://formsubmit.co/ajax/compraoseu.com@gmail.com";
       var dados = {
@@ -216,6 +212,19 @@ JS_ENQUETE = """
         "E-mail do leitor (para responder)": payload.email || "(não informado)"
       };
       fetch(url, { method:"POST", headers:{ "Content-Type":"application/json", "Accept":"application/json" }, body: JSON.stringify(dados) }).catch(function(){});
+    }
+    fetch("notificar.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(nosso)
+    })
+    .then(function(r){
+      // Se o servidor respondeu erro HTTP (ex.: mail() falhou), usa fallback
+      if(!r.ok){ fallback(); }
+    })
+    .catch(function(){
+      // Erro de rede: usa fallback
+      fallback();
     });
   }
 
