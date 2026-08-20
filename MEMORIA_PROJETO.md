@@ -729,3 +729,33 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
 - Testes jsdom verdes: header 220 > overlay 110, menu abre, clique no
   link fecha o menu, clique no overlay fecha, link Trilogia clicável.
 - Zip regenerado (raiz). Commit + push.
+
+---
+
+## 🚨 RECONSTRUÇÃO DO INDEX (20/08, 9ª rodada) — BUG GRAVE ENCONTRADO E CORRIGIDO
+
+- **BUG GRAVE (causa raiz da página "irreconhecível"):** na rodada do menu
+  hambúrguer universal, o script Python substituiu o bloco CSS desde
+  `.nav{` até `.wa-float{`, APAGANDO ACIDENTALMENTE 44 regras de CSS
+  críticas (`.hero`, `.hero-grid`, `.grid`, `.grid-4`, `.card`,
+  `.card-destaque`, `.faq-item`, `.faq-q`, `.faq-a`, `.trust`, `.offer`,
+  `.guarantee`, `.cta-final`, `.footer-grid`, `.lead` etc.). Por isso o
+  site abria "desproporcional, com imagens gigantes e fonte bagunçada".
+  No sandbox parecia ok porque o preview servia versão em cache.
+- **SOLUÇÃO:** reconstruído o `site-contabo/index.html` e o
+  `paginas/home_preview.html` a partir da base boa (commit bd3a638, CSS
+  completo) + reaplicadas APENAS as melhorias aprovadas:
+  1. Menu: VOLTOU AO ORIGINAL no desktop (links horizontais: O Portal,
+     Livros, Biblioteca gratuita, Trilogia, A Mentora, Dúvidas, Entrar no
+     Portal — SEM "☰ Menu" e SEM versículo no topo, como o site ao vivo);
+     no celular (≤880px) mantém o drawer lateral escuro com versículo.
+  2. Quiz: barra de progresso dourada + mensagens inline (sem alert) e
+     posição logo após o Portal (como o site ao vivo).
+  3. Pais e Filhos: seção própria com sanfona (após a Biblioteca),
+     FAQ com 5 itens, e-mail com guia completo (Letra C).
+  4. header.site z-index 220 (drawer clicável acima do overlay).
+- **Validação:** CSS completo restaurado (hero, grid, cards, faq, offer,
+  footer), chaves balanceadas, testes jsdom verdes nos 2 arquivos:
+  menu abre/fecha, quiz avança, sanfona abre, FAQ 5 itens, ordem
+  portal > quiz > livros > biblioteca > pais-filhos > enquete.
+- Zip regenerado na raiz. Commit + push.

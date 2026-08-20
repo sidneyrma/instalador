@@ -15,19 +15,20 @@ O QUE MUDOU (para você conferir no zip antes):
    pasta dentro da outra. Pode extrair "na pasta
    atual" que fica tudo certinho.
 
-1. MENU (agora igual em todas as telas): no topo
-   aparece apenas "Portal O Despertar" à esquerda e
-   o botão ☰ à direita. Ao clicar no ☰, abre o painel
-   lateral escuro com os itens um embaixo do outro
-   e o versículo Salmos 37:5 no final. Nada de links
-   soltos no topo do notebook — igual ao celular.
+1. MENU: voltou COMO O SITE AO VIVO no computador:
+   "Portal O Despertar" + links na mesma linha
+   (O Portal, Livros, Biblioteca gratuita, Trilogia,
+   A Mentora, Dúvidas, Entrar no Portal). Sem "☰ Menu"
+   e sem versículo no topo do notebook.
+   No CELULAR (tela menor), o topo mostra só o ☰ e
+   abre o painel escuro com os itens um embaixo do
+   outro + versículo Salmos 37:5 no final.
 
 2. QUIZ: agora está LOGO ABAIXO DA SEÇÃO "O Portal"
    (depois do card "Acesso vitalício"), antes das obras
    à venda — como era antes. O título ficou claro:
    "🧭 QUIZ DE AUTOAVALIAÇÃO GRATUITA", com barra de
-   progresso dourada e avisos na própria tela. Há um
-   link "🧭 Quiz" no menu.
+   progresso dourada e avisos na própria tela.
 
 3. 👨‍👩‍👧 PAIS E FILHOS: saiu do FAQ e virou SEÇÃO
    PRÓPRIA na Home, logo após a Biblioteca gratuita.
