@@ -320,6 +320,21 @@ chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
 
 ---
 
+## 🔄 ESPELHAMENTO rsync CONFIRMADO (20/08) — domínios sincronizados
+
+- **Comando que funciona (missaocomdeus → compraoseu, SEM apagar):**
+  ```
+  rsync -av /www/wwwroot/missaocomdeus.com.br/ /www/wwwroot/compraoseu.com/ --exclude=".user.ini"
+  ```
+- Sobe o zip no missaocomdeus e roda o rsync → o compraoseu fica igual
+  (copia votos, e-mails, tudo; pula só .user.ini por permissão de root).
+- **Confirmado em 20/08:** rodou perfeito (9,3 MB, 30+ arquivos).
+- **E-mail de agradecimento automático ao leitor TESTADO E APROVADO** (chegou
+  com versículo 1 Pedro 5:7 e a identidade da Missão). notificar.php envia
+  notificação ao autor + agradecimento ao leitor.
+
+---
+
 ## 💌 AGRADECIMENTO AUTOMÁTICO AO LEITOR (20/08)
 
 - **notificar.php atualizado:** além de notificar o autor, agora envia um
