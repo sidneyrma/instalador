@@ -708,3 +708,24 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
   comportamento abrir/fechar (burger, ✕, overlay), ordem portal>quiz
   >livros>biblioteca>pais-filhos, quiz avança, sanfona abre.
 - Zip regenerado (2.9MB, raiz). Commit + push feitos.
+
+---
+
+## 🖱️ MENU CONGELADO CORRIGIDO + LETRAS MENORES (20/08, 8ª rodada)
+
+- **Bug do menu "congelado" (causa raiz):** o header.site tinha
+  z-index:50, criando um contexto de empilhamento. O drawer (z-index:120
+  DENTRO do header) ficava limitado a esse contexto, enquanto o overlay
+  (#nav-overlay, z-index:110 FORA do header) ficava ACIMA de tudo do
+  header. Resultado: o overlay escuro cobria o painel e os cliques nos
+  links não chegavam (menu "não fazia nada").
+- **Correção:** header.site z-index 50 → **220** (acima do overlay 110).
+  Agora o drawer fica visível e clicável; o overlay escurece a página
+  atrás dele e fecha o menu ao clicar fora.
+- **Tamanhos (pedido do autor, notebook 15.6"):** drawer width 320→290px;
+  links 16.5→15px com padding 10px; CTA 15.5→14px (white-space:nowrap,
+  não corta mais "Entrar no Portal"); rodapé 12.5→11px compacto; cabeçalho
+  18→16px. Tudo cabe na tela sem precisar diminuir zoom.
+- Testes jsdom verdes: header 220 > overlay 110, menu abre, clique no
+  link fecha o menu, clique no overlay fecha, link Trilogia clicável.
+- Zip regenerado (raiz). Commit + push.
