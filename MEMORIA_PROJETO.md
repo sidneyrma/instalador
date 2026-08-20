@@ -635,3 +635,24 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
 - Testes jsdom 100% verdes em index.html e home_preview.html
   (sanfona abre, roteiro avança/volta/conclui, FAQ 5 itens, menu e quiz
   intactos). Zip regenerado. Ainda NÃO subido ao servidor.
+
+---
+
+## 🧭 QUIZ DE VOLTA LOGO APÓS O PORTAL + MENU DESKTOP CONSERTADO (20/08, 5ª rodada)
+
+- **Problema relatado pelo autor:** ao abrir o index.html localmente (zip),
+  o menu no topo ficava "embaralhado" por falta de espaço (9 itens numa
+  janela de notebook) e o quiz não aparecia logo abaixo da seção
+  "Acesso vitalício" (Portal), como ele esperava.
+- **Correções aplicadas (index.html + home_preview.html):**
+  1. Quiz MOVIDO para **logo após a seção #portal** (abaixo do card
+     "Acesso vitalício"), ANTES das obras à venda. Nova ordem:
+     hero → portal → **quiz** → livros(obras) → biblioteca → pais-filhos
+     → enquete → trilogia → mentora → faq.
+  2. Menu desktop: gap 28→16px e fonte 14.5→13.5px (cabe em notebook).
+  3. Drawer lateral agora ativa em **@media(max-width:1080px)** (antes 880px)
+     — qualquer tela até 1080px usa o menu hambúrguer lateral, então nunca
+     mais "embaralha" em telas médias.
+- Testes jsdom verdes: ordem portal>quiz>livros, quiz antes da biblioteca,
+  menu gap 16px, drawer 1080px, quiz avança, sanfona Pais e Filhos abre,
+  FAQ com 5 itens. Zip regenerado.

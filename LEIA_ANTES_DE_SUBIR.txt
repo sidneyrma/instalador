@@ -15,14 +15,19 @@ O QUE MUDOU (para você conferir no zip antes):
    diminua a janela para menos de 880px, ou use F12
    e o ícone de celular.)
 
-2. QUIZ: agora está logo ANTES da Biblioteca gratuita
-   (bem onde os irmãos passam para ler os livros) e
-   o título ficou claro: "🧭 QUIZ DE AUTOAVALIAÇÃO
-   GRATUITA". Também ganhou barra de progresso dourada
-   e avisos na própria tela (sem janelinhas do
-   navegador). Há um link "🧭 Quiz" no menu.
+2. QUIZ: agora está LOGO ABAIXO DA SEÇÃO "O Portal"
+   (depois do card "Acesso vitalício"), antes das obras
+   à venda — como era antes. O título ficou claro:
+   "🧭 QUIZ DE AUTOAVALIAÇÃO GRATUITA", com barra de
+   progresso dourada e avisos na própria tela. Há um
+   link "🧭 Quiz" no menu.
 
-3. 👨‍👩‍👧 PAIS E FILHOS: saiu do FAQ e virou SEÇÃO
+3. MENU NO TOPO (computador): os itens agora têm mais
+   folga (fonte menor) e, em telas menores que 1080px,
+   o menu vira o painel lateral que desliza da direita.
+   Assim nunca mais fica "embaralhado" no notebook.
+
+4. 👨‍👩‍👧 PAIS E FILHOS: saiu do FAQ e virou SEÇÃO
    PRÓPRIA na Home, logo após a Biblioteca gratuita.
    Aparece como uma sanfona: o convite fica visível
    ("💬 Iniciar o roteiro de conversa") e, ao clicar,
@@ -32,7 +37,7 @@ O QUE MUDOU (para você conferir no zip antes):
    O item foi REMOVIDO do FAQ (que voltou a ter só as
    5 perguntas originais).
 
-4. E-MAIL DO GUIA (Letra C): quem informa o e-mail
+5. E-MAIL DO GUIA (Letra C): quem informa o e-mail
    recebe o LINK + as 7 perguntas COMPLETAS no corpo
    do e-mail (abertura, perguntas, encerramento e
    versículos), tudo humanizado.

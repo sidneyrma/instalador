@@ -58,15 +58,14 @@
   .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1140px;margin:0 auto;}
   .logo{font-family:var(--serif);font-size:20px;color:var(--cream-2);letter-spacing:.02em;}
   .logo b{color:var(--gold-light);}
-  .navlinks{display:flex;align-items:center;gap:20px;}
-  .navlinks a{font-size:14px;}
-  .navlinks a{color:rgba(246,241,231,.82);font-size:14.5px;font-weight:500;}
+  .navlinks{display:flex;align-items:center;gap:16px;}
+  .navlinks a{color:rgba(246,241,231,.85);font-size:13.5px;font-weight:500;white-space:nowrap;}
   .navlinks a:hover{color:var(--gold-light);}
   .nav-cta{padding:11px 22px;font-size:14px;}
   .burger{display:none;background:none;border:none;color:var(--cream);font-size:26px;cursor:pointer;line-height:1;padding:6px;}
   .nav-fechar{display:none;}
   #nav-overlay{display:none;}
-  @media(max-width:880px){
+  @media(max-width:1080px){
     .navlinks{
       display:flex;
       position:fixed;top:0;right:0;bottom:0;left:auto;
@@ -547,51 +546,6 @@
   </div>
 </section>
 
-<section id="livros" style="background:var(--cream-2);">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Nossas obras</span>
-      <h2>Escolha por onde começar</h2>
-      <p>Cada obra já inclui acesso ao Portal. Ou garanta a experiência completa mais abaixo.</p>
-    </div>
-    <div class="grid grid-3">
-      <div class="product">
-        <img src="https://i.ibb.co/kgBz01dc/livro05jpg.jpg" alt="Livro Evolução da Alma">
-        <div class="pbody">
-          <span class="tag">Livro · 60% OFF</span>
-          <h3>Evolução da Alma</h3>
-          <p>Cure sua alma, retome a consciência e domine suas emoções.</p>
-          <div class="price-row"><span class="price-old">R$ 49,90</span><span class="price-new">R$ 19,90</span></div>
-          <a class="btn btn-gold btn-block" href="https://pay.kiwify.com.br/ptH32K9">Adquirir agora</a>
-        </div>
-      </div>
-      <div class="product">
-        <img src="https://i.ibb.co/mF2Hyq7z/livro-09.jpg" alt="Livro Anestesia Mental">
-        <div class="pbody">
-          <span class="tag">Livro · 60% OFF</span>
-          <h3>Anestesia Mental</h3>
-          <p>Quebre as correntes invisíveis dos algoritmos e retome a soberania da mente.</p>
-          <div class="price-row"><span class="price-old">R$ 49,90</span><span class="price-new">R$ 19,90</span></div>
-          <a class="btn btn-gold btn-block" href="https://pay.kiwify.com.br/NCf1jh4">Adquirir agora</a>
-        </div>
-      </div>
-      <div class="product" id="devocional">
-        <img src="https://i.ibb.co/LdbL0QdH/livro04jpg.jpg" alt="Devocional Um Segundo com Deus">
-        <div class="pbody">
-          <span class="tag">Devocional · 30 dias</span>
-          <h3>Um Segundo com Deus</h3>
-          <p>30 dias de conexão diária. Silencie o ruído do mundo e ouça a voz que importa.</p>
-          <div class="price-row"><span class="price-old">R$ 19,90</span><span class="price-new">R$ 9,90</span></div>
-          <a class="btn btn-gold btn-block" href="https://pay.kiwify.com.br/CF9nhFx">Adquirir agora</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-
 <section class="quiz-sec" id="quiz">
   <div class="wrap">
     <div class="quiz-head">
@@ -706,6 +660,52 @@
     </div>
   </div>
 </section>
+
+
+
+<section id="livros" style="background:var(--cream-2);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Nossas obras</span>
+      <h2>Escolha por onde começar</h2>
+      <p>Cada obra já inclui acesso ao Portal. Ou garanta a experiência completa mais abaixo.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="product">
+        <img src="https://i.ibb.co/kgBz01dc/livro05jpg.jpg" alt="Livro Evolução da Alma">
+        <div class="pbody">
+          <span class="tag">Livro · 60% OFF</span>
+          <h3>Evolução da Alma</h3>
+          <p>Cure sua alma, retome a consciência e domine suas emoções.</p>
+          <div class="price-row"><span class="price-old">R$ 49,90</span><span class="price-new">R$ 19,90</span></div>
+          <a class="btn btn-gold btn-block" href="https://pay.kiwify.com.br/ptH32K9">Adquirir agora</a>
+        </div>
+      </div>
+      <div class="product">
+        <img src="https://i.ibb.co/mF2Hyq7z/livro-09.jpg" alt="Livro Anestesia Mental">
+        <div class="pbody">
+          <span class="tag">Livro · 60% OFF</span>
+          <h3>Anestesia Mental</h3>
+          <p>Quebre as correntes invisíveis dos algoritmos e retome a soberania da mente.</p>
+          <div class="price-row"><span class="price-old">R$ 49,90</span><span class="price-new">R$ 19,90</span></div>
+          <a class="btn btn-gold btn-block" href="https://pay.kiwify.com.br/NCf1jh4">Adquirir agora</a>
+        </div>
+      </div>
+      <div class="product" id="devocional">
+        <img src="https://i.ibb.co/LdbL0QdH/livro04jpg.jpg" alt="Devocional Um Segundo com Deus">
+        <div class="pbody">
+          <span class="tag">Devocional · 30 dias</span>
+          <h3>Um Segundo com Deus</h3>
+          <p>30 dias de conexão diária. Silencie o ruído do mundo e ouça a voz que importa.</p>
+          <div class="price-row"><span class="price-old">R$ 19,90</span><span class="price-new">R$ 9,90</span></div>
+          <a class="btn btn-gold btn-block" href="https://pay.kiwify.com.br/CF9nhFx">Adquirir agora</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
 
 <section class="biblioteca" id="biblioteca">
