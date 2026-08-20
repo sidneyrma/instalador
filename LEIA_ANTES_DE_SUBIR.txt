@@ -22,10 +22,13 @@ O QUE MUDOU (para você conferir no zip antes):
    progresso dourada e avisos na própria tela. Há um
    link "🧭 Quiz" no menu.
 
-3. MENU NO TOPO (computador): os itens agora têm mais
-   folga (fonte menor) e, em telas menores que 1080px,
-   o menu vira o painel lateral que desliza da direita.
-   Assim nunca mais fica "embaralhado" no notebook.
+3. MENU NO TOPO (computador): LIMPO! O "☰ Menu" e o
+   versículo agora aparecem SÓ no menu do celular. No
+   notebook o topo tem só o logo + os links. E em
+   telas menores que 1300px (notebook pequeno,
+   tablet, celular) o topo mostra apenas o ☰, que
+   abre o painel lateral com os itens um embaixo do
+   outro (sem bagunça).
 
 4. 👨‍👩‍👧 PAIS E FILHOS: saiu do FAQ e virou SEÇÃO
    PRÓPRIA na Home, logo após a Biblioteca gratuita.

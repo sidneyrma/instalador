@@ -656,3 +656,28 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
 - Testes jsdom verdes: ordem portal>quiz>livros, quiz antes da biblioteca,
   menu gap 16px, drawer 1080px, quiz avança, sanfona Pais e Filhos abre,
   FAQ com 5 itens. Zip regenerado.
+
+---
+
+## 🧹 MENU DO NOTEBOOK LIMPO — BUG DO "VAZAMENTO" CORRIGIDO (20/08, 6ª rodada)
+
+- **Bug (causa raiz):** os elementos do drawer mobile (`nav-cabecalho`
+  com "☰ Menu" e `nav-rodape` com o versículo Salmos 37:5) NÃO tinham
+  `display:none` no CSS base (fora do media query). No computador eles
+  apareciam DENTRO da barra de navegação horizontal, empurrando o texto
+  e criando linhas estranhas no topo (o "☰ Menu" e a passagem bíblica
+  ocupando espaço em linha reta).
+- **Correção (index.html + home_preview.html):**
+  1. `.navlinks .nav-cabecalho{display:none;}` e
+     `.navlinks .nav-rodape{display:none;}` no CSS base → no desktop o
+     topo fica limpo: logo + links horizontais.
+  2. Dentro do media query, `.nav-rodape{display:block;}` (aparece só no
+     drawer lateral).
+  3. Breakpoint do hambúrguer aumentado de 1080px → **1300px**: notebooks
+     pequenos (1280px) e qualquer tela menor usam o ☰ limpo que abre o
+     painel lateral com itens um embaixo do outro (como o autor sugeriu).
+- Testes jsdom verdes: desktop esconde cabecalho/rodape/botao/burger;
+  media 1300px mostra burger + cabecalho flex + rodape block; menu com
+  9 links; versículo só no drawer; ordem portal>quiz>livros>biblioteca
+  >pais-filhos mantida; quiz e sanfona funcionando; FAQ com 5 itens.
+- Zip regenerado. Commit e push feitos.
