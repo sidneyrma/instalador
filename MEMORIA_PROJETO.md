@@ -240,6 +240,22 @@ chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
 
 ---
 
+## 📖 LIVRO 11 PROTEGIDO NO GITHUB (20/08) — pronto, mas NÃO subir
+
+- **paginas/livro11_preview.html** — SEM leitor, SEM proteção (versão do
+  AUTOR, para o autor marcar onde parou na leitura). Manter assim.
+- **paginas/livro11_leitor_preview.html** — COM leitor E PROTEÇÃO (user-select,
+  media print com aviso, bloqueio de teclas) — versão do LANÇAMENTO.
+- **site-contabo/livro11.html** — COM leitor E PROTEÇÃO — versão do LANÇAMENTO.
+- **Gerador atualizado:** livro11 agora é proteger=True (preview e site).
+- **NÃO SUBIR AO SERVIDOR até 27/08** (lançamento). O arquivo já esteve no
+  servidor antes e foi apagado; manter fora até a data certa.
+- No dia 27/08: subir o site-contabo/livro11.html protegido nos dois
+  domínios, adicionar ao sitemap, trocar o card "Em breve" por "Disponível"
+  e remover o countdown.
+
+---
+
 ## 🚫 LIVRO 11 (Novo Testamento) FORA DO AR até o lançamento (18/08)
 
 - **Descoberta:** o arquivo site-contabo/livro11.html (contém "O Novo
