@@ -834,3 +834,37 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
 - Testes jsdom verdes: estado inicial fechado, abre no clique com
   pergunta 1 ativa, menu, quiz e FAQ intactos. CSS crítico íntegro
   (chaves 310/310). Zip regenerado (sem livro11). Commit + push.
+
+  ## 🛡️ PROTEÇÃO DE DADOS SENSÍVEIS (20/08/2026)
+- Arquivos JSON de votos e IPs bloqueados contra acesso público via navegador
+- Implementado via: /www/server/panel/vhost/nginx/extension/[domínio]/bloquear_dados.conf
+- Regra: location ~* /enquete.*\.json$ { return 403; }
+- enquete.php continua gravando normalmente (acesso interno)
+
+---
+
+## 👨‍👩‍👧 QUIZ PAIS E FILHOS (Adicionado 20/08/2026)
+- **Rota monitorada:** /quiz-pais-filhos
+- **Localização na Home:** <section id="pais-filhos">
+- **Sinalizador:** JavaScript no botão #pf-abrir envia fetch silencioso
+- **Aparece no stats como:** Quiz — Pais e Filhos (Conversas que Protegem)
+
+- ## 📋 CHECKUP 20/08/2026 (RESULTADO: 95/100)
+| Item | Status |
+|------|--------|
+| Nginx rodando | ✅ |
+| Sites respondendo | ✅ |
+| 12 Livros online | ✅ |
+| Enquete (103 votos) | ✅ |
+| notificar.php | ✅ |
+| Quiz Autoavaliação | ✅ |
+| Quiz Pais e Filhos | ✅ |
+| Espelhamento | ✅ |
+| Script estatísticas | ✅ |
+| SSL válido (Nov/2026) | ✅ |
+| PWA | ✅ |
+| Erros de bots | ⚠️ Monitorar (normal) |
+| Enquete via navegador | ⚠️ Testar F12 |
+| Privacidade JSON | ✅ RESOLVIDO em 20/08 |
+
+
