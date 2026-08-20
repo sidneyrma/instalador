@@ -17,6 +17,7 @@ html{scroll-behavior:smooth}
 body{
   margin:0; background:var(--navy); color:var(--tinta);
   font-family:Georgia,'Times New Roman',Times,serif; line-height:1.75;
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
 }
 .wrap{max-width:46rem; margin:0 auto}
 .topbar{background:var(--navy); border-bottom:3px solid var(--ouro); position:sticky; top:0; z-index:50}
@@ -169,6 +170,16 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
     #trilha{right:3px}
     #stats-leitura{font-size:.62rem}
     #baloes .balao{width:94%}
+  }
+
+
+  @media print{
+    body::before{
+      content:"Livro protegido. A impressão não está disponível nesta obra. Obrigado pela compreensão.";
+      display:block; position:fixed; inset:0; background:#fff; color:#333;
+      font-size:18px; text-align:center; padding-top:40vh; z-index:9999;
+    }
+    .topbar,.capa,#sumario,.leitura,#fim,footer,#baloes,#trilha,#fita-lateral,#botao-marcador,#barra-progresso{display:none !important}
   }
 
 </style>
@@ -930,6 +941,13 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
     modoAtual = modos[(idx + 1) % modos.length];
     aplicarModo();
     mostrarBalao('<span class="emoji">' + iconesModo[modoAtual] + '</span><span class="texto">Modo de tela: <b>' + nomesModo[modoAtual] + '</b>. Fica salvo para as próximas visitas.</span>', 3500);
+  });
+
+
+  /* ============ Proteção de direitos autorais ============ */
+  document.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+  document.addEventListener("keydown", function(e){
+    if((e.ctrlKey || e.metaKey) && ["c","p","s","u","a"].indexOf(String(e.key).toLowerCase()) >= 0){ e.preventDefault(); }
   });
 
   /* ============ Início ============ */

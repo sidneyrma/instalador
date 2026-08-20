@@ -1,0 +1,95 @@
+====================================================
+  LEIA ANTES DE SUBIR — MISSÃO COM DEUS
+  Atualizado em 20/08/2026
+====================================================
+
+Amado irmão, estas são as mudanças desta leva e os
+arquivos que precisam ir para o servidor.
+
+----------------------------------------------------
+O QUE MUDOU (para você conferir no zip antes):
+----------------------------------------------------
+0. IMPORTANTE — O ZIP AGORA TEM OS ARQUIVOS NA RAIZ!
+   Ao descompactar no servidor (aaPanel), os arquivos
+   caem DIRETO na pasta do domínio, sem criar uma
+   pasta dentro da outra. Pode extrair "na pasta
+   atual" que fica tudo certinho.
+
+1. MENU: voltou COMO O SITE AO VIVO no computador:
+   "Portal O Despertar" + links na mesma linha
+   (O Portal, Livros, Biblioteca gratuita, Trilogia,
+   A Mentora, Dúvidas, Entrar no Portal). Sem "☰ Menu"
+   e sem versículo no topo do notebook.
+   No CELULAR (tela menor), o topo mostra só o ☰ e
+   abre o painel escuro com os itens um embaixo do
+   outro + versículo Salmos 37:5 no final.
+
+2. QUIZ: agora está LOGO ABAIXO DA SEÇÃO "O Portal"
+   (depois do card "Acesso vitalício"), antes das obras
+   à venda — como era antes. O título ficou claro:
+   "🧭 QUIZ DE AUTOAVALIAÇÃO GRATUITA", com barra de
+   progresso dourada e avisos na própria tela.
+
+3. 👨‍👩‍👧 PAIS E FILHOS: saiu do FAQ e virou SEÇÃO
+   PRÓPRIA na Home, logo após a Biblioteca gratuita.
+   Aparece como uma sanfona: o convite fica visível
+   ("💬 Iniciar o roteiro de conversa") e, ao clicar,
+   o roteiro se expande com as 7 perguntas, uma por
+   vez, com barra de progresso, dicas para os pais e
+   versículos no final. Nenhuma resposta é registrada.
+   O item foi REMOVIDO do FAQ (que voltou a ter só as
+   5 perguntas originais).
+
+4. E-MAIL DO GUIA (Letra C): quem informa o e-mail
+   recebe o LINK + as 7 perguntas COMPLETAS no corpo
+   do e-mail (abertura, perguntas, encerramento e
+   versículos), tudo humanizado.
+
+----------------------------------------------------
+ARQUIVOS PARA SUBIR (na pasta site-contabo/):
+----------------------------------------------------
+✔ index.html              (Home nova: menu + quiz + FAQ)
+✔ sw.js                   (cache v4 — força atualização)
+✔ guia-pais-filhos.html   (página das 7 perguntas)
+✔ enviar_guia.php         (envia o guia por e-mail)
+
+⚠ NÃO SUBIR (ainda):
+✘ livro11.html → NÃO ESTÁ MAIS NO ZIP. Ficou guardado
+  na pasta lancamento_livro11/ do projeto (só sobe em
+  27/08, dia do lançamento). Suba tranquilo o zip: ele
+  não vem junto.
+✘ paginas/      → são só para você conferir no PC
+
+----------------------------------------------------
+COMO SUBIR (aaPanel):
+----------------------------------------------------
+1. Baixe o site-contabo.zip (já está atualizado).
+2. No aaPanel, abra o Gerenciador de Arquivos de
+   /www/wwwroot/missaocomdeus.com.br/
+3. Envie o zip e extraia por cima (substitua os
+   arquivos). Ou envie apenas os 4 arquivos acima.
+4. Confirme que o livro11.html NÃO foi recopiado.
+   Se estiver lá, apague (fica fora até 27/08).
+5. Depois, espelhe para o compraoseu.com:
+   rsync -av /www/wwwroot/missaocomdeus.com.br/ \
+     /www/wwwroot/compraoseu.com/ --exclude=".user.ini"
+   (sem --delete, como já combinamos)
+6. Teste no celular: se ainda aparecer a versão
+   antiga, feche e reabra o navegador, ou use uma
+   janela anônima (o PWA agora está na versão v4 e
+   vai atualizar sozinho).
+
+----------------------------------------------------
+FLUXO DO GUIA PAIS E FILHOS (como funciona):
+----------------------------------------------------
+- Na Home, após a Biblioteca gratuita, há a seção
+  "Pais e Filhos" (sanfona). Ao clicar em "Iniciar o
+  roteiro", as 7 perguntas aparecem uma por vez.
+- No final do roteiro, o pai/mãe pode informar o
+  e-mail para RECEBER o guia completo (link +
+  conteúdo) no e-mail dele.
+- SEM E-MAIL, o roteiro na tela continua funcionando
+  (não trava), mas o guia completo não é enviado.
+- Nenhuma resposta de menor é registrada no site.
+
+Que Deus abençoe, amado irmão! 🙏

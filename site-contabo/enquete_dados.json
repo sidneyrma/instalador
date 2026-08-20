@@ -1,10 +1,10 @@
 {
   "votos": 0,
   "opcoes": {
-    "amei": 0,
-    "gostei": 0,
-    "util": 0,
-    "nao_usei": 0
+    "ansiedade": 0,
+    "magoas": 0,
+    "medo": 0,
+    "paz": 0
   },
   "comentarios": []
 }

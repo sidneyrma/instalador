@@ -2,7 +2,7 @@
 
 **Criado em:** 17/08/2026
 **Registrar:** HostGator Brasil (R$ 41,99; renovação R$ 70,99/ano em 17/08/2027)
-**Status:** ⏳ Aguardando a HostGator liberar o DNS (até 24h após confirmação)
+**Status:** ✅ **LIBERADO pela HostGator em 18/08/2026!** Pronto para os passos abaixo.
 
 ---
 

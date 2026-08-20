@@ -8,7 +8,7 @@ Modo de uso:
 
 Gera (previews, novos arquivos) e atualiza (site-contabo, no lugar):
   paginas/livro01..10_leitor_preview.html   (protegidos, como no site)
-  paginas/livro11_leitor_preview.html       (sem proteção, versão do autor)
+  paginas/livro11_leitor_preview.html       (PROTEGIDO, para o lançamento 27/08)
   site-contabo/livro01..11.html             (páginas publicadas, no lugar)
 
 Recursos: lembrar onde parou, fita dourada, trilha de seções, A-/A/A+,
@@ -497,13 +497,13 @@ def main():
     origem11 = RAIZ / "paginas" / "livro11_preview.html"
     destino11 = RAIZ / "paginas" / "livro11_leitor_preview.html"
     if origem11.exists():
-        trabalhos.append((origem11, destino11, "livro11", False))
+        trabalhos.append((origem11, destino11, "livro11", True))
     # site-contabo: atualizar no lugar
     for i in range(1, 12):
         n = f"livro{i:02d}"
         arquivo = RAIZ / "site-contabo" / f"{n}.html"
         if arquivo.exists():
-            proteger = i < 11  # livro11 ainda é versão do autor em avaliação
+            proteger = True  # todos os livros protegidos (livro11 para lançamento)
             trabalhos.append((arquivo, arquivo, n, proteger))
 
     # Página de Estudos EU SOU: gerar versão com leitor (sem proteção, do autor)

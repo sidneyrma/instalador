@@ -4,7 +4,7 @@ Gera o painel de estatísticas de acesso do site compraoseu.com.
 
 Lê o log do Nginx (padrão aaPanel) e conta os acessos por página:
 - /            -> Home
-- /livro01 ... /livro10 -> cada livro
+- /livro01 ... /livro12 -> cada livro
 - /quiz        -> quiz
 
 Inclui:
@@ -39,26 +39,59 @@ PAGINAS = OrderedDict([
     ('/livro08', 'Livro 08 — O Arquiteto da Realidade'),
     ('/livro09', 'Livro 09 — Anestesia Mental'),
     ('/livro10', 'Livro 10 — O Despertar do Observador'),
+    ('/livro11', 'Livro 11 — O Novo Testamento como nunca lido'),
+    ('/livro12', 'Livro 12 — Comece o dia com Afirmações, Declarações e Orações'),
     ('/quiz', 'Quiz — Autoavaliação'),
 ])
 
 RE_LINHA = re.compile(r'^(\S+) .*?\[([^\]]+)\] "GET (\S+) HTTP')
 RE_EXT = re.compile(r'\.(png|jpg|jpeg|gif|svg|ico|css|js|woff2?|webp|xml|json|txt|webmanifest)$', re.I)
 
+# Padrões de BOTS/ATAQUES (URLs de exploração comum) — não são visitas humanas
+RE_BOT_URL = re.compile(
+    r'/(wp-|xmlrpc|\.env|\.git|\.aws|\.svn|info\.php|phpinfo|\.htaccess|\.user\.ini'
+    r'|admin\.php|222\.php|shell|webshell|cmd\.php|server-status|server-info'
+    r'|cgi-bin|\.bak|\.sql|\.log|\.yml|\.yaml|\.config|\.ini|\.old|config\.php'
+    r'|actuator|telescope|console|api/env|@vite|trace\.axd|\.DS_Store|\.ssh|\.idea'
+    r'|wp-content/plugins|wp-includes|wp-admin/network|wp-cron|wp-json|feed|comments)',
+    re.I)
+
+# Padrões de User-Agent de bots conhecidos
+RE_BOT_UA = re.compile(
+    r'(bot|crawler|spider|scanner|curl|wget|python-requests|Go-http-client|libwww|'
+    r'sqlmap|nikto|nessus|nmap|masscan|ZmEu|acunetix|fimap|havij|httpclient|'
+    r'java/|okhttp|ruby|php|perl|headless|phantom|selenium|axios|node-fetch|'
+    r'GPTBot|CCBot|Ahrefs|Semrush|MJ12|DotBot|Barkrowler|PetalBot|YandexBot|'
+    r'Bytespider|facebookexternalhit|Googlebot|bingbot|Baiduspider)',
+    re.I)
+
+
+def eh_bot(ip, path, url, ua):
+    """Retorna True se a requisição parece ser de bot/ataque."""
+    if RE_BOT_URL.search(path):
+        return True
+    if ua and RE_BOT_UA.search(ua):
+        return True
+    return False
+
 
 def analisar():
     contagens = Counter()          # total por página
     contagens_hoje = Counter()     # hoje por página
     total_geral = 0
+    total_real = 0                 # visitas HUMANAS (sem bots)
+    total_bots = 0
     data_inicio = None
     data_fim = None
     por_dia = Counter()
+    por_dia_real = Counter()
 
     agora = datetime.now()
     hoje_str = agora.strftime('%d/%m/%Y')
     ontem = (agora - timedelta(days=1)).strftime('%d/%m/%Y')
     data_ontem = agora.date() - timedelta(days=1)
     acessos_ontem_mesmo_horario = 0
+    acessos_ontem_mesmo_horario_real = 0
 
     if not os.path.exists(LOG):
         return None, 'Log não encontrado: ' + LOG
@@ -74,19 +107,31 @@ def analisar():
             path = url.split('?')[0].rstrip('/')
             if path == '':
                 path = '/'
+            # Detectar bot (parte final da linha contém o User-Agent)
+            ua = linha.rsplit('"', 2)[-2] if linha.count('"') >= 4 else ''
+            bot = eh_bot(ip, path, url, ua)
+
             if path.startswith('/livro') or path == '/' or path == '/quiz':
                 contagens[path] += 1
             else:
                 contagens['/outros:' + path] += 1
             total_geral += 1
+            if bot:
+                total_bots += 1
+            else:
+                total_real += 1
             try:
                 dt = datetime.strptime(data.split(' ')[0], '%d/%b/%Y:%H:%M:%S')
                 chave_dia = dt.strftime('%d/%m/%Y')
                 por_dia[chave_dia] += 1
+                if not bot:
+                    por_dia_real[chave_dia] += 1
                 if chave_dia == hoje_str and (path.startswith('/livro') or path == '/' or path == '/quiz'):
                     contagens_hoje[path] += 1
                 if dt.date() == data_ontem and (dt.hour, dt.minute) <= (agora.hour, agora.minute):
                     acessos_ontem_mesmo_horario += 1
+                    if not bot:
+                        acessos_ontem_mesmo_horario_real += 1
                 if data_inicio is None or dt < data_inicio:
                     data_inicio = dt
                 if data_fim is None or dt > data_fim:
@@ -96,6 +141,8 @@ def analisar():
 
     total_hoje = por_dia.get(hoje_str, 0)
     total_ontem = por_dia.get(ontem, 0)
+    total_hoje_real = por_dia_real.get(hoje_str, 0)
+    total_ontem_real = por_dia_real.get(ontem, 0)
     # Variação JUSTA: hoje (parcial) contra ONTEM ATÉ O MESMO HORÁRIO.
     # Comparar o parcial com o dia inteiro de ontem é injusto (mostra queda
     # falsa no início do dia); esta comparação é a que reflete o ritmo real.
@@ -103,22 +150,30 @@ def analisar():
         variacao = ((total_hoje - acessos_ontem_mesmo_horario) / acessos_ontem_mesmo_horario) * 100
     else:
         variacao = 100.0 if total_hoje > 0 else 0.0
+    if acessos_ontem_mesmo_horario_real > 0:
+        variacao_real = ((total_hoje_real - acessos_ontem_mesmo_horario_real) / acessos_ontem_mesmo_horario_real) * 100
+    else:
+        variacao_real = 100.0 if total_hoje_real > 0 else 0.0
     # Projeção honesta do dia: ritmo atual (por hora) estendido para 24h
     horas_decorridas = agora.hour + agora.minute / 60.0
     if horas_decorridas > 0:
         projecao = int(round(total_hoje / horas_decorridas * 24))
+        projecao_real = int(round(total_hoje_real / horas_decorridas * 24))
     else:
         projecao = total_hoje
+        projecao_real = total_hoje_real
 
-    return (contagens, total_geral, data_inicio, data_fim, por_dia,
-            contagens_hoje, total_hoje, total_ontem, variacao, hoje_str, ontem,
-            acessos_ontem_mesmo_horario, projecao), None
+    return (contagens, total_geral, total_real, total_bots, data_inicio, data_fim,
+            por_dia, contagens_hoje, total_hoje, total_ontem, variacao, hoje_str,
+            ontem, acessos_ontem_mesmo_horario, projecao, total_hoje_real,
+            total_ontem_real, variacao_real, projecao_real), None
 
 
 def montar_html(res):
-    (contagens, total_geral, data_inicio, data_fim, por_dia,
-     contagens_hoje, total_hoje, total_ontem, variacao, hoje_str, ontem,
-     ontem_mesmo_horario, projecao) = res
+    (contagens, total_geral, total_real, total_bots, data_inicio, data_fim,
+     por_dia, contagens_hoje, total_hoje, total_ontem, variacao, hoje_str,
+     ontem, ontem_mesmo_horario, projecao, total_hoje_real, total_ontem_real,
+     variacao_real, projecao_real) = res
 
     # Seta de variação
     if variacao > 0:
@@ -233,8 +288,16 @@ def montar_html(res):
       <div class="rot">Total geral</div>
       <div class="val">{total_geral}</div>
     </div>
+    <div class="bloco" style="border-left:1px solid rgba(201,162,75,.3);padding-left:18px;">
+      <div class="rot">👥 Visitas REAIS (sem bots)</div>
+      <div class="val gold">{total_real}</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">🤖 Bots/ataques bloqueados</div>
+      <div class="val" style="color:#e07b6b;">{total_bots}</div>
+    </div>
   </div>
-  <p style="font-size:.8rem;color:#9fb0c8;margin:-18px 0 24px;">Comparação justa: hoje (parcial) contra ontem até o mesmo horário do dia. A projeção estima o total do dia pelo ritmo atual. (O número de ontem completo é mostrado apenas como referência.)</p>
+  <p style="font-size:.8rem;color:#9fb0c8;margin:-18px 0 24px;">Comparação justa: hoje (parcial) contra ontem até o mesmo horário. <b style="color:#e3c877;">Visitas reais</b> excluem bots e ataques (wp-login, .env, wp-admin, scanners etc.). Hoje: {total_hoje_real} visitas reais (variação real {seta} {variacao_real:+.1f}%, projeção ~{projecao_real}) vs {total_hoje} acessos brutos.</p>
 
   <div class="cards">
     <div class="card destaque"><div class="v">{total_home}</div><div class="l">Visitas à Home</div></div>
@@ -280,6 +343,13 @@ def main():
         f.write(doc)
     print('✅ stats.html gerado em', OUT)
     print('   Acesse: https://compraoseu.com/stats.html')
+    # Espelhamento: copia o stats.html também para o site novo (se existir)
+    OUT2 = '/www/wwwroot/missaocomdeus.com.br/stats.html'
+    if os.path.isdir(os.path.dirname(OUT2)):
+        with open(OUT2, 'w', encoding='utf-8') as f:
+            f.write(doc)
+        print('✅ stats.html copiado para', OUT2)
+        print('   Acesse: https://missaocomdeus.com.br/stats.html')
 
 
 if __name__ == '__main__':

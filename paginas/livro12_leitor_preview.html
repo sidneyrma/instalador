@@ -30,6 +30,8 @@ body{
 .capa{min-height:60vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
   text-align:center; padding:3rem 1.2rem; color:#fff;
   background:radial-gradient(900px 500px at 70% -10%, rgba(201,162,75,.2), transparent 60%), linear-gradient(170deg,var(--navy) 0%,#120b18 100%);}
+.capa .capa-livro{width:178px; height:auto; border:2px solid var(--ouro); border-radius:6px;
+  box-shadow:0 10px 30px rgba(0,0,0,.4); margin-bottom:1.2rem}
 .capa .selo{font-size:.78rem; letter-spacing:.4em; text-transform:uppercase; color:var(--ouro-claro); margin-bottom:1.6rem}
 .capa h1{font-size:clamp(1.8rem,5vw,2.8rem); margin:0 0 .6rem; line-height:1.12}
 .capa .sub{font-style:italic; color:#cfd6e2; font-size:1.1rem; margin-bottom:1.8rem; max-width:34rem}
@@ -202,6 +204,7 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <div id="fita-lateral"></div>
 
 <section class="capa" id="capa">
+  <img class="capa-livro" src="https://i.ibb.co/6RRTBY06/livro12.jpg" alt="Capa do livro Comece o dia com Afirmações, Declarações e Orações">
   <p class="selo">Coleção do Despertar</p>
   <h1>Comece o dia com Afirmações, Declarações e Orações</h1>
   <p class="sub">Versículos, gratidão, afirmações e orações para fortalecer a sua fé</p>
@@ -213,10 +216,6 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <section id="sumario">
   <h2>Sumário</h2>
   <ul>
-<li class="toc-parte">💬 Mensagens de Fé</li>
-<li id="li-mensagens-dia"><a href="#mensagens-dia">Mensagens para o dia a dia (toque para abrir)</a><span class="marca"></span></li>
-<li class="toc-parte">🙌 Orações de Fé</li>
-<li id="li-oracoes-fe"><a href="#oracoes-fe">Orações no Nome de Jesus (toque para abrir)</a><span class="marca"></span></li>
 <li class="toc-parte">🙌 Gratidão</li>
 <li id="li-gratidao"><a href="#gratidao">Versículos e mensagens de gratidão</a><span class="marca"></span></li>
 <li class="toc-parte">📂 Categorias de Afirmações</li>
@@ -232,6 +231,11 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <li id="li-oracoes"><a href="#oracoes">Orações para o dia a dia</a><span class="marca"></span></li>
 <li class="toc-parte">📖 Versículos</li>
 <li id="li-versiculos"><a href="#versiculos">Versículos de declaração</a><span class="marca"></span></li>
+<li id="li-como-usar"><a href="#como-usar">Como usar este guia</a><span class="marca"></span></li>
+<li class="toc-parte">💬 Mensagens de Fé</li>
+<li id="li-mensagens-dia"><a href="#mensagens-dia">Mensagens para o dia a dia (toque para abrir)</a><span class="marca"></span></li>
+<li class="toc-parte">🙌 Orações de Fé</li>
+<li id="li-oracoes-fe"><a href="#oracoes-fe">Orações no Nome de Jesus (toque para abrir)</a><span class="marca"></span></li>
 <li class="toc-parte" style="border-top:1px dashed rgba(201,162,75,.4);margin-top:6px;padding-top:10px;">🎬 Aula grátis do Portal</li>
 <li id="li-aula-gratis"><a href="#aula-gratis" style="color:var(--ouro-claro,#e3c877);font-weight:700;">🎬 Assistir uma aula grátis do Portal →</a><span class="marca"></span></li>
   </ul>
@@ -244,49 +248,8 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
       <h2 class="cap-titulo">Sobre este guia</h2>
       <p>Este guia reúne versículos, mensagens de gratidão, afirmações e orações para você começar cada dia na presença de Deus. O poder da palavra é um tema central dos nossos livros: a Bíblia ensina que a morte e a vida estão no poder da língua (Provérbios 18:21).</p>
       <div class="box aviso"><h3>Atenção</h3><p>As afirmações devem ser usadas alinhadas à Palavra de Deus. O nome "EU SOU" é o nome sagrado de Deus (Êxodo 3:14). Quando declaramos, declaramos quem somos em Cristo, não uma autossuficiência vazia.</p></div>
-      <span id="como-usar"></span>
-      <h3 style="color:var(--ouro);font-family:inherit;margin:1.8rem 0 .8rem;">📌 Como usar este guia</h3>
-      <p><strong>Pela manhã:</strong> comece agradecendo (seção Gratidão) e escolha 1-2 afirmações para repetir com fé, em voz alta.</p>
-      <p><strong>Ao longo do dia:</strong> quando um pensamento negativo vier, substitua por uma declaração da Palavra.</p>
-      <p><strong>À noite:</strong> ore com uma das orações do guia, do dia ou das orações de fé.</p>
-      <p><strong>Sempre alinhado à Palavra:</strong> as afirmações não são mantras vazios, são verdades de Deus aplicadas à vida.</p>
-
-      <nav class="cap-nav"><a href="#sumario">Sumário</a><a href="#mensagens-dia">Próximo →</a></nav>
+      <nav class="cap-nav"><a href="#sumario">Sumário</a><a href="#gratidao">Próximo →</a></nav>
     </section>
-<section class="capitulo" id="mensagens-dia">
-<p class="cap-num">💬 Mensagens de Fé</p>
-<h2 class="cap-titulo">Mensagens para o Dia a Dia</h2>
-<p>Pequenas mensagens de ânimo para as situações do dia a dia, com versículos que tocam a alma. Toque em cada uma para abrir e fechar.</p>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🌅 Para começar o dia com fé</span><span class="seta">▼</span></div><div class="faq-a"><p>Antes de olhar para o celular, olhe para o céu. Este dia é uma dádiva, e você não precisa carregá-lo sozinho. Comece com gratidão e deixe que a alegria do Senhor seja a sua força.</p><p class="ref">"Este é o dia que fez o Senhor; regozijemo-nos e alegremo-nos nele." (Salmo 118:24)</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>💼 Para o trabalho e as tarefas</span><span class="seta">▼</span></div><div class="faq-a"><p>Trabalhe com o coração, não apenas com as mãos. O que você faz hoje, mesmo o mais simples, pode ser feito como uma oferta de amor. Não é sobre o resultado, é sobre a fidelidade.</p><p class="ref">"E tudo quanto fizerdes, fazei-o de todo o coração, como ao Senhor, e não aos homens." (Colossenses 3:23)</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>😰 Para a ansiedade</span><span class="seta">▼</span></div><div class="faq-a"><p>Respire fundo e lembre: você não precisa saber o dia de amanhã, precisa confiar em quem o conhece. Entregue a preocupação em oração e deixe a paz agir dentro de você.</p><p class="ref">"Não estejais ansiosos por coisa alguma; antes, em tudo, sejam conhecidas as vossas petições diante de Deus; e a paz de Deus guardará os vossos corações." (Filipenses 4:6-7)</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>💧 Para a tristeza</span><span class="seta">▼</span></div><div class="faq-a"><p>Chorar não é fraqueza, é humanidade. Deus não se afasta de quem chora; Ele se aproxima. Entregue a dor a Ele e permita que o conforto chegue no tempo certo.</p><p class="ref">"Perto está o Senhor dos que têm o coração quebrantado e salva os contritos de espírito." (Salmo 34:18)</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🛡️ Para o medo</span><span class="seta">▼</span></div><div class="faq-a"><p>O medo sussurra, mas a fé fala mais alto. Você não precisa ser forte o tempo todo, precisa estar seguro nos braços de quem nunca falha.</p><p class="ref">"Não temas, porque eu sou contigo; não te assombres, porque eu sou o teu Deus." (Isaías 41:10)</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🏡 Para a família</span><span class="seta">▼</span></div><div class="faq-a"><p>O lar se constrói com presença, paciência e perdão. Escolha hoje abençoar os seus com palavras boas e com o exemplo do seu amor.</p><p class="ref">"Eu e a minha casa serviremos ao Senhor." (Josué 24:15)</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🌙 Para a noite</span><span class="seta">▼</span></div><div class="faq-a"><p>Antes de dormir, faça as pazes com o dia. O que não foi feito espera por amanhã, e o que foi dito demais, entregue ao perdão. Descanse em paz.</p><p class="ref">"Em paz também me deitarei e dormirei, porque só tu, Senhor, me fazes habitar em segurança." (Salmo 4:8)</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🌱 Para recomeçar</span><span class="seta">▼</span></div><div class="faq-a"><p>Nenhum erro de ontem define o amanhã. A misericórdia de Deus se renova a cada manhã, e com ela, a sua chance de começar de novo.</p><p class="ref">"As misericórdias do Senhor são a causa de não sermos consumidos; renovam-se cada manhã." (Lamentações 3:22-23)</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🕊️ Para o cansaço</span><span class="seta">▼</span></div><div class="faq-a"><p>Se você está cansado, não precisa fingir que está bem. Descanse em Deus, entregue o peso e receba o alívio que só Ele dá.</p><p class="ref">"Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei." (Mateus 11:28)</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🙌 Para quando nada parece mudar</span><span class="seta">▼</span></div><div class="faq-a"><p>Há um tempo para semear e um tempo para colher. Não desista no meio do caminho: o que você planta com fé, Deus rega com cuidado.</p><p class="ref">"E não nos cansemos de fazer o bem, porque a seu tempo ceifaremos, se não houvermos desfalecido." (Gálatas 6:9)</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>💌 Para confiar em Deus</span><span class="seta">▼</span></div><div class="faq-a"><p>O seu coração pode não entender o caminho, mas pode confiar em quem o guia. Reconheça o Senhor em cada passo e Ele endireitará as suas veredas.</p><p class="ref">"Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento." (Provérbios 3:5-6)</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🕊️ Para entregar as preocupações</span><span class="seta">▼</span></div><div class="faq-a"><p>Jogue sobre Deus tudo o que pesa: o medo, a dúvida, a mágoa. Ele cuida de você com um cuidado que não falha.</p><p class="ref">"Lançando sobre ele toda a vossa ansiedade, porque ele tem cuidado de vós." (1 Pedro 5:7)</p></div></div>
-<nav class="cap-nav"><a href="#abertura">← Anterior</a><a href="#sumario">Sumário</a><a href="#oracoes-fe">Próximo →</a></nav>
-</section>
-<section class="capitulo" id="oracoes-fe">
-<p class="cap-num">🙏 Orações de Fé</p>
-<h2 class="cap-titulo">Orações no Nome de Jesus</h2>
-<p>Orações baseadas no Evangelho, professando o poder e a autoridade no nome que está acima de todo nome. Toque em cada oração para abrir e fechar.</p>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🛡️ Oração de Proteção (baseada no Salmo 91)</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor Deus Altíssimo, tu és o meu refúgio e a minha fortaleza, em ti confio. Tu me livras do laço do inimigo e da palavra destruidora. Sob as tuas asas encontro abrigo, e a tua verdade é o meu escudo. Não temerei os terrores da noite, nem a seta que voa de dia, porque ordenaste aos teus anjos que me guardem em todos os meus caminhos. Em nome de Jesus, amém.</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>✝️ Oração de Autoridade no Nome de Jesus</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor Jesus, tu és o nome que está acima de todo nome, e diante de ti todo joelho se dobra, no céu, na terra e debaixo da terra. Pela autoridade do teu nome, eu declaro que todo medo, toda ansiedade, toda opressão e todo mal se curvam diante de ti. Nada me atingirá, porque estou escondido em ti. Que a tua paz, que excede todo entendimento, guarde o meu coração e a minha mente. Amém.</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🩺 Oração de Cura do Corpo e da Alma</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor Jesus, pelas tuas feridas fui curado. Tu levaste as minhas dores e carregaste as minhas enfermidades. Toca o meu corpo, sara as minhas emoções, renova as minhas forças. Derrama a tua vida em cada célula do meu ser. Que a tua paz invada a minha alma e a tua saúde flua em mim. Confio em ti, meu médico e meu Senhor. Amém.</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🏡 Oração pela Família</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, eu e a minha casa serviremos ao Senhor. Abençoa a minha família, une os nossos corações, afasta de nós toda divisão, brigas e incompreensão. Que o amor, o respeito e o diálogo reinem no nosso lar. Protege cada membro da minha família, guia os nossos passos e faz de nós um instrumento do teu amor. Em nome de Jesus, amém.</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>💼 Oração de Trabalho e Provisão</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, tu és a minha provisão e o meu provedor. Abençoa o trabalho das minhas mãos, abre portas que nenhum homem pode fechar, e guia-me nos caminhos profissionais. Dai-me sabedoria, diligência e honestidade. Eu busco primeiro o teu Reino, e confio que todas as coisas me serão acrescentadas segundo a tua vontade. Em nome de Jesus, amém.</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🌊 Oração de Paz e Serenidade</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, tu és a minha paz. A tua paz, que excede todo entendimento, guarda o meu coração e a minha mente em Cristo Jesus. Não ando ansioso por coisa alguma, mas em tudo, pela oração e súplica, apresento os meus pedidos a ti. Entrego as minhas preocupações, confio no teu cuidado, e descanso em ti, porque tu cuidas de mim. Amém.</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>⚡ Oração por Causas Difíceis</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor Jesus, para ti nada é impossível. Tu és o Deus que faz caminho onde não há caminho, que abre portas que ninguém pode fechar. Apresento diante de ti esta causa que parece sem solução. Aumenta a minha fé, dá-me esperança e paciência. Eu creio que estás agindo, mesmo quando não vejo. Que a tua vontade seja feita, e que a tua glória se manifeste. Amém.</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🙌 Oração de Gratidão e Louvor</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, em tudo eu dou graças, porque esta é a tua vontade para mim. Bendigo o teu nome por cada bênção, por cada desafio, por cada aprendizado. Toda boa dádiva vem de ti. Que o meu coração seja cheio de gratidão, e que o meu louvor suba como incenso diante de ti. Obrigado pelo teu amor que nunca falha. Em nome de Jesus, amém.</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>❤️ Oração de Perdão e Recomeço</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, cria em mim um coração puro e renova em mim um espírito estável. Perdoa as minhas falhas, como eu perdoo aqueles que me feriram. Ajuda-me a amar os meus inimigos, a bendizer os que me maldizem e a orar por aqueles que me perseguem, como Jesus ensinou. Restitui-me a alegria da tua salvação e sustenta-me com um espírito voluntário. Amém.</p></div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🤲 Oração de Entrega e Confiança</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, entrego a minha vida nas tuas mãos. Não a minha vontade, mas a tua seja feita. Confio no teu plano, mesmo quando não entendo. Tu conheces o meu futuro, tu seguras o meu amanhã. Ensina-me a viver um dia de cada vez, confiando na tua bondade. Que eu descanse em ti, porque tu és o meu pastor e nada me faltará. Em nome de Jesus, amém.</p></div></div>
-<nav class="cap-nav"><a href="#mensagens-dia">← Anterior</a><a href="#sumario">Sumário</a><a href="#gratidao">Próximo →</a></nav>
-</section>
 <section class="capitulo" id="gratidao">
 <p class="cap-num">🙌 Gratidão</p>
 <h2 class="cap-titulo">Versículos e mensagens de gratidão</h2>
@@ -299,7 +262,7 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <p class="afirmacao">🙏 Obrigado, Senhor, porque até nas dificuldades tu estás comigo, e todas as coisas cooperam para o meu bem. (Romanos 8:28)</p>
 <p class="afirmacao">🙏 Obrigado, Pai, pela família, pelos amigos e pelas pessoas que colocas no meu caminho como bênção.</p>
 <p class="afirmacao">🙏 Comece o dia agradecendo. A gratidão abre as portas do céu e transforma o coração.</p>
-<nav class="cap-nav"><a href="#oracoes-fe">← Anterior</a><a href="#sumario">Sumário</a><a href="#cat-1">Próximo →</a></nav>
+<nav class="cap-nav"><a href="#abertura">← Anterior</a><a href="#sumario">Sumário</a><a href="#cat-1">Próximo →</a></nav>
 </section>
 <section class="capitulo" id="cat-1">
 <p class="cap-num">🩺 Categoria 1</p>
@@ -343,7 +306,7 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <p class="afirmacao">✨ Eu sou a consciência que observa os pensamentos, e essa consciência é de Deus.</p>
 <p class="afirmacao">✨ Eu sou pacificador, porque sou filho de Deus. (Mateus 5:9)</p>
 <p class="afirmacao">✨ Senhor, quando o medo bater à porta, envia a fé para atender.</p>
-<p class="afirmacao">✨ Não andeis ansiosos pelo dia de amanhã, nem pela vossa vida. (Mateus 6:25-34)</p>
+<p class="afirmacao">✨ Não andeis ansiosos pelo dia de amanhã, nem pela vossa vida, pelo que haveis de comer ou beber, nem pelo corpo, pelo que haveis de vestir. Olhai para as aves do céu, que não semeiam nem colhem, e o Pai celestial as alimenta. Buscai primeiro o Reino de Deus, e todas estas coisas vos serão acrescentadas. (Mateus 6:25-34)</p>
 <p class="afirmacao">✨ Jesus disse: Não andeis ansiosos pela vossa vida. O vosso Pai celestial sabe que necessitais de todas estas coisas. (Mateus 6:25, 32)</p>
 </div>
 <nav class="cap-nav">
@@ -396,6 +359,8 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <p class="afirmacao">✨ Eu sou seguro, porque o Senhor é o meu pastor. (Salmo 23:1)</p>
 <p class="afirmacao">✨ Eu sou livre, porque Cristo me libertou. (Gálatas 5:1)</p>
 <p class="afirmacao">✨ Eu sou ovelha do Bom Pastor, e nada me faltará. (Salmo 23:1)</p>
+<p class="afirmacao">✨ O Senhor é o meu pastor, nada me faltará. Deitar-me faz em verdes pastos, guia-me mansamente a águas tranquilas. Refrigera a minha alma, guia-me pelas veredas da justiça por amor do seu nome. Ainda que eu andasse pelo vale da sombra da morte, não temeria mal algum, porque tu estás comigo; a tua vara e o teu cajado me consolam. (Salmo 23)</p>
+<p class="afirmacao">✨ Preparas uma mesa perante mim na presença dos meus inimigos, unges a minha cabeça com óleo, o meu cálice transborda. Certamente que a bondade e a misericórdia me seguirão todos os dias da minha vida, e habitarei na casa do Senhor por longos dias. (Salmo 23:5-6)</p>
 </div>
 <nav class="cap-nav">
 <a href="#cat-5">← Anterior</a>
@@ -428,8 +393,8 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <p class="afirmacao">✨ Eu sou amoroso, porque o amor de Deus foi derramado no meu coração. (Romanos 5:5)</p>
 <p class="afirmacao">✨ Eu sou compassivo, porque fui compadecido por Deus.</p>
 <p class="afirmacao">✨ Eu sou um instrumento de paz, porque sou filho do Príncipe da Paz.</p>
-<p class="afirmacao">✨ Cria em mim, ó Deus, um coração puro e renova em mim um espírito estável. Não me lances fora da tua presença. (Salmo 51:10-11)</p>
-<p class="afirmacao">✨ Jesus disse: Amai os vossos inimigos, bendizei os que vos maldizem, fazei bem aos que vos odeiam. (Mateus 5:44)</p>
+<p class="afirmacao">✨ Cria em mim, ó Deus, um coração puro e renova em mim um espírito estável. Não me lances fora da tua presença e não retires de mim o teu Santo Espírito. Restitui-me a alegria da tua salvação e sustenta-me com um espírito voluntário. (Salmo 51:10-12)</p>
+<p class="afirmacao">✨ Jesus disse: Amai os vossos inimigos, bendizei os que vos maldizem, fazei bem aos que vos odeiam e orai pelos que vos maltratam e vos perseguem, para que sejais filhos do vosso Pai que está nos céus. (Mateus 5:44-45)</p>
 <p class="afirmacao">✨ Perdoa-nos as nossas dívidas, assim como nós perdoamos aos nossos devedores. (Mateus 6:12)</p>
 </div>
 <nav class="cap-nav">
@@ -451,7 +416,7 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <div class="box oracao"><p>Senhor, prepara o solo do meu coração. Arranca as pedras, remove os espinhos, ara a terra com a tua Palavra. Que eu ouça, compreenda e retenha os teus ensinamentos.</p></div>
 <div class="box oracao"><p>Senhor Jesus, eu quero te seguir, mas muitas vezes tenho medo da cruz. Ajuda-me a confiar que o teu caminho é o caminho da vida.</p></div>
 <div class="box oracao"><p>Senhor, obrigado pelos talentos que me confiaste. Ajuda-me a não os enterrar por medo, mas a multiplicá-los com fé e coragem, para a tua glória.</p></div>
-<nav class="cap-nav"><a href="#cat-8">← Anterior</a><a href="#sumario">Sumário</a><a href="#versiculos">Próximo →</a></nav>
+<nav class="cap-nav"><a href="#cat-8">← Anterior</a><a href="#sumario">Sumário</a><a href="#oracoes-fe">Próximo →</a></nav>
 </section>
 <section class="capitulo" id="versiculos">
 <p class="cap-num">📖 Versículos</p>
@@ -466,7 +431,50 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <div class="box versiculo"><p>"Vivo pela fé no Filho de Deus, que me amou e se entregou por mim." <span class="ref">(Gálatas 2:20)</span></p></div>
 <div class="box versiculo"><p>"A morte e a vida estão no poder da língua." <span class="ref">(Provérbios 18:21)</span></p></div>
 <div class="box versiculo"><p>"Pela fé entendemos que os mundos foram criados pela palavra de Deus." <span class="ref">(Hebreus 11:3)</span></p></div>
-<nav class="cap-nav"><a href="#oracoes">← Anterior</a><a href="#sumario">Sumário</a><a href="#fim">Fim</a></nav>
+<nav class="cap-nav"><a href="#oracoes">← Anterior</a><a href="#sumario">Sumário</a><a href="#como-usar">Próximo →</a></nav>
+</section>
+<section class="capitulo" id="como-usar">
+<p class="cap-num">📌 Guia de uso</p>
+<h2 class="cap-titulo">Como usar este guia</h2>
+<p><strong>Pela manhã:</strong> comece agradecendo (seção Gratidão) e escolha 1-2 afirmações para repetir com fé, em voz alta.</p>
+<p><strong>Ao longo do dia:</strong> quando um pensamento negativo vier, substitua por uma declaração da Palavra.</p>
+<p><strong>À noite:</strong> ore com uma das orações do guia, do dia ou das orações de fé.</p>
+<p><strong>Sempre alinhado à Palavra:</strong> as afirmações não são mantras vazios, são verdades de Deus aplicadas à vida.</p>
+<nav class="cap-nav"><a href="#versiculos">← Anterior</a><a href="#sumario">Sumário</a><a href="#oracoes-fe">Próximo →</a></nav>
+</section>
+<section class="capitulo" id="mensagens-dia">
+<p class="cap-num">💬 Mensagens de Fé</p>
+<h2 class="cap-titulo">Mensagens para o Dia a Dia</h2>
+<p>Pequenas mensagens de ânimo para as situações do dia a dia, com versículos que tocam a alma. Toque em cada uma para abrir e fechar.</p>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🌅 Para começar o dia com fé</span><span class="seta">▼</span></div><div class="faq-a"><p>Antes de olhar para o celular, olhe para o céu. Este dia é uma dádiva, e você não precisa carregá-lo sozinho. Comece com gratidão e deixe que a alegria do Senhor seja a sua força.</p><p class="ref">"Este é o dia que fez o Senhor; regozijemo-nos e alegremo-nos nele." (Salmo 118:24)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>💼 Para o trabalho e as tarefas</span><span class="seta">▼</span></div><div class="faq-a"><p>Trabalhe com o coração, não apenas com as mãos. O que você faz hoje, mesmo o mais simples, pode ser feito como uma oferta de amor. Não é sobre o resultado, é sobre a fidelidade.</p><p class="ref">"E tudo quanto fizerdes, fazei-o de todo o coração, como ao Senhor, e não aos homens." (Colossenses 3:23)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>😰 Para a ansiedade</span><span class="seta">▼</span></div><div class="faq-a"><p>Respire fundo e lembre: você não precisa saber o dia de amanhã, precisa confiar em quem o conhece. Entregue a preocupação em oração e deixe a paz agir dentro de você.</p><p class="ref">"Não estejais ansiosos por coisa alguma; antes, em tudo, sejam conhecidas as vossas petições diante de Deus; e a paz de Deus guardará os vossos corações." (Filipenses 4:6-7)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>💧 Para a tristeza</span><span class="seta">▼</span></div><div class="faq-a"><p>Chorar não é fraqueza, é humanidade. Deus não se afasta de quem chora; Ele se aproxima. Entregue a dor a Ele e permita que o conforto chegue no tempo certo.</p><p class="ref">"Perto está o Senhor dos que têm o coração quebrantado e salva os contritos de espírito." (Salmo 34:18)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🛡️ Para o medo</span><span class="seta">▼</span></div><div class="faq-a"><p>O medo sussurra, mas a fé fala mais alto. Você não precisa ser forte o tempo todo, precisa estar seguro nos braços de quem nunca falha.</p><p class="ref">"Não temas, porque eu sou contigo; não te assombres, porque eu sou o teu Deus." (Isaías 41:10)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🏡 Para a família</span><span class="seta">▼</span></div><div class="faq-a"><p>O lar se constrói com presença, paciência e perdão. Escolha hoje abençoar os seus com palavras boas e com o exemplo do seu amor.</p><p class="ref">"Eu e a minha casa serviremos ao Senhor." (Josué 24:15)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🌙 Para a noite</span><span class="seta">▼</span></div><div class="faq-a"><p>Antes de dormir, faça as pazes com o dia. O que não foi feito espera por amanhã, e o que foi dito demais, entregue ao perdão. Descanse em paz.</p><p class="ref">"Em paz também me deitarei e dormirei, porque só tu, Senhor, me fazes habitar em segurança." (Salmo 4:8)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🌱 Para recomeçar</span><span class="seta">▼</span></div><div class="faq-a"><p>Nenhum erro de ontem define o amanhã. A misericórdia de Deus se renova a cada manhã, e com ela, a sua chance de começar de novo.</p><p class="ref">"As misericórdias do Senhor são a causa de não sermos consumidos; renovam-se cada manhã." (Lamentações 3:22-23)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🕊️ Para o cansaço</span><span class="seta">▼</span></div><div class="faq-a"><p>Se você está cansado, não precisa fingir que está bem. Descanse em Deus, entregue o peso e receba o alívio que só Ele dá.</p><p class="ref">"Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei." (Mateus 11:28)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🙌 Para quando nada parece mudar</span><span class="seta">▼</span></div><div class="faq-a"><p>Há um tempo para semear e um tempo para colher. Não desista no meio do caminho: o que você planta com fé, Deus rega com cuidado.</p><p class="ref">"E não nos cansemos de fazer o bem, porque a seu tempo ceifaremos, se não houvermos desfalecido." (Gálatas 6:9)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>💌 Para confiar em Deus</span><span class="seta">▼</span></div><div class="faq-a"><p>O seu coração pode não entender o caminho, mas pode confiar em quem o guia. Reconheça o Senhor em cada passo e Ele endireitará as suas veredas.</p><p class="ref">"Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento." (Provérbios 3:5-6)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🕊️ Para entregar as preocupações</span><span class="seta">▼</span></div><div class="faq-a"><p>Jogue sobre Deus tudo o que pesa: o medo, a dúvida, a mágoa. Ele cuida de você com um cuidado que não falha.</p><p class="ref">"Lançando sobre ele toda a vossa ansiedade, porque ele tem cuidado de vós." (1 Pedro 5:7)</p></div></div>
+<nav class="cap-nav"><a href="#como-usar">← Anterior</a><a href="#sumario">Sumário</a><a href="#oracoes-fe">Próximo →</a></nav>
+</section>
+<section class="capitulo" id="oracoes-fe">
+<p class="cap-num">🙏 Orações de Fé</p>
+<h2 class="cap-titulo">Orações no Nome de Jesus</h2>
+<p>Orações baseadas no Evangelho, professando o poder e a autoridade no nome que está acima de todo nome. Toque em cada oração para abrir e fechar.</p>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🛡️ Oração de Proteção (baseada no Salmo 91)</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor Deus Altíssimo, tu és o meu refúgio e a minha fortaleza, em ti confio. Tu me livras do laço do inimigo e da palavra destruidora. Sob as tuas asas encontro abrigo, e a tua verdade é o meu escudo. Não temerei os terrores da noite, nem a seta que voa de dia, porque ordenaste aos teus anjos que me guardem em todos os meus caminhos. Em nome de Jesus, amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>✝️ Oração de Autoridade no Nome de Jesus</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor Jesus, tu és o nome que está acima de todo nome, e diante de ti todo joelho se dobra, no céu, na terra e debaixo da terra. Pela autoridade do teu nome, eu declaro que todo medo, toda ansiedade, toda opressão e todo mal se curvam diante de ti. Nada me atingirá, porque estou escondido em ti. Que a tua paz, que excede todo entendimento, guarde o meu coração e a minha mente. Amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🩺 Oração de Cura do Corpo e da Alma</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor Jesus, pelas tuas feridas fui curado. Tu levaste as minhas dores e carregaste as minhas enfermidades. Toca o meu corpo, sara as minhas emoções, renova as minhas forças. Derrama a tua vida em cada célula do meu ser. Que a tua paz invada a minha alma e a tua saúde flua em mim. Confio em ti, meu médico e meu Senhor. Amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🏡 Oração pela Família</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, eu e a minha casa serviremos ao Senhor. Abençoa a minha família, une os nossos corações, afasta de nós toda divisão, brigas e incompreensão. Que o amor, o respeito e o diálogo reinem no nosso lar. Protege cada membro da minha família, guia os nossos passos e faz de nós um instrumento do teu amor. Em nome de Jesus, amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>💼 Oração de Trabalho e Provisão</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, tu és a minha provisão e o meu provedor. Abençoa o trabalho das minhas mãos, abre portas que nenhum homem pode fechar, e guia-me nos caminhos profissionais. Dai-me sabedoria, diligência e honestidade. Eu busco primeiro o teu Reino, e confio que todas as coisas me serão acrescentadas segundo a tua vontade. Em nome de Jesus, amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🌊 Oração de Paz e Serenidade</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, tu és a minha paz. A tua paz, que excede todo entendimento, guarda o meu coração e a minha mente em Cristo Jesus. Não ando ansioso por coisa alguma, mas em tudo, pela oração e súplica, apresento os meus pedidos a ti. Entrego as minhas preocupações, confio no teu cuidado, e descanso em ti, porque tu cuidas de mim. Amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>⚡ Oração por Causas Difíceis</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor Jesus, para ti nada é impossível. Tu és o Deus que faz caminho onde não há caminho, que abre portas que ninguém pode fechar. Apresento diante de ti esta causa que parece sem solução. Aumenta a minha fé, dá-me esperança e paciência. Eu creio que estás agindo, mesmo quando não vejo. Que a tua vontade seja feita, e que a tua glória se manifeste. Amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🙌 Oração de Gratidão e Louvor</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, em tudo eu dou graças, porque esta é a tua vontade para mim. Bendigo o teu nome por cada bênção, por cada desafio, por cada aprendizado. Toda boa dádiva vem de ti. Que o meu coração seja cheio de gratidão, e que o meu louvor suba como incenso diante de ti. Obrigado pelo teu amor que nunca falha. Em nome de Jesus, amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>❤️ Oração de Perdão e Recomeço</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, cria em mim um coração puro e renova em mim um espírito estável. Perdoa as minhas falhas, como eu perdoo aqueles que me feriram. Ajuda-me a amar os meus inimigos, a bendizer os que me maldizem e a orar por aqueles que me perseguem, como Jesus ensinou. Restitui-me a alegria da tua salvação e sustenta-me com um espírito voluntário. Amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🤲 Oração de Entrega e Confiança</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, entrego a minha vida nas tuas mãos. Não a minha vontade, mas a tua seja feita. Confio no teu plano, mesmo quando não entendo. Tu conheces o meu futuro, tu seguras o meu amanhã. Ensina-me a viver um dia de cada vez, confiando na tua bondade. Que eu descanse em ti, porque tu és o meu pastor e nada me faltará. Em nome de Jesus, amém.</p></div></div>
+<nav class="cap-nav"><a href="#como-usar">← Anterior</a><a href="#sumario">Sumário</a><a href="#fim">Fim</a></nav>
 </section>
   </div>
 </main>
@@ -525,6 +533,7 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
     "cat-8": "Relacionamentos",
     "oracoes": "Orações do dia",
     "versiculos": "Versículos",
+    "como-usar": "Como usar",
     "oracoes-fe": "Orações de Fé",
     "mensagens-dia": "Mensagens de Fé"
   };

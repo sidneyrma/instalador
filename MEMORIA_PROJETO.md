@@ -1,5 +1,5 @@
 # MEMÓRIA DO PROJETO — MISSÃO COM DEUS
-## Atualizado em: 18/08/2026
+## Atualizado em: 17/08/2026
 
 ---
 
@@ -97,7 +97,58 @@
 
 ---
 
-## 🆕 NOVO DOMÍNIO — missaocomdeus.com.br
+## 🎉🎉 SITE NOVO 100% NO AR — INCLUINDO www (18/08, vitória final)
+
+- **https://www.missaocomdeus.com.br CONFIRMADO FUNCIONANDO** (verificado por
+  fetch ao vivo): Home completa + 12 livros + quiz + enquete, com links www.
+- **nginx -t:** "syntax is ok / test is successful". Avisos "conflicting
+  server name" são inofensivos (duplicidade Certbot × aaPanel, nginx ignora).
+- **Como resolveu o problema:** os arquivos manuais do Certbot
+  (/etc/nginx/sites-available/conectai-apioficial, conectai-frontend,
+  conectai-backend) referenciavam certificados Let's Encrypt que não existiam
+  mais. Correção: sed removeu as linhas ssl_certificate e trocou
+  `listen 443 ssl;` por `listen 80;` (webhooks internos funcionam em HTTP).
+  Backups .bak criados. O painel não mostrava esses arquivos (fora do aaPanel).
+- **Falta (decisões do autor):** redirect 301 compraoseu→missaocomdeus (ou
+  manter os dois); GSC nova propriedade; sitemap com novo domínio.
+
+---
+
+## 🎉 SITE NOVO NO AR (18/08, confirmado)
+
+- **https://missaocomdeus.com.br ESTÁ NO AR e funcionando** (verificado por
+  fetch ao vivo): Home completa (hero, quiz, biblioteca com 12 livros,
+  enquete) e livro12 com capa + sumário + aula grátis.
+- **DNS propagado:** missaocomdeus.com.br e www → 212.28.182.86 ✅
+- **SSL ativo** (Let's Encrypt), **PHP 8.1 ativo** no config do site.
+- **try_files adicionado** (URLs bonitas /livroXX sem .html).
+- **NOTA nginx -t:** ainda acusa erro do apioficial.compraoseu.com
+  (certificado antigo inexistente no config) — NÃO afeta o site novo; limpar
+  depois removendo as linhas ssl_certificate do config do apioficial.
+- **Navegador do autor:** se der NXDOMAIN, é cache local (usar janela
+  anônima ou digitar sem acento: missaocomdeus.com.br).
+
+---
+
+## 🆕 NOVO DOMÍNIO — missaocomdeus.com.br — ✅ LIBERADO (18/08)
+
+- **NOTÍCIA:** a HostGator confirmou que o domínio foi LIBERADO para
+  gerenciamento. Próximos passos (ver guia_novo_dominio_missaocomdeus.md):
+  1. Apontar DNS na HostGator: A `missaocomdeus.com.br` → 212.28.182.86 e
+     A `www.missaocomdeus.com.br` → 212.28.182.86.
+  2. Aguardar propagação (verificar em dnschecker.org).
+  3. SSL Let's Encrypt no aaPanel (site missaocomdeus.com.br).
+  4. Copiar os arquivos do site (site-contabo.zip) para
+     /www/wwwroot/missaocomdeus.com.br/ e extrair.
+  5. Nginx: try_files $uri $uri.html $uri/index.html =404.
+  6. Decidir: redirect 301 de compraoseu.com → missaocomdeus.com.br
+     (recomendado, preserva SEO) ou manter os dois.
+  7. Atualizar sitemap.xml + adicionar propriedade no Google Search Console.
+  8. Testar os 12 livros + enquete + e-book do quiz no novo domínio.
+- **PR para o main:** PR #2 aberto (arena → main). Autor fará merge no fim
+  do dia.
+
+---
 
 - **Registrado em:** 17/08/2026
 - **Registrar:** HostGator Brasil
@@ -128,6 +179,236 @@ chatbot = Node/PM2). Comandos úteis de verificação: `pm2 list`, `df -h`,
 ajustes de nome + seção sobre BACKUPS com resposta honesta: sites são leves
 ~4MB, servidor tem espaço de sobra, backups não comprometem desempenho;
 chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
+
+---
+
+## 🎉 notificar.php NO AR E FUNCIONANDO (19/08) — controle total CONQUISTADO
+
+- **E-mail da enquete chegou pelo NOSSO servidor:** remetente
+  "Missão com Deus <no-reply@missaocomdeus.com.br>", com a mensagem do
+  leitor e o "E-mail do leitor (para responder)" (ex.: lurdes.zenop@gmail.com).
+- O fluxo completo está funcionando: voto/comentário → notificar.php
+  (mail() via postfix) → e-mail no Gmail do autor, com SPF aprovado.
+- **O quiz continua pelo FormSubmit** (form HTML) — opcional migrar depois.
+- **CONTROLE TOTAL DOS E-MAILS: CONQUISTADO!** (postfix + SPF + notificar.php
+  + PHP sendmail_path). Plano dos 3 passos concluído.
+
+---
+
+## 🏆 POSTFIX + SPF + E-MAIL OK (19/08) — envio próprio FUNCIONANDO
+
+- **Postfix instalado** no servidor (myhostname/myorigin = missaocomdeus.com.br).
+- **SPF adicionado na HostGator:** TXT `v=spf1 ip4:212.28.182.86 ~all`
+  (autoriza o IP do servidor a enviar e-mails do domínio).
+- **E-mail de teste CHEGOU ao Gmail** (status=sent no mail.log — Gmail aceitou).
+- **PHP já configurado:** sendmail_path = /usr/sbin/sendmail -t -i (linha 1094
+  do php.ini do PHP 8.1). PHP-FPM reiniciado.
+- **notificar.php está pronto para funcionar** (envia votos/comentários via
+  mail() do PHP, sem FormSubmit; fallback FormSubmit mantido).
+- **PARA FINALIZAR:** subir o site-contabo.zip atualizado (notificar.php +
+  index.html) nos dois domínios e testar um voto na enquete (e-mail deve vir
+  de no-reply@missaocomdeus.com.br).
+
+---
+
+## 📧 notificar.php CRIADO (19/08) — e-mail 100% nosso
+
+- **site-contabo/notificar.php criado:** endpoint que envia os e-mails dos
+  votos/comentários direto pelo PHP (mail()), sem depender do FormSubmit.
+- **Fluxo:** a enquete chama notificar.php PRIMEIRO (controle total); se o
+  mail() do servidor falhar, usa FormSubmit como FALLBACK (código antigo).
+- **Proteção:** 5s entre envios do mesmo IP (reusa enquete_ips.json).
+- **PARA ATIVAR no servidor:** subir o zip novo (notificar.php + index.html
+  atualizado) nos dois domínios; o mail() do PHP precisa estar habilitado no
+  aaPanel (PHP.ini → mail function / SMTP). Se mail() falhar, continua
+  caindo no FormSubmit (que está ativado e funcionando).
+- Testado: JS válido, fallback preservado. zip regenerado.
+
+---
+
+## 🚀 SEO NOVO DOMÍNIO (18/08) — sitemap e robots atualizados
+
+- **sitemap.xml** → https://missaocomdeus.com.br/ (13 URLs: Home + livro01-10 +
+  livro12 + quiz). livro11 EXCLUÍDO (lançamento 27/08).
+- **robots.txt** → aponta sitemap novo; bloqueia /quiz, /stats.html,
+  /enquete.php.
+- **Guia criado:** analise/migracao_contabo/guia_seo_novo_dominio.md (GSC:
+  adicionar propriedade, enviar sitemap, solicitar indexação 1-2/dia,
+  palavras-chave alvo).
+- Pendente: autor adicionar a propriedade no GSC (tag HTML ou DNS) e enviar
+  o sitemap; títulos das páginas ainda "Portal O Despertar" (ajustar depois).
+
+---
+
+## 📖 LIVRO 11 PROTEGIDO NO GITHUB (20/08) — pronto, mas NÃO subir
+
+- **paginas/livro11_preview.html** — SEM leitor, SEM proteção (versão do
+  AUTOR, para o autor marcar onde parou na leitura). Manter assim.
+- **paginas/livro11_leitor_preview.html** — COM leitor E PROTEÇÃO (user-select,
+  media print com aviso, bloqueio de teclas) — versão do LANÇAMENTO.
+- **site-contabo/livro11.html** — COM leitor E PROTEÇÃO — versão do LANÇAMENTO.
+- **Gerador atualizado:** livro11 agora é proteger=True (preview e site).
+- **NÃO SUBIR AO SERVIDOR até 27/08** (lançamento). O arquivo já esteve no
+  servidor antes e foi apagado; manter fora até a data certa.
+- No dia 27/08: subir o site-contabo/livro11.html protegido nos dois
+  domínios, adicionar ao sitemap, trocar o card "Em breve" por "Disponível"
+  e remover o countdown.
+
+---
+
+## 🚫 LIVRO 11 (Novo Testamento) FORA DO AR até o lançamento (18/08)
+
+- **Descoberta:** o arquivo site-contabo/livro11.html (contém "O Novo
+  Testamento como nunca lido", o Livro 01 da Home com countdown até 27/08)
+  estava acessível em /livro11, SEM proteção (versão do autor).
+- **DECISÃO (com o autor): APAGAR o arquivo livro11.html dos DOIS domínios**
+  (compraoseu.com e missaocomdeus.com.br) até o lançamento.
+  - Não se perde nada: está salvo no GitHub.
+  - No lançamento (27/08), subir a versão PROTEGIDA (após autor aprovar a
+    leitura).
+  - Card da Home continua "Em breve" sem link; sitemap NÃO lista /livro11
+    (verificado) — Google não rastreia.
+  - sw.js tem /livro11 no cache (inofensivo; arquivo não existe).
+- **Card "Livro 11 · Disponível" da Home (A Sabedoria dos Mestres) é OUTRO
+  livro (arquivo livro02.html) — permanece no ar normalmente.**
+
+---
+
+## 📊 STATS COM VISITAS REAIS (18/08, 2ª rodada)
+
+- **gerar_estatisticas.py atualizado** para separar BOTS de visitas HUMANAS:
+  - Filtra URLs de ataque (wp-login, .env, wp-admin, xmlrpc, 222.php,
+    info.php, scanners...) e User-Agents de bots (python-requests, sqlmap,
+    curl, Googlebot, etc.).
+  - Novo painel mostra: Total geral (bruto) + **👥 Visitas REAIS (sem bots)**
+    + **🤖 Bots/ataques bloqueados**, além de variação e projeção REAIS.
+  - Testado com log simulado (30 reais + 40 bots → separou corretamente).
+- **PARA ATIVAR no servidor:** subir o script novo para
+  /home/deploy/gerar_estatisticas.py e rodar
+  `python3 /home/deploy/gerar_estatisticas.py` (gera no compraoseu e copia
+  para o missaocomdeus — espelhamento).
+- Com isso o autor verá os números VERDADEIROS de irmãos (ex.: dos ~1600
+  brutos, as visitas reais são ~600).
+
+---
+
+## 🏆 REDIRECT 301 CONFIRMADO (18/08) — site UNIFICADO
+
+- **compraoseu.com e www.compraoseu.com → missaocomdeus.com.br (301)** com
+  `(www\.)?compraoseu\.com` + `$request_uri` (preserva o caminho).
+- **Confirmado ao vivo:** compraoseu.com/livro05 → missaocomdeus.com.br/livro05
+  (abre a Evolução da Alma no novo domínio, links internos atualizados).
+- **nginx -t:** syntax is ok (avisos "conflicting server name" inofensivos,
+  do Certbot × aaPanel).
+- **Próximo passo (combinado):** notificar.php (e-mail 100% nosso via PHP,
+  sem FormSubmit) → depois GSC nova propriedade + sitemap do novo domínio.
+
+---
+
+## ✅ FORM SUBMIT ATIVADO (18/08) — e-mails funcionando
+
+- **FormSubmit ATIVADO com sucesso** ("Form Activated") para
+  https://missaocomdeus.com.br/ — os e-mails de votos/comentários do quiz e
+  da enquete chegam normalmente em compraoseu.com@gmail.com.
+- A ativação foi feita a partir do site missaocomdeus.com.br (por isso o
+  "Form at: missaocomdeus.com.br").
+- **PLANO FUTURO (em segundo plano, decidido com o autor):** criar um
+  endpoint próprio `notificar.php` (e-mail via PHP no nosso servidor) para
+  ficar 100% sob nosso controle, sem depender do FormSubmit. Fazer DEPOIS do
+  redirect do domínio (prioridade: unificar o site primeiro).
+
+---
+
+## 🔁 REGRA DE ESPELHAMENTO (18/08) — IMPORTANTE
+
+- **A partir de agora, TODA atualização do site deve ser aplicada nos DOIS
+  domínios:** compraoseu.com e missaocomdeus.com.br (mesmos arquivos na
+  pasta /www/wwwroot/<domínio>/).
+- O **gerar_estatisticas.py** foi atualizado para gerar o stats.html no
+  compraoseu.com E COPIAR para /www/wwwroot/missaocomdeus.com.br/stats.html
+  (espelhamento automático ao rodar o comando).
+- A **enquete** NÃO deve ser zerada (decisão do autor: preservar quem já
+  respondeu). O arquivo enquete_dados.json no servidor está com a estrutura
+  nova (ansiedade/magoas/medo/paz) e votos preservados (99 em 18/08).
+- **Redirect 301** compraoseu.com → missaocomdeus.com.br: guia em
+  analise/migracao_contabo/guia_redirect_novo_dominio.md (decisão do autor
+  se aplica agora ou mantém os dois).
+
+---
+
+## 🔄 ESPELHAMENTO rsync CONFIRMADO (20/08) — domínios sincronizados
+
+- **Comando que funciona (missaocomdeus → compraoseu, SEM apagar):**
+  ```
+  rsync -av /www/wwwroot/missaocomdeus.com.br/ /www/wwwroot/compraoseu.com/ --exclude=".user.ini"
+  ```
+- Sobe o zip no missaocomdeus e roda o rsync → o compraoseu fica igual
+  (copia votos, e-mails, tudo; pula só .user.ini por permissão de root).
+- **Confirmado em 20/08:** rodou perfeito (9,3 MB, 30+ arquivos).
+- **E-mail de agradecimento automático ao leitor TESTADO E APROVADO** (chegou
+  com versículo 1 Pedro 5:7 e a identidade da Missão). notificar.php envia
+  notificação ao autor + agradecimento ao leitor.
+
+---
+
+## 💌 AGRADECIMENTO AUTOMÁTICO AO LEITOR (20/08)
+
+- **notificar.php atualizado:** além de notificar o autor, agora envia um
+  e-mail de AGRADECIMENTO automático ao leitor (se ele informou o e-mail na
+  enquete), com versículo (1 Pedro 5:7) e a identidade da Missão com Deus.
+- Fluxo: voto → notificar.php → 1) e-mail para o autor (notificação) +
+  2) e-mail de agradecimento para o leitor (quando tem e-mail).
+- Resposta JSON inclui 'agradecimento' (true/false).
+- PHP validado, zip regenerado.
+- **PARA APLICAR:** subir o notificar.php novo nos dois domínios.
+
+---
+
+## 🐛 BUG DO E-MAIL DA ENQUETE CORRIGIDO (19/08) — FALLBACK HTTP
+
+- **Problema:** o e-mail da enquete não chegava quando o voto era feito pelo
+  site (só via curl no terminal).
+- **Causa raiz (encontrada):** a função notificarEmail() tinha apenas
+  `.catch()`. Quando o notificar.php retorna ERRO HTTP (500, ex.: mail()
+  falhou), o fetch RESOLVE (não rejeita) — então o fallback do FormSubmit
+  NUNCA disparava. Resultado: nenhum e-mail.
+- **Correção:** adicionada verificação `.then(function(r){ if(!r.ok){
+  fallback(); } })` — se o notificar.php responder erro HTTP OU houver erro
+  de rede, o fallback do FormSubmit dispara. Aplicada nas duas Homes e no
+  gerador. JS validado. zip regenerado.
+- **Para aplicar:** subir o index.html atualizado nos dois domínios.
+
+---
+
+## 👨‍👩‍👧 PAIS E FILHOS: CONVERSAS QUE PROTEGEM (20/08) — CRIADO!
+
+- **Guia completo** em site-contabo/guia-pais-filhos.html (7 perguntas com
+  aviso para pais, abertura amorosa, encerramento, fundamento bíblico).
+- **enviar_guia.php** criado: recebe o e-mail do pai/mãe, envia o guia (link)
+  para o e-mail deles + notifica o autor (compraoseu.com@gmail.com).
+- **Bloco no FAQ da Home** (discreto, abre se quiser): "👨‍👩‍👧 Pais e Filhos:
+  Conversas que Protegem" com campo de e-mail + botão "Receber o Guia".
+- **Nenhuma resposta é registrada no site** (é conversa entre pais e filhos,
+  não estatística) — o quiz vira uma "isca de e-mail qualificada" sem expor
+  dados de menores.
+- Aplicado nas duas Homes + gerador? (verificar adicionar script no gerador
+  se necessário). JS/HTML validados. zip regenerado.
+- **PARA SUBIR:** enviar zip novo (index + guia-pais-filhos.html +
+  enviar_guia.php) nos dois domínios.
+
+---
+
+## 💾 BACKUP — GUIA CRIADO (19/08)
+
+- **analise/migracao_contabo/guia_backup_completo.md criado** com todos os
+  comandos de backup para salvar no notebook:
+  - GitHub já é o backup principal (site-contabo.zip a cada atualização).
+  - Backup do chatbot CONECTAÍ (em /home/deploy/conectai — NÃO está no GitHub
+    nem no backup do painel!) — zip + baixar.
+  - Backup dos configs nginx/php (pasta backup_configs).
+  - Votos da enquete (enquete_dados.json) ficam no servidor (zip não inclui
+    de propósito).
+  - Rotina: semanal chatbot + configs; mensal repositório GitHub.
 
 ---
 
@@ -172,10 +453,15 @@ Construído com fé, persistência e amor.
   - Geradores atualizados para os novos nomes.
 - **Conteúdo:** 15 seções, 22 itens FAQ (10 Orações de Fé + 12 Mensagens para
   o Dia a Dia), 100% humanizado e purificado.
-- **Acesso:** SOMENTE pelo hero da Home (botão "📖 Ler o livro de Afirmações"
-  → /livro12). AINDA NÃO entra na biblioteca, no sitemap nem nos cards.
-- **Decisão do autor:** dar visibilidade ao Livro 12 antes de publicá-lo na
-  biblioteca, para não parecer que está "vendendo a Palavra".
+- **Acesso (atualizado 18/08):** ALÉM do hero, o Livro 12 agora tem CARD na
+  biblioteca (depois do Livro 11, antes do card Apoio): selo "Livro 12 ·
+  Disponível", capa https://i.ibb.co/6RRTBY06/livro12.jpg, badges "Mensagens
+  diárias" e "🔒 Protegido", botões "Ler grátis" → /livro12 e "Portal" →
+  https://pay.kiwify.com.br/iVfp2bi.
+- **Capa do livro:** adicionada a imagem .capa-livro no topo da seção capa
+  (padrão dos livros 04/05/09/10), com CSS .capa .capa-livro.
+- **Decisão anterior do autor:** dar visibilidade antes de publicar na
+  biblioteca — cumprida; agora está na biblioteca como o 12º livro.
 
 ## 🎯 HERO DA HOME — novo CTA (17/08)
 
@@ -255,44 +541,275 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
 
 ---
 
-## 📖 LIVRO 12 — REORGANIZAÇÃO + EDIÇÕES (18/08, 2ª sessão)
+## 📱 MENU MOBILE — DRAWER LATERAL DIREITO (20/08)
 
-Pedidos do autor aplicados em site-contabo/livro12.html e
-paginas/livro12_leitor_preview.html (script:
-analise/compraoseu.preview/ajustar_livro12_estrutura.py):
+- **Problema (relatado pelo autor):** no celular o menu abria de cima,
+  ocupando a largura toda, com links centralizados e fundo que se
+  embaralhava com a página (parecia branco/centralizado e difícil de ler).
+- **Solução aplicada em `site-contabo/index.html` e `paginas/home_preview.html`:**
+  menu vira um painel lateral (drawer) que **desliza da DIREITA**
+  (`width:min(320px,86vw)`, `transform:translateX(105%)` → `0`),
+  com **fundo escuro sólido** (gradiente navy `#0e1a2e→#16283f`),
+  cabeçalho "☰ Menu" + botão **✕** para fechar, links grandes (16.5px,
+  alinhados à esquerda, com separadores), CTA "Entrar no Portal" destacado,
+  rodapé com versículo (Salmos 37:5) e **overlay escuro** por trás
+  (fecha ao clicar fora ou pressionar Esc).
+- JS: `menuAbrir()` / `menuFechar()`; fecha ao tocar em qualquer link.
+- **Zip regenerado** (`site-contabo.zip`, 2.9MB) — baixar novamente.
+- **Subir ao servidor:** rsync da pasta site-contabo/ para
+  /www/wwwroot/missaocomdeus.com.br/ e espelhar para compraoseu.com/
+  (via gerar_estatisticas.py ou rsync manual sem --delete).
 
-- **"Como usar este guia" SUBIU por inteiro** para dentro da página
-  "Sobre este guia" (abaixo do box Atenção). Deixou de ser página separada;
-  âncora antiga #como-usar preservada (span) para links salvos.
-- **"Mensagens para o Dia a Dia" e "Orações no Nome de Jesus" SUBIRAM**
-  para logo depois de "Sobre este guia" (antes da Gratidão). Sumário
-  reordenado na mesma sequência. A **videoaula permanece no FIM**.
-- **Paz e Emoções:** mensagem longa de Mateus 6 encurtada — "Não andeis
-  ansiosos pelo dia de amanhã, nem pela vossa vida. (Mateus 6:25-34)" —
-  padrão de apenas lembrar a passagem.
-- **Proteção e Segurança:** removidas as DUAS partes longas do Salmo 23
-  ("O Senhor é o meu pastor... Deitar-me faz..." e "Preparas uma mesa...").
-  Ficaram só as afirmações curtas.
-- **Relacionamentos e Perdão:** Salmo 51 encurtado até "Não me lances fora
-  da tua presença. (Salmo 51:10-11)"; Mateus encurtado até "fazei bem aos
-  que vos odeiam. (Mateus 5:44)".
-- Navegação Anterior/Próximo refeita na nova ordem; "como-usar" removido do
-  mapa NOMES do leitor. JS/HTML validados; zip regenerado (sem dados da
-  enquete).
+---
 
-## 📱 MENU MOBILE DA HOME (18/08)
+## 🔧 CORREÇÕES MENU MOBILE + QUIZ (20/08, 2ª rodada)
 
-- Antes: ao tocar nos três traços (☰), o menu abria em tela cheia,
-  centralizado, com links brancos.
-- Agora: menu abre como CARTÃO ALINHADO À DIREITA (debaixo do ☰), com
-  borda e sombra, e os links em DOURADO (var(--gold-light)) para melhor
-  leitura. Botão "Entrar no Portal" continua como botão dourado.
-- Aplicado em site-contabo/index.html e paginas/home_preview.html.
+- **BUG MENU MOBILE ENCONTRADO E CORRIGIDO:** o `header.site` tinha
+  `backdrop-filter:blur(8px)`, que cria um "containing block" para elementos
+  `position:fixed` — o painel do menu ficava preso à altura do header (~64px),
+  mostrando SÓ o cabeçalho (botão ✕) sem as opções. Solução: removido o
+  `backdrop-filter` (fundo passou a `rgba(14,26,46,.96)`, visual quase igual)
+  em `site-contabo/index.html` e `paginas/home_preview.html`. Confirmado por
+  teste jsdom: burger abre `navlinks open` + overlay `visivel`.
+- **BUG QUIZ ENCONTRADO E CORRIGIDO:** os `alert()` do quiz eram bloqueados em
+  iframes/alguns navegadores → clicar "Avançar" sem marcar opção "não fazia
+  nada". Substituídos por **mensagem inline** (`#quiz-msg` com classe erro/ok)
+  nos 3 pontos (quizProx, quizResultado, quizEnviar). **ZERO alerts restantes.**
+- **MELHORIA QUIZ:** adicionada **barra de progresso dourada** (Pergunta X de 7
+  + percentual) no topo do quiz-box, atualizada a cada avanço/volta.
+- **Posição do quiz (confirmada):** a seção "✨ Um segundo de sinceridade com
+  você mesmo" JÁ está entre o Portal e a seção de livros — exatamente onde o
+  autor pediu ("antes da seção dos livros"). Quem rola até a biblioteca passa
+  pelo quiz. O FAQ (Perguntas sobre o Portal + Pais e Filhos) fica no FINAL da
+  Home, antes do CTA final.
+- Testes jsdom 100% verdes nos dois arquivos (index + home_preview). Zip
+  regenerado (2.9MB). Falta subir ao servidor (rsync) e espelhar.
 
-## ⚠️ NOTA DE CONTINUIDADE (18/08)
+---
 
-O autor abriu novo chat (branch arena/01a01525-instalador) e trouxe todo o
-trabalho da branch arena/019fcd27-instalador via merge fast-forward — nada
-se perdeu. O zip que o autor baixou antes NÃO continha estas mudanças
-porque elas ainda não haviam sido feitas (o chat anterior encerrou antes).
-Agora estão feitas e dentro do site-contabo.zip.
+## 🧭 QUIZ MOVIDO + RÓTULO "QUIZ" (20/08, 3ª rodada)
+
+- **Confusão do autor resolvida:** ele procurava "quiz" na Home e não achava,
+  porque a seção tinha o rótulo "✨ Autoavaliação gratuita" (sem a palavra
+  QUIZ) e o FAQ tem o item "Pais e Filhos" com "7 perguntas" (mesma
+  quantidade do quiz) → parecia que o quiz estava no FAQ.
+- **Ações:**
+  1. Seção quiz MOVIDA para **logo antes da Biblioteca gratuita**
+     (ordem: hero → portal → obras → **quiz** → **biblioteca** → enquete ...)
+     — exatamente onde o autor pediu (quem vai ler os livros passa pelo quiz).
+  2. Rótulo alterado para **"🧭 QUIZ DE AUTOAVALIAÇÃO GRATUITA"** + link
+     "🧭 Quiz" adicionado ao menu (#quiz).
+  3. Fundo da seção quiz diferenciado (azul médio #1e3352→#16283f com
+     bordas douradas) para não se fundir com a biblioteca escura.
+  4. sw.js bump **v3→v4** (força atualização do cache PWA no celular) +
+     '/guia-pais-filhos' adicionado à lista de cache.
+- Testes jsdom verdes (ordem, quiz avança, barra, menu abre/fecha). Zip
+  regenerado. **AINDA NÃO SUBIDO AO SERVIDOR** — aguardando autorização.
+
+---
+
+## 👨‍👩‍👧 PAIS E FILHOS: SEÇÃO PRÓPRIA COM SANFONA + E-MAIL COMPLETO (20/08, 4ª rodada)
+
+- **Decisão do autor:** o item "Pais e Filhos" NÃO deve ficar escondido no FAQ
+  (ninguém chega no final da página). Virou uma **seção própria na Home** com
+  título visível e **sanfona**: o convite aparece ("💬 Iniciar o roteiro de
+  conversa") e, ao clicar, o roteiro se expande no próprio lugar, sem ocupar
+  a página inteira antes.
+- **Posição:** logo DEPOIS da Biblioteca gratuita e ANTES da enquete
+  (ordem: portal > obras > quiz > biblioteca > **pais-filhos** > enquete > ...).
+  Link "👨‍👩‍👧 Pais e Filhos" adicionado ao menu.
+- **Roteiro interativo** no estilo do quiz de autoavaliação: 7 perguntas,
+  uma por vez, com barra de progresso dourada, botões Voltar/Avançar,
+  opções de exemplo (radio) e "💡 Dica para os pais" em cada pergunta.
+  NÃO exige marcar para avançar (é roteiro de conversa, não teste) e
+  NENHUMA resposta é registrada.
+- **Final do roteiro:** encerramento amoroso + fundamento bíblico
+  (Efésios 6:4, Provérbios 22:6, Deuteronômio 6:6-7) + formulário
+  "Receba o guia completo no seu e-mail" (mesmos IDs guia-email/guia-msg,
+  função enviarGuia() reutilizada).
+- **E-mail do guia (Letra C, decisão do autor):** agora envia o **link +
+  conteúdo COMPLETO** (abertura, 7 perguntas com opções e dicas,
+  encerramento e versículos) humanizado (sem setas, sem travessões longos,
+  sem reticências). Texto em heredoc no enviar_guia.php.
+- Item "Pais e Filhos" REMOVIDO do FAQ (agora só as 5 perguntas originais).
+- Testes jsdom 100% verdes em index.html e home_preview.html
+  (sanfona abre, roteiro avança/volta/conclui, FAQ 5 itens, menu e quiz
+  intactos). Zip regenerado. Ainda NÃO subido ao servidor.
+
+---
+
+## 🧭 QUIZ DE VOLTA LOGO APÓS O PORTAL + MENU DESKTOP CONSERTADO (20/08, 5ª rodada)
+
+- **Problema relatado pelo autor:** ao abrir o index.html localmente (zip),
+  o menu no topo ficava "embaralhado" por falta de espaço (9 itens numa
+  janela de notebook) e o quiz não aparecia logo abaixo da seção
+  "Acesso vitalício" (Portal), como ele esperava.
+- **Correções aplicadas (index.html + home_preview.html):**
+  1. Quiz MOVIDO para **logo após a seção #portal** (abaixo do card
+     "Acesso vitalício"), ANTES das obras à venda. Nova ordem:
+     hero → portal → **quiz** → livros(obras) → biblioteca → pais-filhos
+     → enquete → trilogia → mentora → faq.
+  2. Menu desktop: gap 28→16px e fonte 14.5→13.5px (cabe em notebook).
+  3. Drawer lateral agora ativa em **@media(max-width:1080px)** (antes 880px)
+     — qualquer tela até 1080px usa o menu hambúrguer lateral, então nunca
+     mais "embaralha" em telas médias.
+- Testes jsdom verdes: ordem portal>quiz>livros, quiz antes da biblioteca,
+  menu gap 16px, drawer 1080px, quiz avança, sanfona Pais e Filhos abre,
+  FAQ com 5 itens. Zip regenerado.
+
+---
+
+## 🧹 MENU DO NOTEBOOK LIMPO — BUG DO "VAZAMENTO" CORRIGIDO (20/08, 6ª rodada)
+
+- **Bug (causa raiz):** os elementos do drawer mobile (`nav-cabecalho`
+  com "☰ Menu" e `nav-rodape` com o versículo Salmos 37:5) NÃO tinham
+  `display:none` no CSS base (fora do media query). No computador eles
+  apareciam DENTRO da barra de navegação horizontal, empurrando o texto
+  e criando linhas estranhas no topo (o "☰ Menu" e a passagem bíblica
+  ocupando espaço em linha reta).
+- **Correção (index.html + home_preview.html):**
+  1. `.navlinks .nav-cabecalho{display:none;}` e
+     `.navlinks .nav-rodape{display:none;}` no CSS base → no desktop o
+     topo fica limpo: logo + links horizontais.
+  2. Dentro do media query, `.nav-rodape{display:block;}` (aparece só no
+     drawer lateral).
+  3. Breakpoint do hambúrguer aumentado de 1080px → **1300px**: notebooks
+     pequenos (1280px) e qualquer tela menor usam o ☰ limpo que abre o
+     painel lateral com itens um embaixo do outro (como o autor sugeriu).
+- Testes jsdom verdes: desktop esconde cabecalho/rodape/botao/burger;
+  media 1300px mostra burger + cabecalho flex + rodape block; menu com
+  9 links; versículo só no drawer; ordem portal>quiz>livros>biblioteca
+  >pais-filhos mantida; quiz e sanfona funcionando; FAQ com 5 itens.
+- Zip regenerado. Commit e push feitos.
+
+---
+
+## ☰ MENU HAMBÚRGUER UNIVERSAL + ZIP NA RAIZ (20/08, 7ª rodada)
+
+- **Problema relatado pelo autor (notebook):** ao abrir o index.html no
+  notebook, os links do menu apareciam um ao lado do outro no topo (menu
+  horizontal) junto com o cabeçalho "☰ Menu ✕" do drawer — tudo "solto"
+  e bagunçado. Ele pediu que em QUALQUER tela aparecesse como no celular:
+  logo à esquerda + ☰ à direita.
+- **Solução (index.html + home_preview.html):** removido o menu horizontal
+  do desktop. Agora o CSS base (sem media query) define:
+  - `.burger{display:block}` SEMPRE visível (qualquer largura de tela);
+  - `.navlinks` SEMPRE como drawer lateral fixo à direita
+    (`position:fixed; transform:translateX(105%)`, abre com `.open`);
+  - cabeçalho "☰ Menu" + botão ✕ + links + rodapé (Salmos 37:5) sempre
+    dentro do drawer; overlay sempre presente.
+  - Resultado: o topo em qualquer dispositivo mostra apenas
+    "Portal O Despertar" à esquerda e "☰" à direita. Zero confusão.
+- **ZIP:** agora gerado com os arquivos NA RAIZ (cd site-contabo &&
+  zip -r ../site-contabo.zip .). Ao descompactar, os arquivos caem direto
+  (index.html, enviar_guia.php, etc.) sem criar subpasta — importante
+  para o aaPanel não criar "pasta dentro do domínio".
+- Testes jsdom verdes: burger sempre visível, drawer fixo sempre,
+  comportamento abrir/fechar (burger, ✕, overlay), ordem portal>quiz
+  >livros>biblioteca>pais-filhos, quiz avança, sanfona abre.
+- Zip regenerado (2.9MB, raiz). Commit + push feitos.
+
+---
+
+## 🖱️ MENU CONGELADO CORRIGIDO + LETRAS MENORES (20/08, 8ª rodada)
+
+- **Bug do menu "congelado" (causa raiz):** o header.site tinha
+  z-index:50, criando um contexto de empilhamento. O drawer (z-index:120
+  DENTRO do header) ficava limitado a esse contexto, enquanto o overlay
+  (#nav-overlay, z-index:110 FORA do header) ficava ACIMA de tudo do
+  header. Resultado: o overlay escuro cobria o painel e os cliques nos
+  links não chegavam (menu "não fazia nada").
+- **Correção:** header.site z-index 50 → **220** (acima do overlay 110).
+  Agora o drawer fica visível e clicável; o overlay escurece a página
+  atrás dele e fecha o menu ao clicar fora.
+- **Tamanhos (pedido do autor, notebook 15.6"):** drawer width 320→290px;
+  links 16.5→15px com padding 10px; CTA 15.5→14px (white-space:nowrap,
+  não corta mais "Entrar no Portal"); rodapé 12.5→11px compacto; cabeçalho
+  18→16px. Tudo cabe na tela sem precisar diminuir zoom.
+- Testes jsdom verdes: header 220 > overlay 110, menu abre, clique no
+  link fecha o menu, clique no overlay fecha, link Trilogia clicável.
+- Zip regenerado (raiz). Commit + push.
+
+---
+
+## 🚨 RECONSTRUÇÃO DO INDEX (20/08, 9ª rodada) — BUG GRAVE ENCONTRADO E CORRIGIDO
+
+- **BUG GRAVE (causa raiz da página "irreconhecível"):** na rodada do menu
+  hambúrguer universal, o script Python substituiu o bloco CSS desde
+  `.nav{` até `.wa-float{`, APAGANDO ACIDENTALMENTE 44 regras de CSS
+  críticas (`.hero`, `.hero-grid`, `.grid`, `.grid-4`, `.card`,
+  `.card-destaque`, `.faq-item`, `.faq-q`, `.faq-a`, `.trust`, `.offer`,
+  `.guarantee`, `.cta-final`, `.footer-grid`, `.lead` etc.). Por isso o
+  site abria "desproporcional, com imagens gigantes e fonte bagunçada".
+  No sandbox parecia ok porque o preview servia versão em cache.
+- **SOLUÇÃO:** reconstruído o `site-contabo/index.html` e o
+  `paginas/home_preview.html` a partir da base boa (commit bd3a638, CSS
+  completo) + reaplicadas APENAS as melhorias aprovadas:
+  1. Menu: VOLTOU AO ORIGINAL no desktop (links horizontais: O Portal,
+     Livros, Biblioteca gratuita, Trilogia, A Mentora, Dúvidas, Entrar no
+     Portal — SEM "☰ Menu" e SEM versículo no topo, como o site ao vivo);
+     no celular (≤880px) mantém o drawer lateral escuro com versículo.
+  2. Quiz: barra de progresso dourada + mensagens inline (sem alert) e
+     posição logo após o Portal (como o site ao vivo).
+  3. Pais e Filhos: seção própria com sanfona (após a Biblioteca),
+     FAQ com 5 itens, e-mail com guia completo (Letra C).
+  4. header.site z-index 220 (drawer clicável acima do overlay).
+- **Validação:** CSS completo restaurado (hero, grid, cards, faq, offer,
+  footer), chaves balanceadas, testes jsdom verdes nos 2 arquivos:
+  menu abre/fecha, quiz avança, sanfona abre, FAQ 5 itens, ordem
+  portal > quiz > livros > biblioteca > pais-filhos > enquete.
+- Zip regenerado na raiz. Commit + push.
+
+---
+
+## ☰ MENU UNIVERSAL DEFINITIVO (20/08, 10ª rodada) — COM SEGURANÇA
+
+- **Pedido do autor (final):** no topo, em QUALQUER tela, ficar apenas
+  "Portal O Despertar" à esquerda e o ☰ à direita; ao clicar no ☰, os
+  itens aparecem um embaixo do outro (painel lateral) — sem links soltos
+  no notebook.
+- **Execução com bisturi (lição da rodada 9 aprendida):** o script fez
+  replace EXATO de UM ÚNICO bloco CSS (de "/* HEADER */" até o fim do
+  media query do menu), com `assert` que ABORTA se o bloco não casar —
+  NENHUM outro CSS foi tocado. Verificado: todos os 24 seletores críticos
+  (hero, grid-4, card, faq, offer, footer, quiz-box, pais-sec...) presentes,
+  chaves 309/309 e 13/13 balanceadas.
+- **CSS final do menu (sem media query):**
+  - `.burger{display:block}` SEMPRE visível (qualquer largura);
+  - `.navlinks` SEMPRE drawer lateral fixo à direita (translateX 105%,
+    abre com .open);
+  - cabeçalho "☰ Menu" + ✕ + links empilhados + rodapé Salmos 37:5 +
+    overlay sempre presentes.
+  - HTML/JS já existiam (menuAbrir/menuFechar com burger, ✕, overlay, Esc,
+    links fecham o menu).
+- Testes jsdom verdes nos 2 arquivos: abre por burger, fecha por ✕/overlay/
+  link; quiz avança com barra; sanfona Pais e Filhos abre; FAQ 5 itens;
+  ordem portal > quiz > livros > biblioteca > pais-filhos > enquete.
+- Zip regenerado na raiz. Commit + push.
+
+---
+
+## 📦 LIVRO11 FORA DO ZIP (20/08, encerramento do dia)
+
+- O autor notou que o livro11.html foi empacotado no site-contabo.zip
+  (estava em site-contabo/). Ele já tinha apagado do servidor.
+- **AÇÃO:** movido `site-contabo/livro11.html` → `lancamento_livro11/livro11.html`
+  (pasta própria de lançamento, FORA de site-contabo). O zip agora NÃO
+  contém o livro11 (confirmado: 0 ocorrências). No dia 27/08, basta subir
+  o arquivo de lancamento_livro11/ para o servidor e publicar o card.
+- sw.js continua com '/livro11' no cache (necessário no lançamento; o
+  .catch no install evita erro enquanto o arquivo não existe).
+
+## 🔤 TAMANHO DA FONTE (pergunta do autor, respondida)
+
+- Padrão universal da web: **16px** para texto corrido (é o padrão dos
+  navegadores e de acessibilidade). Nosso site NÃO define font-size no
+  body → herda 16px (padrão).
+- Medições reais do index.html:
+  - h1 do hero: 44px desktop / 32px celular (padrão comum de hero)
+  - Parágrafo de destaque (.lead): 18px (padrão; a maioria usa 17-18px)
+  - Texto de cards/seções: 14-16px (padrão)
+- **CONCLUSÃO:** o site está DENTRO dos padrões de mercado. A sensação
+  de "texto grande no notebook" vem do .lead 18px e do h1 44px (comuns
+  em landing pages). Se o autor quiser, ajuste fino opcional: .lead para
+  17px e h1 para 40px (não feito — aguardando decisão).

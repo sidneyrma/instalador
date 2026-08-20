@@ -2,6 +2,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portal O Despertar | Desperte sua mente, fortaleça sua fé, transforme sua vida</title>
+<meta name="google-site-verification" content="Yh_W9CiUPnt9wUiY47QzfjOBOjgAj15XwtTIa1eB3mk" />
 <meta name="description" content="Portal O Despertar: videoaulas, livros e uma comunidade de estudos que une fé cristã e neurociência do comportamento. Trilogia Evolução da Alma + Anestesia Mental por R$ 49,00.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,23 +53,35 @@
   .btn-block{width:100%;}
   small.note{display:block;font-size:13px;color:var(--muted);margin-top:10px;}
 
-  /* HEADER */
-  header.site{position:sticky;top:0;z-index:50;background:rgba(14,26,46,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,162,75,.18);}
-  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1140px;margin:0 auto;}
-  .logo{font-family:var(--serif);font-size:20px;color:var(--cream-2);letter-spacing:.02em;}
+  /* HEADER — menu hambúrguer universal (título + ☰ em qualquer tela) */
+  header.site{position:sticky;top:0;z-index:220;background:rgba(14,26,46,.96);border-bottom:1px solid rgba(201,162,75,.18);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1140px;margin:0 auto;position:relative;z-index:130;}
+  .logo{font-family:var(--serif);font-size:20px;color:var(--cream-2);letter-spacing:.02em;text-decoration:none;}
   .logo b{color:var(--gold-light);}
-  .navlinks{display:flex;align-items:center;gap:28px;}
-  .navlinks a{color:rgba(246,241,231,.82);font-size:14.5px;font-weight:500;}
-  .navlinks a:hover{color:var(--gold-light);}
-  .nav-cta{padding:11px 22px;font-size:14px;}
-  .burger{display:none;background:none;border:none;color:var(--cream);font-size:26px;cursor:pointer;}
-  @media(max-width:880px){
-    .navlinks{display:none;position:fixed;top:64px;right:12px;left:auto;bottom:auto;background:var(--navy);flex-direction:column;align-items:flex-end;text-align:right;padding:22px 26px;gap:18px;z-index:90;min-width:230px;border:1px solid rgba(201,162,75,.5);border-radius:14px;box-shadow:0 16px 38px rgba(0,0,0,.55);}
-    .navlinks.open{display:flex;}
-    .navlinks a:not(.nav-cta){color:var(--gold-light);font-weight:600;}
-    .navlinks a:not(.nav-cta):hover{color:var(--gold);}
-    .burger{display:block;}
+  .burger{display:block;background:none;border:none;color:var(--cream);font-size:26px;cursor:pointer;line-height:1;padding:6px 4px;}
+  .burger:hover{color:var(--gold-light);}
+  .navlinks{
+    display:flex;position:fixed;top:0;right:0;bottom:0;left:auto;
+    width:min(300px,85vw);
+    flex-direction:column;align-items:stretch;
+    padding:0 0 20px;gap:1px;
+    background:linear-gradient(180deg,#0e1a2e 0%,#16283f 100%);
+    border-left:1px solid rgba(201,162,75,.28);
+    box-shadow:-18px 0 46px rgba(0,0,0,.45);
+    transform:translateX(105%);
+    transition:transform .28s ease;
+    z-index:120;overflow-y:auto;
   }
+  .navlinks.open{transform:translateX(0);}
+  .navlinks .nav-cabecalho{display:flex;align-items:center;justify-content:space-between;padding:13px 18px 11px;border-bottom:1px solid rgba(201,162,75,.22);font-family:var(--serif);font-size:16px;color:var(--gold-light);}
+  .nav-fechar{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(246,241,231,.08);border:1px solid rgba(246,241,231,.25);color:var(--cream);font-size:18px;cursor:pointer;line-height:1;}
+  .nav-fechar:hover{background:rgba(201,162,75,.25);border-color:var(--gold);}
+  .navlinks a{color:var(--cream);font-size:15px;font-weight:600;padding:10px 18px;border-bottom:1px solid rgba(246,241,231,.07);display:flex;align-items:center;gap:8px;text-decoration:none;}
+  .navlinks a:hover{background:rgba(201,162,75,.14);color:var(--gold-light);}
+  .navlinks .nav-cta{margin:12px 18px 0;justify-content:center;padding:11px 14px;font-size:14px;white-space:nowrap;}
+  .navlinks .nav-rodape{display:block;margin-top:auto;padding:13px 18px;font-size:11px;color:rgba(246,241,231,.55);line-height:1.5;}
+  #nav-overlay{display:block;position:fixed;inset:0;background:rgba(6,10,18,.62);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:110;}
+  #nav-overlay.visivel{opacity:1;pointer-events:auto;}
 
   /* HERO */
   .hero{background:radial-gradient(1200px 600px at 80% -10%, rgba(201,162,75,.18), transparent 60%), linear-gradient(180deg,var(--navy),var(--navy-2));color:var(--cream-2);padding:96px 0 76px;position:relative;overflow:hidden;}
@@ -248,6 +261,13 @@
   .quiz-head h2{font-family:var(--serif,Georgia,serif);font-size:clamp(1.6rem,3.8vw,2.3rem);margin:0 0 10px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.55);}
   .quiz-head p{color:rgba(246,241,231,.92);font-size:1rem;max-width:40rem;margin:0 auto;text-shadow:0 1px 4px rgba(0,0,0,.4);}
   .quiz-box{max-width:680px;margin:0 auto;background:var(--navy-2,#16283f);border:1px solid rgba(201,162,75,.3);border-radius:16px;padding:30px;position:relative;z-index:1;}
+  .quiz-progresso{margin-bottom:22px;}
+  .qp-rotulo{display:flex;justify-content:space-between;gap:10px;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light,#e3c877);font-weight:700;margin-bottom:8px;}
+  .qp-trilha{height:6px;background:rgba(201,162,75,.18);border-radius:6px;overflow:hidden;}
+  .qp-trilha i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--gold-light,#e3c877),var(--gold-dark,#b8860b));transition:width .3s ease;border-radius:6px;}
+  .quiz-msg{display:none;margin:14px 0 0;padding:11px 14px;border-radius:8px;font-size:.9rem;font-weight:600;}
+  .quiz-msg.erro{display:block;background:rgba(192,57,43,.14);border:1px solid rgba(192,57,43,.4);color:#f6c9c2;}
+  .quiz-msg.ok{display:block;background:rgba(46,125,50,.14);border:1px solid rgba(46,125,50,.4);color:#c9e8cb;}
   .quiz-perg{display:none;}
   .quiz-perg.ativa{display:block;}
   .qp-num{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ouro);font-weight:700;margin-bottom:10px;}
@@ -362,6 +382,42 @@
 
   .eq-aviso{font-size:.75rem;color:var(--muted);margin-top:14px;text-align:center}
 
+
+/* ===== PAIS E FILHOS: CONVERSAS QUE PROTEGEM (sanfona + roteiro) ===== */
+  .pais-sec{background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%);padding:80px 0;position:relative;overflow:hidden;}
+  .pais-sec::before{content:"";position:absolute;top:-90px;left:-70px;width:340px;height:340px;background:radial-gradient(circle,rgba(201,162,75,.16),transparent 65%);}
+  .pf-cartao{max-width:720px;margin:0 auto;background:#fff;border:1px solid rgba(201,162,75,.35);border-radius:16px;padding:28px;box-shadow:var(--shadow);position:relative;z-index:1;}
+  .pf-convite{text-align:center;padding:10px 6px;}
+  .pf-convite p{color:var(--muted);font-size:1rem;margin:0 0 18px;max-width:34rem;margin-left:auto;margin-right:auto;}
+  .pf-aviso{background:#fdecea;border-left:5px solid #c0392b;border-radius:8px;padding:14px 16px;font-size:.88rem;color:#7b241c;margin-bottom:16px;line-height:1.6;}
+  .pf-abertura{background:#fdf6e3;border-left:5px solid var(--ouro);border-radius:8px;padding:14px 16px;font-style:italic;font-size:.98rem;color:var(--navy);margin-bottom:20px;line-height:1.7;}
+  .pf-progresso{margin:18px 0 14px;}
+  .pf-rotulo{display:flex;justify-content:space-between;gap:10px;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dark);font-weight:700;margin-bottom:8px;}
+  .pf-trilha{height:6px;background:rgba(201,162,75,.18);border-radius:6px;overflow:hidden;}
+  .pf-trilha i{display:block;height:100%;width:14%;background:linear-gradient(90deg,var(--gold-light),var(--gold-dark));transition:width .3s ease;border-radius:6px;}
+  .pf-perg{display:none;}
+  .pf-perg.ativa{display:block;}
+  .pf-num{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dark);font-weight:700;margin-bottom:8px;}
+  .pf-titulo{font-size:1.12rem;color:var(--navy);margin:0 0 14px;line-height:1.4;}
+  .pf-opcoes label{display:flex;align-items:flex-start;gap:10px;border:1px solid rgba(201,162,75,.35);border-radius:10px;padding:12px 14px;margin-bottom:9px;cursor:pointer;font-size:.95rem;color:var(--ink);transition:.15s;}
+  .pf-opcoes label:hover{border-color:var(--ouro);background:#fffdf5;}
+  .pf-opcoes input{margin-top:4px;}
+  .pf-dica{font-size:.85rem;color:#6b6255;font-style:italic;background:var(--cream-2);border-left:3px solid var(--ouro);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0 0;line-height:1.6;}
+  .pf-nav{display:flex;justify-content:space-between;gap:12px;margin-top:20px;}
+  .pf-nav .btn{padding:12px 24px;font-size:.95rem;border:none;cursor:pointer;border-radius:8px;}
+  .pf-voltar{background:transparent;border:1px solid var(--ouro);color:var(--gold-dark,#b8860b);}
+  .pf-avancar{background:linear-gradient(180deg,#d4a83f,#b8860b);color:#fff;font-weight:700;}
+  .pf-encerramento{background:#fdf6e3;border-left:5px solid var(--ouro);border-radius:8px;padding:16px 18px;font-style:italic;font-size:1rem;color:var(--navy);margin-bottom:16px;line-height:1.7;}
+  .pf-biblia{background:var(--navy);color:#e8ecf3;border-radius:12px;padding:18px 22px;margin-bottom:18px;}
+  .pf-biblia h3{color:var(--gold-light);font-size:1rem;margin:0 0 10px;}
+  .pf-biblia p{margin:0 0 8px;font-size:.9rem;color:#c4cdda;line-height:1.6;}
+  .pf-biblia .ref{color:var(--gold-light);font-style:italic;}
+  .pf-form{border:1px solid rgba(201,162,75,.4);background:#fffdf5;border-radius:10px;padding:16px;}
+  .pf-form .pf-form-titulo{margin:0 0 10px;font-weight:700;color:var(--navy);font-size:.95rem;}
+  .pf-linha{display:flex;gap:8px;flex-wrap:wrap;}
+  .pf-linha input{flex:1;min-width:180px;padding:10px 12px;border:1px solid var(--ouro);border-radius:8px;font-family:inherit;font-size:.92rem;}
+  .pf-linha .btn-guia{background:linear-gradient(135deg,var(--gold-light,#e3c877),var(--gold-dark,#b8860b));color:#fff;border:none;border-radius:8px;padding:10px 18px;font-weight:700;font-size:.9rem;cursor:pointer;}
+  .pf-form .guia-msg{margin:10px 0 0;font-size:.85rem;display:none;}
 </style>
 </head><body>
 <div id="popup-dicas" aria-live="polite"></div>
@@ -369,7 +425,11 @@
 <header class="site">
   <div class="nav">
     <a href="#" class="logo">Portal O <b>Despertar</b></a>
-    <nav class="navlinks" id="navlinks">
+    <nav class="navlinks" id="navlinks" aria-label="Menu principal">
+      <div class="nav-cabecalho">
+        <span>☰ &nbsp;Menu</span>
+        <button class="nav-fechar" id="nav-fechar" aria-label="Fechar menu">✕</button>
+      </div>
       <a href="#portal">O Portal</a>
       <a href="#livros">Livros</a>
       <a href="#biblioteca">Biblioteca gratuita</a>
@@ -377,10 +437,12 @@
       <a href="#mentora">A Mentora</a>
       <a href="#faq">Dúvidas</a>
       <a class="btn btn-gold nav-cta" href="https://dashboard.kiwify.com.br/courses">🔓 Entrar no Portal</a>
+      <div class="nav-rodape">✝️ "Confia ao Senhor o teu caminho."<br>Salmos 37:5</div>
     </nav>
     <button class="burger" id="burger" aria-label="Abrir menu">☰</button>
   </div>
 </header>
+<div id="nav-overlay"></div>
 
 <section class="hero">
   <div class="wrap hero-grid">
@@ -463,6 +525,10 @@
       <p style="margin-top:16px;"><span style="display:inline-block;background:rgba(201,162,75,.18);border:1px solid var(--ouro);color:var(--gold-light,#e3c877);padding:9px 18px;border-radius:30px;font-size:.9rem;letter-spacing:.02em;">🎁 Ao final, o E-book infantil <strong>Jesus Quer Falar com Seu Filho</strong> de presente</span></p>
     </div>
     <div class="quiz-box">
+      <div class="quiz-progresso">
+        <div class="qp-rotulo"><span id="quiz-rotulo">Pergunta 1 de 7</span><span>✨ Autoavaliação</span></div>
+        <div class="qp-trilha"><i id="quiz-barra" style="width:14%;"></i></div>
+      </div>
       <!-- P1 -->
       <div class="quiz-perg ativa" data-perg="0">
         <p class="qp-num">Pergunta 1 de 7</p>
@@ -540,6 +606,8 @@
           <label><input type="radio" name="q6" value="4"> Já vivo isso todos os dias</label>
         </div>
       </div>
+
+      <div id="quiz-msg" class="quiz-msg" role="status"></div>
 
       <div class="quiz-nav">
         <button class="btn voltar" id="quiz-voltar" onclick="quizVoltar()" type="button">← Voltar</button>
@@ -824,6 +892,7 @@
           </div>
         </div>
       </div>
+
       <!-- LIVRO 12 -->
       <div class="bib-card">
         <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/6RRTBY06/livro12.jpg" alt="Comece o dia com Afirmações, Declarações e Orações - capa"></div>
@@ -841,6 +910,7 @@
           </div>
         </div>
       </div>
+
       <!-- CARD APOIO -->
       <div class="bib-card">
         <div class="bib-capa inteiro"><img class="capa-img" src="https://i.ibb.co/WWfW18pY/ajuda.jpg" alt="Ajude o Portal O Despertar"></div>
@@ -880,6 +950,130 @@
 </section>
 
 
+
+<section id="pais-filhos" class="pais-sec">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Para famílias</span>
+      <h2>👨‍👩‍👧 Pais e Filhos: Conversas que Protegem</h2>
+      <p>Um roteiro amoroso de 7 perguntas para abrir o diálogo com seu filho(a) sobre os desafios da nova geração, sempre com acolhimento e sem julgamento. Nenhuma resposta é registrada no site: é um momento entre vocês.</p>
+    </div>
+    <div class="pf-cartao" id="pf-cartao">
+      <div class="pf-convite" id="pf-convite">
+        <p>O roteiro fica guardado aqui, pronto para quando quiserem. Clique e conduza a conversa pergunta a pergunta, no ritmo do coração de vocês.</p>
+        <button class="btn btn-gold" id="pf-abrir" type="button">💬 Iniciar o roteiro de conversa</button>
+      </div>
+
+      <div class="pf-roteiro" id="pf-roteiro" hidden>
+        <div class="pf-aviso">⚠️ Aviso para os pais: este roteiro não é um teste e nenhuma resposta é registrada no site. É um ponto de partida para o diálogo. Se algo que seu filho(a) disser te preocupar de verdade, acolha com cuidado e busque apoio profissional se necessário. Orar e buscar ajuda caminham juntos, não são opostos.</div>
+        <div class="pf-abertura">"Filho(a), estas perguntas não são um teste e não têm resposta errada. São um convite para nos conhecermos melhor, com amor e respeito. Responda com o coração: o que você sentir, eu quero ouvir. E se não quiser responder alguma agora, tudo bem, isso também é uma resposta válida."</div>
+
+        <div class="pf-progresso">
+          <div class="pf-rotulo"><span id="pf-rotulo">Pergunta 1 de 7</span><span>💛 Momento em família</span></div>
+          <div class="pf-trilha"><i id="pf-barra" style="width:14%;"></i></div>
+        </div>
+
+      <div class="pf-perg ativa" data-pf="0">
+        <p class="pf-num">Pergunta 1 de 7</p>
+        <p class="pf-titulo">O que mais te impede de abrir o coração com a gente?</p>
+        <div class="pf-opcoes">
+          <label><input type="radio" name="pf0" value="1"><span>😔 Medo de bronca</span></label>
+          <label><input type="radio" name="pf0" value="2"><span>😶 Vergonha</span></label>
+          <label><input type="radio" name="pf0" value="3"><span>🤔 Acho que não vão entender</span></label>
+          <label><input type="radio" name="pf0" value="4"><span>🕰️ Sinto que estão sempre ocupados</span></label>
+        </div>
+        <p class="pf-dica">💡 Dica para os pais: abre a porta do diálogo sem julgar. O filho diz o que o trava, e vocês aprendem como chegar.</p>
+      </div>
+
+      <div class="pf-perg" data-pf="1">
+        <p class="pf-num">Pergunta 2 de 7</p>
+        <p class="pf-titulo">Entre seus amigos, isso é uma coisa comum? Alguém já te ofereceu vape, bebida ou outra coisa assim?</p>
+        <div class="pf-opcoes">
+          <label><input type="radio" name="pf1" value="1"><span>🙅 Nunca vi isso rolar</span></label>
+          <label><input type="radio" name="pf1" value="2"><span>😕 É comum, mas nunca me ofereceram</span></label>
+          <label><input type="radio" name="pf1" value="3"><span>😰 Já me ofereceram e fiquei na dúvida</span></label>
+          <label><input type="radio" name="pf1" value="4"><span>💔 Já aconteceu e não me senti bem</span></label>
+        </div>
+        <p class="pf-dica">💡 Dica para os pais: aborda os temas sensíveis com curiosidade sobre o ambiente, não acusação direta. Isso reduz a defensividade e aumenta a honestidade.</p>
+      </div>
+
+      <div class="pf-perg" data-pf="2">
+        <p class="pf-num">Pergunta 3 de 7</p>
+        <p class="pf-titulo">O que você acha que os adultos não entendem sobre o que os jovens enfrentam hoje?</p>
+        <div class="pf-opcoes">
+          <label><input type="radio" name="pf2" value="1"><span>✍️ Resposta livre</span></label>
+        </div>
+        <p class="pf-dica">💡 Dica para os pais: dá voz ao filho. Ele se sente ouvido, e vocês descobrem o mundo do jeito que ele vê.</p>
+      </div>
+
+      <div class="pf-perg" data-pf="3">
+        <p class="pf-num">Pergunta 4 de 7</p>
+        <p class="pf-titulo">Se você pudesse pedir uma coisa para se sentir mais amado e ouvido, o que seria?</p>
+        <div class="pf-opcoes">
+          <label><input type="radio" name="pf3" value="1"><span>⏳ Mais tempo juntos</span></label>
+          <label><input type="radio" name="pf3" value="2"><span>💬 Mais conversa sem julgamento</span></label>
+          <label><input type="radio" name="pf3" value="3"><span>🤝 Mais confiança</span></label>
+          <label><input type="radio" name="pf3" value="4"><span>🧭 Mais liberdade com limites claros</span></label>
+        </div>
+        <p class="pf-dica">💡 Dica para os pais: o filho diz o que precisa, e vocês recebem um presente de orientação.</p>
+      </div>
+
+      <div class="pf-perg" data-pf="4">
+        <p class="pf-num">Pergunta 5 de 7</p>
+        <p class="pf-titulo">Você percebe os esforços e sacrifícios que fazemos por você? O que mais você nota?</p>
+        <div class="pf-opcoes">
+          <label><input type="radio" name="pf4" value="1"><span>✍️ Resposta livre</span></label>
+        </div>
+        <p class="pf-dica">💡 Dica para os pais: lembra o amor e a dedicação dos pais, sem só cobrar do filho. Ele reconhece o que recebe.</p>
+      </div>
+
+      <div class="pf-perg" data-pf="5">
+        <p class="pf-num">Pergunta 6 de 7</p>
+        <p class="pf-titulo">Quando algo dá errado, você se sente seguro(a) para contar para a gente?</p>
+        <div class="pf-opcoes">
+          <label><input type="radio" name="pf5" value="1"><span>💛 Sempre</span></label>
+          <label><input type="radio" name="pf5" value="2"><span>😐 Às vezes</span></label>
+          <label><input type="radio" name="pf5" value="3"><span>😟 Quase nunca</span></label>
+          <label><input type="radio" name="pf5" value="4"><span>😰 Tenho medo da reação</span></label>
+        </div>
+        <p class="pf-dica">💡 Dica para os pais: mostra o nível de confiança real, e vocês entendem onde precisam melhorar, sem bronca. Se for difícil dizer em voz alta, vale escrever num papel.</p>
+      </div>
+
+      <div class="pf-perg" data-pf="6">
+        <p class="pf-num">Pergunta 7 de 7</p>
+        <p class="pf-titulo">Se você pudesse nos contar uma coisa sobre você que ainda não contou, o que seria?</p>
+        <div class="pf-opcoes">
+          <label><input type="radio" name="pf6" value="1"><span>✍️ Resposta livre (totalmente opcional)</span></label>
+        </div>
+        <p class="pf-dica">💡 Dica para os pais: o fechamento perfeito, um convite à intimidade. O filho escolhe o que quer compartilhar, no tempo dele.</p>
+      </div>
+
+        <div class="pf-nav">
+          <button class="btn pf-voltar" id="pf-voltar" onclick="pfVoltar()" type="button" style="visibility:hidden;">← Voltar</button>
+          <button class="btn pf-avancar" id="pf-prox" onclick="pfAvancar()" type="button">Avançar</button>
+        </div>
+
+        <div class="pf-fim" id="pf-fim" hidden>
+          <div class="pf-encerramento">"Obrigado por confiar em nós. Não importa o que você respondeu: você é amado(a), você é importante, e nós estamos aqui para caminhar com você, sempre. Que Deus nos ajude a nos amarmos cada dia mais."</div>
+          <div class="pf-biblia">
+            <h3>📖 Fundamento bíblico</h3>
+            <p>"E vós, pais, não provoqueis vossos filhos à ira, mas criai-os na disciplina e admoestação do Senhor." <span class="ref">(Efésios 6:4)</span></p>
+            <p>"Ensina a criança no caminho em que deve andar, e, ainda quando for velho, não se desviará dele." <span class="ref">(Provérbios 22:6)</span></p>
+            <p>"E estas palavras que hoje te ordeno estarão no teu coração; e as ensinarás a teus filhos, falando delas assentado em tua casa." <span class="ref">(Deuteronômio 6:6-7)</span></p>
+          </div>
+          <div id="guia-pais-form" class="pf-form">
+            <p class="pf-form-titulo">📩 Receba o guia completo no seu e-mail, para ter sempre à mão:</p>
+            <div class="pf-linha">
+              <input type="email" id="guia-email" placeholder="Seu e-mail">
+              <button type="button" class="btn-guia" onclick="enviarGuia()">Receber o Guia</button>
+            </div>
+            <p id="guia-msg" class="guia-msg"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="enquete-sec" id="enquete">
   <div class="wrap">
@@ -1063,6 +1257,9 @@
         <div class="faq-q"><span>Preciso de ajuda. Como falo com a equipe?</span><span class="plus">+</span></div>
         <div class="faq-a"><p>Fale conosco pelo WhatsApp ou envie um e-mail. A equipe está pronta para te acolher.</p></div>
       </div>
+
+      
+
     </div>
   </div>
 </section>
@@ -1123,9 +1320,63 @@
 <a class="wa-float" href="https://wa.me/5528999111493?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Portal%20Miss%C3%A3o%20com%20Deus." aria-label="Falar no WhatsApp">💬</a>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  var navLinks = document.getElementById('navlinks');
+  var navOverlay = document.getElementById('nav-overlay');
+  function menuAbrir(){ navLinks.classList.add('open'); navOverlay.classList.add('visivel'); }
+  function menuFechar(){ navLinks.classList.remove('open'); navOverlay.classList.remove('visivel'); }
   document.getElementById('burger').addEventListener('click', function(){
-    document.getElementById('navlinks').classList.toggle('open');
+    navLinks.classList.contains('open') ? menuFechar() : menuAbrir();
   });
+  var navFecharBtn = document.getElementById('nav-fechar');
+  if (navFecharBtn) { navFecharBtn.addEventListener('click', menuFechar); }
+  if (navOverlay) { navOverlay.addEventListener('click', menuFechar); }
+  document.querySelectorAll('#navlinks a').forEach(function(l){
+    l.addEventListener('click', menuFechar);
+  });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ menuFechar(); } });
+/* ===== PAIS E FILHOS: roteiro sanfona ===== */
+  var pfAtual = 0, pfTotal = 7;
+  var pfAbrirBtn = document.getElementById('pf-abrir');
+  if (pfAbrirBtn) {
+    pfAbrirBtn.addEventListener('click', function(){
+      var roteiro = document.getElementById('pf-roteiro');
+      if (roteiro) {
+        roteiro.hidden = false;
+        pfAbrirBtn.style.display = 'none';
+        if (typeof roteiro.scrollIntoView === 'function') { roteiro.scrollIntoView({behavior:'smooth', block:'start'}); }
+      }
+    });
+  }
+  function pfMostrar(n){
+    var ps = document.querySelectorAll('.pf-perg');
+    ps.forEach(function(p, i){ p.classList.toggle('ativa', i === n); });
+    var bv = document.getElementById('pf-voltar');
+    if (bv) { bv.style.visibility = n === 0 ? 'hidden' : 'visible'; }
+    var bp = document.getElementById('pf-prox');
+    if (bp) { bp.textContent = n === pfTotal - 1 ? 'Concluir 💛' : 'Avançar'; }
+    var barra = document.getElementById('pf-barra');
+    if (barra) { barra.style.width = Math.round(((n + 1) / pfTotal) * 100) + '%'; }
+    var rotulo = document.getElementById('pf-rotulo');
+    if (rotulo) { rotulo.textContent = 'Pergunta ' + (n + 1) + ' de ' + pfTotal; }
+  }
+  function pfAvancar(){
+    if (pfAtual < pfTotal - 1) { pfAtual++; pfMostrar(pfAtual); }
+    else { pfConcluir(); }
+  }
+  function pfVoltar(){
+    if (pfAtual > 0) { pfAtual--; pfMostrar(pfAtual); }
+  }
+  function pfConcluir(){
+    document.querySelectorAll('.pf-perg').forEach(function(p){ p.style.display = 'none'; });
+    var nav = document.querySelector('.pf-nav');
+    if (nav) { nav.style.display = 'none'; }
+    var fim = document.getElementById('pf-fim');
+    if (fim) {
+      fim.hidden = false;
+      if (typeof fim.scrollIntoView === 'function') { fim.scrollIntoView({behavior:'smooth', block:'start'}); }
+    }
+  }
+
   document.querySelectorAll('.faq-q').forEach(function(q){
     q.addEventListener('click', function(){
       q.parentElement.classList.toggle('open');
@@ -1139,6 +1390,16 @@ var quizAtual = 0;
 var quizTotal = 7;
 var quizRespostas = {};
 
+function quizMsg(txt, tipo) {
+  var m = document.getElementById('quiz-msg');
+  if (!m) return;
+  m.textContent = txt;
+  m.className = 'quiz-msg ' + (tipo || '');
+  if (txt && typeof m.scrollIntoView === 'function') {
+    m.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
 function quizMostrar(n) {
   var perguntas = document.querySelectorAll('.quiz-perg');
   perguntas.forEach(function(p, i) {
@@ -1146,6 +1407,10 @@ function quizMostrar(n) {
   });
   document.getElementById('quiz-voltar').style.visibility = n === 0 ? 'hidden' : 'visible';
   document.getElementById('quiz-prox').textContent = n === quizTotal - 1 ? 'Ver meu resultado ✨' : 'Avançar';
+  var barra = document.getElementById('quiz-barra');
+  if (barra) { barra.style.width = Math.round(((n + 1) / quizTotal) * 100) + '%'; }
+  var rotulo = document.getElementById('quiz-rotulo');
+  if (rotulo) { rotulo.innerHTML = 'Pergunta ' + (n + 1) + ' de ' + quizTotal + ' <span style="opacity:.7">✨ Autoavaliação</span>'; }
 }
 
 function quizPegarResposta(n) {
@@ -1155,9 +1420,10 @@ function quizPegarResposta(n) {
 
 function quizProx() {
   if (quizPegarResposta(quizAtual) === null) {
-    alert('Escolha uma opção para continuar.');
+    quizMsg('🙏 Escolha uma opção para continuar, querido(a).', 'erro');
     return;
   }
+  quizMsg('', '');
   if (quizAtual < quizTotal - 1) {
     quizAtual++;
     quizMostrar(quizAtual);
@@ -1168,6 +1434,7 @@ function quizProx() {
 
 function quizVoltar() {
   if (quizAtual > 0) {
+    quizMsg('', '');
     quizAtual--;
     quizMostrar(quizAtual);
   }
@@ -1179,7 +1446,7 @@ function quizResultado() {
   for (var i = 0; i < quizTotal; i++) {
     var v = quizPegarResposta(i);
     if (v === null) {
-      alert('Volte e responda a pergunta ' + (i + 1) + '.');
+      quizMsg('🙏 Volte e responda a pergunta ' + (i + 1) + ' para ver seu resultado.', 'erro');
       return;
     }
     soma += v;
@@ -1213,13 +1480,14 @@ function quizResultado() {
   document.querySelectorAll('.quiz-perg').forEach(function(p) { p.style.display = 'none'; });
   document.querySelector('.quiz-nav').style.display = 'none';
   document.getElementById('quiz-resultado').style.display = 'block';
-  document.getElementById('quiz-resultado').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  var qr = document.getElementById('quiz-resultado');
+  if (qr && typeof qr.scrollIntoView === 'function') { qr.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
 }
 
 function quizEnviar() {
   var email = document.getElementById('quiz-email').value.trim();
   if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    alert('Por favor, informe um e-mail válido.');
+    quizMsg('🙏 Por favor, informe um e-mail válido para receber sua surpresa.', 'erro');
     return;
   }
   var botao = event.target;
@@ -1580,17 +1848,39 @@ function quizEnviar() {
   // Envia o e-mail de notificação (FormSubmit) — SEMPRE, em paralelo com o
   // salvamento no PHP, para o autor receber cada voto/comentário.
   function notificarEmail(payload, soMensagem){
-    var url = "https://formsubmit.co/ajax/compraoseu.com@gmail.com";
-    var dados = {
-      _subject: soMensagem ? "💬 Mensagem do Portal (enquete)" : "📊 Voto na enquete do Portal",
-      _template: "table",
-      _captcha: "false",
-      Mensagem: payload.comentario || "(sem mensagem)",
-      Voto: payload.voto ? (OPCOES[payload.voto] || payload.voto) : "(sem voto, só mensagem)",
-      "E-mail do leitor (para responder)": payload.email || "(não informado)"
+    // 1º: tenta o nosso servidor (notificar.php) — controle total
+    var nosso = {
+      voto: payload.voto || "",
+      mensagem: payload.comentario || "",
+      email: payload.email || "",
+      so_mensagem: soMensagem ? 1 : 0
     };
-    // Best-effort: não altera a mensagem da página; só tenta enviar.
-    fetch(url, { method:"POST", headers:{ "Content-Type":"application/json", "Accept":"application/json" }, body: JSON.stringify(dados) }).catch(function(){});
+    function fallback(){
+      // Fallback: se o mail() do servidor falhar, usa FormSubmit
+      var url = "https://formsubmit.co/ajax/compraoseu.com@gmail.com";
+      var dados = {
+        _subject: soMensagem ? "💬 Mensagem do Portal (enquete)" : "📊 Voto na enquete do Portal",
+        _template: "table",
+        _captcha: "false",
+        Mensagem: payload.comentario || "(sem mensagem)",
+        Voto: payload.voto ? (OPCOES[payload.voto] || payload.voto) : "(sem voto, só mensagem)",
+        "E-mail do leitor (para responder)": payload.email || "(não informado)"
+      };
+      fetch(url, { method:"POST", headers:{ "Content-Type":"application/json", "Accept":"application/json" }, body: JSON.stringify(dados) }).catch(function(){});
+    }
+    fetch("notificar.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(nosso)
+    })
+    .then(function(r){
+      // Se o servidor respondeu erro HTTP (ex.: mail() falhou), usa fallback
+      if(!r.ok){ fallback(); }
+    })
+    .catch(function(){
+      // Erro de rede: usa fallback
+      fallback();
+    });
   }
 
   function enviar(payload, textoOk, soMensagem){
@@ -1626,6 +1916,36 @@ function quizEnviar() {
 
   carregar();
 })();
+</script>
+
+
+<script>
+  function enviarGuia(){
+    var email = document.getElementById("guia-email").value.trim();
+    var msg = document.getElementById("guia-msg");
+    if(!email || email.indexOf("@") < 1){
+      msg.style.color = "#c0392b";
+      msg.textContent = "🙏 Por favor, informe um e-mail válido.";
+      msg.style.display = "block";
+      return;
+    }
+    fetch("enviar_guia.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email })
+    })
+    .then(function(r){ return r.json().then(function(d){ return {ok:r.ok, d:d}; }); })
+    .then(function(res){
+      msg.style.color = "#2e7d32";
+      msg.textContent = res.ok ? "💛 " + res.d.msg + " Verifique sua caixa de entrada (e o spam)." : "🙏 " + (res.d.erro || "Tente novamente.");
+      msg.style.display = "block";
+    })
+    .catch(function(){
+      msg.style.color = "#c0392b";
+      msg.textContent = "🙏 Não foi possível enviar agora. Tente novamente em instantes.";
+      msg.style.display = "block";
+    });
+  }
 </script>
 
 </body></html>
