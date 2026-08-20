@@ -538,3 +538,100 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
   - Vídeos do autor estão como "Não listado" (unlisted) no YouTube → canal
     protegido; iframe usa youtube-nocookie (privacidade). JS/HTML OK; zip
     regenerado.
+
+---
+
+## 📱 MENU MOBILE — DRAWER LATERAL DIREITO (20/08)
+
+- **Problema (relatado pelo autor):** no celular o menu abria de cima,
+  ocupando a largura toda, com links centralizados e fundo que se
+  embaralhava com a página (parecia branco/centralizado e difícil de ler).
+- **Solução aplicada em `site-contabo/index.html` e `paginas/home_preview.html`:**
+  menu vira um painel lateral (drawer) que **desliza da DIREITA**
+  (`width:min(320px,86vw)`, `transform:translateX(105%)` → `0`),
+  com **fundo escuro sólido** (gradiente navy `#0e1a2e→#16283f`),
+  cabeçalho "☰ Menu" + botão **✕** para fechar, links grandes (16.5px,
+  alinhados à esquerda, com separadores), CTA "Entrar no Portal" destacado,
+  rodapé com versículo (Salmos 37:5) e **overlay escuro** por trás
+  (fecha ao clicar fora ou pressionar Esc).
+- JS: `menuAbrir()` / `menuFechar()`; fecha ao tocar em qualquer link.
+- **Zip regenerado** (`site-contabo.zip`, 2.9MB) — baixar novamente.
+- **Subir ao servidor:** rsync da pasta site-contabo/ para
+  /www/wwwroot/missaocomdeus.com.br/ e espelhar para compraoseu.com/
+  (via gerar_estatisticas.py ou rsync manual sem --delete).
+
+---
+
+## 🔧 CORREÇÕES MENU MOBILE + QUIZ (20/08, 2ª rodada)
+
+- **BUG MENU MOBILE ENCONTRADO E CORRIGIDO:** o `header.site` tinha
+  `backdrop-filter:blur(8px)`, que cria um "containing block" para elementos
+  `position:fixed` — o painel do menu ficava preso à altura do header (~64px),
+  mostrando SÓ o cabeçalho (botão ✕) sem as opções. Solução: removido o
+  `backdrop-filter` (fundo passou a `rgba(14,26,46,.96)`, visual quase igual)
+  em `site-contabo/index.html` e `paginas/home_preview.html`. Confirmado por
+  teste jsdom: burger abre `navlinks open` + overlay `visivel`.
+- **BUG QUIZ ENCONTRADO E CORRIGIDO:** os `alert()` do quiz eram bloqueados em
+  iframes/alguns navegadores → clicar "Avançar" sem marcar opção "não fazia
+  nada". Substituídos por **mensagem inline** (`#quiz-msg` com classe erro/ok)
+  nos 3 pontos (quizProx, quizResultado, quizEnviar). **ZERO alerts restantes.**
+- **MELHORIA QUIZ:** adicionada **barra de progresso dourada** (Pergunta X de 7
+  + percentual) no topo do quiz-box, atualizada a cada avanço/volta.
+- **Posição do quiz (confirmada):** a seção "✨ Um segundo de sinceridade com
+  você mesmo" JÁ está entre o Portal e a seção de livros — exatamente onde o
+  autor pediu ("antes da seção dos livros"). Quem rola até a biblioteca passa
+  pelo quiz. O FAQ (Perguntas sobre o Portal + Pais e Filhos) fica no FINAL da
+  Home, antes do CTA final.
+- Testes jsdom 100% verdes nos dois arquivos (index + home_preview). Zip
+  regenerado (2.9MB). Falta subir ao servidor (rsync) e espelhar.
+
+---
+
+## 🧭 QUIZ MOVIDO + RÓTULO "QUIZ" (20/08, 3ª rodada)
+
+- **Confusão do autor resolvida:** ele procurava "quiz" na Home e não achava,
+  porque a seção tinha o rótulo "✨ Autoavaliação gratuita" (sem a palavra
+  QUIZ) e o FAQ tem o item "Pais e Filhos" com "7 perguntas" (mesma
+  quantidade do quiz) → parecia que o quiz estava no FAQ.
+- **Ações:**
+  1. Seção quiz MOVIDA para **logo antes da Biblioteca gratuita**
+     (ordem: hero → portal → obras → **quiz** → **biblioteca** → enquete ...)
+     — exatamente onde o autor pediu (quem vai ler os livros passa pelo quiz).
+  2. Rótulo alterado para **"🧭 QUIZ DE AUTOAVALIAÇÃO GRATUITA"** + link
+     "🧭 Quiz" adicionado ao menu (#quiz).
+  3. Fundo da seção quiz diferenciado (azul médio #1e3352→#16283f com
+     bordas douradas) para não se fundir com a biblioteca escura.
+  4. sw.js bump **v3→v4** (força atualização do cache PWA no celular) +
+     '/guia-pais-filhos' adicionado à lista de cache.
+- Testes jsdom verdes (ordem, quiz avança, barra, menu abre/fecha). Zip
+  regenerado. **AINDA NÃO SUBIDO AO SERVIDOR** — aguardando autorização.
+
+---
+
+## 👨‍👩‍👧 PAIS E FILHOS: SEÇÃO PRÓPRIA COM SANFONA + E-MAIL COMPLETO (20/08, 4ª rodada)
+
+- **Decisão do autor:** o item "Pais e Filhos" NÃO deve ficar escondido no FAQ
+  (ninguém chega no final da página). Virou uma **seção própria na Home** com
+  título visível e **sanfona**: o convite aparece ("💬 Iniciar o roteiro de
+  conversa") e, ao clicar, o roteiro se expande no próprio lugar, sem ocupar
+  a página inteira antes.
+- **Posição:** logo DEPOIS da Biblioteca gratuita e ANTES da enquete
+  (ordem: portal > obras > quiz > biblioteca > **pais-filhos** > enquete > ...).
+  Link "👨‍👩‍👧 Pais e Filhos" adicionado ao menu.
+- **Roteiro interativo** no estilo do quiz de autoavaliação: 7 perguntas,
+  uma por vez, com barra de progresso dourada, botões Voltar/Avançar,
+  opções de exemplo (radio) e "💡 Dica para os pais" em cada pergunta.
+  NÃO exige marcar para avançar (é roteiro de conversa, não teste) e
+  NENHUMA resposta é registrada.
+- **Final do roteiro:** encerramento amoroso + fundamento bíblico
+  (Efésios 6:4, Provérbios 22:6, Deuteronômio 6:6-7) + formulário
+  "Receba o guia completo no seu e-mail" (mesmos IDs guia-email/guia-msg,
+  função enviarGuia() reutilizada).
+- **E-mail do guia (Letra C, decisão do autor):** agora envia o **link +
+  conteúdo COMPLETO** (abertura, 7 perguntas com opções e dicas,
+  encerramento e versículos) humanizado (sem setas, sem travessões longos,
+  sem reticências). Texto em heredoc no enviar_guia.php.
+- Item "Pais e Filhos" REMOVIDO do FAQ (agora só as 5 perguntas originais).
+- Testes jsdom 100% verdes em index.html e home_preview.html
+  (sanfona abre, roteiro avança/volta/conclui, FAQ 5 itens, menu e quiz
+  intactos). Zip regenerado. Ainda NÃO subido ao servidor.

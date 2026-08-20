@@ -1,6 +1,6 @@
 /* Service Worker — Portal O Despertar (PWA) */
-const CACHE = 'portal-despertar-v3';
-const URLS = ['/', '/livro01', '/livro02', '/livro03', '/livro04', '/livro05', '/livro06', '/livro07', '/livro08', '/livro09', '/livro10', '/livro11', '/quiz'];
+const CACHE = 'portal-despertar-v4';
+const URLS = ['/', '/livro01', '/livro02', '/livro03', '/livro04', '/livro05', '/livro06', '/livro07', '/livro08', '/livro09', '/livro10', '/livro11', '/quiz', '/guia-pais-filhos'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(URLS)).catch(() => {}));
