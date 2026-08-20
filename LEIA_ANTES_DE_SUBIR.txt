@@ -60,19 +60,28 @@ O QUE MUDOU (para você conferir no zip antes):
    substituir pela versão nova).
 
 ----------------------------------------------------
-ARQUIVOS PARA SUBIR (na pasta site-contabo/):
+ARQUIVOS PARA SUBIR (no aaPanel):
 ----------------------------------------------------
-✔ index.html              (Home nova: menu + quiz + FAQ)
-✔ sw.js                   (cache v4 — força atualização)
-✔ guia-pais-filhos.html   (página das 7 perguntas)
-✔ enviar_guia.php         (envia o guia por e-mail)
+✅ index.html  → /www/wwwroot/missaocomdeus.com.br/index.html
+                (Home nova: menu, quiz, Pais e Filhos com brinde)
+✅ gerar_estatisticas.py → copiar para /home/deploy/gerar_estatisticas.py
+                (o cron roda sozinho; ou rode na hora:
+                python3 /home/deploy/gerar_estatisticas.py)
 
-⚠ NÃO SUBIR (ainda):
+⏸️ OPCIONAIS (só se quiser agora):
+   sw.js          → cache v4 (celular pega versão nova do PWA)
+   enviar_guia.php → e-mail do guia com link do E-book no final
+
+⚠️ REGRA DE OURO (muito importante!):
+✘ NUNCA subir o enquete_dados.json — o do servidor tem
+  os VOTOS REAIS (~103 votos). O placeholder do zip tem
+  0 votos e SOBRESCREVERIA/ZERARIA a enquete! O zip novo
+  JÁ NÃO TEM esse arquivo (confirmado). Só cuidado se
+  for subir o zip inteiro: não descompacte por cima se
+  ele tiver enquete_dados.json.
 ✘ livro11.html → NÃO ESTÁ MAIS NO ZIP. Ficou guardado
-  na pasta lancamento_livro11/ do projeto (só sobe em
-  27/08, dia do lançamento). Suba tranquilo o zip: ele
-  não vem junto.
-✘ paginas/      → são só para você conferir no PC
+  na pasta lancamento_livro11/ (só sobe em 27/08).
+✘ paginas/     → só para você conferir no PC
 
 ----------------------------------------------------
 COMO SUBIR (aaPanel):

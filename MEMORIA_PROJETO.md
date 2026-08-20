@@ -899,3 +899,49 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
   brinde aparece ao concluir o roteiro (link /ebooks/jesus-quer-falar.pdf,
   "Sua surpresa chegou!"), menu/quiz/FAQ intactos; PHP heredoc ok;
   CSS crítico 316/316 + 13/13. Zip regenerado (sem livro11).
+
+---
+
+## ⚠️ REGRA DE OURO: NUNCA SUBIR `enquete_dados.json` (21/08/2026)
+
+- **PERIGO EVITADO (decisão do autor):** o arquivo `enquete_dados.json`
+  contém os VOTOS REAIS da enquete no servidor (~103 votos). O placeholder
+  do repositório tem `"votos": 0` — se ele for subido no zip, SOBRESCREVE
+  o arquivo do servidor e ZERA a enquete. **NUNCA incluir no zip.**
+- **AÇÃO:** `site-contabo/enquete_dados.json` MOVIDO para
+  `referencias/enquete_dados_MODELO.json` (fora de site-contabo) — o zip
+  agora NÃO contém o arquivo (confirmado: 0 ocorrências). O servidor
+  mantém o seu próprio arquivo com os votos; o enquete.php continua
+  gravando normalmente.
+- **Ao subir:** suba apenas `index.html` (e `gerar_estatisticas.py`).
+  NÃO suba o zip inteiro com dados da enquete — ou se subir, exclua
+  `enquete_dados.json` antes. O rsync de espelhamento (sem --delete)
+  não apaga, mas o UPLOAD do zip + descompactar por cima SOBRESCREVE.
+
+## 📊 STATS: como atualizar (21/08/2026) — resposta à dúvida do autor
+
+- **O cron atualiza sozinho:** o `gerar_estatisticas.py` é rodado pelo
+  cron do servidor e gera o stats.html nos DOIS domínios
+  (OUT=compraoseu.com/stats.html, OUT2=missaocomdeus.com.br/stats.html).
+- **Para atualizar o SCRIPT com a versão nova:** substituir o arquivo
+  `/home/deploy/gerar_estatisticas.py` pela versão nova (via aaPanel,
+  enviar para /home/deploy/). Na PRÓXIMA execução do cron, o stats.html
+  já sai com a rota /quiz-pais-filhos.
+- **Comando manual (gerar na hora, sem esperar o cron):**
+  `su - deploy -c "python3 /home/deploy/gerar_estatisticas.py"`
+  (ou, como root: `python3 /home/deploy/gerar_estatisticas.py`)
+  → imprime "OK: /www/wwwroot/compraoseu.com/stats.html" e o do
+  missaocomdeus.
+- **ATENÇÃO:** o `gerar_estatisticas.py` DO ZIP deve ser copiado para
+  /home/deploy/ — ele é o script correto (o do repo é idêntico).
+  O stats.html gerado é protegido (noindex) e só o admin vê.
+
+## 📦 ARQUIVOS A SUBIR NO AAPANEL (confirmação do autor, 21/08)
+
+- ✅ **index.html** (Home: menu, quiz, Pais e Filhos com brinde, etc.)
+- ✅ **gerar_estatisticas.py** (atualizar /home/deploy/gerar_estatisticas.py)
+- ⏸️ **opcionais:** enviar_guia.php (se quiser o link do e-book no e-mail
+  do guia — MUDOU nesta rodada) e sw.js (cache v4, para o celular pegar a
+  versão nova do PWA). Se não subir, a página ainda funciona; só o e-mail
+  fica sem o presente e o PWA pode mostrar cache antigo.
+- ❌ **NUNCA:** enquete_dados.json (zera votos), livro11.html (fora até 27/08).
