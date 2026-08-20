@@ -1948,4 +1948,17 @@ function quizEnviar() {
   }
 </script>
 
-</body></html>
+
+<script>
+// Sinalizador silencioso para o roteiro Pais e Filhos
+document.addEventListener('DOMContentLoaded', function() {
+  var btnPf = document.getElementById('pf-abrir');
+  if (btnPf) {
+    btnPf.addEventListener('click', function() {
+      fetch('/quiz-pais-filhos').catch(function(){});
+    });
+  }
+});
+</script>
+</body>
+</html>
