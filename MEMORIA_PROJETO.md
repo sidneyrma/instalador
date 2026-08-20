@@ -977,3 +977,31 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
   `/home/deploy/gerar_estatisticas.py` pela versão nova (do zip) e rodar
   `python3 /home/deploy/gerar_estatisticas.py` (ou esperar o cron). Os
   próximos cliques no botão do roteiro já contam.
+
+---
+
+## 📊 STATS: FILTRO DE REDIRECTS (301/302) — SEM DUPLA CONTAGEM (21/08, 2ª correção)
+
+- **Descoberta do autor (teste no notebook vs celular):** a contagem "subiu
+  demais" (2060 brutos hoje no notebook vs 933 no celular minutos antes).
+  Causa: o notebook já mostrava a versão nova do script (lê os DOIS logs),
+  mas quem entra pelo compraoseu.com (domínio antigo) gera 2 entradas:
+  um **301** no log do compraoseu + um **200** no log do missaocomdeus.
+  Somar os dois logs contava a mesma visita 2x (inflava brutos e humanos).
+- **CORREÇÃO (nos 2 scripts):** capturar o status HTTP da linha e IGNORAR
+  redirecionamentos (301/302/303/307/308). Assim:
+  - O log do compraoseu (quase 100% 301s) não infla mais os números;
+  - Só contam páginas realmente servidas (200) no domínio principal;
+  - O /quiz-pais-filhos (rota fantasma, retorna 404 de propósito) CONTINUA
+    sendo contado (404 não é redirect);
+  - Bots/ataques continuam no painel.
+- **Teste com logs simulados:** missaocomdeus (200/404) + compraoseu (301s)
+  → total 4 (não 7); home 1, quiz-pais-filhos 1, livro05 1, quiz 1. Os dois
+  scripts passaram. py_compile OK.
+- **Explicação para o autor:** o celular mostrava a versão antiga (só o log
+  do compraoseu, gerado 17:24). O notebook mostrava a nova (dois logs,
+  17:43). Após subir o script corrigido, os números caem para o valor
+  REAL (páginas servidas) e os dois aparelhos ficam iguais.
+- **Ação no servidor:** substituir /home/deploy/gerar_estatisticas.py pela
+  versão nova e rodar `python3 /home/deploy/gerar_estatisticas.py` (ou
+  esperar o cron).

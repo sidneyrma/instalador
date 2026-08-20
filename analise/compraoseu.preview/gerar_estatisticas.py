@@ -111,6 +111,11 @@ def analisar():
             m = RE_LINHA.match(linha)
             if not m:
                 continue
+            # Ignora redirecionamentos (301/302/303/307/308): nao sao visitas,
+            # sao apenas a "ponte" do dominio antigo para o novo. Contar os dois
+            # logs sem filtrar contaria a mesma visita 2x (301 + 200).
+            if re.search(r'" (301|302|303|307|308) \d+', linha):
+                continue
             ip, data, url = m.group(1), m.group(2), m.group(3)
             if RE_EXT.search(url):
                 continue
