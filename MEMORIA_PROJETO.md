@@ -681,3 +681,30 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
   9 links; versículo só no drawer; ordem portal>quiz>livros>biblioteca
   >pais-filhos mantida; quiz e sanfona funcionando; FAQ com 5 itens.
 - Zip regenerado. Commit e push feitos.
+
+---
+
+## ☰ MENU HAMBÚRGUER UNIVERSAL + ZIP NA RAIZ (20/08, 7ª rodada)
+
+- **Problema relatado pelo autor (notebook):** ao abrir o index.html no
+  notebook, os links do menu apareciam um ao lado do outro no topo (menu
+  horizontal) junto com o cabeçalho "☰ Menu ✕" do drawer — tudo "solto"
+  e bagunçado. Ele pediu que em QUALQUER tela aparecesse como no celular:
+  logo à esquerda + ☰ à direita.
+- **Solução (index.html + home_preview.html):** removido o menu horizontal
+  do desktop. Agora o CSS base (sem media query) define:
+  - `.burger{display:block}` SEMPRE visível (qualquer largura de tela);
+  - `.navlinks` SEMPRE como drawer lateral fixo à direita
+    (`position:fixed; transform:translateX(105%)`, abre com `.open`);
+  - cabeçalho "☰ Menu" + botão ✕ + links + rodapé (Salmos 37:5) sempre
+    dentro do drawer; overlay sempre presente.
+  - Resultado: o topo em qualquer dispositivo mostra apenas
+    "Portal O Despertar" à esquerda e "☰" à direita. Zero confusão.
+- **ZIP:** agora gerado com os arquivos NA RAIZ (cd site-contabo &&
+  zip -r ../site-contabo.zip .). Ao descompactar, os arquivos caem direto
+  (index.html, enviar_guia.php, etc.) sem criar subpasta — importante
+  para o aaPanel não criar "pasta dentro do domínio".
+- Testes jsdom verdes: burger sempre visível, drawer fixo sempre,
+  comportamento abrir/fechar (burger, ✕, overlay), ordem portal>quiz
+  >livros>biblioteca>pais-filhos, quiz avança, sanfona abre.
+- Zip regenerado (2.9MB, raiz). Commit + push feitos.

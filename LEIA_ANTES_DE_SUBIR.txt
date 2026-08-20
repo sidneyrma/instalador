@@ -9,11 +9,18 @@ arquivos que precisam ir para o servidor.
 ----------------------------------------------------
 O QUE MUDOU (para você conferir no zip antes):
 ----------------------------------------------------
-1. MENU DO CELULAR: agora desliza da direita, com
-   fundo escuro azul-marinho, botão ✕ e o versículo
-   Salmos 37:5 no final. (Abra o index.html do zip e
-   diminua a janela para menos de 880px, ou use F12
-   e o ícone de celular.)
+0. IMPORTANTE — O ZIP AGORA TEM OS ARQUIVOS NA RAIZ!
+   Ao descompactar no servidor (aaPanel), os arquivos
+   caem DIRETO na pasta do domínio, sem criar uma
+   pasta dentro da outra. Pode extrair "na pasta
+   atual" que fica tudo certinho.
+
+1. MENU (agora igual em todas as telas): no topo
+   aparece apenas "Portal O Despertar" à esquerda e
+   o botão ☰ à direita. Ao clicar no ☰, abre o painel
+   lateral escuro com os itens um embaixo do outro
+   e o versículo Salmos 37:5 no final. Nada de links
+   soltos no topo do notebook — igual ao celular.
 
 2. QUIZ: agora está LOGO ABAIXO DA SEÇÃO "O Portal"
    (depois do card "Acesso vitalício"), antes das obras
@@ -22,15 +29,7 @@ O QUE MUDOU (para você conferir no zip antes):
    progresso dourada e avisos na própria tela. Há um
    link "🧭 Quiz" no menu.
 
-3. MENU NO TOPO (computador): LIMPO! O "☰ Menu" e o
-   versículo agora aparecem SÓ no menu do celular. No
-   notebook o topo tem só o logo + os links. E em
-   telas menores que 1300px (notebook pequeno,
-   tablet, celular) o topo mostra apenas o ☰, que
-   abre o painel lateral com os itens um embaixo do
-   outro (sem bagunça).
-
-4. 👨‍👩‍👧 PAIS E FILHOS: saiu do FAQ e virou SEÇÃO
+3. 👨‍👩‍👧 PAIS E FILHOS: saiu do FAQ e virou SEÇÃO
    PRÓPRIA na Home, logo após a Biblioteca gratuita.
    Aparece como uma sanfona: o convite fica visível
    ("💬 Iniciar o roteiro de conversa") e, ao clicar,
@@ -40,7 +39,7 @@ O QUE MUDOU (para você conferir no zip antes):
    O item foi REMOVIDO do FAQ (que voltou a ter só as
    5 perguntas originais).
 
-5. E-MAIL DO GUIA (Letra C): quem informa o e-mail
+4. E-MAIL DO GUIA (Letra C): quem informa o e-mail
    recebe o LINK + as 7 perguntas COMPLETAS no corpo
    do e-mail (abertura, perguntas, encerramento e
    versículos), tudo humanizado.
