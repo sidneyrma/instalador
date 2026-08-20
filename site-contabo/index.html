@@ -1064,6 +1064,23 @@
         <div class="faq-q"><span>Preciso de ajuda. Como falo com a equipe?</span><span class="plus">+</span></div>
         <div class="faq-a"><p>Fale conosco pelo WhatsApp ou envie um e-mail. A equipe está pronta para te acolher.</p></div>
       </div>
+
+      <div class="faq-item">
+        <div class="faq-q"><span>👨‍👩‍👧 Pais e Filhos: Conversas que Protegem</span><span class="plus">+</span></div>
+        <div class="faq-a">
+          <p>Um guia para abrir o diálogo com seu filho(a) com amor, respeito e a presença de Deus. Não é um teste e não tem resposta errada — é um convite para se conhecerem melhor.</p>
+          <p style="font-size:.88rem;color:#6b6255;">📖 As 7 perguntas abordam temas como vape, bebidas e os desafios da nova geração, sempre com acolhimento e sem julgamento. Nenhuma resposta é registrada no site — é um momento entre vocês.</p>
+          <div id="guia-pais-form" style="margin-top:14px;padding:14px;background:#fdf6e3;border:1px solid var(--ouro);border-radius:10px;">
+            <p style="margin:0 0 10px;font-weight:700;color:var(--navy);">📩 Receba o guia completo no seu e-mail:</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <input type="email" id="guia-email" placeholder="Seu e-mail" style="flex:1;min-width:180px;padding:10px 12px;border:1px solid var(--ouro);border-radius:8px;font-family:inherit;font-size:.92rem;">
+              <button type="button" onclick="enviarGuia()" style="background:linear-gradient(135deg,var(--gold-light,#e3c877),var(--gold-dark,#b8860b));color:#fff;border:none;border-radius:8px;padding:10px 18px;font-weight:700;font-size:.9rem;cursor:pointer;">Receber o Guia</button>
+            </div>
+            <p id="guia-msg" style="margin:10px 0 0;font-size:.85rem;color:#2e7d32;display:none;"></p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1649,6 +1666,36 @@ function quizEnviar() {
 
   carregar();
 })();
+</script>
+
+
+<script>
+  function enviarGuia(){
+    var email = document.getElementById("guia-email").value.trim();
+    var msg = document.getElementById("guia-msg");
+    if(!email || email.indexOf("@") < 1){
+      msg.style.color = "#c0392b";
+      msg.textContent = "🙏 Por favor, informe um e-mail válido.";
+      msg.style.display = "block";
+      return;
+    }
+    fetch("enviar_guia.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email })
+    })
+    .then(function(r){ return r.json().then(function(d){ return {ok:r.ok, d:d}; }); })
+    .then(function(res){
+      msg.style.color = "#2e7d32";
+      msg.textContent = res.ok ? "💛 " + res.d.msg + " Verifique sua caixa de entrada (e o spam)." : "🙏 " + (res.d.erro || "Tente novamente.");
+      msg.style.display = "block";
+    })
+    .catch(function(){
+      msg.style.color = "#c0392b";
+      msg.textContent = "🙏 Não foi possível enviar agora. Tente novamente em instantes.";
+      msg.style.display = "block";
+    });
+  }
 </script>
 
 </body></html>

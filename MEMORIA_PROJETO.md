@@ -380,6 +380,24 @@ chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
 
 ---
 
+## 👨‍👩‍👧 PAIS E FILHOS: CONVERSAS QUE PROTEGEM (20/08) — CRIADO!
+
+- **Guia completo** em site-contabo/guia-pais-filhos.html (7 perguntas com
+  aviso para pais, abertura amorosa, encerramento, fundamento bíblico).
+- **enviar_guia.php** criado: recebe o e-mail do pai/mãe, envia o guia (link)
+  para o e-mail deles + notifica o autor (compraoseu.com@gmail.com).
+- **Bloco no FAQ da Home** (discreto, abre se quiser): "👨‍👩‍👧 Pais e Filhos:
+  Conversas que Protegem" com campo de e-mail + botão "Receber o Guia".
+- **Nenhuma resposta é registrada no site** (é conversa entre pais e filhos,
+  não estatística) — o quiz vira uma "isca de e-mail qualificada" sem expor
+  dados de menores.
+- Aplicado nas duas Homes + gerador? (verificar adicionar script no gerador
+  se necessário). JS/HTML validados. zip regenerado.
+- **PARA SUBIR:** enviar zip novo (index + guia-pais-filhos.html +
+  enviar_guia.php) nos dois domínios.
+
+---
+
 ## 💾 BACKUP — GUIA CRIADO (19/08)
 
 - **analise/migracao_contabo/guia_backup_completo.md criado** com todos os
