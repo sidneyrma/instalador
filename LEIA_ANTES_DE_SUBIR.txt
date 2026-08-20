@@ -54,7 +54,10 @@ ARQUIVOS PARA SUBIR (na pasta site-contabo/):
 ✔ enviar_guia.php         (envia o guia por e-mail)
 
 ⚠ NÃO SUBIR (ainda):
-✘ livro11.html  → fica FORA até 27/08 (lançamento)
+✘ livro11.html → NÃO ESTÁ MAIS NO ZIP. Ficou guardado
+  na pasta lancamento_livro11/ do projeto (só sobe em
+  27/08, dia do lançamento). Suba tranquilo o zip: ele
+  não vem junto.
 ✘ paginas/      → são só para você conferir no PC
 
 ----------------------------------------------------

@@ -786,3 +786,30 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
   link; quiz avança com barra; sanfona Pais e Filhos abre; FAQ 5 itens;
   ordem portal > quiz > livros > biblioteca > pais-filhos > enquete.
 - Zip regenerado na raiz. Commit + push.
+
+---
+
+## 📦 LIVRO11 FORA DO ZIP (20/08, encerramento do dia)
+
+- O autor notou que o livro11.html foi empacotado no site-contabo.zip
+  (estava em site-contabo/). Ele já tinha apagado do servidor.
+- **AÇÃO:** movido `site-contabo/livro11.html` → `lancamento_livro11/livro11.html`
+  (pasta própria de lançamento, FORA de site-contabo). O zip agora NÃO
+  contém o livro11 (confirmado: 0 ocorrências). No dia 27/08, basta subir
+  o arquivo de lancamento_livro11/ para o servidor e publicar o card.
+- sw.js continua com '/livro11' no cache (necessário no lançamento; o
+  .catch no install evita erro enquanto o arquivo não existe).
+
+## 🔤 TAMANHO DA FONTE (pergunta do autor, respondida)
+
+- Padrão universal da web: **16px** para texto corrido (é o padrão dos
+  navegadores e de acessibilidade). Nosso site NÃO define font-size no
+  body → herda 16px (padrão).
+- Medições reais do index.html:
+  - h1 do hero: 44px desktop / 32px celular (padrão comum de hero)
+  - Parágrafo de destaque (.lead): 18px (padrão; a maioria usa 17-18px)
+  - Texto de cards/seções: 14-16px (padrão)
+- **CONCLUSÃO:** o site está DENTRO dos padrões de mercado. A sensação
+  de "texto grande no notebook" vem do .lead 18px e do h1 44px (comuns
+  em landing pages). Se o autor quiser, ajuste fino opcional: .lead para
+  17px e h1 para 40px (não feito — aguardando decisão).
