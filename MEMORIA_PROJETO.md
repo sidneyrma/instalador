@@ -945,3 +945,35 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
   versão nova do PWA). Se não subir, a página ainda funciona; só o e-mail
   fica sem o presente e o PWA pode mostrar cache antigo.
 - ❌ **NUNCA:** enquete_dados.json (zera votos), livro11.html (fora até 27/08).
+
+---
+
+## 📊 STATS: LOG DUPLO (missaocomdeus + compraoseu) — DESCOBERTA IMPORTANTE (21/08)
+
+- **POR QUE O TESTE DO AUTOR FICOU EM ZERO:** o script de estatísticas lia
+  APENAS `/www/wwwlogs/compraoseu.com.log`. Mas o domínio PRINCIPAL é o
+  missaocomdeus.com.br, que tem LOG PRÓPRIO
+  (`/www/wwwlogs/missaocomdeus.com.br.log`). Os cliques no quiz Pais e
+  Filhos feitos em https://missaocomdeus.com.br iam para o log do
+  missaocomdeus — o script nem olhava lá. (O compraoseu só recebe 301.)
+- **CORREÇÃO (nos 2 scripts: analise/compraoseu.preview/ e
+  site-contabo/gerar_estatisticas.py — este é o que vai para
+  /home/deploy/):**
+  1. `LOG` → `LOGS = [missaocomdeus.com.br.log, compraoseu.com.log]`
+     e o loop agora usa um gerador (`_linhas_logs`) que percorre TODOS os
+     logs existentes e SOMA as contagens.
+  2. Links do ranking: passam a apontar para
+     https://missaocomdeus.com.br (domínio principal). Para a rota
+     /quiz-pais-filhos, o link vai para /#pais-filhos (a seção real da
+     Home) — assim NÃO dá mais 404 ao clicar no ranking.
+- **404 do /quiz-pais-filhos é ESPERADO:** a rota é "fantasma" (só para
+  contagem via fetch silencioso do botão #pf-abrir). O nginx registra o
+  404 no log e o script conta pelo path (independente do status). Não é
+  necessário criar página.
+- **Testes:** log simulado dos 2 domínios → soma correta (quiz-pais-filhos
+  2, quiz 1, home 2, livro05 1); HTML do ranking com link do domínio
+  principal e sem 404. py_compile OK nos 2 scripts.
+- **PARA ATUALIZAR NO SERVIDOR:** substituir
+  `/home/deploy/gerar_estatisticas.py` pela versão nova (do zip) e rodar
+  `python3 /home/deploy/gerar_estatisticas.py` (ou esperar o cron). Os
+  próximos cliques no botão do roteiro já contam.

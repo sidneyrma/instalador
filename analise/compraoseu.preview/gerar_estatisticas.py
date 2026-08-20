@@ -24,7 +24,10 @@ import html
 from collections import Counter, OrderedDict
 from datetime import datetime, timedelta
 
-LOG = '/www/wwwlogs/compraoseu.com.log'
+LOGS = [
+    '/www/wwwlogs/missaocomdeus.com.br.log',
+    '/www/wwwlogs/compraoseu.com.log',
+]
 OUT = '/www/wwwroot/compraoseu.com/stats.html'
 
 PAGINAS = OrderedDict([
@@ -94,11 +97,17 @@ def analisar():
     acessos_ontem_mesmo_horario = 0
     acessos_ontem_mesmo_horario_real = 0
 
-    if not os.path.exists(LOG):
-        return None, 'Log não encontrado: ' + LOG
+    logs_lidos = [p for p in LOGS if os.path.exists(p)]
+    if not logs_lidos:
+        return None, 'Nenhum log encontrado: ' + ', '.join(LOGS)
 
-    with open(LOG, 'r', encoding='utf-8', errors='ignore') as f:
-        for linha in f:
+    def _linhas_logs():
+        for _p in logs_lidos:
+            with open(_p, 'r', encoding='utf-8', errors='ignore') as _f:
+                for _linha in _f:
+                    yield _linha
+
+    for linha in _linhas_logs():
             m = RE_LINHA.match(linha)
             if not m:
                 continue
@@ -197,7 +206,7 @@ def montar_html(res):
         linhas.append(f"""
         <tr>
           <td class="num">{medalha} {i}</td>
-          <td><a href="https://compraoseu.com{path}">{html.escape(nome)}</a><br><span class="url">{path}</span></td>
+          <td><a href="https://missaocomdeus.com.br{path if path != '/quiz-pais-filhos' else '/#pais-filhos'}">{html.escape(nome)}</a><br><span class="url">{path}</span></td>
           <td class="num">{n} {hoje_txt}</td>
           <td class="num">{pct:.1f}%</td>
           <td><div class="barra"><div class="fill" style="width:{min(100,pct)}%"></div></div></td>

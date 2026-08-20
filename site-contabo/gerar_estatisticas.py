@@ -3,7 +3,10 @@ import os, re, html
 from collections import Counter, OrderedDict
 from datetime import datetime, timedelta
 
-LOG     = '/www/wwwlogs/compraoseu.com.log'
+LOGS    = [
+    '/www/wwwlogs/missaocomdeus.com.br.log',
+    '/www/wwwlogs/compraoseu.com.log',
+]
 OUT     = '/www/wwwroot/compraoseu.com/stats.html'
 OUT2    = '/www/wwwroot/missaocomdeus.com.br/stats.html'
 DOMINIO = 'missaocomdeus.com.br'
@@ -63,10 +66,17 @@ def analisar():
     data_ontem = agora.date() - timedelta(days=1)
     ontem_mesmo_horario = 0
     ontem_mesmo_horario_real = 0
-    if not os.path.exists(LOG):
-        return None, 'Log nao encontrado: ' + LOG
-    with open(LOG, 'r', encoding='utf-8', errors='ignore') as f:
-        for linha in f:
+    logs_lidos = [p for p in LOGS if os.path.exists(p)]
+    if not logs_lidos:
+        return None, 'Nenhum log encontrado: ' + ', '.join(LOGS)
+
+    def _linhas_logs():
+        for _p in logs_lidos:
+            with open(_p, 'r', encoding='utf-8', errors='ignore') as _f:
+                for _linha in _f:
+                    yield _linha
+
+    for linha in _linhas_logs():
             m = RE_LINHA.match(linha)
             if not m: continue
             ip, data_raw, url = m.group(1), m.group(2), m.group(3)
@@ -199,7 +209,7 @@ def gerar():
         linhas_ranking += (
             '<tr>'
             '<td class="num">' + medalha + '</td>'
-            '<td><a href="https://' + DOMINIO + path + '" target="_blank">' + nome + '</a>'
+            '<td><a href="https://' + DOMINIO + (path if path != '/quiz-pais-filhos' else '/#pais-filhos') + '" target="_blank">' + nome + '</a>'
             '<br><span class="url">' + path + '</span></td>'
             '<td class="num">' + str(n) + ' ' + hoje_txt + '</td>'
             '<td class="num">{:.1f}%</td>'.format(pct_num) +

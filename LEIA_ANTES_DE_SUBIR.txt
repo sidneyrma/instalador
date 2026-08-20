@@ -65,8 +65,13 @@ ARQUIVOS PARA SUBIR (no aaPanel):
 ✅ index.html  → /www/wwwroot/missaocomdeus.com.br/index.html
                 (Home nova: menu, quiz, Pais e Filhos com brinde)
 ✅ gerar_estatisticas.py → copiar para /home/deploy/gerar_estatisticas.py
-                (o cron roda sozinho; ou rode na hora:
-                python3 /home/deploy/gerar_estatisticas.py)
+                ⭐ IMPORTANTE: esta versão lê os DOIS logs
+                (missaocomdeus.com.br.log E compraoseu.com.log) e soma.
+                Por isso o Quiz Pais e Filhos aparecia 0 no dashboard:
+                os cliques iam para o log do missaocomdeus, que o script
+                antigo não lia. Depois de substituir, rode:
+                python3 /home/deploy/gerar_estatisticas.py
+                (ou espere o cron rodar sozinho).
 
 ⏸️ OPCIONAIS (só se quiser agora):
    sw.js          → cache v4 (celular pega versão nova do PWA)
