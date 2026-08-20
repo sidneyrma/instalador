@@ -42,6 +42,7 @@ PAGINAS = OrderedDict([
     ('/livro11', 'Livro 11 — O Novo Testamento como nunca lido'),
     ('/livro12', 'Livro 12 — Comece o dia com Afirmações, Declarações e Orações'),
     ('/quiz', 'Quiz — Autoavaliação'),
+    ('/quiz-pais-filhos', 'Quiz — Pais e Filhos (Conversas que Protegem)'),
 ])
 
 RE_LINHA = re.compile(r'^(\S+) .*?\[([^\]]+)\] "GET (\S+) HTTP')
@@ -111,7 +112,7 @@ def analisar():
             ua = linha.rsplit('"', 2)[-2] if linha.count('"') >= 4 else ''
             bot = eh_bot(ip, path, url, ua)
 
-            if path.startswith('/livro') or path == '/' or path == '/quiz':
+            if path.startswith('/livro') or path == '/' or path.startswith('/quiz'):
                 contagens[path] += 1
             else:
                 contagens['/outros:' + path] += 1
@@ -126,7 +127,7 @@ def analisar():
                 por_dia[chave_dia] += 1
                 if not bot:
                     por_dia_real[chave_dia] += 1
-                if chave_dia == hoje_str and (path.startswith('/livro') or path == '/' or path == '/quiz'):
+                if chave_dia == hoje_str and (path.startswith('/livro') or path == '/' or path.startswith('/quiz')):
                     contagens_hoje[path] += 1
                 if dt.date() == data_ontem and (dt.hour, dt.minute) <= (agora.hour, agora.minute):
                     acessos_ontem_mesmo_horario += 1
@@ -304,6 +305,7 @@ def montar_html(res):
     <div class="card destaque"><div class="v">{total_livros}</div><div class="l">Acessos aos livros</div></div>
     <div class="card"><div class="v">{livros_lidos}</div><div class="l">Livros lidos</div></div>
     <div class="card"><div class="v">{contagens.get('/quiz',0)}</div><div class="l">Quiz</div></div>
+    <div class="card"><div class="v">{contagens.get('/quiz-pais-filhos',0)}</div><div class="l">Quiz Pais e Filhos</div></div>
   </div>
 
   <h2>🏆 Ranking (Home + Livros + Quiz)</h2>

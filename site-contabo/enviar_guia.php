@@ -111,6 +111,13 @@ FUNDAMENTO BÍBLICO
 "Ensina a criança no caminho em que deve andar, e, ainda quando for velho, não se desviará dele." (Provérbios 22:6)
 "E estas palavras que hoje te ordeno estarão no teu coração; e as ensinarás a teus filhos, falando delas assentado em tua casa." (Deuteronômio 6:6-7)
 
+============================================
+PRESENTE PARA SUA FAMÍLIA
+============================================
+E de presente, o E-book infantil "Jesus Quer Falar com Seu Filho", com imagens inspiradoras e atividades para pintar e desenhar. Baixe aqui:
+https://missaocomdeus.com.br/ebooks/jesus-quer-falar.pdf
+Que o amor de Jesus alcance o coração da sua família!
+
 Com amor, em Cristo Jesus,
 Equipe Missão com Deus
 missaocomdeus.com.br

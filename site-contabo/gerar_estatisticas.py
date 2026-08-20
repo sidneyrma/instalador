@@ -23,6 +23,7 @@ PAGINAS = OrderedDict([
     ('/livro11', 'Livro 11 - O Novo Testamento como nunca lido'),
     ('/livro12', 'Livro 12 - Afirmacoes, Declaracoes e Oracoes'),
     ('/quiz',    'Quiz - Autoavaliacao'),
+    ('/quiz-pais-filhos', 'Quiz - Pais e Filhos (Conversas que Protegem)'),
 ])
 
 PAGINAS_LEGITIMAS = ['/enquete.php', '/enquete', '/stats', '/stats.html', '/leitor']

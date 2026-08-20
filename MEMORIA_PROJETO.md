@@ -868,3 +868,34 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
 | Privacidade JSON | ✅ RESOLVIDO em 20/08 |
 
 
+
+---
+
+## 🎁 BRINDE E-BOOK NO QUIZ PAIS E FILHOS + STATS CORRIGIDO (21/08/2026)
+
+- **Pedido do autor:** oferecer o MESMO brinde do quiz de autoavaliação no
+  fim do roteiro Pais e Filhos: o E-book "Jesus Quer Falar com Seu Filho",
+  com link para baixar (sem exigir e-mail).
+- **Feito (index.html + home_preview.html):** novo bloco `pf-presente`
+  dentro do `#pf-fim` (após o fundamento bíblico, antes do formulário):
+  🎁 "Sua surpresa chegou!" + botão dourado "📖 Baixar meu E-book grátis"
+  apontando para /ebooks/jesus-quer-falar.pdf (mesmo link do quiz de
+  autoavaliação — PDF já está no servidor). Estilo: cartão dourado
+  (linear-gradient creme, borda ouro, rodapé da missão).
+- **Feito (enviar_guia.php):** o e-mail do Guia Pais e Filhos agora também
+  inclui a seção "PRESENTE PARA SUA FAMÍLIA" com o link do e-book.
+- **BUG STATS ENCONTRADO E CORRIGIDO:** o teste do autor (clique em
+  "Iniciar o roteiro") não contabilizava porque o script de estatísticas
+  NÃO mapeava a rota /quiz-pais-filhos (a condição era `path == '/quiz'`,
+  que não casa com '/quiz-pais-filhos'). Corrigido em
+  analise/compraoseu.preview/gerar_estatisticas.py e
+  site-contabo/gerar_estatisticas.py:
+  - PAGINAS += ('/quiz-pais-filhos', 'Quiz — Pais e Filhos (Conversas que Protegem)')
+  - condição de contagem: `path.startswith('/quiz')` (pega /quiz e
+    /quiz-pais-filhos) nas 2 ocorrências;
+  - card próprio "Quiz Pais e Filhos" no dashboard.
+- **Testes:** script rodado com log simulado → /quiz-pais-filhos contado
+  (total 1, hoje 1); HTML do dashboard inclui o card e o ranking; jsdom:
+  brinde aparece ao concluir o roteiro (link /ebooks/jesus-quer-falar.pdf,
+  "Sua surpresa chegou!"), menu/quiz/FAQ intactos; PHP heredoc ok;
+  CSS crítico 316/316 + 13/13. Zip regenerado (sem livro11).
