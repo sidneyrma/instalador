@@ -73,8 +73,34 @@ if ($metodo === 'POST') {
 
     $enviado = @mail($DESTINO, $assunto, $corpo_email, $cabecalhos);
 
+    // ===== AGRADECIMENTO AUTOMÁTICO AO LEITOR (se informou e-mail) =====
+    $resposta_agradecimento = false;
+    if ($email_leitor !== '') {
+        $assunto_agradecimento = '🙏 Obrigado por participar, Missão com Deus';
+        $corpo_agradecimento = "Paz e graça, querido(a) irmão(ã)!\n\n";
+        $corpo_agradecimento .= "Recebemos a sua participação no Portal Missão com Deus e queremos\n";
+        $corpo_agradecimento .= "agradecer de todo o coração por compartilhar conosco.\n\n";
+        $corpo_agradecimento .= "A sua voz é importante para nós. Cada mensagem, cada voto e cada\n";
+        $corpo_agradecimento .= "comentário nos ajuda a levar a Palavra de Deus a mais corações.\n\n";
+        $corpo_agradecimento .= "Que esta verdade permaneça no seu coração:\n";
+        $corpo_agradecimento .= "\"Lançando sobre ele toda a vossa ansiedade, porque ele tem cuidado de vós.\"\n";
+        $corpo_agradecimento .= "(1 Pedro 5:7)\n\n";
+        $corpo_agradecimento .= "Continue caminhando conosco. Os livros estão sempre abertos e gratuitos\n";
+        $corpo_agradecimento .= "em https://missaocomdeus.com.br\n\n";
+        $corpo_agradecimento .= "Com amor, em Cristo Jesus,\n";
+        $corpo_agradecimento .= "Equipe Missão com Deus\n";
+        $corpo_agradecimento .= "— Missão com Deus · missaocomdeus.com.br\n";
+
+        $cabecalhos_agradecimento = "From: Missão com Deus <no-reply@missaocomdeus.com.br>\r\n";
+        $cabecalhos_agradecimento .= "Reply-To: " . $DESTINO . "\r\n";
+        $cabecalhos_agradecimento .= "Content-Type: text/plain; charset=utf-8\r\n";
+
+        $resposta_agradecimento = @mail($email_leitor, $assunto_agradecimento, $corpo_agradecimento, $cabecalhos_agradecimento);
+    }
+
     if ($enviado) {
-        echo json_encode(array('ok' => true, 'msg' => 'E-mail enviado com sucesso'), JSON_UNESCAPED_UNICODE);
+        echo json_encode(array('ok' => true, 'msg' => 'E-mail enviado com sucesso',
+                               'agradecimento' => $resposta_agradecimento), JSON_UNESCAPED_UNICODE);
     } else {
         http_response_code(500);
         echo json_encode(array('erro' => 'Nao foi possivel enviar o e-mail. Verifique o mail() do servidor.'), JSON_UNESCAPED_UNICODE);

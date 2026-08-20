@@ -320,6 +320,19 @@ chatbot em /home/deploy/conectai NÃO está no backup automático do painel).
 
 ---
 
+## 💌 AGRADECIMENTO AUTOMÁTICO AO LEITOR (20/08)
+
+- **notificar.php atualizado:** além de notificar o autor, agora envia um
+  e-mail de AGRADECIMENTO automático ao leitor (se ele informou o e-mail na
+  enquete), com versículo (1 Pedro 5:7) e a identidade da Missão com Deus.
+- Fluxo: voto → notificar.php → 1) e-mail para o autor (notificação) +
+  2) e-mail de agradecimento para o leitor (quando tem e-mail).
+- Resposta JSON inclui 'agradecimento' (true/false).
+- PHP validado, zip regenerado.
+- **PARA APLICAR:** subir o notificar.php novo nos dois domínios.
+
+---
+
 ## 🐛 BUG DO E-MAIL DA ENQUETE CORRIGIDO (19/08) — FALLBACK HTTP
 
 - **Problema:** o e-mail da enquete não chegava quando o voto era feito pelo
