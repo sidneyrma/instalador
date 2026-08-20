@@ -759,3 +759,30 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
   menu abre/fecha, quiz avança, sanfona abre, FAQ 5 itens, ordem
   portal > quiz > livros > biblioteca > pais-filhos > enquete.
 - Zip regenerado na raiz. Commit + push.
+
+---
+
+## ☰ MENU UNIVERSAL DEFINITIVO (20/08, 10ª rodada) — COM SEGURANÇA
+
+- **Pedido do autor (final):** no topo, em QUALQUER tela, ficar apenas
+  "Portal O Despertar" à esquerda e o ☰ à direita; ao clicar no ☰, os
+  itens aparecem um embaixo do outro (painel lateral) — sem links soltos
+  no notebook.
+- **Execução com bisturi (lição da rodada 9 aprendida):** o script fez
+  replace EXATO de UM ÚNICO bloco CSS (de "/* HEADER */" até o fim do
+  media query do menu), com `assert` que ABORTA se o bloco não casar —
+  NENHUM outro CSS foi tocado. Verificado: todos os 24 seletores críticos
+  (hero, grid-4, card, faq, offer, footer, quiz-box, pais-sec...) presentes,
+  chaves 309/309 e 13/13 balanceadas.
+- **CSS final do menu (sem media query):**
+  - `.burger{display:block}` SEMPRE visível (qualquer largura);
+  - `.navlinks` SEMPRE drawer lateral fixo à direita (translateX 105%,
+    abre com .open);
+  - cabeçalho "☰ Menu" + ✕ + links empilhados + rodapé Salmos 37:5 +
+    overlay sempre presentes.
+  - HTML/JS já existiam (menuAbrir/menuFechar com burger, ✕, overlay, Esc,
+    links fecham o menu).
+- Testes jsdom verdes nos 2 arquivos: abre por burger, fecha por ✕/overlay/
+  link; quiz avança com barra; sanfona Pais e Filhos abre; FAQ 5 itens;
+  ordem portal > quiz > livros > biblioteca > pais-filhos > enquete.
+- Zip regenerado na raiz. Commit + push.
