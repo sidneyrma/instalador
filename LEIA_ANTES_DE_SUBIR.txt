@@ -45,6 +45,20 @@ O QUE MUDOU (para você conferir no zip antes):
    do e-mail (abertura, perguntas, encerramento e
    versículos), tudo humanizado.
 
+5. 🎁 BRINDE NO QUIZ PAIS E FILHOS: ao concluir o
+   roteiro, aparece o bloco "Sua surpresa chegou!"
+   com o botão dourado "📖 Baixar meu E-book grátis"
+   (E-book Jesus Quer Falar com Seu Filho, mesmo
+   presente do quiz de autoavaliação). O e-mail do
+   guia também ganhou o link do e-book.
+
+6. 📊 STATS CORRIGIDO: o teste do quiz Pais e Filhos
+   agora contabiliza no dashboard ("Quiz Pais e
+   Filhos"). Para atualizar o stats no servidor,
+   suba o gerar_estatisticas.py novo (ou rode o
+   script /home/deploy/gerar_estatisticas.py após
+   substituir pela versão nova).
+
 ----------------------------------------------------
 ARQUIVOS PARA SUBIR (na pasta site-contabo/):
 ----------------------------------------------------
