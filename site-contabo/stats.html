@@ -4,118 +4,235 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Estatisticas - Portal O Despertar</title>
+<title>📊 Estatísticas de Acesso — Portal O Despertar</title>
 <style>
-:root{--navy:#0e1a2e;--gold:#c9a24b;--green:#7fe0a3;--red:#e07b6b;}
-*{box-sizing:border-box;}
-body{margin:0;font-family:"Segoe UI",system-ui,sans-serif;background:var(--navy);color:#e8ecf3;line-height:1.5;}
-.wrap{max-width:980px;margin:0 auto;padding:24px 16px 60px;}
-h1{color:var(--gold);font-size:1.6rem;margin-bottom:4px;}
-.sub{color:#9fb0c8;font-size:.9rem;margin-bottom:24px;}
-.badge{font-size:.65rem;background:rgba(201,162,75,.2);color:var(--gold);padding:2px 8px;border-radius:4px;margin-left:8px;vertical-align:middle;}
-.badge-red{background:rgba(224,123,107,.15);color:var(--red);}
-.badge-green{background:rgba(127,224,163,.15);color:var(--green);}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px;}
-.card{background:#16283f;border:1px solid rgba(201,162,75,.25);border-radius:10px;padding:16px;text-align:center;}
-.card .v{font-size:1.6rem;font-weight:700;color:var(--gold);}
-.card .l{font-size:.75rem;color:#9fb0c8;text-transform:uppercase;letter-spacing:.06em;}
-.card .periodo{font-size:.62rem;color:#4a6a8a;margin-top:3px;}
-.card.destaque{border-color:var(--gold);background:linear-gradient(180deg,#1a2c47,#16283f);}
-.card.verde{border-color:var(--green);}
-.card.vermelho{border-color:var(--red);}
-table{width:100%;border-collapse:collapse;background:#16283f;border-radius:10px;overflow:hidden;margin-bottom:24px;}
-th{background:rgba(201,162,75,.15);color:var(--gold);text-align:left;padding:10px 12px;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;}
-td{padding:10px 12px;border-top:1px solid rgba(201,162,75,.1);font-size:.92rem;vertical-align:middle;}
-.num{text-align:center;white-space:nowrap;}
-.url{color:#7f92ad;font-size:.75rem;}
-.barra{background:#0e1a2e;border-radius:6px;height:10px;overflow:hidden;min-width:80px;}
-.fill{background:linear-gradient(90deg,#c9a24b,#e3c877);height:100%;border-radius:6px;}
-h2{color:var(--gold);font-size:1.1rem;margin:32px 0 10px;}
-.bloco-comp{background:#16283f;border:1px solid rgba(201,162,75,.2);border-radius:10px;padding:16px 20px;margin-bottom:16px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;}
-.bloco-comp .item{flex:1;min-width:120px;}
-.bloco-comp .rot{font-size:.72rem;color:#9fb0c8;text-transform:uppercase;letter-spacing:.05em;}
-.bloco-comp .val{font-size:1.4rem;font-weight:700;color:#fff;}
-.bloco-comp .val.gold{color:var(--gold);}
-.bloco-comp .val.green{color:var(--green);}
-.bloco-comp .val.red{color:var(--red);}
-.nota{font-size:.78rem;color:#9fb0c8;margin:6px 0 20px;line-height:1.6;}
-.nota b{color:#e3c877;}
-hr{border:none;border-top:1px solid rgba(201,162,75,.15);margin:32px 0;}
-footer{text-align:center;color:#7f92ad;font-size:.78rem;margin-top:40px;}
+  :root { --navy:#0e1a2e; --gold:#c9a24b; --cream:#faf6ee; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:'Segoe UI',system-ui,sans-serif; background:var(--navy); color:#e8ecf3; line-height:1.5; }
+  .wrap { max-width:960px; margin:0 auto; padding:24px 16px 60px; }
+  h1 { color:var(--gold); font-size:1.6rem; margin-bottom:4px; }
+  .sub { color:#9fb0c8; font-size:.9rem; margin-bottom:24px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:28px; }
+  .card { background:#16283f; border:1px solid rgba(201,162,75,.25); border-radius:10px; padding:16px; text-align:center; }
+  .card .v { font-size:1.6rem; font-weight:700; color:var(--gold); }
+  .card .l { font-size:.75rem; color:#9fb0c8; text-transform:uppercase; letter-spacing:.06em; }
+  .card.destaque { border-color:var(--gold); background:linear-gradient(180deg,#1a2c47,#16283f); }
+  .card.humano .v { color:#7fe0a3; }
+  table { width:100%; border-collapse:collapse; background:#16283f; border-radius:10px; overflow:hidden; }
+  th { background:rgba(201,162,75,.15); color:var(--gold); text-align:left; padding:10px 12px; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; }
+  td { padding:10px 12px; border-top:1px solid rgba(201,162,75,.15); font-size:.92rem; vertical-align:middle; }
+  .num { text-align:center; white-space:nowrap; }
+  .url { color:#7f92ad; font-size:.75rem; }
+  .barra { background:#0e1a2e; border-radius:6px; height:12px; overflow:hidden; min-width:120px; }
+  .fill { background:linear-gradient(90deg,#c9a24b,#e3c877); height:100%; border-radius:6px; }
+  h2 { color:var(--gold); font-size:1.15rem; margin:32px 0 12px; }
+  .comparacao { background:#16283f; border:1px solid rgba(201,162,75,.25); border-radius:10px; padding:16px 20px; margin-bottom:28px; display:flex; gap:24px; flex-wrap:wrap; align-items:center; }
+  .comparacao .bloco { flex:1; min-width:130px; }
+  .comparacao .rot { font-size:.75rem; color:#9fb0c8; text-transform:uppercase; letter-spacing:.05em; }
+  .comparacao .val { font-size:1.5rem; font-weight:700; color:#fff; }
+  .comparacao .val.gold { color:var(--gold); }
+  .comparacao .val.verde { color:#7fe0a3; }
+  footer { text-align:center; color:#7f92ad; font-size:.78rem; margin-top:40px; }
+  .selo-filtro { display:inline-block; background:rgba(127,224,163,.12); border:1px solid rgba(127,224,163,.4); color:#7fe0a3; font-size:.72rem; padding:3px 10px; border-radius:20px; margin-left:8px; vertical-align:middle; }
 </style>
 </head>
 <body>
 <div class="wrap">
-<h1>Estatisticas de Acesso</h1>
-<p class="sub">Portal O Despertar &middot; missaocomdeus.com.br &middot; gerado em 19/08/2026 21:00</p>
-<h2>Desempenho de Hoje <span class="badge">parcial ate 21:00</span></h2>
-<div class="bloco-comp"><div class="item"><div class="rot">Acessos brutos hoje</div><div class="val gold">931</div></div><div class="item"><div class="rot">Visitas humanas hoje</div><div class="val green">723</div></div><div class="item"><div class="rot">Ontem ate este horario</div><div class="val">1.628</div></div><div class="item"><div class="rot">Variacao bruta</div><div class="val red">↓ -42.8%</div></div><div class="item"><div class="rot">Projecao bruta</div><div class="val gold">~1.064</div></div><div class="item"><div class="rot">Projecao real</div><div class="val green">~826</div></div></div>
-<p class="nota">Comparacao justa: hoje parcial vs ontem ate 21:00. <b>Visitas humanas</b> excluem bots. Variacao real: <b>↓ -39.5%</b></p>
-<hr>
-<h2>Resumo do Periodo <span class="badge">acumulado de 11/08/2026 ate 19/08/2026 20:19</span></h2>
-<div class="cards"><div class="card destaque"><div class="v">10.904</div><div class="l">Total bruto</div><div class="periodo">requisicoes no periodo</div></div><div class="card verde"><div class="v" style="color:var(--green)">7.195</div><div class="l">Visitas humanas</div><div class="periodo">acumulado no periodo</div></div><div class="card vermelho"><div class="v" style="color:var(--red)">3.709</div><div class="l">Bots bloqueados</div><div class="periodo">acumulado no periodo</div></div><div class="card"><div class="v">66.0%</div><div class="l">Taxa humana</div><div class="periodo">do total de acessos</div></div></div>
-<hr>
-<h2>Conteudos Acessados <span class="badge">visualizacoes acumuladas no periodo</span></h2>
-<div class="cards"><div class="card destaque"><div class="v">1.103</div><div class="l">Visualizacoes da Home</div><div class="periodo">acumulado no periodo</div></div><div class="card destaque"><div class="v">921</div><div class="l">Visualizacoes dos Livros</div><div class="periodo">acumulado no periodo</div></div><div class="card"><div class="v">12</div><div class="l">Livros com leitores</div><div class="periodo">de 12 disponiveis</div></div><div class="card"><div class="v">24</div><div class="l">Quiz</div><div class="periodo">acumulado no periodo</div></div></div>
-<p class="nota"><b>Visualizacoes nao sao pessoas unicas.</b> Uma pessoa que abre a Home e 3 livros gera 4 visualizacoes.</p>
-<hr>
-<h2>Ranking dos Livros <span class="badge">acumulado no periodo</span></h2>
-<table><tr><th>#</th><th>Pagina</th><th>Visualizacoes (total / hoje)</th><th>%</th><th>Proporcao</th></tr>
-<tr><td class="num">#1</td><td><a href="https://missaocomdeus.com.br/" target="_blank">Home (inicio)</a><br><span class="url">/</span></td><td class="num">1103 <span style="color:#7fe0a3">+67 hoje</span></td><td class="num">10.1%</td><td><div class="barra"><div class="fill" style="width:100.0%"></div></div></td></tr>
-<tr><td class="num">#2</td><td><a href="https://missaocomdeus.com.br/livro05" target="_blank">Livro 05 - Evolucao da Alma</a><br><span class="url">/livro05</span></td><td class="num">120 <span style="color:#7fe0a3">+3 hoje</span></td><td class="num">1.1%</td><td><div class="barra"><div class="fill" style="width:10.9%"></div></div></td></tr>
-<tr><td class="num">#3</td><td><a href="https://missaocomdeus.com.br/livro08" target="_blank">Livro 08 - O Arquiteto da Realidade</a><br><span class="url">/livro08</span></td><td class="num">102 <span style="color:#7fe0a3">+3 hoje</span></td><td class="num">0.9%</td><td><div class="barra"><div class="fill" style="width:9.2%"></div></div></td></tr>
-<tr><td class="num">4</td><td><a href="https://missaocomdeus.com.br/livro01" target="_blank">Livro 01 - O Verbo que Transforma</a><br><span class="url">/livro01</span></td><td class="num">88 <span style="color:#7fe0a3">+3 hoje</span></td><td class="num">0.8%</td><td><div class="barra"><div class="fill" style="width:8.0%"></div></div></td></tr>
-<tr><td class="num">5</td><td><a href="https://missaocomdeus.com.br/livro04" target="_blank">Livro 04 - Um Segundo com Deus</a><br><span class="url">/livro04</span></td><td class="num">83 <span style="color:#7fe0a3">+2 hoje</span></td><td class="num">0.8%</td><td><div class="barra"><div class="fill" style="width:7.5%"></div></div></td></tr>
-<tr><td class="num">6</td><td><a href="https://missaocomdeus.com.br/livro10" target="_blank">Livro 10 - O Despertar do Observador</a><br><span class="url">/livro10</span></td><td class="num">83 <span style="color:#7fe0a3">+2 hoje</span></td><td class="num">0.8%</td><td><div class="barra"><div class="fill" style="width:7.5%"></div></div></td></tr>
-<tr><td class="num">7</td><td><a href="https://missaocomdeus.com.br/livro12" target="_blank">Livro 12 - Afirmacoes, Declaracoes e Oracoes</a><br><span class="url">/livro12</span></td><td class="num">82 <span style="color:#7fe0a3">+2 hoje</span></td><td class="num">0.8%</td><td><div class="barra"><div class="fill" style="width:7.4%"></div></div></td></tr>
-<tr><td class="num">8</td><td><a href="https://missaocomdeus.com.br/livro03" target="_blank">Livro 03 - A Mente Renovada</a><br><span class="url">/livro03</span></td><td class="num">80 <span style="color:#7fe0a3">+3 hoje</span></td><td class="num">0.7%</td><td><div class="barra"><div class="fill" style="width:7.3%"></div></div></td></tr>
-<tr><td class="num">9</td><td><a href="https://missaocomdeus.com.br/livro02" target="_blank">Livro 02 - A Sabedoria dos Mestres</a><br><span class="url">/livro02</span></td><td class="num">72 <span style="color:#7fe0a3">+2 hoje</span></td><td class="num">0.7%</td><td><div class="barra"><div class="fill" style="width:6.5%"></div></div></td></tr>
-<tr><td class="num">10</td><td><a href="https://missaocomdeus.com.br/livro07" target="_blank">Livro 07 - O Caminho do Despertar</a><br><span class="url">/livro07</span></td><td class="num">65 <span style="color:#7fe0a3">+3 hoje</span></td><td class="num">0.6%</td><td><div class="barra"><div class="fill" style="width:5.9%"></div></div></td></tr>
-<tr><td class="num">11</td><td><a href="https://missaocomdeus.com.br/livro09" target="_blank">Livro 09 - Anestesia Mental</a><br><span class="url">/livro09</span></td><td class="num">63 <span style="color:#7fe0a3">+3 hoje</span></td><td class="num">0.6%</td><td><div class="barra"><div class="fill" style="width:5.7%"></div></div></td></tr>
-<tr><td class="num">12</td><td><a href="https://missaocomdeus.com.br/livro06" target="_blank">Livro 06 - Jesus Quer Falar com Seu Filho</a><br><span class="url">/livro06</span></td><td class="num">59 <span style="color:#7fe0a3">+3 hoje</span></td><td class="num">0.5%</td><td><div class="barra"><div class="fill" style="width:5.3%"></div></div></td></tr>
-<tr><td class="num">13</td><td><a href="https://missaocomdeus.com.br/livro11" target="_blank">Livro 11 - O Novo Testamento como nunca lido</a><br><span class="url">/livro11</span></td><td class="num">24 <span style="color:#7fe0a3">+3 hoje</span></td><td class="num">0.2%</td><td><div class="barra"><div class="fill" style="width:2.2%"></div></div></td></tr>
-<tr><td class="num">14</td><td><a href="https://missaocomdeus.com.br/quiz" target="_blank">Quiz - Autoavaliacao</a><br><span class="url">/quiz</span></td><td class="num">24 </td><td class="num">0.2%</td><td><div class="barra"><div class="fill" style="width:2.2%"></div></div></td></tr>
-</table>
-<h2>Acessos por Dia <span class="badge">ultimos 7 dias</span></h2>
-<table><tr><th>Dia</th><th>Acessos brutos</th><th>Visitas humanas</th><th>% humano</th></tr>
-<tr><td style="color:var(--gold);font-weight:700">19/08/2026 (hoje)</td><td class="num">931</td><td class="num" style="color:#7fe0a3">723</td><td class="num">78%</td></tr>
-<tr><td>18/08/2026</td><td class="num">1773</td><td class="num" style="color:#7fe0a3">1323</td><td class="num">75%</td></tr>
-<tr><td>17/08/2026</td><td class="num">1669</td><td class="num" style="color:#7fe0a3">906</td><td class="num">54%</td></tr>
-<tr><td>16/08/2026</td><td class="num">1609</td><td class="num" style="color:#7fe0a3">1010</td><td class="num">63%</td></tr>
-<tr><td>15/08/2026</td><td class="num">1231</td><td class="num" style="color:#7fe0a3">805</td><td class="num">65%</td></tr>
-<tr><td>14/08/2026</td><td class="num">966</td><td class="num" style="color:#7fe0a3">786</td><td class="num">81%</td></tr>
-<tr><td>13/08/2026</td><td class="num">1272</td><td class="num" style="color:#7fe0a3">654</td><td class="num">51%</td></tr>
-</table>
-<hr>
-<h2>Outras Paginas Legitimas <span class="badge">acumulado</span></h2>
-<table><tr><th>Pagina</th><th>Acessos</th></tr>
-<tr><td>/enquete.php</td><td class="num">198</td></tr>
-<tr><td>/stats</td><td class="num">79</td></tr>
-<tr><td>/stats.html</td><td class="num">40</td></tr>
-<tr><td>/leitor</td><td class="num">4</td></tr>
-<tr><td>/enquete</td><td class="num">1</td></tr>
-<tr><td>/enquete.html</td><td class="num">1</td></tr>
-</table>
-<h2>Tentativas de Ataque Bloqueadas <span class="badge badge-red">seguranca</span></h2>
-<table><tr><th>Rota atacada</th><th>Tentativas</th><th>Status</th></tr>
-<tr><td style="color:#e07b6b">/wp-login.php</td><td class="num">69</td><td class="num" style="color:#7fe0a3">Bloqueado</td></tr>
-<tr><td style="color:#e07b6b">/wp-content/plugins/hellopress/wp_filemanager.php</td><td class="num">58</td><td class="num" style="color:#7fe0a3">Bloqueado</td></tr>
-<tr><td style="color:#e07b6b">/this_is_a_new_hello_world.php</td><td class="num">55</td><td class="num" style="color:#7fe0a3">Bloqueado</td></tr>
-<tr><td style="color:#e07b6b">/wp-admin/js</td><td class="num">54</td><td class="num" style="color:#7fe0a3">Bloqueado</td></tr>
-<tr><td style="color:#e07b6b">/wp-admin/css</td><td class="num">51</td><td class="num" style="color:#7fe0a3">Bloqueado</td></tr>
-<tr><td style="color:#e07b6b">/info.php</td><td class="num">45</td><td class="num" style="color:#7fe0a3">Bloqueado</td></tr>
-<tr><td style="color:#e07b6b">/admin.php</td><td class="num">45</td><td class="num" style="color:#7fe0a3">Bloqueado</td></tr>
-<tr><td style="color:#e07b6b">/wp-admin/css/colors/modern</td><td class="num">45</td><td class="num" style="color:#7fe0a3">Bloqueado</td></tr>
-<tr><td style="color:#e07b6b">/222.php</td><td class="num">43</td><td class="num" style="color:#7fe0a3">Bloqueado</td></tr>
-<tr><td style="color:#e07b6b">/1.php</td><td class="num">43</td><td class="num" style="color:#7fe0a3">Bloqueado</td></tr>
-<tr><td style="color:#e07b6b">/wp-admin</td><td class="num">42</td><td class="num" style="color:#7fe0a3">Bloqueado</td></tr>
-<tr><td style="color:#e07b6b">/.env</td><td class="num">40</td><td class="num" style="color:#7fe0a3">Bloqueado</td></tr>
-<tr><td style="color:#e07b6b">/wp-admin/js/widgets</td><td class="num">39</td><td class="num" style="color:#7fe0a3">Bloqueado</td></tr>
-<tr><td style="color:#e07b6b">/wp-admin/network</td><td class="num">38</td><td class="num" style="color:#7fe0a3">Bloqueado</td></tr>
-<tr><td style="color:#e07b6b">/wp-admin/images</td><td class="num">32</td><td class="num" style="color:#7fe0a3">Bloqueado</td></tr>
-</table>
-<footer>Periodo: 11/08/2026 ate 19/08/2026 20:19 &middot; Portal O Despertar &middot; missaocomdeus.com.br<br>
-Atualizado pelo cron &middot; Protegido (noindex) &middot; Apenas para o administrador</footer>
+  <h1>📊 Estatísticas de Acesso <span class="selo-filtro">✅ v2 — só leitores reais</span></h1>
+  <p class="sub">Portal O Despertar · missaocomdeus.com.br · gerado em 20/08/2026 23:00</p>
+
+  <div class="comparacao">
+    <div class="bloco">
+      <div class="rot">Ontem completo (19/08/2026)</div>
+      <div class="val">524</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">Hoje até agora (20/08/2026)</div>
+      <div class="val gold">431</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">Ontem até este horário</div>
+      <div class="val">513</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">Variação (justa)</div>
+      <div class="val gold">📉 -16.0%</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">Projeção do dia</div>
+      <div class="val gold">~450</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">Total geral</div>
+      <div class="val">1298</div>
+    </div>
+  </div>
+
+  <div class="comparacao" style="border-color:rgba(127,224,163,.4);">
+    <div class="bloco">
+      <div class="rot">👤 Visitantes únicos HOJE</div>
+      <div class="val verde">126</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">👤 Visitantes únicos ONTEM</div>
+      <div class="val verde">217</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">👤 Visitantes únicos TOTAL</div>
+      <div class="val verde">389</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">🤖 Robôs descartados</div>
+      <div class="val" style="font-size:1.1rem;">2188</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">🛡️ Ataques/erros descartados</div>
+      <div class="val" style="font-size:1.1rem;">727</div>
+    </div>
+  </div>
+  <p style="font-size:.8rem;color:#9fb0c8;margin:-18px 0 24px;">Contagem prudente: só entram páginas realmente entregues (código 200/304) a navegadores de gente (robôs declarados, prévias de link e ataques ficam de fora — os descartes aparecem aí em cima, com transparência). "Visitantes únicos" = IPs diferentes no dia: o número mais próximo de PESSOAS.</p>
+
+  <div class="cards">
+    <div class="card destaque"><div class="v">423</div><div class="l">Visitas à Home</div></div>
+    <div class="card destaque"><div class="v">542</div><div class="l">Acessos aos livros</div></div>
+    <div class="card"><div class="v">12</div><div class="l">Livros lidos</div></div>
+    <div class="card"><div class="v">0</div><div class="l">Quiz</div></div>
+    <div class="card humano"><div class="v">389</div><div class="l">Pessoas (IPs únicos)</div></div>
+  </div>
+
+  <h2>🏆 Ranking (Home + Livros + Quiz)</h2>
+  <table>
+    <tr><th>#</th><th>Página</th><th>Acessos (total · hoje)</th><th>%</th><th>Distribuição</th></tr>
+    
+        <tr>
+          <td class="num">🥇 1</td>
+          <td><a href="https://missaocomdeus.com.br/">Home (início)</a><br><span class="url">/</span></td>
+          <td class="num">423 <span style="color:#7fe0a3">(134 hoje)</span></td>
+          <td class="num">32.6%</td>
+          <td><div class="barra"><div class="fill" style="width:32.588597842835135%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num">🥈 2</td>
+          <td><a href="https://missaocomdeus.com.br/livro01">Livro 01 — O Verbo que Transforma</a><br><span class="url">/livro01</span></td>
+          <td class="num">61 <span style="color:#7fe0a3">(20 hoje)</span></td>
+          <td class="num">4.7%</td>
+          <td><div class="barra"><div class="fill" style="width:4.6995377503852085%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num">🥉 3</td>
+          <td><a href="https://missaocomdeus.com.br/livro08">Livro 08 — O Arquiteto da Realidade</a><br><span class="url">/livro08</span></td>
+          <td class="num">55 <span style="color:#7fe0a3">(17 hoje)</span></td>
+          <td class="num">4.2%</td>
+          <td><div class="barra"><div class="fill" style="width:4.23728813559322%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 4</td>
+          <td><a href="https://missaocomdeus.com.br/livro03">Livro 03 — A Mente Renovada</a><br><span class="url">/livro03</span></td>
+          <td class="num">53 <span style="color:#7fe0a3">(12 hoje)</span></td>
+          <td class="num">4.1%</td>
+          <td><div class="barra"><div class="fill" style="width:4.083204930662557%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 5</td>
+          <td><a href="https://missaocomdeus.com.br/livro05">Livro 05 — Evolução da Alma</a><br><span class="url">/livro05</span></td>
+          <td class="num">53 <span style="color:#7fe0a3">(14 hoje)</span></td>
+          <td class="num">4.1%</td>
+          <td><div class="barra"><div class="fill" style="width:4.083204930662557%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 6</td>
+          <td><a href="https://missaocomdeus.com.br/livro07">Livro 07 — O Caminho do Despertar</a><br><span class="url">/livro07</span></td>
+          <td class="num">49 <span style="color:#7fe0a3">(10 hoje)</span></td>
+          <td class="num">3.8%</td>
+          <td><div class="barra"><div class="fill" style="width:3.7750385208012327%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 7</td>
+          <td><a href="https://missaocomdeus.com.br/livro09">Livro 09 — Anestesia Mental</a><br><span class="url">/livro09</span></td>
+          <td class="num">49 <span style="color:#7fe0a3">(20 hoje)</span></td>
+          <td class="num">3.8%</td>
+          <td><div class="barra"><div class="fill" style="width:3.7750385208012327%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 8</td>
+          <td><a href="https://missaocomdeus.com.br/livro06">Livro 06 — Jesus Quer Falar com Seu Filho</a><br><span class="url">/livro06</span></td>
+          <td class="num">47 <span style="color:#7fe0a3">(15 hoje)</span></td>
+          <td class="num">3.6%</td>
+          <td><div class="barra"><div class="fill" style="width:3.62095531587057%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 9</td>
+          <td><a href="https://missaocomdeus.com.br/livro10">Livro 10 — O Despertar do Observador</a><br><span class="url">/livro10</span></td>
+          <td class="num">47 <span style="color:#7fe0a3">(22 hoje)</span></td>
+          <td class="num">3.6%</td>
+          <td><div class="barra"><div class="fill" style="width:3.62095531587057%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 10</td>
+          <td><a href="https://missaocomdeus.com.br/livro04">Livro 04 — Um Segundo com Deus</a><br><span class="url">/livro04</span></td>
+          <td class="num">41 <span style="color:#7fe0a3">(10 hoje)</span></td>
+          <td class="num">3.2%</td>
+          <td><div class="barra"><div class="fill" style="width:3.1587057010785826%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 11</td>
+          <td><a href="https://missaocomdeus.com.br/livro02">Livro 02 — A Sabedoria dos Mestres</a><br><span class="url">/livro02</span></td>
+          <td class="num">39 <span style="color:#7fe0a3">(13 hoje)</span></td>
+          <td class="num">3.0%</td>
+          <td><div class="barra"><div class="fill" style="width:3.00462249614792%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 12</td>
+          <td><a href="https://missaocomdeus.com.br/livro12">Livro 12 — Afirmações, Declarações e Orações</a><br><span class="url">/livro12</span></td>
+          <td class="num">27 <span style="color:#7fe0a3">(1 hoje)</span></td>
+          <td class="num">2.1%</td>
+          <td><div class="barra"><div class="fill" style="width:2.0801232665639446%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 13</td>
+          <td><a href="https://missaocomdeus.com.br/livro11">Livro 11 — O Novo Testamento como nunca lido</a><br><span class="url">/livro11</span></td>
+          <td class="num">21 <span style="color:#7fe0a3">(11 hoje)</span></td>
+          <td class="num">1.6%</td>
+          <td><div class="barra"><div class="fill" style="width:1.6178736517719567%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 14</td>
+          <td><a href="https://missaocomdeus.com.br/guia-pais-filhos">Guia Pais e Filhos — Quiz</a><br><span class="url">/guia-pais-filhos</span></td>
+          <td class="num">9 <span style="color:#7fe0a3">(9 hoje)</span></td>
+          <td class="num">0.7%</td>
+          <td><div class="barra"><div class="fill" style="width:0.6933744221879815%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 15</td>
+          <td><a href="https://missaocomdeus.com.br/quiz">Quiz — Autoavaliação</a><br><span class="url">/quiz</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+  </table>
+
+  <h2>📅 Acessos por dia (últimos 7)</h2>
+  <table>
+    <tr><th>Dia</th><th>Páginas vistas (humanos)</th><th>👤 Visitantes únicos</th><th>🤖 Descartados</th></tr>
+    <tr><td>20/08/2026</td><td class="num">431</td><td class="num" style="color:#7fe0a3">126</td><td class="num" style="color:#9fb0c8">1246</td></tr>
+<tr><td>19/08/2026</td><td class="num">524</td><td class="num" style="color:#7fe0a3">217</td><td class="num" style="color:#9fb0c8">1166</td></tr>
+<tr><td>18/08/2026</td><td class="num">343</td><td class="num" style="color:#7fe0a3">106</td><td class="num" style="color:#9fb0c8">503</td></tr>
+  </table>
+
+  <h2>📄 Outras páginas acessadas</h2>
+  <table>
+    <tr><th>Página</th><th>Acessos</th></tr>
+    <tr><td>//enquete.php</td><td class="num">195</td></tr>
+<tr><td>//stats.html</td><td class="num">84</td></tr>
+<tr><td>//stats</td><td class="num">27</td></tr>
+<tr><td>//ebooks/jesus-quer-falar.pdf</td><td class="num">7</td></tr>
+<tr><td>//.well-known/acme-challenge/y7_va98jQQDXQLrhXk8zRrUOeMO_ndJzjtOVujoX8Nc</td><td class="num">6</td></tr>
+<tr><td>//stats_teste.html</td><td class="num">3</td></tr>
+<tr><td>//guia-pais-filhos.html</td><td class="num">2</td></tr>
+  </table>
+
+  <footer>Período registrado: 18/08/2026 17:00 até 20/08/2026 22:56 · Missão com Deus · Coleção do Despertar<br>
+  Painel v2 (filtros de robôs + visitantes únicos) atualizado pelo script (cron). Página protegida (noindex) — apenas para o administrador.</footer>
 </div>
 </body>
 </html>
