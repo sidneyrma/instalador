@@ -47,7 +47,6 @@ PAGINAS = OrderedDict([
     ('/livro11', 'Livro 11 — O Novo Testamento como nunca lido'),
     ('/livro12', 'Livro 12 — Afirmações, Declarações e Orações'),
     ('/guia-pais-filhos', 'Guia Pais e Filhos — Quiz'),
-    ('/quiz', 'Quiz — Autoavaliação'),
 ])
 
 # Linha completa do log (formato padrão aaPanel/Nginx "combined"):
@@ -329,7 +328,7 @@ def montar_html(res):
     <div class="card destaque"><div class="v">{total_home}</div><div class="l">Visitas à Home</div></div>
     <div class="card destaque"><div class="v">{total_livros}</div><div class="l">Acessos aos livros</div></div>
     <div class="card"><div class="v">{livros_lidos}</div><div class="l">Livros lidos</div></div>
-    <div class="card"><div class="v">{contagens.get('/quiz',0)}</div><div class="l">Quiz</div></div>
+    <div class="card"><div class="v">{contagens.get('/guia-pais-filhos',0)}</div><div class="l">Quiz Pais e Filhos</div></div>
     <div class="card humano"><div class="v">{unicos_total}</div><div class="l">Pessoas (IPs únicos)</div></div>
   </div>
 
