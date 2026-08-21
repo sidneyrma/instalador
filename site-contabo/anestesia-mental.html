@@ -116,7 +116,7 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
     
     <div id="compraBox" class="compra-box">
       <p>Ainda não tem o código? Adquira o acesso completo agora mesmo.</p>
-      <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" class="btn btn-outline">Quero me inscrever</a>
+      <a id="linkCompra" href="#" target="_blank" class="btn btn-outline">Quero me inscrever</a>
     </div>
   </div>
 </div>
@@ -188,7 +188,7 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
     <div class="modulo" id="mod05">
       <div class="mod-header">
         <span class="mod-num">Módulo 05</span>
-        <h2 class="mod-title">O Despertar Da Consciência</h2>
+        <h2 class="mod-title">O Despertar da Consciência</h2>
       </div>
       <div class="video-wrap" id="video05">
         <iframe src="https://www.youtube-nocookie.com/embed/Fw4RE6ld_UU?rel=0" loading="lazy" allowfullscreen></iframe>
@@ -248,6 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter') verificarCodigo();
   });
   
+  document.getElementById('linkCompra').href = LINK_COMPRA;
   configurarEstatisticas();
 });
 
@@ -314,7 +315,7 @@ function configurarEstatisticas() {
       const key = 'anestesia_m0' + i + '_play';
       if(!sessionStorage.getItem(key)) {
         sessionStorage.setItem(key, 'true');
-        fetch('/q-anestesia-m0' + i + '.html').catch(e => console.log('Stat erro:', e));
+        fetch('/q-anestesia-m0' + i).catch(e => console.log('Stat erro:', e));
       }
     }, {once: true});
   }

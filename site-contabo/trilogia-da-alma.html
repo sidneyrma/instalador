@@ -116,7 +116,7 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
     
     <div id="compraBox" class="compra-box">
       <p>Ainda não tem o código? Adquira o acesso completo agora mesmo.</p>
-      <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" class="btn btn-outline">Quero me inscrever</a>
+      <a id="linkCompra" href="#" target="_blank" class="btn btn-outline">Quero me inscrever</a>
     </div>
   </div>
 </div>
@@ -248,6 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter') verificarCodigo();
   });
   
+  document.getElementById('linkCompra').href = LINK_COMPRA;
   configurarEstatisticas();
 });
 
@@ -314,7 +315,7 @@ function configurarEstatisticas() {
       const key = 'trilogia_m0' + i + '_play';
       if(!sessionStorage.getItem(key)) {
         sessionStorage.setItem(key, 'true');
-        fetch('/q-trilogia-m0' + i + '.html').catch(e => console.log('Stat erro:', e));
+        fetch('/q-trilogia-m0' + i).catch(e => console.log('Stat erro:', e));
       }
     }, {once: true});
   }
