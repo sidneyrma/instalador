@@ -1005,3 +1005,104 @@ cada resposta indica qual livro ofertar). Aprovada em conjunto com o autor
 - **Ação no servidor:** substituir /home/deploy/gerar_estatisticas.py pela
   versão nova e rodar `python3 /home/deploy/gerar_estatisticas.py` (ou
   esperar o cron).
+
+  ## 📊 CONTADOR DE VISITAS v2 (18/08 — criado, AINDA NÃO aplicado no servidor)
+
+- Arquivo: analise/compraoseu.preview/gerar_estatisticas_v2.py
+- Sugestão 1 (filtros): só conta respostas 200/304 de User-Agent que NÃO é
+  robô (descarta Googlebot/Bing, curl/python, scanners, prévias de
+  WhatsApp/Facebook e UA vazio). Descartes exibidos com transparência.
+- Sugestão 2 (pessoas): cartões "👤 Visitantes únicos" hoje/ontem/total
+  (IPs distintos) + coluna por dia. Inclui livro11 e livro12 no ranking.
+- TESTE com log sintético: 35 requisições (13 humanas de 5 pessoas + 22
+  robôs/ataques) → v1 mostrou 35; v2 mostrou 13 páginas e 5 visitantes. ✅
+- Para aplicar (autor decide): backup do /home/deploy/gerar_estatisticas.py,
+  colar a v2 no lugar (mesmo nome), rodar 1x manualmente; cron de 1h
+  continua igual. O stats.html passa a mostrar os valores prudentes.
+- LOG/OUT agora aceitam variáveis de ambiente (STATS_LOG/STATS_OUT) p/ teste.
+
+## 🌐 REDIRECIONAMENTO ATIVO + PAINEL v2 RODADO (20/08 — relato do autor)
+
+- O autor ativou o novo domínio missaocomdeus.com.br e o REDIRECIONAMENTO
+  de compraoseu.com para ele. Consequência: o log antigo
+  /www/wwwlogs/compraoseu.com.log PAROU de crescer em 18/08 20:03 — as
+  visitas novas agora caem no log do DOMÍNIO NOVO (missaocomdeus).
+- O autor testou a v2 (stats_teste dentro do site missaocomdeus): funcionou.
+  Hoje/ontem = 0 porque o script lia o log antigo (parado). Basta apontar
+  STATS_LOG para o log do missaocomdeus (v2 aceita variável de ambiente).
+- NÚMEROS REAIS revelados pela v2 (histórico 11-18/08, log antigo):
+  · 1.987 páginas vistas por humanos · 579 pessoas (IPs únicos)
+  · 7.379 robôs descartados (61%) · 2.764 ataques/erros (23%)
+  · Por dia: ~200-400 páginas humanas, ~60-120 pessoas/dia
+  · O painel v1 mostrava ~1.300-1.600/dia: era ~80% robô/ruído.
+  · Quiz = 0 na v2: o /quiz responde REDIRECIONAMENTO (301) e cai nos
+    descartados — refinamento futuro: contar 301 do /quiz como clique.
+- PENDÊNCIA para o próximo chat: atualizar o LOG padrão do script para o
+  log do missaocomdeus (ou somar os dois logs) e o rótulo do domínio no
+  cabeçalho do painel; subir a v2 ao GitHub.
+
+## 📊 v2 RODANDO NO DOMÍNIO NOVO (20/08 22:14 — números reais)
+
+- Log novo (missaocomdeus) começa em 18/08 17:00 (nascimento do redirect).
+- 2 dias: 388 pessoas únicas · 19/08 = 524 págs/217 pessoas · 20/08 = 424/125.
+- Robôs 2.003 e ataques 727 descartados — filtros funcionando.
+- QUIZ = 0 explicado: (a) o /quiz responde REDIRECIONAMENTO (301) e a
+  peneira descarta código != 200/304; (b) os testes antigos do autor estão
+  no log velho do compraoseu, anterior ao corte. Os cliques não sumiram —
+  estão nos "descartados". Refinamento pendente: contar 301 de /quiz.
+- QUIZ "PAIS E FILHOS" (novidade do autor, fora do repo): página
+  /guia-pais-filhos (9 acessos) e /guia-pais-filhos.html (2). Aparece em
+  "Outras páginas" porque NÃO está na lista PAGINAS do script. Pendência
+  próximo chat: adicionar ('/guia-pais-filhos', 'Guia Pais e Filhos —
+  Quiz') ao PAGINAS da v2, contar 301 do /quiz, trocar o rótulo do domínio
+  no cabeçalho e criar a página guia-pais-filhos no repo (hoje só existe
+  no servidor).
+- Barras "//enquete.php" com barra dupla: só estética da exibição.
+
+## 🧩 v2 REFINADA (20/08, noite): Guia Pais e Filhos no ranking
+
+- sw.js pré-carrega '/quiz' (lista URLS) → é ELE que gera os GET /quiz com
+  referer sw.js (não são cliques). No missaocomdeus /quiz responde 404
+  (rewrite não migrou). PENDÊNCIAS próximo chat: atualizar sw.js (remover
+  /quiz ou corrigir; incluir /livro12), criar redirect /quiz e
+  /quiz-pais-filhos → /guia-pais-filhos no nginx do missaocomdeus.
+- v2 atualizada no repo: PAGINAS ganhou ('/guia-pais-filhos','Guia Pais e
+  Filhos — Quiz') e as condições de contagem agora usam `path in PAGINAS`
+  (antes a página nova caía em 'outros' mesmo listada). Testado com log
+  sintético: guia aparece no ranking com contagem exata. Autor valida
+  dados a partir de 18/08 17:00 (nascimento do log missaocomdeus).
+
+## ✅ PAINEL v2 OFICIALIZADO NO missaocomdeus (20/08, noite)
+
+- Autor aplicou o comando: Guia Pais e Filhos no ranking (14º, 9 acessos)
+  e contador reconhecendo páginas novas. Painel validado pelo autor.
+- v2 do repo CONVERTIDA para o domínio novo (6 trocas): LOG padrão =
+  missaocomdeus.com.br.log · OUT = missaocomdeus.com.br/stats.html ·
+  rótulos e links do painel = missaocomdeus.com.br.
+- OFICIALIZAÇÃO no servidor (comando passado ao autor): backup da v1
+  (gerar_estatisticas-v1.bak), v2 assume o nome gerar_estatisticas.py,
+  roda sem env vars e o cron de 1h continua igual. Painel oficial:
+  https://missaocomdeus.com.br/stats.html (stats_teste.html pode apagar;
+  stats.html antigo do compraoseu fica obsoleto).
+- Verificar no aaPanel se o Cron aponta para /home/deploy/gerar_estatisticas.py.
+
+## 🏁 ENCERRAMENTO DA MIGRAÇÃO DAS ESTATÍSTICAS (20/08, 22:43 — CONCLUÍDO)
+
+- /home/deploy final: gerar_estatisticas.py (v2 oficial, era missaocomdeus)
+  · gerar_estatisticas-v1.bak (v1 de recordação) · gerar_estatisticas_v2-antes.bak
+  (intermediário, pode apagar). stats.html oficial JÁ com dados reais.
+- DECISÃO: NÃO apagar o site compraoseu.com do aaPanel — ele sustenta o
+  REDIRECIONAMENTO 301 (links antigos, Google, WhatsApp, PWA instalado).
+  Mas NÃO precisa mais atualizar os arquivos dele: o 301 acontece antes de
+  qualquer página ser servida. Dali em diante toda mudança é SÓ no
+  missaocomdeus. Manter o SSL do compraoseu renovando (o redirect https
+  depende dele) e a renovação do domínio.
+- Museu: /www/wwwroot/compraoseu.com/ guarda o enquete_dados.json com os
+  votos da era antiga (não apagar sem exportar se quiser o histórico).
+- ÚLTIMA VERIFICAÇÃO pendente do autor: aaPanel → Cron → conferir tarefa
+  horária chamando python3 /home/deploy/gerar_estatisticas.py; e 1h depois
+  recarregar stats.html conferindo o "gerado em" atualizado sozinho.
+- PRÓXIMO CHAT (lista fechada): subir ao GitHub v2 final + card livro12 +
+  capa livro12; sw.js (tirar /quiz, incluir /livro12); redirect /quiz e
+  /quiz-pais-filhos → /guia-pais-filhos no nginx; criar guia-pais-filhos
+  no repo; sitemap/SEO do missaocomdeus; refinar contagem do quiz.
