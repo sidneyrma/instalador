@@ -1414,6 +1414,11 @@ function quizMostrar(n) {
 }
 
 function quizPegarResposta(n) {
+  // SININHO DE ESTATÍSTICA - INÍCIO
+  if (!sessionStorage.getItem('quiz_inicio_ok')) {
+    sessionStorage.setItem('quiz_inicio_ok', 'true');
+    fetch('/q-quiz-inicio.html').catch(e => console.log('Stat erro:', e));
+  }
   var sel = document.querySelector('input[name="q' + n + '"]:checked');
   return sel ? parseInt(sel.value, 10) : null;
 }
@@ -1541,6 +1546,12 @@ function quizEnviar() {
   form.appendChild(inputNext);
   document.body.appendChild(form);
   form.submit();
+
+  // SININHO DE ESTATÍSTICA - FIM
+  if (!sessionStorage.getItem('quiz_fim_ok')) {
+    sessionStorage.setItem('quiz_fim_ok', 'true');
+    fetch('/q-quiz-fim.html').catch(e => console.log('Stat erro:', e));
+  }
 
   // feedback
   setTimeout(function() {

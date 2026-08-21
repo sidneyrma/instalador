@@ -40,6 +40,24 @@ PAGINAS = OrderedDict([
     ('/livro09', 'Livro 09 — Anestesia Mental'),
     ('/livro10', 'Livro 10 — O Despertar do Observador'),
     ('/quiz', 'Quiz — Autoavaliação'),
+    ('/trilogia-da-alma', 'Trilogia da Alma — Área de alunos'),
+    ('/anestesia-mental', 'Anestesia Mental — Área de alunos'),
+    ('/q-quiz-inicio', 'Quiz Home — iniciaram'),
+    ('/q-quiz-fim', 'Quiz Home — concluíram'),
+    ('/q-trilogia-m01', 'Trilogia — Módulo 01 (plays)'),
+    ('/q-trilogia-m02', 'Trilogia — Módulo 02 (plays)'),
+    ('/q-trilogia-m03', 'Trilogia — Módulo 03 (plays)'),
+    ('/q-trilogia-m04', 'Trilogia — Módulo 04 (plays)'),
+    ('/q-trilogia-m05', 'Trilogia — Módulo 05 (plays)'),
+    ('/q-trilogia-m06', 'Trilogia — Módulo 06 (plays)'),
+    ('/q-trilogia-m07', 'Trilogia — Módulo 07 (plays)'),
+    ('/q-anestesia-m01', 'Anestesia — Módulo 01 (plays)'),
+    ('/q-anestesia-m02', 'Anestesia — Módulo 02 (plays)'),
+    ('/q-anestesia-m03', 'Anestesia — Módulo 03 (plays)'),
+    ('/q-anestesia-m04', 'Anestesia — Módulo 04 (plays)'),
+    ('/q-anestesia-m05', 'Anestesia — Módulo 05 (plays)'),
+    ('/q-anestesia-m06', 'Anestesia — Módulo 06 (plays)'),
+    ('/q-anestesia-m07', 'Anestesia — Módulo 07 (plays)'),
 ])
 
 RE_LINHA = re.compile(r'^(\S+) .*?\[([^\]]+)\] "GET (\S+) HTTP')
@@ -74,7 +92,7 @@ def analisar():
             path = url.split('?')[0].rstrip('/')
             if path == '':
                 path = '/'
-            if path.startswith('/livro') or path == '/' or path == '/quiz':
+            if path in PAGINAS or path.startswith('/livro') or path == '/' or path == '/quiz':
                 contagens[path] += 1
             else:
                 contagens['/outros:' + path] += 1
@@ -83,7 +101,7 @@ def analisar():
                 dt = datetime.strptime(data.split(' ')[0], '%d/%b/%Y:%H:%M:%S')
                 chave_dia = dt.strftime('%d/%m/%Y')
                 por_dia[chave_dia] += 1
-                if chave_dia == hoje_str and (path.startswith('/livro') or path == '/' or path == '/quiz'):
+                if chave_dia == hoje_str and (path in PAGINAS or path.startswith('/livro') or path == '/' or path == '/quiz'):
                     contagens_hoje[path] += 1
                 if dt.date() == data_ontem and (dt.hour, dt.minute) <= (agora.hour, agora.minute):
                     acessos_ontem_mesmo_horario += 1

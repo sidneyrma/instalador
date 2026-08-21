@@ -1257,6 +1257,12 @@ function quizEnviar() {
   document.body.appendChild(form);
   form.submit();
 
+  // SININHO DE ESTATÍSTICA - FIM
+  if (!sessionStorage.getItem('quiz_fim_ok')) {
+    sessionStorage.setItem('quiz_fim_ok', 'true');
+    fetch('/q-quiz-fim.html').catch(e => console.log('Stat erro:', e));
+  }
+
   // feedback
   setTimeout(function() {
     var box = document.querySelector('.quiz-form');
