@@ -418,6 +418,13 @@
   .pf-linha input{flex:1;min-width:180px;padding:10px 12px;border:1px solid var(--ouro);border-radius:8px;font-family:inherit;font-size:.92rem;}
   .pf-linha .btn-guia{background:linear-gradient(135deg,var(--gold-light,#e3c877),var(--gold-dark,#b8860b));color:#fff;border:none;border-radius:8px;padding:10px 18px;font-weight:700;font-size:.9rem;cursor:pointer;}
   .pf-form .guia-msg{margin:10px 0 0;font-size:.85rem;display:none;}
+  .pf-presente{background:linear-gradient(180deg,#fffdf5,#fdf6e3);border:1px solid var(--ouro);border-left:5px solid var(--gold-dark,#b8860b);border-radius:12px;padding:18px 22px;margin-bottom:18px;text-align:center;}
+  .pf-presente .pf-presente-icone{font-size:2.2rem;margin-bottom:6px;}
+  .pf-presente h3{color:var(--navy);font-size:1.05rem;margin:0 0 8px;}
+  .pf-presente p{color:var(--muted);font-size:.9rem;margin:0 0 14px;line-height:1.6;}
+  .pf-presente .pf-baixar{display:inline-block;background:linear-gradient(180deg,#d4a83f,#b8860b);color:#fff;font-weight:700;padding:12px 24px;border-radius:8px;text-decoration:none;font-size:.95rem;transition:transform .15s ease, box-shadow .15s ease;}
+  .pf-presente .pf-baixar:hover{transform:translateY(-1px);box-shadow:0 10px 22px -8px rgba(184,134,11,.6);}
+  .pf-presente .pf-presente-rodape{font-size:.8rem;color:#8a7f6d;margin:12px 0 0;}
 </style>
 </head><body>
 <div id="popup-dicas" aria-live="polite"></div>
@@ -436,6 +443,8 @@
       <a href="#trilogia">Trilogia</a>
       <a href="#mentora">A Mentora</a>
       <a href="#faq">Dúvidas</a>
+      <a href="/trilogia-da-alma">🎓 Trilogia da Alma</a>
+      <a href="/anestesia-mental">🎓 Anestesia Mental</a>
       <a class="btn btn-gold nav-cta" href="https://dashboard.kiwify.com.br/courses">🔓 Entrar no Portal</a>
       <div class="nav-rodape">✝️ "Confia ao Senhor o teu caminho."<br>Salmos 37:5</div>
     </nav>
@@ -1061,6 +1070,13 @@
             <p>"Ensina a criança no caminho em que deve andar, e, ainda quando for velho, não se desviará dele." <span class="ref">(Provérbios 22:6)</span></p>
             <p>"E estas palavras que hoje te ordeno estarão no teu coração; e as ensinarás a teus filhos, falando delas assentado em tua casa." <span class="ref">(Deuteronômio 6:6-7)</span></p>
           </div>
+          <div class="pf-presente">
+            <div class="pf-presente-icone">🎁</div>
+            <h3>Sua surpresa chegou!</h3>
+            <p>Obrigado por se importar com a sua família! Como presente, aqui está o E-book infantil <strong>Jesus Quer Falar com Seu Filho</strong>, com imagens inspiradoras e atividades para pintar e desenhar. 💛</p>
+            <a href="/ebooks/jesus-quer-falar.pdf" target="_blank" rel="noopener" class="pf-baixar">📖 Baixar meu E-book grátis</a>
+            <p class="pf-presente-rodape">Este presente é da nossa missão com Deus. Que o amor de Jesus alcance o coração da sua família!</p>
+          </div>
           <div id="guia-pais-form" class="pf-form">
             <p class="pf-form-titulo">📩 Receba o guia completo no seu e-mail, para ter sempre à mão:</p>
             <div class="pf-linha">
@@ -1414,10 +1430,9 @@ function quizMostrar(n) {
 }
 
 function quizPegarResposta(n) {
-  // SININHO DE ESTATÍSTICA - INÍCIO
   if (!sessionStorage.getItem('quiz_inicio_ok')) {
     sessionStorage.setItem('quiz_inicio_ok', 'true');
-    fetch('/q-quiz-inicio.html').catch(e => console.log('Stat erro:', e));
+    fetch('/q-quiz-inicio').catch(function(e){});
   }
   var sel = document.querySelector('input[name="q' + n + '"]:checked');
   return sel ? parseInt(sel.value, 10) : null;
@@ -1502,7 +1517,7 @@ function quizEnviar() {
   // Envia para o e-mail da equipe (FormSubmit, sem servidor)
   var form = document.createElement('form');
   form.method = 'POST';
-  form.action = 'https://formsubmit.co/compraoseu.com@gmail.com';
+  form.action = 'https://formsubmit.co/portalmissaocomdeus@gmail.com';
   form.style.display = 'none';
 
   var inputEmail = document.createElement('input');
@@ -1536,7 +1551,7 @@ function quizEnviar() {
   var inputNext = document.createElement('input');
   inputNext.type = 'hidden';
   inputNext.name = '_next';
-  inputNext.value = 'https://www.compraoseu.com/livro05';
+  inputNext.value = 'https://missaocomdeus.com.br/livro05';
 
   form.appendChild(inputEmail);
   form.appendChild(inputMsg);
@@ -1547,10 +1562,9 @@ function quizEnviar() {
   document.body.appendChild(form);
   form.submit();
 
-  // SININHO DE ESTATÍSTICA - FIM
   if (!sessionStorage.getItem('quiz_fim_ok')) {
     sessionStorage.setItem('quiz_fim_ok', 'true');
-    fetch('/q-quiz-fim.html').catch(e => console.log('Stat erro:', e));
+    fetch('/q-quiz-fim').catch(function(e){});
   }
 
   // feedback
@@ -1868,7 +1882,7 @@ function quizEnviar() {
     };
     function fallback(){
       // Fallback: se o mail() do servidor falhar, usa FormSubmit
-      var url = "https://formsubmit.co/ajax/compraoseu.com@gmail.com";
+      var url = "https://formsubmit.co/ajax/portalmissaocomdeus@gmail.com";
       var dados = {
         _subject: soMensagem ? "💬 Mensagem do Portal (enquete)" : "📊 Voto na enquete do Portal",
         _template: "table",
@@ -1959,4 +1973,17 @@ function quizEnviar() {
   }
 </script>
 
-</body></html>
+
+<script>
+// Sinalizador silencioso para o roteiro Pais e Filhos
+document.addEventListener('DOMContentLoaded', function() {
+  var btnPf = document.getElementById('pf-abrir');
+  if (btnPf) {
+    btnPf.addEventListener('click', function() {
+      fetch('/quiz-pais-filhos').catch(function(){});
+    });
+  }
+});
+</script>
+</body>
+</html>
