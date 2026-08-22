@@ -135,7 +135,7 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
         <h2 class="mod-title">Bem-vindo(a) à nossa Comunidade</h2>
       </div>
       <div class="video-wrap" id="video01">
-        <iframe src="https://www.youtube-nocookie.com/embed/yVv_BKMJ4DE?rel=0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/yVv_BKMJ4DE?rel=0" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
       </div>
       <div class="mod-actions">
         <button class="btn-check" onclick="toggleConcluido(1)" id="btnCheck1">✓ Marcar aula como concluída</button>
@@ -149,7 +149,7 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
         <h2 class="mod-title">A Anestesia Mental</h2>
       </div>
       <div class="video-wrap" id="video02">
-        <iframe src="https://www.youtube-nocookie.com/embed/YSw_MY8NNZI?rel=0" loading="lazy" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/YSw_MY8NNZI?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
       </div>
       <div class="mod-actions">
         <button class="btn-check" onclick="toggleConcluido(2)" id="btnCheck2">✓ Marcar aula como concluída</button>
@@ -163,7 +163,7 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
         <h2 class="mod-title">O Governo da Mente</h2>
       </div>
       <div class="video-wrap" id="video03">
-        <iframe src="https://www.youtube-nocookie.com/embed/4IwyK4pmaJI?rel=0" loading="lazy" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/4IwyK4pmaJI?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
       </div>
       <div class="mod-actions">
         <button class="btn-check" onclick="toggleConcluido(3)" id="btnCheck3">✓ Marcar aula como concluída</button>
@@ -177,7 +177,7 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
         <h2 class="mod-title">O Impulso sem Consciência</h2>
       </div>
       <div class="video-wrap" id="video04">
-        <iframe src="https://www.youtube-nocookie.com/embed/f_GxlRva2CQ?rel=0" loading="lazy" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/f_GxlRva2CQ?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
       </div>
       <div class="mod-actions">
         <button class="btn-check" onclick="toggleConcluido(4)" id="btnCheck4">✓ Marcar aula como concluída</button>
@@ -188,10 +188,10 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
     <div class="modulo" id="mod05">
       <div class="mod-header">
         <span class="mod-num">Módulo 05</span>
-        <h2 class="mod-title">O Despertar Da Consciência</h2>
+        <h2 class="mod-title">O Despertar da Consciência</h2>
       </div>
       <div class="video-wrap" id="video05">
-        <iframe src="https://www.youtube-nocookie.com/embed/Fw4RE6ld_UU?rel=0" loading="lazy" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/Fw4RE6ld_UU?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
       </div>
       <div class="mod-actions">
         <button class="btn-check" onclick="toggleConcluido(5)" id="btnCheck5">✓ Marcar aula como concluída</button>
@@ -205,7 +205,7 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
         <h2 class="mod-title">O Reset do Shabat</h2>
       </div>
       <div class="video-wrap" id="video06">
-        <iframe src="https://www.youtube-nocookie.com/embed/31XPvz6DSeY?rel=0" loading="lazy" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/31XPvz6DSeY?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
       </div>
       <div class="mod-actions">
         <button class="btn-check" onclick="toggleConcluido(6)" id="btnCheck6">✓ Marcar aula como concluída</button>
@@ -219,7 +219,7 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
         <h2 class="mod-title">O Caminho da Libertação</h2>
       </div>
       <div class="video-wrap" id="video07">
-        <iframe src="https://www.youtube-nocookie.com/embed/dYwYB9uDhnI?rel=0" loading="lazy" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/dYwYB9uDhnI?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
       </div>
       <div class="mod-actions">
         <button class="btn-check" onclick="toggleConcluido(7)" id="btnCheck7">✓ Marcar aula como concluída</button>
@@ -229,6 +229,34 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
   </div>
 </div>
 
+
+<div id="caixa-comentario" style="display:none; background:var(--papel); padding:0 0 60px">
+  <div class="wrap">
+    <div class="modulo" id="comentarios">
+      <div class="mod-header"><span class="mod-num">💬</span><h2 class="mod-title">Deixe seu comentário ou testemunho</h2></div>
+      <p style="color:var(--tinta2); margin:0 0 16px">Conte o que estas aulas significaram para você. Seu comentário chega direto ao autor. 💛</p>
+      <input type="text" id="com-nome" placeholder="Seu nome (opcional)" style="width:100%; padding:12px; border:2px solid var(--linha); border-radius:8px; font-family:var(--sans); font-size:15px; margin-bottom:10px">
+      <textarea id="com-texto" rows="4" placeholder="Escreva aqui o seu comentário..." style="width:100%; padding:12px; border:2px solid var(--linha); border-radius:8px; font-family:var(--sans); font-size:15px; resize:vertical"></textarea>
+      <div style="text-align:right; margin-top:12px"><button class="btn btn-gold" onclick="enviarComentario()">Enviar comentário 🙏</button></div>
+      <p id="com-aviso" style="color:var(--cta); font-weight:600; margin:10px 0 0"></p>
+    </div>
+  </div>
+</div>
+<script>
+function enviarComentario(){
+  var t = document.getElementById('com-texto').value.trim();
+  var n = document.getElementById('com-nome').value.trim() || 'Aluno(a)';
+  var av = document.getElementById('com-aviso');
+  if(t.length < 3){ av.textContent = 'Escreva seu comentário antes de enviar. 😊'; return; }
+  av.textContent = 'Enviando...';
+  fetch('https://formsubmit.co/ajax/portalmissaocomdeus@gmail.com', {
+    method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify({ _subject:'💬 Comentario de aluno - Anestesia Mental', _template:'table', _captcha:'false', Nome:n, Comentario:t, Pagina: location.pathname })
+  }).then(function(r){ return r.json(); }).then(function(){
+    document.getElementById('comentarios').innerHTML = '<div style="text-align:center; padding:20px"><div style="font-size:2rem">🙌</div><h3 style="margin:8px 0">Comentário enviado!</h3><p style="color:var(--tinta2)">Obrigado por compartilhar. Que Deus abençoe a sua caminhada!</p></div>';
+  }).catch(function(){ av.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.'; });
+}
+</script>
 <div id="fim">
   <p>© Missão com Deus. Todos os direitos reservados.</p>
 </div>
@@ -265,6 +293,7 @@ function verificarCodigo() {
 function liberarInterface() {
   document.getElementById('portao').style.display = 'none';
   document.getElementById('conteudo').style.display = 'block';
+  var cx = document.getElementById('caixa-comentario'); if (cx) cx.style.display = 'block';
   document.getElementById('barraProgresso').style.display = 'block';
   carregarProgresso();
 }
@@ -305,19 +334,31 @@ function atualizarBarra(concluidas) {
   document.getElementById('progText').innerText = concluidas + ' de ' + TOTAL_AULAS + ' aulas concluídas';
 }
 
-function configurarEstatisticas() {
-  for(let i=1; i<=TOTAL_AULAS; i++) {
-    const wrap = document.getElementById('video0' + i);
-    if(!wrap) continue;
-    
-    wrap.addEventListener('pointerdown', function() {
-      const key = 'anestesia_m0' + i + '_play';
-      if(!sessionStorage.getItem(key)) {
-        sessionStorage.setItem(key, 'true');
-        fetch('/q-anestesia-m0' + i + '.html').catch(e => console.log('Stat erro:', e));
-      }
-    }, {once: true});
+function marcarPlay(i) {
+  var key = 'anestesia_m0' + i + '_play';
+  if (!sessionStorage.getItem(key)) {
+    sessionStorage.setItem(key, 'true');
+    fetch('/q-anestesia-m0' + i).catch(function(e){});
   }
+}
+function configurarEstatisticas() {
+  for (var i = 1; i <= TOTAL_AULAS; i++) {
+    (function(n) {
+      var wrap = document.getElementById('video0' + n);
+      if (wrap) wrap.addEventListener('pointerdown', function(){ marcarPlay(n); });
+    })(i);
+  }
+  window.addEventListener('blur', function() {
+    setTimeout(function() {
+      var el = document.activeElement;
+      if (el && el.tagName === 'IFRAME') {
+        for (var i = 1; i <= TOTAL_AULAS; i++) {
+          var wrap = document.getElementById('video0' + i);
+          if (wrap && wrap.contains(el)) marcarPlay(i);
+        }
+      }
+    }, 0);
+  });
 }
 </script>
 </body>
