@@ -1,19 +1,24 @@
 # -*- coding: utf-8 -*-
 """
-Gera o painel de estatísticas de acesso do site compraoseu.com.
+Painel de estatísticas v2 — compraoseu.com (MODO PRUDENTE)
 
-Lê o log do Nginx (padrão aaPanel) e conta os acessos por página:
-- /            -> Home
-- /livro01 ... /livro10 -> cada livro
-- /quiz        -> quiz
+Novidades em relação à v1 (as "sugestões 1 e 2" da auditoria de 18/08):
 
-Inclui:
-- Acessos de HOJE (até agora) e de ONTEM, com comparação (%);
-- Acessos por página, com coluna "Hoje";
-- Acessos por dia (últimos 7).
+SUGESTÃO 1 — FILTROS (contar só gente de verdade):
+  a) Só conta respostas 200/304 (página realmente entregue). Ataques
+     bloqueados (444), erros (404) e redirecionamentos ficam DE FORA.
+  b) Só conta se o User-Agent NÃO for robô (Googlebot, Bingbot, curl,
+     python, scanners, prévias de WhatsApp/Facebook etc.).
+  c) User-Agent vazio ("-") é descartado (navegador real sempre se identifica).
 
-IMPORTANTE: o painel é uma "fotografia" do momento em que o script roda.
-Para atualizar sozinho, agende no aaPanel:
+SUGESTÃO 2 — VISITANTES ÚNICOS (o número mais próximo de "pessoas"):
+  Conta IPs diferentes por dia (hoje, ontem e total). 1 pessoa que lê
+  5 livros continua sendo 1 visitante — como as plataformas profissionais.
+
+TRANSPARÊNCIA: o painel também mostra quantas requisições foram
+descartadas (robôs declarados e ataques/erros), para nada ficar escondido.
+
+Para atualizar sozinho, agende no aaPanel (igual à v1):
   Cron -> Shell -> a cada 1h:  python3 /home/deploy/gerar_estatisticas.py
 
 Gera: /www/wwwroot/compraoseu.com/stats.html
@@ -21,11 +26,11 @@ Gera: /www/wwwroot/compraoseu.com/stats.html
 import os
 import re
 import html
-from collections import Counter, OrderedDict
+from collections import Counter, OrderedDict, defaultdict
 from datetime import datetime, timedelta
 
-LOG = '/www/wwwlogs/compraoseu.com.log'
-OUT = '/www/wwwroot/compraoseu.com/stats.html'
+LOG = os.environ.get('STATS_LOG', '/www/wwwlogs/missaocomdeus.com.br.log')
+OUT = os.environ.get('STATS_OUT', '/www/wwwroot/missaocomdeus.com.br/stats.html')
 
 PAGINAS = OrderedDict([
     ('/', 'Home (início)'),
@@ -39,7 +44,8 @@ PAGINAS = OrderedDict([
     ('/livro08', 'Livro 08 — O Arquiteto da Realidade'),
     ('/livro09', 'Livro 09 — Anestesia Mental'),
     ('/livro10', 'Livro 10 — O Despertar do Observador'),
-    ('/quiz', 'Quiz — Autoavaliação'),
+    ('/livro11', 'Livro 11 — O Novo Testamento como nunca lido'),
+    ('/livro12', 'Livro 12 — Afirmações, Declarações e Orações'),
     ('/trilogia-da-alma', 'Trilogia da Alma — Área de alunos'),
     ('/anestesia-mental', 'Anestesia Mental — Área de alunos'),
     ('/q-quiz-inicio', 'Quiz Home — iniciaram'),
@@ -58,19 +64,39 @@ PAGINAS = OrderedDict([
     ('/q-anestesia-m05', 'Anestesia — Módulo 05 (plays)'),
     ('/q-anestesia-m06', 'Anestesia — Módulo 06 (plays)'),
     ('/q-anestesia-m07', 'Anestesia — Módulo 07 (plays)'),
+    ('/guia-pais-filhos', 'Guia Pais e Filhos — Quiz'),
 ])
 
-RE_LINHA = re.compile(r'^(\S+) .*?\[([^\]]+)\] "GET (\S+) HTTP')
-RE_EXT = re.compile(r'\.(png|jpg|jpeg|gif|svg|ico|css|js|woff2?|webp|xml|json|txt|webmanifest)$', re.I)
+# Linha completa do log (formato padrão aaPanel/Nginx "combined"):
+# IP - - [data] "GET url HTTP/1.x" status bytes "referer" "user-agent"
+RE_COMPLETA = re.compile(
+    r'^(\S+) \S+ \S+ \[([^\]]+)\] "GET (\S+) HTTP[^"]*" (\d{3}) \S+ "[^"]*" "([^"]*)"')
+# Reserva (formato antigo, sem UA) — usada só se a completa não casar
+RE_SIMPLES = re.compile(r'^(\S+) .*?\[([^\]]+)\] "GET (\S+) HTTP')
+RE_EXT = re.compile(
+    r'\.(png|jpg|jpeg|gif|svg|ico|css|js|woff2?|webp|xml|json|txt|webmanifest)$', re.I)
+
+# Robôs declarados e ferramentas de máquina (não são leitores)
+RE_BOT = re.compile(
+    r'bot|crawl|spider|slurp|scan|monitor|probe|python|curl|wget|httpclient|'
+    r'go-http|libwww|java/|okhttp|headless|lighthouse|pingdom|uptime|'
+    r'facebookexternalhit|whatsapp|telegrambot|twitterbot|linkedinbot|'
+    r'semrush|ahrefs|mj12|dotbot|petalbot|bytespider|zgrab|masscan|nuclei', re.I)
 
 
 def analisar():
-    contagens = Counter()          # total por página
-    contagens_hoje = Counter()     # hoje por página
+    contagens = Counter()
+    contagens_hoje = Counter()
     total_geral = 0
     data_inicio = None
     data_fim = None
     por_dia = Counter()
+    visitantes_por_dia = defaultdict(set)   # dia -> {ips humanos}
+    visitantes_total = set()
+    descartados_robos = 0                   # user-agent de robô
+    descartados_erros = 0                   # 444/404/etc (ataques e erros)
+    robos_por_dia = Counter()
+    erros_por_dia = Counter()
 
     agora = datetime.now()
     hoje_str = agora.strftime('%d/%m/%Y')
@@ -83,25 +109,61 @@ def analisar():
 
     with open(LOG, 'r', encoding='utf-8', errors='ignore') as f:
         for linha in f:
-            m = RE_LINHA.match(linha)
-            if not m:
-                continue
-            ip, data, url = m.group(1), m.group(2), m.group(3)
+            m = RE_COMPLETA.match(linha)
+            if m:
+                ip, data, url, status, ua = (m.group(1), m.group(2), m.group(3),
+                                             m.group(4), m.group(5))
+            else:
+                m = RE_SIMPLES.match(linha)
+                if not m:
+                    continue
+                ip, data, url = m.group(1), m.group(2), m.group(3)
+                status, ua = '200', 'desconhecido'
             if RE_EXT.search(url):
                 continue
+
+            # dia da linha (para registrar também os descartes por dia)
+            chave_dia = None
+            dt = None
+            try:
+                dt = datetime.strptime(data.split(' ')[0], '%d/%b/%Y:%H:%M:%S')
+                chave_dia = dt.strftime('%d/%m/%Y')
+            except Exception:
+                pass
+
+            # ---------- SUGESTÃO 1: FILTROS ----------
+            if ua == '-' or ua == '' or RE_BOT.search(ua):
+                descartados_robos += 1
+                if chave_dia:
+                    robos_por_dia[chave_dia] += 1
+                continue
+            if status not in ('200', '304'):
+                descartados_erros += 1
+                if chave_dia:
+                    erros_por_dia[chave_dia] += 1
+                continue
+            # -----------------------------------------
+
             path = url.split('?')[0].rstrip('/')
             if path == '':
                 path = '/'
-            if path in PAGINAS or path.startswith('/livro') or path == '/' or path == '/quiz':
+            if path.endswith('.html'):
+                path = path[:-5]
+                if path == '/index':
+                    path = '/'
+            if path in PAGINAS or path.startswith('/livro'):
                 contagens[path] += 1
             else:
                 contagens['/outros:' + path] += 1
             total_geral += 1
-            try:
-                dt = datetime.strptime(data.split(' ')[0], '%d/%b/%Y:%H:%M:%S')
-                chave_dia = dt.strftime('%d/%m/%Y')
+
+            if dt is not None:
                 por_dia[chave_dia] += 1
-                if chave_dia == hoje_str and (path in PAGINAS or path.startswith('/livro') or path == '/' or path == '/quiz'):
+                # ---------- SUGESTÃO 2: VISITANTES ÚNICOS ----------
+                visitantes_por_dia[chave_dia].add(ip)
+                visitantes_total.add(ip)
+                # ----------------------------------------------------
+                if chave_dia == hoje_str and (path in PAGINAS or path.startswith('/livro')):
                     contagens_hoje[path] += 1
                 if dt.date() == data_ontem and (dt.hour, dt.minute) <= (agora.hour, agora.minute):
                     acessos_ontem_mesmo_horario += 1
@@ -109,36 +171,37 @@ def analisar():
                     data_inicio = dt
                 if data_fim is None or dt > data_fim:
                     data_fim = dt
-            except Exception:
-                pass
 
     total_hoje = por_dia.get(hoje_str, 0)
     total_ontem = por_dia.get(ontem, 0)
-    # Variação JUSTA: hoje (parcial) contra ONTEM ATÉ O MESMO HORÁRIO.
-    # Comparar o parcial com o dia inteiro de ontem é injusto (mostra queda
-    # falsa no início do dia); esta comparação é a que reflete o ritmo real.
     if acessos_ontem_mesmo_horario > 0:
         variacao = ((total_hoje - acessos_ontem_mesmo_horario) / acessos_ontem_mesmo_horario) * 100
     else:
         variacao = 100.0 if total_hoje > 0 else 0.0
-    # Projeção honesta do dia: ritmo atual (por hora) estendido para 24h
     horas_decorridas = agora.hour + agora.minute / 60.0
     if horas_decorridas > 0:
         projecao = int(round(total_hoje / horas_decorridas * 24))
     else:
         projecao = total_hoje
 
+    unicos_hoje = len(visitantes_por_dia.get(hoje_str, set()))
+    unicos_ontem = len(visitantes_por_dia.get(ontem, set()))
+    unicos_total = len(visitantes_total)
+
     return (contagens, total_geral, data_inicio, data_fim, por_dia,
             contagens_hoje, total_hoje, total_ontem, variacao, hoje_str, ontem,
-            acessos_ontem_mesmo_horario, projecao), None
+            acessos_ontem_mesmo_horario, projecao,
+            unicos_hoje, unicos_ontem, unicos_total, visitantes_por_dia,
+            descartados_robos, descartados_erros, robos_por_dia, erros_por_dia), None
 
 
 def montar_html(res):
     (contagens, total_geral, data_inicio, data_fim, por_dia,
      contagens_hoje, total_hoje, total_ontem, variacao, hoje_str, ontem,
-     ontem_mesmo_horario, projecao) = res
+     ontem_mesmo_horario, projecao,
+     unicos_hoje, unicos_ontem, unicos_total, visitantes_por_dia,
+     descartados_robos, descartados_erros, robos_por_dia, erros_por_dia) = res
 
-    # Seta de variação
     if variacao > 0:
         seta = '📈'
     elif variacao < 0:
@@ -159,17 +222,20 @@ def montar_html(res):
         linhas.append(f"""
         <tr>
           <td class="num">{medalha} {i}</td>
-          <td><a href="https://compraoseu.com{path}">{html.escape(nome)}</a><br><span class="url">{path}</span></td>
+          <td><a href="https://missaocomdeus.com.br{path}">{html.escape(nome)}</a><br><span class="url">{path}</span></td>
           <td class="num">{n} {hoje_txt}</td>
           <td class="num">{pct:.1f}%</td>
           <td><div class="barra"><div class="fill" style="width:{min(100,pct)}%"></div></div></td>
         </tr>""")
 
     dias = por_dia.most_common(7)
-    dias.sort(key=lambda x: x[0], reverse=True)  # mais recente primeiro
+    dias.sort(key=lambda x: x[0], reverse=True)
     linhas_dias = '\n'.join(
-        f'<tr><td>{d}</td><td class="num">{n}</td></tr>' for d, n in dias
-    ) or '<tr><td colspan="2">Sem dados diários</td></tr>'
+        f'<tr><td>{d}</td><td class="num">{n}</td>'
+        f'<td class="num" style="color:#7fe0a3">{len(visitantes_por_dia.get(d, set()))}</td>'
+        f'<td class="num" style="color:#9fb0c8">{robos_por_dia.get(d, 0) + erros_por_dia.get(d, 0)}</td></tr>'
+        for d, n in dias
+    ) or '<tr><td colspan="4">Sem dados diários</td></tr>'
 
     outros = [(k, v) for k, v in contagens.items() if k.startswith('/outros:')]
     outros.sort(key=lambda x: -x[1])
@@ -205,6 +271,7 @@ def montar_html(res):
   .card .v {{ font-size:1.6rem; font-weight:700; color:var(--gold); }}
   .card .l {{ font-size:.75rem; color:#9fb0c8; text-transform:uppercase; letter-spacing:.06em; }}
   .card.destaque {{ border-color:var(--gold); background:linear-gradient(180deg,#1a2c47,#16283f); }}
+  .card.humano .v {{ color:#7fe0a3; }}
   table {{ width:100%; border-collapse:collapse; background:#16283f; border-radius:10px; overflow:hidden; }}
   th {{ background:rgba(201,162,75,.15); color:var(--gold); text-align:left; padding:10px 12px; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; }}
   td {{ padding:10px 12px; border-top:1px solid rgba(201,162,75,.15); font-size:.92rem; vertical-align:middle; }}
@@ -218,13 +285,15 @@ def montar_html(res):
   .comparacao .rot {{ font-size:.75rem; color:#9fb0c8; text-transform:uppercase; letter-spacing:.05em; }}
   .comparacao .val {{ font-size:1.5rem; font-weight:700; color:#fff; }}
   .comparacao .val.gold {{ color:var(--gold); }}
+  .comparacao .val.verde {{ color:#7fe0a3; }}
   footer {{ text-align:center; color:#7f92ad; font-size:.78rem; margin-top:40px; }}
+  .selo-filtro {{ display:inline-block; background:rgba(127,224,163,.12); border:1px solid rgba(127,224,163,.4); color:#7fe0a3; font-size:.72rem; padding:3px 10px; border-radius:20px; margin-left:8px; vertical-align:middle; }}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>📊 Estatísticas de Acesso</h1>
-  <p class="sub">Portal O Despertar · compraoseu.com · gerado em {datetime.now().strftime('%d/%m/%Y %H:%M')}</p>
+  <h1>📊 Estatísticas de Acesso <span class="selo-filtro">✅ v2 — só leitores reais</span></h1>
+  <p class="sub">Portal O Despertar · missaocomdeus.com.br · gerado em {datetime.now().strftime('%d/%m/%Y %H:%M')}</p>
 
   <div class="comparacao">
     <div class="bloco">
@@ -252,13 +321,37 @@ def montar_html(res):
       <div class="val">{total_geral}</div>
     </div>
   </div>
-  <p style="font-size:.8rem;color:#9fb0c8;margin:-18px 0 24px;">Comparação justa: hoje (parcial) contra ontem até o mesmo horário do dia. A projeção estima o total do dia pelo ritmo atual. (O número de ontem completo é mostrado apenas como referência.)</p>
+
+  <div class="comparacao" style="border-color:rgba(127,224,163,.4);">
+    <div class="bloco">
+      <div class="rot">👤 Visitantes únicos HOJE</div>
+      <div class="val verde">{unicos_hoje}</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">👤 Visitantes únicos ONTEM</div>
+      <div class="val verde">{unicos_ontem}</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">👤 Visitantes únicos TOTAL</div>
+      <div class="val verde">{unicos_total}</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">🤖 Robôs descartados</div>
+      <div class="val" style="font-size:1.1rem;">{descartados_robos}</div>
+    </div>
+    <div class="bloco">
+      <div class="rot">🛡️ Ataques/erros descartados</div>
+      <div class="val" style="font-size:1.1rem;">{descartados_erros}</div>
+    </div>
+  </div>
+  <p style="font-size:.8rem;color:#9fb0c8;margin:-18px 0 24px;">Contagem prudente: só entram páginas realmente entregues (código 200/304) a navegadores de gente (robôs declarados, prévias de link e ataques ficam de fora — os descartes aparecem aí em cima, com transparência). "Visitantes únicos" = IPs diferentes no dia: o número mais próximo de PESSOAS.</p>
 
   <div class="cards">
     <div class="card destaque"><div class="v">{total_home}</div><div class="l">Visitas à Home</div></div>
     <div class="card destaque"><div class="v">{total_livros}</div><div class="l">Acessos aos livros</div></div>
     <div class="card"><div class="v">{livros_lidos}</div><div class="l">Livros lidos</div></div>
-    <div class="card"><div class="v">{contagens.get('/quiz',0)}</div><div class="l">Quiz</div></div>
+    <div class="card"><div class="v">{contagens.get('/guia-pais-filhos',0)}</div><div class="l">Quiz Pais e Filhos</div></div>
+    <div class="card humano"><div class="v">{unicos_total}</div><div class="l">Pessoas (IPs únicos)</div></div>
   </div>
 
   <h2>🏆 Ranking (Home + Livros + Quiz)</h2>
@@ -269,7 +362,7 @@ def montar_html(res):
 
   <h2>📅 Acessos por dia (últimos 7)</h2>
   <table>
-    <tr><th>Dia</th><th>Acessos</th></tr>
+    <tr><th>Dia</th><th>Páginas vistas (humanos)</th><th>👤 Visitantes únicos</th><th>🤖 Descartados</th></tr>
     {linhas_dias}
   </table>
 
@@ -280,7 +373,7 @@ def montar_html(res):
   </table>
 
   <footer>Período registrado: {periodo} · Missão com Deus · Coleção do Despertar<br>
-  Painel atualizado pelo script (cron). Página protegida (noindex) — apenas para o administrador.</footer>
+  Painel v2 (filtros de robôs + visitantes únicos) atualizado pelo script (cron). Página protegida (noindex) — apenas para o administrador.</footer>
 </div>
 </body>
 </html>"""
@@ -297,7 +390,7 @@ def main():
     with open(OUT, 'w', encoding='utf-8') as f:
         f.write(doc)
     print('✅ stats.html gerado em', OUT)
-    print('   Acesse: https://compraoseu.com/stats.html')
+    print('   Acesse: https://missaocomdeus.com.br/stats.html')
 
 
 if __name__ == '__main__':
