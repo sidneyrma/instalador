@@ -738,3 +738,11 @@ seção descreve (ou pedir ao autor o zip desta sessão) e dar push ao main.
   backups *-antes-comentario.bak). Passado ao autor.
 - GitHub: as páginas de lá ficarão sem a caixa até o próximo espelho
   (pendência já conhecida).
+
+  ### 🕊️ MARCO ATUALIZADO (23/08/2026) — VITRINE DO SEMEADOR
+- **Nova Proposta de Valor:** Transformação dos 3 cards de venda em vitrine informativa e introdução do CTA único "Semeador da Missão".
+- **Preço Unificado:** R$ 37,00 (pagamento único / acesso vitalício).
+- **Checkout Oficial:** https://pay.kiwify.com.br/iVfp2bi aplicado em todos os botões do site.
+- **Eliminação de Resquícios:** Removidos cards de apoio avulsos (R$ 9,90) e ofertas duplicadas de R$ 49,00.
+- **Espelhamento:** missaocomdeus.com.br e compraoseu.com 100% sincronizados.
+- **Contagem Regressiva:** Faltam 4 dias para o grande marco de 27/08/2026.
