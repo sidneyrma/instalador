@@ -746,3 +746,32 @@ seção descreve (ou pedir ao autor o zip desta sessão) e dar push ao main.
 - **Eliminação de Resquícios:** Removidos cards de apoio avulsos (R$ 9,90) e ofertas duplicadas de R$ 49,00.
 - **Espelhamento:** missaocomdeus.com.br e compraoseu.com 100% sincronizados.
 - **Contagem Regressiva:** Faltam 4 dias para o grande marco de 27/08/2026.
+
+- # 📖 MEMÓRIA DO PROJETO — PORTAL O DESPERTAR
+## Status: 23/08/2026 — Marco: Vitrine do Semeador & Termômetro da Alma 🕊️
+
+### 🌐 AMBIENTE DE PRODUÇÃO
+- **Domínio Principal:** https://missaocomdeus.com.br (HTTP 200 OK)
+- **Domínio Espelho:** https://compraoseu.com (Redirecionamento 301 OK)
+- **Painel de Estatísticas:** https://missaocomdeus.com.br/stats.html
+- **Servidor:** Contabo VPS (Ubuntu 22.04 / aaPanel) — IP: 212.28.182.86 (Carga: 0.21 / 14GB RAM livres)
+
+### 🕊️ VITRINE DO SEMEADOR (NOVO MODELO)
+- **Conceito:** "Não compre. SEMEIE." (Mateus 10:8).
+- **CTA Único:** R$ 37,00 (acesso vitalício a todos os livros, cursos e comunidade).
+- **Checkout Oficial:** https://pay.kiwify.com.br/iVfp2bi aplicado em todos os botões de compra.
+- **Limpeza:** Eliminados cards avulsos de apoio (R$ 9,90) e ofertas duplicadas antigas de R$ 49,00.
+
+### 🌿 TERMÔMETRO DA ALMA (NOVO QUIZ DE 3 PERGUNTAS)
+- **Formato:** 3 perguntas magnéticas e profundas (tempo médio: 20 segundos).
+- **Roteamento Inteligente:**
+  1. *Paz Interior / Ansiedade* ➡️ Livro 04 (Um Segundo com Deus).
+  2. *Governo da Mente / Foco* ➡️ Livro 09 (Anestesia Mental).
+  3. *Propósito / Cura das Emoções* ➡️ Livro 05 (Evolução da Alma).
+- **Captura de Leads:** Envio assíncrono (AJAX) sem redirecionamento externo.
+- **Recompensa Imediata:** Liberação do download do PDF infantil *Jesus Quer Falar com Seu Filho*.
+
+### 📊 ENQUETE E SINALIZADORES
+- **Enquete Pastoral:** Ativa com mais de 103 votos gravados e protegidos (403 Forbidden para acesso externo ao JSON).
+- **Quiz Pais e Filhos:** Seção `#pais-filhos` monitorada silenciosamente via rota `/quiz-pais-filhos` (37 acessos registrados).
+- **Hero Link:** Botão "Devocional de 30 dias" apontando para o `/livro04` gratuito.
