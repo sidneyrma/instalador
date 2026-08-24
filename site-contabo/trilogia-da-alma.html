@@ -194,19 +194,74 @@ function bloquearNovamente() {
 </script>
 
 <script>
+var NOME_CURSO = 'Trilogia da Alma';
+
+function mostrarSucesso(){
+  var c = document.getElementById('com-aviso');
+  if(c){
+    c.innerHTML = '<div style="text-align:center; padding:20px"><div style="font-size:2rem">🙌</div><h3 style="margin:8px 0;color:var(--gold)">Comentário enviado!</h3><p style="color:#b0bec5">Obrigado por compartilhar. Que Deus abençoe a sua caminhada!</p></div>';
+  }
+}
+
+function fallbackFormSubmit(payload){
+  // Segunda via: se o PHP do servidor falhar, tenta FormSubmit
+  var dados = {
+    _subject: '💬 Comentario de aluno - ' + payload.curso,
+    _template: 'table',
+    _captcha: 'false',
+    Nome: payload.nome,
+    Comentario: payload.comentario,
+    Pagina: payload.pagina
+  };
+  fetch('https://formsubmit.co/ajax/portalmissaocomdeus@gmail.com', {
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify(dados)
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(resp){
+    // FormSubmit responde {success:"true",...} quando OK
+    if(resp && (resp.success === 'true' || resp.success === true)){
+      mostrarSucesso();
+    } else {
+      avisoErro();
+    }
+  })
+  .catch(function(){ avisoErro(); });
+}
+
+function avisoErro(){
+  document.getElementById('com-aviso').innerHTML =
+    '⚠️ Não foi possível enviar agora. ' +
+    '<a href="https://wa.me/5528999111493?text=' + encodeURIComponent('Olá Laura! Quero dizer o que essas aulas significaram para mim.') + '" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">Fale com a Laura no WhatsApp 💬</a>';
+}
+
 function enviarComentario(){
   var t = document.getElementById('com-texto').value.trim();
   var n = document.getElementById('com-nome').value.trim() || 'Aluno(a)';
   var av = document.getElementById('com-aviso');
   if(t.length < 3){ av.textContent = 'Escreva seu comentário antes de enviar. 😊'; return; }
   av.textContent = 'Enviando...';
-  fetch('https://formsubmit.co/ajax/portalmissaocomdeus@gmail.com', {
-    method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body: JSON.stringify({ _subject:'💬 Comentario de aluno - Trilogia da Alma', _template:'table', _captcha:'false', Nome:n, Comentario:t, Pagina: location.pathname })
-  }).then(function(r){ return r.json(); }).then(function(){
-    var c = document.querySelector('.card:last-child');
-    c.innerHTML = '<div style="text-align:center; padding:20px"><div style="font-size:2rem">🙌</div><h3 style="margin:8px 0;color:var(--gold)">Comentário enviado!</h3><p style="color:#b0bec5">Obrigado por compartilhar. Que Deus abençoe a sua caminhada!</p></div>';
-  }).catch(function(){ av.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.'; });
+
+  var payload = { curso: NOME_CURSO, nome:n, comentario:t, pagina: location.pathname, email: '' };
+
+  // 1ª via: nosso servidor (comentario.php) — grava em JSON + tenta e-mail
+  fetch('comentario.php', {
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify(payload)
+  })
+  .then(function(r){ return r.json().then(function(d){ return {ok:r.ok, d:d}; }); })
+  .then(function(res){
+    if(res.ok && res.d && res.d.ok){
+      mostrarSucesso();
+    } else {
+      fallbackFormSubmit(payload);
+    }
+  })
+  .catch(function(){
+    fallbackFormSubmit(payload);
+  });
 }
 </script>
 </body>
