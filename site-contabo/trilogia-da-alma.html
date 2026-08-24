@@ -56,6 +56,23 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
 .compra-box{margin-top:30px; padding-top:20px; border-top:1px dashed var(--linha); display:none}
 .compra-box p{font-size:14px; margin-bottom:15px}
 
+/* VITRINE DO SEMEADOR (nova página de boas-vindas + acesso) */
+.portao-box{max-width:560px; text-align:left}
+.portao-box h2{font-size:28px; text-align:center}
+.sello{font-size:3rem; text-align:center; display:block; margin-bottom:8px}
+.portao-intro{font-size:16px; text-align:center; color:var(--tinta); margin-bottom:8px}
+.palavra{background:#fbf3e0; border:1px solid var(--linha); border-radius:10px; padding:18px 20px; margin:22px 0}
+.palavra h3{margin:0 0 8px; font-size:18px; color:var(--cta)}
+.palavra p{margin:0 0 12px; font-size:15px; color:var(--tinta2)}
+.palavra blockquote{margin:0; font-family:var(--serif); font-style:italic; color:var(--navy); border-left:3px solid var(--ouro); padding-left:12px; font-size:16px}
+.palavra blockquote cite{display:block; font-size:13px; color:var(--tinta2); margin-top:6px; font-style:normal}
+.acesso h3{font-size:20px; color:var(--cta); margin:0 0 6px}
+.acesso p{color:var(--tinta2); font-size:15px; margin:0 0 16px}
+.cta-links{display:flex; flex-direction:column; gap:12px; margin:18px 0}
+.cta-links .btn{width:100%; text-align:center}
+.grace-msg{font-size:13px; color:var(--tinta2); text-align:center}
+.voltar{display:block; text-align:center; margin-top:24px; color:var(--tinta2); font-size:14px; text-decoration:underline}
+
 /* ÁREA DE AULAS */
 #conteudo{display:none; background:var(--papel); padding:40px 0 80px}
 .header-aulas{text-align:center; margin-bottom:50px}
@@ -104,20 +121,38 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
 
 <div id="portao">
   <div class="portao-box">
-    <h2>Acesso às Videoaulas</h2>
-    <p>Insira seu código de acesso para liberar a Trilogia Evolução da Alma.</p>
-    
-    <div id="msgErro" class="msg-erro">Código inválido. Verifique se digitou corretamente.</div>
-    
-    <div class="input-group">
-      <input type="text" id="inputCodigo" placeholder="Ex: CODIGO123" autocomplete="off">
-      <button class="btn btn-gold" onclick="verificarCodigo()">Liberar Acesso</button>
+    <span class="sello">🕊️</span>
+    <h2>Trilogia da Alma</h2>
+    <p class="portao-intro">Você chegou aqui porque algo dentro de você sabe que é hora de curar.
+    Não é fraqueza buscar ajuda — é coragem de quem decidiu que a dor não vai mais governar a sua vida.</p>
+
+    <div class="palavra">
+      <h3>💛 Uma Palavra Antes de Começar</h3>
+      <p>A Trilogia da Alma não é apenas um curso. É um caminho de três encontros com o Deus que te conhece pelo nome e que nunca desistiu de você, mesmo nos dias em que você desistiu de si mesmo(a).</p>
+      <p>Aqui você vai aprender a silenciar a ansiedade, perdoar o que parece imperdoável e reencontrar o propósito que o inimigo tentou roubar. Cada módulo foi preparado com oração, com lágrimas e com a certeza de que o Espírito Santo vai falar diretamente ao seu coração.</p>
+      <blockquote>“Vinde a mim, todos os que estais cansados e sobrecarregados, e eu vos aliviarei.”<cite>— Mateus 11:28</cite></blockquote>
     </div>
-    
-    <div id="compraBox" class="compra-box">
-      <p>Ainda não tem o código? Adquira o acesso completo agora mesmo.</p>
-      <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" class="btn btn-outline">Quero me inscrever</a>
+
+    <div class="acesso">
+      <h3>🔑 Acesse as Videoaulas</h3>
+      <p>Insira abaixo seu código de acesso liberado pela Laura ou por sua semeadura:</p>
+
+      <div id="msgErro" class="msg-erro">Código inválido. Verifique se digitou corretamente.</div>
+
+      <div class="input-group">
+        <input type="text" id="inputCodigo" placeholder="Ex: CODIGO123" autocomplete="off">
+        <button class="btn btn-gold" onclick="verificarCodigo()">🔓 Validar e Liberar Acesso</button>
+      </div>
+
+      <div class="cta-links">
+        <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" class="btn btn-gold">🕊️ Quero Ser Semeador(a) da Missão — R$ 37,00</a>
+        <a href="https://wa.me/5528999111493?text=Ol%C3%A1%20Laura%2C%20vim%20pelo%20menu%20*Trilogia%20da%20Alma*%20do%20Portal%20O%20Despertar.%20Quero%20muito%20estudar%20as%20videoaulas%20de%20cura%20emocional%20e%20gostaria%20de%20solicitar%20o%20c%C3%B3digo%20de%20acesso.%20%F0%9F%99%8F" target="_blank" class="btn btn-outline">💛 Solicitar Código de Acesso</a>
+      </div>
+      <p class="grace-msg">Ao se tornar Semeador(a), você libera seu acesso vitalício completo e ajuda a manter 12 livros gratuitos online para milhares de irmãos que não podem pagar.
+      Se hoje você não tem condições, a Graça de Deus é maior que qualquer valor. A Laura vai te acolher com carinho e liberar o código. 🕊️</p>
     </div>
+
+    <a href="/" class="voltar">← Voltar ao Portal O Despertar</a>
   </div>
 </div>
 
@@ -286,7 +321,8 @@ function verificarCodigo() {
     liberarInterface();
   } else {
     document.getElementById('msgErro').style.display = 'block';
-    document.getElementById('compraBox').style.display = 'block';
+    document.getElementById('inputCodigo').value = '';
+    document.getElementById('inputCodigo').focus();
   }
 }
 

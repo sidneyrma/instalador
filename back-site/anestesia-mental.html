@@ -56,23 +56,6 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
 .compra-box{margin-top:30px; padding-top:20px; border-top:1px dashed var(--linha); display:none}
 .compra-box p{font-size:14px; margin-bottom:15px}
 
-/* VITRINE DO SEMEADOR (nova página de boas-vindas + acesso) */
-.portao-box{max-width:560px; text-align:left}
-.portao-box h2{font-size:28px; text-align:center}
-.sello{font-size:3rem; text-align:center; display:block; margin-bottom:8px}
-.portao-intro{font-size:16px; text-align:center; color:var(--tinta); margin-bottom:8px}
-.palavra{background:#fbf3e0; border:1px solid var(--linha); border-radius:10px; padding:18px 20px; margin:22px 0}
-.palavra h3{margin:0 0 8px; font-size:18px; color:var(--cta)}
-.palavra p{margin:0 0 12px; font-size:15px; color:var(--tinta2)}
-.palavra blockquote{margin:0; font-family:var(--serif); font-style:italic; color:var(--navy); border-left:3px solid var(--ouro); padding-left:12px; font-size:16px}
-.palavra blockquote cite{display:block; font-size:13px; color:var(--tinta2); margin-top:6px; font-style:normal}
-.acesso h3{font-size:20px; color:var(--cta); margin:0 0 6px}
-.acesso p{color:var(--tinta2); font-size:15px; margin:0 0 16px}
-.cta-links{display:flex; flex-direction:column; gap:12px; margin:18px 0}
-.cta-links .btn{width:100%; text-align:center}
-.grace-msg{font-size:13px; color:var(--tinta2); text-align:center}
-.voltar{display:block; text-align:center; margin-top:24px; color:var(--tinta2); font-size:14px; text-decoration:underline}
-
 /* ÁREA DE AULAS */
 #conteudo{display:none; background:var(--papel); padding:40px 0 80px}
 .header-aulas{text-align:center; margin-bottom:50px}
@@ -121,38 +104,20 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
 
 <div id="portao">
   <div class="portao-box">
-    <span class="sello">🧠</span>
-    <h2>Anestesia Mental</h2>
-    <p class="portao-intro">Você chegou aqui porque sua mente não para. Os pensamentos aceleram, o celular rouba horas que você nem percebe, e o silêncio com Deus parece cada vez mais distante.
-    Mas eu tenho uma boa notícia: o trono da sua mente não precisa ficar ocupado pelo algoritmo. Ele pertence a Cristo.</p>
-
-    <div class="palavra">
-      <h3>🔓 Uma Palavra Antes de Começar</h3>
-      <p>Anestesia Mental não é um curso sobre “força de vontade”. É um resgate. É sobre entender como os algoritmos, as distrações e os padrões subconscientes sequestraram a sua atenção e te impedem de ouvir a voz mansa e suave do Espírito Santo.</p>
-      <p>Aqui você vai aprender o Reset do Shabat, o governo da consciência e a liberdade que só existe quando a mente descansa em Deus. Cada módulo foi preparado para te tirar do piloto automático e te colocar no trono da sua própria vida, com Cristo reinando.</p>
-      <blockquote>“Sede sóbrios e vigilantes. O vosso adversário, o diabo, anda em derredor, rugindo como leão e procurando a quem possa tragar.”<cite>— 1 Pedro 5:8</cite></blockquote>
+    <h2>Acesso às Videoaulas</h2>
+    <p>Insira seu código de acesso para liberar o curso Anestesia Mental.</p>
+    
+    <div id="msgErro" class="msg-erro">Código inválido. Verifique se digitou corretamente.</div>
+    
+    <div class="input-group">
+      <input type="text" id="inputCodigo" placeholder="Ex: CODIGO123" autocomplete="off">
+      <button class="btn btn-gold" onclick="verificarCodigo()">Liberar Acesso</button>
     </div>
-
-    <div class="acesso">
-      <h3>🔑 Acesse as Videoaulas</h3>
-      <p>Insira abaixo seu código de acesso liberado pela Laura ou por sua semeadura:</p>
-
-      <div id="msgErro" class="msg-erro">Código inválido. Verifique se digitou corretamente.</div>
-
-      <div class="input-group">
-        <input type="text" id="inputCodigo" placeholder="Ex: CODIGO123" autocomplete="off">
-        <button class="btn btn-gold" onclick="verificarCodigo()">🔓 Validar e Liberar Acesso</button>
-      </div>
-
-      <div class="cta-links">
-        <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" class="btn btn-gold">🕊️ Quero Ser Semeador(a) da Missão — R$ 37,00</a>
-        <a href="https://wa.me/5528999111493?text=Ol%C3%A1%20Laura%2C%20vim%20pelo%20menu%20*Anestesia%20Mental*%20do%20Portal%20O%20Despertar%20e%20quero%20muito%20estudar%20as%20videoaulas%20sobre%20governo%20da%20mente%20e%20Reset%20do%20Shabat.%20%F0%9F%99%8F" target="_blank" class="btn btn-outline">💛 Solicitar Código de Acesso</a>
-      </div>
-      <p class="grace-msg">Ao se tornar Semeador(a), você libera seu acesso vitalício completo e ajuda a manter 12 livros gratuitos online para milhares de irmãos que não podem pagar.
-      Se hoje você não tem condições, a Graça de Deus é maior que qualquer valor. A Laura vai te acolher com carinho e liberar o código. 🕊️</p>
+    
+    <div id="compraBox" class="compra-box">
+      <p>Ainda não tem o código? Adquira o acesso completo agora mesmo.</p>
+      <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" class="btn btn-outline">Quero me inscrever</a>
     </div>
-
-    <a href="/" class="voltar">← Voltar ao Portal O Despertar</a>
   </div>
 </div>
 
@@ -321,8 +286,7 @@ function verificarCodigo() {
     liberarInterface();
   } else {
     document.getElementById('msgErro').style.display = 'block';
-    document.getElementById('inputCodigo').value = '';
-    document.getElementById('inputCodigo').focus();
+    document.getElementById('compraBox').style.display = 'block';
   }
 }
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Anestesia Mental — Videoaulas | Missão com Deus</title>
+<title>Trilogia da Alma — Videoaulas | Missão com Deus</title>
 <meta name="robots" content="noindex, nofollow">
 <style>
 :root{
@@ -56,23 +56,6 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
 .compra-box{margin-top:30px; padding-top:20px; border-top:1px dashed var(--linha); display:none}
 .compra-box p{font-size:14px; margin-bottom:15px}
 
-/* VITRINE DO SEMEADOR (nova página de boas-vindas + acesso) */
-.portao-box{max-width:560px; text-align:left}
-.portao-box h2{font-size:28px; text-align:center}
-.sello{font-size:3rem; text-align:center; display:block; margin-bottom:8px}
-.portao-intro{font-size:16px; text-align:center; color:var(--tinta); margin-bottom:8px}
-.palavra{background:#fbf3e0; border:1px solid var(--linha); border-radius:10px; padding:18px 20px; margin:22px 0}
-.palavra h3{margin:0 0 8px; font-size:18px; color:var(--cta)}
-.palavra p{margin:0 0 12px; font-size:15px; color:var(--tinta2)}
-.palavra blockquote{margin:0; font-family:var(--serif); font-style:italic; color:var(--navy); border-left:3px solid var(--ouro); padding-left:12px; font-size:16px}
-.palavra blockquote cite{display:block; font-size:13px; color:var(--tinta2); margin-top:6px; font-style:normal}
-.acesso h3{font-size:20px; color:var(--cta); margin:0 0 6px}
-.acesso p{color:var(--tinta2); font-size:15px; margin:0 0 16px}
-.cta-links{display:flex; flex-direction:column; gap:12px; margin:18px 0}
-.cta-links .btn{width:100%; text-align:center}
-.grace-msg{font-size:13px; color:var(--tinta2); text-align:center}
-.voltar{display:block; text-align:center; margin-top:24px; color:var(--tinta2); font-size:14px; text-decoration:underline}
-
 /* ÁREA DE AULAS */
 #conteudo{display:none; background:var(--papel); padding:40px 0 80px}
 .header-aulas{text-align:center; margin-bottom:50px}
@@ -121,45 +104,27 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
 
 <div id="portao">
   <div class="portao-box">
-    <span class="sello">🧠</span>
-    <h2>Anestesia Mental</h2>
-    <p class="portao-intro">Você chegou aqui porque sua mente não para. Os pensamentos aceleram, o celular rouba horas que você nem percebe, e o silêncio com Deus parece cada vez mais distante.
-    Mas eu tenho uma boa notícia: o trono da sua mente não precisa ficar ocupado pelo algoritmo. Ele pertence a Cristo.</p>
-
-    <div class="palavra">
-      <h3>🔓 Uma Palavra Antes de Começar</h3>
-      <p>Anestesia Mental não é um curso sobre “força de vontade”. É um resgate. É sobre entender como os algoritmos, as distrações e os padrões subconscientes sequestraram a sua atenção e te impedem de ouvir a voz mansa e suave do Espírito Santo.</p>
-      <p>Aqui você vai aprender o Reset do Shabat, o governo da consciência e a liberdade que só existe quando a mente descansa em Deus. Cada módulo foi preparado para te tirar do piloto automático e te colocar no trono da sua própria vida, com Cristo reinando.</p>
-      <blockquote>“Sede sóbrios e vigilantes. O vosso adversário, o diabo, anda em derredor, rugindo como leão e procurando a quem possa tragar.”<cite>— 1 Pedro 5:8</cite></blockquote>
+    <h2>Acesso às Videoaulas</h2>
+    <p>Insira seu código de acesso para liberar a Trilogia Evolução da Alma.</p>
+    
+    <div id="msgErro" class="msg-erro">Código inválido. Verifique se digitou corretamente.</div>
+    
+    <div class="input-group">
+      <input type="text" id="inputCodigo" placeholder="Ex: CODIGO123" autocomplete="off">
+      <button class="btn btn-gold" onclick="verificarCodigo()">Liberar Acesso</button>
     </div>
-
-    <div class="acesso">
-      <h3>🔑 Acesse as Videoaulas</h3>
-      <p>Insira abaixo seu código de acesso liberado pela Laura ou por sua semeadura:</p>
-
-      <div id="msgErro" class="msg-erro">Código inválido. Verifique se digitou corretamente.</div>
-
-      <div class="input-group">
-        <input type="text" id="inputCodigo" placeholder="Ex: CODIGO123" autocomplete="off">
-        <button class="btn btn-gold" onclick="verificarCodigo()">🔓 Validar e Liberar Acesso</button>
-      </div>
-
-      <div class="cta-links">
-        <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" class="btn btn-gold">🕊️ Quero Ser Semeador(a) da Missão — R$ 37,00</a>
-        <a href="https://wa.me/5528999111493?text=Ol%C3%A1%20Laura%2C%20vim%20pelo%20menu%20*Anestesia%20Mental*%20do%20Portal%20O%20Despertar%20e%20quero%20muito%20estudar%20as%20videoaulas%20sobre%20governo%20da%20mente%20e%20Reset%20do%20Shabat.%20%F0%9F%99%8F" target="_blank" class="btn btn-outline">💛 Solicitar Código de Acesso</a>
-      </div>
-      <p class="grace-msg">Ao se tornar Semeador(a), você libera seu acesso vitalício completo e ajuda a manter 12 livros gratuitos online para milhares de irmãos que não podem pagar.
-      Se hoje você não tem condições, a Graça de Deus é maior que qualquer valor. A Laura vai te acolher com carinho e liberar o código. 🕊️</p>
+    
+    <div id="compraBox" class="compra-box">
+      <p>Ainda não tem o código? Adquira o acesso completo agora mesmo.</p>
+      <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" class="btn btn-outline">Quero me inscrever</a>
     </div>
-
-    <a href="/" class="voltar">← Voltar ao Portal O Despertar</a>
   </div>
 </div>
 
 <div id="conteudo">
   <div class="wrap">
     <div class="header-aulas">
-      <h1>Anestesia Mental</h1>
+      <h1>Trilogia da Alma</h1>
       <p>Bem-vindo(a) à sua área de estudos. Assista no seu ritmo.</p>
     </div>
 
@@ -170,7 +135,7 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
         <h2 class="mod-title">Bem-vindo(a) à nossa Comunidade</h2>
       </div>
       <div class="video-wrap" id="video01">
-        <iframe src="https://www.youtube-nocookie.com/embed/yVv_BKMJ4DE?rel=0" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/_zRVlsh9T9E?rel=0" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
       </div>
       <div class="mod-actions">
         <button class="btn-check" onclick="toggleConcluido(1)" id="btnCheck1">✓ Marcar aula como concluída</button>
@@ -181,10 +146,10 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
     <div class="modulo" id="mod02">
       <div class="mod-header">
         <span class="mod-num">Módulo 02</span>
-        <h2 class="mod-title">A Anestesia Mental</h2>
+        <h2 class="mod-title">O Despertar da Alma</h2>
       </div>
       <div class="video-wrap" id="video02">
-        <iframe src="https://www.youtube-nocookie.com/embed/YSw_MY8NNZI?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/ZwBDxpnFV6s?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
       </div>
       <div class="mod-actions">
         <button class="btn-check" onclick="toggleConcluido(2)" id="btnCheck2">✓ Marcar aula como concluída</button>
@@ -195,10 +160,10 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
     <div class="modulo" id="mod03">
       <div class="mod-header">
         <span class="mod-num">Módulo 03</span>
-        <h2 class="mod-title">O Governo da Mente</h2>
+        <h2 class="mod-title">Superação das dificuldades emocionais</h2>
       </div>
       <div class="video-wrap" id="video03">
-        <iframe src="https://www.youtube-nocookie.com/embed/4IwyK4pmaJI?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/4UmQlRiirXs?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
       </div>
       <div class="mod-actions">
         <button class="btn-check" onclick="toggleConcluido(3)" id="btnCheck3">✓ Marcar aula como concluída</button>
@@ -209,10 +174,10 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
     <div class="modulo" id="mod04">
       <div class="mod-header">
         <span class="mod-num">Módulo 04</span>
-        <h2 class="mod-title">O Impulso sem Consciência</h2>
+        <h2 class="mod-title">Perdão como libertação da alma</h2>
       </div>
       <div class="video-wrap" id="video04">
-        <iframe src="https://www.youtube-nocookie.com/embed/f_GxlRva2CQ?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/fO5RIdrFzMw?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
       </div>
       <div class="mod-actions">
         <button class="btn-check" onclick="toggleConcluido(4)" id="btnCheck4">✓ Marcar aula como concluída</button>
@@ -223,10 +188,10 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
     <div class="modulo" id="mod05">
       <div class="mod-header">
         <span class="mod-num">Módulo 05</span>
-        <h2 class="mod-title">O Despertar da Consciência</h2>
+        <h2 class="mod-title">Propósito e Ação Prática</h2>
       </div>
       <div class="video-wrap" id="video05">
-        <iframe src="https://www.youtube-nocookie.com/embed/Fw4RE6ld_UU?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/pL2rd8sm-rk?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
       </div>
       <div class="mod-actions">
         <button class="btn-check" onclick="toggleConcluido(5)" id="btnCheck5">✓ Marcar aula como concluída</button>
@@ -237,10 +202,10 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
     <div class="modulo" id="mod06">
       <div class="mod-header">
         <span class="mod-num">Módulo 06</span>
-        <h2 class="mod-title">O Reset do Shabat</h2>
+        <h2 class="mod-title">A Persistência na Evolução Constante</h2>
       </div>
       <div class="video-wrap" id="video06">
-        <iframe src="https://www.youtube-nocookie.com/embed/31XPvz6DSeY?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/ycGZ4Vjv2MY?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
       </div>
       <div class="mod-actions">
         <button class="btn-check" onclick="toggleConcluido(6)" id="btnCheck6">✓ Marcar aula como concluída</button>
@@ -251,10 +216,10 @@ input[type="text"]:focus{outline:none; border-color:var(--ouro)}
     <div class="modulo" id="mod07">
       <div class="mod-header">
         <span class="mod-num">Módulo 07</span>
-        <h2 class="mod-title">O Caminho da Libertação</h2>
+        <h2 class="mod-title">Vivendo em Luz, Propósito e Liberdade</h2>
       </div>
       <div class="video-wrap" id="video07">
-        <iframe src="https://www.youtube-nocookie.com/embed/dYwYB9uDhnI?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/9IfeARq38UA?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
       </div>
       <div class="mod-actions">
         <button class="btn-check" onclick="toggleConcluido(7)" id="btnCheck7">✓ Marcar aula como concluída</button>
@@ -286,7 +251,7 @@ function enviarComentario(){
   av.textContent = 'Enviando...';
   fetch('https://formsubmit.co/ajax/portalmissaocomdeus@gmail.com', {
     method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body: JSON.stringify({ _subject:'💬 Comentario de aluno - Anestesia Mental', _template:'table', _captcha:'false', Nome:n, Comentario:t, Pagina: location.pathname })
+    body: JSON.stringify({ _subject:'💬 Comentario de aluno - Trilogia da Alma', _template:'table', _captcha:'false', Nome:n, Comentario:t, Pagina: location.pathname })
   }).then(function(r){ return r.json(); }).then(function(){
     document.getElementById('comentarios').innerHTML = '<div style="text-align:center; padding:20px"><div style="font-size:2rem">🙌</div><h3 style="margin:8px 0">Comentário enviado!</h3><p style="color:var(--tinta2)">Obrigado por compartilhar. Que Deus abençoe a sua caminhada!</p></div>';
   }).catch(function(){ av.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.'; });
@@ -297,12 +262,12 @@ function enviarComentario(){
 </div>
 
 <script>
-const CODIGO_ACESSO = 'NSTMNT26';
+const CODIGO_ACESSO = 'EVLTRLAM26';
 const LINK_COMPRA = 'https://pay.kiwify.com.br/iVfp2bi';
 const TOTAL_AULAS = 7;
 
 document.addEventListener('DOMContentLoaded', () => {
-  if(localStorage.getItem('anestesia_acesso_ok') === 'true') {
+  if(localStorage.getItem('trilogia_acesso_ok') === 'true') {
     liberarInterface();
   }
   
@@ -317,12 +282,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function verificarCodigo() {
   const input = document.getElementById('inputCodigo').value.trim().toUpperCase();
   if(input === CODIGO_ACESSO.toUpperCase()) {
-    localStorage.setItem('anestesia_acesso_ok', 'true');
+    localStorage.setItem('trilogia_acesso_ok', 'true');
     liberarInterface();
   } else {
     document.getElementById('msgErro').style.display = 'block';
-    document.getElementById('inputCodigo').value = '';
-    document.getElementById('inputCodigo').focus();
+    document.getElementById('compraBox').style.display = 'block';
   }
 }
 
@@ -335,7 +299,7 @@ function liberarInterface() {
 }
 
 function carregarProgresso() {
-  let prog = JSON.parse(localStorage.getItem('anestesia_progresso') || '[]');
+  let prog = JSON.parse(localStorage.getItem('trilogia_progresso') || '[]');
   let concluidas = 0;
   
   for(let i=1; i<=TOTAL_AULAS; i++) {
@@ -354,13 +318,13 @@ function carregarProgresso() {
 }
 
 function toggleConcluido(num) {
-  let prog = JSON.parse(localStorage.getItem('anestesia_progresso') || '[]');
+  let prog = JSON.parse(localStorage.getItem('trilogia_progresso') || '[]');
   if(prog.includes(num)) {
     prog = prog.filter(n => n !== num);
   } else {
     prog.push(num);
   }
-  localStorage.setItem('anestesia_progresso', JSON.stringify(prog));
+  localStorage.setItem('trilogia_progresso', JSON.stringify(prog));
   carregarProgresso();
 }
 
@@ -371,10 +335,10 @@ function atualizarBarra(concluidas) {
 }
 
 function marcarPlay(i) {
-  var key = 'anestesia_m0' + i + '_play';
+  var key = 'trilogia_m0' + i + '_play';
   if (!sessionStorage.getItem(key)) {
     sessionStorage.setItem(key, 'true');
-    fetch('/q-anestesia-m0' + i).catch(function(e){});
+    fetch('/q-trilogia-m0' + i).catch(function(e){});
   }
 }
 function configurarEstatisticas() {
