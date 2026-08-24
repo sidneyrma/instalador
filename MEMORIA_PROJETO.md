@@ -793,6 +793,16 @@ seção descreve (ou pedir ao autor o zip desta sessão) e dar push ao main.
     código; ao liberar o código correto, abrem os 7 módulos/7 vídeos NA MESMA PÁGINA
     (elimina o redirecionamento para fora). Só aceitam `EVLTRLAM26`/`NSTMNT26`; `GRACA37`
     não existe mais.
+  - Títulos oficiais dos módulos alinhados ao cronograma do autor (24/08):
+    * Trilogia: 1 Bem-vindo(a) ao nosso Portal · 2 O Despertar da Alma ·
+      3 A Superação das dificuldades emocionais · 4 O Perdão como libertação da alma ·
+      5 O Propósito em ação · 6 A Persistência na evolução constante ·
+      7 Vivendo em Luz, Propósito e Liberdade.
+    * Anestesia: 1 Bem-vindo(a) ao nosso Portal · 2 A Anestesia Mental ·
+      3 O Governo da Mente · 4 O Impulso sem Consciência · 5 O Despertar da Consciência ·
+      6 O Reset do Shabat · 7 A Liberdade da Alma.
+  - Vídeos NÃO saem da página: iframes `youtube-nocookie` + sandbox
+    (allow-scripts / allow-same-origin / allow-presentation) bloqueiam popups/navegação.
   - Nota com diagnóstico e passo a passo de aplicação/reversão: `back-site/LEIA-ME.md`.
 - **PENDENTE (servidor):** substituir no aaPanel (`/www/wwwroot/missaocomdeus.com.br/`)
   os dois arquivos quebrados pelos corrigidos; confirmar que o `GRACA37` some e que os

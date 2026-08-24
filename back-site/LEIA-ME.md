@@ -89,6 +89,34 @@ E no servidor, basta restaurar os arquivos `.bak` que você guardou no passo 2.
 
 ---
 
+## 🎬 Títulos oficiais dos módulos (alinhados com o cronograma do autor)
+
+### 🌱 Trilogia Evolução da Alma
+1. Bem-vindo(a) ao nosso Portal
+2. O Despertar da Alma
+3. A Superação das dificuldades emocionais
+4. O Perdão como libertação da alma
+5. O Propósito em ação
+6. A Persistência na evolução constante
+7. Vivendo em Luz, Propósito e Liberdade
+
+### 🧠 Anestesia Mental
+1. Bem-vindo(a) ao nosso Portal
+2. A Anestesia Mental
+3. O Governo da Mente
+4. O Impulso sem Consciência
+5. O Despertar da Consciência
+6. O Reset do Shabat
+7. A Liberdade da Alma
+
+### 🔒 Os vídeos NÃO saem da página
+- Não existe nenhum link clicável para o YouTube fora dos players.
+- Todos os iframes usam `sandbox="allow-scripts allow-same-origin allow-presentation"` e
+  `youtube-nocookie.com` — o player bloqueia popups e navegação, então o aluno permanece
+  na página (cadeado anti-YouTube já configurado).
+
+---
+
 ## 🔑 Códigos válidos (resumo)
 
 | Curso | Código | Página |
