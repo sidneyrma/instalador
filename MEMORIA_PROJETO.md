@@ -775,3 +775,42 @@ seção descreve (ou pedir ao autor o zip desta sessão) e dar push ao main.
 - **Enquete Pastoral:** Ativa com mais de 103 votos gravados e protegidos (403 Forbidden para acesso externo ao JSON).
 - **Quiz Pais e Filhos:** Seção `#pais-filhos` monitorada silenciosamente via rota `/quiz-pais-filhos` (37 acessos registrados).
 - **Hero Link:** Botão "Devocional de 30 dias" apontando para o `/livro04` gratuito.
+
+---
+
+## 🔐 CORREÇÃO CÓDIGOS DE ACESSO — TRILOGIA & ANESTESIA (24/08/2026)
+
+- **Problema relatado:** ao digitar os códigos `EVLTRLAM26` (Trilogia) e `NSTMNT26`
+  (Anestesia), o usuário era levado a PÁGINA ERRADA (criada por outro agente) em vez da
+  área do aluno com os 7 módulos. Existia ainda um código extra `GRACA37`.
+- **Causa raiz:** as páginas quebradas do outro agente estão SOMENTE no servidor (aaPanel)
+  e nunca foram enviadas ao GitHub (aquele agente tinha só leitura). O GitHub já tinha as
+  páginas corretas (gate in-page com os códigos certos; sem GRACA37).
+- **Ação no repo (branch arena/01a034ef-instalador):**
+  - Backup completo criado em `back-site/` (copiados os arquivos de `site-contabo/`, sem pastas).
+  - `site-contabo/trilogia-da-alma.html` e `site-contabo/anestesia-mental.html` corrigidos
+    para páginas AUTOSSUFICIENTES: página de boas-vindas (Vitrine do Semeador) + campo de
+    código; ao liberar o código correto, abrem os 7 módulos/7 vídeos NA MESMA PÁGINA
+    (elimina o redirecionamento para fora). Só aceitam `EVLTRLAM26`/`NSTMNT26`; `GRACA37`
+    não existe mais.
+  - Títulos oficiais dos módulos alinhados ao cronograma do autor (24/08):
+    * Trilogia: 1 Bem-vindo(a) ao nosso Portal · 2 O Despertar da Alma ·
+      3 A Superação das dificuldades emocionais · 4 O Perdão como libertação da alma ·
+      5 O Propósito em ação · 6 A Persistência na evolução constante ·
+      7 Vivendo em Luz, Propósito e Liberdade.
+    * Anestesia: 1 Bem-vindo(a) ao nosso Portal · 2 A Anestesia Mental ·
+      3 O Governo da Mente · 4 O Impulso sem Consciência · 5 O Despertar da Consciência ·
+      6 O Reset do Shabat · 7 A Liberdade da Alma.
+  - Vídeos NÃO saem da página: iframes `youtube-nocookie` + sandbox
+    (allow-scripts / allow-same-origin / allow-presentation) bloqueiam popups/navegação.
+  - **Estrutura FINAL (24/08):** aplicado o design "Portal O Despertar" das páginas que
+    estavam em `site-contabo/livros/` (tela de bloqueio com CTA "Quero Ser Semeador" +
+    WhatsApp da Laura + versículo; tela de aulas com player único + listagem clicável dos
+    7 módulos). Correções sobre essa base: 7 módulos (antes 6), um vídeo REAL por módulo
+    (antes todos apontavam para o mesmo `WJ3SInS9jPo`), títulos oficiais, código só
+    `EVLTRLAM26`/`NSTMNT26` (removido `GRACA37`) e cadeado anti-YouTube. As cópias em
+    `site-contabo/livros/` também foram substituídas pelas versões corrigidas.
+  - Nota com diagnóstico e passo a passo de aplicação/reversão: `back-site/LEIA-ME.md`.
+- **PENDENTE (servidor):** substituir no aaPanel (`/www/wwwroot/missaocomdeus.com.br/`)
+  os dois arquivos quebrados pelos corrigidos; confirmar que o `GRACA37` some e que os
+  códigos liberam os 7 módulos. Antes, `nginx -t`.

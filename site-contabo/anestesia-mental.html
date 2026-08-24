@@ -3,245 +3,196 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Anestesia Mental — Videoaulas | Missão com Deus</title>
+<title>Anestesia Mental — Portal O Despertar</title>
 <meta name="robots" content="noindex, nofollow">
 <style>
-:root{
-  --navy:#0e1a2e; --navy2:#16283f;
-  --ouro:#c9a24b; --ouro-claro:#e3c877;
-  --papel:#faf6ee; --tinta:#2b2620; --tinta2:#6b6255;
-  --linha:#e4dccb; --cta:#b8860b;
-  --serif: Georgia, 'Times New Roman', serif;
-  --sans: 'Inter', -apple-system, Segoe UI, Roboto, sans-serif;
-  --radius: 14px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0; background:var(--navy); color:var(--tinta);
-  font-family:var(--sans); line-height:1.75;
-}
-h1,h2,h3{font-family:var(--serif); margin:0 0 .5em; color:var(--navy)}
-.wrap{max-width:800px; margin:0 auto; padding:0 20px}
-
-/* TOPBAR */
-.topbar{background:var(--navy); border-bottom:3px solid var(--ouro); position:sticky; top:0; z-index:50}
-.topbar .wrap{display:flex; align-items:center; justify-content:space-between; padding:.8rem 0; gap:10px}
-.topbar .logo{color:#fff; font-size:1.05rem; text-decoration:none; font-family:var(--serif)}
-.topbar .logo span{color:var(--ouro)}
-.topbar .ler{color:var(--ouro-claro); font-size:.78rem; letter-spacing:.2em; text-transform:uppercase; font-family:var(--serif)}
-
-/* PROGRESS BAR */
-.progress-bar{background:var(--navy2); padding:10px 0; border-bottom:1px solid rgba(201,162,75,.25); position:sticky; top:58px; z-index:49; display:none}
-.progress-bar .wrap{display:flex; align-items:center; gap:15px}
-.progress-track{flex:1; background:rgba(255,255,255,.1); height:8px; border-radius:4px; overflow:hidden}
-.progress-fill{background:linear-gradient(90deg, var(--ouro), var(--ouro-claro)); height:100%; width:0%; transition:width .3s ease}
-.progress-text{color:var(--ouro-claro); font-size:13px; font-weight:600; white-space:nowrap}
-
-/* PORTÃO DE ACESSO */
-#portao{min-height:80vh; display:flex; align-items:center; justify-content:center; background:radial-gradient(900px 500px at 50% 50%, rgba(201,162,75,.15), transparent 70%), var(--navy); padding:40px 20px}
-.portao-box{background:var(--papel); border:1px solid rgba(201,162,75,.25); border-radius:var(--radius); padding:40px; text-align:center; max-width:480px; width:100%; box-shadow:0 18px 40px rgba(0,0,0,.3)}
-.portao-box h2{font-size:24px; color:var(--navy)}
-.portao-box p{color:var(--tinta2); margin-bottom:24px}
-.input-group{display:flex; flex-direction:column; gap:12px; margin-bottom:20px}
-input[type="text"]{padding:14px; border:2px solid var(--linha); border-radius:8px; font-size:16px; text-align:center; font-family:var(--sans); text-transform:uppercase}
-input[type="text"]:focus{outline:none; border-color:var(--ouro)}
-.btn{display:inline-flex; align-items:center; justify-content:center; padding:14px 24px; border-radius:999px; font-weight:700; font-size:15px; cursor:pointer; border:none; text-decoration:none; transition:transform .15s ease, box-shadow .15s ease}
-.btn:hover{transform:translateY(-2px)}
-.btn-gold{background:linear-gradient(180deg,#d4a83f,var(--cta)); color:#fff; box-shadow:0 12px 28px -10px rgba(184,134,11,.55)}
-.btn-gold:hover{box-shadow:0 16px 34px -10px rgba(184,134,11,.7)}
-.btn-outline{background:transparent; border:2px solid var(--ouro); color:var(--navy)}
-.btn-outline:hover{background:var(--ouro); color:#fff}
-.msg-erro{color:#d32f2f; font-size:14px; font-weight:600; margin-bottom:15px; display:none; background:#fdedea; padding:10px; border-radius:6px}
-.compra-box{margin-top:30px; padding-top:20px; border-top:1px dashed var(--linha); display:none}
-.compra-box p{font-size:14px; margin-bottom:15px}
-
-/* ÁREA DE AULAS */
-#conteudo{display:none; background:var(--papel); padding:40px 0 80px}
-.header-aulas{text-align:center; margin-bottom:50px}
-.header-aulas h1{font-size:32px; color:var(--navy)}
-.header-aulas p{color:var(--tinta2); font-size:16px}
-
-.modulo{background:#fff; border:1px solid rgba(201,162,75,.25); border-radius:var(--radius); padding:30px; margin-bottom:30px; box-shadow:0 10px 30px rgba(0,0,0,.05)}
-.mod-header{display:flex; align-items:baseline; gap:12px; margin-bottom:20px}
-.mod-num{font-family:var(--serif); color:var(--ouro); font-weight:700; font-size:18px}
-.mod-title{font-size:22px; margin:0}
-
-.video-wrap{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; background:#000; margin-bottom:20px; box-shadow:0 8px 24px rgba(0,0,0,.15)}
-.video-wrap iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
-
-.mod-actions{display:flex; justify-content:flex-end; padding-top:15px; border-top:1px solid var(--linha)}
-.btn-check{background:transparent; border:2px solid var(--linha); color:var(--tinta2); padding:10px 20px; border-radius:999px; font-size:14px; font-weight:600; cursor:pointer; transition:all .2s ease; display:inline-flex; align-items:center; gap:8px}
-.btn-check:hover{border-color:var(--ouro); color:var(--navy)}
-.btn-check.concluido{background:var(--ouro-claro); border-color:var(--ouro-claro); color:var(--navy)}
-
-/* RODAPÉ */
-#fim{background:var(--navy); color:#fff; text-align:center; padding:40px 20px}
-#fim p{margin:0; font-size:14px; color:rgba(255,255,255,.6)}
-
-@media(max-width:600px){
-  .modulo{padding:20px}
-  .mod-header{flex-direction:column; gap:5px}
-  .mod-title{font-size:18px}
+:root{--navy:#0e1a2e;--gold:#c9a24b;--cream:#faf6ee;--green:#7fe0a3;--red:#e07b6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--navy);color:#e8ecf3;line-height:1.6;}
+.wrap{max-width:720px;margin:0 auto;padding:24px 16px 60px;}
+h1{color:var(--gold);font-size:1.8rem;margin-bottom:8px;text-align:center;}
+.sub{color:#9fb0c8;font-size:1rem;text-align:center;margin-bottom:32px;line-height:1.7;}
+.emoji-grande{font-size:3rem;text-align:center;margin-bottom:16px;}
+.card{background:#16283f;border:1px solid rgba(201,162,75,.25);border-radius:14px;padding:24px;margin-bottom:20px;}
+.card h3{color:var(--gold);font-size:1.1rem;margin-bottom:10px;}
+.card p{color:#b0bec5;font-size:.95rem;}
+.versiculo{text-align:center;font-style:italic;color:var(--gold);font-size:1rem;margin:28px 0;padding:16px;border:1px dashed rgba(201,162,75,.3);border-radius:10px;}
+.codigo-box{background:#1a2c47;border:2px solid var(--gold);border-radius:14px;padding:28px 20px;text-align:center;margin:28px 0;}
+.codigo-box h2{color:var(--gold);font-size:1.3rem;margin-bottom:8px;}
+.codigo-box p{color:#9fb0c8;font-size:.9rem;margin-bottom:16px;}
+.codigo-input{width:100%;max-width:320px;padding:14px 18px;font-size:1.2rem;text-align:center;border:2px solid rgba(201,162,75,.4);border-radius:10px;background:#0e1a2e;color:var(--gold);letter-spacing:4px;font-weight:700;text-transform:uppercase;margin-bottom:14px;}
+.codigo-input::placeholder{color:#4a6a8a;letter-spacing:1px;font-weight:400;text-transform:none;font-size:.9rem;}
+.msg-erro{display:none;background:rgba(224,123,107,.15);color:#ffb3a6;border:1px solid rgba(224,123,107,.35);border-radius:8px;padding:10px 12px;font-size:.9rem;margin-bottom:14px;}
+.botoes{display:flex;flex-direction:column;gap:14px;margin-top:24px;max-width:420px;margin-left:auto;margin-right:auto;}
+.btn-semeador{display:block;background:linear-gradient(180deg,#d4a83f,#b8860b);color:#fff;font-weight:700;font-size:1.05rem;padding:16px 24px;border-radius:10px;text-decoration:none;text-align:center;border:none;width:100%;cursor:pointer;box-shadow:0 4px 15px rgba(201,162,75,.35);}
+.btn-graca{display:block;background:transparent;color:var(--green);font-weight:700;font-size:1rem;padding:16px 24px;border-radius:10px;text-decoration:none;text-align:center;border:2px solid var(--green);}
+.btn-semeador:hover{opacity:.9;}
+.btn-graca:hover{background:rgba(127,224,163,.1);}
+.nota{text-align:center;color:#7f92ad;font-size:.8rem;margin-top:20px;line-height:1.5;}
+.voltar{text-align:center;margin-top:24px;}
+.voltar a{color:var(--gold);text-decoration:none;font-size:.9rem;}
+.modulos{display:grid;gap:10px;margin:20px 0;}
+.modulo{background:rgba(201,162,75,.08);border:1px solid rgba(201,162,75,.15);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;}
+.modulo.ativo{border-color:var(--gold);background:rgba(201,162,75,.15);}
+.modulo .num{background:var(--gold);color:var(--navy);font-weight:700;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;}
+.modulo .txt{font-size:.92rem;color:#e8ecf3;}
+.player-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(201,162,75,.3);background:#000;margin-bottom:20px;}
+.player-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+.sair{background:transparent;border:none;color:#7f92ad;text-decoration:underline;cursor:pointer;font-size:.85rem;}
+textarea,.com-nome{width:100%;padding:12px;border:2px solid rgba(201,162,75,.3);border-radius:10px;background:#0e1a2e;color:#e8ecf3;font-family:inherit;font-size:.95rem;margin-bottom:10px;}
+textarea{resize:vertical;min-height:90px;}
+@media(max-width:520px){
+  .modulo{flex-direction:row;padding:12px 14px;}
+  .codigo-input{font-size:1rem;}
 }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<div class="topbar">
-  <div class="wrap">
-    <a href="/" class="logo">Missão <span>com</span> Deus</a>
-    <span class="ler">Área do Aluno</span>
+<div class="emoji-grande">🧠</div>
+<h1>Anestesia Mental</h1>
+<p class="sub">
+Você chegou aqui porque sua mente não para. Os pensamentos aceleram, o celular rouba horas que você nem percebe, e o silêncio com Deus parece cada vez mais distante.<br>
+Mas eu tenho uma boa notícia: o trono da sua mente não precisa ficar ocupado pelo algoritmo. Ele pertence a Cristo.
+</p>
+
+<!-- TELA DE BLOQUEIO / CÓDIGO -->
+<div id="secao-bloqueio">
+  <div class="card">
+  <h3>🔓 Uma Palavra Antes de Começar</h3>
+  <p>
+  Anestesia Mental não é um curso sobre "força de vontade". É um resgate. É sobre entender como os algoritmos, as distrações e os padrões subconscientes sequestraram a sua atenção e te impedem de ouvir a voz mansa e suave do Espírito Santo.<br><br>
+  Aqui você vai aprender o Reset do Shabat, o governo da consciência e a liberdade que só existe quando a mente descansa em Deus. Cada módulo foi preparado para te tirar do piloto automático e te colocar no trono da sua própria vida, com Cristo reinando.
+  </p>
+  </div>
+
+  <div class="versiculo">
+  "Sede sóbrios e vigilantes. O vosso adversário, o diabo, anda em derredor, rugindo como leão e procurando a quem possa tragar."<br>
+  <strong>— 1 Pedro 5:8</strong>
+  </div>
+
+  <div class="codigo-box">
+  <h2>🔑 Acesse as Videoaulas</h2>
+  <p>Insira abaixo seu código de acesso liberado pela Laura ou por sua semeadura:</p>
+  <input type="text" class="codigo-input" id="codigo" placeholder="Digite seu código aqui" maxlength="20" autocomplete="off">
+  <div id="msgErro" class="msg-erro">⚠️ Código inválido. Verifique se digitou corretamente ou solicite o seu código com a Laura pelo WhatsApp.</div>
+  
+  <button onclick="verificarCodigo()" class="btn-semeador" style="margin-bottom:20px;">🔓 Validar e Liberar Acesso</button>
+
+  <div class="botoes">
+  <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" class="btn-semeador">
+  🕊️ Quero Ser Semeador(a) da Missão — R$ 37,00
+  </a>
+  <a href="https://wa.me/5528999111493?text=Ol%C3%A1%20Laura%2C%20vim%20pelo%20menu%20*Anestesia%20Mental*%20do%20Portal%20O%20Despertar%20e%20quero%20muito%20estudar%20as%20videoaulas%20sobre%20governo%20da%20mente%20e%20Reset%20do%20Shabat.%20%F0%9F%99%8F" target="_blank" class="btn-graca">
+  💛 Solicitar Código de Acesso
+  </a>
+  </div>
+
+  <p class="nota">
+  Ao se tornar Semeador(a), você libera seu acesso vitalício completo e ajuda a manter 12 livros gratuitos online para milhares de irmãos que não podem pagar.<br>
+  Se hoje você não tem condições, a Graça de Deus é maior que qualquer valor. A Laura vai te acolher com carinho e liberar o código. 🕊️
+  </p>
   </div>
 </div>
 
-<div class="progress-bar" id="barraProgresso">
-  <div class="wrap">
-    <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
-    <div class="progress-text" id="progText">0 de 7 aulas concluídas</div>
+<!-- TELA DE AULAS REVELADA (OCULTA POR PADRÃO) -->
+<div id="secao-aulas" style="display:none;">
+  <div class="card" style="background:#1a2c47;border-color:var(--gold);">
+    <h3 style="text-align:center;margin-bottom:12px;">🎥 Assistir Videoaulas</h3>
+    <div class="player-container">
+      <iframe id="video-player" src="https://www.youtube-nocookie.com/embed/yVv_BKMJ4DE?rel=0" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+    </div>
+    <h4 id="aula-titulo-atual" style="text-align:center;color:var(--gold);">Módulo 1: Bem-vindo(a) ao nosso Portal</h4>
+  </div>
+
+  <h3 style="color:var(--gold);margin:24px 0 12px;text-align:center;">📚 Módulos Liberados:</h3>
+  <div class="modulos">
+  <div class="modulo ativo" onclick="tocarVideo('Módulo 1: Bem-vindo(a) ao nosso Portal', 'yVv_BKMJ4DE', this)"><span class="num">1</span><span class="txt">Bem-vindo(a) ao nosso Portal</span></div>
+  <div class="modulo" onclick="tocarVideo('Módulo 2: A Anestesia Mental', 'YSw_MY8NNZI', this)"><span class="num">2</span><span class="txt">A Anestesia Mental</span></div>
+  <div class="modulo" onclick="tocarVideo('Módulo 3: O Governo da Mente', '4IwyK4pmaJI', this)"><span class="num">3</span><span class="txt">O Governo da Mente</span></div>
+  <div class="modulo" onclick="tocarVideo('Módulo 4: O Impulso sem Consciência', 'f_GxlRva2CQ', this)"><span class="num">4</span><span class="txt">O Impulso sem Consciência</span></div>
+  <div class="modulo" onclick="tocarVideo('Módulo 5: O Despertar da Consciência', 'Fw4RE6ld_UU', this)"><span class="num">5</span><span class="txt">O Despertar da Consciência</span></div>
+  <div class="modulo" onclick="tocarVideo('Módulo 6: O Reset do Shabat', '31XPvz6DSeY', this)"><span class="num">6</span><span class="txt">O Reset do Shabat</span></div>
+  <div class="modulo" onclick="tocarVideo('Módulo 7: A Liberdade da Alma', 'dYwYB9uDhnI', this)"><span class="num">7</span><span class="txt">A Liberdade da Alma</span></div>
+  </div>
+
+  <div class="card">
+    <h3 style="text-align:center;margin-bottom:12px;">💬 Deixe seu comentário ou testemunho</h3>
+    <p style="color:#b0bec5;font-size:.9rem;text-align:center;margin-bottom:14px;">Conte o que estas aulas significaram para você. Seu comentário chega direto ao autor. 💛</p>
+    <input type="text" class="com-nome" id="com-nome" placeholder="Seu nome (opcional)">
+    <textarea id="com-texto" placeholder="Escreva aqui o seu comentário..."></textarea>
+    <div style="text-align:right;"><button onclick="enviarComentario()" class="btn-semeador" style="font-size:.95rem;padding:12px 22px;">Enviar comentário 🙏</button></div>
+    <p id="com-aviso" style="text-align:center;color:var(--gold);font-weight:600;margin:10px 0 0;"></p>
+  </div>
+
+  <div style="text-align:center;margin-top:20px;">
+    <button onclick="bloquearNovamente()" class="sair">Sair e bloquear acesso</button>
   </div>
 </div>
 
-<div id="portao">
-  <div class="portao-box">
-    <h2>Acesso às Videoaulas</h2>
-    <p>Insira seu código de acesso para liberar o curso Anestesia Mental.</p>
-    
-    <div id="msgErro" class="msg-erro">Código inválido. Verifique se digitou corretamente.</div>
-    
-    <div class="input-group">
-      <input type="text" id="inputCodigo" placeholder="Ex: CODIGO123" autocomplete="off">
-      <button class="btn btn-gold" onclick="verificarCodigo()">Liberar Acesso</button>
-    </div>
-    
-    <div id="compraBox" class="compra-box">
-      <p>Ainda não tem o código? Adquira o acesso completo agora mesmo.</p>
-      <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" class="btn btn-outline">Quero me inscrever</a>
-    </div>
-  </div>
+<div class="voltar">
+<a href="https://missaocomdeus.com.br">← Voltar ao Portal O Despertar</a>
 </div>
 
-<div id="conteudo">
-  <div class="wrap">
-    <div class="header-aulas">
-      <h1>Anestesia Mental</h1>
-      <p>Bem-vindo(a) à sua área de estudos. Assista no seu ritmo.</p>
-    </div>
-
-    <!-- Módulo 01 -->
-    <div class="modulo" id="mod01">
-      <div class="mod-header">
-        <span class="mod-num">Módulo 01</span>
-        <h2 class="mod-title">Bem-vindo(a) à nossa Comunidade</h2>
-      </div>
-      <div class="video-wrap" id="video01">
-        <iframe src="https://www.youtube-nocookie.com/embed/yVv_BKMJ4DE?rel=0" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
-      </div>
-      <div class="mod-actions">
-        <button class="btn-check" onclick="toggleConcluido(1)" id="btnCheck1">✓ Marcar aula como concluída</button>
-      </div>
-    </div>
-
-    <!-- Módulo 02 -->
-    <div class="modulo" id="mod02">
-      <div class="mod-header">
-        <span class="mod-num">Módulo 02</span>
-        <h2 class="mod-title">A Anestesia Mental</h2>
-      </div>
-      <div class="video-wrap" id="video02">
-        <iframe src="https://www.youtube-nocookie.com/embed/YSw_MY8NNZI?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
-      </div>
-      <div class="mod-actions">
-        <button class="btn-check" onclick="toggleConcluido(2)" id="btnCheck2">✓ Marcar aula como concluída</button>
-      </div>
-    </div>
-
-    <!-- Módulo 03 -->
-    <div class="modulo" id="mod03">
-      <div class="mod-header">
-        <span class="mod-num">Módulo 03</span>
-        <h2 class="mod-title">O Governo da Mente</h2>
-      </div>
-      <div class="video-wrap" id="video03">
-        <iframe src="https://www.youtube-nocookie.com/embed/4IwyK4pmaJI?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
-      </div>
-      <div class="mod-actions">
-        <button class="btn-check" onclick="toggleConcluido(3)" id="btnCheck3">✓ Marcar aula como concluída</button>
-      </div>
-    </div>
-
-    <!-- Módulo 04 -->
-    <div class="modulo" id="mod04">
-      <div class="mod-header">
-        <span class="mod-num">Módulo 04</span>
-        <h2 class="mod-title">O Impulso sem Consciência</h2>
-      </div>
-      <div class="video-wrap" id="video04">
-        <iframe src="https://www.youtube-nocookie.com/embed/f_GxlRva2CQ?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
-      </div>
-      <div class="mod-actions">
-        <button class="btn-check" onclick="toggleConcluido(4)" id="btnCheck4">✓ Marcar aula como concluída</button>
-      </div>
-    </div>
-
-    <!-- Módulo 05 -->
-    <div class="modulo" id="mod05">
-      <div class="mod-header">
-        <span class="mod-num">Módulo 05</span>
-        <h2 class="mod-title">O Despertar da Consciência</h2>
-      </div>
-      <div class="video-wrap" id="video05">
-        <iframe src="https://www.youtube-nocookie.com/embed/Fw4RE6ld_UU?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
-      </div>
-      <div class="mod-actions">
-        <button class="btn-check" onclick="toggleConcluido(5)" id="btnCheck5">✓ Marcar aula como concluída</button>
-      </div>
-    </div>
-
-    <!-- Módulo 06 -->
-    <div class="modulo" id="mod06">
-      <div class="mod-header">
-        <span class="mod-num">Módulo 06</span>
-        <h2 class="mod-title">O Reset do Shabat</h2>
-      </div>
-      <div class="video-wrap" id="video06">
-        <iframe src="https://www.youtube-nocookie.com/embed/31XPvz6DSeY?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
-      </div>
-      <div class="mod-actions">
-        <button class="btn-check" onclick="toggleConcluido(6)" id="btnCheck6">✓ Marcar aula como concluída</button>
-      </div>
-    </div>
-
-    <!-- Módulo 07 -->
-    <div class="modulo" id="mod07">
-      <div class="mod-header">
-        <span class="mod-num">Módulo 07</span>
-        <h2 class="mod-title">O Caminho da Libertação</h2>
-      </div>
-      <div class="video-wrap" id="video07">
-        <iframe src="https://www.youtube-nocookie.com/embed/dYwYB9uDhnI?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
-      </div>
-      <div class="mod-actions">
-        <button class="btn-check" onclick="toggleConcluido(7)" id="btnCheck7">✓ Marcar aula como concluída</button>
-      </div>
-    </div>
-
-  </div>
 </div>
 
+<script>
+var CHAVE_STORAGE = "despertar_anestesia_acesso_ok";
 
-<div id="caixa-comentario" style="display:none; background:var(--papel); padding:0 0 60px">
-  <div class="wrap">
-    <div class="modulo" id="comentarios">
-      <div class="mod-header"><span class="mod-num">💬</span><h2 class="mod-title">Deixe seu comentário ou testemunho</h2></div>
-      <p style="color:var(--tinta2); margin:0 0 16px">Conte o que estas aulas significaram para você. Seu comentário chega direto ao autor. 💛</p>
-      <input type="text" id="com-nome" placeholder="Seu nome (opcional)" style="width:100%; padding:12px; border:2px solid var(--linha); border-radius:8px; font-family:var(--sans); font-size:15px; margin-bottom:10px">
-      <textarea id="com-texto" rows="4" placeholder="Escreva aqui o seu comentário..." style="width:100%; padding:12px; border:2px solid var(--linha); border-radius:8px; font-family:var(--sans); font-size:15px; resize:vertical"></textarea>
-      <div style="text-align:right; margin-top:12px"><button class="btn btn-gold" onclick="enviarComentario()">Enviar comentário 🙏</button></div>
-      <p id="com-aviso" style="color:var(--cta); font-weight:600; margin:10px 0 0"></p>
-    </div>
-  </div>
-</div>
+document.addEventListener("DOMContentLoaded", function() {
+    if (localStorage.getItem(CHAVE_STORAGE) === "liberado") {
+        mostrarAulas();
+    }
+
+    var input = document.getElementById("codigo");
+    if(input) {
+        input.addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                verificarCodigo();
+            }
+        });
+    }
+});
+
+function verificarCodigo() {
+    var cod = document.getElementById("codigo").value.trim().toUpperCase();
+    var msg = document.getElementById("msgErro");
+
+    // CÓDIGO OFICIAL — aceita somente NSTMNT26
+    if (cod === "NSTMNT26") {
+        localStorage.setItem(CHAVE_STORAGE, "liberado");
+        mostrarAulas();
+    } else {
+        msg.style.display = "block";
+        document.getElementById("codigo").value = "";
+        document.getElementById("codigo").focus();
+    }
+}
+
+function mostrarAulas() {
+    document.getElementById("secao-bloqueio").style.display = "none";
+    document.getElementById("secao-aulas").style.display = "block";
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function tocarVideo(titulo, youtubeId, elemento) {
+    document.getElementById("aula-titulo-atual").textContent = titulo;
+    document.getElementById("video-player").src = "https://www.youtube-nocookie.com/embed/" + youtubeId + "?rel=0&autoplay=1";
+
+    document.querySelectorAll('.modulo').forEach(function(m) {
+        m.classList.remove('ativo');
+    });
+    elemento.classList.add('ativo');
+    window.scrollTo({ top: document.querySelector('.card').offsetTop - 20, behavior: 'smooth' });
+}
+
+function bloquearNovamente() {
+    localStorage.removeItem(CHAVE_STORAGE);
+    location.reload();
+}
+</script>
+
 <script>
 function enviarComentario(){
   var t = document.getElementById('com-texto').value.trim();
@@ -253,112 +204,9 @@ function enviarComentario(){
     method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
     body: JSON.stringify({ _subject:'💬 Comentario de aluno - Anestesia Mental', _template:'table', _captcha:'false', Nome:n, Comentario:t, Pagina: location.pathname })
   }).then(function(r){ return r.json(); }).then(function(){
-    document.getElementById('comentarios').innerHTML = '<div style="text-align:center; padding:20px"><div style="font-size:2rem">🙌</div><h3 style="margin:8px 0">Comentário enviado!</h3><p style="color:var(--tinta2)">Obrigado por compartilhar. Que Deus abençoe a sua caminhada!</p></div>';
+    var c = document.querySelector('.card:last-child');
+    c.innerHTML = '<div style="text-align:center; padding:20px"><div style="font-size:2rem">🙌</div><h3 style="margin:8px 0;color:var(--gold)">Comentário enviado!</h3><p style="color:#b0bec5">Obrigado por compartilhar. Que Deus abençoe a sua caminhada!</p></div>';
   }).catch(function(){ av.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.'; });
-}
-</script>
-<div id="fim">
-  <p>© Missão com Deus. Todos os direitos reservados.</p>
-</div>
-
-<script>
-const CODIGO_ACESSO = 'NSTMNT26';
-const LINK_COMPRA = 'https://pay.kiwify.com.br/iVfp2bi';
-const TOTAL_AULAS = 7;
-
-document.addEventListener('DOMContentLoaded', () => {
-  if(localStorage.getItem('anestesia_acesso_ok') === 'true') {
-    liberarInterface();
-  }
-  
-  // Enter para confirmar código
-  document.getElementById('inputCodigo').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') verificarCodigo();
-  });
-  
-  configurarEstatisticas();
-});
-
-function verificarCodigo() {
-  const input = document.getElementById('inputCodigo').value.trim().toUpperCase();
-  if(input === CODIGO_ACESSO.toUpperCase()) {
-    localStorage.setItem('anestesia_acesso_ok', 'true');
-    liberarInterface();
-  } else {
-    document.getElementById('msgErro').style.display = 'block';
-    document.getElementById('compraBox').style.display = 'block';
-  }
-}
-
-function liberarInterface() {
-  document.getElementById('portao').style.display = 'none';
-  document.getElementById('conteudo').style.display = 'block';
-  var cx = document.getElementById('caixa-comentario'); if (cx) cx.style.display = 'block';
-  document.getElementById('barraProgresso').style.display = 'block';
-  carregarProgresso();
-}
-
-function carregarProgresso() {
-  let prog = JSON.parse(localStorage.getItem('anestesia_progresso') || '[]');
-  let concluidas = 0;
-  
-  for(let i=1; i<=TOTAL_AULAS; i++) {
-    const btn = document.getElementById('btnCheck'+i);
-    if(prog.includes(i)) {
-      btn.classList.add('concluido');
-      btn.innerHTML = '✓ Aula concluída';
-      concluidas++;
-    } else {
-      btn.classList.remove('concluido');
-      btn.innerHTML = '✓ Marcar aula como concluída';
-    }
-  }
-  
-  atualizarBarra(concluidas);
-}
-
-function toggleConcluido(num) {
-  let prog = JSON.parse(localStorage.getItem('anestesia_progresso') || '[]');
-  if(prog.includes(num)) {
-    prog = prog.filter(n => n !== num);
-  } else {
-    prog.push(num);
-  }
-  localStorage.setItem('anestesia_progresso', JSON.stringify(prog));
-  carregarProgresso();
-}
-
-function atualizarBarra(concluidas) {
-  const pct = (concluidas / TOTAL_AULAS) * 100;
-  document.getElementById('progFill').style.width = pct + '%';
-  document.getElementById('progText').innerText = concluidas + ' de ' + TOTAL_AULAS + ' aulas concluídas';
-}
-
-function marcarPlay(i) {
-  var key = 'anestesia_m0' + i + '_play';
-  if (!sessionStorage.getItem(key)) {
-    sessionStorage.setItem(key, 'true');
-    fetch('/q-anestesia-m0' + i).catch(function(e){});
-  }
-}
-function configurarEstatisticas() {
-  for (var i = 1; i <= TOTAL_AULAS; i++) {
-    (function(n) {
-      var wrap = document.getElementById('video0' + n);
-      if (wrap) wrap.addEventListener('pointerdown', function(){ marcarPlay(n); });
-    })(i);
-  }
-  window.addEventListener('blur', function() {
-    setTimeout(function() {
-      var el = document.activeElement;
-      if (el && el.tagName === 'IFRAME') {
-        for (var i = 1; i <= TOTAL_AULAS; i++) {
-          var wrap = document.getElementById('video0' + i);
-          if (wrap && wrap.contains(el)) marcarPlay(i);
-        }
-      }
-    }, 0);
-  });
 }
 </script>
 </body>

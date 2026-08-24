@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comece o dia com Afirmações, Declarações e Orações: Versículos, gratidão, afirmações e orações para fortalecer a sua fé</title>
+<meta name="description" content="Comece o dia com Afirmações, Declarações e Orações. Versículos, gratidão, afirmações e orações para começar o dia na presença de Deus.">
+<style>
+:root{
+  --navy:#0e1a2e; --navy2:#16283f;
+  --ouro:#c9a24b; --ouro-claro:#e3c877;
+  --papel:#faf6ee; --tinta:#2b2620; --tinta2:#6b6255;
+  --linha:#e4dccb; --cta:#b8860b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--navy); color:var(--tinta);
+  font-family:Georgia,'Times New Roman',Times,serif; line-height:1.75;
+  font-size:var(--tamanho-fonte);
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
+}
+:root{--tamanho-fonte:100%}
+.wrap{max-width:46rem; margin:0 auto}
+.topbar{background:var(--navy); border-bottom:3px solid var(--ouro); position:sticky; top:0; z-index:50}
+.topbar .wrap{display:flex; align-items:center; justify-content:space-between; padding:.8rem 1.2rem; gap:10px}
+.topbar .logo{color:#fff; font-size:1.05rem; text-decoration:none}
+.topbar .logo span{color:var(--ouro)}
+.topbar .ler{color:var(--ouro-claro); font-size:.78rem; letter-spacing:.2em; text-transform:uppercase}
+.capa{min-height:60vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:3rem 1.2rem; color:#fff;
+  background:radial-gradient(900px 500px at 70% -10%, rgba(201,162,75,.2), transparent 60%), linear-gradient(170deg,var(--navy) 0%,#120b18 100%);}
+.capa .capa-livro{width:178px; height:auto; border:2px solid var(--ouro); border-radius:6px;
+  box-shadow:0 18px 44px rgba(0,0,0,.6); margin-bottom:1.8rem; -webkit-user-drag:none}
+.capa .selo{font-size:.78rem; letter-spacing:.4em; text-transform:uppercase; color:var(--ouro-claro); margin-bottom:1.6rem}
+.capa h1{font-size:clamp(1.8rem,5vw,2.8rem); margin:0 0 .6rem; line-height:1.12}
+.capa .sub{font-style:italic; color:#cfd6e2; font-size:1.1rem; margin-bottom:1.8rem; max-width:34rem}
+.capa .autor{font-size:.9rem; letter-spacing:.3em; text-transform:uppercase; color:var(--ouro); margin-bottom:2.4rem}
+.capa .inicio{display:inline-block; background:linear-gradient(180deg,#d4a83f,var(--cta)); color:#fff;
+  font-weight:700; padding:14px 30px; border-radius:8px; text-decoration:none; font-size:1rem}
+.capa .aviso2{font-size:.78rem; color:#8fa0b8; margin-top:1.4rem; max-width:26rem; line-height:1.5}
+#sumario{background:var(--navy2); color:#fff; padding:3rem 1.2rem}
+#sumario h2{text-align:center; color:var(--ouro); font-size:1.4rem; letter-spacing:.2em; text-transform:uppercase; margin-bottom:1.4rem}
+#sumario ul{list-style:none; padding:0; margin:0 auto; max-width:34rem}
+#sumario li{border-bottom:1px solid rgba(201,162,75,.25)}
+#sumario li.toc-parte{color:var(--ouro); font-weight:700; padding:.9rem .4rem .4rem; letter-spacing:.08em; text-transform:uppercase; font-size:.85rem}
+#sumario a{display:block; color:#e8ecf3; text-decoration:none; padding:.8rem .4rem; font-size:1rem}
+#sumario a:hover{color:var(--ouro-claro); padding-left:.8rem}
+.leitura{background:var(--fundo-leitura); padding:2.6rem 1.2rem 4rem; color:var(--tinta-leitura)}
+.leitura .wrap{background:var(--card-leitura); border:1px solid var(--linha-leitura); border-radius:12px;
+  padding:2.2rem 1.6rem; box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.capitulo{margin-top:3rem; padding-top:2rem; border-top:1px solid var(--linha-leitura)}
+.cap-num{letter-spacing:.3em; text-transform:uppercase; font-size:.78rem; color:var(--ouro); margin:0 0 .5rem}
+.cap-titulo{font-size:1.5rem; color:var(--titulo-leitura); margin:0 0 1.2rem}
+.capitulo p{margin:0 0 1rem; text-align:justify}
+.afirmacao{background:var(--destaque); border-left:4px solid var(--ouro); border-radius:8px;
+  padding:.8rem 1rem; margin:.6rem 0; text-align:left; font-size:1.02rem;}
+.box{border-radius:10px; padding:1rem 1.2rem; margin:1.2rem 0}
+.box h3{margin:0 0 .4rem; font-size:1rem; letter-spacing:.05em}
+.box p{margin:0; text-align:justify}
+.box.aviso{background:#fdecea; border-left:4px solid #c0392b}
+.box.aviso h3{color:#a93226}
+.box.oracao{background:#e8eef7; border-left:4px solid #4a6fa5}
+.box.oracao h3{color:#33507a}
+.box.versiculo{background:var(--destaque); border-left:4px solid var(--ouro)}
+.box.versiculo h3{color:var(--cta)}
+.ref{color:var(--cta); font-style:italic; font-size:.9rem}
+.cap-nav{display:flex; justify-content:space-between; gap:.6rem; flex-wrap:wrap; margin-top:2.4rem;
+  padding-top:1rem; border-top:1px dashed var(--linha); font-size:.9rem; font-family:system-ui,sans-serif}
+.cap-nav a{color:var(--navy2); text-decoration:none; border-bottom:1px dotted var(--ouro); padding:2px 4px}
+.cap-nav a:hover{color:var(--cta)}
+#fim{background:var(--navy); color:#fff; text-align:center; padding:4rem 1.2rem}
+#fim h2{font-size:1.5rem; margin-bottom:.8rem}
+#fim p{color:#c4cdda; max-width:32rem; margin:0 auto 1.6rem}
+#fim .cred{font-size:.82rem; color:#8fa0b8; margin-top:1.6rem; line-height:1.6}
+footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2rem; font-size:.8rem}
+@media (max-width:560px){
+  body{font-size:var(--tamanho-fonte)}
+  .leitura .wrap{padding:1.4rem 1rem}
+  .cap-titulo{font-size:1.3rem}
+}
+  /* FAQ (accordion) das Orações de Fé */
+  .faq-item{background:var(--fundo-leitura);border:1px solid var(--linha-leitura);border-radius:10px;margin-bottom:10px;overflow:hidden;}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer;font-weight:700;color:var(--titulo-leitura);font-size:1rem;background:var(--destaque);}
+  .faq-q .seta{transition:transform .2s;color:#b8860b;font-size:1.1rem;}
+  .faq-item.aberto .faq-q .seta{transform:rotate(180deg);}
+  .faq-a{display:none;padding:14px 18px;color:var(--tinta-leitura);font-size:.95rem;line-height:1.7;background:var(--card-leitura);}
+  .faq-item.aberto .faq-a{display:block;}
+
+  /* ===== Leitor do Despertar ===== */
+  body[data-modo="dia"]{--fundo-leitura:var(--papel); --card-leitura:#fff; --tinta-leitura:var(--tinta); --titulo-leitura:var(--navy); --linha-leitura:var(--linha); --destaque:#fdf6e3}
+  body[data-modo="sepia"]{--fundo-leitura:#f1e6cd; --card-leitura:#faf3e0; --tinta-leitura:#4a3a20; --titulo-leitura:#3a2d15; --linha-leitura:#d8c69d; --destaque:#f6ecd2}
+  body[data-modo="noite"]{--fundo-leitura:#0d1520; --card-leitura:#17202f; --tinta-leitura:#c9d4e3; --titulo-leitura:#e3c877; --linha-leitura:#2a3a52; --destaque:#1c2940}
+  #barra-progresso{
+    position:fixed; top:0; left:0; height:4px; width:0%;
+    background:linear-gradient(90deg,#c9a24b,#e3c877);
+    z-index:100; border-radius:0 3px 3px 0; transition:width .15s linear;
+  }
+  .topbar .wrap{flex-wrap:wrap; gap:6px}
+  .topbar .linha1{display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%}
+  #stats-leitura{color:var(--ouro-claro); font-size:.7rem; letter-spacing:.05em; font-family:system-ui,sans-serif; white-space:nowrap}
+  .controles{display:flex; align-items:center; gap:5px; flex-wrap:wrap; font-family:system-ui,sans-serif}
+  .controles button{
+    background:var(--navy2); color:#fff; border:1px solid rgba(201,162,75,.5);
+    border-radius:6px; min-width:34px; height:30px; cursor:pointer;
+    font-size:.8rem; font-weight:700; font-family:Georgia,serif; line-height:1; padding:0 8px;
+  }
+  .controles button:hover{background:var(--ouro); color:var(--navy)}
+  .controles button.ativo{background:var(--ouro); color:var(--navy)}
+  .controles .sep{width:1px; height:20px; background:rgba(201,162,75,.35); margin:0 3px}
+  #trilha{
+    position:fixed; right:6px; top:50%; height:60vh; transform:translateY(-50%);
+    z-index:55; display:block;
+    background:rgba(14,26,46,.85); border:1px solid rgba(201,162,75,.4); border-radius:12px;
+    width:14px; box-shadow:0 4px 14px rgba(0,0,0,.3);
+  }
+  #trilha .ponto{
+    position:absolute; left:50%; transform:translateX(-50%);
+    width:8px; height:8px; border-radius:50%; background:rgba(201,162,75,.35);
+    cursor:pointer; border:none; padding:0; transition:all .2s;
+  }
+  #trilha .ponto:hover{background:var(--ouro-claro); transform:translateX(-50%) scale(1.35)}
+  #trilha .ponto.feito{background:rgba(201,162,75,.7)}
+  #trilha .ponto.atual{background:var(--ouro); width:11px; height:11px; box-shadow:0 0 8px rgba(201,162,75,.9)}
+  #fita-lateral{
+    position:fixed; right:0; width:6px; height:52px; background:linear-gradient(180deg,#e3c877,#b8860b);
+    border-radius:4px 0 0 4px; z-index:56; cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,.4); display:none;
+  }
+  #fita-lateral::after{content:"🎗️"; position:absolute; right:4px; top:-6px; font-size:14px}
+  #fita-lateral:hover{width:10px}
+  #botao-marcador{
+    position:fixed; right:16px; bottom:16px; z-index:60;
+    background:var(--navy); color:var(--ouro-claro); border:1px solid var(--ouro);
+    border-radius:50px; padding:10px 16px; font-size:.8rem; cursor:pointer;
+    font-family:system-ui,sans-serif; box-shadow:0 4px 14px rgba(0,0,0,.35);
+  }
+  #botao-marcador:hover{background:var(--ouro); color:var(--navy)}
+  #baloes{position:fixed; top:10px; left:0; right:0; z-index:90; display:flex; flex-direction:column; align-items:center; gap:8px; pointer-events:none}
+  .balao{
+    pointer-events:auto; max-width:92%; width:430px;
+    background:#fffdf5; border:1px solid var(--ouro); border-left:5px solid var(--ouro);
+    border-radius:10px; padding:10px 14px; font-size:.86rem; line-height:1.45;
+    color:var(--navy); font-family:system-ui,sans-serif;
+    box-shadow:0 8px 24px rgba(0,0,0,.28);
+    display:flex; align-items:center; gap:10px;
+    animation:balaoEntra .35s ease;
+  }
+  .balao .emoji{font-size:1.15rem}
+  .balao .texto{flex:1}
+  .balao .texto b{color:var(--cta)}
+  .balao .fechar{background:none; border:none; color:var(--tinta2); font-size:1.05rem; cursor:pointer; line-height:1; padding:4px}
+  .balao .fechar:hover{color:var(--cta)}
+  .balao .acao{
+    background:linear-gradient(180deg,#d4a83f,var(--cta)); color:#fff; border:none;
+    border-radius:6px; padding:7px 12px; font-size:.78rem; font-weight:700; cursor:pointer; font-family:system-ui,sans-serif; white-space:nowrap;
+  }
+  .balao.saindo{animation:balaoSai .3s ease forwards}
+  @keyframes balaoEntra{from{opacity:0; transform:translateY(-14px)} to{opacity:1; transform:translateY(0)}}
+  @keyframes balaoSai{from{opacity:1} to{opacity:0; transform:translateY(-10px)}}
+  #sumario li.aqui a{color:var(--ouro-claro); font-weight:700}
+  #sumario li.lido a{color:#9fb0c9}
+  #sumario li .marca{color:var(--ouro-claro); font-size:.78rem; font-family:system-ui,sans-serif; white-space:nowrap; padding-right:.4rem}
+  @media print{
+    body::before{
+      content:"Livro protegido. A impressão não está disponível nesta obra. Obrigado pela compreensão.";
+      display:block; position:fixed; inset:0; background:#fff; color:#333;
+      font-size:18px; text-align:center; padding-top:40vh; z-index:9999;
+    }
+    .topbar,.capa,#sumario,.leitura,#fim,footer,#baloes,#trilha,#fita-lateral,#botao-marcador,#barra-progresso{display:none !important}
+  }
+  @media (max-width:560px){
+    .controles button{min-width:30px; padding:0 6px}
+    #trilha{right:3px}
+    #stats-leitura{font-size:.62rem}
+  }
+
+</style>
+</head>
+<body data-modo="dia">
+
+<div id="barra-progresso"></div>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="linha1">
+      <a class="logo" href="#capa">Missão <span>com Deus</span></a>
+      <span id="stats-leitura">Início da leitura</span>
+    </div>
+    <div class="controles">
+      <button id="btn-menos" title="Diminuir letras">A−</button>
+      <button id="btn-padrao" title="Tamanho original" class="ativo">A</button>
+      <button id="btn-mais" title="Aumentar letras">A+</button>
+      <span class="sep"></span>
+      <button id="btn-fita" title="Colocar ou remover a fita dourada">🎗️ Fita</button>
+      <button id="btn-modo" title="Mudar a cor da tela (Dia, Sépia, Noite)">🎨 Dia</button>
+      <button id="btn-dicas" title="Ver dicas de leitura">💡</button>
+    </div>
+  </div>
+</header>
+
+<div id="baloes"></div>
+<div id="trilha"></div>
+<div id="fita-lateral"></div>
+
+<section class="capa" id="capa">
+  <img class="capa-livro" src="https://i.ibb.co/6RRTBY06/livro12.jpg" alt="Capa do livro Comece o dia com Afirmações, Declarações e Orações">
+  <p class="selo">Coleção do Despertar</p>
+  <h1>Comece o dia com Afirmações, Declarações e Orações</h1>
+  <p class="sub">Versículos, gratidão, afirmações e orações para fortalecer a sua fé</p>
+  <p class="autor">Compilado das obras do Portal · Versão de leitura</p>
+  <a class="inicio" href="#sumario">Começar a leitura →</a>
+  <p class="aviso2">✨ Versículos, gratidão, afirmações e orações para fortalecer a fé.</p>
+</section>
+
+<section id="sumario">
+  <h2>Sumário</h2>
+  <ul>
+<li class="toc-parte">💬 Mensagens de Fé</li>
+<li id="li-mensagens-dia"><a href="#mensagens-dia">Mensagens para o dia a dia (toque para abrir)</a><span class="marca"></span></li>
+<li class="toc-parte">🙌 Orações de Fé</li>
+<li id="li-oracoes-fe"><a href="#oracoes-fe">Orações no Nome de Jesus (toque para abrir)</a><span class="marca"></span></li>
+<li class="toc-parte">🙌 Gratidão</li>
+<li id="li-gratidao"><a href="#gratidao">Versículos e mensagens de gratidão</a><span class="marca"></span></li>
+<li class="toc-parte">📂 Categorias de Afirmações</li>
+<li id="li-cat-1"><a href="#cat-1">🩺 Saúde e Cura</a><span class="marca"></span></li>
+<li id="li-cat-2"><a href="#cat-2">🌿 Rejuvenescimento e Vitalidade</a><span class="marca"></span></li>
+<li id="li-cat-3"><a href="#cat-3">🕊️ Paz e Emoções (ansiedade, medo)</a><span class="marca"></span></li>
+<li id="li-cat-4"><a href="#cat-4">💛 Prosperidade e Provisão</a><span class="marca"></span></li>
+<li id="li-cat-5"><a href="#cat-5">👑 Identidade em Cristo (quem eu sou)</a><span class="marca"></span></li>
+<li id="li-cat-6"><a href="#cat-6">🛡️ Proteção e Segurança</a><span class="marca"></span></li>
+<li id="li-cat-7"><a href="#cat-7">💪 Força e Superação</a><span class="marca"></span></li>
+<li id="li-cat-8"><a href="#cat-8">❤️ Relacionamentos e Perdão</a><span class="marca"></span></li>
+<li class="toc-parte">🙏 Orações</li>
+<li id="li-oracoes"><a href="#oracoes">Orações para o dia a dia</a><span class="marca"></span></li>
+<li class="toc-parte">📖 Versículos</li>
+<li id="li-versiculos"><a href="#versiculos">Versículos de declaração</a><span class="marca"></span></li>
+<li class="toc-parte" style="border-top:1px dashed rgba(201,162,75,.4);margin-top:6px;padding-top:10px;">🎬 Aula grátis do Portal</li>
+<li id="li-aula-gratis"><a href="#aula-gratis" style="color:var(--ouro-claro,#e3c877);font-weight:700;">🎬 Assistir uma aula grátis do Portal →</a><span class="marca"></span></li>
+  </ul>
+</section>
+
+<main class="leitura">
+  <div class="wrap">
+<section class="capitulo" id="abertura">
+      <p class="cap-num">Coleção do Despertar</p>
+      <h2 class="cap-titulo">Sobre este guia</h2>
+      <p>Este guia reúne versículos, mensagens de gratidão, afirmações e orações para você começar cada dia na presença de Deus. O poder da palavra é um tema central dos nossos livros: a Bíblia ensina que a morte e a vida estão no poder da língua (Provérbios 18:21).</p>
+      <div class="box aviso"><h3>Atenção</h3><p>As afirmações devem ser usadas alinhadas à Palavra de Deus. O nome "EU SOU" é o nome sagrado de Deus (Êxodo 3:14). Quando declaramos, declaramos quem somos em Cristo, não uma autossuficiência vazia.</p></div>
+      <span id="como-usar"></span>
+      <h3 style="color:var(--ouro);font-family:inherit;margin:1.8rem 0 .8rem;">📌 Como usar este guia</h3>
+      <p><strong>Pela manhã:</strong> comece agradecendo (seção Gratidão) e escolha 1-2 afirmações para repetir com fé, em voz alta.</p>
+      <p><strong>Ao longo do dia:</strong> quando um pensamento negativo vier, substitua por uma declaração da Palavra.</p>
+      <p><strong>À noite:</strong> ore com uma das orações do guia, do dia ou das orações de fé.</p>
+      <p><strong>Sempre alinhado à Palavra:</strong> as afirmações não são mantras vazios, são verdades de Deus aplicadas à vida.</p>
+
+      <nav class="cap-nav"><a href="#sumario">Sumário</a><a href="#mensagens-dia">Próximo →</a></nav>
+    </section>
+<section class="capitulo" id="mensagens-dia">
+<p class="cap-num">💬 Mensagens de Fé</p>
+<h2 class="cap-titulo">Mensagens para o Dia a Dia</h2>
+<p>Pequenas mensagens de ânimo para as situações do dia a dia, com versículos que tocam a alma. Toque em cada uma para abrir e fechar.</p>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🌅 Para começar o dia com fé</span><span class="seta">▼</span></div><div class="faq-a"><p>Antes de olhar para o celular, olhe para o céu. Este dia é uma dádiva, e você não precisa carregá-lo sozinho. Comece com gratidão e deixe que a alegria do Senhor seja a sua força.</p><p class="ref">"Este é o dia que fez o Senhor; regozijemo-nos e alegremo-nos nele." (Salmo 118:24)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>💼 Para o trabalho e as tarefas</span><span class="seta">▼</span></div><div class="faq-a"><p>Trabalhe com o coração, não apenas com as mãos. O que você faz hoje, mesmo o mais simples, pode ser feito como uma oferta de amor. Não é sobre o resultado, é sobre a fidelidade.</p><p class="ref">"E tudo quanto fizerdes, fazei-o de todo o coração, como ao Senhor, e não aos homens." (Colossenses 3:23)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>😰 Para a ansiedade</span><span class="seta">▼</span></div><div class="faq-a"><p>Respire fundo e lembre: você não precisa saber o dia de amanhã, precisa confiar em quem o conhece. Entregue a preocupação em oração e deixe a paz agir dentro de você.</p><p class="ref">"Não estejais ansiosos por coisa alguma; antes, em tudo, sejam conhecidas as vossas petições diante de Deus; e a paz de Deus guardará os vossos corações." (Filipenses 4:6-7)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>💧 Para a tristeza</span><span class="seta">▼</span></div><div class="faq-a"><p>Chorar não é fraqueza, é humanidade. Deus não se afasta de quem chora; Ele se aproxima. Entregue a dor a Ele e permita que o conforto chegue no tempo certo.</p><p class="ref">"Perto está o Senhor dos que têm o coração quebrantado e salva os contritos de espírito." (Salmo 34:18)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🛡️ Para o medo</span><span class="seta">▼</span></div><div class="faq-a"><p>O medo sussurra, mas a fé fala mais alto. Você não precisa ser forte o tempo todo, precisa estar seguro nos braços de quem nunca falha.</p><p class="ref">"Não temas, porque eu sou contigo; não te assombres, porque eu sou o teu Deus." (Isaías 41:10)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🏡 Para a família</span><span class="seta">▼</span></div><div class="faq-a"><p>O lar se constrói com presença, paciência e perdão. Escolha hoje abençoar os seus com palavras boas e com o exemplo do seu amor.</p><p class="ref">"Eu e a minha casa serviremos ao Senhor." (Josué 24:15)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🌙 Para a noite</span><span class="seta">▼</span></div><div class="faq-a"><p>Antes de dormir, faça as pazes com o dia. O que não foi feito espera por amanhã, e o que foi dito demais, entregue ao perdão. Descanse em paz.</p><p class="ref">"Em paz também me deitarei e dormirei, porque só tu, Senhor, me fazes habitar em segurança." (Salmo 4:8)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🌱 Para recomeçar</span><span class="seta">▼</span></div><div class="faq-a"><p>Nenhum erro de ontem define o amanhã. A misericórdia de Deus se renova a cada manhã, e com ela, a sua chance de começar de novo.</p><p class="ref">"As misericórdias do Senhor são a causa de não sermos consumidos; renovam-se cada manhã." (Lamentações 3:22-23)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🕊️ Para o cansaço</span><span class="seta">▼</span></div><div class="faq-a"><p>Se você está cansado, não precisa fingir que está bem. Descanse em Deus, entregue o peso e receba o alívio que só Ele dá.</p><p class="ref">"Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei." (Mateus 11:28)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🙌 Para quando nada parece mudar</span><span class="seta">▼</span></div><div class="faq-a"><p>Há um tempo para semear e um tempo para colher. Não desista no meio do caminho: o que você planta com fé, Deus rega com cuidado.</p><p class="ref">"E não nos cansemos de fazer o bem, porque a seu tempo ceifaremos, se não houvermos desfalecido." (Gálatas 6:9)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>💌 Para confiar em Deus</span><span class="seta">▼</span></div><div class="faq-a"><p>O seu coração pode não entender o caminho, mas pode confiar em quem o guia. Reconheça o Senhor em cada passo e Ele endireitará as suas veredas.</p><p class="ref">"Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento." (Provérbios 3:5-6)</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🕊️ Para entregar as preocupações</span><span class="seta">▼</span></div><div class="faq-a"><p>Jogue sobre Deus tudo o que pesa: o medo, a dúvida, a mágoa. Ele cuida de você com um cuidado que não falha.</p><p class="ref">"Lançando sobre ele toda a vossa ansiedade, porque ele tem cuidado de vós." (1 Pedro 5:7)</p></div></div>
+<nav class="cap-nav"><a href="#abertura">← Anterior</a><a href="#sumario">Sumário</a><a href="#oracoes-fe">Próximo →</a></nav>
+</section>
+<section class="capitulo" id="oracoes-fe">
+<p class="cap-num">🙏 Orações de Fé</p>
+<h2 class="cap-titulo">Orações no Nome de Jesus</h2>
+<p>Orações baseadas no Evangelho, professando o poder e a autoridade no nome que está acima de todo nome. Toque em cada oração para abrir e fechar.</p>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🛡️ Oração de Proteção (baseada no Salmo 91)</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor Deus Altíssimo, tu és o meu refúgio e a minha fortaleza, em ti confio. Tu me livras do laço do inimigo e da palavra destruidora. Sob as tuas asas encontro abrigo, e a tua verdade é o meu escudo. Não temerei os terrores da noite, nem a seta que voa de dia, porque ordenaste aos teus anjos que me guardem em todos os meus caminhos. Em nome de Jesus, amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>✝️ Oração de Autoridade no Nome de Jesus</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor Jesus, tu és o nome que está acima de todo nome, e diante de ti todo joelho se dobra, no céu, na terra e debaixo da terra. Pela autoridade do teu nome, eu declaro que todo medo, toda ansiedade, toda opressão e todo mal se curvam diante de ti. Nada me atingirá, porque estou escondido em ti. Que a tua paz, que excede todo entendimento, guarde o meu coração e a minha mente. Amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🩺 Oração de Cura do Corpo e da Alma</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor Jesus, pelas tuas feridas fui curado. Tu levaste as minhas dores e carregaste as minhas enfermidades. Toca o meu corpo, sara as minhas emoções, renova as minhas forças. Derrama a tua vida em cada célula do meu ser. Que a tua paz invada a minha alma e a tua saúde flua em mim. Confio em ti, meu médico e meu Senhor. Amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🏡 Oração pela Família</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, eu e a minha casa serviremos ao Senhor. Abençoa a minha família, une os nossos corações, afasta de nós toda divisão, brigas e incompreensão. Que o amor, o respeito e o diálogo reinem no nosso lar. Protege cada membro da minha família, guia os nossos passos e faz de nós um instrumento do teu amor. Em nome de Jesus, amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>💼 Oração de Trabalho e Provisão</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, tu és a minha provisão e o meu provedor. Abençoa o trabalho das minhas mãos, abre portas que nenhum homem pode fechar, e guia-me nos caminhos profissionais. Dai-me sabedoria, diligência e honestidade. Eu busco primeiro o teu Reino, e confio que todas as coisas me serão acrescentadas segundo a tua vontade. Em nome de Jesus, amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🌊 Oração de Paz e Serenidade</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, tu és a minha paz. A tua paz, que excede todo entendimento, guarda o meu coração e a minha mente em Cristo Jesus. Não ando ansioso por coisa alguma, mas em tudo, pela oração e súplica, apresento os meus pedidos a ti. Entrego as minhas preocupações, confio no teu cuidado, e descanso em ti, porque tu cuidas de mim. Amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>⚡ Oração por Causas Difíceis</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor Jesus, para ti nada é impossível. Tu és o Deus que faz caminho onde não há caminho, que abre portas que ninguém pode fechar. Apresento diante de ti esta causa que parece sem solução. Aumenta a minha fé, dá-me esperança e paciência. Eu creio que estás agindo, mesmo quando não vejo. Que a tua vontade seja feita, e que a tua glória se manifeste. Amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🙌 Oração de Gratidão e Louvor</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, em tudo eu dou graças, porque esta é a tua vontade para mim. Bendigo o teu nome por cada bênção, por cada desafio, por cada aprendizado. Toda boa dádiva vem de ti. Que o meu coração seja cheio de gratidão, e que o meu louvor suba como incenso diante de ti. Obrigado pelo teu amor que nunca falha. Em nome de Jesus, amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>❤️ Oração de Perdão e Recomeço</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, cria em mim um coração puro e renova em mim um espírito estável. Perdoa as minhas falhas, como eu perdoo aqueles que me feriram. Ajuda-me a amar os meus inimigos, a bendizer os que me maldizem e a orar por aqueles que me perseguem, como Jesus ensinou. Restitui-me a alegria da tua salvação e sustenta-me com um espírito voluntário. Amém.</p></div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('aberto')"><span>🤲 Oração de Entrega e Confiança</span><span class="seta">▼</span></div><div class="faq-a"><p>Senhor, entrego a minha vida nas tuas mãos. Não a minha vontade, mas a tua seja feita. Confio no teu plano, mesmo quando não entendo. Tu conheces o meu futuro, tu seguras o meu amanhã. Ensina-me a viver um dia de cada vez, confiando na tua bondade. Que eu descanse em ti, porque tu és o meu pastor e nada me faltará. Em nome de Jesus, amém.</p></div></div>
+<nav class="cap-nav"><a href="#mensagens-dia">← Anterior</a><a href="#sumario">Sumário</a><a href="#gratidao">Próximo →</a></nav>
+</section>
+<section class="capitulo" id="gratidao">
+<p class="cap-num">🙌 Gratidão</p>
+<h2 class="cap-titulo">Versículos e mensagens de gratidão</h2>
+<p>A gratidão é a porta que abre o coração para as bênçãos de Deus. Comece o dia agradecendo, e tudo ao seu redor se transforma.</p>
+<p class="afirmacao">🙏 Em tudo dai graças, porque esta é a vontade de Deus em Cristo Jesus para convosco. (1 Tessalonicenses 5:18)</p>
+<p class="afirmacao">🙏 Bendize, ó minha alma, ao Senhor, e não te esqueças de nenhum dos seus benefícios. Ele perdoa todas as tuas iniquidades e sara todas as tuas enfermidades. (Salmo 103:2-3)</p>
+<p class="afirmacao">🙏 Entrai pelas portas dele com gratidão e nos seus átrios com louvor; louvai-o e bendizei o seu nome. (Salmo 100:4)</p>
+<p class="afirmacao">🙏 Toda a boa dádiva e todo o dom perfeito vem do alto, descendo do Pai das luzes. (Tiago 1:17)</p>
+<p class="afirmacao">🙏 Obrigado, Senhor, pelo dom da vida, pelo ar que respiro, pelo pão de cada dia e pelo teu amor que nunca falha.</p>
+<p class="afirmacao">🙏 Obrigado, Senhor, porque até nas dificuldades tu estás comigo, e todas as coisas cooperam para o meu bem. (Romanos 8:28)</p>
+<p class="afirmacao">🙏 Obrigado, Pai, pela família, pelos amigos e pelas pessoas que colocas no meu caminho como bênção.</p>
+<p class="afirmacao">🙏 Comece o dia agradecendo. A gratidão abre as portas do céu e transforma o coração.</p>
+<nav class="cap-nav"><a href="#oracoes-fe">← Anterior</a><a href="#sumario">Sumário</a><a href="#cat-1">Próximo →</a></nav>
+</section>
+<section class="capitulo" id="cat-1">
+<p class="cap-num">🩺 Categoria 1</p>
+<h2 class="cap-titulo">Saúde e Cura</h2>
+<div class="lista-afirmacoes">
+<p class="afirmacao">✨ Eu sou curado pelas feridas de Jesus. (Isaías 53:5)</p>
+<p class="afirmacao">✨ Eu sou templo do Espírito Santo, e a vida de Deus flui em mim. (1 Coríntios 6:19)</p>
+<p class="afirmacao">✨ Eu sou renovado em saúde, porque o Senhor é o meu médico.</p>
+<p class="afirmacao">✨ Eu sou forte, resiliente e capaz de superar qualquer desafio.</p>
+<p class="afirmacao">✨ Senhor, tu és o médico de minha alma e de meu corpo. Renova minha mente e sara minhas emoções.</p>
+</div>
+<nav class="cap-nav">
+<a href="#gratidao">← Anterior</a>
+<a href="#sumario">Sumário</a>
+<a href="#cat-2">Próximo →</a>
+</nav>
+</section>
+<section class="capitulo" id="cat-2">
+<p class="cap-num">🌿 Categoria 2</p>
+<h2 class="cap-titulo">Rejuvenescimento e Vitalidade</h2>
+<div class="lista-afirmacoes">
+<p class="afirmacao">✨ Eu sou renovado como a águia, e as minhas forças se renovam. (Isaías 40:31)</p>
+<p class="afirmacao">✨ Eu sou nova criatura em Cristo, e cada dia a minha vitalidade é renovada. (2 Coríntios 5:17)</p>
+<p class="afirmacao">✨ Eu sou cheio de vida, porque o Espírito que habita em mim é vida.</p>
+<p class="afirmacao">✨ Eu sou jovem no coração, porque a alegria do Senhor é a minha força. (Neemias 8:10)</p>
+<p class="afirmacao">✨ Eu sou restaurado em corpo, alma e espírito, porque Deus é o restaurador da minha vida.</p>
+</div>
+<nav class="cap-nav">
+<a href="#cat-1">← Anterior</a>
+<a href="#sumario">Sumário</a>
+<a href="#cat-3">Próximo →</a>
+</nav>
+</section>
+<section class="capitulo" id="cat-3">
+<p class="cap-num">🕊️ Categoria 3</p>
+<h2 class="cap-titulo">Paz e Emoções (ansiedade, medo)</h2>
+<div class="lista-afirmacoes">
+<p class="afirmacao">✨ Eu sou guardado pela paz de Deus, que excede todo entendimento. (Filipenses 4:7)</p>
+<p class="afirmacao">✨ Eu sou livre do medo, porque Deus não me deu espírito de temor. (2 Timóteo 1:7)</p>
+<p class="afirmacao">✨ Eu sou tranquilo, porque o Senhor está comigo e nada me faltará. (Salmo 23:1)</p>
+<p class="afirmacao">✨ Eu sou a consciência que observa os pensamentos, e essa consciência é de Deus.</p>
+<p class="afirmacao">✨ Eu sou pacificador, porque sou filho de Deus. (Mateus 5:9)</p>
+<p class="afirmacao">✨ Senhor, quando o medo bater à porta, envia a fé para atender.</p>
+<p class="afirmacao">✨ Não andeis ansiosos pelo dia de amanhã, nem pela vossa vida. (Mateus 6:25-34)</p>
+<p class="afirmacao">✨ Jesus disse: Não andeis ansiosos pela vossa vida. O vosso Pai celestial sabe que necessitais de todas estas coisas. (Mateus 6:25, 32)</p>
+</div>
+<nav class="cap-nav">
+<a href="#cat-2">← Anterior</a>
+<a href="#sumario">Sumário</a>
+<a href="#cat-4">Próximo →</a>
+</nav>
+</section>
+<section class="capitulo" id="cat-4">
+<p class="cap-num">💛 Categoria 4</p>
+<h2 class="cap-titulo">Prosperidade e Provisão</h2>
+<div class="lista-afirmacoes">
+<p class="afirmacao">✨ Eu sou próspero na vontade de Deus, porque Ele supre todas as minhas necessidades. (Filipenses 4:19)</p>
+<p class="afirmacao">✨ Eu sou um canal limpo de riqueza infinita.</p>
+<p class="afirmacao">✨ Eu sou abençoado para ser bênção. (Gênesis 12:2)</p>
+<p class="afirmacao">✨ Eu sou o templo do verbo dourado, e a provisão de Deus flui em minha vida.</p>
+<p class="afirmacao">✨ Eu sou grato, porque todas as coisas cooperam para o bem. (Romanos 8:28)</p>
+</div>
+<nav class="cap-nav">
+<a href="#cat-3">← Anterior</a>
+<a href="#sumario">Sumário</a>
+<a href="#cat-5">Próximo →</a>
+</nav>
+</section>
+<section class="capitulo" id="cat-5">
+<p class="cap-num">👑 Categoria 5</p>
+<h2 class="cap-titulo">Identidade em Cristo (quem eu sou)</h2>
+<div class="lista-afirmacoes">
+<p class="afirmacao">✨ Eu sou filho amado de Deus.</p>
+<p class="afirmacao">✨ Eu sou mais que vencedor em Cristo Jesus. (Romanos 8:37)</p>
+<p class="afirmacao">✨ Eu sou luz do mundo. (Mateus 5:14)</p>
+<p class="afirmacao">✨ Eu sou sal da terra. (Mateus 5:13)</p>
+<p class="afirmacao">✨ Eu sou amado com amor eterno. (Jeremias 31:3)</p>
+<p class="afirmacao">✨ Eu sou digno(a) de amor, paz e felicidade.</p>
+<p class="afirmacao">✨ Eu sou cidadão do Reino de Deus.</p>
+<p class="afirmacao">✨ Eu sou esperança viva pela ressurreição de Jesus. (1 Pedro 1:3)</p>
+</div>
+<nav class="cap-nav">
+<a href="#cat-4">← Anterior</a>
+<a href="#sumario">Sumário</a>
+<a href="#cat-6">Próximo →</a>
+</nav>
+</section>
+<section class="capitulo" id="cat-6">
+<p class="cap-num">🛡️ Categoria 6</p>
+<h2 class="cap-titulo">Proteção e Segurança</h2>
+<div class="lista-afirmacoes">
+<p class="afirmacao">✨ Eu sou guardado pelo Senhor, que é o meu refúgio e fortaleza. (Salmo 46:1)</p>
+<p class="afirmacao">✨ Eu sou protegido debaixo das asas do Altíssimo. (Salmo 91)</p>
+<p class="afirmacao">✨ Eu sou seguro, porque o Senhor é o meu pastor. (Salmo 23:1)</p>
+<p class="afirmacao">✨ Eu sou livre, porque Cristo me libertou. (Gálatas 5:1)</p>
+<p class="afirmacao">✨ Eu sou ovelha do Bom Pastor, e nada me faltará. (Salmo 23:1)</p>
+</div>
+<nav class="cap-nav">
+<a href="#cat-5">← Anterior</a>
+<a href="#sumario">Sumário</a>
+<a href="#cat-7">Próximo →</a>
+</nav>
+</section>
+<section class="capitulo" id="cat-7">
+<p class="cap-num">💪 Categoria 7</p>
+<h2 class="cap-titulo">Força e Superação</h2>
+<div class="lista-afirmacoes">
+<p class="afirmacao">✨ Eu sou forte na força do Senhor. (Efésios 6:10)</p>
+<p class="afirmacao">✨ Eu posso todas as coisas naquele que me fortalece. (Filipenses 4:13)</p>
+<p class="afirmacao">✨ Eu sou capaz, porque Deus está comigo.</p>
+<p class="afirmacao">✨ Eu sou alguém que cria oportunidades e encontra soluções.</p>
+<p class="afirmacao">✨ Eu sou uma pessoa capaz de crescer e evoluir.</p>
+</div>
+<nav class="cap-nav">
+<a href="#cat-6">← Anterior</a>
+<a href="#sumario">Sumário</a>
+<a href="#cat-8">Próximo →</a>
+</nav>
+</section>
+<section class="capitulo" id="cat-8">
+<p class="cap-num">❤️ Categoria 8</p>
+<h2 class="cap-titulo">Relacionamentos e Perdão</h2>
+<div class="lista-afirmacoes">
+<p class="afirmacao">✨ Eu sou perdoado, porque Cristo me perdoou. (Efésios 4:32)</p>
+<p class="afirmacao">✨ Eu sou próximo de qualquer pessoa que precisa de mim, onde quer que ela esteja.</p>
+<p class="afirmacao">✨ Eu sou amoroso, porque o amor de Deus foi derramado no meu coração. (Romanos 5:5)</p>
+<p class="afirmacao">✨ Eu sou compassivo, porque fui compadecido por Deus.</p>
+<p class="afirmacao">✨ Eu sou um instrumento de paz, porque sou filho do Príncipe da Paz.</p>
+<p class="afirmacao">✨ Cria em mim, ó Deus, um coração puro e renova em mim um espírito estável. Não me lances fora da tua presença. (Salmo 51:10-11)</p>
+<p class="afirmacao">✨ Jesus disse: Amai os vossos inimigos, bendizei os que vos maldizem, fazei bem aos que vos odeiam. (Mateus 5:44)</p>
+<p class="afirmacao">✨ Perdoa-nos as nossas dívidas, assim como nós perdoamos aos nossos devedores. (Mateus 6:12)</p>
+</div>
+<nav class="cap-nav">
+<a href="#cat-7">← Anterior</a>
+<a href="#sumario">Sumário</a>
+<a href="#oracoes">Próximo →</a>
+</nav>
+</section>
+<section class="capitulo" id="oracoes">
+<p class="cap-num">🙏 Orações</p>
+<h2 class="cap-titulo">Orações para o dia a dia</h2>
+<div class="box oracao"><p>Senhor, ajuda-me a reconhecer que não sou meus pensamentos. Ensina-me a observar a mente com serenidade e a escolher, dia após dia, o pensamento que vem de ti.</p></div>
+<div class="box oracao"><p>Senhor, coloca guarda em meus lábios. Que minhas palavras sejam sementes de bênção e que minha fé cresça a cada dia no exercício da confiança.</p></div>
+<div class="box oracao"><p>Senhor, purifica meu olhar e meu coração. Tira de mim o julgamento, o ressentimento e a duplicidade. Dá-me o olho único, que vê a verdade.</p></div>
+<div class="box oracao"><p>Senhor, ensina-me a orar sem cessar. Que meu coração esteja em diálogo contigo em cada momento, em cada tarefa, em cada encontro.</p></div>
+<div class="box oracao"><p>Senhor, dá-me um coração grato em todos os dias, nos fáceis e nos difíceis. Ensina-me a lembrar tuas bondades e a reconhecer o bem que permanece.</p></div>
+<div class="box oracao"><p>Senhor Jesus, tu és o mesmo ontem, hoje e eternamente. Aumenta a minha fé, para que eu confie na tua palavra mesmo quando as circunstâncias parecem impossíveis.</p></div>
+<div class="box oracao"><p>Pai de amor, obrigado porque não me rejeitas quando volto para ti. Obrigado porque correste ao meu encontro, me abraçaste, me restauraste.</p></div>
+<div class="box oracao"><p>Senhor, prepara o solo do meu coração. Arranca as pedras, remove os espinhos, ara a terra com a tua Palavra. Que eu ouça, compreenda e retenha os teus ensinamentos.</p></div>
+<div class="box oracao"><p>Senhor Jesus, eu quero te seguir, mas muitas vezes tenho medo da cruz. Ajuda-me a confiar que o teu caminho é o caminho da vida.</p></div>
+<div class="box oracao"><p>Senhor, obrigado pelos talentos que me confiaste. Ajuda-me a não os enterrar por medo, mas a multiplicá-los com fé e coragem, para a tua glória.</p></div>
+<nav class="cap-nav"><a href="#cat-8">← Anterior</a><a href="#sumario">Sumário</a><a href="#versiculos">Próximo →</a></nav>
+</section>
+<section class="capitulo" id="versiculos">
+<p class="cap-num">📖 Versículos</p>
+<h2 class="cap-titulo">Versículos de declaração</h2>
+<div class="box versiculo"><p>"Posso todas as coisas naquele que me fortalece." <span class="ref">(Filipenses 4:13)</span></p></div>
+<div class="box versiculo"><p>"Todas as coisas cooperam para o bem daqueles que amam a Deus." <span class="ref">(Romanos 8:28)</span></p></div>
+<div class="box versiculo"><p>"Maior é o que está em mim do que o que está no mundo." <span class="ref">(1 João 4:4)</span></p></div>
+<div class="box versiculo"><p>"Eu e o Pai somos um." <span class="ref">(João 10:30)</span></p></div>
+<div class="box versiculo"><p>"O Senhor é o meu pastor; nada me faltará." <span class="ref">(Salmo 23:1)</span></p></div>
+<div class="box versiculo"><p>"Deus é o nosso refúgio e fortaleza, socorro bem presente na angústia." <span class="ref">(Salmo 46:1)</span></p></div>
+<div class="box versiculo"><p>"A alegria do Senhor é a minha força." <span class="ref">(Neemias 8:10)</span></p></div>
+<div class="box versiculo"><p>"Vivo pela fé no Filho de Deus, que me amou e se entregou por mim." <span class="ref">(Gálatas 2:20)</span></p></div>
+<div class="box versiculo"><p>"A morte e a vida estão no poder da língua." <span class="ref">(Provérbios 18:21)</span></p></div>
+<div class="box versiculo"><p>"Pela fé entendemos que os mundos foram criados pela palavra de Deus." <span class="ref">(Hebreus 11:3)</span></p></div>
+<nav class="cap-nav"><a href="#oracoes">← Anterior</a><a href="#sumario">Sumário</a><a href="#fim">Fim</a></nav>
+</section>
+  </div>
+</main>
+
+
+<!-- ===== Aula grátis do canal (teaser) ===== -->
+<div class="aula-gratis" id="aula-gratis" style="max-width:46rem;margin:2.4rem auto 0;padding:0 1.2rem;">
+  <div style="background:linear-gradient(170deg,#16283f,#0e1a2e);border:1px solid rgba(201,162,75,.35);border-radius:14px;padding:20px;text-align:center;">
+    <p style="color:#e3c877;font-size:.78rem;letter-spacing:.25em;text-transform:uppercase;margin:0 0 8px;">🎬 Aula grátis do canal</p>
+    <p style="color:#fff;font-family:Georgia,serif;font-size:1.05rem;margin:0 0 4px;line-height:1.4;">Anestesia Mental</p>
+    <p style="color:#c4cdda;font-size:.85rem;margin:0 0 14px;">Módulo 02 — O Despertar da Consciência</p>
+    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;background:#000;">
+      <iframe src="https://www.youtube-nocookie.com/embed/YSw_MY8NNZI" title="Aula grátis: Módulo 02 — O Despertar da Consciência"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe>
+    </div>
+    <p style="color:#9fb0c8;font-size:.75rem;margin:12px 0 0;">Conheça a Laura e as videoaulas profundas do Portal. Quer todas as aulas? Acesse o Portal Missão com Deus.</p>
+  </div>
+</div>
+
+<section id="fim">
+  <h2>O Poder da Palavra</h2>
+  <p>"A morte e a vida estão no poder da língua." (Provérbios 18:21)</p>
+  <p>Que as suas palavras sejam sempre sementes de fé, amor e esperança, na natureza de Deus.</p>
+  <p class="cred">© Coleção do Despertar · Missão com Deus · CompraOSeu<br>
+  Versão de leitura: para uso pessoal e avaliação.</p>
+</section>
+
+<footer>
+  <p>Missão com Deus · CompraOSeu: Desperte sua mente, fortaleça sua fé, transforme sua vida.</p>
+</footer>
+
+
+<button id="botao-marcador" title="Guardar ponto de leitura">📍 Marcar ponto</button>
+<script>
+(function(){
+  "use strict";
+  var CHAVE_PROGRESSO = "despertar_progresso_afirmacoes";
+  var CHAVE_FONTE     = "despertar_fonte_afirmacoes";
+  var CHAVE_DICAS     = "despertar_dicas_afirmacoes";
+  var CHAVE_MARCADOR  = "despertar_marcador_afirmacoes";
+  var CHAVE_FITA      = "despertar_fita_afirmacoes";
+  var CHAVE_MODO      = "despertar_modo_afirmacoes";
+
+  var NOMES = {
+    "abertura": "Sobre este guia",
+    "gratidao": "Gratidão",
+    "cat-1": "Saúde e Cura",
+    "cat-2": "Rejuvenescimento",
+    "cat-3": "Paz e Emoções",
+    "cat-4": "Prosperidade",
+    "cat-5": "Identidade em Cristo",
+    "cat-6": "Proteção",
+    "cat-7": "Força e Superação",
+    "cat-8": "Relacionamentos",
+    "oracoes": "Orações do dia",
+    "versiculos": "Versículos",
+    "oracoes-fe": "Orações de Fé",
+    "mensagens-dia": "Mensagens de Fé"
+  };
+
+  function guardar(chave, valor){ try{ localStorage.setItem(chave, JSON.stringify(valor)); }catch(e){} }
+  function ler(chave){ try{ var v = localStorage.getItem(chave); return v ? JSON.parse(v) : null; }catch(e){ return null; } }
+  function remover(chave){ try{ localStorage.removeItem(chave); }catch(e){} }
+
+  var baloes = document.getElementById("baloes");
+  var capitulos = Array.prototype.slice.call(document.querySelectorAll(".capitulo"));
+
+  /* ============ Balões no topo ============ */
+  function mostrarBalao(html, duracao){
+    var b = document.createElement("div");
+    b.className = "balao";
+    b.innerHTML = html + '<button class="fechar" aria-label="Fechar">✕</button>';
+    b.querySelector(".fechar").addEventListener("click", function(){ fechar(b); });
+    baloes.appendChild(b);
+    if(duracao){ setTimeout(function(){ fechar(b); }, duracao); }
+    return b;
+  }
+  function fechar(b){
+    if(!b.parentNode) return;
+    b.classList.add("saindo");
+    setTimeout(function(){ if(b.parentNode) b.parentNode.removeChild(b); }, 300);
+  }
+  function mostrarDicas(){
+    var dicas = [
+      { e:"📖", t:"<b>Seu lugar fica salvo.</b> Feche e volte quando quiser; retomamos do ponto exato." },
+      { e:"🎗️", t:"Toque em <b>Fita</b> no meio da leitura. A fitinha dourada marca o lugar, como faixa de livro físico." },
+      { e:"🔍", t:"Os <b>pontinhos dourados</b> da lateral são as seções. Toque para pular; a atual brilha." },
+      { e:"🎨", t:"Use <b>Dia, Sépia e Noite</b> para a tela, e <b>A− / A+</b> para o tamanho das letras." }
+    ];
+    var vistos = ler(CHAVE_DICAS);
+    if(vistos && vistos.v === 1){ return; }
+    guardar(CHAVE_DICAS, { v:1 });
+    dicas.forEach(function(d, i){
+      setTimeout(function(){ mostrarBalao('<span class="emoji">'+d.e+'</span><span class="texto">'+d.t+'</span>', 5200); }, i*3000);
+    });
+  }
+  document.getElementById("btn-dicas").addEventListener("click", function(){
+    mostrarBalao('<span class="emoji">📖</span><span class="texto">Dicas: <b>Fita</b> marca um lugar, <b>pontinhos</b> pulam as seções, <b>🎨</b> muda a tela e <b>A−/A+</b> muda as letras. Tudo fica salvo.</span>', 7000);
+  });
+
+  /* ============ Trilha de capítulos ============ */
+  var trilha = document.getElementById("trilha");
+  var pontos = [];
+  capitulos.forEach(function(c, i){
+    var p = document.createElement("button");
+    p.className = "ponto";
+    var id = c.id || ("sec" + i);
+    p.title = NOMES[id] || "Ir para a seção";
+    p.addEventListener("click", function(){
+      var topo = c.getBoundingClientRect().top + window.scrollY - 70;
+      window.scrollTo({ top: topo, behavior:"smooth" });
+    });
+    trilha.appendChild(p);
+    pontos.push(p);
+  });
+  function posicionarTrilha(){
+    var total = document.documentElement.scrollHeight - window.innerHeight;
+    if(total <= 0) return;
+    capitulos.forEach(function(c, i){
+      var top = c.getBoundingClientRect().top + window.scrollY;
+      var pct = Math.min(100, Math.max(0, (top / total) * 100));
+      if(pontos[i]){ pontos[i].style.top = pct + "%"; }
+    });
+  }
+
+  /* ============ Fita dourada ============ */
+  var fitaEl = document.getElementById("fita-lateral");
+  var fitaAtual = ler(CHAVE_FITA);
+  function secaoAtualId(){
+    var y = window.scrollY + window.innerHeight * 0.35;
+    var idx = 0;
+    capitulos.forEach(function(c, i){
+      var top = c.getBoundingClientRect().top + window.scrollY;
+      if(y >= top){ idx = i; }
+    });
+    return capitulos[idx].id || ("sec" + idx);
+  }
+  function atualizarFita(){
+    if(fitaAtual && fitaAtual.pct !== undefined){
+      fitaEl.style.display = "block";
+      fitaEl.style.top = fitaAtual.pct + "%";
+      document.getElementById("btn-fita").textContent = "🎗️ Remover fita";
+    }else{
+      fitaEl.style.display = "none";
+      document.getElementById("btn-fita").textContent = "🎗️ Fita";
+    }
+  }
+  document.getElementById("btn-fita").addEventListener("click", function(){
+    if(fitaAtual){
+      fitaAtual = null; remover(CHAVE_FITA);
+      atualizarFita();
+      mostrarBalao('<span class="emoji">🎗️</span><span class="texto">Fita removida. Sua leitura continua salva automaticamente.</span>', 3500);
+    }else{
+      var total = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = total > 0 ? Math.round((window.scrollY / total) * 100) : 0;
+      var id = secaoAtualId();
+      fitaAtual = { pct: pct, titulo: NOMES[id] || id, data: new Date().toISOString() };
+      guardar(CHAVE_FITA, fitaAtual);
+      atualizarFita();
+      mostrarBalao('<span class="emoji">🎗️</span><span class="texto">Fita colocada em <b>' + fitaAtual.titulo + '</b>. Toque na fita dourada da lateral para voltar a este ponto.</span>', 5000);
+    }
+  });
+  fitaEl.addEventListener("click", function(){
+    if(fitaAtual){
+      var total = document.documentElement.scrollHeight - window.innerHeight;
+      window.scrollTo({ top: Math.round((fitaAtual.pct / 100) * total), behavior:"smooth" });
+    }
+  });
+
+  /* ============ Progresso, estatísticas e sumário ============ */
+  var barra = document.getElementById("barra-progresso");
+  var stats = document.getElementById("stats-leitura");
+  var totalPalavras = 0;
+  capitulos.forEach(function(c){
+    var txt = c.textContent || "";
+    totalPalavras += txt.trim().split(/\s+/).length;
+  });
+  var ultimoSalvamento = 0;
+
+  function atualizarProgresso(){
+    var total = document.documentElement.scrollHeight - window.innerHeight;
+    var p = total > 0 ? Math.round((window.scrollY / total) * 100) : 0;
+    p = Math.min(100, Math.max(0, p));
+    barra.style.width = p + "%";
+    var idAtual = secaoAtualId();
+    var idxAtual = 0;
+    capitulos.forEach(function(c, i){ if((c.id || ("sec" + i)) === idAtual){ idxAtual = i; } });
+    var nomeAtual = NOMES[idAtual] || idAtual;
+
+    capitulos.forEach(function(c, i){
+      var top = c.getBoundingClientRect().top + window.scrollY;
+      var fim = top + c.offsetHeight;
+      var lido = window.scrollY + window.innerHeight >= fim - 30;
+      var li = document.getElementById("li-" + (c.id || ("sec" + i)));
+      if(li){
+        var marca = li.querySelector(".marca");
+        if(lido){ li.className = "lido"; if(marca){ marca.textContent = "✓ lido"; } }
+        else{ li.className = ""; if(marca){ marca.textContent = ""; } }
+      }
+    });
+    pontos.forEach(function(pt, i){
+      pt.classList.remove("atual", "feito");
+      if(i < idxAtual){ pt.classList.add("feito"); }
+      if(i === idxAtual){ pt.classList.add("atual"); }
+    });
+    var liAtual = document.getElementById("li-" + idAtual);
+    if(liAtual){
+      liAtual.className = "aqui";
+      var marcaAtual = liAtual.querySelector(".marca");
+      if(marcaAtual && !marcaAtual.textContent){ marcaAtual.textContent = "▶ aqui"; }
+    }
+
+    var palavrasLidas = Math.round((p / 100) * totalPalavras);
+    var restantes = Math.max(0, totalPalavras - palavrasLidas);
+    var minRest = Math.max(0, Math.ceil(restantes / 200));
+    if(p >= 99){ stats.textContent = "Concluído · 100%"; }
+    else if(minRest <= 1){ stats.textContent = nomeAtual + " · " + p + "% · quase no fim"; }
+    else{ stats.textContent = nomeAtual + " · " + p + "% · faltam ~" + minRest + " min"; }
+
+    if(p > 98){ remover(CHAVE_PROGRESSO); return; }
+    var agora = Date.now();
+    if(agora - ultimoSalvamento > 1500){
+      ultimoSalvamento = agora;
+      guardar(CHAVE_PROGRESSO, {
+        secao: idAtual,
+        titulo: nomeAtual,
+        scrollY: Math.round(window.scrollY),
+        porcentagem: p,
+        data: new Date().toISOString()
+      });
+    }
+  }
+  var rolagemAgendada = false;
+  window.addEventListener("scroll", function(){
+    if(!rolagemAgendada){
+      rolagemAgendada = true;
+      setTimeout(function(){ rolagemAgendada = false; atualizarProgresso(); }, 120);
+    }
+  }, { passive:true });
+  window.addEventListener("resize", posicionarTrilha);
+  posicionarTrilha();
+  atualizarProgresso();
+
+  /* ============ Continuar de onde parou ============ */
+  function oferecerContinuacao(){
+    var prog = ler(CHAVE_PROGRESSO);
+    if(prog && prog.scrollY > 60){
+      var b = mostrarBalao(
+        '<span class="emoji">📖</span>' +
+        '<span class="texto">Você parou em <b>' + prog.titulo + '</b> (posição ' + prog.porcentagem + '%).<br>' +
+        '<button class="acao" id="acao-continuar">Continuar de onde parei</button></span>',
+        15000
+      );
+      var botao = b.querySelector("#acao-continuar");
+      if(botao){ botao.addEventListener("click", function(){
+        window.scrollTo({ top: prog.scrollY, behavior:"smooth" });
+        fechar(b);
+      }); }
+    }
+  }
+
+  /* ============ Marcador manual ============ */
+  var btnMarcador = document.getElementById("botao-marcador");
+  if(btnMarcador){
+    btnMarcador.addEventListener("click", function(){
+      var id = secaoAtualId();
+      guardar(CHAVE_MARCADOR, { scrollY: Math.round(window.scrollY), titulo: NOMES[id] || id, data: new Date().toISOString() });
+      mostrarBalao('<span class="emoji">📍</span><span class="texto">Ponto guardado em <b>' + (NOMES[id] || id) + '</b>. Toque de novo para atualizar.</span>', 4000);
+      btnMarcador.textContent = "📍 Ponto guardado";
+      setTimeout(function(){ btnMarcador.textContent = "📍 Marcar ponto"; }, 2500);
+    });
+  }
+
+  /* ============ Tamanho das letras ============ */
+  var niveis = [90, 100, 112, 125, 140, 160];
+  var indice = 1;
+  var fonteSalva = ler(CHAVE_FONTE);
+  if(fonteSalva && niveis.indexOf(fonteSalva.n) >= 0){ indice = niveis.indexOf(fonteSalva.n); }
+  aplicarFonte();
+  function aplicarFonte(){
+    document.documentElement.style.setProperty("--tamanho-fonte", niveis[indice] + "%");
+    guardar(CHAVE_FONTE, { n: niveis[indice] });
+    document.getElementById("btn-padrao").classList.toggle("ativo", niveis[indice] === 100);
+  }
+  document.getElementById("btn-mais").addEventListener("click", function(){
+    if(indice < niveis.length - 1){ indice++; aplicarFonte(); }
+    else{ mostrarBalao('<span class="emoji">🔍</span><span class="texto">Este é o maior tamanho disponível (160%).</span>', 3000); }
+  });
+  document.getElementById("btn-menos").addEventListener("click", function(){
+    if(indice > 0){ indice--; aplicarFonte(); }
+    else{ mostrarBalao('<span class="emoji">🔍</span><span class="texto">Este é o menor tamanho disponível (90%).</span>', 3000); }
+  });
+  document.getElementById("btn-padrao").addEventListener("click", function(){ indice = 1; aplicarFonte(); });
+
+  /* ============ Modos de tela ============ */
+  var modos = ["dia", "sepia", "noite"];
+  var nomesModo = { dia:"Dia", sepia:"Sépia", noite:"Noite" };
+  var iconesModo = { dia:"🎨", sepia:"🌅", noite:"🌙" };
+  var modoAtual = "dia";
+  var modoSalvo = ler(CHAVE_MODO);
+  if(modoSalvo && modos.indexOf(modoSalvo.m) >= 0){ modoAtual = modoSalvo.m; }
+  aplicarModo();
+  function aplicarModo(){
+    document.body.setAttribute("data-modo", modoAtual);
+    guardar(CHAVE_MODO, { m: modoAtual });
+    document.getElementById("btn-modo").textContent = iconesModo[modoAtual] + " " + nomesModo[modoAtual];
+  }
+  document.getElementById("btn-modo").addEventListener("click", function(){
+    var idx = modos.indexOf(modoAtual);
+    modoAtual = modos[(idx + 1) % modos.length];
+    aplicarModo();
+    mostrarBalao('<span class="emoji">' + iconesModo[modoAtual] + '</span><span class="texto">Modo de tela: <b>' + nomesModo[modoAtual] + '</b>. Fica salvo para as próximas visitas.</span>', 3500);
+  });
+
+  /* ============ Proteção de direitos autorais ============ */
+  document.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+  document.addEventListener("keydown", function(e){
+    if((e.ctrlKey || e.metaKey) && ["c","p","s","u","a"].indexOf(String(e.key).toLowerCase()) >= 0){ e.preventDefault(); }
+  });
+
+  /* ============ Início ============ */
+  mostrarDicas();
+  atualizarFita();
+  setTimeout(oferecerContinuacao, 900);
+})();
+</script>
+
+</body>
+</html>

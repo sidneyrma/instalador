@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trilogia da Alma — Videoaulas | Missão com Deus</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{
+  --navy:#0e1a2e; --navy2:#16283f;
+  --ouro:#c9a24b; --ouro-claro:#e3c877;
+  --papel:#faf6ee; --tinta:#2b2620; --tinta2:#6b6255;
+  --linha:#e4dccb; --cta:#b8860b;
+  --serif: Georgia, 'Times New Roman', serif;
+  --sans: 'Inter', -apple-system, Segoe UI, Roboto, sans-serif;
+  --radius: 14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--navy); color:var(--tinta);
+  font-family:var(--sans); line-height:1.75;
+}
+h1,h2,h3{font-family:var(--serif); margin:0 0 .5em; color:var(--navy)}
+.wrap{max-width:800px; margin:0 auto; padding:0 20px}
+
+/* TOPBAR */
+.topbar{background:var(--navy); border-bottom:3px solid var(--ouro); position:sticky; top:0; z-index:50}
+.topbar .wrap{display:flex; align-items:center; justify-content:space-between; padding:.8rem 0; gap:10px}
+.topbar .logo{color:#fff; font-size:1.05rem; text-decoration:none; font-family:var(--serif)}
+.topbar .logo span{color:var(--ouro)}
+.topbar .ler{color:var(--ouro-claro); font-size:.78rem; letter-spacing:.2em; text-transform:uppercase; font-family:var(--serif)}
+
+/* PROGRESS BAR */
+.progress-bar{background:var(--navy2); padding:10px 0; border-bottom:1px solid rgba(201,162,75,.25); position:sticky; top:58px; z-index:49; display:none}
+.progress-bar .wrap{display:flex; align-items:center; gap:15px}
+.progress-track{flex:1; background:rgba(255,255,255,.1); height:8px; border-radius:4px; overflow:hidden}
+.progress-fill{background:linear-gradient(90deg, var(--ouro), var(--ouro-claro)); height:100%; width:0%; transition:width .3s ease}
+.progress-text{color:var(--ouro-claro); font-size:13px; font-weight:600; white-space:nowrap}
+
+/* PORTÃO DE ACESSO */
+#portao{min-height:80vh; display:flex; align-items:center; justify-content:center; background:radial-gradient(900px 500px at 50% 50%, rgba(201,162,75,.15), transparent 70%), var(--navy); padding:40px 20px}
+.portao-box{background:var(--papel); border:1px solid rgba(201,162,75,.25); border-radius:var(--radius); padding:40px; text-align:center; max-width:480px; width:100%; box-shadow:0 18px 40px rgba(0,0,0,.3)}
+.portao-box h2{font-size:24px; color:var(--navy)}
+.portao-box p{color:var(--tinta2); margin-bottom:24px}
+.input-group{display:flex; flex-direction:column; gap:12px; margin-bottom:20px}
+input[type="text"]{padding:14px; border:2px solid var(--linha); border-radius:8px; font-size:16px; text-align:center; font-family:var(--sans); text-transform:uppercase}
+input[type="text"]:focus{outline:none; border-color:var(--ouro)}
+.btn{display:inline-flex; align-items:center; justify-content:center; padding:14px 24px; border-radius:999px; font-weight:700; font-size:15px; cursor:pointer; border:none; text-decoration:none; transition:transform .15s ease, box-shadow .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:linear-gradient(180deg,#d4a83f,var(--cta)); color:#fff; box-shadow:0 12px 28px -10px rgba(184,134,11,.55)}
+.btn-gold:hover{box-shadow:0 16px 34px -10px rgba(184,134,11,.7)}
+.btn-outline{background:transparent; border:2px solid var(--ouro); color:var(--navy)}
+.btn-outline:hover{background:var(--ouro); color:#fff}
+.msg-erro{color:#d32f2f; font-size:14px; font-weight:600; margin-bottom:15px; display:none; background:#fdedea; padding:10px; border-radius:6px}
+.compra-box{margin-top:30px; padding-top:20px; border-top:1px dashed var(--linha); display:none}
+.compra-box p{font-size:14px; margin-bottom:15px}
+
+/* ÁREA DE AULAS */
+#conteudo{display:none; background:var(--papel); padding:40px 0 80px}
+.header-aulas{text-align:center; margin-bottom:50px}
+.header-aulas h1{font-size:32px; color:var(--navy)}
+.header-aulas p{color:var(--tinta2); font-size:16px}
+
+.modulo{background:#fff; border:1px solid rgba(201,162,75,.25); border-radius:var(--radius); padding:30px; margin-bottom:30px; box-shadow:0 10px 30px rgba(0,0,0,.05)}
+.mod-header{display:flex; align-items:baseline; gap:12px; margin-bottom:20px}
+.mod-num{font-family:var(--serif); color:var(--ouro); font-weight:700; font-size:18px}
+.mod-title{font-size:22px; margin:0}
+
+.video-wrap{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; background:#000; margin-bottom:20px; box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.video-wrap iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+
+.mod-actions{display:flex; justify-content:flex-end; padding-top:15px; border-top:1px solid var(--linha)}
+.btn-check{background:transparent; border:2px solid var(--linha); color:var(--tinta2); padding:10px 20px; border-radius:999px; font-size:14px; font-weight:600; cursor:pointer; transition:all .2s ease; display:inline-flex; align-items:center; gap:8px}
+.btn-check:hover{border-color:var(--ouro); color:var(--navy)}
+.btn-check.concluido{background:var(--ouro-claro); border-color:var(--ouro-claro); color:var(--navy)}
+
+/* RODAPÉ */
+#fim{background:var(--navy); color:#fff; text-align:center; padding:40px 20px}
+#fim p{margin:0; font-size:14px; color:rgba(255,255,255,.6)}
+
+@media(max-width:600px){
+  .modulo{padding:20px}
+  .mod-header{flex-direction:column; gap:5px}
+  .mod-title{font-size:18px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a href="/" class="logo">Missão <span>com</span> Deus</a>
+    <span class="ler">Área do Aluno</span>
+  </div>
+</div>
+
+<div class="progress-bar" id="barraProgresso">
+  <div class="wrap">
+    <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
+    <div class="progress-text" id="progText">0 de 7 aulas concluídas</div>
+  </div>
+</div>
+
+<div id="portao">
+  <div class="portao-box">
+    <h2>Acesso às Videoaulas</h2>
+    <p>Insira seu código de acesso para liberar a Trilogia Evolução da Alma.</p>
+    
+    <div id="msgErro" class="msg-erro">Código inválido. Verifique se digitou corretamente.</div>
+    
+    <div class="input-group">
+      <input type="text" id="inputCodigo" placeholder="Ex: CODIGO123" autocomplete="off">
+      <button class="btn btn-gold" onclick="verificarCodigo()">Liberar Acesso</button>
+    </div>
+    
+    <div id="compraBox" class="compra-box">
+      <p>Ainda não tem o código? Adquira o acesso completo agora mesmo.</p>
+      <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" class="btn btn-outline">Quero me inscrever</a>
+    </div>
+  </div>
+</div>
+
+<div id="conteudo">
+  <div class="wrap">
+    <div class="header-aulas">
+      <h1>Trilogia da Alma</h1>
+      <p>Bem-vindo(a) à sua área de estudos. Assista no seu ritmo.</p>
+    </div>
+
+    <!-- Módulo 01 -->
+    <div class="modulo" id="mod01">
+      <div class="mod-header">
+        <span class="mod-num">Módulo 01</span>
+        <h2 class="mod-title">Bem-vindo(a) à nossa Comunidade</h2>
+      </div>
+      <div class="video-wrap" id="video01">
+        <iframe src="https://www.youtube-nocookie.com/embed/_zRVlsh9T9E?rel=0" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+      </div>
+      <div class="mod-actions">
+        <button class="btn-check" onclick="toggleConcluido(1)" id="btnCheck1">✓ Marcar aula como concluída</button>
+      </div>
+    </div>
+
+    <!-- Módulo 02 -->
+    <div class="modulo" id="mod02">
+      <div class="mod-header">
+        <span class="mod-num">Módulo 02</span>
+        <h2 class="mod-title">O Despertar da Alma</h2>
+      </div>
+      <div class="video-wrap" id="video02">
+        <iframe src="https://www.youtube-nocookie.com/embed/ZwBDxpnFV6s?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+      </div>
+      <div class="mod-actions">
+        <button class="btn-check" onclick="toggleConcluido(2)" id="btnCheck2">✓ Marcar aula como concluída</button>
+      </div>
+    </div>
+
+    <!-- Módulo 03 -->
+    <div class="modulo" id="mod03">
+      <div class="mod-header">
+        <span class="mod-num">Módulo 03</span>
+        <h2 class="mod-title">Superação das dificuldades emocionais</h2>
+      </div>
+      <div class="video-wrap" id="video03">
+        <iframe src="https://www.youtube-nocookie.com/embed/4UmQlRiirXs?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+      </div>
+      <div class="mod-actions">
+        <button class="btn-check" onclick="toggleConcluido(3)" id="btnCheck3">✓ Marcar aula como concluída</button>
+      </div>
+    </div>
+
+    <!-- Módulo 04 -->
+    <div class="modulo" id="mod04">
+      <div class="mod-header">
+        <span class="mod-num">Módulo 04</span>
+        <h2 class="mod-title">Perdão como libertação da alma</h2>
+      </div>
+      <div class="video-wrap" id="video04">
+        <iframe src="https://www.youtube-nocookie.com/embed/fO5RIdrFzMw?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+      </div>
+      <div class="mod-actions">
+        <button class="btn-check" onclick="toggleConcluido(4)" id="btnCheck4">✓ Marcar aula como concluída</button>
+      </div>
+    </div>
+
+    <!-- Módulo 05 -->
+    <div class="modulo" id="mod05">
+      <div class="mod-header">
+        <span class="mod-num">Módulo 05</span>
+        <h2 class="mod-title">Propósito e Ação Prática</h2>
+      </div>
+      <div class="video-wrap" id="video05">
+        <iframe src="https://www.youtube-nocookie.com/embed/pL2rd8sm-rk?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+      </div>
+      <div class="mod-actions">
+        <button class="btn-check" onclick="toggleConcluido(5)" id="btnCheck5">✓ Marcar aula como concluída</button>
+      </div>
+    </div>
+
+    <!-- Módulo 06 -->
+    <div class="modulo" id="mod06">
+      <div class="mod-header">
+        <span class="mod-num">Módulo 06</span>
+        <h2 class="mod-title">A Persistência na Evolução Constante</h2>
+      </div>
+      <div class="video-wrap" id="video06">
+        <iframe src="https://www.youtube-nocookie.com/embed/ycGZ4Vjv2MY?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+      </div>
+      <div class="mod-actions">
+        <button class="btn-check" onclick="toggleConcluido(6)" id="btnCheck6">✓ Marcar aula como concluída</button>
+      </div>
+    </div>
+
+    <!-- Módulo 07 -->
+    <div class="modulo" id="mod07">
+      <div class="mod-header">
+        <span class="mod-num">Módulo 07</span>
+        <h2 class="mod-title">Vivendo em Luz, Propósito e Liberdade</h2>
+      </div>
+      <div class="video-wrap" id="video07">
+        <iframe src="https://www.youtube-nocookie.com/embed/9IfeARq38UA?rel=0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+      </div>
+      <div class="mod-actions">
+        <button class="btn-check" onclick="toggleConcluido(7)" id="btnCheck7">✓ Marcar aula como concluída</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="caixa-comentario" style="display:none; background:var(--papel); padding:0 0 60px">
+  <div class="wrap">
+    <div class="modulo" id="comentarios">
+      <div class="mod-header"><span class="mod-num">💬</span><h2 class="mod-title">Deixe seu comentário ou testemunho</h2></div>
+      <p style="color:var(--tinta2); margin:0 0 16px">Conte o que estas aulas significaram para você. Seu comentário chega direto ao autor. 💛</p>
+      <input type="text" id="com-nome" placeholder="Seu nome (opcional)" style="width:100%; padding:12px; border:2px solid var(--linha); border-radius:8px; font-family:var(--sans); font-size:15px; margin-bottom:10px">
+      <textarea id="com-texto" rows="4" placeholder="Escreva aqui o seu comentário..." style="width:100%; padding:12px; border:2px solid var(--linha); border-radius:8px; font-family:var(--sans); font-size:15px; resize:vertical"></textarea>
+      <div style="text-align:right; margin-top:12px"><button class="btn btn-gold" onclick="enviarComentario()">Enviar comentário 🙏</button></div>
+      <p id="com-aviso" style="color:var(--cta); font-weight:600; margin:10px 0 0"></p>
+    </div>
+  </div>
+</div>
+<script>
+function enviarComentario(){
+  var t = document.getElementById('com-texto').value.trim();
+  var n = document.getElementById('com-nome').value.trim() || 'Aluno(a)';
+  var av = document.getElementById('com-aviso');
+  if(t.length < 3){ av.textContent = 'Escreva seu comentário antes de enviar. 😊'; return; }
+  av.textContent = 'Enviando...';
+  fetch('https://formsubmit.co/ajax/portalmissaocomdeus@gmail.com', {
+    method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify({ _subject:'💬 Comentario de aluno - Trilogia da Alma', _template:'table', _captcha:'false', Nome:n, Comentario:t, Pagina: location.pathname })
+  }).then(function(r){ return r.json(); }).then(function(){
+    document.getElementById('comentarios').innerHTML = '<div style="text-align:center; padding:20px"><div style="font-size:2rem">🙌</div><h3 style="margin:8px 0">Comentário enviado!</h3><p style="color:var(--tinta2)">Obrigado por compartilhar. Que Deus abençoe a sua caminhada!</p></div>';
+  }).catch(function(){ av.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.'; });
+}
+</script>
+<div id="fim">
+  <p>© Missão com Deus. Todos os direitos reservados.</p>
+</div>
+
+<script>
+const CODIGO_ACESSO = 'EVLTRLAM26';
+const LINK_COMPRA = 'https://pay.kiwify.com.br/iVfp2bi';
+const TOTAL_AULAS = 7;
+
+document.addEventListener('DOMContentLoaded', () => {
+  if(localStorage.getItem('trilogia_acesso_ok') === 'true') {
+    liberarInterface();
+  }
+  
+  // Enter para confirmar código
+  document.getElementById('inputCodigo').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') verificarCodigo();
+  });
+  
+  configurarEstatisticas();
+});
+
+function verificarCodigo() {
+  const input = document.getElementById('inputCodigo').value.trim().toUpperCase();
+  if(input === CODIGO_ACESSO.toUpperCase()) {
+    localStorage.setItem('trilogia_acesso_ok', 'true');
+    liberarInterface();
+  } else {
+    document.getElementById('msgErro').style.display = 'block';
+    document.getElementById('compraBox').style.display = 'block';
+  }
+}
+
+function liberarInterface() {
+  document.getElementById('portao').style.display = 'none';
+  document.getElementById('conteudo').style.display = 'block';
+  var cx = document.getElementById('caixa-comentario'); if (cx) cx.style.display = 'block';
+  document.getElementById('barraProgresso').style.display = 'block';
+  carregarProgresso();
+}
+
+function carregarProgresso() {
+  let prog = JSON.parse(localStorage.getItem('trilogia_progresso') || '[]');
+  let concluidas = 0;
+  
+  for(let i=1; i<=TOTAL_AULAS; i++) {
+    const btn = document.getElementById('btnCheck'+i);
+    if(prog.includes(i)) {
+      btn.classList.add('concluido');
+      btn.innerHTML = '✓ Aula concluída';
+      concluidas++;
+    } else {
+      btn.classList.remove('concluido');
+      btn.innerHTML = '✓ Marcar aula como concluída';
+    }
+  }
+  
+  atualizarBarra(concluidas);
+}
+
+function toggleConcluido(num) {
+  let prog = JSON.parse(localStorage.getItem('trilogia_progresso') || '[]');
+  if(prog.includes(num)) {
+    prog = prog.filter(n => n !== num);
+  } else {
+    prog.push(num);
+  }
+  localStorage.setItem('trilogia_progresso', JSON.stringify(prog));
+  carregarProgresso();
+}
+
+function atualizarBarra(concluidas) {
+  const pct = (concluidas / TOTAL_AULAS) * 100;
+  document.getElementById('progFill').style.width = pct + '%';
+  document.getElementById('progText').innerText = concluidas + ' de ' + TOTAL_AULAS + ' aulas concluídas';
+}
+
+function marcarPlay(i) {
+  var key = 'trilogia_m0' + i + '_play';
+  if (!sessionStorage.getItem(key)) {
+    sessionStorage.setItem(key, 'true');
+    fetch('/q-trilogia-m0' + i).catch(function(e){});
+  }
+}
+function configurarEstatisticas() {
+  for (var i = 1; i <= TOTAL_AULAS; i++) {
+    (function(n) {
+      var wrap = document.getElementById('video0' + n);
+      if (wrap) wrap.addEventListener('pointerdown', function(){ marcarPlay(n); });
+    })(i);
+  }
+  window.addEventListener('blur', function() {
+    setTimeout(function() {
+      var el = document.activeElement;
+      if (el && el.tagName === 'IFRAME') {
+        for (var i = 1; i <= TOTAL_AULAS; i++) {
+          var wrap = document.getElementById('video0' + i);
+          if (wrap && wrap.contains(el)) marcarPlay(i);
+        }
+      }
+    }, 0);
+  });
+}
+</script>
+</body>
+</html>
