@@ -115,6 +115,16 @@ E no servidor, basta restaurar os arquivos `.bak` que você guardou no passo 2.
   `youtube-nocookie.com` — o player bloqueia popups e navegação, então o aluno permanece
   na página (cadeado anti-YouTube já configurado).
 
+### 🧱 Estrutura final das duas páginas (design "Portal O Despertar")
+- **Tela de bloqueio** (código): motivação + versículo + campo de código + botões
+  "🕊️ Quero Ser Semeador(a)" e "💛 Solicitar Código de Acesso" (WhatsApp da Laura).
+- **Tela de aulas** (após liberar): player único + lista clicável com os **7 módulos**,
+  cada um abrindo o seu **vídeo real**, com barra de títulos oficiais, caixa de
+  comentário/testemunho e botão "Sair e bloquear acesso".
+- **Importante:** as cópias quebradas que você enviou em `site-contabo/livros/`
+  (aquelas com o vídeo único `WJ3SInS9jPo`, 6 módulos, e o código `GRACA37`) foram
+  **substituídas** pelas versões corrigidas (iguais às de `site-contabo/`).
+
 ---
 
 ## 🔑 Códigos válidos (resumo)

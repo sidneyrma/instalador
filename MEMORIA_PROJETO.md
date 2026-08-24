@@ -803,6 +803,13 @@ seção descreve (ou pedir ao autor o zip desta sessão) e dar push ao main.
       6 O Reset do Shabat · 7 A Liberdade da Alma.
   - Vídeos NÃO saem da página: iframes `youtube-nocookie` + sandbox
     (allow-scripts / allow-same-origin / allow-presentation) bloqueiam popups/navegação.
+  - **Estrutura FINAL (24/08):** aplicado o design "Portal O Despertar" das páginas que
+    estavam em `site-contabo/livros/` (tela de bloqueio com CTA "Quero Ser Semeador" +
+    WhatsApp da Laura + versículo; tela de aulas com player único + listagem clicável dos
+    7 módulos). Correções sobre essa base: 7 módulos (antes 6), um vídeo REAL por módulo
+    (antes todos apontavam para o mesmo `WJ3SInS9jPo`), títulos oficiais, código só
+    `EVLTRLAM26`/`NSTMNT26` (removido `GRACA37`) e cadeado anti-YouTube. As cópias em
+    `site-contabo/livros/` também foram substituídas pelas versões corrigidas.
   - Nota com diagnóstico e passo a passo de aplicação/reversão: `back-site/LEIA-ME.md`.
 - **PENDENTE (servidor):** substituir no aaPanel (`/www/wwwroot/missaocomdeus.com.br/`)
   os dois arquivos quebrados pelos corrigidos; confirmar que o `GRACA37` some e que os
