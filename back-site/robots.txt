@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-
-Disallow: /quiz
-
-Sitemap: https://www.compraoseu.com/sitemap.xml
