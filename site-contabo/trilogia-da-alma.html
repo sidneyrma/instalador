@@ -265,4 +265,14 @@ function enviarComentario(){
 }
 </script>
 </body>
-</html>
+</html><script>
+(function(){
+  function rastrear(path){ try { fetch(path, {method:"GET", cache:"no-store"}).catch(function(){}); } catch(e){} }
+  function onClick(e){
+    var a = e.target.closest ? e.target.closest("a") : null;
+    if(a && (a.getAttribute("href")||"").indexOf("pay.kiwify")!==-1){ rastrear("/q-semeador"); }
+    if(a && (a.getAttribute("href")||"").indexOf("wa.me/5528999111493")!==-1){ rastrear("/q-codigo"); }
+  }
+  document.addEventListener("click", onClick, true);
+})();
+</script>
