@@ -814,3 +814,128 @@ seção descreve (ou pedir ao autor o zip desta sessão) e dar push ao main.
 - **PENDENTE (servidor):** substituir no aaPanel (`/www/wwwroot/missaocomdeus.com.br/`)
   os dois arquivos quebrados pelos corrigidos; confirmar que o `GRACA37` some e que os
   códigos liberam os 7 módulos. Antes, `nginx -t`.
+
+FOI ADICIONADO NA INDEX.HTML BANNER ABAIXO
+cat >> index.html <<'BANNER'
+<style>
+#cta-cursos{position:fixed;left:0;right:0;bottom:0;z-index:90;background:linear-gradient(135deg,#0e1a2e,#1e3352);border-top:2px solid #e3c877;color:#f6f1e7;box-shadow:0 -14px 34px rgba(0,0,0,.4);transform:translateY(110%);transition:transform .4s ease;font-family:'Inter',system-ui,sans-serif}
+#cta-cursos.visivel{transform:translateY(0)}
+#cta-cursos .wrap{max-width:1140px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center}
+#cta-cursos .cta-emoji{font-size:1.9rem;flex-shrink:0}
+#cta-cursos .cta-txt{flex:1;min-width:220px}
+#cta-cursos .cta-txt strong{color:#e3c877;font-size:1rem;display:block}
+#cta-cursos .cta-txt span{color:rgba(246,241,231,.85);font-size:.88rem}
+#cta-cursos .cta-btns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+#cta-cursos .cta-btns .btn{padding:11px 18px;font-size:.88rem;border-radius:999px;white-space:nowrap}
+#cta-cursos .cta-fechar{background:none;border:none;color:rgba(246,241,231,.6);font-size:1.5rem;line-height:1;cursor:pointer;padding:6px;flex-shrink:0}
+#cta-cursos .cta-fechar:hover{color:#e3c877}
+@media(max-width:600px){#cta-cursos .wrap{flex-direction:column;text-align:center} #cta-cursos .cta-btns{width:100%;justify-content:center}}
+@media(min-width:601px){#cta-cursos{left:auto;right:16px;bottom:16px;width:auto;max-width:640px;border-radius:14px;border:1px solid rgba(201,162,75,.35)} #cta-cursos .wrap{padding:14px 18px}}
+body.cta-cursos-ativo{padding-bottom:96px}
+@media(min-width:601px){body.cta-cursos-ativo{padding-bottom:0}}
+</style>
+
+<div id="cta-cursos" role="dialog" aria-live="polite" aria-label="Convite para acessar a área de videoaulas completa">
+  <div class="wrap">
+    <span class="cta-emoji">🎬</span>
+    <div class="cta-txt">
+      <strong>Isso é só uma prévia 👀</strong>
+      <span>A Trilogia completa da Evolução da Alma (7 módulos) está te esperando. Peça seu código de acesso grátis à Laura. 🕊️</span>
+    </div>
+    <div class="cta-btns">
+      <a class="btn btn-gold" href="/trilogia-da-alma">🎬 Quero assistir</a>
+      <a class="btn btn-ghost-light" href="https://wa.me/5528999111493?text=Ol%C3%A1%20Laura%2C%20vim%20pela%20Home%20e%20quero%20pedir%20meu%20c%C3%B3digo%20de%20acesso%20%F0%9F%99%8F" target="_blank" rel="noopener">💛 Pedir código grátis</a>
+    </div>
+    <button class="cta-fechar" id="cta-fechar" aria-label="Fechar convite">✕</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var CHAVE = 'despertar_cta_cursos';
+  var VALIDADE_HORAS = 48;
+
+  function jaFechouRecentemente(){
+    try{
+      var dado = localStorage.getItem(CHAVE);
+      if(!dado) return false;
+      var fechadoEm = parseInt(dado, 10);
+      if(isNaN(fechadoEm)) return false;
+      var horasPassadas = (Date.now() - fechadoEm) / (1000 * 60 * 60);
+      return horasPassadas < VALIDADE_HORAS;
+    }catch(e){ return false; }
+  }
+
+  if(jaFechouRecentemente()){ return; }
+
+  var cta = document.getElementById('cta-cursos');
+  if(!cta){ return; }
+  var fechar = document.getElementById('cta-fechar');
+  var jaMostrou = false;
+
+  function mostrar(){
+    if(jaMostrou) return;
+    jaMostrou = true;
+    cta.classList.add('visivel');
+    document.body.classList.add('cta-cursos-ativo');
+  }
+
+  function esconder(){
+    cta.classList.remove('visivel');
+    document.body.classList.remove('cta-cursos-ativo');
+    try{ localStorage.setItem(CHAVE, Date.now().toString()); }catch(e){}
+  }
+
+  function checarScroll(){
+    if(jaMostrou) return;
+    var alturaTotal = document.documentElement.scrollHeight - window.innerHeight;
+    if(alturaTotal <= 0) return;
+    var progresso = (window.scrollY / alturaTotal) * 100;
+    if(progresso >= 45){
+      mostrar();
+      window.removeEventListener('scroll', checarScroll);
+    }
+  }
+  window.addEventListener('scroll', checarScroll, { passive: true });
+
+  function checarSaida(e){
+    if(jaMostrou) return;
+    if(e.clientY <= 0){
+      mostrar();
+      document.removeEventListener('mouseleave', checarSaida);
+    }
+  }
+  if(window.matchMedia('(min-width: 601px)').matches){
+    document.addEventListener('mouseleave', checarSaida);
+  }
+
+  setTimeout(function(){
+    var alturaTotal = document.documentElement.scrollHeight - window.innerHeight;
+    if(alturaTotal <= 50){ mostrar(); }
+  }, 4000);
+
+  if(fechar){
+    fechar.addEventListener('click', esconder);
+  }
+})();
+</script>
+BANNER
+Foi feito alterações nas paginas trilogia-da-alma.html e anestesia-mental.html
+As playlist das videoaulas 1,2,3,4 foram bloqueadas nas duas página acima com opção de 2 CTA para liberar o acesso completo das videoaualas 5,6,7: com o CTA abaixo ou atráves do CODIGO DE LIBERAÇÃO
+Semeador checkout kiwify (R$37,00) https://pay.kiwify.com.br/iVfp2bi
+colaborador checkout kiwify (R$19,90) LinkOFERTA: KIWIFY: https://pay.kiwify.com.br/NCAEVtO
+
+FORAM ADICONADOS NOVOS COMANDOS NO GERAR_ESTATISCAS.PY 
+🎯 CONVERSÃO (o que move a missão)
+🎯 Quero Ser Semeador
+hoje
+💬 Solicitar Código / WhatsApp
+hoje
+🎬 Aula grátis assistida
+hoje
+📈 Conversão (semeador/visitante)
+Ação de conversão	Total	Hoje
+🎯 Quero Ser Semeador (R$37)	
+💬 Solicitar Código (WhatsApp)
+📱 Cliques no WhatsApp	
+🎬 Aula grátis assistida	
