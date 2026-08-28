@@ -125,12 +125,13 @@ As quatro primeiras aulas estão livres, abertas para você, agora mesmo. Assist
 
   <div class="card" id="card-cta-permanente">
     <h3 style="text-align:center;">🕊️ Quer continuar a jornada até o fim?</h3>
-    <p style="text-align:center;margin-bottom:14px;">Os módulos 5, 6 e 7 fazem parte do acesso completo. Escolha como caminhar com a Missão:</p>
-    <div class="botoes">
-      <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" class="btn-semeador">🕊️ Semeador(a) da Missão — R$ 37,00</a>
-      <a href="https://pay.kiwify.com.br/NCAEVtO" target="_blank" class="btn-graca">🌱 Colaborador(a) da Missão — R$ 19,90</a>
+    <p style="text-align:center;margin-bottom:14px;">Os módulos 5, 6 e 7 fazem parte do acesso completo. O acesso completo está a um passo.</p>
+        <div class="botoes">
+      <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" class="btn-semeador">Quero o acesso completo — R$ 37,00</a>
     </div>
-    <button type="button" class="oferta-ja-tenho" onclick="abrirCodigo()" style="display:block;margin:14px auto 0;">Já sou Semeador(a)/Colaborador(a) e tenho código de acesso</button>
+    <p style="text-align:center;color:#e3c877;font-size:.92rem;margin:10px 0 0;">🎁 Brinde extra: PDF O Novo Testamento como nunca lido, para guardar.</p>
+    <p style="text-align:center;color:#9fb0c8;font-size:.82rem;margin:8px 0 0;">Pix ou cartão em até 4x · Garantia de 7 dias. Conteúdo da casa, com apoio de tecnologia nas aulas.</p>
+<button type="button" class="oferta-ja-tenho" onclick="abrirCodigo()" style="display:block;margin:14px auto 0;">Já tenho código de acesso</button>
   </div>
 
   <!-- Código de acesso (oculto, some por padrão) -->
@@ -143,14 +144,14 @@ As quatro primeiras aulas estão livres, abertas para você, agora mesmo. Assist
   </div>
 
   <!-- Mural de Semeadores — reconhecimento público -->
-  <div class="card mural">
+  <div class="card mural" style="display:none">
     <h3 style="text-align:center;margin-bottom:12px;">🌟 Mural de Semeadores da Missão</h3>
     <p style="text-align:center;margin-bottom:14px;">Gratidão a quem ajuda a manter 12 livros gratuitos vivos para milhares de irmãos:</p>
     <div class="mural-lista" id="mural-lista">
       <!-- ⚠️ ADMIN: adicione aqui os nomes reais confirmados pelos Semeadores, um <span> por nome -->
       <!-- <span>Nome do Semeador</span> -->
     </div>
-    <p style="text-align:center;color:#7f92ad;font-size:.8rem;margin-top:14px;">Seja Semeador(a) e seu nome pode entrar aqui também. 🕊️</p>
+    <p style="text-align:center;color:#7f92ad;font-size:.8rem;margin-top:14px;">Seja Semeador e seu nome pode entrar aqui também. 🕊️</p>
   </div>
 
   <div class="card">
@@ -179,26 +180,19 @@ As quatro primeiras aulas estão livres, abertas para você, agora mesmo. Assist
     <button class="fechar-modal" onclick="fecharModal()" aria-label="Fechar">✕</button>
     <div class="selo">🧠</div>
     <h3>Sua mente já começou a despertar.<br>Não pare na Aula 4.</h3>
-    <p class="intro">Você chegou até aqui de coração aberto. Escolha como quer caminhar com a Missão:</p>
-
+        <p class="intro">Você já fez 4 das 7 aulas livres. O acesso completo chega por e-mail, na área de membros.</p>
+    <div class="barra-prog" style="background:#0e1a2e;border-radius:8px;height:10px;overflow:hidden;margin:0 auto 14px;max-width:280px;"><div style="width:57%;height:100%;background:linear-gradient(90deg,#c9a24b,#e3c877);"></div></div>
+    <p style="color:#9fb0c8;font-size:.8rem;margin:-8px 0 16px;">4 de 7</p>
     <div class="oferta-opcao destaque">
-      <h4>🕊️ Semeador(a) da Missão</h4>
+      <h4>Acesso completo</h4>
       <div class="preco">R$ 37,00</div>
       <ul>
-        <li>✅ Todos os livros + todas as videoaulas (vitalício)</li>
-        <li>✅ Seu nome no Mural de Semeadores 🌟</li>
-        <li>✅ Ajuda a manter 12 livros gratuitos vivos no portal</li>
+        <li>✅ Os dois cursos em vídeo (14 módulos)</li>
+        <li>✅ Livros digitais + comunidade vitalícia</li>
+        <li>✅ Devocional e e-book infantil de brinde</li>
+        <li>🎁 Brinde extra: PDF do Novo Testamento como nunca lido</li>
       </ul>
-      <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" rel="noopener">Quero Ser Semeador(a)</a>
-    </div>
-
-    <div class="oferta-opcao">
-      <h4>🌱 Colaborador(a) da Missão</h4>
-      <div class="preco">R$ 19,90</div>
-      <ul>
-        <li>✅ Todos os livros + todas as videoaulas (vitalício)</li>
-      </ul>
-      <a href="https://pay.kiwify.com.br/NCAEVtO" target="_blank" rel="noopener">Quero Ser Colaborador(a)</a>
+      <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" rel="noopener">Quero o acesso completo</a>
     </div>
 
     <button type="button" class="oferta-ja-tenho" onclick="abrirCodigoNoModal()">Já tenho código de acesso</button>
@@ -227,6 +221,11 @@ function tocarVideo(titulo, youtubeId, elemento) {
   document.getElementById("video-player").src = "https://www.youtube-nocookie.com/embed/" + youtubeId + "?rel=0&autoplay=1";
   document.querySelectorAll('.modulo').forEach(function(m) { m.classList.remove('ativo'); });
   elemento.classList.add('ativo');
+  var nMod = elemento.getAttribute("data-modulo");
+  if (nMod) {
+    var base = (location.pathname.indexOf("anestesia") !== -1) ? "/q-anestesia-m0" : "/q-trilogia-m0";
+    try { fetch(base + nMod, {method:"GET", cache:"no-store"}); } catch (err) {}
+  }
   window.scrollTo({ top: document.querySelector('.player-container').offsetTop - 20, behavior: 'smooth' });
 
   if (elemento.getAttribute('data-modulo') === '4') {
@@ -361,8 +360,8 @@ function enviarComentario(){
     if(!a) return;
     var href = a.getAttribute("href") || "";
     if(href.indexOf("NCAEVtO") !== -1){ rastrear("/q-colaborador"); }
-    else if(href.indexOf("pay.kiwify") !== -1){ rastrear("/q-semeador-anestesia"); }
-    if(href.indexOf("wa.me/5528999111493") !== -1){ rastrear("/q-codigo-anestesia"); }
+    else if(href.indexOf("pay.kiwify") !== -1){ rastrear("/q-semeador"); }
+    if(href.indexOf("wa.me/5528999111493") !== -1){ rastrear("/q-codigo"); }
   }
   document.addEventListener("click", onClick, true);
 })();
