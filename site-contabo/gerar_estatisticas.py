@@ -1,31 +1,22 @@
 # -*- coding: utf-8 -*-
 """
-Painel de estatísticas v3 — missaocomdeus.com.br (MODO PRUDENTE + CONVERSÃO)
+Painel v3 — missaocomdeus.com.br
+Semeador e Colaborador separados. Gera tambem leituras.json para a biblioteca.
 
-Evolui o v2 com os mesmos filtros de robôs/erros e visitantes únicos, e ADICIONA
-métricas de CONVERSÃO (o que move o R$37 / mantém a missão no ar):
-
-  /q-semeador      -> clique em "Quero Ser Semeador" (checkout Kiwify)
-  /q-codigo        -> clique em "Solicitar Código de Acesso" (WhatsApp da Laura)
-  /q-whats         -> clique em qualquer link do WhatsApp
-  /q-aula-gratis   -> clique/play na "aula grátis" dos livros (isca)
-
-O script lê o log do nginx (formato combined) e conta SÓ requisições humanas
-200/304 (mesma peneira do v2). Os marcadores q-*.html são arquivos vazios que só
-geram um hit no log ao serem chamados via fetch pelos botões do site.
-
-Para atualizar sozinho (igual à v1/v2), agende no aaPanel (Cron -> Shell):
+Cron (aaPanel, ja existente):
   python3 /home/deploy/gerar_estatisticas.py
-Gera: /www/wwwroot/missaocomdeus.com.br/stats.html
 """
 import os
 import re
+import json
 import html
 from collections import Counter, OrderedDict, defaultdict
 from datetime import datetime, timedelta
 
 LOG = os.environ.get('STATS_LOG', '/www/wwwlogs/missaocomdeus.com.br.log')
 OUT = os.environ.get('STATS_OUT', '/www/wwwroot/missaocomdeus.com.br/stats.html')
+LEITURAS = os.environ.get('STATS_LEITURAS', '/www/wwwroot/missaocomdeus.com.br/leituras.json')
+SITE = '/www/wwwroot/missaocomdeus.com.br'
 
 PAGINAS = OrderedDict([
     ('/', 'Home (início)'),
@@ -62,27 +53,42 @@ PAGINAS = OrderedDict([
     ('/guia-pais-filhos', 'Guia Pais e Filhos — Quiz'),
 ])
 
-# Marcadores de CONVERSÃO (não entram no ranking de páginas, ficam em cartões)
 CONVERSAO = OrderedDict([
-    ('/q-semeador', ('🎯', 'Quero Ser Semeador (R$37)')),
-    ('/q-codigo',   ('💬', 'Solicitar Código (WhatsApp)')),
-    ('/q-whats',    ('📱', 'Cliques no WhatsApp')),
+    ('/q-semeador', ('🎯', 'Quero Ser Semeador (R$ 37)')),
+    ('/q-colaborador', ('🌱', 'Colaborador (R$ 19,90)')),
+    ('/q-codigo', ('💬', 'Solicitar Código (WhatsApp)')),
+    ('/q-whats', ('📱', 'Cliques no WhatsApp')),
     ('/q-aula-gratis', ('🎬', 'Aula grátis assistida')),
 ])
 
-# Linha completa do log (formato padrão aaPanel/Nginx "combined"):
-# IP - - [data] "GET url HTTP/1.x" status bytes "referer" "user-agent"
+ALIAS_CONV = {
+    '/q-colaborador19': '/q-colaborador',
+    '/q-colaborador19-anestesia': '/q-colaborador',
+    '/q-semeador-anestesia': '/q-semeador',
+}
+
 RE_COMPLETA = re.compile(
     r'^(\S+) \S+ \S+ \[([^\]]+)\] "GET (\S+) HTTP[^"]*" (\d{3}) \S+ "[^"]*" "([^"]*)"')
 RE_SIMPLES = re.compile(r'^(\S+) .*?\[([^\]]+)\] "GET (\S+) HTTP')
 RE_EXT = re.compile(
     r'\.(png|jpg|jpeg|gif|svg|ico|css|js|woff2?|webp|xml|json|txt|webmanifest)$', re.I)
-
 RE_BOT = re.compile(
     r'bot|crawl|spider|slurp|scan|monitor|probe|python|curl|wget|httpclient|'
     r'go-http|libwww|java/|okhttp|headless|lighthouse|pingdom|uptime|'
     r'facebookexternalhit|whatsapp|telegrambot|twitterbot|linkedinbot|'
     r'semrush|ahrefs|mj12|dotbot|petalbot|bytespider|zgrab|masscan|nuclei', re.I)
+
+
+def garantir_pixels():
+    for nome in ('q-semeador', 'q-colaborador', 'q-colaborador19',
+                 'q-colaborador19-anestesia', 'q-codigo', 'q-whats', 'q-aula-gratis'):
+        p = os.path.join(SITE, nome)
+        if not os.path.isfile(p):
+            try:
+                with open(p, 'w', encoding='utf-8') as f:
+                    f.write('ok\n')
+            except Exception:
+                pass
 
 
 def analisar():
@@ -92,17 +98,15 @@ def analisar():
     data_inicio = None
     data_fim = None
     por_dia = Counter()
-    visitantes_por_dia = defaultdict(set)   # dia -> {ips humanos}
+    visitantes_por_dia = defaultdict(set)
     visitantes_total = set()
     descartados_robos = 0
     descartados_erros = 0
     robos_por_dia = Counter()
     erros_por_dia = Counter()
-
-    # Conservação para conversão
-    conv = Counter()            # total por marcador
-    conv_hoje = Counter()       # hoje por marcador
-    conv_por_dia = defaultdict(Counter)  # dia -> {marcador: n}
+    conv = Counter()
+    conv_hoje = Counter()
+    conv_por_dia = defaultdict(Counter)
 
     agora = datetime.now()
     hoje_str = agora.strftime('%d/%m/%Y')
@@ -136,7 +140,6 @@ def analisar():
             except Exception:
                 pass
 
-            # Filtros (peneira humana)
             if ua == '-' or ua == '' or RE_BOT.search(ua):
                 descartados_robos += 1
                 if chave_dia:
@@ -155,15 +158,14 @@ def analisar():
                 path = path[:-5]
                 if path == '/index':
                     path = '/'
+            path = ALIAS_CONV.get(path, path)
 
-            # ---- MARCADOR DE CONVERSÃO ----
             if path in CONVERSAO:
                 conv[path] += 1
                 if chave_dia:
                     conv_por_dia[chave_dia][path] += 1
                     if chave_dia == hoje_str:
                         conv_hoje[path] += 1
-                # não entra no ranking nem no total de páginas
                 continue
 
             if path in PAGINAS or path.startswith('/livro'):
@@ -206,6 +208,26 @@ def analisar():
             conv, conv_hoje, conv_por_dia), None
 
 
+def gravar_leituras(contagens):
+    livros = {}
+    for i in range(1, 13):
+        p = '/livro%02d' % i
+        livros[p] = int(contagens.get(p, 0))
+    top = sorted(livros.items(), key=lambda x: -x[1])
+    top3 = [p for p, n in top if n > 0][:3]
+    doc = {
+        'atualizado': datetime.now().strftime('%d/%m/%Y %H:%M'),
+        'livros': livros,
+        'top3': top3,
+    }
+    try:
+        with open(LEITURAS, 'w', encoding='utf-8') as f:
+            json.dump(doc, f, ensure_ascii=False)
+        print('leituras.json em', LEITURAS)
+    except Exception as e:
+        print('AVISO leituras.json:', e)
+
+
 def montar_html(res):
     (contagens, total_geral, data_inicio, data_fim, por_dia,
      contagens_hoje, total_hoje, total_ontem, variacao, hoje_str, ontem,
@@ -234,7 +256,8 @@ def montar_html(res):
         linhas.append(f"""
         <tr>
           <td class="num">{medalha} {i}</td>
-          <td><a href="https://missaocomdeus.com.br{path}">{html.escape(nome)}</a><br><span class="url">{path}</span></td>
+          <td><a href="https://missaocomdeus.com.br{path}">{html.escape(nome)}</a>
+<span class="url">{path}</span></td>
           <td class="num">{n} {hoje_txt}</td>
           <td class="num">{pct:.1f}%</td>
           <td><div class="barra"><div class="fill" style="width:{min(100,pct)}%"></div></div></td>
@@ -260,23 +283,37 @@ def montar_html(res):
     total_home = contagens.get('/', 0)
     livros_lidos = sum(1 for p, _ in PAGINAS.items() if p.startswith('/livro') and contagens.get(p, 0) > 0)
 
-    # ---- Cartões de CONVERSÃO ----
-    converteu = sum(conv.get(p, 0) for p in ['/q-semeador'])
-    pediram_code = sum(conv.get(p, 0) for p in ['/q-codigo', '/q-whats'])
+    n_sem = conv.get('/q-semeador', 0)
+    n_col = conv.get('/q-colaborador', 0)
+    pediram_code = conv.get('/q-codigo', 0) + conv.get('/q-whats', 0)
     aula_gratis = conv.get('/q-aula-gratis', 0)
-    # Taxa de conversão (quem apoiou / pessoas únicas)
-    taxa = (converteu / unicos_total * 100) if unicos_total else 0
+    taxa = (n_sem / unicos_total * 100) if unicos_total else 0
 
     cards_conv = []
-    cards_conv.append(f'<div class="card conv"><div class="v">{converteu}</div><div class="l">🎯 Quero Ser Semeador</div><div class="h">{conv_hoje.get("/q-semeador",0)} hoje</div></div>')
-    cards_conv.append(f'<div class="card conv"><div class="v">{pediram_code}</div><div class="l">💬 Solicitar Código / WhatsApp</div><div class="h">{conv_hoje.get("/q-codigo",0)+conv_hoje.get("/q-whats",0)} hoje</div></div>')
-    cards_conv.append(f'<div class="card conv"><div class="v">{aula_gratis}</div><div class="l">🎬 Aula grátis assistida</div><div class="h">{conv_hoje.get("/q-aula-gratis",0)} hoje</div></div>')
-    cards_conv.append(f'<div class="card conv destaque"><div class="v">{taxa:.1f}%</div><div class="l">📈 Conversão (semeador/visitante)</div><div class="h">{unicos_total} pessoas</div></div>')
+    cards_conv.append(
+        f'<div class="card conv"><div class="v">{n_sem}</div>'
+        f'<div class="l">🎯 Semeador R$ 37</div>'
+        f'<div class="h">{conv_hoje.get("/q-semeador", 0)} hoje</div></div>')
+    cards_conv.append(
+        f'<div class="card conv"><div class="v">{n_col}</div>'
+        f'<div class="l">🌱 Colaborador R$ 19,90</div>'
+        f'<div class="h">{conv_hoje.get("/q-colaborador", 0)} hoje</div></div>')
+    cards_conv.append(
+        f'<div class="card conv"><div class="v">{pediram_code}</div>'
+        f'<div class="l">💬 Código / WhatsApp</div>'
+        f'<div class="h">{conv_hoje.get("/q-codigo", 0) + conv_hoje.get("/q-whats", 0)} hoje</div></div>')
+    cards_conv.append(
+        f'<div class="card conv"><div class="v">{aula_gratis}</div>'
+        f'<div class="l">🎬 Aula grátis</div>'
+        f'<div class="h">{conv_hoje.get("/q-aula-gratis", 0)} hoje</div></div>')
+    cards_conv.append(
+        f'<div class="card conv destaque"><div class="v">{taxa:.1f}%</div>'
+        f'<div class="l">📈 Semeador / pessoas</div>'
+        f'<div class="h">{unicos_total} pessoas</div></div>')
 
-    # Tabela de funil por conversão (detalhe por marcador)
     linhas_conv = '\n'.join(
-        f'<tr><td>{emoji} {html.escape(nome)}</td><td class="num">{conv.get(path,0)}</td>'
-        f'<td class="num" style="color:#7fe0a3">{conv_hoje.get(path,0)}</td></tr>'
+        f'<tr><td>{emoji} {html.escape(nome)}</td><td class="num">{conv.get(path, 0)}</td>'
+        f'<td class="num" style="color:#7fe0a3">{conv_hoje.get(path, 0)}</td></tr>'
         for path, (emoji, nome) in CONVERSAO.items()
     ) or '<tr><td colspan="3">Sem cliques de conversão ainda</td></tr>'
 
@@ -290,7 +327,7 @@ def montar_html(res):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>📊 Estatísticas de Acesso — Portal O Despertar</title>
+<title>Estatisticas de Acesso — Portal O Despertar</title>
 <style>
   :root {{ --navy:#0e1a2e; --gold:#c9a24b; --cream:#faf6ee; }}
   * {{ box-sizing:border-box; }}
@@ -327,59 +364,26 @@ def montar_html(res):
 </head>
 <body>
 <div class="wrap">
-  <h1>📊 Estatísticas de Acesso <span class="selo-filtro">✅ v3 — leitores reais + conversão</span></h1>
+  <h1>Estatisticas de Acesso <span class="selo-filtro">v3 leitores reais + conversao</span></h1>
   <p class="sub">Portal O Despertar · missaocomdeus.com.br · gerado em {datetime.now().strftime('%d/%m/%Y %H:%M')}</p>
 
   <div class="comparacao">
-    <div class="bloco">
-      <div class="rot">Ontem completo ({ontem})</div>
-      <div class="val">{total_ontem}</div>
-    </div>
-    <div class="bloco">
-      <div class="rot">Hoje até agora ({hoje_str})</div>
-      <div class="val gold">{total_hoje}</div>
-    </div>
-    <div class="bloco">
-      <div class="rot">Ontem até este horário</div>
-      <div class="val">{ontem_mesmo_horario}</div>
-    </div>
-    <div class="bloco">
-      <div class="rot">Variação (justa)</div>
-      <div class="val gold">{seta} {variacao:+.1f}%</div>
-    </div>
-    <div class="bloco">
-      <div class="rot">Projeção do dia</div>
-      <div class="val gold">~{projecao}</div>
-    </div>
-    <div class="bloco">
-      <div class="rot">Total geral</div>
-      <div class="val">{total_geral}</div>
-    </div>
+    <div class="bloco"><div class="rot">Ontem completo ({ontem})</div><div class="val">{total_ontem}</div></div>
+    <div class="bloco"><div class="rot">Hoje até agora ({hoje_str})</div><div class="val gold">{total_hoje}</div></div>
+    <div class="bloco"><div class="rot">Ontem até este horário</div><div class="val">{ontem_mesmo_horario}</div></div>
+    <div class="bloco"><div class="rot">Variação (justa)</div><div class="val gold">{seta} {variacao:+.1f}%</div></div>
+    <div class="bloco"><div class="rot">Projeção do dia</div><div class="val gold">~{projecao}</div></div>
+    <div class="bloco"><div class="rot">Total geral</div><div class="val">{total_geral}</div></div>
   </div>
 
   <div class="comparacao" style="border-color:rgba(127,224,163,.4);">
-    <div class="bloco">
-      <div class="rot">👤 Visitantes únicos HOJE</div>
-      <div class="val verde">{unicos_hoje}</div>
-    </div>
-    <div class="bloco">
-      <div class="rot">👤 Visitantes únicos ONTEM</div>
-      <div class="val verde">{unicos_ontem}</div>
-    </div>
-    <div class="bloco">
-      <div class="rot">👤 Visitantes únicos TOTAL</div>
-      <div class="val verde">{unicos_total}</div>
-    </div>
-    <div class="bloco">
-      <div class="rot">🤖 Robôs descartados</div>
-      <div class="val" style="font-size:1.1rem;">{descartados_robos}</div>
-    </div>
-    <div class="bloco">
-      <div class="rot">🛡️ Ataques/erros descartados</div>
-      <div class="val" style="font-size:1.1rem;">{descartados_erros}</div>
-    </div>
+    <div class="bloco"><div class="rot">Visitantes únicos HOJE</div><div class="val verde">{unicos_hoje}</div></div>
+    <div class="bloco"><div class="rot">Visitantes únicos ONTEM</div><div class="val verde">{unicos_ontem}</div></div>
+    <div class="bloco"><div class="rot">Visitantes únicos TOTAL</div><div class="val verde">{unicos_total}</div></div>
+    <div class="bloco"><div class="rot">Robôs descartados</div><div class="val" style="font-size:1.1rem;">{descartados_robos}</div></div>
+    <div class="bloco"><div class="rot">Ataques/erros descartados</div><div class="val" style="font-size:1.1rem;">{descartados_erros}</div></div>
   </div>
-  <p style="font-size:.8rem;color:#9fb0c8;margin:-18px 0 24px;">Contagem prudente: só entram páginas realmente entregues (código 200/304) a navegadores de gente (robôs declarados, prévias de link e ataques ficam de fora). "Visitantes únicos" = IPs diferentes no dia: o número mais próximo de PESSOAS.</p>
+  <p style="font-size:.8rem;color:#9fb0c8;margin:-18px 0 24px;">Só entram páginas 200/304 de gente. Visitantes únicos = IPs diferentes no dia.</p>
 
   <div class="cards">
     <div class="card destaque"><div class="v">{total_home}</div><div class="l">Visitas à Home</div></div>
@@ -389,34 +393,34 @@ def montar_html(res):
     <div class="card humano"><div class="v">{unicos_total}</div><div class="l">Pessoas (IPs únicos)</div></div>
   </div>
 
-  <h2>🎯 CONVERSÃO (o que move a missão)</h2>
+  <h2>CONVERSÃO (o que move a missão)</h2>
   <div class="cards">{''.join(cards_conv)}</div>
   <table>
-    <tr><th>Ação de conversão</th><th>Total</th><th>Hoje</th></tr>
+    <tr><th>Ação</th><th>Total</th><th>Hoje</th></tr>
     {linhas_conv}
   </table>
-  <p style="font-size:.8rem;color:#9fb0c8;">"Quero Ser Semeador" = cliques no checkout Kiwify (R$37). "Solicitar Código / WhatsApp" = pessoas que querem o acesso grátis ou falar com a Laura. "Aula grátis" = quem assistiu a isca nos livros. Taxa de conversão = semeadores / pessoas únicas.</p>
+  <p style="font-size:.8rem;color:#9fb0c8;">Semeador = clique no Kiwify R$ 37. Colaborador = clique no Kiwify R$ 19,90. WhatsApp = rascunho aberto (ainda precisa Enviar). Taxa = semeadores / pessoas únicas.</p>
 
-  <h2>🏆 Ranking (Home + Livros + Quiz)</h2>
+  <h2>Ranking (Home + Livros + Quiz)</h2>
   <table>
     <tr><th>#</th><th>Página</th><th>Acessos (total · hoje)</th><th>%</th><th>Distribuição</th></tr>
     {''.join(linhas)}
   </table>
 
-  <h2>📅 Acessos por dia (últimos 7)</h2>
+  <h2>Acessos por dia (últimos 7)</h2>
   <table>
-    <tr><th>Dia</th><th>Páginas vistas (humanos)</th><th>👤 Visitantes únicos</th><th>🤖 Descartados</th></tr>
+    <tr><th>Dia</th><th>Páginas (humanos)</th><th>Visitantes únicos</th><th>Descartados</th></tr>
     {linhas_dias}
   </table>
 
-  <h2>📄 Outras páginas acessadas</h2>
+  <h2>Outras páginas</h2>
   <table>
     <tr><th>Página</th><th>Acessos</th></tr>
     {linhas_outros}
   </table>
 
-  <footer>Período registrado: {periodo} · Missão com Deus · Coleção do Despertar<br>
-  Painel v3 (filtros de robôs + visitantes únicos + conversão) atualizado pelo script (cron). Página protegida (noindex) — apenas para o administrador.</footer>
+  <footer>Período: {periodo} · Missão com Deus<br>
+  Painel v3. noindex. Só para o administrador.</footer>
 </div>
 </body>
 </html>"""
@@ -424,16 +428,18 @@ def montar_html(res):
 
 
 def main():
+    garantir_pixels()
     res, err = analisar()
     if err:
         print('ERRO:', err)
         return
+    gravar_leituras(res[0])
     doc = montar_html(res)
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, 'w', encoding='utf-8') as f:
         f.write(doc)
-    print('✅ stats.html gerado em', OUT)
-    print('   Acesse: https://missaocomdeus.com.br/stats.html')
+    print('stats.html gerado em', OUT)
+    print('Acesse: https://missaocomdeus.com.br/stats.html')
 
 
 if __name__ == '__main__':
