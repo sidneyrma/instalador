@@ -17,6 +17,7 @@ html{scroll-behavior:smooth}
 body{
   margin:0; background:var(--navy); color:var(--tinta);
   font-family:Georgia,'Times New Roman',Times,serif; line-height:1.75;
+  -webkit-user-select:text; -moz-user-select:text; -ms-user-select:text; user-select:text;
 }
 .wrap{max-width:46rem; margin:0 auto}
 .topbar{background:var(--navy); border-bottom:3px solid var(--ouro); position:sticky; top:0; z-index:50}
@@ -171,6 +172,26 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
     #baloes .balao{width:94%}
   }
 
+
+  @media print{ body *{visibility:hidden} #print-block{visibility:visible}
+    body::before{
+      content:"Livro protegido. A impressão não está disponível nesta obra. Obrigado pela compreensão.";
+      display:block; position:fixed; inset:0; background:#fff; color:#333;
+      font-size:18px; text-align:center; padding-top:40vh; z-index:9999;
+    }
+    .topbar,.capa,#sumario,.leitura,#fim,footer,#baloes,#trilha,#fita-lateral,#botao-marcador,#barra-progresso{display:none !important}
+  }
+
+
+.nt-video{max-width:720px;margin:22px auto 8px;text-align:center;}
+.nt-video .nt-acoes{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:12px;}
+.nt-video .nt-acoes a{display:inline-block;padding:10px 18px;border-radius:999px;text-decoration:none;font-weight:700;font-size:.92rem;}
+.nt-video .nt-ouvir{background:#c9a24b;color:#0e1a2e;}
+.nt-video .nt-ler{background:transparent;color:#e3c877;border:1px solid #c9a24b;}
+.nt-video-box{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(201,162,75,.35);background:#000;}
+.nt-video-box iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+.nt-video p.nt-nota{font-size:.8rem;color:#9fb0c8;margin:8px 0 0;}
+
 </style>
 </head>
 <body data-modo="dia">
@@ -179,7 +200,7 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <header class="topbar">
   <div class="wrap">
     <div class="linha1">
-      <a class="logo" href="#">Missão <span>com Deus</span></a>
+      <a class="logo" href="https://missaocomdeus.com.br/">Missão <span>com Deus</span></a>
       <span id="stats-leitura">Início da leitura</span>
     </div>
     <div class="controles">
@@ -202,9 +223,21 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
   <p class="selo">Coleção do Despertar</p>
   <h1>O Novo Testamento como nunca lido</h1>
   <p class="sub">Uma Jornada Simples pelas Boas Novas de Cristo</p>
-  <p class="autor">Obra original da Coleção do Despertar · Versão do autor (sem proteção)</p>
+  <p class="autor">Obra da Missão · leitura gratuita</p>
+  
+  <div class="nt-video" id="nt-video">
+    <div class="nt-acoes">
+      <a class="nt-ouvir" href="#nt-player">Ouvir 1 minuto</a>
+      <a class="nt-ler" href="#sumario">Ir à leitura</a>
+    </div>
+        <div class="nt-video-box" id="nt-player">
+      <video src="/video/laura-nt.mp4" controls playsinline preload="metadata" controlslist="nodownload noplaybackrate" style="position:absolute;top:0;left:0;width:100%;height:100%;background:#000;"></video>
+    </div>
+<p class="nt-nota">Pode pular e ler. A Palavra já está aberta.</p>
+  </div>
+
   <a class="inicio" href="#sumario">Começar a leitura →</a>
-  <p class="aviso">📖 Versão para leitura e anotações do autor.</p>
+  <p class="aviso">📖 Leia de graça. A fita marca o lugar.</p>
 </section>
 
 <section id="sumario">
@@ -652,12 +685,12 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
   <h2>O Novo Testamento como nunca lido</h2>
   <p>"A tua palavra é lâmpada para os meus pés e luz para o meu caminho." (Salmos 119:105)</p>
   <p>Que as Boas Novas de Cristo transformem a sua vida, agora e para sempre.</p>
-  <p class="cred">© Coleção do Despertar · Missão com Deus · CompraOSeu<br>
-  Versão do autor (sem proteção), para leitura e anotações.</p>
+  <p class="cred">© Coleção do Despertar · Missão com Deus · Missão com Deus<br>
+  leitura gratuita, para leitura e anotações.</p>
 </section>
 
 <footer>
-  <p>Missão com Deus · CompraOSeu, Desperte sua mente, fortaleça sua fé, transforme sua vida.</p>
+  <p>Missão com Deus · Missão com Deus, Desperte sua mente, fortaleça sua fé, transforme sua vida.</p>
 </footer>
 
 
@@ -932,6 +965,13 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
     mostrarBalao('<span class="emoji">' + iconesModo[modoAtual] + '</span><span class="texto">Modo de tela: <b>' + nomesModo[modoAtual] + '</b>. Fica salvo para as próximas visitas.</span>', 3500);
   });
 
+
+  /* ============ Proteção de direitos autorais ============ */
+  document.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+  document.addEventListener("keydown", function(e){
+    if((e.ctrlKey || e.metaKey) && ["c","p","s","u","a"].indexOf(String(e.key).toLowerCase()) >= 0){ e.preventDefault(); }
+  });
+
   /* ============ Início ============ */
   mostrarDicas();
   atualizarFita();
@@ -939,6 +979,90 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 })();
 </script>
 
+<style>
+#cta-cursos-l05{position:fixed;left:12px;right:12px;bottom:72px;z-index:70;background:linear-gradient(135deg,#0e1a2e,#1e3352);border:1px solid rgba(201,162,75,.45);color:#f6f1e7;box-shadow:0 14px 34px rgba(0,0,0,.4);transform:translateY(calc(100% + 80px));opacity:0;visibility:hidden;pointer-events:none;transition:transform .4s ease,opacity .3s ease,visibility .3s;font-family:system-ui,-apple-system,sans-serif;border-radius:14px;max-width:640px;margin:0 auto}
+#cta-cursos-l05.visivel{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+#cta-cursos-l05.oculto{display:none !important}
+#cta-cursos-l05 .wrap{padding:12px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+#cta-cursos-l05 .cta-emoji{font-size:1.7rem;flex-shrink:0}
+#cta-cursos-l05 .cta-txt{flex:1;min-width:200px}
+#cta-cursos-l05 .cta-txt strong{color:#e3c877;font-size:.95rem;display:block;margin-bottom:2px}
+#cta-cursos-l05 .cta-txt span{color:rgba(246,241,231,.85);font-size:.82rem;line-height:1.45}
+#cta-cursos-l05 .cta-btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+#cta-cursos-l05 .cta-btns a{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;font-size:.82rem;font-weight:700;border-radius:999px;text-decoration:none;white-space:nowrap}
+#cta-cursos-l05 .cta-gold{background:linear-gradient(135deg,#e3c877,#b8860b);color:#0e1a2e}
+#cta-cursos-l05 .cta-fechar{background:none;border:none;color:rgba(246,241,231,.6);font-size:1.4rem;line-height:1;cursor:pointer;padding:4px;flex-shrink:0}
+#cta-cursos-l05 .cta-fechar:hover{color:#e3c877}
+@media(max-width:600px){#cta-cursos-l05{left:8px;right:8px;bottom:68px} #cta-cursos-l05 .wrap{flex-direction:column;text-align:center} #cta-cursos-l05 .cta-btns{width:100%;justify-content:center}}
+</style>
+<div id="cta-cursos-l05" role="dialog" aria-live="polite" aria-label="Convite para as videoaulas">
+  <div class="wrap">
+    <span class="cta-emoji">🎬</span>
+    <div class="cta-txt">
+      <strong>Quer assistir as videoaulas do Livro Evolução da Alma? 👀</strong>
+      <span>Módulos 1 a 4 já estão na área do Aluno. Uma prévia resumida te aguarda.</span>
+    </div>
+    <div class="cta-btns">
+      <a class="cta-gold" href="/trilogia-da-alma">🎬 Quero assistir</a>
+    </div>
+    <button class="cta-fechar" id="cta-fechar-l05" type="button" aria-label="Fechar convite">✕</button>
+  </div>
+</div>
+<script>
+(function(){
+  var CHAVE = 'despertar_cta_cursos_leitura';
+  var VALIDADE_HORAS = 12;
+  function jaFechouRecentemente(){
+    try{
+      var dado = localStorage.getItem(CHAVE);
+      if(!dado) return false;
+      var fechadoEm = parseInt(dado, 10);
+      if(isNaN(fechadoEm)) return false;
+      return ((Date.now() - fechadoEm) / (1000 * 60 * 60)) < VALIDADE_HORAS;
+    }catch(e){ return false; }
+  }
+  if(jaFechouRecentemente()){ return; }
+  var cta = document.getElementById('cta-cursos-l05');
+  if(!cta){ return; }
+  var fechar = document.getElementById('cta-fechar-l05');
+  var jaMostrou = false;
+  function mostrar(){
+    if(jaMostrou) return;
+    jaMostrou = true;
+    cta.classList.add('visivel');
+  }
+  function esconder(){
+    cta.classList.remove('visivel');
+    cta.classList.add('oculto');
+    try{ localStorage.setItem(CHAVE, Date.now().toString()); }catch(e){}
+  }
+  function tentar(){
+    if(jaMostrou) return;
+    var alturaTotal = document.documentElement.scrollHeight - window.innerHeight;
+    var progresso = alturaTotal > 0 ? (window.scrollY / alturaTotal) * 100 : 100;
+    if(progresso >= 10 || window.scrollY >= 700){
+      mostrar();
+      window.removeEventListener('scroll', tentar);
+    }
+  }
+  window.addEventListener('scroll', tentar, { passive: true });
+  setTimeout(function(){ if(!jaMostrou){ mostrar(); } }, 90000);
+  if(fechar){ fechar.addEventListener('click', esconder); }
+})();
+</script>
+
+
+<script>
+(function(){
+  document.addEventListener('copy', function(e){ e.preventDefault(); });
+  document.addEventListener('cut', function(e){ e.preventDefault(); });
+  document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+  document.addEventListener('keydown', function(e){
+    var k = (e.key||'').toLowerCase();
+    if((e.ctrlKey||e.metaKey) && (k==='p'||k==='s'||k==='u')){ e.preventDefault(); }
+  });
+})();
+</script>
 
 </body>
 </html>
