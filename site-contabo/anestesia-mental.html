@@ -35,7 +35,7 @@ h1{color:var(--gold);font-size:1.8rem;margin-bottom:8px;text-align:center;}
 .modulo{background:rgba(201,162,75,.08);border:1px solid rgba(201,162,75,.15);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;position:relative;}
 .modulo.ativo{border-color:var(--gold);background:rgba(201,162,75,.15);}
 .modulo .num{background:var(--gold);color:var(--navy);font-weight:700;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;}
-.modulo .txt{font-size:.92rem;color:#e8ecf3;}
+.modulo .txt{font-size:.92rem;color:#e8ecf3;flex:1;min-width:0;}
 .player-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(201,162,75,.3);background:#000;margin-bottom:20px;}
 .player-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
 .sair{background:transparent;border:none;color:#7f92ad;text-decoration:underline;cursor:pointer;font-size:.85rem;}
@@ -49,7 +49,7 @@ textarea{resize:vertical;min-height:90px;}
 /* --- módulo bloqueado (5, 6, 7) --- */
 .modulo.bloqueado{cursor:pointer;opacity:.7;}
 .modulo.bloqueado .num{background:#3a4d68;color:#9fb0c8;}
-.modulo.bloqueado .cadeado{margin-left:auto;font-size:1rem;}
+.modulo .cadeado{margin-left:auto;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;}.modulo.bloqueado .cadeado svg{display:block;}
 
 /* --- modal de oferta em 2 níveis --- */
 #modal-oferta{position:fixed;inset:0;background:rgba(14,26,46,.85);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:200;padding:20px;}
@@ -118,9 +118,9 @@ As quatro primeiras aulas estão livres, abertas para você, agora mesmo. Assist
     <div class="modulo" data-modulo="3" onclick="tocarVideo('Módulo 3: O Governo da Mente', '4IwyK4pmaJI', this)"><span class="num">3</span><span class="txt">O Governo da Mente</span></div>
     <div class="modulo" data-modulo="4" onclick="tocarVideo('Módulo 4: O Impulso sem Consciência', 'f_GxlRva2CQ', this)"><span class="num">4</span><span class="txt">O Impulso sem Consciência</span></div>
 
-    <div class="modulo bloqueado" data-modulo="5" data-titulo="Módulo 5: O Despertar da Consciência" data-yt="Fw4RE6ld_UU" onclick="cliqueModulo(this)"><span class="num">5</span><span class="txt">O Despertar da Consciência</span><span class="cadeado">🔒</span></div>
-    <div class="modulo bloqueado" data-modulo="6" data-titulo="Módulo 6: O Reset do Shabat" data-yt="31XPvz6DSeY" onclick="cliqueModulo(this)"><span class="num">6</span><span class="txt">O Reset do Shabat</span><span class="cadeado">🔒</span></div>
-    <div class="modulo bloqueado" data-modulo="7" data-titulo="Módulo 7: A Liberdade da Alma" data-yt="dYwYB9uDhnI" onclick="cliqueModulo(this)"><span class="num">7</span><span class="txt">A Liberdade da Alma</span><span class="cadeado">🔒</span></div>
+    <div class="modulo bloqueado" data-modulo="5" data-titulo="Módulo 5: O Despertar da Consciência" data-yt="Fw4RE6ld_UU" onclick="cliqueModulo(this)"><span class="num">5</span><span class="txt">O Despertar da Consciência</span><span class="cadeado" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#e3c877" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span></div>
+    <div class="modulo bloqueado" data-modulo="6" data-titulo="Módulo 6: O Reset do Shabat" data-yt="31XPvz6DSeY" onclick="cliqueModulo(this)"><span class="num">6</span><span class="txt">O Reset do Shabat</span><span class="cadeado" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#e3c877" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span></div>
+    <div class="modulo bloqueado" data-modulo="7" data-titulo="Módulo 7: A Liberdade da Alma" data-yt="dYwYB9uDhnI" onclick="cliqueModulo(this)"><span class="num">7</span><span class="txt">A Liberdade da Alma</span><span class="cadeado" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#e3c877" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span></div>
   </div>
 
   <div class="card" id="card-cta-permanente">
@@ -136,9 +136,9 @@ As quatro primeiras aulas estão livres, abertas para você, agora mesmo. Assist
   <!-- Código de acesso (oculto, some por padrão) -->
   <div class="codigo-box" id="caixa-codigo" style="display:none;">
     <h2>🔑 Liberar Módulos 5, 6 e 7</h2>
-    <p>Insira o código de acesso enviado pela Laura:</p>
+    <p>Insira o código de acesso, se você já o recebeu:</p>
     <input type="text" class="codigo-input" id="codigo" placeholder="Digite seu código aqui" maxlength="20" autocomplete="off">
-    <div id="msgErro" class="msg-erro">⚠️ Código inválido. Verifique se digitou corretamente ou solicite o seu código com a Laura pelo WhatsApp.</div>
+    <div id="msgErro" class="msg-erro">⚠️ Código inválido. Verifique se digitou corretamente.</div>
     <button onclick="verificarCodigo()" class="btn-semeador">🔓 Validar e Liberar Acesso</button>
   </div>
 
@@ -163,8 +163,7 @@ As quatro primeiras aulas estão livres, abertas para você, agora mesmo. Assist
   </div>
 
   <p class="nota">
-  Ao se tornar Semeador(a) ou Colaborador(a), você libera seu acesso vitalício completo e ajuda a manter 12 livros gratuitos online para milhares de irmãos que não podem pagar.<br>
-  Se hoje você não tem condições, a Graça de Deus é maior que qualquer valor. A Laura vai te acolher com carinho e liberar o código. 🕊️
+  As quatro aulas são sua, sem cadastro. Se quiser ir até o fim, a jornada completa chega por e-mail, na área de membros, depois da semente. 🕊️
   </p>
 </div>
 
@@ -180,7 +179,7 @@ As quatro primeiras aulas estão livres, abertas para você, agora mesmo. Assist
     <button class="fechar-modal" onclick="fecharModal()" aria-label="Fechar">✕</button>
     <div class="selo">🧠</div>
     <h3>Sua mente já começou a despertar.<br>Não pare na Aula 4.</h3>
-    <p class="intro">Laura preparou este acesso para quem chegou até aqui de coração aberto. Escolha como quer caminhar com a Missão:</p>
+    <p class="intro">Você chegou até aqui de coração aberto. Escolha como quer caminhar com a Missão:</p>
 
     <div class="oferta-opcao destaque">
       <h4>🕊️ Semeador(a) da Missão</h4>
@@ -188,7 +187,7 @@ As quatro primeiras aulas estão livres, abertas para você, agora mesmo. Assist
       <ul>
         <li>✅ Todos os livros + todas as videoaulas (vitalício)</li>
         <li>✅ Seu nome no Mural de Semeadores 🌟</li>
-        <li>✅ Ajuda a manter 12 livros gratuitos para quem não pode pagar</li>
+        <li>✅ Ajuda a manter 12 livros gratuitos vivos no portal</li>
       </ul>
       <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" rel="noopener">Quero Ser Semeador(a)</a>
     </div>
@@ -361,7 +360,7 @@ function enviarComentario(){
     var a = e.target.closest ? e.target.closest("a") : null;
     if(!a) return;
     var href = a.getAttribute("href") || "";
-    if(href.indexOf("NCAEVtO") !== -1){ rastrear("/q-colaborador19-anestesia"); }
+    if(href.indexOf("NCAEVtO") !== -1){ rastrear("/q-colaborador"); }
     else if(href.indexOf("pay.kiwify") !== -1){ rastrear("/q-semeador-anestesia"); }
     if(href.indexOf("wa.me/5528999111493") !== -1){ rastrear("/q-codigo-anestesia"); }
   }
