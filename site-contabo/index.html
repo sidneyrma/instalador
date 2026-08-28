@@ -91,8 +91,20 @@
   .hero h1 em{color:var(--gold-light);font-style:normal;}
   .hero p.lead{font-size:18px;color:rgba(246,241,231,.82);max-width:520px;}
   .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px;}
-  .hero-visual{position:relative;}
-  .hero-visual img{border-radius:var(--radius);box-shadow:var(--shadow);}
+  .hero-visual{position:relative;width:100%;}
+  .hero-visual img{
+    width:100%;
+    max-width:none;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    object-position:center center;
+    min-height:420px;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+  }
+  @media(max-width:880px){
+    .hero-visual img{min-height:300px;object-position:center center;}
+  }
   .hero-badge{position:absolute;bottom:-18px;left:-18px;background:var(--cream-2);color:var(--navy);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow);font-size:13px;font-weight:600;max-width:200px;}
   @media(max-width:880px){ .hero-grid{grid-template-columns:1fr;} .hero h1{font-size:32px;} .hero{padding:60px 0 52px;} }
 
@@ -235,6 +247,9 @@
   .bib-corpo .bib-desc{font-size:.9rem;color:rgba(246,241,231,.92);flex:1;margin-bottom:16px;line-height:1.55;text-shadow:0 1px 3px rgba(0,0,0,.4);}
   .bib-corpo .bib-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
   .bib-corpo .bib-badge{font-size:.72rem;background:rgba(201,162,75,.12);border:1px solid rgba(201,162,75,.35);color:var(--gold-light,#e3c877);padding:4px 10px;border-radius:20px;}
+  .bib-leituras{display:inline-block;margin-left:8px;font-size:.72rem;color:#c9a24b;font-weight:700;letter-spacing:.02em;vertical-align:middle;}
+  .bib-medalha{margin-right:4px;}
+.bib-badge.bib-missao{background:rgba(201,162,75,.22);border-color:#c9a24b;color:#e3c877;font-weight:700;letter-spacing:.03em;}.tag.tag-missao{display:inline-block;margin-left:8px;font-size:.72rem;border:1px solid #c9a24b;color:#c9a24b;padding:2px 8px;border-radius:20px;font-weight:700;letter-spacing:.03em;vertical-align:middle;}
   .bib-ctas{display:flex;gap:10px;flex-wrap:wrap;}
   .bib-ctas .btn{display:inline-block;background:linear-gradient(180deg,#d4a83f,var(--cta,#b8860b));color:#fff;font-weight:700;font-size:.95rem;padding:12px 20px;border-radius:8px;text-decoration:none;text-align:center;flex:1;transition:.18s;}
   .bib-ctas .btn:hover{transform:translateY(-1px);}
@@ -443,7 +458,7 @@
       <a href="#livros">Livros</a>
       <a href="#biblioteca">Biblioteca gratuita</a>
       <a href="#trilogia">Trilogia</a>
-      <a href="#mentora">A Mentora</a>
+      <a href="#missao">A Missão</a>
       <a href="#faq">Dúvidas</a>
       <a href="/trilogia-da-alma">🎓 Trilogia da Alma</a>
       <a href="/anestesia-mental">🎓 Anestesia Mental</a>
@@ -458,17 +473,17 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">Fé cristã + neurociência do comportamento</span>
+      <span class="eyebrow">Livros cristãos grátis · Missão com Deus</span>
       <h1>Chegou a hora do seu <em>despertar</em></h1>
-      <p class="lead">Videoaulas, livros e uma comunidade de estudos que unem a verdade bíblica ao estudo do comportamento humano, para você retomar o governo da sua mente e viver com propósito.</p>
+      <p class="lead">Uma palavra para a sua mente. Livros online, de graça, sem cadastro e você continua exatamente de onde parou.</p>
       <div class="hero-ctas">
-        <a class="btn btn-gold" href="/livro04">📖 Começar pelo Devocional de 30 dias</a>
-        <a class="btn btn-ghost-light" href="/livro12">📖 Ler o livro de Afirmações</a>
+        <a class="btn btn-gold" href="/livro04">📖 Começar o Devocional de 30 dias</a>
+        <a class="btn btn-ghost-light" href="/livro12">Ler as Afirmações</a>
       </div>
-      <small class="note">Comece o seu dia com uma palavra de Jesus para a sua vida. E ao descer, conheça também a Trilogia da Alma.</small>
+      <small class="note">Comece o seu dia com uma palavra de Jesus para a sua vida. Ao descer, a biblioteca inteira está aberta.</small>
     </div>
     <div class="hero-visual">
-      <img src="https://i.ibb.co/wNwtX4Qj/livro-J01.jpg" alt="O Novo Testamento como nunca lido - Jesus lava os pés">
+      <img src="https://i.ibb.co/zhH6FV9X/hero.jpg" alt="Evolução da Alma, Novo Testamento e Anestesia Mental — leitura gratuita">
       <div class="hero-badge">✨ Leia de graça, continue de onde parou</div>
     </div>
   </div>
@@ -653,7 +668,7 @@
       <div class="product">
         <img src="https://i.ibb.co/sJ9KTLwN/livro05jpg.png" alt="Livro Evolução da Alma">
         <div class="pbody">
-          <span class="tag">📖🎓 Evolução da Alma</span>
+          <span class="tag">📖🎓 Evolução da Alma</span> <span class="tag tag-missao">Da Missão</span>
           <h3>Evolução da Alma</h3>
           <p>Livro digital completo + Curso em vídeo com 7 módulos para curar sua alma e dominar suas emoções.</p>
           <ul class="obra-itens">
@@ -666,7 +681,7 @@
       <div class="product">
         <img src="https://i.ibb.co/mF2Hyq7z/livro-09.jpg" alt="Livro Anestesia Mental">
         <div class="pbody">
-          <span class="tag">🧠🔓 Anestesia Mental</span>
+          <span class="tag">🧠🔓 Anestesia Mental</span> <span class="tag tag-missao">Da Missão</span>
           <h3>Anestesia Mental</h3>
           <p>Livro digital completo + Curso em vídeo com 7 módulos para quebrar correntes invisíveis e retomar a soberania da mente.</p>
           <ul class="obra-itens">
@@ -679,13 +694,40 @@
       <div class="product" id="devocional">
         <img src="https://i.ibb.co/LdbL0QdH/livro04jpg.jpg" alt="Devocional Um Segundo com Deus">
         <div class="pbody">
-          <span class="tag">🕊️🌱 Um Segundo com Deus</span>
+          <span class="tag">🕊️🌱 Um Segundo com Deus</span> <span class="tag tag-missao">Da Missão</span>
           <h3>Um Segundo com Deus</h3>
           <p>Devocional de 30 dias + E-book infantil Jesus Quer Falar com Seu Filho para toda a família.</p>
           <ul class="obra-itens">
             <li>✅ Devocional 30 dias</li>
             <li>✅ E-book Infantil</li>
             <li>✅ Acesso à Comunidade</li>
+          </ul>
+        </div>
+      </div>
+    
+      <div class="product">
+        <img src="https://i.ibb.co/9myJ3XXb/livro01.jpg" alt="O Novo Testamento como nunca lido">
+        <div class="pbody">
+          <span class="tag">📖 O Novo Testamento</span> <span class="tag tag-missao">Da Missão</span>
+          <h3>O Novo Testamento como nunca lido</h3>
+          <p>Uma jornada simples pelas Boas Novas de Cristo. Lançamento em 27 de agosto, 20h.</p>
+          <ul class="obra-itens">
+            <li>✅ Obra da Missão</li>
+            <li>✨ Em breve na biblioteca</li>
+            <li>✅ Leitura gratuita quando abrir</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product">
+        <img src="https://i.ibb.co/3yJsHjnn/livro06.jpg" alt="Jesus Quer Falar com Seu Filho">
+        <div class="pbody">
+          <span class="tag">💛 Jesus Quer Falar com Seu Filho</span> <span class="tag tag-missao">Da Missão</span>
+          <h3>Jesus Quer Falar com Seu Filho</h3>
+          <p>Obra infantil cristã: Mandamentos, valores bíblicos e o amor de Jesus para as crianças.</p>
+          <ul class="obra-itens">
+            <li>✅ E-book infantil da Missão</li>
+            <li>✅ Atividades para pintar e desenhar</li>
+            <li>✅ Leitura gratuita no portal</li>
           </ul>
         </div>
       </div>
@@ -742,6 +784,7 @@
     <div class="bib-head">
       <span class="bib-tag">📖 Biblioteca de leitura gratuita</span>
       <h2>Leia antes de comprar</h2>
+      <p style="font-size:.92rem;opacity:.9;">Onde você ver Da Missão, a casa assume a obra. Os outros títulos são leitura gratuita para o despertar.</p>
       <p>Conheça o conteúdo das nossas obras antes de adquiri-las. Leitura online protegida, sem cópia e sem impressão.</p>
       <p>Agora você pode ler nossos livros online e, sempre que abrir novamente, continuar exatamente do ponto em que parou. Letras no seu tamanho, tela confortável e fita dourada para marcar o lugar.</p>
     </div>
@@ -757,10 +800,11 @@
           <h3>O Novo Testamento como nunca lido</h3>
           <p class="bib-desc">Uma jornada simples pelas Boas Novas de Cristo, com as passagens mais faladas, as parábolas e os sermões explicados para despertar a fé.</p>
           <div class="bib-badges">
+            <span class="bib-badge bib-missao">Da Missão</span>
             <span class="bib-badge">20 capítulos</span>
             <span class="bib-badge">✨ Em breve</span>
           </div>
-          <p class="cd-titulo">📅 Lançamento em 27 de agosto</p>
+          <p class="cd-titulo">📅 Lançamento em 27 de agosto, 20h</p>
           <div class="countdown" id="countdown-livro11">
             <div class="cd-item"><div class="cd-num" id="cd-dias">--</div><div class="cd-lab">dias</div></div>
             <div class="cd-item"><div class="cd-num" id="cd-horas">--</div><div class="cd-lab">horas</div></div>
@@ -836,6 +880,7 @@
           <h3>Jesus Quer Falar com Seu Filho</h3>
           <p class="bib-desc">Uma obra infantil cristã que ensina os Mandamentos, valores bíblicos e o amor de Jesus às crianças. O E-book original contém imagens inspiradoras e atividades para o seu filho fazer, pintar e desenhar.</p>
           <div class="bib-badges">
+            <span class="bib-badge bib-missao">Da Missão</span>
             <span class="bib-badge">10 Mandamentos</span>
             <span class="bib-badge">🔒 Protegido</span>
           </div>
@@ -1184,14 +1229,18 @@
   </div>
 </section>
 
-<section id="mentora">
+<section id="missao">
   <div class="wrap grid grid-2" style="align-items:center;">
-    <img src="https://i.ibb.co/rfHDVQhk/Laura-Pod-Castjpg.jpg" alt="Laura, escritora e mentora" style="border-radius:var(--radius);box-shadow:var(--shadow);">
+    <img src="https://aws-assets.kiwify.com.br/cdn-cgi/image/fit=scale-down,width=700/bz5LEP7oZvd447x/img_builder_f6983e5b-ae67-48e4-8a0d-2833d4443420_2f75466f2f6e43dbab0eb202dc2a4866.png" alt="Portal Missão com Deus, as obras da casa" style="border-radius:var(--radius);box-shadow:var(--shadow);">
     <div>
-      <span class="eyebrow">A missão com Deus & mentora</span>
-      <h2>Laura: Fé e Ciência em unidade</h2>
-      <p>Mestra em unir as verdades bíblicas aos estudos modernos de neurociência e comportamento humano. A missão da Laura é guiar sua alma em direção ao despertar, unindo o conhecimento acadêmico à profundidade do espírito.</p>
-      <a class="btn btn-ghost" href="#livros">Conhecer as obras da Laura</a>
+      <span class="eyebrow">A Missão com Deus</span>
+      <h2>Fé e a mente, a serviço do seu despertar</h2>
+      <p>A Missão nasceu para juntar a Palavra de Deus ao que se conhece da mente. Não é teoria distante. É caminho para o governo da mente e o descanso da alma.</p>
+      <p>Aqui a Palavra está ao alcance de todos: livros de graça, sem cadastro, videoaulas para quem quer ir mais fundo, e uma casa para quem caminha junto. A leitura é de graça. A semente sustenta o portal.</p>
+      <p>As videoaulas são apresentadas por uma figura criada para a Missão. Não é uma professora de carne e osso. O conteúdo bíblico é da casa, revisto por nós. A Laura do WhatsApp é o mesmo espírito: um atendimento da Missão, com apoio de tecnologia.</p>
+      <p style="font-style:italic;margin-top:8px;">“Porque onde estiverem dois ou três reunidos em meu nome, aí estou eu no meio deles.” (Mt 18:20)</p>
+      <a class="btn btn-ghost" href="#biblioteca">Conhecer os livros da Missão</a>
+      <p style="margin-top:14px;font-size:.92rem;"><a href="https://www.instagram.com/portalmissaocomdeus/" target="_blank" rel="noopener">Instagram @portalmissaocomdeus</a></p>
     </div>
   </div>
 </section>
@@ -1204,8 +1253,7 @@
     </div>
     <div style="max-width:720px; margin:0 auto; text-align:center;">
       <p style="font-size:1.08rem; line-height:1.8; color:var(--tinta);">
-        Se você chegou até aqui, há algo dentro de você pedindo para despertar. Não importa
-        onde você está hoje — na ansiedade, na dúvida, no cansaço. O fato de você estar lendo
+        Se você chegou até aqui, há algo dentro de você pedindo para despertar. Não importa onde você está hoje, na ansiedade, na dúvida ou no cansaço. O fato de você estar lendo
         estas palavras já é o primeiro passo.
       </p>
       <p style="font-size:1.08rem; line-height:1.8; color:var(--tinta); margin-top:14px;">
@@ -1246,6 +1294,20 @@
       <h2>Perguntas sobre o Portal</h2>
     </div>
     <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q"><span>Quem apresenta as videoaulas?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>As aulas são apresentadas por uma figura criada para transmitir os ensinamentos da Missão com Deus, com apoio de tecnologia. Não é uma professora de carne e osso. O conteúdo bíblico e os estudos sobre a mente são da casa, curados e revistos pela equipe da Missão.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Qual a diferença entre Semeador e Colaborador?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Os dois recebem o mesmo estudo por e-mail, na área de membros da Kiwify: livros digitais, videoaulas, devocional e comunidade. O Semeador contribui com R$ 37,00 e pode ter o nome no Mural de Semeadores. O Colaborador contribui com R$ 19,90. Não é menos digno. É outro jeito de semear.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>O que eu recebo quando semeio ou colaboro?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>A jornada completa chega por e-mail: os livros digitais Evolução da Alma e Anestesia Mental, os dois cursos em vídeo (14 módulos), o Devocional de 30 dias, o e-book Jesus Quer Falar com Seu Filho e o acesso vitalício à comunidade. As quatro aulas no nosso site são só uma degustação. O estudo inteiro vive na Kiwify.</p></div>
+      </div>
+
+
       <div class="faq-item">
         <div class="faq-q"><span>Como faço para ter acesso à Área do Aluno?</span><span class="plus">+</span></div>
         <div class="faq-a"><p>Assim que sua compra é confirmada, você recebe um e-mail automático da Kiwify com seus dados de acesso exclusivos para entrar no Portal.</p></div>
@@ -1320,9 +1382,11 @@
         <a href="#faq">FAQ</a>
         <a href="/cdn-cgi/l/email-protection#8fece0e2fffdeee0fceafaa1ece0e2cfe8e2eee6e3a1ece0e2">Fale conosco</a>
         <a href="https://wa.me/5528999111493">WhatsApp</a>
+        <a href="https://www.instagram.com/portalmissaocomdeus/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@laura.marual" target="_blank" rel="noopener">TikTok da Missão</a>
       </div>
     </div>
-    <div class="foot-bottom">© 2024-2026 Missão com Deus · CompraOSeu.com. Todos os direitos reservados. Resultados variam conforme dedicação individual.</div>
+    <div class="foot-bottom">© 2024-2026 Missão com Deus · missaocomdeus.com.br. Todos os direitos reservados. Resultados variam conforme dedicação individual.</div>
   </div>
 </footer>
 
@@ -1533,7 +1597,7 @@ function quizEnviar(ev) {
 <script>
 // Cronômetro de contagem regressiva — Lançamento em 27/08/2026
 (function(){
-  var alvo = new Date('2026-08-27T00:00:00-03:00').getTime();
+  var alvo = new Date('2026-08-27T20:00:00-03:00').getTime();
   var diasEl = document.getElementById('cd-dias');
   var horasEl = document.getElementById('cd-horas');
   var minEl = document.getElementById('cd-min');
@@ -1547,6 +1611,20 @@ function quizEnviar(ev) {
       horasEl.textContent = '00';
       minEl.textContent = '00';
       segEl.textContent = '00';
+      var card = diasEl.closest('.bib-card') || diasEl.closest('.product');
+      if(card){
+        var num = card.querySelector('.bib-num');
+        if(num) num.textContent = num.textContent.replace('Em breve','Disponível');
+        var em = card.querySelector('.bib-badge');
+        var badges = card.querySelectorAll('.bib-badge');
+        badges.forEach(function(b){ if(/Em breve/.test(b.textContent)) b.textContent = 'Disponível'; });
+        var tit = card.querySelector('.cd-titulo');
+        if(tit) tit.textContent = 'Livro aberto. Leia de graça.';
+        var cd = card.querySelector('.countdown');
+        if(cd) cd.style.display = 'none';
+        var a = card.querySelector('.bib-ctas a.btn');
+        if(a){ a.href='/livro11'; a.style.pointerEvents='auto'; a.style.opacity='1'; a.textContent='Ler grátis'; }
+      }
       return;
     }
     var dias = Math.floor(diff / (1000*60*60*24));
@@ -1933,5 +2011,152 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+
+<script>
+(function(){
+  function pintar(dados){
+    if(!dados || !dados.livros) return;
+    var top = dados.top3 || [];
+    var medalha = {0:'🥇',1:'🥈',2:'🥉'};
+    document.querySelectorAll('#biblioteca .bib-card').forEach(function(card){
+      var a = card.querySelector('.bib-ctas a.btn');
+      var href = a ? (a.getAttribute('href')||'') : '';
+      var path = href.split('?')[0].replace(/\/$/,'');
+      if(!path || path === '#' || href.indexOf('livro') === -1) return;
+      if(path.charAt(0) !== '/') path = '/' + path.replace(/^\//,'');
+      var n = dados.livros[path] || 0;
+      var num = card.querySelector('.bib-num');
+      if(!num) return;
+      var velho = card.querySelector('.bib-leituras');
+      if(velho) velho.remove();
+      var span = document.createElement('span');
+      span.className = 'bib-leituras';
+      var m = '';
+      var i = top.indexOf(path);
+      if(i >= 0 && n > 0) m = medalha[i] + ' ';
+      span.innerHTML = (m ? '<span class="bib-medalha">'+m+'</span>' : '') + n + ' leituras';
+      num.parentNode.insertBefore(span, num.nextSibling);
+    });
+  }
+  fetch('/leituras.json', {cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).then(pintar).catch(function(){});
+})();
+</script>
+
 </body>
 </html>
+<script>
+(function(){
+  function rastrear(path){ try { fetch(path, {method:"GET", cache:"no-store"}).catch(function(){}); } catch(e){} }
+  function onClick(e){
+    var a = e.target.closest ? e.target.closest("a") : null;
+    if(!a){ return; }
+    var href = a.getAttribute("href") || "";
+    if(href.indexOf("NCAEVtO")!==-1){ rastrear("/q-colaborador"); }
+    else if(href.indexOf("pay.kiwify")!==-1){ rastrear("/q-semeador"); }
+    if(href.indexOf("wa.me/5528999111493")!==-1){ rastrear("/q-whats"); }
+  }
+  document.addEventListener("click", onClick, true);
+})();
+</script>
+<style>
+#cta-cursos{position:fixed;left:0;right:0;bottom:0;z-index:90;background:linear-gradient(135deg,#0e1a2e,#1e3352);border-top:2px solid #e3c877;color:#f6f1e7;box-shadow:0 -14px 34px rgba(0,0,0,.4);transform:translateY(110%);transition:transform .4s ease;font-family:'Inter',system-ui,sans-serif}
+#cta-cursos.visivel{transform:translateY(0)}
+#cta-cursos .wrap{max-width:1140px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center}
+#cta-cursos .cta-emoji{font-size:1.9rem;flex-shrink:0}
+#cta-cursos .cta-txt{flex:1;min-width:220px}
+#cta-cursos .cta-txt strong{color:#e3c877;font-size:1rem;display:block}
+#cta-cursos .cta-txt span{color:rgba(246,241,231,.85);font-size:.88rem}
+#cta-cursos .cta-btns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+#cta-cursos .cta-btns .btn{padding:11px 18px;font-size:.88rem;border-radius:999px;white-space:nowrap}
+#cta-cursos .cta-fechar{background:none;border:none;color:rgba(246,241,231,.6);font-size:1.5rem;line-height:1;cursor:pointer;padding:6px;flex-shrink:0}
+#cta-cursos .cta-fechar:hover{color:#e3c877}
+@media(max-width:600px){#cta-cursos .wrap{flex-direction:column;text-align:center} #cta-cursos .cta-btns{width:100%;justify-content:center}}
+@media(min-width:601px){#cta-cursos{left:auto;right:16px;bottom:16px;width:auto;max-width:640px;border-radius:14px;border:1px solid rgba(201,162,75,.35)} #cta-cursos .wrap{padding:14px 18px}}
+body.cta-cursos-ativo{padding-bottom:96px}
+@media(min-width:601px){body.cta-cursos-ativo{padding-bottom:0}}
+</style>
+
+<div id="cta-cursos" role="dialog" aria-live="polite" aria-label="Convite para acessar a área de videoaulas completa">
+  <div class="wrap">
+    <span class="cta-emoji">🎬</span>
+    <div class="cta-txt">
+      <strong>Isso é só uma prévia 👀</strong>
+      <span>A Trilogia completa da Evolução da Alma (7 módulos) está te esperando. Peça seu código de acesso grátis à Laura. 🕊️</span>
+    </div>
+    <div class="cta-btns">
+      <a class="btn btn-gold" href="/trilogia-da-alma">🎬 Quero assistir</a>
+      <a class="btn btn-ghost-light" href="https://wa.me/5528999111493?text=Ol%C3%A1%20Laura%2C%20vim%20pela%20Home%20e%20quero%20pedir%20meu%20c%C3%B3digo%20de%20acesso%20%F0%9F%99%8F" target="_blank" rel="noopener">💛 Pedir código grátis</a>
+    </div>
+    <button class="cta-fechar" id="cta-fechar" aria-label="Fechar convite">✕</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var CHAVE = 'despertar_cta_cursos';
+  var VALIDADE_HORAS = 12;
+
+  function jaFechouRecentemente(){
+    try{
+      var dado = localStorage.getItem(CHAVE);
+      if(!dado) return false;
+      var fechadoEm = parseInt(dado, 10);
+      if(isNaN(fechadoEm)) return false;
+      var horasPassadas = (Date.now() - fechadoEm) / (1000 * 60 * 60);
+      return horasPassadas < VALIDADE_HORAS;
+    }catch(e){ return false; }
+  }
+
+  if(jaFechouRecentemente()){ return; }
+
+  var cta = document.getElementById('cta-cursos');
+  if(!cta){ return; }
+  var fechar = document.getElementById('cta-fechar');
+  var jaMostrou = false;
+
+  function mostrar(){
+    if(jaMostrou) return;
+    jaMostrou = true;
+    cta.classList.add('visivel');
+    document.body.classList.add('cta-cursos-ativo');
+  }
+
+  function esconder(){
+    cta.classList.remove('visivel');
+    document.body.classList.remove('cta-cursos-ativo');
+    try{ localStorage.setItem(CHAVE, Date.now().toString()); }catch(e){}
+  }
+
+  function checarScroll(){
+    if(jaMostrou) return;
+    var alturaTotal = document.documentElement.scrollHeight - window.innerHeight;
+    if(alturaTotal <= 0) return;
+    var progresso = (window.scrollY / alturaTotal) * 100;
+    if(progresso >= 45){
+      mostrar();
+      window.removeEventListener('scroll', checarScroll);
+    }
+  }
+  window.addEventListener('scroll', checarScroll, { passive: true });
+
+  function checarSaida(e){
+    if(jaMostrou) return;
+    if(e.clientY <= 0){
+      mostrar();
+      document.removeEventListener('mouseleave', checarSaida);
+    }
+  }
+  if(window.matchMedia('(min-width: 601px)').matches){
+    document.addEventListener('mouseleave', checarSaida);
+  }
+
+  setTimeout(function(){
+    var alturaTotal = document.documentElement.scrollHeight - window.innerHeight;
+    if(alturaTotal <= 50){ mostrar(); }
+  }, 4000);
+
+  if(fechar){
+    fechar.addEventListener('click', esconder);
+  }
+})();
+</script>
