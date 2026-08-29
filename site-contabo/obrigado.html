@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Obrigado — Missão com Deus</title>
+<style>
+  :root{--navy:#0e1a2e;--gold:#c9a24b;--gold2:#e3c877;--cream:#faf6ee;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Georgia,"Times New Roman",serif;background:var(--navy);color:var(--cream);line-height:1.55;}
+  a{color:var(--gold)}
+  .top{background:#0a1322;border-bottom:3px solid var(--gold);padding:14px 18px;}
+  .logo{color:var(--gold2);font-weight:700;text-decoration:none;}
+  .wrap{max-width:640px;margin:0 auto;padding:48px 18px 80px;text-align:center;}
+  h1{color:var(--gold2);font-size:1.85rem;font-weight:400;margin:0 0 12px;}
+  .lead{font-size:1.12rem;color:#d5deea;}
+  .card{background:#16283f;border:1px solid rgba(201,162,75,.35);border-radius:14px;padding:22px 20px;margin:28px 0;text-align:left;}
+  .card h2{color:var(--gold);font-size:1.05rem;margin:0 0 10px;}
+  .card ol{margin:0;padding-left:1.2rem;color:#c5d0de;}
+  .card li{margin:8px 0;}
+  .btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px;}
+  .btn{display:inline-block;padding:12px 22px;border-radius:999px;text-decoration:none;font-weight:700;font-family:system-ui,sans-serif;}
+  .btn-gold{background:linear-gradient(180deg,#d4a83f,#b8860b);color:#0e1a2e;}
+  .btn-ghost{border:1px solid var(--gold);color:var(--gold2);}
+  .verso{color:#9fb0c8;font-style:italic;margin-top:28px;}
+  footer{text-align:center;color:#7f92ad;font-size:.8rem;margin-top:40px;}
+</style>
+</head>
+<body>
+  <div class="top"><a class="logo" href="https://missaocomdeus.com.br/">Missão com Deus</a></div>
+  <div class="wrap">
+    <h1 id="titulo">A semente foi recebida. Obrigado.</h1>
+    <p class="lead" id="lead">Sua contribuição ajuda a manter 12 livros gratuitos vivos no portal. O estudo completo chega por e-mail, na área de membros da Kiwify.</p>
+    <div class="card">
+      <h2>O que fazer agora</h2>
+      <ol>
+        <li>Abra o e-mail que a Kiwify acabou de enviar (olhe também o spam).</li>
+        <li>Entre na área de membros com os dados desse e-mail.</li>
+        <li>As aulas e os livros digitais estão lá, para sempre.</li>
+        <li>Se o e-mail não chegar em alguns minutos, fale no WhatsApp. A Laura ou a casa te acolhe.</li>
+      </ol>
+    </div>
+        <div class="card" id="presente">
+      <h2>Seu brinde extra</h2>
+      <p>A leitura online do Novo Testamento como nunca lido é de graça para todos. Quem conclui o acesso completo leva também o <strong>PDF</strong>, para guardar no celular e no computador.</p>
+      <p style="margin-top:14px;"><a class="btn btn-gold" href="/ebooks/livro11-onovotestamenento.pdf" download>Baixar o PDF</a></p>
+    </div>
+
+    <div class="btns">
+      <a class="btn btn-gold" href="https://dashboard.kiwify.com.br/courses">Entrar na área de membros</a>
+      <a class="btn btn-ghost" href="https://missaocomdeus.com.br/#biblioteca">Continuar a leitura grátis</a>
+      <a class="btn btn-ghost" href="https://wa.me/5528999111493?text=Olá%20Laura%2C%20acabei%20de%20semear%20e%20preciso%20de%20ajuda%20com%20o%20acesso">WhatsApp</a>
+    </div>
+    <p class="verso">“Assim como recebeste de graça, dai de graça.” (Mt 10:8)</p>
+  </div>
+  <footer>Missão com Deus · Pagamento seguro Kiwify · Garantia de 7 dias</footer>
+  <script>
+  (function(){
+    var q = {};
+    (location.search||'').replace(/^\?/,'').split('&').forEach(function(p){
+      if(!p) return;
+      var i=p.indexOf('=');
+      var k=decodeURIComponent((i<0?p:p.slice(0,i)).replace(/\+/g,' '));
+      var v=decodeURIComponent((i<0?'':p.slice(i+1)).replace(/\+/g,' '));
+      q[k.toLowerCase()] = v;
+    });
+    var nome = q.name || q.nome || q.first_name || '';
+    nome = (nome||'').trim().split(' ')[0];
+    if(nome && nome.length < 24){
+      document.getElementById('titulo').textContent = nome + ', a semente foi recebida. Obrigado.';
+    }
+  })();
+  </script>
+</body>
+</html>
