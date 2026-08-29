@@ -34,6 +34,8 @@ PAGINAS = OrderedDict([
     ('/livro12', 'Livro 12 — Afirmações, Declarações e Orações'),
     ('/trilogia-da-alma', 'Trilogia da Alma — Área de alunos'),
     ('/anestesia-mental', 'Anestesia Mental — Área de alunos'),
+    ('/obrigado', 'Página de obrigado (Kiwify)'),
+    ('/palavra', 'Caderno Palavra de hoje (casa)'),
     ('/q-quiz-inicio', 'Quiz Home — iniciaram'),
     ('/q-quiz-fim', 'Quiz Home — concluíram'),
     ('/q-trilogia-m01', 'Trilogia — Módulo 01 (plays)'),
@@ -58,14 +60,44 @@ CONVERSAO = OrderedDict([
     ('/q-colaborador', ('🌱', 'Colaborador (R$ 19,90)')),
     ('/q-codigo', ('💬', 'Solicitar Código (WhatsApp)')),
     ('/q-whats', ('📱', 'Cliques no WhatsApp')),
-    ('/q-aula-gratis', ('🎬', 'Aula grátis assistida')),
 ])
+
+MODULOS_LIVRES = (
+    '/q-trilogia-m01', '/q-trilogia-m02', '/q-trilogia-m03',
+    '/q-anestesia-m01', '/q-anestesia-m02', '/q-anestesia-m03',
+)
 
 ALIAS_CONV = {
     '/q-colaborador19': '/q-colaborador',
     '/q-colaborador19-anestesia': '/q-colaborador',
     '/q-semeador-anestesia': '/q-semeador',
+    '/trilogia': '/trilogia-da-alma',
+    '/anestesia': '/anestesia-mental',
 }
+
+PDF_MAP = {
+    '/ebooks/evolucao-da-alma.pdf': '/dl:evolucao',
+    '/ebooks/evolucao-da-alma-evalma.pdf': '/dl:evolucao',
+    '/ebooks/anestesia-mental.pdf': '/dl:anestesia',
+    '/ebooks/anestesia-mental-evalma.pdf': '/dl:anestesia',
+    '/ebooks/um-segundo-com-deus-vol-01.pdf': '/dl:devocional-quiz',
+    '/ebooks/jesus-quer-falar.pdf': '/dl:jesus-quiz',
+    '/ebooks/jesus-quer-falar-com-seu-filho.pdf': '/dl:jesus-livro',
+    '/ebooks/livro11-onovotestamenento.pdf': '/dl:brinde-nt',
+    '/ebooks/livro11.pdf': '/dl:chute-pdf',
+    '/ebooks/livro10.pdf': '/dl:chute-pdf',
+}
+
+DL_NOMES = OrderedDict([
+    ('/dl:brinde-nt', 'Brinde extra · PDF do NT (página de obrigado)'),
+    ('/dl:evolucao', 'PDF Evolução da Alma (evalma + nome antigo)'),
+    ('/dl:anestesia', 'PDF Anestesia Mental (evalma + nome antigo)'),
+    ('/dl:devocional-quiz', 'PDF Devocional Vol. 01 (quiz, livre)'),
+    ('/dl:jesus-quiz', 'PDF Jesus Quer Falar (quiz, livre)'),
+    ('/dl:jesus-livro', 'PDF Jesus Quer Falar com Seu Filho (outro arquivo)'),
+    ('/dl:chute-pdf', 'PDF com nome chutado (livro10 / livro11 sem evalma)'),
+    ('/dl:palavra', 'Palavra de hoje (áudios tocados)'),
+])
 
 RE_COMPLETA = re.compile(
     r'^(\S+) \S+ \S+ \[([^\]]+)\] "GET (\S+) HTTP[^"]*" (\d{3}) \S+ "[^"]*" "([^"]*)"')
@@ -159,6 +191,37 @@ def analisar():
                 if path == '/index':
                     path = '/'
             path = ALIAS_CONV.get(path, path)
+            path_l = path.lower()
+
+            if path.startswith('/.well-known'):
+                continue
+
+            dl_key = PDF_MAP.get(path_l)
+            if dl_key:
+                contagens[dl_key] += 1
+                if chave_dia == hoje_str:
+                    contagens_hoje[dl_key] += 1
+                total_geral += 1
+                if dt is not None:
+                    por_dia[chave_dia] += 1
+                    visitantes_por_dia[chave_dia].add(ip)
+                    visitantes_total.add(ip)
+                    if data_inicio is None or dt < data_inicio:
+                        data_inicio = dt
+                    if data_fim is None or dt > data_fim:
+                        data_fim = dt
+                continue
+
+            if path_l.startswith('/audio/palavra-dia-') and path_l.endswith('.mp3'):
+                contagens['/dl:palavra'] += 1
+                if chave_dia == hoje_str:
+                    contagens_hoje['/dl:palavra'] += 1
+                total_geral += 1
+                if dt is not None:
+                    por_dia[chave_dia] += 1
+                    visitantes_por_dia[chave_dia].add(ip)
+                    visitantes_total.add(ip)
+                continue
 
             if path in CONVERSAO:
                 conv[path] += 1
@@ -286,7 +349,10 @@ def montar_html(res):
     n_sem = conv.get('/q-semeador', 0)
     n_col = conv.get('/q-colaborador', 0)
     pediram_code = conv.get('/q-codigo', 0) + conv.get('/q-whats', 0)
-    aula_gratis = conv.get('/q-aula-gratis', 0)
+    aula_gratis = sum(contagens.get(p, 0) for p in MODULOS_LIVRES)
+    aula_hoje = sum(contagens_hoje.get(p, 0) for p in MODULOS_LIVRES)
+    brinde_nt = contagens.get('/dl:brinde-nt', 0)
+    brinde_hoje = contagens_hoje.get('/dl:brinde-nt', 0)
     taxa = (n_sem / unicos_total * 100) if unicos_total else 0
 
     cards_conv = []
@@ -304,8 +370,12 @@ def montar_html(res):
         f'<div class="h">{conv_hoje.get("/q-codigo", 0) + conv_hoje.get("/q-whats", 0)} hoje</div></div>')
     cards_conv.append(
         f'<div class="card conv"><div class="v">{aula_gratis}</div>'
-        f'<div class="l">🎬 Aula grátis</div>'
-        f'<div class="h">{conv_hoje.get("/q-aula-gratis", 0)} hoje</div></div>')
+        f'<div class="l">🎬 Aula grátis (plays 1 a 3)</div>'
+        f'<div class="h">{aula_hoje} hoje</div></div>')
+    cards_conv.append(
+        f'<div class="card conv"><div class="v">{brinde_nt}</div>'
+        f'<div class="l">🎁 PDF NT baixado</div>'
+        f'<div class="h">{brinde_hoje} hoje · obrigado {contagens.get("/obrigado", 0)}</div></div>')
     cards_conv.append(
         f'<div class="card conv destaque"><div class="v">{taxa:.1f}%</div>'
         f'<div class="l">📈 Semeador / pessoas</div>'
@@ -316,6 +386,12 @@ def montar_html(res):
         f'<td class="num" style="color:#7fe0a3">{conv_hoje.get(path, 0)}</td></tr>'
         for path, (emoji, nome) in CONVERSAO.items()
     ) or '<tr><td colspan="3">Sem cliques de conversão ainda</td></tr>'
+
+    linhas_dl = '\n'.join(
+        f'<tr><td>{html.escape(nome)}</td><td class="num">{contagens.get(k, 0)}</td>'
+        f'<td class="num" style="color:#7fe0a3">{contagens_hoje.get(k, 0)}</td></tr>'
+        for k, nome in DL_NOMES.items()
+    )
 
     periodo = '—'
     if data_inicio and data_fim:
@@ -399,7 +475,14 @@ def montar_html(res):
     <tr><th>Ação</th><th>Total</th><th>Hoje</th></tr>
     {linhas_conv}
   </table>
-  <p style="font-size:.8rem;color:#9fb0c8;">Semeador = clique no Kiwify R$ 37. Colaborador = clique no Kiwify R$ 19,90. WhatsApp = rascunho aberto (ainda precisa Enviar). Taxa = semeadores / pessoas únicas.</p>
+  <p style="font-size:.8rem;color:#9fb0c8;">Semeador = clique no Kiwify R$ 37. Colaborador = clique no Kiwify R$ 19,90. WhatsApp = rascunho aberto (ainda precisa Enviar). Aula grátis = toques nos vídeos livres (módulos 1 a 3), não um pixel antigo. Taxa = semeadores / pessoas únicas. Página de obrigado ≠ PDF baixado: o brinde é o download de livro11-onovotestamenento.pdf.</p>
+
+  <h2>Downloads (PDFs e Palavra)</h2>
+  <table>
+    <tr><th>Arquivo</th><th>Total</th><th>Hoje</th></tr>
+    {linhas_dl}
+  </table>
+  <p style="font-size:.8rem;color:#9fb0c8;">Jesus Quer Falar aparece duas vezes porque são dois arquivos: o do quiz (jesus-quer-falar.pdf) e o nome longo do livro. evalma junta o nome antigo com o novo. Quiz permanece sem evalma.</p>
 
   <h2>Ranking (Home + Livros + Quiz)</h2>
   <table>
