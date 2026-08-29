@@ -480,6 +480,65 @@
         <a class="btn btn-gold" href="/livro04">📖 Começar o Devocional de 30 dias</a>
         <a class="btn btn-ghost-light" href="/livro12">Ler as Afirmações</a>
       </div>
+
+<style id="css-palavra-hoje">
+  #palavra-hoje{display:flex;align-items:center;gap:12px;max-width:420px;margin:14px 0 4px;padding:10px 0 2px;border-top:1px solid rgba(201,162,75,.22)}
+  #palavra-hoje .ph-play{flex:0 0 36px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(227,200,119,.55);background:transparent;color:#e3c877;display:grid;place-items:center;cursor:pointer;padding:0}
+  #palavra-hoje .ph-play svg{width:14px;height:14px;margin-left:1px}
+  #palavra-hoje .ph-play:hover{border-color:#e3c877;background:rgba(201,162,75,.12)}
+  #palavra-hoje .ph-play.is-on{background:rgba(201,162,75,.18)}
+  #palavra-hoje .ph-meta strong{display:block;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;letter-spacing:.04em;color:rgba(246,241,231,.92)}
+  #palavra-hoje .ph-meta span{display:block;font-family:system-ui,sans-serif;font-size:12px;color:rgba(246,241,231,.62);margin-top:2px}
+  #palavra-hoje .ph-bar{display:none;height:2px;flex:1;max-width:220px;margin-left:auto;background:rgba(246,241,231,.12);border-radius:2px;overflow:hidden}
+  #palavra-hoje .ph-bar.show{display:block}
+  #palavra-hoje .ph-bar i{display:block;height:100%;width:0;background:#e3c877}
+  @media(max-width:880px){#palavra-hoje{max-width:100%}}
+</style>
+
+      <div id="palavra-hoje">
+        <button class="ph-play" id="ph-play" type="button" aria-label="Ouvir a palavra de hoje">
+          <svg id="ph-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div class="ph-meta">
+          <strong>Palavra de hoje</strong>
+          <span id="ph-ref">uma bênção para o seu dia</span>
+        </div>
+        <div class="ph-bar" id="ph-bar"><i id="ph-fill"></i></div>
+      </div>
+      <script>
+      (function(){
+        var refs=["Salmo 23","João 14:27","Isaías 41:10","Filipenses 4:6-7","Mateus 11:28","Salmo 91","Josué 1:9","Romanos 8:28","Salmo 46","João 3:16","Provérbios 3:5-6","Isaías 40:31","Mateus 6:33","Salmo 121","2 Timóteo 1:7","Lamentações 3:22","João 8:32","Salmo 27:1","Romanos 8:38","Mateus 5:14","Salmo 34","Jeremias 29:11","João 16:33","Hebreus 13:5","Salmo 139","Gálatas 5:22","1 Pedro 5:7","Efésios 2:8","Apocalipse 21:4","Números 6:24"];
+        var day=parseInt(new Intl.DateTimeFormat("en-US",{timeZone:"America/Sao_Paulo",day:"numeric"}).format(new Date()),10);
+        if(day===31) day=30;
+        var n=String(day).padStart(2,"0");
+        var box=document.getElementById("palavra-hoje");
+        var ref=document.getElementById("ph-ref");
+        var btn=document.getElementById("ph-play");
+        var ico=document.getElementById("ph-ico");
+        var bar=document.getElementById("ph-bar");
+        var fill=document.getElementById("ph-fill");
+        if(ref) ref.textContent=refs[day-1]+" · uma bênção para o seu dia";
+        var a=new Audio("/audio/palavra-dia-"+n+".mp3");
+        a.preload="none";
+        a.addEventListener("error",function(){ if(box) box.style.display="none"; });
+        var playPath="M8 5v14l11-7z";
+        var pausePath="M6 5h4v14H6zm8 0h4v14h-4z";
+        function setOn(on){
+          btn.classList.toggle("is-on",on);
+          ico.innerHTML='<path d="'+(on?pausePath:playPath)+'"/>';
+          bar.classList.add("show");
+        }
+        a.addEventListener("timeupdate",function(){
+          if(a.duration) fill.style.width=(100*a.currentTime/a.duration)+"%";
+        });
+        a.addEventListener("ended",function(){ setOn(false); fill.style.width="100%"; });
+        btn.addEventListener("click",function(){
+          if(a.paused){ a.play(); setOn(true); }
+          else { a.pause(); setOn(false); }
+        });
+      })();
+      </script>
+
       <small class="note">Comece o seu dia com uma palavra de Jesus para a sua vida. Ao descer, a biblioteca inteira está aberta.</small>
     </div>
     <div class="hero-visual">
