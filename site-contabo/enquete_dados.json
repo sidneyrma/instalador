@@ -1,10 +1,100 @@
 {
-  "votos": 0,
-  "opcoes": {
-    "amei": 0,
-    "gostei": 0,
-    "util": 0,
-    "nao_usei": 0
-  },
-  "comentarios": []
+    "votos": 247,
+    "opcoes": {
+        "amei": 6,
+        "gostei": 9,
+        "util": 6,
+        "nao_usei": 6,
+        "magoas": 30,
+        "ansiedade": 32,
+        "medo": 12,
+        "paz": 146
+    },
+    "comentarios": [
+        {
+            "texto": "Fui traída e tenho medo de me relacionar novamente.",
+            "data": "18\/08\/2026 11:05",
+            "email": "lauramvni@gmail.com"
+        },
+        {
+            "texto": "Estou lendo um dos livros aqui q me identifiquei com ele.",
+            "data": "18\/08\/2026 11:07",
+            "email": "lauramvni@gmail.com"
+        },
+        {
+            "texto": "as coisas estão muito dificil",
+            "data": "18\/08\/2026 11:20",
+            "email": "alordasilva@gmail.com"
+        },
+        {
+            "texto": "ola tudo bem.",
+            "data": "19\/08\/2026 06:37",
+            "email": ""
+        },
+        {
+            "texto": "Estou lendo evolução da alma",
+            "data": "19\/08\/2026 09:31",
+            "email": "seuestiloinspira@gmail.com"
+        },
+        {
+            "texto": "Pensamentos intensos e piora quando fica com raiva e estressada",
+            "data": "19\/08\/2026 09:34",
+            "email": "lurdes.zenop@gmail.com"
+        },
+        {
+            "texto": "muito problema com familia filho usuario a cada dia pior",
+            "data": "19\/08\/2026 09:41",
+            "email": "joaocarlos@gmail.com"
+        },
+        {
+            "texto": "Oi boa noite",
+            "data": "19\/08\/2026 09:42",
+            "email": "lurdes.zenop@gmail.com"
+        },
+        {
+            "texto": "Muito bom",
+            "data": "19\/08\/2026 09:46",
+            "email": "sidneyvni@gmail.com"
+        },
+        {
+            "texto": "Olá boa noite",
+            "data": "19\/08\/2026 09:53",
+            "email": "geraldoassuncaocalves@gmail.com"
+        },
+        {
+            "texto": "Como faço para comprar o livro caminho do despertar. Grato",
+            "data": "19\/08\/2026 17:38",
+            "email": "sidney.srma@gmail.com"
+        },
+        {
+            "texto": "🙌🙏🏻",
+            "data": "19\/08\/2026 20:25",
+            "email": "seuestiloinspira@gmail.com"
+        },
+        {
+            "texto": "Ansiedade 😨",
+            "data": "21\/08\/2026 17:46",
+            "email": "sidneyvni@gmail.com"
+        },
+        {
+            "texto": "Estou lendo Evolução da alma e está me ajudando tenho me esforçado em fazer os exercicios mais estou ficando melhor",
+            "data": "22\/08\/2026 03:19",
+            "email": "sidneyvni@gmai.com"
+        },
+        {
+            "texto": "Estou melhorando a leitura está me ajudando a distrair ocupando mais a mente lendo os livros aqui. Vou ajudar quero ser uma semeadora meu nome e Laura tbm.",
+            "data": "24\/08\/2026 07:55",
+            "email": "seuestiloinspira@gmail.com"
+        },
+        {
+            "texto": "Paz",
+            "data": "24\/08\/2026 19:46",
+            "email": "sidneyvni@gmail.com"
+        },
+        {
+            "texto": "Ainda não encontrei meu propósito mais acho que estou me identificando com evol da alma",
+            "data": "24\/08\/2026 21:38",
+            "email": "sidney.srma@gmail.com"
+        }
+    ]
 }
