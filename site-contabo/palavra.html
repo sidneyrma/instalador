@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Palavra de hoje · caderno da casa</title>
+<style>
+  :root{--navy:#0e1a2e;--navy2:#16283f;--gold:#c9a24b;--gold2:#e3c877;--cream:#faf6ee;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Georgia,"Times New Roman",serif;background:var(--navy);color:var(--cream);line-height:1.5;}
+  .wrap{max-width:720px;margin:0 auto;padding:28px 16px 72px;}
+  h1{color:var(--gold2);font-size:1.55rem;font-weight:400;margin:0 0 6px;}
+  .sub{font-family:system-ui,sans-serif;color:#9fb0c8;font-size:.88rem;margin:0 0 22px;}
+  .hoje{background:var(--navy2);border:1px solid rgba(201,162,75,.45);border-radius:14px;padding:18px 16px 14px;margin-bottom:22px;}
+  .hoje .tag{font-family:system-ui,sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2);margin:0 0 8px;}
+  .hoje h2{margin:0 0 6px;font-size:1.25rem;font-weight:400;color:#fff;}
+  .hoje p{margin:0 0 12px;color:#c5d0de;font-size:.95rem;}
+  .play{width:40px;height:40px;border-radius:50%;border:1px solid rgba(227,200,119,.55);background:transparent;color:var(--gold2);display:grid;place-items:center;cursor:pointer;padding:0;}
+  .play svg{width:14px;height:14px;margin-left:1px;}
+  .play.is-on{background:rgba(201,162,75,.18);}
+  .linha{display:flex;align-items:center;gap:12px;}
+  ol{list-style:none;margin:0;padding:0;}
+  li{display:flex;align-items:center;gap:12px;padding:10px 8px;border-top:1px solid rgba(201,162,75,.12);font-family:system-ui,sans-serif;font-size:.92rem;}
+  li.hoje-row{background:rgba(201,162,75,.08);border-radius:8px;border-top-color:transparent;}
+  li .d{flex:0 0 52px;color:var(--gold);font-weight:700;}
+  li .t{flex:1;color:#e8ecf3;}
+  li .mini{width:32px;height:32px;}
+  footer{text-align:center;color:#7f92ad;font-size:.78rem;margin-top:36px;font-family:system-ui,sans-serif;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Palavra de hoje</h1>
+  <p class="sub">Caderno da casa · noindex · digite /palavra · o dia segue Brasília</p>
+
+  <div class="hoje" id="caixa">
+    <p class="tag">Hoje</p>
+    <h2 id="titulo">…</h2>
+    <p id="ref"></p>
+    <div class="linha">
+      <button class="play" id="play-hoje" type="button" aria-label="Ouvir a palavra de hoje">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <span id="estado" style="font-family:system-ui,sans-serif;font-size:.85rem;color:#9fb0c8;">Toque para ouvir</span>
+    </div>
+  </div>
+
+  <ol id="lista"></ol>
+  <footer>Missão com Deus · compartilhe com quem você ama</footer>
+</div>
+<script>
+(function(){
+  var DIAS = [
+    ["Salmo 23","O Senhor é o meu pastor"],
+    ["João 14:27","A paz que o mundo não dá"],
+    ["Isaías 41:10","Não temas, Eu sou contigo"],
+    ["Filipenses 4:6-7","Não andeis ansiosos"],
+    ["Mateus 11:28","Vinde a mim, os cansados"],
+    ["Salmo 91","O esconderijo do Altíssimo"],
+    ["Josué 1:9","Sê forte e corajoso"],
+    ["Romanos 8:28","Todas as coisas cooperam"],
+    ["Salmo 46","Aquietai-vos, e sabei"],
+    ["João 3:16","Deus amou o mundo"],
+    ["Provérbios 3:5-6","Confia de todo o coração"],
+    ["Isaías 40:31","Asas como águias"],
+    ["Mateus 6:33","Buscai primeiro o Reino"],
+    ["Salmo 121","O socorro vem do Senhor"],
+    ["2 Timóteo 1:7","Espírito de poder, amor e mente sã"],
+    ["Lamentações 3:22","Misericórdia cada manhã"],
+    ["João 8:12 e 8:32","Eu sou a luz do mundo"],
+    ["Salmo 27:1","O Senhor é a minha luz"],
+    ["Romanos 8:38","Nada nos separará"],
+    ["Mateus 5:14","Vós sois a luz do mundo"],
+    ["Salmo 34","Perto dos quebrantados"],
+    ["Jeremias 29:11","Pensamentos de paz"],
+    ["João 16:33","Eu venci o mundo"],
+    ["Hebreus 13:5","Nunca te abandonarei"],
+    ["Salmo 139","Maravilhosamente formado"],
+    ["Gálatas 5:22","Fruto do Espírito"],
+    ["1 Pedro 5:7","Lançando a ansiedade"],
+    ["Efésios 2:8 e 3:20","Graça, e mais do que pedimos"],
+    ["Apocalipse 21:4","Eis que faço novo"],
+    ["Números 6:24","O Senhor te abençoe e te guarde"]
+  ];
+  var day = parseInt(new Intl.DateTimeFormat("en-US",{timeZone:"America/Sao_Paulo",day:"numeric"}).format(new Date()),10);
+  if(day===31) day=30;
+  var n = String(day).padStart(2,"0");
+  var info = DIAS[day-1];
+  document.getElementById("titulo").textContent = "Dia " + day + " · " + info[0];
+  document.getElementById("ref").textContent = info[1];
+
+  var atual = null;
+  function ico(btn, on){
+    btn.classList.toggle("is-on", on);
+    btn.innerHTML = on
+      ? '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>'
+      : '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+  }
+  function tocar(nn, btn, label){
+    var src = "/audio/palavra-dia-" + nn + ".mp3";
+    if(atual && atual.src.indexOf(src) >= 0 && !atual.paused){
+      atual.pause(); ico(btn,false);
+      if(label) label.textContent = "Pausado";
+      return;
+    }
+    if(atual){ atual.pause(); }
+    document.querySelectorAll(".play").forEach(function(b){ ico(b,false); });
+    atual = new Audio(src);
+    atual.play();
+    ico(btn,true);
+    if(label) label.textContent = "Ouvindo…";
+    atual.addEventListener("ended", function(){
+      ico(btn,false);
+      if(label) label.textContent = "Toque para ouvir";
+    });
+  }
+
+  var btnH = document.getElementById("play-hoje");
+  var est = document.getElementById("estado");
+  btnH.addEventListener("click", function(){ tocar(n, btnH, est); });
+
+  var ol = document.getElementById("lista");
+  DIAS.forEach(function(par, i){
+    var d = i+1;
+    var nn = String(d).padStart(2,"0");
+    var li = document.createElement("li");
+    if(d===day) li.className = "hoje-row";
+    li.innerHTML = '<span class="d">Dia '+d+'</span><span class="t">'+par[0]+' · '+par[1]+'</span>';
+    var b = document.createElement("button");
+    b.className = "play mini";
+    b.type = "button";
+    b.setAttribute("aria-label","Ouvir dia "+d);
+    b.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+    b.addEventListener("click", function(){ tocar(nn, b, null); });
+    li.appendChild(b);
+    ol.appendChild(li);
+  });
+})();
+</script>
+</body>
+</html>

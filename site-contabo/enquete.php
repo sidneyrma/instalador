@@ -7,8 +7,8 @@
  *
  * Dados:  enquete_dados.json (mesmo diretório) — criado automaticamente
  * Erros:  enquete_erro.log   (ajuda a diagnosticar permissões)
- * Uso:    https://compraoseu.com/enquete.php
- *         https://compraoseu.com/enquete.php?json=1  (JSON puro)
+ * Uso:    https://missaocomdeus.com.br/enquete.php
+ *         https://missaocomdeus.com.br/enquete.php?json=1  (JSON puro)
  */
 
 header('Cache-Control: no-store');
@@ -102,6 +102,21 @@ function salvar_dados($arq, $dados) {
     return $atual;
 }
 
+
+function comentario_e_lixo($t) {
+    $t = trim($t);
+    if ($t === '') return false;
+    if (strpos($t, ' ') === false && preg_match('/^[A-Za-z0-9]{10,}$/', $t)) {
+        return true;
+    }
+    $vogais = @preg_match_all('/[aeiouAEIOUáéíóúàâêôãõÁÉÍÓÚ]/u', $t);
+    if ($vogais === false) { $vogais = 0; }
+    if (strlen($t) >= 12 && strpos($t, ' ') === false && $vogais < 3) {
+        return true;
+    }
+    return false;
+}
+
 function resultado_json($dados) {
     $tot = isset($dados['votos']) ? $dados['votos'] : 0;
     $res = array(
@@ -164,14 +179,14 @@ function pagina_resultado($res) {
          . '.voltar:hover{opacity:.92}'
          . '.rodape{text-align:center;color:#7f8ca1;font-size:.75rem;margin-top:16px}'
          . '</style></head><body><div class="wrap">'
-         . '<div class="topo"><div class="selo">Portal O Despertar</div><h1>📊 Enquete de participação</h1><p>O que você achou da leitura online com marcadores?</p></div>'
+         . '<div class="topo"><div class="selo">Portal O Despertar</div><h1>📊 Enquete de participação</h1><p>Qual é a maior batalha da sua mente hoje?</p></div>'
          . '<div class="card">'
          . $linhas
          . '<div class="tot"><b>' . $tot . '</b> ' . ($tot === 1 ? 'voto' : 'votos') . ' até agora</div>'
          . $com
          . '</div>'
-         . '<a class="voltar" href="https://compraoseu.com/#enquete">← Voltar para o site</a>'
-         . '<div class="rodape">CompraOSeu · Missão com Deus · compraoseu.com</div>'
+         . '<a class="voltar" href="https://missaocomdeus.com.br/#enquete">← Voltar para o site</a>'
+         . '<div class="rodape">Missão com Deus · Missão com Deus · missaocomdeus.com.br</div>'
          . '</div></body></html>';
 }
 
@@ -249,6 +264,7 @@ if ($metodo === 'POST') {
         $novo['votos'] = 1;
         $novo['opcoes'][$voto] = 1;
     }
+    if ($comentario !== '' && comentario_e_lixo($comentario)) { $comentario = ''; }
     if ($comentario !== '') {
         $novo['comentarios'] = array(array(
             'texto' => $comentario,

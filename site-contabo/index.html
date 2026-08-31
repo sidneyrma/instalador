@@ -493,6 +493,10 @@
   #palavra-hoje .ph-bar.show{display:block}
   #palavra-hoje .ph-bar i{display:block;height:100%;width:0;background:#e3c877}
   @media(max-width:880px){#palavra-hoje{max-width:100%}}
+  #ph-share{display:none;margin:10px 0 0;padding:8px 18px;border-radius:999px;border:1px solid rgba(227,200,119,.55);background:transparent;color:#e3c877;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.02em}
+  #ph-share.show{display:inline-block}
+  #ph-share:hover{border-color:#e3c877;background:rgba(201,162,75,.12);color:#fffaf0}
+
 </style>
 
       <div id="palavra-hoje">
@@ -504,6 +508,7 @@
           <span id="ph-ref">uma bênção para o seu dia</span>
         </div>
         <div class="ph-bar" id="ph-bar"><i id="ph-fill"></i></div>
+        <button type="button" id="ph-share">Compartilha com quem você ama</button>
       </div>
       <script>
       (function(){
@@ -531,13 +536,68 @@
         a.addEventListener("timeupdate",function(){
           if(a.duration) fill.style.width=(100*a.currentTime/a.duration)+"%";
         });
-        a.addEventListener("ended",function(){ setOn(false); fill.style.width="100%"; });
+        a.addEventListener("ended",function(){ setOn(false); fill.style.width="100%"; var x=document.getElementById("ph-share"); if(x) x.classList.add("show"); });
         btn.addEventListener("click",function(){
           if(a.paused){ a.play(); setOn(true); }
           else { a.pause(); setOn(false); }
         });
       })();
       </script>
+<script id="ph-share-js">
+(function(){
+  var sh=document.getElementById("ph-share");
+  if(!sh) return;
+  function copiarVelho(full, ok){
+    var ta=document.createElement("textarea");
+    ta.value=full; ta.setAttribute("readonly","");
+    ta.style.position="fixed"; ta.style.left="-9999px";
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); ok(); } catch(e){ alert(full); }
+    document.body.removeChild(ta);
+  }
+  sh.addEventListener("click", function(ev){
+    ev.preventDefault();
+    var refEl=document.getElementById("ph-ref");
+    var ref=(refEl && refEl.textContent) ? refEl.textContent.split("·")[0].trim() : "Palavra de hoje";
+    var txt="Ouvi a Palavra de hoje na Missão com Deus. "+ref+". Compartilha com quem você ama.";
+    var url="https://missaocomdeus.com.br/";
+    var old=sh.textContent;
+    function ok(){
+      sh.textContent="Copiado. Cole onde você ama.";
+      setTimeout(function(){ sh.textContent=old; }, 2800);
+    }
+    function copiar(){
+      var full=txt+" "+url;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(full).then(ok).catch(function(){ copiarVelho(full, ok); });
+      } else { copiarVelho(full, ok); }
+    }
+    var noCelular = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if(noCelular && navigator.share){
+      navigator.share({title:"Palavra de hoje", text:txt, url:url}).catch(copiar);
+    } else { copiar(); }
+  });
+})();
+</script>
+<script id="ph-stats-js">
+(function(){
+  function ping(p){ try{ fetch(p,{cache:"no-store"}); }catch(e){} }
+  var play=document.getElementById("ph-play");
+  if(play){
+    play.addEventListener("click", function(){
+      setTimeout(function(){
+        if(play.classList.contains("is-on")) ping("/q-palavra-play");
+      }, 30);
+    });
+  }
+  var sh=document.getElementById("ph-share");
+  if(sh){
+    sh.addEventListener("click", function(){ ping("/q-palavra-share"); });
+  }
+})();
+</script>
+
+
 
       <small class="note">Comece o seu dia com uma palavra de Jesus para a sua vida. Ao descer, a biblioteca inteira está aberta.</small>
     </div>

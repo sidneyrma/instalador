@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
 
-Disallow: /quiz
-
-Sitemap: https://www.compraoseu.com/sitemap.xml
+Sitemap: https://missaocomdeus.com.br/sitemap.xml

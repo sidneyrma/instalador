@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leitor do Despertar v2: fita, trilha de capítulos, letras, modos de tela e dicas</title>
+<meta name="description" content="Protótipo avançado do leitor dos livros: lembra onde parou, fita dourada, trilha de capítulos, tempo restante, letras ajustáveis e modos de tela. Proteção mantida.">
+<style>
+:root{
+  --navy:#0e1a2e; --navy2:#16283f;
+  --ouro:#c9a24b; --ouro-claro:#e3c877;
+  --papel:#faf6ee; --tinta:#2b2620; --tinta2:#6b6255;
+  --linha:#e4dccb; --cta:#b8860b;
+  --tamanho-fonte:100%;
+}
+/* Modos de tela: Dia, Sépia e Noite (mudam só a área de leitura) */
+body[data-modo="dia"]{ --fundo-leitura:var(--papel); --card-leitura:#fff; --tinta-leitura:#2b2620; --titulo-leitura:#0e1a2e; --linha-leitura:#e4dccb; --destaque:#fdf6e3; }
+body[data-modo="sepia"]{ --fundo-leitura:#f1e6cd; --card-leitura:#faf3e0; --tinta-leitura:#4a3a20; --titulo-leitura:#3a2d15; --linha-leitura:#d8c69d; --destaque:#f6ecd2; }
+body[data-modo="noite"]{ --fundo-leitura:#0d1520; --card-leitura:#17202f; --tinta-leitura:#c9d4e3; --titulo-leitura:#e3c877; --linha-leitura:#2a3a52; --destaque:#1c2940; }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--navy); color:var(--tinta);
+  font-family:Georgia,'Times New Roman',Times,serif; line-height:1.75;
+  font-size:var(--tamanho-fonte);
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
+}
+/* Barra de progresso dourada no topo */
+#barra-progresso{
+  position:fixed; top:0; left:0; height:4px; width:0%;
+  background:linear-gradient(90deg,#c9a24b,#e3c877);
+  z-index:100; border-radius:0 3px 3px 0; transition:width .15s linear;
+}
+/* Topbar */
+.topbar{background:var(--navy); border-bottom:3px solid var(--ouro); position:sticky; top:0; z-index:50}
+.topbar .wrap{display:flex; flex-direction:column; gap:6px; padding:.6rem 1.2rem; max-width:46rem; margin:0 auto}
+.topbar .linha1{display:flex; align-items:center; justify-content:space-between; gap:8px}
+.topbar .logo{color:#fff; font-size:1rem; text-decoration:none; white-space:nowrap}
+.topbar .logo span{color:var(--ouro)}
+#stats-leitura{color:var(--ouro-claro); font-size:.72rem; letter-spacing:.06em; font-family:system-ui,sans-serif; white-space:nowrap}
+.controles{display:flex; align-items:center; gap:5px; flex-wrap:wrap; font-family:system-ui,sans-serif}
+.controles button{
+  background:var(--navy2); color:#fff; border:1px solid rgba(201,162,75,.5);
+  border-radius:6px; min-width:34px; height:30px; cursor:pointer;
+  font-size:.82rem; font-weight:700; font-family:Georgia,serif; line-height:1; padding:0 8px;
+}
+.controles button:hover{background:var(--ouro); color:var(--navy)}
+.controles button.ativo{background:var(--ouro); color:var(--navy)}
+.controles .sep{width:1px; height:20px; background:rgba(201,162,75,.35); margin:0 3px}
+.wrap{max-width:46rem; margin:0 auto}
+/* Capa */
+.capa{
+  min-height:55vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:3rem 1.2rem; color:#fff;
+  background:radial-gradient(900px 500px at 70% -10%, rgba(201,162,75,.2), transparent 60%), linear-gradient(170deg,var(--navy) 0%,#120b18 100%);
+}
+.capa .selo{font-size:.75rem; letter-spacing:.4em; text-transform:uppercase; color:var(--ouro-claro); margin-bottom:1.4rem}
+.capa h1{font-size:clamp(1.7rem,5vw,2.6rem); margin:0 0 .6rem; line-height:1.12}
+.capa .sub{font-style:italic; color:#cfd6e2; font-size:1.05rem; margin-bottom:1.6rem; max-width:32rem}
+.capa .inicio{display:inline-block; background:linear-gradient(180deg,#d4a83f,var(--cta)); color:#fff;
+  font-weight:700; padding:13px 28px; border-radius:8px; text-decoration:none; font-size:1rem}
+.capa .aviso2{font-size:.76rem; color:#8fa0b8; margin-top:1.3rem; max-width:28rem; line-height:1.5}
+/* Sumário */
+#sumario{background:var(--navy2); color:#fff; padding:2.6rem 1.2rem}
+#sumario h2{text-align:center; color:var(--ouro); font-size:1.3rem; letter-spacing:.2em; text-transform:uppercase; margin-bottom:1.2rem}
+#sumario ul{list-style:none; padding:0; margin:0 auto; max-width:34rem}
+#sumario li{border-bottom:1px solid rgba(201,162,75,.25); display:flex; align-items:center; gap:8px}
+#sumario li a{flex:1; color:#e8ecf3; text-decoration:none; padding:.8rem .4rem; font-size:1rem}
+#sumario li a:hover{color:var(--ouro-claro); padding-left:.8rem}
+#sumario li .marca{color:var(--ouro-claro); font-size:.9rem; font-family:system-ui,sans-serif; white-space:nowrap}
+#sumario li.lido a{color:#9fb0c9}
+#sumario li.aqui a{color:var(--ouro-claro); font-weight:700}
+/* Leitura */
+.leitura{background:var(--fundo-leitura); padding:2.4rem 1.2rem 3.6rem; color:var(--tinta-leitura)}
+.leitura .wrap{background:var(--card-leitura); border:1px solid var(--linha-leitura); border-radius:12px;
+  padding:2.2rem 1.6rem; box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.capitulo{margin-top:2.6rem; padding-top:1.8rem; border-top:1px solid var(--linha-leitura)}
+.cap-num{letter-spacing:.3em; text-transform:uppercase; font-size:.78rem; color:var(--ouro); margin:0 0 .5rem}
+.cap-titulo{font-size:1.45rem; color:var(--titulo-leitura); margin:0 0 1rem}
+.capitulo p{margin:0 0 1rem; text-align:justify}
+.box.versiculo{background:var(--destaque); border-left:4px solid var(--ouro); border-radius:8px; padding:.9rem 1.1rem; margin:1.1rem 0}
+.box.versiculo p{margin:0; text-align:left}
+.ref{color:var(--cta); font-style:italic; font-size:.9rem}
+/* Trilha de capítulos na lateral direita */
+#trilha{
+  position:fixed; right:6px; top:50%; height:60vh; transform:translateY(-50%);
+  z-index:55; display:block;
+  background:rgba(14,26,46,.85); border:1px solid rgba(201,162,75,.4); border-radius:12px;
+  width:14px; box-shadow:0 4px 14px rgba(0,0,0,.3);
+}
+#trilha .ponto{
+  position:absolute; left:50%; transform:translateX(-50%);
+  width:8px; height:8px; border-radius:50%; background:rgba(201,162,75,.35);
+  cursor:pointer; border:none; padding:0; transition:all .2s;
+}
+#trilha .ponto:hover{background:var(--ouro-claro); transform:scale(1.35)}
+#trilha .ponto.feito{background:rgba(201,162,75,.7)}
+#trilha .ponto.atual{background:var(--ouro); width:11px; height:11px; box-shadow:0 0 8px rgba(201,162,75,.9)}
+/* Fita dourada lateral */
+#fita-lateral{
+  position:fixed; right:0; width:6px; height:52px; background:linear-gradient(180deg,#e3c877,#b8860b);
+  border-radius:4px 0 0 4px; z-index:56; cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,.4); display:none;
+}
+#fita-lateral::after{
+  content:"🎗️"; position:absolute; right:4px; top:-6px; font-size:14px;
+}
+#fita-lateral:hover{width:10px}
+/* Botão flutuante do marcador manual */
+#botao-marcador{
+  position:fixed; right:16px; bottom:16px; z-index:60;
+  background:var(--navy); color:var(--ouro-claro); border:1px solid var(--ouro);
+  border-radius:50px; padding:10px 16px; font-size:.8rem; cursor:pointer;
+  font-family:system-ui,sans-serif; box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+#botao-marcador:hover{background:var(--ouro); color:var(--navy)}
+/* Balões no topo */
+#baloes{position:fixed; top:10px; left:0; right:0; z-index:90; display:flex; flex-direction:column; align-items:center; gap:8px; pointer-events:none}
+.balao{
+  pointer-events:auto; max-width:92%; width:430px;
+  background:#fffdf5; border:1px solid var(--ouro); border-left:5px solid var(--ouro);
+  border-radius:10px; padding:10px 14px; font-size:.86rem; line-height:1.45;
+  color:var(--navy); font-family:system-ui,sans-serif;
+  box-shadow:0 8px 24px rgba(0,0,0,.28);
+  display:flex; align-items:center; gap:10px;
+  animation:balaoEntra .35s ease;
+}
+.balao .emoji{font-size:1.15rem}
+.balao .texto{flex:1}
+.balao .texto b{color:var(--cta)}
+.balao .fechar{background:none; border:none; color:var(--tinta2); font-size:1.05rem; cursor:pointer; line-height:1; padding:4px}
+.balao .fechar:hover{color:var(--cta)}
+.balao .acao{
+  background:linear-gradient(180deg,#d4a83f,var(--cta)); color:#fff; border:none;
+  border-radius:6px; padding:7px 12px; font-size:.78rem; font-weight:700; cursor:pointer; font-family:system-ui,sans-serif; white-space:nowrap;
+}
+.balao.saindo{animation:balaoSai .3s ease forwards}
+@keyframes balaoEntra{from{opacity:0; transform:translateY(-14px)} to{opacity:1; transform:translateY(0)}}
+@keyframes balaoSai{from{opacity:1} to{opacity:0; transform:translateY(-10px)}}
+/* Fim */
+#fim{background:var(--navy); color:#fff; text-align:center; padding:3.4rem 1.2rem}
+#fim h2{font-size:1.4rem; margin-bottom:.8rem}
+#fim p{color:#c4cdda; max-width:32rem; margin:0 auto 1.4rem}
+#fim .cred{font-size:.8rem; color:#8fa0b8; margin-top:1.4rem; line-height:1.6}
+footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.4rem 1.2rem; font-size:.78rem}
+/* Proteção: impressão mostra aviso */
+@media print{
+  body::before{
+    content:"Livro protegido. A impressão não está disponível nesta obra. Obrigado pela compreensão.";
+    display:block; position:fixed; inset:0; background:#fff; color:#333;
+    font-size:18px; text-align:center; padding-top:40vh; z-index:9999;
+  }
+  .topbar,.capa,#sumario,.leitura,#fim,footer,#baloes,#trilha,#fita-lateral,#botao-marcador,#barra-progresso{display:none !important}
+}
+@media (max-width:560px){
+  body{font-size:calc(var(--tamanho-fonte)*.98)}
+  .leitura .wrap{padding:1.3rem .95rem}
+  .cap-titulo{font-size:1.28rem}
+  #trilha{right:3px; padding:8px 4px}
+  .controles button{min-width:30px; padding:0 6px}
+}
+</style>
+</head>
+<body data-modo="dia">
+<div id="barra-progresso"></div>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="linha1">
+      <a class="logo" href="#capa">O <span>Despertar</span> · Leitor v2</a>
+      <span id="stats-leitura">Início da leitura</span>
+    </div>
+    <div class="controles">
+      <button id="btn-menos" title="Diminuir letras">A−</button>
+      <button id="btn-padrao" title="Tamanho original" class="ativo">A</button>
+      <button id="btn-mais" title="Aumentar letras">A+</button>
+      <span class="sep"></span>
+      <button id="btn-fita" title="Colocar ou remover a fita dourada">🎗️ Fita</button>
+      <button id="btn-modo" title="Mudar a cor da tela (Dia, Sépia, Noite)">🎨 Dia</button>
+      <button id="btn-dicas" title="Ver dicas de leitura">💡</button>
+    </div>
+  </div>
+</header>
+
+<div id="baloes"></div>
+<div id="trilha"></div>
+<div id="fita-lateral" title="Voltar para a fita"></div>
+
+<section class="capa" id="capa">
+  <div class="selo">Demonstração do Leitor do Despertar</div>
+  <h1>Nunca mais se perder na leitura</h1>
+  <p class="sub">Como dobrar a página de um livro físico, com fita dourada, trilha de capítulos, letras no seu tamanho e a tela na cor que faz bem aos seus olhos.</p>
+  <a class="inicio" href="#sumario">Começar a leitura →</a>
+  <p class="aviso2">Teste: leia até um capítulo, feche e reabra. Coloque a fita no meio da leitura. Toque nos pontinhos dourados da lateral.</p>
+</section>
+
+<section id="sumario">
+  <div class="wrap">
+    <h2>Sumário com suas marcas</h2>
+    <ul id="lista-sumario">
+      <li id="li-capitulo-1"><a href="#capitulo-1">Capítulo 1: O coração que ouve</a><span class="marca"></span></li>
+      <li id="li-capitulo-2"><a href="#capitulo-2">Capítulo 2: A paz que guarda</a><span class="marca"></span></li>
+      <li id="li-capitulo-3"><a href="#capitulo-3">Capítulo 3: O recomeço de cada dia</a><span class="marca"></span></li>
+      <li id="li-capitulo-4"><a href="#capitulo-4">Capítulo 4: A luz que não se apaga</a><span class="marca"></span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="leitura">
+  <div class="wrap">
+    <div class="capitulo" id="capitulo-1">
+      <p class="cap-num">Capítulo 1</p>
+      <h2 class="cap-titulo">O coração que ouve</h2>
+      <p>Há uma diferença entre escutar e ouvir. Escutar é deixar que as palavras cheguem aos ouvidos. Ouvir é permitir que elas alcancem o coração. Na correria dos dias, poucas pessoas realmente ouvem, porque o silêncio assusta e a pressa domina.</p>
+      <p>Quando você abre este livro, está fazendo um convite a si mesmo: o convite de parar, respirar e ouvir. Não ouvir apenas o que está escrito, mas o que a vida, o que Deus e o que a sua própria alma estão tentando lhe dizer em meio ao ruído.</p>
+      <div class="box versiculo"><p>"Inclinai o vosso ouvido, e vinde a mim; ouvi, e a vossa alma viverá." <span class="ref">(Isaías 55:3)</span></p></div>
+      <p>O coração que ouve é o coração que se transforma. Ele não tem pressa de responder, não tem medo de silenciar. Ele sabe que toda mudança verdadeira começa em uma escuta profunda, honesta e paciente.</p>
+      <p>Neste primeiro capítulo, convido você a fazer uma pausa. Desligue as notificações por alguns minutos. Respire fundo. E deixe que as próximas páginas encontrem um lugar tranquilo dentro de você.</p>
+    </div>
+
+    <div class="capitulo" id="capitulo-2">
+      <p class="cap-num">Capítulo 2</p>
+      <h2 class="cap-titulo">A paz que guarda</h2>
+      <p>Existe uma paz que depende das circunstâncias e uma paz que independe delas. A primeira vai e vem conforme o vento. A segunda permanece, porque não nasce do que acontece ao redor, mas do que acontece dentro de quem confia.</p>
+      <p>Há dias em que o peso parece maior que a esperança. São dias de perguntas sem resposta e caminhos sem visibilidade. É exatamente nesses dias que a paz verdadeira se revela, não como fuga, mas como presença.</p>
+      <div class="box versiculo"><p>"E a paz de Deus, que excede todo o entendimento, guardará os vossos corações e os vossos sentimentos." <span class="ref">(Filipenses 4:7)</span></p></div>
+      <p>Guardar não é fechar. Guardar é proteger o que é precioso. A paz de Deus guarda o coração como um jardineiro guarda a semente: com paciência, com cuidado e com a certeza de que a vida virá no tempo certo.</p>
+      <p>Hoje, diante do que não está sob o seu controle, faça uma escolha simples: entregue. Entregar não é desistir, é confiar. É dizer em silêncio: eu fiz a minha parte, e o resto está em mãos maiores que as minhas.</p>
+    </div>
+
+    <div class="capitulo" id="capitulo-3">
+      <p class="cap-num">Capítulo 3</p>
+      <h2 class="cap-titulo">O recomeço de cada dia</h2>
+      <p>Cada manhã é uma porta que se abre. O que aconteceu ontem não precisa definir o que será hoje. O erro de ontem vira aprendizado, a dor de ontem vira compaixão, e o cansaço de ontem vira descanso, quando você aceita recomeçar.</p>
+      <p>Recomeçar não é apagar a história, é escrever a próxima página. É olhar para trás com gratidão pelo que ensinou e para frente com confiança pelo que ainda pode ser construído.</p>
+      <div class="box versiculo"><p>"As misericórdias do Senhor são a causa de não sermos consumidos, porque as suas misericórdias não têm fim; renovam-se cada manhã." <span class="ref">(Lamentações 3:22-23)</span></p></div>
+      <p>Não importa onde você parou, importa que você está disposto a continuar. E é por isso que este leitor lembra o seu lugar: para que você nunca precise recomeçar do zero, a não ser quando desejar.</p>
+      <p>Que este livro seja um companheiro de jornada: discreto, fiel e sempre pronto a retomar, bem no ponto em que você deixou, com a letra no tamanho que lhe faz bem.</p>
+    </div>
+
+    <div class="capitulo" id="capitulo-4">
+      <p class="cap-num">Capítulo 4</p>
+      <h2 class="cap-titulo">A luz que não se apaga</h2>
+      <p>Existe uma luz que vem de fora e uma luz que vem de dentro. A primeira depende de onde você está. A segunda depende de quem você é diante de Deus. Quando a noite chega e tudo parece escuro, é a luz de dentro que continua acesa.</p>
+      <div class="box versiculo"><p>"A luz resplandece nas trevas, e as trevas não a venceram." <span class="ref">(João 1:5)</span></p></div>
+      <p>Você pode não ver o caminho inteiro, e tudo bem. A luz alcança o próximo passo, e o passo seguinte se revela quando você caminha. A fé é exatamente isso: caminhar com a luz que você tem, confiando em quem guia.</p>
+      <p>Que a sua leitura termine aqui hoje com esta certeza: nada do que você leu foi em vão. Cada palavra plantou uma semente, e as sementes germinam no tempo certo, muitas vezes quando você menos espera.</p>
+    </div>
+  </div>
+</section>
+
+<section id="fim">
+  <h2>Fim da demonstração</h2>
+  <p>Feche esta página e reabra para ver o marcador em ação. Coloque a fita dourada, pule pelos pontinhos da trilha e experimente os modos de tela.</p>
+  <p class="cred">O Despertar · Coleção do Despertar · missaocomdeus.com.br</p>
+</section>
+
+<button id="botao-marcador" title="Guardar ponto de leitura">📍 Marcar ponto</button>
+
+<footer>Proteção ativa: seleção, cópia e impressão bloqueadas. Fita, trilha, letras e modos de tela ficam guardados no seu aparelho.</footer>
+
+<script>
+(function(){
+  "use strict";
+  var CHAVE_PROGRESSO = "despertar_progresso_demo2";
+  var CHAVE_FONTE     = "despertar_fonte_demo2";
+  var CHAVE_DICAS     = "despertar_dicas_demo2";
+  var CHAVE_MARCADOR  = "despertar_marcador_demo2";
+  var CHAVE_FITA      = "despertar_fita_demo2";
+  var CHAVE_MODO      = "despertar_modo_demo2";
+
+  function guardar(chave, valor){
+    try{ localStorage.setItem(chave, JSON.stringify(valor)); }catch(e){}
+  }
+  function ler(chave){
+    try{ var v = localStorage.getItem(chave); return v ? JSON.parse(v) : null; }catch(e){ return null; }
+  }
+  function remover(chave){ try{ localStorage.removeItem(chave); }catch(e){} }
+
+  var baloes = document.getElementById("baloes");
+  var capitulos = Array.prototype.slice.call(document.querySelectorAll(".capitulo"));
+
+  /* ============ Balões no topo ============ */
+  function mostrarBalao(html, duracao){
+    var b = document.createElement("div");
+    b.className = "balao";
+    b.innerHTML = html + '<button class="fechar" aria-label="Fechar">✕</button>';
+    b.querySelector(".fechar").addEventListener("click", function(){ fechar(b); });
+    baloes.appendChild(b);
+    if(duracao){ setTimeout(function(){ fechar(b); }, duracao); }
+    return b;
+  }
+  function fechar(b){
+    if(!b.parentNode) return;
+    b.classList.add("saindo");
+    setTimeout(function(){ if(b.parentNode) b.parentNode.removeChild(b); }, 300);
+  }
+
+  function mostrarDicas(){
+    var dicas = [
+      { e:"📖", t:"<b>Seu lugar fica salvo.</b> Feche o livro e volte quando quiser; retomamos do ponto exato." },
+      { e:"🎗️", t:"Toque em <b>Fita</b> no meio da leitura. A fitinha dourada marca o lugar, como faixa de livro físico." },
+      { e:"🔍", t:"Os <b>pontinhos dourados</b> da lateral são os capítulos. Toque para pular; o atual brilha." },
+      { e:"🎨", t:"Use <b>Dia, Sépia e Noite</b> para a tela, e <b>A− / A+</b> para o tamanho das letras." }
+    ];
+    var vistos = ler(CHAVE_DICAS);
+    if(!(vistos && vistos.v === 1)){ guardar(CHAVE_DICAS, { v:1 }); }
+    else{ return; }
+    dicas.forEach(function(d, i){
+      setTimeout(function(){ mostrarBalao('<span class="emoji">'+d.e+'</span><span class="texto">'+d.t+'</span>', 5200); }, i*3000);
+    });
+  }
+  document.getElementById("btn-dicas").addEventListener("click", function(){
+    mostrarBalao('<span class="emoji">📖</span><span class="texto">Dicas: <b>Fita</b> marca um lugar, <b>pontinhos</b> pulam capítulos, <b>🎨</b> muda a tela e <b>A−/A+</b> muda as letras. Tudo fica salvo.</span>', 7000);
+  });
+
+  /* ============ Trilha de capítulos na lateral ============ */
+  var trilha = document.getElementById("trilha");
+  var pontos = [];
+  capitulos.forEach(function(c, i){
+    var p = document.createElement("button");
+    p.className = "ponto";
+    p.title = "Ir para o " + (c.querySelector(".cap-titulo") ? c.querySelector(".cap-titulo").textContent : "capítulo");
+    p.addEventListener("click", function(){
+      var antes = ler(CHAVE_PROGRESSO);
+      if(antes && antes.scrollY > 60){
+        guardar(CHAVE_MARCADOR, { scrollY: Math.round(window.scrollY), titulo: "posição anterior", data: new Date().toISOString() });
+      }
+      var topo = c.getBoundingClientRect().top + window.scrollY - 70;
+      window.scrollTo({ top: topo, behavior:"smooth" });
+    });
+    trilha.appendChild(p);
+    pontos.push(p);
+  });
+
+  function posicionarTrilha(){
+    var total = document.documentElement.scrollHeight - window.innerHeight;
+    if(total <= 0) return;
+    capitulos.forEach(function(c, i){
+      var top = c.getBoundingClientRect().top + window.scrollY;
+      var pct = Math.min(100, Math.max(0, (top / total) * 100));
+      if(pontos[i]){ pontos[i].style.top = pct + "%"; }
+    });
+  }
+
+  /* ============ Fita dourada ============ */
+  var fitaEl = document.getElementById("fita-lateral");
+  var fitaAtual = ler(CHAVE_FITA);
+
+  function atualizarFita(){
+    if(fitaAtual && fitaAtual.pct !== undefined){
+      fitaEl.style.display = "block";
+      fitaEl.style.top = fitaAtual.pct + "%";
+      document.getElementById("btn-fita").textContent = "🎗️ Remover fita";
+    }else{
+      fitaEl.style.display = "none";
+      document.getElementById("btn-fita").textContent = "🎗️ Fita";
+    }
+  }
+  document.getElementById("btn-fita").addEventListener("click", function(){
+    if(fitaAtual){
+      fitaAtual = null; remover(CHAVE_FITA);
+      atualizarFita();
+      mostrarBalao('<span class="emoji">🎗️</span><span class="texto">Fita removida. Sua leitura continua salva automaticamente.</span>', 3500);
+    }else{
+      var total = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = total > 0 ? Math.round((window.scrollY / total) * 100) : 0;
+      fitaAtual = { pct: pct, titulo: secaoAtual(), data: new Date().toISOString() };
+      guardar(CHAVE_FITA, fitaAtual);
+      atualizarFita();
+      mostrarBalao('<span class="emoji">🎗️</span><span class="texto">Fita colocada em <b>' + fitaAtual.titulo + '</b>. Toque na fita dourada da lateral para voltar a este ponto.</span>', 5000);
+    }
+  });
+  fitaEl.addEventListener("click", function(){
+    if(fitaAtual){
+      var total = document.documentElement.scrollHeight - window.innerHeight;
+      window.scrollTo({ top: Math.round((fitaAtual.pct / 100) * total), behavior:"smooth" });
+    }
+  });
+
+  /* ============ Progresso, estatísticas e sumário com marcas ============ */
+  var barra = document.getElementById("barra-progresso");
+  var stats = document.getElementById("stats-leitura");
+  var totalPalavras = 0;
+  capitulos.forEach(function(c){
+    var txt = c.textContent || "";
+    totalPalavras += txt.trim().split(/\s+/).length;
+  });
+  var ultimoSalvamento = 0;
+
+  function secaoAtual(){
+    var y = window.scrollY + window.innerHeight * 0.35;
+    var idx = 0;
+    capitulos.forEach(function(c, i){
+      var top = c.getBoundingClientRect().top + window.scrollY;
+      if(y >= top){ idx = i; }
+    });
+    return capitulos[idx].querySelector(".cap-titulo") ? capitulos[idx].querySelector(".cap-titulo").textContent : capitulos[idx].id;
+  }
+
+  function atualizarProgresso(){
+    var total = document.documentElement.scrollHeight - window.innerHeight;
+    var p = total > 0 ? Math.round((window.scrollY / total) * 100) : 0;
+    p = Math.min(100, Math.max(0, p));
+    barra.style.width = p + "%";
+
+    var nomeSecao = secaoAtual();
+    capitulos.forEach(function(c){
+      var top = c.getBoundingClientRect().top + window.scrollY;
+      var fim = top + c.offsetHeight;
+      var lido = window.scrollY + window.innerHeight >= fim - 30;
+      var li = document.getElementById("li-" + c.id);
+      if(li){
+        if(lido){ li.className = "lido"; li.querySelector(".marca").textContent = "✓ lido"; }
+        else{ li.className = ""; li.querySelector(".marca").textContent = ""; }
+      }
+    });
+    var atualIdx = 0;
+    capitulos.forEach(function(c, i){
+      var top = c.getBoundingClientRect().top + window.scrollY;
+      var fim = top + c.offsetHeight;
+      var dentro = window.scrollY + window.innerHeight * 0.35 >= top && window.scrollY + window.innerHeight * 0.35 < fim;
+      if(dentro){ atualIdx = i; }
+    });
+    pontos.forEach(function(p, i){
+      p.classList.remove("atual", "feito");
+      if(i < atualIdx){ p.classList.add("feito"); }
+      if(i === atualIdx){ p.classList.add("atual"); }
+    });
+    var liAtual = document.getElementById("li-" + capitulos[atualIdx].id);
+    if(liAtual){
+      liAtual.className = "aqui";
+      if(!liAtual.querySelector(".marca").textContent){ liAtual.querySelector(".marca").textContent = "▶ você está aqui"; }
+    }
+
+    var lidasReais = 0;
+    capitulos.forEach(function(c){
+      var top = c.getBoundingClientRect().top + window.scrollY;
+      var fim = top + c.offsetHeight;
+      if(window.scrollY + window.innerHeight >= fim - 30){ lidasReais++; }
+    });
+
+    var palavrasLidas = Math.round((p / 100) * totalPalavras);
+    var restantes = Math.max(0, totalPalavras - palavrasLidas);
+    var minRest = Math.max(0, Math.ceil(restantes / 200));
+    if(p >= 99){ stats.textContent = "Livro concluído · 100%"; }
+    else if(minRest <= 1){ stats.textContent = "Capítulo " + (atualIdx + 1) + " · " + p + "% · quase no fim"; }
+    else{ stats.textContent = "Capítulo " + (atualIdx + 1) + " · " + p + "% · faltam ~" + minRest + " min"; }
+
+    if(p > 98){ remover(CHAVE_PROGRESSO); return; }
+    var agora = Date.now();
+    if(agora - ultimoSalvamento > 1500){
+      ultimoSalvamento = agora;
+      guardar(CHAVE_PROGRESSO, {
+        secao: capitulos[atualIdx].id,
+        titulo: nomeSecao,
+        scrollY: Math.round(window.scrollY),
+        porcentagem: p,
+        data: new Date().toISOString()
+      });
+    }
+  }
+
+  var rolagemAgendada = false;
+  window.addEventListener("scroll", function(){
+    if(!rolagemAgendada){
+      rolagemAgendada = true;
+      setTimeout(function(){ rolagemAgendada = false; atualizarProgresso(); }, 120);
+    }
+  }, { passive:true });
+  window.addEventListener("resize", function(){ posicionarTrilha(); });
+  posicionarTrilha();
+  atualizarProgresso();
+
+  /* ============ Continuar de onde parou ============ */
+  function oferecerContinuacao(){
+    var prog = ler(CHAVE_PROGRESSO);
+    if(prog && prog.scrollY > 60){
+      var b = mostrarBalao(
+        '<span class="emoji">📖</span>' +
+        '<span class="texto">Você parou em <b>' + prog.titulo + '</b> (posição ' + prog.porcentagem + '%).<br>' +
+        '<button class="acao" id="acao-continuar">Continuar de onde parei</button></span>',
+        15000
+      );
+      b.querySelector("#acao-continuar").addEventListener("click", function(){
+        window.scrollTo({ top: prog.scrollY, behavior:"smooth" });
+        fechar(b);
+      });
+    }
+  }
+
+  /* ============ Marcador manual ============ */
+  document.getElementById("botao-marcador").addEventListener("click", function(){
+    guardar(CHAVE_MARCADOR, { scrollY: Math.round(window.scrollY), titulo: secaoAtual(), data: new Date().toISOString() });
+    mostrarBalao('<span class="emoji">📍</span><span class="texto">Ponto guardado em <b>' + secaoAtual() + '</b>. Toque de novo para atualizar.</span>', 4000);
+    var el = document.getElementById("botao-marcador");
+    el.textContent = "📍 Ponto guardado";
+    setTimeout(function(){ el.textContent = "📍 Marcar ponto"; }, 2500);
+  });
+
+  /* ============ Tamanho das letras ============ */
+  var niveis = [90, 100, 112, 125, 140, 160];
+  var indice = 1;
+  var fonteSalva = ler(CHAVE_FONTE);
+  if(fonteSalva && niveis.indexOf(fonteSalva.n) >= 0){ indice = niveis.indexOf(fonteSalva.n); }
+  aplicarFonte();
+
+  function aplicarFonte(){
+    document.documentElement.style.setProperty("--tamanho-fonte", niveis[indice] + "%");
+    guardar(CHAVE_FONTE, { n: niveis[indice] });
+    document.getElementById("btn-padrao").classList.toggle("ativo", niveis[indice] === 100);
+  }
+  document.getElementById("btn-mais").addEventListener("click", function(){
+    if(indice < niveis.length - 1){ indice++; aplicarFonte(); }
+    else{ mostrarBalao('<span class="emoji">🔍</span><span class="texto">Este é o maior tamanho disponível (160%).</span>', 3000); }
+  });
+  document.getElementById("btn-menos").addEventListener("click", function(){
+    if(indice > 0){ indice--; aplicarFonte(); }
+    else{ mostrarBalao('<span class="emoji">🔍</span><span class="texto">Este é o menor tamanho disponível (90%).</span>', 3000); }
+  });
+  document.getElementById("btn-padrao").addEventListener("click", function(){ indice = 1; aplicarFonte(); });
+
+  /* ============ Modos de tela: Dia, Sépia, Noite ============ */
+  var modos = ["dia", "sepia", "noite"];
+  var nomes = { dia:"Dia", sepia:"Sépia", noite:"Noite" };
+  var icones = { dia:"🎨", sepia:"🌅", noite:"🌙" };
+  var modoAtual = "dia";
+  var modoSalvo = ler(CHAVE_MODO);
+  if(modoSalvo && modos.indexOf(modoSalvo.m) >= 0){ modoAtual = modoSalvo.m; }
+  aplicarModo();
+  document.getElementById("btn-modo").addEventListener("click", function(){
+    var idx = modos.indexOf(modoAtual);
+    modoAtual = modos[(idx + 1) % modos.length];
+    aplicarModo();
+    mostrarBalao('<span class="emoji">' + icones[modoAtual] + '</span><span class="texto">Modo de tela: <b>' + nomes[modoAtual] + '</b>. Fica salvo para as próximas visitas.</span>', 3500);
+  });
+  function aplicarModo(){
+    document.body.setAttribute("data-modo", modoAtual);
+    guardar(CHAVE_MODO, { m: modoAtual });
+    document.getElementById("btn-modo").textContent = icones[modoAtual] + " " + nomes[modoAtual];
+  }
+
+  /* ============ Proteção mantida ============ */
+  document.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+  document.addEventListener("keydown", function(e){
+    if((e.ctrlKey || e.metaKey) && ["c","p","s","u","a"].indexOf(String(e.key).toLowerCase()) >= 0){ e.preventDefault(); }
+  });
+
+  /* ============ Início ============ */
+  mostrarDicas();
+  atualizarFita();
+  setTimeout(oferecerContinuacao, 900);
+})();
+</script>
+</body>
+</html>
