@@ -165,15 +165,63 @@ Banners nos livros: 90s OU 10%; descanso 12h. Evolução (maioria) → `/trilogi
 
 ---
 
-## 12 LIVROS (biblioteca)
+## BIBLIOTECA — 7 LIVROS (limpeza de 02/09/2026)
 
-Selo **Da Missão** só: NT (`livro11`, card Livro 01), Evolução `livro05`, Anestesia `livro09`, Devocional `livro04`, Jesus `livro06`.
+**A casa tirou do ar 5 livros por não serem de autoria da casa (risco de direito autoral).**
 
-Fora do selo: Verbo, Mente Renovada, Caminho, Arquiteto, Observador, Sabedoria Mestres, Afirmações.
+Saíram (guardados em `/home/deploy/_limpeza-<data>/`, com LEIA-ME.txt para desfazer):
 
-Caminho do Despertar **sem** selo.
+| Arquivo | Título |
+|---|---|
+| `/livro01` | O Verbo que Transforma |
+| `/livro02` | A Sabedoria dos Mestres |
+| `/livro03` | A Mente Renovada |
+| `/livro08` | O Arquiteto da Realidade |
+| `/livro10` | O Despertar do Observador |
 
-HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTECAO_TODOS_LIVROS.py` inclui 04 e 06.
+Ficaram (7, numerados 01 a 07 na Home):
+
+1. `/livro11` O Novo Testamento como nunca lido (card Livro 01)
+2. `/livro05` Evolução da Alma
+3. `/livro09` Anestesia Mental
+4. `/livro04` Um Segundo com Deus
+5. `/livro06` Jesus Quer Falar com Seu Filho
+6. `/livro07` O Caminho do Despertar
+7. `/livro12` Comece o dia com Afirmações
+
+**Motivo:** eram livros da tradição mística compilada de outros autores. Coração limpo
+não resolve direito autoral. Além do risco, havia incoerência: «Sabedoria dos Mestres»
+ao lado de «Jesus Quer Falar» confunde o irmão novo. A casa prega Cristo.
+
+**Script da limpeza:** `consultoria-redes/APLICAR_LIMPEZA_LIVROS.py`
+(backup automático, modo `--simular`, travas de segurança).
+**Guia:** `consultoria-redes/COMO_LIMPAR_A_CASA.md`
+
+**O que a limpeza exigiu (não é só apagar o card):**
+1. cards da Home (index.html) — cortados pelos marcadores `<!-- LIVRO NN -->`
+2. renumerados 01 a 07 (o JS da biblioteca usa o `href`, não o número: seguro)
+3. sitemap.xml (senão o Google continua achando)
+4. **sw.js — fundamental**: o PWA baixa os livros para o cache do celular na instalação.
+   Sem tirar os endereços e subir a versão (v3 → v4), quem já instalou continuaria
+   abrindo os livros pelo cache mesmo depois de apagados do servidor.
+5. HTML movidos para fora da pasta pública (passam a dar 404)
+6. pendência à mão: Google Search Console → Remoções (os 5 endereços)
+7. `gerar_estatisticas.py`: `LIVROS_NO_AR` / `LIVROS_REMOVIDOS` — leituras.json e
+   ranking só com os livros no ar; histórico dos removidos numa linha própria
+
+**Descoberta importante (honestidade):** os contadores de "leituras" estavam
+**inflados pelo service worker**. Cada instalação do PWA baixava os 12 livros de uma
+vez (`caches.addAll(URLS)`), somando +1 em cada. Por isso todos apareciam com números
+quase iguais (285 a 296) e o NT com 155 (mais novo). Nenhum número de leitura anterior
+a 02/09 pode ser lido como "pessoas lendo".
+
+**PENDENTE (sem pressa, com sinceridade):** `/livro07` Caminho do Despertar e
+`/livro12` Afirmações continuam no ar, mas na memória antiga também constam como
+"fora do selo Da Missão". O autor precisa confirmar se são escritos pela casa.
+Se tiverem trechos de outros autores, a mesma limpeza se aplica.
+
+Selo **Da Missão**: NT, Evolução, Anestesia, Devocional, Jesus.
+Proteção HTML (selecionar sim, copiar não): script `APLICAR_PROTECAO_TODOS_LIVROS.py`.
 
 ---
 
@@ -266,6 +314,7 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 - Não share no checkout.
 - Não mexer em livro01–12 «pelo GitHub» (servidor está na frente; seleção liberada, cópia bloqueada).
 - Não overlay YouTube. Não publicar Eu Sou.
+- Não republicar texto de autor de fora da casa (limpeza de 02/09 tirou 5 livros por isso). Na dúvida, não publicar.
 - Não apagar apioficial / app / api compraoseu.
 - Não zerar enquete_dados.json para limpar spam.
 - **Nunca misturar bases:** percentual de um bloco só vale dentro dele (site novo × site antigo têm logs e períodos diferentes).
@@ -285,7 +334,8 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 6. Share nas pontes / obrigado: ideia boa, **depois**. Um lugar de cada vez.
 7. GitHub ≠ servidor. Espelho quando o autor puder, sem apagar o vivo.
 8. Subir o `gerar_estatisticas.py` **v5** (medição honesta) para `/home/deploy/` e rodar. Os números vão **cair** em relação à v4 (antes contava requisição como visita e robô como gente). Conferir o funil do bloco do site antigo.
-9. O autor procurou os arquivos na `main` do GitHub e não achou: eles estão no branch da sessão `arena/01a061ac-instalador`. Sempre avisar o caminho do branch, ou abrir PR.
+9. O autor procurou os arquivos na `main` do GitHub e não achou: eles estão no branch da sessão `arena/01a061ac-instalador`. Sempre avisar o caminho do branch, ou abrir PR (PR #6 aberto; **não mergear** — o autor decidiu preservar assim).
+10. Confirmar com o autor a origem de `/livro07` (Caminho do Despertar) e `/livro12` (Afirmações): fora do selo, podem precisar da mesma limpeza.
 
 ---
 

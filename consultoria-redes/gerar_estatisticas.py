@@ -103,6 +103,13 @@ CONVERSAO = OrderedDict([
     ('/q-palavra-share', ('📤', 'Palavra compartilhada')),
 ])
 
+# Biblioteca depois da limpeza de 02/09/2026 (so o que e autoria da casa).
+# Os livros sairam por risco de direito autoral (textos de outros autores).
+LIVROS_NO_AR = (
+    '/livro11', '/livro05', '/livro09', '/livro04', '/livro06', '/livro07', '/livro12',
+)
+LIVROS_REMOVIDOS = ('/livro01', '/livro02', '/livro03', '/livro08', '/livro10')
+
 MODULOS_LIVRES = (
     '/q-trilogia-m01', '/q-trilogia-m02', '/q-trilogia-m03',
     '/q-anestesia-m01', '/q-anestesia-m02', '/q-anestesia-m03',
@@ -750,8 +757,7 @@ def analisar_antigo(hoje_str):
 
 def gravar_leituras(contagens):
     livros = {}
-    for i in range(1, 13):
-        p = '/livro%02d' % i
+    for p in LIVROS_NO_AR:
         livros[p] = int(contagens.get(p, 0))
     top = sorted(livros.items(), key=lambda x: -x[1])
     top3 = [p for p, n in top if n > 0][:3]
@@ -915,13 +921,14 @@ def bloco_origem_html(origem, antigo, periodo_txt, ignorados=0):
         f'<tr><td>{html.escape(nome_pagina(p))} <span class="url">{html.escape(p)}</span></td>'
         f'<td class="num">{c}</td><td class="num" style="color:#7fe0a3">'
         f'{origem["entradas_hoje"].get(p, 0)}</td></tr>'
-        for p, c in entradas.most_common(8)
+        for p, c in entradas.most_common(12) if p not in LIVROS_REMOVIDOS
     ) or '<tr><td colspan="3">Sem dados</td></tr>'
 
     linhas_entradas_seo = ''.join(
         f'<tr><td>{html.escape(nome_pagina(p))} <span class="url">{html.escape(p)}</span></td>'
         f'<td class="num">{c}</td></tr>'
         for p, c in entradas_por_origem.get('google', Counter()).most_common(8)
+        if p not in LIVROS_REMOVIDOS
     ) or '<tr><td colspan="2">Ainda sem visitas com origem no Google neste log</td></tr>'
 
     # ---- ultimos 7 dias (so site novo: base unica)
@@ -1024,8 +1031,14 @@ def montar_html(res, antigo):
 
     itens = []
     for path, nome in PAGINAS.items():
+        if path in LIVROS_REMOVIDOS:
+            continue
         itens.append((path, nome, contagens.get(path, 0), contagens_hoje.get(path, 0)))
     itens_ordenados = sorted(itens, key=lambda x: -x[2])
+
+    hist_removidos = ' · '.join(
+        '%s %d' % (html.escape(PAGINAS.get(p, p)), int(contagens.get(p, 0)))
+        for p in LIVROS_REMOVIDOS if int(contagens.get(p, 0)) > 0)
 
     linhas = []
     for i, (path, nome, n, n_hoje) in enumerate(itens_ordenados, 1):
@@ -1057,9 +1070,9 @@ def montar_html(res, antigo):
         for k, v in outros[:15]
     ) or '<tr><td colspan="2">Nenhum</td></tr>'
 
-    total_livros = sum(contagens.get(p, 0) for p, _ in PAGINAS.items() if p.startswith('/livro'))
+    total_livros = sum(contagens.get(p, 0) for p in LIVROS_NO_AR)
     total_home = contagens.get('/', 0)
-    livros_lidos = sum(1 for p, _ in PAGINAS.items() if p.startswith('/livro') and contagens.get(p, 0) > 0)
+    livros_lidos = sum(1 for p in LIVROS_NO_AR if contagens.get(p, 0) > 0)
 
     n_sem = conv.get('/q-semeador', 0)
     n_col = conv.get('/q-colaborador', 0)
@@ -1217,6 +1230,7 @@ def montar_html(res, antigo):
     <tr><th>#</th><th>Página</th><th>Acessos (total · hoje)</th><th>%</th><th>Distribuição</th></tr>
     {''.join(linhas)}
   </table>
+  {'<p style="font-size:.8rem;color:#9fb0c8;">🚫 Fora do ar desde 02/09/2026 (histórico, não contam nos totais): ' + hist_removidos + '. Saíram por não serem de autoria da casa (risco de direito autoral).</p>' if hist_removidos else ''}
 
   <h2>Acessos por dia (últimos 7)</h2>
   <table>
