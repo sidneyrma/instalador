@@ -399,6 +399,56 @@ item «sem origem / começou antes do log»). Agora fecha.
 Arquivos: `site-contabo/gerar_estatisticas.py` (e cópia em `consultoria-redes/`).
 Commit `621a7e9`.
 
+## LIVRO07 — LAPIDAÇÃO CONCLUÍDA (02/09/2026)
+
+O autor deu liberdade total: «faça tudo para que a água transborde o vinho».
+Caminho A executado por inteiro. **147 trechos reescritos.**
+
+### Direito autoral: LIMPO (isso foi medido, não presumido)
+Método: maior trecho **literal** compartilhado entre livro07 e cada um dos outros 11
+livros, descontando a mobília do site (rodapé, menu, aviso de direitos).
+Resultado: só versículos bíblicos (domínio público) + 3 frases curtas
+(10, 15 e 11 palavras, de livro01/02/10). **Não há colagem de texto.**
+A junção foi feita nas ideias, não nas frases. **O livro fica no ar.**
+
+### O problema era de IDENTIDADE, não de direito autoral
+Medição antes: 344 ocorrências de vocabulário das antigas tradições contra 102 de
+vocabulário cristão. «mestres» 64x, «Jesus» 4x. O esqueleto da obra eram os
+**Sete Princípios Herméticos** (Kybalion), com fórmulas quase literais
+(«O Todo é Mente», «Assim em cima como embaixo», «tudo vibra»).
+
+### A transfusão
+- 7 princípios herméticos → **Criação, Imagem, Semeadura, Transformação, Tempo,
+  Graça, Amor** (Gênesis, Gálatas, Romanos, Eclesiastes, Efésios, 1 João)
+- «mestre interior» → **«Cristo em vós, a esperança da glória»** (Cl 1:27)
+- alquimia/transmutação → **Deus, o Oleiro**; decretos → **oração e confissão**
+- «os antigos ensinavam» → «a Escritura ensina»
+- lei da vibração → **semear e colher**; «o Todo» → o Criador
+- «vidas passadas» → **uma só vida, muitas camadas**
+
+### Resultado medido (mesma régua, antes e depois)
+| | antes | depois |
+|---|---:|---:|
+| esotérico | 344 | **147** |
+| cristão | 102 | **309** |
+| proporção | 3,4 : 1 | **0,5 : 1** (inverteu) |
+
+mestres 64→15 · Jesus 4→16 · Cristo 10→36 · vibra 33→0 · decreto 24→0 · os antigos 22→0
+
+### Costuras curadas
+frase órfã do cap.2 · duplicação do cap.1 · `i.mpotência`/`d.ureza` · parênteses
+trocados em 4 lugares · `Provérbrios` · remendo da reencarnação.
+
+### Integridade verificada
+447 parágrafos equilibrados · 493 parênteses · **0 links internos quebrados**.
+Reflexões, versículos, Sumário e estrutura intactos.
+
+**Armadilha evitada:** os IDs de navegação ainda contêm os slugs antigos
+(`cap-tulo-9-a-vibra-o-do-encontro`). Mantidos de propósito — mudar quebraria os links.
+
+### PENDENTE (autor)
+Enviar `site-contabo/livro07.html` para `/www/wwwroot/missaocomdeus.com.br/livro07.html`.
+
 ## SEARCH CONSOLE (02/09/2026)
 
 - O autor **enviou os 10 pedidos de remoção** (5 livros + 5 PDFs) pela ferramenta
