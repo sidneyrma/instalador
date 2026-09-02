@@ -586,11 +586,12 @@ def analisar_antigo(hoje_str):
     robos = 0
     ataques = 0
     erros = 0
+    internas = 0
     perfil = defaultdict(lambda: {'n': 0, 'paths': set(), 'conhecidos': 0})
 
     def varrer(f, fase):
         """fase 1 = perfil; fase 2 = sessoes."""
-        nonlocal bruto, robos, ataques, erros
+        nonlocal bruto, robos, ataques, erros, internas
         for linha in f:
             m = RE_COMPLETA.match(linha)
             if m:
@@ -634,6 +635,11 @@ def analisar_antigo(hoje_str):
             path_l = path.lower()
 
             if path.startswith('/.well-known'):
+                continue
+            # paginas internas da casa: nao e visita de irmao (o autor mesmo)
+            if path_l in INTERNAS_EXCLUIR:
+                if fase == 1:
+                    internas += 1
                 continue
             # o que nunca foi pagina da casa: ataque, varredura, endpoint
             if RE_ATAQUE.search(path_l):
@@ -726,6 +732,7 @@ def analisar_antigo(hoje_str):
         'robos': robos,
         'ataques': ataques,
         'erros': erros,
+        'internas': internas,
         'scanners': len(scanners),
         'descart_scanner': descart_scanner,
         'requisicoes_gente': bruto - descart_scanner,
@@ -869,6 +876,7 @@ def bloco_origem_html(origem, antigo, periodo_txt, ignorados=0):
     <tr><td>&nbsp;&nbsp;· ataques, varreduras e arquivos que nunca existiram</td><td class="num">{antigo['ataques']}</td></tr>
     <tr><td>&nbsp;&nbsp;· erros fora de 200/301</td><td class="num">{antigo['erros']}</td></tr>
     <tr><td>&nbsp;&nbsp;· IPs em modo varredura (muitos endereços diferentes no dia)</td><td class="num">{antigo['descart_scanner']}</td></tr>
+    <tr><td>&nbsp;&nbsp;· páginas internas da casa (/stats, /palavra, /mural)</td><td class="num">{antigo['internas']}</td></tr>
     <tr style="background:rgba(201,162,75,.08)"><td><b>= requisições de gente</b></td><td class="num"><b>{antigo['requisicoes_gente']}</b></td></tr>
     <tr style="background:rgba(127,224,163,.10)"><td><b>= visitas</b> (sessões de {SESSAO_MINUTOS} min)</td><td class="num"><b>{antigo['visitas']}</b></td></tr>
     <tr><td><b>= pessoas</b> (IPs distintos no periodo)</td><td class="num"><b>{antigo['pessoas']}</b></td></tr>
@@ -1249,9 +1257,9 @@ def main():
     print('stats.html gerado em', OUT)
     if antigo:
         print('log do site antigo lido:', antigo['arquivo'])
-        print('  funil: %d requisicoes -> %d de gente -> %d visitas (%d IPs). Descartados: %d robos, %d ataques, %d varredura.'
+        print('  funil: %d requisicoes -> %d de gente -> %d visitas (%d IPs). Descartados: %d robos, %d ataques, %d varredura, %d paginas internas.'
               % (antigo['bruto'], antigo['requisicoes_gente'], antigo['visitas'],
-                 antigo['pessoas'], antigo['robos'], antigo['ataques'], antigo['descart_scanner']))
+                 antigo['pessoas'], antigo['robos'], antigo['ataques'], antigo['descart_scanner'], antigo['internas']))
     else:
         print('AVISO: log do site antigo (compraoseu.com) nao encontrado.')
     print('Acesse: https://missaocomdeus.com.br/stats.html')
