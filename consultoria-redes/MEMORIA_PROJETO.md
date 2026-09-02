@@ -215,10 +215,23 @@ vez (`caches.addAll(URLS)`), somando +1 em cada. Por isso todos apareciam com n�
 quase iguais (285 a 296) e o NT com 155 (mais novo). Nenhum número de leitura anterior
 a 02/09 pode ser lido como "pessoas lendo".
 
-**PENDENTE (sem pressa, com sinceridade):** `/livro07` Caminho do Despertar e
-`/livro12` Afirmações continuam no ar, mas na memória antiga também constam como
-"fora do selo Da Missão". O autor precisa confirmar se são escritos pela casa.
-Se tiverem trechos de outros autores, a mesma limpeza se aplica.
+**Confirmado pelo autor em 02/09:** `/livro07` Caminho do Despertar e
+`/livro12` Afirmações **são da casa**. Ficam no ar. A memória antiga que os marcava
+como "fora do selo" estava desatualizada nesse ponto.
+
+**Um detalhe que fica anotado (não é urgência, é zelo):** o autor explicou que
+`/livro07` O Caminho do Despertar **é uma junção escrita a partir de todos os livros
+da casa — inclusive dos cinco que saíram** (que vinham de outros autores). A obra é
+da casa na autoria, mas pode carregar trechos dessa origem. O autor vai **lapidar**
+o livro para deixá-lo inteiramente voltado para a casa. Enquanto isso não acontece,
+não republicar nem reforçar esse título em campanhas.
+
+`/livro12` Afirmações está na vitrine da Home (hero), junto com o Devocional
+(`/livro04`) e o player da Palavra. Confirmado: os dois botões do topo apontam para
+`/livro04` e `/livro12`, ambos mantidos. A vitrine não foi tocada pela limpeza.
+
+**Verificação feita antes da limpeza:** todos os links para os livros removidos
+estavam **dentro dos cards** da biblioteca. Fora deles não sobrou nenhum link quebrado.
 
 Selo **Da Missão**: NT, Evolução, Anestesia, Devocional, Jesus.
 Proteção HTML (selecionar sim, copiar não): script `APLICAR_PROTECAO_TODOS_LIVROS.py`.
@@ -335,7 +348,7 @@ Proteção HTML (selecionar sim, copiar não): script `APLICAR_PROTECAO_TODOS_LI
 7. GitHub ≠ servidor. Espelho quando o autor puder, sem apagar o vivo.
 8. Subir o `gerar_estatisticas.py` **v5** (medição honesta) para `/home/deploy/` e rodar. Os números vão **cair** em relação à v4 (antes contava requisição como visita e robô como gente). Conferir o funil do bloco do site antigo.
 9. O autor procurou os arquivos na `main` do GitHub e não achou: eles estão no branch da sessão `arena/01a061ac-instalador`. Sempre avisar o caminho do branch, ou abrir PR (PR #6 aberto; **não mergear** — o autor decidiu preservar assim).
-10. Confirmar com o autor a origem de `/livro07` (Caminho do Despertar) e `/livro12` (Afirmações): fora do selo, podem precisar da mesma limpeza.
+10. Lapidar `/livro07` (O Caminho do Despertar): é junção escrita de todos os livros, inclusive dos 5 que saíram. Deixá-lo 100% da casa.
 
 ---
 
