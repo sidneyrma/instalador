@@ -372,6 +372,46 @@ Proteção HTML (selecionar sim, copiar não): script `APLICAR_PROTECAO_TODOS_LI
 - 02/09/2026: a casa varreu a própria biblioteca e tirou 5 livros que não eram seus.
   Dói, mas é assim que a casa fica digna da mensagem que carrega (Lc 15:8-10, a dracma perdida).
 
+## PAINEL v6 — TERMÔMETRO (02/09/2026)
+
+O autor pediu: «enxugar o dashboard, focar no que é importante, o que devo
+analisar como termômetro». O painel antigo tinha 5 grades de cartões e 10 tabelas
+todas abertas. O v6 deixa visível só o essencial e guarda o resto em `<details>`.
+
+**Visível:** 6 cartões do termômetro + tabela «o que observar» + faixa hoje/ontem
++ uma única tabela «De onde vêm» (base única, soma 100%).
+**Dentro de `<details>`:** site antigo, entradas/Google/indicações, ranking,
+conversão, downloads, por dia, funil.
+
+Os 6 indicadores escolhidos: Pessoas alcançadas · Visitas · Páginas por visita ·
+Leituras · PDFs baixados · Sustento (Semeador + Colaborador).
+
+**Correção de honestidade encontrada ao refazer o painel:** o funil do site antigo
+começava em 2.261 («requisições que sobraram») e mostrava abaixo «6.739 robôs
+descartados» — ou seja, parecia descartar mais do que tinha. Na verdade `bruto` era
+contado **depois** dos filtros. Corrigido: o funil agora começa em `linhas_lidas`
+(9.000 no teste) e desce honestamente até as visitas. Contadores novos:
+`linhas_lidas`, `ips_ign`, `ext` (resíduo).
+
+Também corrigido: a «resposta curta» do bloco de origem não fechava 100% (faltava o
+item «sem origem / começou antes do log»). Agora fecha.
+
+Arquivos: `site-contabo/gerar_estatisticas.py` (e cópia em `consultoria-redes/`).
+Commit `621a7e9`.
+
+## SEARCH CONSOLE (02/09/2026)
+
+- O autor **enviou os 10 pedidos de remoção** (5 livros + 5 PDFs) pela ferramenta
+  **Remoções → Remover URL temporariamente → Remover apenas este URL**.
+  Status: «A processar o pedido».
+- Armadilha evitada: a opção «Remover todos os URLs com este prefixo» apagaria
+  `/livro10`, `/livro11` e `/livro12` se ele digitasse `livro1`. Por isso marcou
+  «Remover apenas este URL».
+- Google começou a coletar impressões em **22/08/2026** (mensagem no sininho).
+  Isso significa que o relatório «Desempenho» passa a ter dado real de SEO.
+- **Ainda pendente:** reenviar `sitemap.xml` no Search Console para o Google reler
+  e trocar «14 páginas descobertas» por 9. O registro antigo não se apaga da lista.
+
 ## ARQUIVO (o que já foi e não reabrir como pendência)
 
 Migração compraoseu → missaocomdeus (17–21/08), GSC mudança de endereço, FormSubmit novo e-mail, selo Da Missão, NT no ar 27/08 20h, 3 aulas livres, anti-spam da enquete, pypdf, proteção HTML 04/06, player da Palavra + 30 áudios + share fora do play (29/08).
