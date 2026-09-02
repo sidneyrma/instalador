@@ -594,11 +594,13 @@ def analisar_antigo(hoje_str):
     ataques = 0
     erros = 0
     internas = 0
+    linhas_lidas = 0
+    ips_ign = 0
     perfil = defaultdict(lambda: {'n': 0, 'paths': set(), 'conhecidos': 0})
 
     def varrer(f, fase):
         """fase 1 = perfil; fase 2 = sessoes."""
-        nonlocal bruto, robos, ataques, erros, internas
+        nonlocal bruto, robos, ataques, erros, internas, linhas_lidas, ips_ign
         for linha in f:
             m = RE_COMPLETA.match(linha)
             if m:
@@ -610,6 +612,8 @@ def analisar_antigo(hoje_str):
                     continue
                 ip, data, url = m.group(1), m.group(2), m.group(3)
                 status, ref, ua = '301', '-', 'desconhecido'
+            if fase == 1:
+                linhas_lidas += 1
             if RE_EXT.search(url):
                 continue
 
@@ -622,6 +626,8 @@ def analisar_antigo(hoje_str):
                 pass
 
             if IPS_IGNORAR and ip in IPS_IGNORAR:
+                if fase == 1:
+                    ips_ign += 1
                 continue
             if ua == '-' or ua == '' or RE_BOT.search(ua):
                 if fase == 1:
@@ -736,6 +742,9 @@ def analisar_antigo(hoje_str):
     return {
         'arquivo': caminho,
         'bruto': bruto,
+        'linhas_lidas': linhas_lidas,
+        'ips_ign': ips_ign,
+        'ext': max(0, linhas_lidas - (robos + erros + internas + ataques + bruto + ips_ign)),
         'robos': robos,
         'ataques': ataques,
         'erros': erros,
@@ -774,21 +783,68 @@ def gravar_leituras(contagens):
         print('AVISO leituras.json:', e)
 
 
-def bloco_origem_html(origem, antigo, periodo_txt, ignorados=0):
-    """Monta a secao 'De onde vem os nossos irmaos'.
+# ============================================================== PAINEL v6
+# Termometro (02/09/2026)
+#
+# Regra de honradez, escrita aqui para nao se perder:
+#   · cada bloco declara a sua BASE e o seu PERIODO;
+#   · percentual so existe dentro de um mesmo bloco (soma 100%);
+#   · medicoes diferentes NAO se somam nem se comparam;
+#   · VISITA = sessao (30 min parado = nova visita), nao requisicao;
+#   · robo, varredura, ataque, erro e pagina interna da casa nao sao visita;
+#     e o descarte e mostrado no funil, nao escondido.
 
-    Regra de honradez: cada bloco tem a sua base e o seu periodo.
-    Nenhum numero e comparado com outro de base diferente.
-    """
+
+def _card_term(v, rotulo, rodape, extra=''):
+    return (f'<div class="card {extra}"><div class="v">{v}</div>'
+            f'<div class="l">{rotulo}</div>'
+            f'<div class="h">{rodape}</div></div>')
+
+
+def bloco_termometro_html(res, livros_total, livros_hoje, pdfs, pdfs_hoje,
+                          sementes, sementes_hoje):
+    """Os 6 numeros que o irmao deve olhar sempre."""
+    (contagens, total_geral, data_inicio, data_fim, por_dia,
+     contagens_hoje, total_hoje, total_ontem, variacao, hoje_str, ontem,
+     ontem_mesmo_horario, projecao,
+     unicos_hoje, unicos_ontem, unicos_total, visitantes_por_dia,
+     descartados_robos, descartados_erros, robos_por_dia, erros_por_dia,
+     conv, conv_hoje, conv_por_dia, origem, ignorados) = res
+
+    visitas = origem['total_visitas']
+    visitas_hoje = origem['visitas_hoje']
+    visitas_ontem = origem['visitas_ontem']
+    ppv = (total_geral / visitas) if visitas else 0.0
+
+    cards = []
+    cards.append(_card_term(
+        f'{unicos_total}', '👥 Pessoas alcançadas',
+        f'{unicos_hoje} hoje · IPs distintos', 'humano destaque'))
+    cards.append(_card_term(
+        f'{visitas}', '🚪 Visitas',
+        f'{visitas_hoje} hoje · {visitas_ontem} ontem', 'destaque'))
+    cards.append(_card_term(
+        f'{ppv:.1f}', '📊 Páginas por visita',
+        'acima de 3 = casa viva', 'humano destaque'))
+    cards.append(_card_term(
+        f'{livros_total}', '📖 Leituras (páginas de livro)',
+        f'{livros_hoje} hoje', ''))
+    cards.append(_card_term(
+        f'{pdfs}', '⬇️ PDFs baixados',
+        f'{pdfs_hoje} hoje', ''))
+    cards.append(_card_term(
+        f'{sementes}', '🎯 Sustento (Semeador + Colaborador)',
+        f'{sementes_hoje} hoje', 'conv'))
+    return ''.join(cards)
+
+
+def bloco_origem_html(origem, antigo, periodo_txt, ignorados=0):
+    """Versao enxuta: uma leitura de uma linha + UMA tabela, base unica."""
     origens = origem['origens']
     origens_hoje = origem['origens_hoje']
     origens_ips = origem['origens_ips']
-    origens_por_dia = origem['origens_por_dia']
-    visitas_por_dia = origem['visitas_por_dia']
     total = origem['total_visitas']
-    refs_dom = origem['refs_dom']
-    entradas = origem['entradas']
-    entradas_por_origem = origem['entradas_por_origem']
+    base = total or 1
 
     def n(b):
         return int(origens.get(b, 0))
@@ -801,215 +857,115 @@ def bloco_origem_html(origem, antigo, periodo_txt, ignorados=0):
 
     n_seo = sum(n(b) for b in SEO)
     n_redes = sum(n(b) for b in REDES)
-    base = total or 1
 
-    def card(emoji, valor, rotulo, rodape, marca=''):
-        return (f'<div class="card origem"><div class="v">{valor}{marca}</div>'
-                f'<div class="l">{emoji} {rotulo}</div>'
-                f'<div class="h">{rodape}</div></div>')
-
-    cards = []
-    cards.append(card('🔎', n_seo, 'SEO (busca)',
-                      f'{sum(hoje_n(b) for b in SEO)} hoje · {sum(pessoas(b) for b in SEO)} IPs'))
-    cards.append(card('🏠', n('antigo'), 'Site antigo (declarado)',
-                      f'{hoje_n("antigo")} hoje · {pessoas("antigo")} IPs'))
-    cards.append(card('🧭', n('direto'), 'Direto (sem referer)',
-                      f'{hoje_n("direto")} hoje · {pessoas("direto")} IPs'))
-    cards.append(card('📣', n_redes, 'Redes (IG/FB/TikTok/YT/Zap)',
-                      f'{sum(hoje_n(b) for b in REDES)} hoje · {sum(pessoas(b) for b in REDES)} IPs'))
-    cards.append(card('🔗', n('sites'), 'Outros sites',
-                      f'{hoje_n("sites")} hoje · {pessoas("sites")} IPs'))
-    cards.append(card('📊', total, 'Visitas (total)',
-                      f'{origem["visitas_hoje"]} hoje · {origem["visitas_ontem"]} ontem'))
-
-    # ---- tabela de origens (base: visitas do site novo)
     linhas = []
     for b, (emoji, nome) in ORIGENS.items():
         v = n(b)
         if v == 0 and b in ('whatsapp', 'email', 'outros_social', 'desconhecida'):
             continue
         pct = v / base * 100
-        destaque = ' style="background:rgba(201,162,75,.08)"' if b in SEO else ''
-        linhas.append(f"""
-        <tr{destaque}>
-          <td>{emoji} {html.escape(nome)}</td>
-          <td class="num">{v}</td>
-          <td class="num">{pessoas(b)}</td>
-          <td class="num" style="color:#7fe0a3">{hoje_n(b)}</td>
-          <td class="num">{pct:.1f}%</td>
-          <td><div class="barra"><div class="fill" style="width:{min(100,pct):.1f}%"></div></div></td>
-        </tr>""")
-
-    # ---- medicao separada: o endereco antigo
-    if antigo:
-        per = '—'
-        if antigo['data_inicio'] and antigo['data_fim']:
-            per = (f"{antigo['data_inicio'].strftime('%d/%m/%Y')} a "
-                   f"{antigo['data_fim'].strftime('%d/%m/%Y')}")
-        lo = antigo['por_origem']
-        base_a = antigo['visitas'] or 1
-        linhas_antigo = []
-        for b, (emoji, nome) in ORIGENS.items():
-            v = int(lo.get(b, 0))
-            if v == 0:
-                continue
-            linhas_antigo.append(f"""
-        <tr>
-          <td>{emoji} {html.escape(nome)}</td>
-          <td class="num">{v}</td>
-          <td class="num">{v / base_a * 100:.1f}%</td>
-        </tr>""")
-        top_urls = ' · '.join(
-            f'{html.escape(u)} ({c})' for u, c in antigo['urls'].most_common(6)
-        ) or '—'
-        dias_a = sorted(antigo['por_dia'].keys(), key=chave_data, reverse=True)[:7]
-        linhas_dias_a = '\n'.join(
-            f'<tr><td>{d}</td><td class="num">{antigo["por_dia"].get(d, 0)}</td></tr>'
-            for d in dias_a
-        ) or '<tr><td colspan="2">Sem dados</td></tr>'
-        antigo_html = f"""
-  <h3 style="color:#e3c877;font-size:1rem;margin:26px 0 8px;">🏠 Medição separada: o endereço antigo (compraoseu.com)</h3>
-  <p class="aviso" style="margin:0 0 14px;">
-    <b>Período deste bloco: {per}.</b> Base própria, log próprio.
-    <b>Não somar e não misturar</b> com os números de cima: são duas medições diferentes.
-    O site antigo responde 301 para qualquer endereço, então robôs de varredura também
-    recebiam 301. Por isso o funil abaixo existe e é mostrado inteiro.
-  </p>
-  <table>
-    <tr><th>Funil do log do compraoseu.com</th><th>Quantidade</th></tr>
-    <tr><td>Requisições que sobraram depois de tirar imagens e SSL</td><td class="num">{antigo['bruto']}</td></tr>
-    <tr><td>&nbsp;&nbsp;· robôs conhecidos (user-agent) descartados</td><td class="num">{antigo['robos']}</td></tr>
-    <tr><td>&nbsp;&nbsp;· ataques, varreduras e arquivos que nunca existiram</td><td class="num">{antigo['ataques']}</td></tr>
-    <tr><td>&nbsp;&nbsp;· erros fora de 200/301</td><td class="num">{antigo['erros']}</td></tr>
-    <tr><td>&nbsp;&nbsp;· IPs em modo varredura (muitos endereços diferentes no dia)</td><td class="num">{antigo['descart_scanner']}</td></tr>
-    <tr><td>&nbsp;&nbsp;· páginas internas da casa (/stats, /palavra, /mural)</td><td class="num">{antigo['internas']}</td></tr>
-    <tr style="background:rgba(201,162,75,.08)"><td><b>= requisições de gente</b></td><td class="num"><b>{antigo['requisicoes_gente']}</b></td></tr>
-    <tr style="background:rgba(127,224,163,.10)"><td><b>= visitas</b> (sessões de {SESSAO_MINUTOS} min)</td><td class="num"><b>{antigo['visitas']}</b></td></tr>
-    <tr><td><b>= pessoas</b> (IPs distintos no periodo)</td><td class="num"><b>{antigo['pessoas']}</b></td></tr>
-    <tr><td>Período coberto pelo log</td><td class="num">{per}</td></tr>
-  </table>
-  <h3 style="color:#e3c877;font-size:.95rem;margin:20px 0 8px;">Dessas visitas, onde a pessoa estava antes:</h3>
-  <table>
-    <tr><th>Origem (medição própria do site antigo)</th><th>Visitas</th><th>% das visitas deste bloco</th></tr>
-    {''.join(linhas_antigo) or '<tr><td colspan="3">Sem dados</td></tr>'}
-  </table>
-  <p style="font-size:.8rem;color:#9fb0c8;">Endereços mais pedidos no site antigo: {top_urls}</p>
-  <table>
-    <tr><th>Dia (medição do site antigo)</th><th>Visitas</th></tr>
-    {linhas_dias_a}
-  </table>
-"""
-    else:
-        antigo_html = """
-  <h3 style="color:#e3c877;font-size:1rem;margin:26px 0 8px;">🏠 Endereço antigo (compraoseu.com)</h3>
-  <p class="aviso">Não achei o log do endereço antigo neste servidor. Se o compraoseu.com estiver em
-  <b>outra</b> máquina, copie o arquivo de log dele para <code>/www/wwwlogs/compraoseu.com.log</code>
-  (ou ajuste <code>STATS_LOG_ANTIGO</code>) que esta tabela aparece sozinha.</p>
-"""
-
-    # ---- dominios que indicam
-    linhas_refs = ''.join(
-        f'<tr><td>{html.escape(d)}</td><td class="num">{c}</td></tr>'
-        for d, c in refs_dom.most_common(12)
-    ) or '<tr><td colspan="2">Nenhum registrado</td></tr>'
-
-    # ---- paginas de entrada
-    def nome_pagina(p):
-        return PAGINAS.get(p, p)
-
-    linhas_entradas = ''.join(
-        f'<tr><td>{html.escape(nome_pagina(p))} <span class="url">{html.escape(p)}</span></td>'
-        f'<td class="num">{c}</td><td class="num" style="color:#7fe0a3">'
-        f'{origem["entradas_hoje"].get(p, 0)}</td></tr>'
-        for p, c in entradas.most_common(12) if p not in LIVROS_REMOVIDOS
-    ) or '<tr><td colspan="3">Sem dados</td></tr>'
-
-    linhas_entradas_seo = ''.join(
-        f'<tr><td>{html.escape(nome_pagina(p))} <span class="url">{html.escape(p)}</span></td>'
-        f'<td class="num">{c}</td></tr>'
-        for p, c in entradas_por_origem.get('google', Counter()).most_common(8)
-        if p not in LIVROS_REMOVIDOS
-    ) or '<tr><td colspan="2">Ainda sem visitas com origem no Google neste log</td></tr>'
-
-    # ---- ultimos 7 dias (so site novo: base unica)
-    dias = sorted(visitas_por_dia.keys(), key=chave_data, reverse=True)[:7]
-    linhas_dias = '\n'.join(
-        '<tr><td>%s</td><td class="num">%d</td><td class="num">%d</td>'
-        '<td class="num">%d</td><td class="num">%d</td><td class="num">%d</td></tr>' % (
-            d,
-            sum(int(origens_por_dia.get(d, Counter()).get(b, 0)) for b in SEO),
-            int(origens_por_dia.get(d, Counter()).get('antigo', 0)),
-            int(origens_por_dia.get(d, Counter()).get('direto', 0)),
-            sum(int(origens_por_dia.get(d, Counter()).get(b, 0)) for b in REDES),
-            visitas_por_dia.get(d, 0),
-        )
-        for d in dias
-    ) or '<tr><td colspan="6">Sem dados</td></tr>'
+        hoje_txt = f' <span class="hj">+{hoje_n(b)} hoje</span>' if hoje_n(b) else ''
+        marca = ' class="seo"' if b in SEO else ''
+        linhas.append(
+            f'<tr{marca}><td>{emoji} {html.escape(nome)}</td>'
+            f'<td class="num">{v}{hoje_txt}</td>'
+            f'<td class="num">{pessoas(b)}</td>'
+            f'<td class="num">{pct:.1f}%</td>'
+            f'<td><div class="barra"><div class="fill" style="width:{min(100, pct):.1f}%"></div></div></td></tr>')
 
     pct = lambda v: (v / base * 100) if total else 0.0
 
     return f"""
-  <h2>De onde vêm os nossos irmãos <span class="selo-filtro">medição v5</span></h2>
+  <h2>De onde vêm <span class="selo-filtro">base: {total} visitas do site novo</span></h2>
 
-  <p class="aviso" style="margin-bottom:16px;">
-    <b>Como medimos (para ninguém se enganar):</b><br>
-    · <b>Visita</b> = sessão: {SESSAO_MINUTOS} minutos sem atividade conta como nova visita
-      (mesmo critério do Google Analytics). Navegar de um livro para outro é a <i>mesma</i> visita.<br>
-    · <b>Origem da visita</b> = origem do primeiro acesso dela. Uma visita tem uma única origem:
-      os percentuais de cada bloco somam 100%.<br>
-    · <b>Pessoas</b> = IPs distintos. É aproximação: IP de celular é compartilhado entre pessoas
-      e muda ao longo do dia.<br>
-    · <b>Não entram:</b> robôs, varreduras, ataques, erros, e as páginas internas da casa
-      (/stats, /palavra, /mural), que não são visita de irmão.<br>
-    · <b>Limite honesto:</b> WhatsApp, Instagram e TikTok abrem o link sem avisar de onde veio,
-      então essa pessoa cai em «Direto». Por isso existe a marcação <code>utm_source</code>.<br>
-    · Cada bloco tem período e base próprios. <b>Percentual só dentro do mesmo bloco.</b>
-      {('<br>· Descontados por IP ignorado (o senhor mesmo): %d acessos.' % ignorados) if ignorados else ''}
+  <p class="leitura">
+    Das <b>{total}</b> visitas de <b>{periodo_txt}</b>:
+    <b>{pct(n_seo):.0f}% pela busca (SEO)</b>,
+    <b>{pct(n('antigo')):.0f}% com o endereço antigo declarado</b>,
+    <b>{pct(n('direto')):.0f}% direto</b> e {pct(n_redes):.0f}% pelas redes{(' , e ' + format(pct(n('desconhecida')), '.0f') + '% começou antes de o log existir') if n('desconhecida') else ''}.
   </p>
 
-  <div class="cards">{''.join(cards)}</div>
+  <table>
+    <tr><th>Origem da visita</th><th>Visitas</th><th>Pessoas</th><th>%</th><th>Distribuição</th></tr>
+    {''.join(linhas) or '<tr><td colspan="5">Sem dados</td></tr>'}
+  </table>
 
-  <p style="font-size:.95rem;color:#e8ecf3;margin:-16px 0 18px;">
-    <b>Resposta curta ({periodo_txt}):</b> das <b>{total}</b> visitas do site novo,
-    <b>{pct(n_seo):.0f}% vieram da busca (SEO)</b>,
-    <b>{pct(n('antigo')):.0f}% chegaram com o endereço antigo declarado</b> (referer compraoseu.com),
-    {pct(n('direto')):.0f}% entraram direto e {pct(n_redes):.0f}% vieram das redes.
-    {('Separadamente, no mesmo periodo, o log do compraoseu.com registrou <b>%d visitas</b> (medição própria, funil abaixo; <b>não somar</b>).' % antigo['visitas']) if antigo else ''}
+  <p class="nota">
+    «Site antigo» é quando o navegador avisa que a pessoa veio do compraoseu.com.
+    «Direto» é quando ele <b>não avisa nada</b>: endereço digitado, favorito,
+    link colado em aplicativo — <b>inclusive WhatsApp, Instagram e TikTok</b>,
+    que abrem o link sem dizer de onde veio. Cada visita tem uma única origem,
+    então as linhas somam 100%.
+  </p>
+"""
+
+
+def bloco_antigo_html(antigo):
+    """Medicao separada do endereco antigo. Base e periodo proprios."""
+    if not antigo:
+        return """
+  <h3 style="color:#e3c877;font-size:1rem;margin:20px 0 8px;">🏠 Endereço antigo (compraoseu.com)</h3>
+  <p class="nota">Não achei o log do endereço antigo neste servidor. Se o compraoseu.com
+  estiver em <b>outra</b> máquina, copie o arquivo de log dele para
+  <code>/www/wwwlogs/compraoseu.com.log</code> (ou ajuste
+  <code>STATS_LOG_ANTIGO</code>) que esta tabela aparece sozinha.</p>
+"""
+    per = '—'
+    if antigo['data_inicio'] and antigo['data_fim']:
+        per = (f"{antigo['data_inicio'].strftime('%d/%m/%Y')} a "
+               f"{antigo['data_fim'].strftime('%d/%m/%Y')}")
+    lo = antigo['por_origem']
+    base_a = antigo['visitas'] or 1
+    linhas_antigo = []
+    for b, (emoji, nome) in ORIGENS.items():
+        v = int(lo.get(b, 0))
+        if v == 0:
+            continue
+        linhas_antigo.append(
+            f'<tr><td>{emoji} {html.escape(nome)}</td>'
+            f'<td class="num">{v}</td>'
+            f'<td class="num">{v / base_a * 100:.1f}%</td></tr>')
+    top_urls = ' · '.join(
+        f'{html.escape(u)} ({c})' for u, c in antigo['urls'].most_common(6)) or '—'
+    dias_a = sorted(antigo['por_dia'].keys(), key=chave_data, reverse=True)[:7]
+    linhas_dias_a = '\n'.join(
+        f'<tr><td>{d}</td><td class="num">{antigo["por_dia"].get(d, 0)}</td></tr>'
+        for d in dias_a) or '<tr><td colspan="2">Sem dados</td></tr>'
+
+    return f"""
+  <p class="aviso" style="margin:0 0 14px;">
+    <b>Período deste bloco: {per}.</b> Log próprio, base própria.
+    <b>Não somar e não misturar</b> com os números de cima — são duas medições diferentes.
+    O site antigo responde 301 para qualquer endereço, então robôs de varredura também
+    recebiam 301. Por isso o funil abaixo existe e é mostrado inteiro.
   </p>
   <table>
-    <tr><th>Origem da visita</th><th>Visitas</th><th>IPs</th><th>Hoje</th><th>%</th><th>Distribuição</th></tr>
-    {''.join(linhas)}
-  </table>
-  <p style="font-size:.8rem;color:#9fb0c8;">
-    «Site antigo (declarado)» é quando o navegador avisa que a pessoa veio do compraoseu.com.
-    «Direto» é quando ele não avisa nada: endereço digitado, favoritos, link colado em app,
-    ou redirecionamento sem referer. As duas coisas se completam, mas cada visita é contada
-    uma única vez, então as linhas somam o total.
-  </p>
-  {antigo_html}
-
-  <h3 style="color:#e3c877;font-size:1rem;margin:26px 0 8px;">📍 Por qual página eles entram</h3>
-  <table>
-    <tr><th>Página de entrada</th><th>Visitas</th><th>Hoje</th></tr>
-    {linhas_entradas}
+    <tr><th>Funil do log do compraoseu.com (de cima para baixo)</th><th>Quantidade</th></tr>
+    <tr><td><b>Linhas lidas no log</b></td><td class="num"><b>{antigo['linhas_lidas']}</b></td></tr>
+    <tr><td>&nbsp;&nbsp;− imagens, CSS, JS e fontes (não são visita)</td><td class="num">{antigo['ext']}</td></tr>
+    <tr><td>&nbsp;&nbsp;− robôs conhecidos (user-agent)</td><td class="num">{antigo['robos']}</td></tr>
+    <tr><td>&nbsp;&nbsp;− erros fora de 200/301/304</td><td class="num">{antigo['erros']}</td></tr>
+    <tr><td>&nbsp;&nbsp;− páginas internas da casa (/stats, /palavra, /mural)</td><td class="num">{antigo['internas']}</td></tr>
+    <tr><td>&nbsp;&nbsp;− ataques e varreduras (arquivos que nunca existiram)</td><td class="num">{antigo['ataques']}</td></tr>
+    {('<tr><td>&nbsp;&nbsp;− IPs ignorados (o senhor mesmo)</td><td class="num">' + str(antigo['ips_ign']) + '</td></tr>') if antigo.get('ips_ign') else ''}
+    <tr style="background:rgba(201,162,75,.08)"><td><b>= requisições que sobraram</b></td><td class="num"><b>{antigo['bruto']}</b></td></tr>
+    <tr><td>&nbsp;&nbsp;− IPs em modo varredura (muitos endereços diferentes, quase nenhum conhecido)</td><td class="num">{antigo['descart_scanner']}</td></tr>
+    <tr style="background:rgba(201,162,75,.08)"><td><b>= requisições de gente</b></td><td class="num"><b>{antigo['requisicoes_gente']}</b></td></tr>
+    <tr style="background:rgba(127,224,163,.10)"><td><b>= visitas</b> (sessões de {SESSAO_MINUTOS} min)</td><td class="num"><b>{antigo['visitas']}</b></td></tr>
+    <tr><td><b>= pessoas</b> (IPs distintos no período)</td><td class="num"><b>{antigo['pessoas']}</b></td></tr>
   </table>
 
-  <h3 style="color:#e3c877;font-size:1rem;margin:26px 0 8px;">🔎 Páginas que o Google mais entrega</h3>
+  <h3 style="color:#e3c877;font-size:.95rem;margin:20px 0 8px;">Dessas visitas, onde a pessoa estava antes:</h3>
   <table>
-    <tr><th>Página (visita com origem no Google)</th><th>Visitas</th></tr>
-    {linhas_entradas_seo}
+    <tr><th>Origem (medição própria do site antigo)</th><th>Visitas</th><th>% deste bloco</th></tr>
+    {''.join(linhas_antigo) or '<tr><td colspan="3">Sem dados</td></tr>'}
   </table>
 
-  <h3 style="color:#e3c877;font-size:1rem;margin:26px 0 8px;">🔗 Quem nos indica (domínios)</h3>
-  <table>
-    <tr><th>Domínio de onde a pessoa veio</th><th>Visitas</th></tr>
-    {linhas_refs}
-  </table>
+  <p class="nota">Endereços mais pedidos no site antigo: {top_urls}</p>
 
-  <h3 style="color:#e3c877;font-size:1rem;margin:26px 0 8px;">📅 Últimos 7 dias (site novo, base única)</h3>
   <table>
-    <tr><th>Dia</th><th>SEO</th><th>Site antigo</th><th>Direto</th><th>Redes</th><th>Visitas</th></tr>
-    {linhas_dias}
+    <tr><th>Dia (medição do site antigo)</th><th>Visitas</th></tr>
+    {linhas_dias_a}
   </table>
 """
 
@@ -1022,66 +978,96 @@ def montar_html(res, antigo):
      descartados_robos, descartados_erros, robos_por_dia, erros_por_dia,
      conv, conv_hoje, conv_por_dia, origem, ignorados) = res
 
-    if variacao > 0:
-        seta = '📈'
-    elif variacao < 0:
-        seta = '📉'
-    else:
-        seta = '➖'
+    seta = '📈' if variacao > 0 else ('📉' if variacao < 0 else '➖')
 
-    itens = []
-    for path, nome in PAGINAS.items():
-        if path in LIVROS_REMOVIDOS:
-            continue
-        itens.append((path, nome, contagens.get(path, 0), contagens_hoje.get(path, 0)))
+    # ---------------------------------------------------------- periodo
+    periodo = '—'
+    if data_inicio and data_fim:
+        periodo = (f'{data_inicio.strftime("%d/%m/%Y %H:%M")} até '
+                   f'{data_fim.strftime("%d/%m/%Y %H:%M")}')
+
+    # ---------------------------------------------------------- termometro
+    livros_total = sum(contagens.get(p, 0) for p in LIVROS_NO_AR)
+    livros_hoje = sum(contagens_hoje.get(p, 0) for p in LIVROS_NO_AR)
+    pdfs = sum(contagens.get(k, 0) for k in DL_NOMES if k.startswith('/dl:'))
+    pdfs_hoje = sum(contagens_hoje.get(k, 0) for k in DL_NOMES if k.startswith('/dl:'))
+    sementes = conv.get('/q-semeador', 0) + conv.get('/q-colaborador', 0)
+    sementes_hoje = conv_hoje.get('/q-semeador', 0) + conv_hoje.get('/q-colaborador', 0)
+    palavra = conv.get('/q-palavra-play', 0)
+    palavra_hoje = conv_hoje.get('/q-palavra-play', 0)
+    cards_termo = bloco_termometro_html(res, livros_total, livros_hoje,
+                                        pdfs, pdfs_hoje, sementes, sementes_hoje)
+
+    # ---------------------------------------------------------- ranking
+    itens = [(p, n, contagens.get(p, 0), contagens_hoje.get(p, 0))
+             for p, n in PAGINAS.items() if p not in LIVROS_REMOVIDOS]
     itens_ordenados = sorted(itens, key=lambda x: -x[2])
+    linhas = []
+    for i, (path, nome, n, n_hoje) in enumerate(itens_ordenados, 1):
+        pct = (n / total_geral * 100) if total_geral else 0
+        medalha = {1: '🥇', 2: '🥈', 3: '🥉'}.get(i, '')
+        hoje_txt = f' <span class="hj">+{n_hoje}</span>' if n_hoje else ''
+        linhas.append(
+            f'<tr><td class="num">{medalha} {i}</td>'
+            f'<td><a href="https://missaocomdeus.com.br{path}">{html.escape(nome)}</a>'
+            f'<br><span class="url">{path}</span></td>'
+            f'<td class="num">{n}{hoje_txt}</td>'
+            f'<td class="num">{pct:.1f}%</td></tr>')
 
     hist_removidos = ' · '.join(
         '%s %d' % (html.escape(PAGINAS.get(p, p)), int(contagens.get(p, 0)))
         for p in LIVROS_REMOVIDOS if int(contagens.get(p, 0)) > 0)
 
-    linhas = []
-    for i, (path, nome, n, n_hoje) in enumerate(itens_ordenados, 1):
-        pct = (n / total_geral * 100) if total_geral else 0
-        medalha = {1: '🥇', 2: '🥈', 3: '🥉'}.get(i, '')
-        hoje_txt = f'<span style="color:#7fe0a3">({n_hoje} hoje)</span>' if n_hoje else ''
-        linhas.append(f"""
-        <tr>
-          <td class="num">{medalha} {i}</td>
-          <td><a href="https://missaocomdeus.com.br{path}">{html.escape(nome)}</a>
-<span class="url">{path}</span></td>
-          <td class="num">{n} {hoje_txt}</td>
-          <td class="num">{pct:.1f}%</td>
-          <td><div class="barra"><div class="fill" style="width:{min(100,pct)}%"></div></div></td>
-        </tr>""")
-
+    # ---------------------------------------------------------- por dia
     dias = sorted(por_dia.keys(), key=chave_data, reverse=True)[:7]
     linhas_dias = '\n'.join(
         f'<tr><td>{d}</td><td class="num">{por_dia.get(d, 0)}</td>'
         f'<td class="num" style="color:#7fe0a3">{len(visitantes_por_dia.get(d, set()))}</td>'
         f'<td class="num" style="color:#9fb0c8">{robos_por_dia.get(d, 0) + erros_por_dia.get(d, 0)}</td></tr>'
-        for d in dias
-    ) or '<tr><td colspan="4">Sem dados diários</td></tr>'
+        for d in dias) or '<tr><td colspan="4">Sem dados diários</td></tr>'
 
-    outros = [(k, v) for k, v in contagens.items() if k.startswith('/outros:')]
-    outros.sort(key=lambda x: -x[1])
-    linhas_outros = '\n'.join(
-        f'<tr><td>{html.escape(k.replace("/outros:", "/"))}</td><td class="num">{v}</td></tr>'
-        for k, v in outros[:15]
-    ) or '<tr><td colspan="2">Nenhum</td></tr>'
+    dias_o = sorted(origem['visitas_por_dia'].keys(), key=chave_data, reverse=True)[:7]
+    linhas_dias_o = '\n'.join(
+        '<tr><td>%s</td><td class="num">%d</td><td class="num">%d</td>'
+        '<td class="num">%d</td><td class="num">%d</td><td class="num">%d</td></tr>' % (
+            d,
+            sum(int(origem['origens_por_dia'].get(d, Counter()).get(b, 0)) for b in SEO),
+            int(origem['origens_por_dia'].get(d, Counter()).get('antigo', 0)),
+            int(origem['origens_por_dia'].get(d, Counter()).get('direto', 0)),
+            sum(int(origem['origens_por_dia'].get(d, Counter()).get(b, 0)) for b in REDES),
+            origem['visitas_por_dia'].get(d, 0))
+        for d in dias_o) or '<tr><td colspan="6">Sem dados</td></tr>'
 
-    total_livros = sum(contagens.get(p, 0) for p in LIVROS_NO_AR)
-    total_home = contagens.get('/', 0)
-    livros_lidos = sum(1 for p in LIVROS_NO_AR if contagens.get(p, 0) > 0)
+    # ---------------------------------------------------------- entradas
+    def nome_pagina(p):
+        return PAGINAS.get(p, p)
 
+    linhas_entradas = ''.join(
+        f'<tr><td>{html.escape(nome_pagina(p))} <span class="url">{html.escape(p)}</span></td>'
+        f'<td class="num">{c}</td>'
+        f'<td class="num" style="color:#7fe0a3">{origem["entradas_hoje"].get(p, 0)}</td></tr>'
+        for p, c in origem['entradas'].most_common(12) if p not in LIVROS_REMOVIDOS
+    ) or '<tr><td colspan="3">Sem dados</td></tr>'
+
+    linhas_entradas_seo = ''.join(
+        f'<tr><td>{html.escape(nome_pagina(p))} <span class="url">{html.escape(p)}</span></td>'
+        f'<td class="num">{c}</td></tr>'
+        for p, c in origem['entradas_por_origem'].get('google', Counter()).most_common(8)
+        if p not in LIVROS_REMOVIDOS
+    ) or '<tr><td colspan="2">Ainda sem visitas com origem no Google neste log</td></tr>'
+
+    linhas_refs = ''.join(
+        f'<tr><td>{html.escape(d)}</td><td class="num">{c}</td></tr>'
+        for d, c in origem['refs_dom'].most_common(12)
+    ) or '<tr><td colspan="2">Nenhum registrado</td></tr>'
+
+    # ---------------------------------------------------------- conversao
     n_sem = conv.get('/q-semeador', 0)
     n_col = conv.get('/q-colaborador', 0)
-    pediram_code = conv.get('/q-codigo', 0) + conv.get('/q-whats', 0)
     aula_gratis = sum(contagens.get(p, 0) for p in MODULOS_LIVRES)
     aula_hoje = sum(contagens_hoje.get(p, 0) for p in MODULOS_LIVRES)
     brinde_nt = contagens.get('/dl:brinde-nt', 0)
-    brinde_hoje = contagens_hoje.get('/dl:brinde-nt', 0)
-    taxa = (n_sem / unicos_total * 100) if unicos_total else 0
+    taxa = (sementes / unicos_total * 100) if unicos_total else 0
 
     cards_conv = []
     cards_conv.append(
@@ -1093,20 +1079,20 @@ def montar_html(res, antigo):
         f'<div class="l">🌱 Colaborador R$ 19,90</div>'
         f'<div class="h">{conv_hoje.get("/q-colaborador", 0)} hoje</div></div>')
     cards_conv.append(
-        f'<div class="card conv"><div class="v">{pediram_code}</div>'
-        f'<div class="l">💬 Código / WhatsApp</div>'
-        f'<div class="h">{conv_hoje.get("/q-codigo", 0) + conv_hoje.get("/q-whats", 0)} hoje</div></div>')
-    cards_conv.append(
         f'<div class="card conv"><div class="v">{aula_gratis}</div>'
-        f'<div class="l">🎬 Aula grátis (plays 1 a 3)</div>'
+        f'<div class="l">🎬 Aulas grátis (módulos livres)</div>'
         f'<div class="h">{aula_hoje} hoje</div></div>')
     cards_conv.append(
         f'<div class="card conv"><div class="v">{brinde_nt}</div>'
-        f'<div class="l">🎁 PDF NT baixado</div>'
-        f'<div class="h">{brinde_hoje} hoje · obrigado {contagens.get("/obrigado", 0)}</div></div>')
+        f'<div class="l">🎁 Brinde do NT baixado</div>'
+        f'<div class="h">obrigado {contagens.get("/obrigado", 0)}</div></div>')
+    cards_conv.append(
+        f'<div class="card conv"><div class="v">{palavra}</div>'
+        f'<div class="l">🎧 Palavra de hoje (plays)</div>'
+        f'<div class="h">{palavra_hoje} hoje · {conv.get("/q-palavra-share", 0)} compart.</div></div>')
     cards_conv.append(
         f'<div class="card conv destaque"><div class="v">{taxa:.1f}%</div>'
-        f'<div class="l">📈 Semeador / pessoas</div>'
+        f'<div class="l">📈 Sustento / pessoas</div>'
         f'<div class="h">{unicos_total} pessoas</div></div>')
 
     linhas_conv = '\n'.join(
@@ -1123,133 +1109,228 @@ def montar_html(res, antigo):
     linhas_dl = '\n'.join(
         f'<tr><td>{html.escape(nome)}</td><td class="num">{_dl_n(k)[0]}</td>'
         f'<td class="num" style="color:#7fe0a3">{_dl_n(k)[1]}</td></tr>'
-        for k, nome in DL_NOMES.items()
-    )
+        for k, nome in DL_NOMES.items())
 
-    periodo = '—'
-    if data_inicio and data_fim:
-        periodo = f'{data_inicio.strftime("%d/%m/%Y %H:%M")} até {data_fim.strftime("%d/%m/%Y %H:%M")}'
+    outros = sorted([(k, v) for k, v in contagens.items() if k.startswith('/outros:')],
+                    key=lambda x: -x[1])
+    linhas_outros = '\n'.join(
+        f'<tr><td>{html.escape(k.replace("/outros:", "/"))}</td><td class="num">{v}</td></tr>'
+        for k, v in outros[:15]) or '<tr><td colspan="2">Nenhum</td></tr>'
 
     bloco_origem = bloco_origem_html(origem, antigo, periodo, ignorados)
 
-    html_doc = f"""<!DOCTYPE html>
+    # ============================================================== HTML
+    return f"""<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Estatisticas de Acesso — Portal O Despertar</title>
+<title>Termômetro da Missão — missaocomdeus.com.br</title>
 <style>
-  :root {{ --navy:#0e1a2e; --gold:#c9a24b; --cream:#faf6ee; }}
+  :root {{ --navy:#0e1a2e; --gold:#c9a24b; }}
   * {{ box-sizing:border-box; }}
   body {{ margin:0; font-family:'Segoe UI',system-ui,sans-serif; background:var(--navy); color:#e8ecf3; line-height:1.5; }}
   .wrap {{ max-width:960px; margin:0 auto; padding:24px 16px 60px; }}
   h1 {{ color:var(--gold); font-size:1.6rem; margin-bottom:4px; }}
-  .sub {{ color:#9fb0c8; font-size:.9rem; margin-bottom:24px; }}
-  .cards {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:28px; }}
+  .sub {{ color:#9fb0c8; font-size:.88rem; margin-bottom:20px; }}
+  .cards {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(155px,1fr)); gap:12px; margin-bottom:14px; }}
   .card {{ background:#16283f; border:1px solid rgba(201,162,75,.25); border-radius:10px; padding:16px; text-align:center; }}
-  .card .v {{ font-size:1.6rem; font-weight:700; color:var(--gold); }}
-  .card .l {{ font-size:.75rem; color:#9fb0c8; text-transform:uppercase; letter-spacing:.06em; }}
+  .card .v {{ font-size:1.7rem; font-weight:700; color:var(--gold); }}
+  .card .l {{ font-size:.73rem; color:#9fb0c8; text-transform:uppercase; letter-spacing:.05em; margin-top:6px; }}
   .card .h {{ font-size:.72rem; color:#7fe0a3; margin-top:4px; }}
   .card.destaque {{ border-color:var(--gold); background:linear-gradient(180deg,#1a2c47,#16283f); }}
   .card.humano .v {{ color:#7fe0a3; }}
   .card.conv {{ border-color:rgba(127,224,163,.35); }}
   .card.conv .v {{ color:#7fe0a3; }}
-  .card.origem {{ border-color:rgba(201,162,75,.45); }}
-  table {{ width:100%; border-collapse:collapse; background:#16283f; border-radius:10px; overflow:hidden; }}
-  th {{ background:rgba(201,162,75,.15); color:var(--gold); text-align:left; padding:10px 12px; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; }}
-  td {{ padding:10px 12px; border-top:1px solid rgba(201,162,75,.15); font-size:.92rem; vertical-align:middle; }}
-  .num {{ text-align:center; white-space:nowrap; }}
-  .url {{ color:#7f92ad; font-size:.75rem; }}
-  .barra {{ background:#0e1a2e; border-radius:6px; height:12px; overflow:hidden; min-width:120px; }}
-  .fill {{ background:linear-gradient(90deg,#c9a24b,#e3c877); height:100%; border-radius:6px; }}
-  h2 {{ color:var(--gold); font-size:1.15rem; margin:32px 0 12px; }}
-  .comparacao {{ background:#16283f; border:1px solid rgba(201,162,75,.25); border-radius:10px; padding:16px 20px; margin-bottom:28px; display:flex; gap:24px; flex-wrap:wrap; align-items:center; }}
-  .comparacao .bloco {{ flex:1; min-width:130px; }}
-  .comparacao .rot {{ font-size:.75rem; color:#9fb0c8; text-transform:uppercase; letter-spacing:.05em; }}
-  .comparacao .val {{ font-size:1.5rem; font-weight:700; color:#fff; }}
-  .comparacao .val.gold {{ color:var(--gold); }}
-  .comparacao .val.verde {{ color:#7fe0a3; }}
-  footer {{ text-align:center; color:#7f92ad; font-size:.78rem; margin-top:40px; }}
+  h2 {{ color:var(--gold); font-size:1.15rem; margin:28px 0 10px; }}
   .selo-filtro {{ display:inline-block; background:rgba(127,224,163,.12); border:1px solid rgba(127,224,163,.4); color:#7fe0a3; font-size:.72rem; padding:3px 10px; border-radius:20px; margin-left:8px; vertical-align:middle; }}
+  .leitura {{ background:#16283f; border-left:3px solid var(--gold); border-radius:8px; padding:12px 16px; font-size:.95rem; margin:0 0 14px; }}
+  .nota {{ font-size:.8rem; color:#9fb0c8; }}
   .aviso {{ background:rgba(201,162,75,.08); border:1px solid rgba(201,162,75,.35); border-radius:8px; padding:12px 14px; font-size:.85rem; color:#c9d4e3; }}
+  table {{ width:100%; border-collapse:collapse; background:#16283f; border-radius:10px; overflow:hidden; }}
+  th {{ background:rgba(201,162,75,.15); color:var(--gold); text-align:left; padding:10px 12px; font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; }}
+  td {{ padding:9px 12px; border-top:1px solid rgba(201,162,75,.15); font-size:.9rem; vertical-align:middle; }}
+  .num {{ text-align:center; white-space:nowrap; }}
+  .hj {{ color:#7fe0a3; font-size:.75rem; }}
+  .url {{ color:#7f92ad; font-size:.75rem; }}
+  .barra {{ background:#0e1a2e; border-radius:6px; height:12px; overflow:hidden; min-width:100px; }}
+  .fill {{ background:linear-gradient(90deg,#c9a24b,#e3c877); height:100%; border-radius:6px; }}
+  tr.seo td {{ background:rgba(201,162,75,.08); }}
+  .hoje {{ display:flex; gap:14px; flex-wrap:wrap; background:#16283f; border:1px solid rgba(201,162,75,.25); border-radius:10px; padding:14px 18px; margin-bottom:8px; }}
+  .hoje .bloco {{ flex:1; min-width:110px; }}
+  .hoje .rot {{ font-size:.72rem; color:#9fb0c8; text-transform:uppercase; letter-spacing:.05em; }}
+  .hoje .val {{ font-size:1.4rem; font-weight:700; color:#fff; }}
+  .hoje .val.gold {{ color:var(--gold); }}
+  details {{ background:#16283f; border:1px solid rgba(201,162,75,.25); border-radius:10px; margin-bottom:10px; }}
+  summary {{ cursor:pointer; padding:13px 16px; color:var(--gold); font-weight:600; font-size:.95rem; list-style:none; }}
+  summary::-webkit-details-marker {{ display:none; }}
+  summary::before {{ content:'\\25B8  '; }}
+  details[open] summary::before {{ content:'\\25BE  '; }}
+  .dbody {{ padding:0 16px 16px; }}
+  .dbody table {{ margin-bottom:12px; }}
   code {{ background:#0e1a2e; padding:2px 6px; border-radius:4px; color:#e3c877; font-size:.85rem; }}
   a {{ color:#e3c877; }}
+  footer {{ text-align:center; color:#7f92ad; font-size:.78rem; margin-top:32px; }}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>Estatisticas de Acesso <span class="selo-filtro">v5 leitores reais + conversao + origem (medicao honesta)</span></h1>
-  <p class="sub">Portal O Despertar · missaocomdeus.com.br · gerado em {datetime.now().strftime('%d/%m/%Y %H:%M')}</p>
 
-  <div class="comparacao">
-    <div class="bloco"><div class="rot">Ontem completo ({ontem})</div><div class="val">{total_ontem}</div></div>
-    <div class="bloco"><div class="rot">Hoje até agora ({hoje_str})</div><div class="val gold">{total_hoje}</div></div>
-    <div class="bloco"><div class="rot">Ontem até este horário</div><div class="val">{ontem_mesmo_horario}</div></div>
+  <h1>🌡️ Termômetro da Missão <span class="selo-filtro">v6 · medição honesta</span></h1>
+  <p class="sub">missaocomdeus.com.br · período <b>{periodo}</b> · gerado em {datetime.now().strftime('%d/%m/%Y %H:%M')}</p>
+
+  <h2>O que olhar sempre</h2>
+  <div class="cards">{cards_termo}</div>
+
+  <table>
+    <tr><th>Indicador</th><th>O que é</th><th>O que observar</th></tr>
+    <tr><td>👥 Pessoas alcançadas</td><td>IPs distintos que abriram a casa no período</td>
+        <td>É o tamanho da nossa roda. Deve crescer semana a semana. Aproximação: IP de celular é compartilhado e muda ao longo do dia.</td></tr>
+    <tr><td>🚪 Visitas</td><td>Cada vez que alguém chega. {SESSAO_MINUTOS} minutos parado = nova visita</td>
+        <td>Compare <b>hoje</b> com <b>ontem no mesmo horário</b>. Comparar dia cheio com dia pela metade engana.</td></tr>
+    <tr><td>📊 Páginas por visita</td><td>Quantas páginas a pessoa abre antes de ir embora</td>
+        <td>Entre 2 e 3 é comum na internet. <b>Acima de 3 é sinal de casa viva</b>: a pessoa está lendo, não só passando.</td></tr>
+    <tr><td>📖 Leituras</td><td>Páginas de livro abertas (só os 7 que ficaram)</td>
+        <td>É o coração da casa. Se cai enquanto as visitas sobem, a pessoa entra e não lê.</td></tr>
+    <tr><td>⬇️ PDFs baixados</td><td>Arquivos que saíram da casa</td>
+        <td>Semente que a pessoa leva consigo e pode repassar.</td></tr>
+    <tr><td>🎯 Sustento</td><td>Cliques em Semeador e Colaborador</td>
+        <td>O que mantém a missão de pé. Clique não é compra: a venda acontece na Kiwify.</td></tr>
+  </table>
+
+  <h2>Hoje e ontem</h2>
+  <div class="hoje">
+    <div class="bloco"><div class="rot">Ontem completo</div><div class="val">{total_ontem}</div></div>
+    <div class="bloco"><div class="rot">Hoje até agora</div><div class="val gold">{total_hoje}</div></div>
+    <div class="bloco"><div class="rot">Ontem até esta hora</div><div class="val">{ontem_mesmo_horario}</div></div>
     <div class="bloco"><div class="rot">Variação (justa)</div><div class="val gold">{seta} {variacao:+.1f}%</div></div>
     <div class="bloco"><div class="rot">Projeção do dia</div><div class="val gold">~{projecao}</div></div>
-    <div class="bloco"><div class="rot">Total geral</div><div class="val">{total_geral}</div></div>
   </div>
-
-  <div class="comparacao" style="border-color:rgba(127,224,163,.4);">
-    <div class="bloco"><div class="rot">Visitantes únicos HOJE</div><div class="val verde">{unicos_hoje}</div></div>
-    <div class="bloco"><div class="rot">Visitantes únicos ONTEM</div><div class="val verde">{unicos_ontem}</div></div>
-    <div class="bloco"><div class="rot">Visitantes únicos TOTAL</div><div class="val verde">{unicos_total}</div></div>
-    <div class="bloco"><div class="rot">Robôs descartados</div><div class="val" style="font-size:1.1rem;">{descartados_robos}</div></div>
-    <div class="bloco"><div class="rot">Ataques/erros descartados</div><div class="val" style="font-size:1.1rem;">{descartados_erros}</div></div>
-  </div>
-  <p style="font-size:.8rem;color:#9fb0c8;margin:-18px 0 24px;">Só entram páginas 200/304 de gente. Visitantes únicos = IPs diferentes no dia.</p>
+  <p class="nota" style="margin:0 0 6px;">Páginas vistas por gente. Pessoas únicas: <b>{unicos_hoje}</b> hoje · <b>{unicos_ontem}</b> ontem.</p>
 
   {bloco_origem}
 
-  <div class="cards">
-    <div class="card destaque"><div class="v">{total_home}</div><div class="l">Acessos à Home (páginas vistas)</div></div>
-    <div class="card destaque"><div class="v">{total_livros}</div><div class="l">Acessos aos livros (páginas vistas)</div></div>
-    <div class="card"><div class="v">{livros_lidos}</div><div class="l">Livros lidos</div></div>
-    <div class="card"><div class="v">{contagens.get('/guia-pais-filhos',0)}</div><div class="l">Quiz Pais e Filhos</div></div>
-    <div class="card humano"><div class="v">{unicos_total}</div><div class="l">Pessoas (IPs únicos)</div></div>
-  </div>
+  <h2>Detalhes <span class="selo-filtro">abre o que quiser</span></h2>
 
-  <h2>CONVERSÃO (o que move a missão)</h2>
-  <div class="cards">{''.join(cards_conv)}</div>
-  <table>
-    <tr><th>Ação</th><th>Total</th><th>Hoje</th></tr>
-    {linhas_conv}
-  </table>
-  <p style="font-size:.8rem;color:#9fb0c8;">Semeador = clique no Kiwify R$ 37. Colaborador = clique no Kiwify R$ 19,90. WhatsApp = rascunho aberto (ainda precisa Enviar). Aula grátis = toques nos vídeos livres (módulos 1 a 3), não um pixel antigo. Taxa = semeadores / pessoas únicas. Página de obrigado ≠ PDF baixado: o brinde é o download de livro11-onovotestamenento.pdf.</p>
+  <details>
+    <summary>🏠 Endereço antigo compraoseu.com (medição separada — não somar)</summary>
+    <div class="dbody">{bloco_antigo_html(antigo)}</div>
+  </details>
 
-  <h2>Downloads (PDFs e Palavra)</h2>
-  <table>
-    <tr><th>Arquivo</th><th>Total</th><th>Hoje</th></tr>
-    {linhas_dl}
-  </table>
-  <p style="font-size:.8rem;color:#9fb0c8;">Jesus Quer Falar aparece duas vezes porque são dois arquivos: o do quiz (jesus-quer-falar.pdf) e o nome longo do livro. evalma junta o nome antigo com o novo. Quiz permanece sem evalma.</p>
+  <details>
+    <summary>📍 Por qual página eles entram · 🔎 o que o Google entrega · 🔗 quem nos indica</summary>
+    <div class="dbody">
+      <h3 style="color:#e3c877;font-size:.95rem;margin:4px 0 8px;">Página de entrada</h3>
+      <table>
+        <tr><th>Página de entrada</th><th>Visitas</th><th>Hoje</th></tr>
+        {linhas_entradas}
+      </table>
+      <h3 style="color:#e3c877;font-size:.95rem;margin:18px 0 8px;">Páginas que o Google mais entrega</h3>
+      <table>
+        <tr><th>Página (visita com origem no Google)</th><th>Visitas</th></tr>
+        {linhas_entradas_seo}
+      </table>
+      <h3 style="color:#e3c877;font-size:.95rem;margin:18px 0 8px;">Domínios que nos indicam</h3>
+      <table>
+        <tr><th>Domínio de onde a pessoa veio</th><th>Visitas</th></tr>
+        {linhas_refs}
+      </table>
+    </div>
+  </details>
 
-  <h2>Ranking (Home + Livros + Quiz)</h2>
-  <table>
-    <tr><th>#</th><th>Página</th><th>Acessos (total · hoje)</th><th>%</th><th>Distribuição</th></tr>
-    {''.join(linhas)}
-  </table>
-  {'<p style="font-size:.8rem;color:#9fb0c8;">🚫 Fora do ar desde 02/09/2026 (histórico, não contam nos totais): ' + hist_removidos + '. Saíram por não serem de autoria da casa (risco de direito autoral).</p>' if hist_removidos else ''}
+  <details>
+    <summary>📖 Ranking das páginas</summary>
+    <div class="dbody">
+      <table>
+        <tr><th>#</th><th>Página</th><th>Acessos</th><th>%</th></tr>
+        {''.join(linhas)}
+      </table>
+      {'<p class="nota">🚫 Fora do ar desde 02/09/2026 (histórico, não contam nos totais): ' + hist_removidos + '. Saíram por não serem de autoria da casa.</p>' if hist_removidos else ''}
+      <h3 style="color:#e3c877;font-size:.95rem;margin:18px 0 8px;">Outras páginas</h3>
+      <table>
+        <tr><th>Página</th><th>Acessos</th></tr>
+        {linhas_outros}
+      </table>
+    </div>
+  </details>
 
-  <h2>Acessos por dia (últimos 7)</h2>
-  <table>
-    <tr><th>Dia</th><th>Páginas (humanos)</th><th>Visitantes únicos</th><th>Descartados</th></tr>
-    {linhas_dias}
-  </table>
+  <details>
+    <summary>🎯 Conversão (o que move a missão)</summary>
+    <div class="dbody">
+      <div class="cards">{''.join(cards_conv)}</div>
+      <table>
+        <tr><th>Ação</th><th>Total</th><th>Hoje</th></tr>
+        {linhas_conv}
+      </table>
+      <p class="nota">Semeador e Colaborador = clique no link da Kiwify (a compra acontece lá fora).
+      WhatsApp = rascunho aberto, ainda precisa a pessoa Enviar. Aulas grátis = toques nos
+      módulos livres 1 a 3. Página de obrigado ≠ download: o brinde é o arquivo
+      livro11-onovotestamenento.pdf.</p>
+    </div>
+  </details>
 
-  <h2>Outras páginas</h2>
-  <table>
-    <tr><th>Página</th><th>Acessos</th></tr>
-    {linhas_outros}
-  </table>
+  <details>
+    <summary>⬇️ Downloads detalhados</summary>
+    <div class="dbody">
+      <table>
+        <tr><th>Arquivo</th><th>Total</th><th>Hoje</th></tr>
+        {linhas_dl}
+      </table>
+      <p class="nota">«evalma» junta o nome antigo com o novo. Jesus Quer Falar aparece duas vezes
+      porque são dois arquivos diferentes. «PDF com nome chutado» é quando alguém digita o
+      endereço do arquivo direto, sem passar pela página.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>📅 Por dia (últimos 7)</summary>
+    <div class="dbody">
+      <table>
+        <tr><th>Dia</th><th>Páginas (gente)</th><th>Pessoas</th><th>Descartados</th></tr>
+        {linhas_dias}
+      </table>
+      <h3 style="color:#e3c877;font-size:.95rem;margin:18px 0 8px;">Visitas por dia e origem</h3>
+      <table>
+        <tr><th>Dia</th><th>SEO</th><th>Site antigo</th><th>Direto</th><th>Redes</th><th>Visitas</th></tr>
+        {linhas_dias_o}
+      </table>
+    </div>
+  </details>
+
+  <details>
+    <summary>🧹 O funil — o que NÃO entra na conta (e por quê)</summary>
+    <div class="dbody">
+      <table>
+        <tr><th>Etapa</th><th>Quantidade</th></tr>
+        <tr><td>Robôs conhecidos descartados</td><td class="num">{descartados_robos}</td></tr>
+        <tr><td>Ataques, varreduras e erros descartados</td><td class="num">{descartados_erros}</td></tr>
+        <tr><td>Páginas internas da casa (/stats, /palavra, /mural) fora da conta</td><td class="num">{origem['vistas_internas']}</td></tr>
+        <tr style="background:rgba(201,162,75,.08)"><td><b>= páginas vistas por gente</b></td><td class="num"><b>{total_geral}</b></td></tr>
+        <tr style="background:rgba(127,224,163,.10)"><td><b>= visitas</b> (sessões de {SESSAO_MINUTOS} min)</td><td class="num"><b>{origem['total_visitas']}</b></td></tr>
+        <tr><td><b>= pessoas</b> (IPs distintos no período)</td><td class="num"><b>{unicos_total}</b></td></tr>
+        {('<tr><td>Acessos descontados por IP ignorado (o senhor mesmo)</td><td class="num">' + str(ignorados) + '</td></tr>') if ignorados else ''}
+      </table>
+      <p class="nota" style="margin-top:12px;">
+        <b>Regras desta medição:</b><br>
+        · <b>Visita</b> = sessão: {SESSAO_MINUTOS} minutos sem atividade conta como nova visita
+          (mesmo critério do Google Analytics). Navegar de um livro para outro é a <i>mesma</i> visita.<br>
+        · <b>Origem da visita</b> = origem do primeiro acesso dela. Uma visita tem uma única origem.<br>
+        · <b>Não entram:</b> robôs, varreduras, ataques, erros, e as páginas internas da casa,
+          que não são visita de irmão.<br>
+        · <b>Limite honesto:</b> WhatsApp, Instagram e TikTok abrem o link sem avisar de onde veio,
+          então essa pessoa cai em «Direto». Por isso existe a marcação <code>utm_source</code>.<br>
+        · <b>Cada bloco tem período e base próprios. Percentual só dentro do mesmo bloco.</b>
+      </p>
+    </div>
+  </details>
 
   <footer>Período: {periodo} · Missão com Deus<br>
-  Painel v4 (origem dos acessos). noindex. Só para o administrador.</footer>
+  Painel v6 (termômetro). noindex. Só para o administrador.</footer>
 </div>
 </body>
 </html>"""
-    return html_doc
+
 
 
 def main():
