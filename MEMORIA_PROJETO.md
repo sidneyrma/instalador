@@ -190,6 +190,24 @@ Ficaram (7, numerados 01 a 07 na Home):
 não resolve direito autoral. Além do risco, havia incoerência: «Sabedoria dos Mestres»
 ao lado de «Jesus Quer Falar» confunde o irmão novo. A casa prega Cristo.
 
+**STATUS: EXECUTADA em 02/09/2026, às 11:18 (horário do servidor).**
+
+- Backup e arquivos guardados em: `/home/deploy/_limpeza-20260902-111825`
+  (contém `LEIA-ME.txt` com as linhas prontas para desfazer, incluindo os PDFs)
+- 5 HTML movidos para fora da pasta pública (agora dão 404) ✓
+- **5 PDFs recolhidos de `/ebooks/`**: `livro01/02/03/08/10-evalma.pdf`.
+  Descoberto durante a execução: os livros continuavam baixáveis em PDF mesmo com a
+  página fora do ar. Os PDFs dos livros que ficam não foram tocados
+  (`Anestesia-mental-evalma.pdf`, `Evolucao-da-alma-evalma.pdf`, `livro11-onovotestamenento.pdf`).
+- sitemap.xml: 14 → 9 urls ✓ · sw.js: 14 → 9 endereços, cache v3 → v4 ✓
+- Painel `/stats` regenerado: «Acessos aos livros» caiu de 3.357 para 1.918 (só a casa),
+  «Livros lidos» = 7. Os removidos saíram do ranking e das tabelas de entrada, mas o
+  histórico continua numa linha própria (honestidade).
+- Conferido por fora: `sitemap.xml` com 9 urls e `/livro01` respondendo 404.
+
+**PENDENTE (só isto):** pedir a remoção no Google Search Console (Remoções) dos
+5 endereços dos livros + os 5 PDFs. O script imprime a lista pronta no final.
+
 **Script da limpeza:** `consultoria-redes/APLICAR_LIMPEZA_LIVROS.py`
 (backup automático, modo `--simular`, travas de segurança).
 **Guia:** `consultoria-redes/COMO_LIMPAR_A_CASA.md`
@@ -348,6 +366,11 @@ Proteção HTML (selecionar sim, copiar não): script `APLICAR_PROTECAO_TODOS_LI
 10. Lapidar `/livro07` (O Caminho do Despertar): é junção escrita de todos os livros, inclusive dos 5 que saíram. Deixá-lo 100% da casa.
 
 ---
+
+## CONQUISTAS (para lembrar nos dias difíceis)
+
+- 02/09/2026: a casa varreu a própria biblioteca e tirou 5 livros que não eram seus.
+  Dói, mas é assim que a casa fica digna da mensagem que carrega (Lc 15:8-10, a dracma perdida).
 
 ## ARQUIVO (o que já foi e não reabrir como pendência)
 
