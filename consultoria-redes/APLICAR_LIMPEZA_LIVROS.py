@@ -16,6 +16,8 @@ O que este script faz, nesta ordem:
      ISSO E IMPORTANTE: sem isso, quem ja instalou o site como app no celular
      continua abrindo os livros pelo cache, mesmo depois de apagados.
   6. Move os arquivos HTML para fora da pasta publica (passam a dar 404).
+  6b. Recolhe tambem os PDFs desses livros em /ebooks/ (senao eles continuam
+      publicos e baixaveis mesmo com a pagina fora do ar).
   7. Verifica se a Home continua inteira (enquete, quiz, banner, player,
      FormSubmit). Se qualquer um sumir, ele RESTAURA o backup e avisa.
 
@@ -70,7 +72,7 @@ RE_BIB_NUM = re.compile(r'(<span class="bib-num">\s*Livro )(\d{2})( ·)')
 
 
 def ok(msg):
-    print('  OK   ' + msg)
+    print(('  SIM  ' if SIMULAR else '  OK   ') + msg)
 
 
 def aviso(msg):
@@ -99,7 +101,8 @@ def main():
     backup = os.path.join(DESTINO_BACKUP, '_limpeza-' + stamp)
 
     # ---------------------------------------------------------- 1) BACKUP
-    print('\n[1/6] Preparando backup em %s' % backup)
+    print('\n[1/7] Preparando backup em %s%s'
+          % (backup, '  (simulado)' if SIMULAR else ''))
     if not SIMULAR:
         os.makedirs(backup, exist_ok=True)
     for nome in ['index.html', 'sitemap.xml', 'sw.js']:
@@ -112,7 +115,7 @@ def main():
             aviso('%s nao existe (segue sem ele)' % nome)
 
     # ------------------------------------------------------ 2) INDEX.HTML
-    print('\n[2/6] Removendo os cards da Home')
+    print('\n[2/7] Removendo os cards da Home')
     idx = os.path.join(SITE, 'index.html')
     if not os.path.isfile(idx):
         erro('index.html nao encontrado. Nada foi feito.')
@@ -162,7 +165,7 @@ def main():
         ok('card %02d -> %s' % (i if RENUMERAR else int(num), titulo))
 
     # ------------------------------------------------------------- TRAVAS
-    print('\n[3/6] Conferindo se a Home continua inteira')
+    print('\n[3/7] Conferindo se a Home continua inteira')
     seguro = True
     for t in TRAVAS:
         if t not in novo:
@@ -187,7 +190,7 @@ def main():
             f.write(novo)
 
     # -------------------------------------------------------- 4) SITEMAP
-    print('\n[4/6] Limpando o sitemap.xml')
+    print('\n[4/7] Limpando o sitemap.xml')
     sm = os.path.join(SITE, 'sitemap.xml')
     if os.path.isfile(sm):
         with open(sm, 'r', encoding='utf-8') as f:
@@ -208,7 +211,7 @@ def main():
         aviso('sitemap.xml nao encontrado')
 
     # ------------------------------------------------------------ 5) SW.JS
-    print('\n[5/6] Limpando o cache do app (sw.js)')
+    print('\n[5/7] Limpando o cache do app (sw.js)')
     sw = os.path.join(SITE, 'sw.js')
     if os.path.isfile(sw):
         with open(sw, 'r', encoding='utf-8') as f:
@@ -243,7 +246,7 @@ def main():
         aviso('sw.js nao encontrado')
 
     # --------------------------------------------------- 6) MOVER OS HTML
-    print('\n[6/6] Movendo os arquivos para fora da pasta publica')
+    print('\n[6/7] Movendo os arquivos HTML para fora da pasta publica')
     for p, nome in REMOVER:
         arquivo = os.path.join(SITE, p.lstrip('/') + '.html')
         if os.path.isfile(arquivo):
@@ -254,20 +257,32 @@ def main():
         else:
             aviso('%s.html nao existe (ja foi removido?)' % p.lstrip('/'))
 
-    # PDFs? (so avisa, nao apaga nada)
+    # ------------------------------------------------------ 7) OS PDFs
+    # Os livros tinham PDF em /ebooks/. Se ficarem la, continuam publicos
+    # mesmo com a pagina fora do ar. Por isso vao juntos para o backup.
+    print('\n[7/7] Recolhendo os PDFs dos livros removidos')
     pasta_ebooks = os.path.join(SITE, 'ebooks')
+    pdfs_movidos = []
     if os.path.isdir(pasta_ebooks):
-        suspeitos = []
-        for raiz, _, arquivos in os.walk(pasta_ebooks):
-            for a in arquivos:
-                baixo = a.lower()
-                for p in caminhos_remover:
-                    if baixo.startswith(p.lstrip('/')):
-                        suspeitos.append(a)
-        if suspeitos:
-            print('\n  ATENCAO: achei estes PDFs que podem ser dos livros removidos:')
-            for a in suspeitos:
-                print('     - /ebooks/%s   (NAO apaguei nada; confira)' % a)
+        for a in sorted(os.listdir(pasta_ebooks)):
+            baixo = a.lower()
+            for p in caminhos_remover:
+                codigo = p.lstrip('/')          # ex.: livro01
+                if baixo.startswith(codigo) and os.path.isfile(
+                        os.path.join(pasta_ebooks, a)):
+                    if not SIMULAR:
+                        shutil.copy2(os.path.join(pasta_ebooks, a),
+                                     os.path.join(backup, a))
+                        os.remove(os.path.join(pasta_ebooks, a))
+                    pdfs_movidos.append(a)
+                    ok('PDF %s -> guardado (fora do ar)' % a)
+                    break
+        if not pdfs_movidos:
+            aviso('nenhum PDF dos livros removidos em /ebooks/')
+        else:
+            aviso('os PDFs dos livros que FICAM nao foram tocados')
+    else:
+        aviso('pasta /ebooks/ nao encontrada')
 
     # ------------------------------------------------------------ LEIA-ME
     if not SIMULAR:
@@ -286,6 +301,10 @@ def main():
         for p, _ in REMOVER:
             guia.append('cp %s/%s.html %s/%s.html'
                         % (backup, p.lstrip('/'), SITE, p.lstrip('/')))
+        if pdfs_movidos:
+            guia += ['', '# e os PDFs, se quiser devolve-los para /ebooks/:']
+            for a in pdfs_movidos:
+                guia.append('cp %s/%s %s/ebooks/%s' % (backup, a, SITE, a))
         guia += [
             '',
             'Depois abra o site e confira. Se algo sair do lugar, me chame.',
@@ -321,6 +340,8 @@ def main():
         print('  Google Search Console > Remocoes > pedir a remocao destes enderecos:')
         for p in caminhos_remover:
             print('     https://missaocomdeus.com.br%s' % p)
+        for a in pdfs_movidos:
+            print('     https://missaocomdeus.com.br/ebooks/%s' % a)
     print('=' * 66)
 
 
