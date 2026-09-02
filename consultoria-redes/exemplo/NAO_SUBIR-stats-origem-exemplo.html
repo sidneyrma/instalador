@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>EXEMPLO (dados ficticios) - Estatisticas de Acesso — Portal O Despertar</title>
+<style>
+  :root { --navy:#0e1a2e; --gold:#c9a24b; --cream:#faf6ee; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:'Segoe UI',system-ui,sans-serif; background:var(--navy); color:#e8ecf3; line-height:1.5; }
+  .wrap { max-width:960px; margin:0 auto; padding:24px 16px 60px; }
+  h1 { color:var(--gold); font-size:1.6rem; margin-bottom:4px; }
+  .sub { color:#9fb0c8; font-size:.9rem; margin-bottom:24px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:28px; }
+  .card { background:#16283f; border:1px solid rgba(201,162,75,.25); border-radius:10px; padding:16px; text-align:center; }
+  .card .v { font-size:1.6rem; font-weight:700; color:var(--gold); }
+  .card .l { font-size:.75rem; color:#9fb0c8; text-transform:uppercase; letter-spacing:.06em; }
+  .card .h { font-size:.72rem; color:#7fe0a3; margin-top:4px; }
+  .card.destaque { border-color:var(--gold); background:linear-gradient(180deg,#1a2c47,#16283f); }
+  .card.humano .v { color:#7fe0a3; }
+  .card.conv { border-color:rgba(127,224,163,.35); }
+  .card.conv .v { color:#7fe0a3; }
+  .card.origem { border-color:rgba(201,162,75,.45); }
+  table { width:100%; border-collapse:collapse; background:#16283f; border-radius:10px; overflow:hidden; }
+  th { background:rgba(201,162,75,.15); color:var(--gold); text-align:left; padding:10px 12px; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; }
+  td { padding:10px 12px; border-top:1px solid rgba(201,162,75,.15); font-size:.92rem; vertical-align:middle; }
+  .num { text-align:center; white-space:nowrap; }
+  .url { color:#7f92ad; font-size:.75rem; }
+  .barra { background:#0e1a2e; border-radius:6px; height:12px; overflow:hidden; min-width:120px; }
+  .fill { background:linear-gradient(90deg,#c9a24b,#e3c877); height:100%; border-radius:6px; }
+  h2 { color:var(--gold); font-size:1.15rem; margin:32px 0 12px; }
+  .comparacao { background:#16283f; border:1px solid rgba(201,162,75,.25); border-radius:10px; padding:16px 20px; margin-bottom:28px; display:flex; gap:24px; flex-wrap:wrap; align-items:center; }
+  .comparacao .bloco { flex:1; min-width:130px; }
+  .comparacao .rot { font-size:.75rem; color:#9fb0c8; text-transform:uppercase; letter-spacing:.05em; }
+  .comparacao .val { font-size:1.5rem; font-weight:700; color:#fff; }
+  .comparacao .val.gold { color:var(--gold); }
+  .comparacao .val.verde { color:#7fe0a3; }
+  footer { text-align:center; color:#7f92ad; font-size:.78rem; margin-top:40px; }
+  .selo-filtro { display:inline-block; background:rgba(127,224,163,.12); border:1px solid rgba(127,224,163,.4); color:#7fe0a3; font-size:.72rem; padding:3px 10px; border-radius:20px; margin-left:8px; vertical-align:middle; }
+  .aviso { background:rgba(201,162,75,.08); border:1px solid rgba(201,162,75,.35); border-radius:8px; padding:12px 14px; font-size:.85rem; color:#c9d4e3; }
+  code { background:#0e1a2e; padding:2px 6px; border-radius:4px; color:#e3c877; font-size:.85rem; }
+  a { color:#e3c877; }
+</style>
+</head>
+<body>
+<div style="background:#c9a24b;color:#0e1a2e;text-align:center;padding:10px 12px;font-weight:700;font-size:.9rem;position:sticky;top:0;z-index:99;">EXEMPLO COM DADOS FICTÍCIOS · só para mostrar o visual do painel · NÃO ENVIAR PARA O SERVIDOR
+</div>
+
+<div class="wrap">
+  <h1>Estatisticas de Acesso <span class="selo-filtro">v5 leitores reais + conversao + origem (medicao honesta)</span></h1>
+  <p class="sub">Portal O Despertar · missaocomdeus.com.br · gerado em 02/09/2026 11:27</p>
+
+  <div class="comparacao">
+    <div class="bloco"><div class="rot">Ontem completo (01/09/2026)</div><div class="val">67</div></div>
+    <div class="bloco"><div class="rot">Hoje até agora (02/09/2026)</div><div class="val gold">81</div></div>
+    <div class="bloco"><div class="rot">Ontem até este horário</div><div class="val">38</div></div>
+    <div class="bloco"><div class="rot">Variação (justa)</div><div class="val gold">📈 +113.2%</div></div>
+    <div class="bloco"><div class="rot">Projeção do dia</div><div class="val gold">~170</div></div>
+    <div class="bloco"><div class="rot">Total geral</div><div class="val">1041</div></div>
+  </div>
+
+  <div class="comparacao" style="border-color:rgba(127,224,163,.4);">
+    <div class="bloco"><div class="rot">Visitantes únicos HOJE</div><div class="val verde">49</div></div>
+    <div class="bloco"><div class="rot">Visitantes únicos ONTEM</div><div class="val verde">41</div></div>
+    <div class="bloco"><div class="rot">Visitantes únicos TOTAL</div><div class="val verde">654</div></div>
+    <div class="bloco"><div class="rot">Robôs descartados</div><div class="val" style="font-size:1.1rem;">129</div></div>
+    <div class="bloco"><div class="rot">Ataques/erros descartados</div><div class="val" style="font-size:1.1rem;">0</div></div>
+  </div>
+  <p style="font-size:.8rem;color:#9fb0c8;margin:-18px 0 24px;">Só entram páginas 200/304 de gente. Visitantes únicos = IPs diferentes no dia.</p>
+
+  
+  <h2>De onde vêm os nossos irmãos <span class="selo-filtro">medição v5</span></h2>
+
+  <p class="aviso" style="margin-bottom:16px;">
+    <b>Como medimos (para ninguém se enganar):</b><br>
+    · <b>Visita</b> = sessão: 30 minutos sem atividade conta como nova visita
+      (mesmo critério do Google Analytics). Navegar de um livro para outro é a <i>mesma</i> visita.<br>
+    · <b>Origem da visita</b> = origem do primeiro acesso dela. Uma visita tem uma única origem:
+      os percentuais de cada bloco somam 100%.<br>
+    · <b>Pessoas</b> = IPs distintos. É aproximação: IP de celular é compartilhado entre pessoas
+      e muda ao longo do dia.<br>
+    · <b>Não entram:</b> robôs, varreduras, ataques, erros, e as páginas internas da casa
+      (/stats, /palavra, /mural), que não são visita de irmão.<br>
+    · <b>Limite honesto:</b> WhatsApp, Instagram e TikTok abrem o link sem avisar de onde veio,
+      então essa pessoa cai em «Direto». Por isso existe a marcação <code>utm_source</code>.<br>
+    · Cada bloco tem período e base próprios. <b>Percentual só dentro do mesmo bloco.</b>
+      
+  </p>
+
+  <div class="cards"><div class="card origem"><div class="v">321</div><div class="l">🔎 SEO (busca)</div><div class="h">27 hoje · 321 IPs</div></div><div class="card origem"><div class="v">41</div><div class="l">🏠 Site antigo (declarado)</div><div class="h">1 hoje · 41 IPs</div></div><div class="card origem"><div class="v">149</div><div class="l">🧭 Direto (sem referer)</div><div class="h">10 hoje · 149 IPs</div></div><div class="card origem"><div class="v">128</div><div class="l">📣 Redes (IG/FB/TikTok/YT/Zap)</div><div class="h">8 hoje · 128 IPs</div></div><div class="card origem"><div class="v">15</div><div class="l">🔗 Outros sites</div><div class="h">3 hoje · 15 IPs</div></div><div class="card origem"><div class="v">654</div><div class="l">📊 Visitas (total)</div><div class="h">49 hoje · 41 ontem</div></div></div>
+
+  <p style="font-size:.95rem;color:#e8ecf3;margin:-16px 0 18px;">
+    <b>Resposta curta (20/08/2026 00:16 até 02/09/2026 10:28):</b> das <b>654</b> visitas do site novo,
+    <b>49% vieram da busca (SEO)</b>,
+    <b>6% chegaram com o endereço antigo declarado</b> (referer compraoseu.com),
+    23% entraram direto e 20% vieram das redes.
+    Separadamente, no mesmo periodo, o log do compraoseu.com registrou <b>136 visitas</b> (medição própria, funil abaixo; <b>não somar</b>).
+  </p>
+  <table>
+    <tr><th>Origem da visita</th><th>Visitas</th><th>IPs</th><th>Hoje</th><th>%</th><th>Distribuição</th></tr>
+    
+        <tr style="background:rgba(201,162,75,.08)">
+          <td>🔎 Google (busca / SEO)</td>
+          <td class="num">291</td>
+          <td class="num">291</td>
+          <td class="num" style="color:#7fe0a3">25</td>
+          <td class="num">44.5%</td>
+          <td><div class="barra"><div class="fill" style="width:44.5%"></div></div></td>
+        </tr>
+        <tr style="background:rgba(201,162,75,.08)">
+          <td>🔍 Outros buscadores (Bing, Yahoo, DuckDuckGo)</td>
+          <td class="num">30</td>
+          <td class="num">30</td>
+          <td class="num" style="color:#7fe0a3">2</td>
+          <td class="num">4.6%</td>
+          <td><div class="barra"><div class="fill" style="width:4.6%"></div></div></td>
+        </tr>
+        <tr>
+          <td>🏠 Site antigo compraoseu.com</td>
+          <td class="num">41</td>
+          <td class="num">41</td>
+          <td class="num" style="color:#7fe0a3">1</td>
+          <td class="num">6.3%</td>
+          <td><div class="barra"><div class="fill" style="width:6.3%"></div></div></td>
+        </tr>
+        <tr>
+          <td>📸 Instagram / Facebook</td>
+          <td class="num">63</td>
+          <td class="num">63</td>
+          <td class="num" style="color:#7fe0a3">4</td>
+          <td class="num">9.6%</td>
+          <td><div class="barra"><div class="fill" style="width:9.6%"></div></div></td>
+        </tr>
+        <tr>
+          <td>🎵 TikTok</td>
+          <td class="num">41</td>
+          <td class="num">41</td>
+          <td class="num" style="color:#7fe0a3">2</td>
+          <td class="num">6.3%</td>
+          <td><div class="barra"><div class="fill" style="width:6.3%"></div></div></td>
+        </tr>
+        <tr>
+          <td>▶️ YouTube</td>
+          <td class="num">24</td>
+          <td class="num">24</td>
+          <td class="num" style="color:#7fe0a3">2</td>
+          <td class="num">3.7%</td>
+          <td><div class="barra"><div class="fill" style="width:3.7%"></div></div></td>
+        </tr>
+        <tr>
+          <td>🔗 Outros sites (parceiros, fóruns, blogs)</td>
+          <td class="num">15</td>
+          <td class="num">15</td>
+          <td class="num" style="color:#7fe0a3">3</td>
+          <td class="num">2.3%</td>
+          <td><div class="barra"><div class="fill" style="width:2.3%"></div></div></td>
+        </tr>
+        <tr>
+          <td>🧭 Direto (digitou, favoritos, app)</td>
+          <td class="num">149</td>
+          <td class="num">149</td>
+          <td class="num" style="color:#7fe0a3">10</td>
+          <td class="num">22.8%</td>
+          <td><div class="barra"><div class="fill" style="width:22.8%"></div></div></td>
+        </tr>
+  </table>
+  <p style="font-size:.8rem;color:#9fb0c8;">
+    «Site antigo (declarado)» é quando o navegador avisa que a pessoa veio do compraoseu.com.
+    «Direto» é quando ele não avisa nada: endereço digitado, favoritos, link colado em app,
+    ou redirecionamento sem referer. As duas coisas se completam, mas cada visita é contada
+    uma única vez, então as linhas somam o total.
+  </p>
+  
+  <h3 style="color:#e3c877;font-size:1rem;margin:26px 0 8px;">🏠 Medição separada: o endereço antigo (compraoseu.com)</h3>
+  <p class="aviso" style="margin:0 0 14px;">
+    <b>Período deste bloco: 20/08/2026 a 02/09/2026.</b> Base própria, log próprio.
+    <b>Não somar e não misturar</b> com os números de cima: são duas medições diferentes.
+    O site antigo responde 301 para qualquer endereço, então robôs de varredura também
+    recebiam 301. Por isso o funil abaixo existe e é mostrado inteiro.
+  </p>
+  <table>
+    <tr><th>Funil do log do compraoseu.com</th><th>Quantidade</th></tr>
+    <tr><td>Requisições que sobraram depois de tirar imagens e SSL</td><td class="num">1136</td></tr>
+    <tr><td>&nbsp;&nbsp;· robôs conhecidos (user-agent) descartados</td><td class="num">400</td></tr>
+    <tr><td>&nbsp;&nbsp;· ataques, varreduras e arquivos que nunca existiram</td><td class="num">900</td></tr>
+    <tr><td>&nbsp;&nbsp;· erros fora de 200/301</td><td class="num">0</td></tr>
+    <tr><td>&nbsp;&nbsp;· IPs em modo varredura (muitos endereços diferentes no dia)</td><td class="num">1000</td></tr>
+    <tr style="background:rgba(201,162,75,.08)"><td><b>= requisições de gente</b></td><td class="num"><b>136</b></td></tr>
+    <tr style="background:rgba(127,224,163,.10)"><td><b>= visitas</b> (sessões de 30 min)</td><td class="num"><b>136</b></td></tr>
+    <tr><td><b>= pessoas</b> (IPs distintos no periodo)</td><td class="num"><b>136</b></td></tr>
+    <tr><td>Período coberto pelo log</td><td class="num">20/08/2026 a 02/09/2026</td></tr>
+  </table>
+  <h3 style="color:#e3c877;font-size:.95rem;margin:20px 0 8px;">Dessas visitas, onde a pessoa estava antes:</h3>
+  <table>
+    <tr><th>Origem (medição própria do site antigo)</th><th>Visitas</th><th>% das visitas deste bloco</th></tr>
+    
+        <tr>
+          <td>🔎 Google (busca / SEO)</td>
+          <td class="num">73</td>
+          <td class="num">53.7%</td>
+        </tr>
+        <tr>
+          <td>🔍 Outros buscadores (Bing, Yahoo, DuckDuckGo)</td>
+          <td class="num">7</td>
+          <td class="num">5.1%</td>
+        </tr>
+        <tr>
+          <td>📸 Instagram / Facebook</td>
+          <td class="num">8</td>
+          <td class="num">5.9%</td>
+        </tr>
+        <tr>
+          <td>🎵 TikTok</td>
+          <td class="num">3</td>
+          <td class="num">2.2%</td>
+        </tr>
+        <tr>
+          <td>▶️ YouTube</td>
+          <td class="num">4</td>
+          <td class="num">2.9%</td>
+        </tr>
+        <tr>
+          <td>🔗 Outros sites (parceiros, fóruns, blogs)</td>
+          <td class="num">1</td>
+          <td class="num">0.7%</td>
+        </tr>
+        <tr>
+          <td>🧭 Direto (digitou, favoritos, app)</td>
+          <td class="num">40</td>
+          <td class="num">29.4%</td>
+        </tr>
+  </table>
+  <p style="font-size:.8rem;color:#9fb0c8;">Endereços mais pedidos no site antigo: / (62) · /livro05 (30) · /ebook (24) · /livro09 (20)</p>
+  <table>
+    <tr><th>Dia (medição do site antigo)</th><th>Visitas</th></tr>
+    <tr><td>02/09/2026</td><td class="num">14</td></tr>
+<tr><td>01/09/2026</td><td class="num">7</td></tr>
+<tr><td>31/08/2026</td><td class="num">6</td></tr>
+<tr><td>30/08/2026</td><td class="num">9</td></tr>
+<tr><td>29/08/2026</td><td class="num">10</td></tr>
+<tr><td>28/08/2026</td><td class="num">10</td></tr>
+<tr><td>27/08/2026</td><td class="num">14</td></tr>
+  </table>
+
+
+  <h3 style="color:#e3c877;font-size:1rem;margin:26px 0 8px;">📍 Por qual página eles entram</h3>
+  <table>
+    <tr><th>Página de entrada</th><th>Visitas</th><th>Hoje</th></tr>
+    <tr><td>Trilogia da Alma — Área de alunos <span class="url">/trilogia-da-alma</span></td><td class="num">89</td><td class="num" style="color:#7fe0a3">3</td></tr><tr><td>Livro 09 — Anestesia Mental <span class="url">/livro09</span></td><td class="num">87</td><td class="num" style="color:#7fe0a3">4</td></tr><tr><td>Livro 01 — O Verbo que Transforma <span class="url">/livro01</span></td><td class="num">86</td><td class="num" style="color:#7fe0a3">7</td></tr><tr><td>Home (início) <span class="url">/</span></td><td class="num">84</td><td class="num" style="color:#7fe0a3">6</td></tr><tr><td>Livro 04 — Um Segundo com Deus <span class="url">/livro04</span></td><td class="num">83</td><td class="num" style="color:#7fe0a3">7</td></tr><tr><td>Página de obrigado (Kiwify) <span class="url">/obrigado</span></td><td class="num">79</td><td class="num" style="color:#7fe0a3">7</td></tr><tr><td>Livro 11 — O Novo Testamento como nunca lido <span class="url">/livro11</span></td><td class="num">77</td><td class="num" style="color:#7fe0a3">8</td></tr><tr><td>Livro 05 — Evolução da Alma <span class="url">/livro05</span></td><td class="num">69</td><td class="num" style="color:#7fe0a3">7</td></tr>
+  </table>
+
+  <h3 style="color:#e3c877;font-size:1rem;margin:26px 0 8px;">🔎 Páginas que o Google mais entrega</h3>
+  <table>
+    <tr><th>Página (visita com origem no Google)</th><th>Visitas</th></tr>
+    <tr><td>Trilogia da Alma — Área de alunos <span class="url">/trilogia-da-alma</span></td><td class="num">42</td></tr><tr><td>Livro 04 — Um Segundo com Deus <span class="url">/livro04</span></td><td class="num">40</td></tr><tr><td>Livro 09 — Anestesia Mental <span class="url">/livro09</span></td><td class="num">38</td></tr><tr><td>Livro 11 — O Novo Testamento como nunca lido <span class="url">/livro11</span></td><td class="num">37</td></tr><tr><td>Página de obrigado (Kiwify) <span class="url">/obrigado</span></td><td class="num">37</td></tr><tr><td>Livro 01 — O Verbo que Transforma <span class="url">/livro01</span></td><td class="num">35</td></tr><tr><td>Home (início) <span class="url">/</span></td><td class="num">32</td></tr><tr><td>Livro 05 — Evolução da Alma <span class="url">/livro05</span></td><td class="num">30</td></tr>
+  </table>
+
+  <h3 style="color:#e3c877;font-size:1rem;margin:26px 0 8px;">🔗 Quem nos indica (domínios)</h3>
+  <table>
+    <tr><th>Domínio de onde a pessoa veio</th><th>Visitas</th></tr>
+    <tr><td>www.google.com</td><td class="num">186</td></tr><tr><td>www.google.com.br</td><td class="num">117</td></tr><tr><td>l.instagram.com</td><td class="num">45</td></tr><tr><td>compraoseu.com</td><td class="num">42</td></tr><tr><td>www.tiktok.com</td><td class="num">41</td></tr><tr><td>www.bing.com</td><td class="num">30</td></tr><tr><td>www.youtube.com</td><td class="num">25</td></tr><tr><td>pt.wikipedia.org</td><td class="num">15</td></tr>
+  </table>
+
+  <h3 style="color:#e3c877;font-size:1rem;margin:26px 0 8px;">📅 Últimos 7 dias (site novo, base única)</h3>
+  <table>
+    <tr><th>Dia</th><th>SEO</th><th>Site antigo</th><th>Direto</th><th>Redes</th><th>Visitas</th></tr>
+    <tr><td>02/09/2026</td><td class="num">27</td><td class="num">1</td><td class="num">10</td><td class="num">8</td><td class="num">49</td></tr>
+<tr><td>01/09/2026</td><td class="num">19</td><td class="num">3</td><td class="num">10</td><td class="num">7</td><td class="num">41</td></tr>
+<tr><td>31/08/2026</td><td class="num">28</td><td class="num">4</td><td class="num">11</td><td class="num">9</td><td class="num">54</td></tr>
+<tr><td>30/08/2026</td><td class="num">21</td><td class="num">0</td><td class="num">8</td><td class="num">6</td><td class="num">36</td></tr>
+<tr><td>29/08/2026</td><td class="num">25</td><td class="num">5</td><td class="num">15</td><td class="num">9</td><td class="num">55</td></tr>
+<tr><td>28/08/2026</td><td class="num">17</td><td class="num">2</td><td class="num">9</td><td class="num">6</td><td class="num">34</td></tr>
+<tr><td>27/08/2026</td><td class="num">21</td><td class="num">2</td><td class="num">10</td><td class="num">17</td><td class="num">52</td></tr>
+  </table>
+
+
+  <div class="cards">
+    <div class="card destaque"><div class="v">134</div><div class="l">Acessos à Home (páginas vistas)</div></div>
+    <div class="card destaque"><div class="v">664</div><div class="l">Acessos aos livros (páginas vistas)</div></div>
+    <div class="card"><div class="v">5</div><div class="l">Livros lidos</div></div>
+    <div class="card"><div class="v">0</div><div class="l">Quiz Pais e Filhos</div></div>
+    <div class="card humano"><div class="v">654</div><div class="l">Pessoas (IPs únicos)</div></div>
+  </div>
+
+  <h2>CONVERSÃO (o que move a missão)</h2>
+  <div class="cards"><div class="card conv"><div class="v">0</div><div class="l">🎯 Semeador R$ 37</div><div class="h">0 hoje</div></div><div class="card conv"><div class="v">0</div><div class="l">🌱 Colaborador R$ 19,90</div><div class="h">0 hoje</div></div><div class="card conv"><div class="v">0</div><div class="l">💬 Código / WhatsApp</div><div class="h">0 hoje</div></div><div class="card conv"><div class="v">0</div><div class="l">🎬 Aula grátis (plays 1 a 3)</div><div class="h">0 hoje</div></div><div class="card conv"><div class="v">0</div><div class="l">🎁 PDF NT baixado</div><div class="h">0 hoje · obrigado 119</div></div><div class="card conv destaque"><div class="v">0.0%</div><div class="l">📈 Semeador / pessoas</div><div class="h">654 pessoas</div></div></div>
+  <table>
+    <tr><th>Ação</th><th>Total</th><th>Hoje</th></tr>
+    <tr><td>🎯 Quero Ser Semeador (R$ 37)</td><td class="num">0</td><td class="num" style="color:#7fe0a3">0</td></tr>
+<tr><td>🌱 Colaborador (R$ 19,90)</td><td class="num">0</td><td class="num" style="color:#7fe0a3">0</td></tr>
+<tr><td>💬 Solicitar Código (WhatsApp)</td><td class="num">0</td><td class="num" style="color:#7fe0a3">0</td></tr>
+<tr><td>📱 Cliques no WhatsApp</td><td class="num">0</td><td class="num" style="color:#7fe0a3">0</td></tr>
+<tr><td>🎧 Palavra de hoje (play)</td><td class="num">0</td><td class="num" style="color:#7fe0a3">0</td></tr>
+<tr><td>📤 Palavra compartilhada</td><td class="num">0</td><td class="num" style="color:#7fe0a3">0</td></tr>
+  </table>
+  <p style="font-size:.8rem;color:#9fb0c8;">Semeador = clique no Kiwify R$ 37. Colaborador = clique no Kiwify R$ 19,90. WhatsApp = rascunho aberto (ainda precisa Enviar). Aula grátis = toques nos vídeos livres (módulos 1 a 3), não um pixel antigo. Taxa = semeadores / pessoas únicas. Página de obrigado ≠ PDF baixado: o brinde é o download de livro11-onovotestamenento.pdf.</p>
+
+  <h2>Downloads (PDFs e Palavra)</h2>
+  <table>
+    <tr><th>Arquivo</th><th>Total</th><th>Hoje</th></tr>
+    <tr><td>Brinde extra · PDF do NT (página de obrigado)</td><td class="num">0</td><td class="num" style="color:#7fe0a3">0</td></tr>
+<tr><td>PDF Evolução da Alma (evalma + nome antigo)</td><td class="num">0</td><td class="num" style="color:#7fe0a3">0</td></tr>
+<tr><td>PDF Anestesia Mental (evalma + nome antigo)</td><td class="num">0</td><td class="num" style="color:#7fe0a3">0</td></tr>
+<tr><td>PDF Devocional Vol. 01 (quiz, livre)</td><td class="num">0</td><td class="num" style="color:#7fe0a3">0</td></tr>
+<tr><td>PDF Jesus Quer Falar (quiz, livre)</td><td class="num">0</td><td class="num" style="color:#7fe0a3">0</td></tr>
+<tr><td>PDF Jesus Quer Falar com Seu Filho (outro arquivo)</td><td class="num">0</td><td class="num" style="color:#7fe0a3">0</td></tr>
+<tr><td>PDF com nome chutado (livro10 / livro11 sem evalma)</td><td class="num">0</td><td class="num" style="color:#7fe0a3">0</td></tr>
+<tr><td>Palavra de hoje (plays no botão)</td><td class="num">0</td><td class="num" style="color:#7fe0a3">0</td></tr>
+<tr><td>Palavra compartilhada</td><td class="num">0</td><td class="num" style="color:#7fe0a3">0</td></tr>
+  </table>
+  <p style="font-size:.8rem;color:#9fb0c8;">Jesus Quer Falar aparece duas vezes porque são dois arquivos: o do quiz (jesus-quer-falar.pdf) e o nome longo do livro. evalma junta o nome antigo com o novo. Quiz permanece sem evalma.</p>
+
+  <h2>Ranking (Home + Livros + Quiz)</h2>
+  <table>
+    <tr><th>#</th><th>Página</th><th>Acessos (total · hoje)</th><th>%</th><th>Distribuição</th></tr>
+    
+        <tr>
+          <td class="num">🥇 1</td>
+          <td><a href="https://missaocomdeus.com.br/livro11">Livro 11 — O Novo Testamento como nunca lido</a>
+<span class="url">/livro11</span></td>
+          <td class="num">140 <span style="color:#7fe0a3">(12 hoje)</span></td>
+          <td class="num">13.4%</td>
+          <td><div class="barra"><div class="fill" style="width:13.44860710854947%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num">🥈 2</td>
+          <td><a href="https://missaocomdeus.com.br/livro09">Livro 09 — Anestesia Mental</a>
+<span class="url">/livro09</span></td>
+          <td class="num">136 <span style="color:#7fe0a3">(11 hoje)</span></td>
+          <td class="num">13.1%</td>
+          <td><div class="barra"><div class="fill" style="width:13.064361191162345%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num">🥉 3</td>
+          <td><a href="https://missaocomdeus.com.br/">Home (início)</a>
+<span class="url">/</span></td>
+          <td class="num">134 <span style="color:#7fe0a3">(9 hoje)</span></td>
+          <td class="num">12.9%</td>
+          <td><div class="barra"><div class="fill" style="width:12.87223823246878%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 4</td>
+          <td><a href="https://missaocomdeus.com.br/livro04">Livro 04 — Um Segundo com Deus</a>
+<span class="url">/livro04</span></td>
+          <td class="num">133 <span style="color:#7fe0a3">(11 hoje)</span></td>
+          <td class="num">12.8%</td>
+          <td><div class="barra"><div class="fill" style="width:12.776176753121998%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 5</td>
+          <td><a href="https://missaocomdeus.com.br/livro01">Livro 01 — O Verbo que Transforma</a>
+<span class="url">/livro01</span></td>
+          <td class="num">130 <span style="color:#7fe0a3">(11 hoje)</span></td>
+          <td class="num">12.5%</td>
+          <td><div class="barra"><div class="fill" style="width:12.487992315081652%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 6</td>
+          <td><a href="https://missaocomdeus.com.br/livro05">Livro 05 — Evolução da Alma</a>
+<span class="url">/livro05</span></td>
+          <td class="num">125 <span style="color:#7fe0a3">(13 hoje)</span></td>
+          <td class="num">12.0%</td>
+          <td><div class="barra"><div class="fill" style="width:12.007684918347742%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 7</td>
+          <td><a href="https://missaocomdeus.com.br/trilogia-da-alma">Trilogia da Alma — Área de alunos</a>
+<span class="url">/trilogia-da-alma</span></td>
+          <td class="num">124 <span style="color:#7fe0a3">(4 hoje)</span></td>
+          <td class="num">11.9%</td>
+          <td><div class="barra"><div class="fill" style="width:11.91162343900096%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 8</td>
+          <td><a href="https://missaocomdeus.com.br/obrigado">Página de obrigado (Kiwify)</a>
+<span class="url">/obrigado</span></td>
+          <td class="num">119 <span style="color:#7fe0a3">(10 hoje)</span></td>
+          <td class="num">11.4%</td>
+          <td><div class="barra"><div class="fill" style="width:11.431316042267051%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 9</td>
+          <td><a href="https://missaocomdeus.com.br/livro02">Livro 02 — A Sabedoria dos Mestres</a>
+<span class="url">/livro02</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 10</td>
+          <td><a href="https://missaocomdeus.com.br/livro03">Livro 03 — A Mente Renovada</a>
+<span class="url">/livro03</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 11</td>
+          <td><a href="https://missaocomdeus.com.br/livro06">Livro 06 — Jesus Quer Falar com Seu Filho</a>
+<span class="url">/livro06</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 12</td>
+          <td><a href="https://missaocomdeus.com.br/livro07">Livro 07 — O Caminho do Despertar</a>
+<span class="url">/livro07</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 13</td>
+          <td><a href="https://missaocomdeus.com.br/livro08">Livro 08 — O Arquiteto da Realidade</a>
+<span class="url">/livro08</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 14</td>
+          <td><a href="https://missaocomdeus.com.br/livro10">Livro 10 — O Despertar do Observador</a>
+<span class="url">/livro10</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 15</td>
+          <td><a href="https://missaocomdeus.com.br/livro12">Livro 12 — Afirmações, Declarações e Orações</a>
+<span class="url">/livro12</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 16</td>
+          <td><a href="https://missaocomdeus.com.br/anestesia-mental">Anestesia Mental — Área de alunos</a>
+<span class="url">/anestesia-mental</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 17</td>
+          <td><a href="https://missaocomdeus.com.br/palavra">Caderno Palavra de hoje (casa)</a>
+<span class="url">/palavra</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 18</td>
+          <td><a href="https://missaocomdeus.com.br/q-quiz-inicio">Quiz Home — iniciaram</a>
+<span class="url">/q-quiz-inicio</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 19</td>
+          <td><a href="https://missaocomdeus.com.br/q-quiz-fim">Quiz Home — concluíram</a>
+<span class="url">/q-quiz-fim</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 20</td>
+          <td><a href="https://missaocomdeus.com.br/q-trilogia-m01">Trilogia — Módulo 01 (plays)</a>
+<span class="url">/q-trilogia-m01</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 21</td>
+          <td><a href="https://missaocomdeus.com.br/q-trilogia-m02">Trilogia — Módulo 02 (plays)</a>
+<span class="url">/q-trilogia-m02</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 22</td>
+          <td><a href="https://missaocomdeus.com.br/q-trilogia-m03">Trilogia — Módulo 03 (plays)</a>
+<span class="url">/q-trilogia-m03</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 23</td>
+          <td><a href="https://missaocomdeus.com.br/q-trilogia-m04">Trilogia — Módulo 04 (plays)</a>
+<span class="url">/q-trilogia-m04</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 24</td>
+          <td><a href="https://missaocomdeus.com.br/q-trilogia-m05">Trilogia — Módulo 05 (plays)</a>
+<span class="url">/q-trilogia-m05</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 25</td>
+          <td><a href="https://missaocomdeus.com.br/q-trilogia-m06">Trilogia — Módulo 06 (plays)</a>
+<span class="url">/q-trilogia-m06</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 26</td>
+          <td><a href="https://missaocomdeus.com.br/q-trilogia-m07">Trilogia — Módulo 07 (plays)</a>
+<span class="url">/q-trilogia-m07</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 27</td>
+          <td><a href="https://missaocomdeus.com.br/q-anestesia-m01">Anestesia — Módulo 01 (plays)</a>
+<span class="url">/q-anestesia-m01</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 28</td>
+          <td><a href="https://missaocomdeus.com.br/q-anestesia-m02">Anestesia — Módulo 02 (plays)</a>
+<span class="url">/q-anestesia-m02</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 29</td>
+          <td><a href="https://missaocomdeus.com.br/q-anestesia-m03">Anestesia — Módulo 03 (plays)</a>
+<span class="url">/q-anestesia-m03</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 30</td>
+          <td><a href="https://missaocomdeus.com.br/q-anestesia-m04">Anestesia — Módulo 04 (plays)</a>
+<span class="url">/q-anestesia-m04</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 31</td>
+          <td><a href="https://missaocomdeus.com.br/q-anestesia-m05">Anestesia — Módulo 05 (plays)</a>
+<span class="url">/q-anestesia-m05</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 32</td>
+          <td><a href="https://missaocomdeus.com.br/q-anestesia-m06">Anestesia — Módulo 06 (plays)</a>
+<span class="url">/q-anestesia-m06</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 33</td>
+          <td><a href="https://missaocomdeus.com.br/q-anestesia-m07">Anestesia — Módulo 07 (plays)</a>
+<span class="url">/q-anestesia-m07</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="num"> 34</td>
+          <td><a href="https://missaocomdeus.com.br/guia-pais-filhos">Guia Pais e Filhos — Quiz</a>
+<span class="url">/guia-pais-filhos</span></td>
+          <td class="num">0 </td>
+          <td class="num">0.0%</td>
+          <td><div class="barra"><div class="fill" style="width:0.0%"></div></div></td>
+        </tr>
+  </table>
+
+  <h2>Acessos por dia (últimos 7)</h2>
+  <table>
+    <tr><th>Dia</th><th>Páginas (humanos)</th><th>Visitantes únicos</th><th>Descartados</th></tr>
+    <tr><td>02/09/2026</td><td class="num">81</td><td class="num" style="color:#7fe0a3">49</td><td class="num" style="color:#9fb0c8">8</td></tr>
+<tr><td>01/09/2026</td><td class="num">67</td><td class="num" style="color:#7fe0a3">41</td><td class="num" style="color:#9fb0c8">15</td></tr>
+<tr><td>31/08/2026</td><td class="num">85</td><td class="num" style="color:#7fe0a3">54</td><td class="num" style="color:#9fb0c8">8</td></tr>
+<tr><td>30/08/2026</td><td class="num">57</td><td class="num" style="color:#7fe0a3">36</td><td class="num" style="color:#9fb0c8">10</td></tr>
+<tr><td>29/08/2026</td><td class="num">90</td><td class="num" style="color:#7fe0a3">55</td><td class="num" style="color:#9fb0c8">8</td></tr>
+<tr><td>28/08/2026</td><td class="num">51</td><td class="num" style="color:#7fe0a3">34</td><td class="num" style="color:#9fb0c8">7</td></tr>
+<tr><td>27/08/2026</td><td class="num">82</td><td class="num" style="color:#7fe0a3">52</td><td class="num" style="color:#9fb0c8">5</td></tr>
+  </table>
+
+  <h2>Outras páginas</h2>
+  <table>
+    <tr><th>Página</th><th>Acessos</th></tr>
+    <tr><td colspan="2">Nenhum</td></tr>
+  </table>
+
+  <footer>Período: 20/08/2026 00:16 até 02/09/2026 10:28 · Missão com Deus<br>
+  Painel v4 (origem dos acessos). noindex. Só para o administrador.</footer>
+</div>
+</body>
+</html>
