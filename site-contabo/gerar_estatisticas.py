@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Painel v4 — missaocomdeus.com.br
+Painel v4, missaocomdeus.com.br
 
 v3 (leituras + conversao) + ORIGEM:
-  "De onde os nossos irmaos estao chegando" — SEO (Google/Bing), site antigo
+  "De onde os nossos irmaos estao chegando": SEO (Google/Bing), site antigo
   compraoseu.com (redirecionado), redes, direto, etc.
 
 Como funciona:
@@ -11,7 +11,7 @@ Como funciona:
   - Conta CHEGADAS (entradas): so o primeiro acesso da visita conta.
     Navegacao interna (de um livro para outro) nao conta como origem.
   - Le tambem o log do site ANTIGO (compraoseu.com): cada 301 que o servidor
-    respondeu e uma pessoa que vinha do site antigo — e o log guarda de onde
+    respondeu e uma pessoa que vinha do site antigo, e o log guarda de onde
     ela veio antes (Google? direto? Instagram?).
   - Se a URL tiver utm_source=... (links marcados), ele manda na classificacao.
 
@@ -59,39 +59,39 @@ NOSSOS_HOSTS = {
 
 PAGINAS = OrderedDict([
     ('/', 'Home (início)'),
-    ('/livro01', 'Livro 01 — O Verbo que Transforma'),
-    ('/livro02', 'Livro 02 — A Sabedoria dos Mestres'),
-    ('/livro03', 'Livro 03 — A Mente Renovada'),
-    ('/livro04', 'Livro 04 — Um Segundo com Deus'),
-    ('/livro05', 'Livro 05 — Evolução da Alma'),
-    ('/livro06', 'Livro 06 — Jesus Quer Falar com Seu Filho'),
-    ('/livro07', 'Livro 07 — O Caminho do Despertar'),
-    ('/livro08', 'Livro 08 — O Arquiteto da Realidade'),
-    ('/livro09', 'Livro 09 — Anestesia Mental'),
-    ('/livro10', 'Livro 10 — O Despertar do Observador'),
-    ('/livro11', 'Livro 11 — O Novo Testamento como nunca lido'),
-    ('/livro12', 'Livro 12 — Afirmações, Declarações e Orações'),
-    ('/trilogia-da-alma', 'Trilogia da Alma — Área de alunos'),
-    ('/anestesia-mental', 'Anestesia Mental — Área de alunos'),
+    ('/livro01', 'Livro 01: O Verbo que Transforma'),
+    ('/livro02', 'Livro 02: A Sabedoria dos Mestres'),
+    ('/livro03', 'Livro 03: A Mente Renovada'),
+    ('/livro04', 'Livro 04: Um Segundo com Deus'),
+    ('/livro05', 'Livro 05: Evolução da Alma'),
+    ('/livro06', 'Livro 06: Jesus Quer Falar com Seu Filho'),
+    ('/livro07', 'Livro 07: O Caminho do Despertar'),
+    ('/livro08', 'Livro 08: O Arquiteto da Realidade'),
+    ('/livro09', 'Livro 09: Anestesia Mental'),
+    ('/livro10', 'Livro 10: O Despertar do Observador'),
+    ('/livro11', 'Livro 11: O Novo Testamento como nunca lido'),
+    ('/livro12', 'Livro 12: Afirmações, Declarações e Orações'),
+    ('/trilogia-da-alma', 'Trilogia da Alma, área de alunos'),
+    ('/anestesia-mental', 'Anestesia Mental, área de alunos'),
     ('/obrigado', 'Página de obrigado (Kiwify)'),
     ('/palavra', 'Caderno Palavra de hoje (casa)'),
-    ('/q-quiz-inicio', 'Quiz Home — iniciaram'),
-    ('/q-quiz-fim', 'Quiz Home — concluíram'),
-    ('/q-trilogia-m01', 'Trilogia — Módulo 01 (plays)'),
-    ('/q-trilogia-m02', 'Trilogia — Módulo 02 (plays)'),
-    ('/q-trilogia-m03', 'Trilogia — Módulo 03 (plays)'),
-    ('/q-trilogia-m04', 'Trilogia — Módulo 04 (plays)'),
-    ('/q-trilogia-m05', 'Trilogia — Módulo 05 (plays)'),
-    ('/q-trilogia-m06', 'Trilogia — Módulo 06 (plays)'),
-    ('/q-trilogia-m07', 'Trilogia — Módulo 07 (plays)'),
-    ('/q-anestesia-m01', 'Anestesia — Módulo 01 (plays)'),
-    ('/q-anestesia-m02', 'Anestesia — Módulo 02 (plays)'),
-    ('/q-anestesia-m03', 'Anestesia — Módulo 03 (plays)'),
-    ('/q-anestesia-m04', 'Anestesia — Módulo 04 (plays)'),
-    ('/q-anestesia-m05', 'Anestesia — Módulo 05 (plays)'),
-    ('/q-anestesia-m06', 'Anestesia — Módulo 06 (plays)'),
-    ('/q-anestesia-m07', 'Anestesia — Módulo 07 (plays)'),
-    ('/guia-pais-filhos', 'Guia Pais e Filhos — Quiz'),
+    ('/q-quiz-inicio', 'Quiz Home: iniciaram'),
+    ('/q-quiz-fim', 'Quiz Home: concluíram'),
+    ('/q-trilogia-m01', 'Trilogia, Módulo 01 (plays)'),
+    ('/q-trilogia-m02', 'Trilogia, Módulo 02 (plays)'),
+    ('/q-trilogia-m03', 'Trilogia, Módulo 03 (plays)'),
+    ('/q-trilogia-m04', 'Trilogia, Módulo 04 (plays)'),
+    ('/q-trilogia-m05', 'Trilogia, Módulo 05 (plays)'),
+    ('/q-trilogia-m06', 'Trilogia, Módulo 06 (plays)'),
+    ('/q-trilogia-m07', 'Trilogia, Módulo 07 (plays)'),
+    ('/q-anestesia-m01', 'Anestesia, Módulo 01 (plays)'),
+    ('/q-anestesia-m02', 'Anestesia, Módulo 02 (plays)'),
+    ('/q-anestesia-m03', 'Anestesia, Módulo 03 (plays)'),
+    ('/q-anestesia-m04', 'Anestesia, Módulo 04 (plays)'),
+    ('/q-anestesia-m05', 'Anestesia, Módulo 05 (plays)'),
+    ('/q-anestesia-m06', 'Anestesia, Módulo 06 (plays)'),
+    ('/q-anestesia-m07', 'Anestesia, Módulo 07 (plays)'),
+    ('/guia-pais-filhos', 'Guia Pais e Filhos (Quiz)'),
 ])
 
 CONVERSAO = OrderedDict([
@@ -893,7 +893,7 @@ def bloco_origem_html(origem, antigo, periodo_txt, ignorados=0):
   <p class="nota">
     «Site antigo» é quando o navegador avisa que a pessoa veio do compraoseu.com.
     «Direto» é quando ele <b>não avisa nada</b>: endereço digitado, favorito,
-    link colado em aplicativo — <b>inclusive WhatsApp, Instagram e TikTok</b>,
+    link colado em aplicativo, <b>inclusive WhatsApp, Instagram e TikTok</b>,
     que abrem o link sem dizer de onde veio. Cada visita tem uma única origem,
     então as linhas somam 100%.
   </p>
@@ -910,7 +910,7 @@ def bloco_antigo_html(antigo):
   <code>/www/wwwlogs/compraoseu.com.log</code> (ou ajuste
   <code>STATS_LOG_ANTIGO</code>) que esta tabela aparece sozinha.</p>
 """
-    per = '—'
+    per = 'sem data'
     if antigo['data_inicio'] and antigo['data_fim']:
         per = (f"{antigo['data_inicio'].strftime('%d/%m/%Y')} a "
                f"{antigo['data_fim'].strftime('%d/%m/%Y')}")
@@ -926,7 +926,7 @@ def bloco_antigo_html(antigo):
             f'<td class="num">{v}</td>'
             f'<td class="num">{v / base_a * 100:.1f}%</td></tr>')
     top_urls = ' · '.join(
-        f'{html.escape(u)} ({c})' for u, c in antigo['urls'].most_common(6)) or '—'
+        f'{html.escape(u)} ({c})' for u, c in antigo['urls'].most_common(6)) or 'nenhum'
     dias_a = sorted(antigo['por_dia'].keys(), key=chave_data, reverse=True)[:7]
     linhas_dias_a = '\n'.join(
         f'<tr><td>{d}</td><td class="num">{antigo["por_dia"].get(d, 0)}</td></tr>'
@@ -935,7 +935,7 @@ def bloco_antigo_html(antigo):
     return f"""
   <p class="aviso" style="margin:0 0 14px;">
     <b>Período deste bloco: {per}.</b> Log próprio, base própria.
-    <b>Não somar e não misturar</b> com os números de cima — são duas medições diferentes.
+    <b>Não somar e não misturar</b> com os números de cima. São duas medições diferentes.
     O site antigo responde 301 para qualquer endereço, então robôs de varredura também
     recebiam 301. Por isso o funil abaixo existe e é mostrado inteiro.
   </p>
@@ -981,7 +981,7 @@ def montar_html(res, antigo):
     seta = '📈' if variacao > 0 else ('📉' if variacao < 0 else '➖')
 
     # ---------------------------------------------------------- periodo
-    periodo = '—'
+    periodo = 'sem registro'
     if data_inicio and data_fim:
         periodo = (f'{data_inicio.strftime("%d/%m/%Y %H:%M")} até '
                    f'{data_fim.strftime("%d/%m/%Y %H:%M")}')
@@ -1126,7 +1126,7 @@ def montar_html(res, antigo):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Termômetro da Missão — missaocomdeus.com.br</title>
+<title>Termômetro da Missão · missaocomdeus.com.br</title>
 <style>
   :root {{ --navy:#0e1a2e; --gold:#c9a24b; }}
   * {{ box-sizing:border-box; }}
@@ -1214,7 +1214,7 @@ def montar_html(res, antigo):
   <h2>Detalhes <span class="selo-filtro">abre o que quiser</span></h2>
 
   <details>
-    <summary>🏠 Endereço antigo compraoseu.com (medição separada — não somar)</summary>
+    <summary>🏠 Endereço antigo compraoseu.com (medição separada, não somar)</summary>
     <div class="dbody">{bloco_antigo_html(antigo)}</div>
   </details>
 
@@ -1299,7 +1299,7 @@ def montar_html(res, antigo):
   </details>
 
   <details>
-    <summary>🧹 O funil — o que NÃO entra na conta (e por quê)</summary>
+    <summary>🧹 O funil: o que NÃO entra na conta (e por quê)</summary>
     <div class="dbody">
       <table>
         <tr><th>Etapa</th><th>Quantidade</th></tr>

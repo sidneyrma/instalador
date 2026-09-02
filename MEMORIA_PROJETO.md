@@ -764,3 +764,41 @@ Tudo o que fizerem, seja em palavra seja em ação, façam-no em nome do Senhor 
 «Lâmpada para os meus pés é a tua palavra, e luz para o meu caminho.» (Salmo 119:105)
 
 Tudo o que fizerem, seja em palavra seja em ação, façam-no em nome do Senhor Jesus, dando por meio dele graças a Deus Pai. (Cl 3:17)
+
+
+---
+
+## Purificação da escrita (02/09/2026) — REGRA PERMANENTE
+
+**Regra do autor: NUNCA usar travessão longo (—) na obra nem nas páginas.**
+Usar a pontuação da nossa ortografia: vírgula, ponto, dois-pontos, ponto-e-vírgula.
+Motivo dele: «para que não tenham a visão ao lerem com impressão de que foi utilizado
+tecnologia e aprimoramentos ou que seja criação de ia». Exceção só no raríssimo caso
+em que realmente caiba. Vale para tudo que for escrito daqui em diante.
+
+Segunda regra: **purificar todo metadado que identifique ou tenha marca de IA.**
+«A obra merece agora a assinatura de Deus em sua língua e escrita.»
+
+### O que foi feito
+- `livro07.html`: 34 travessões → **0** (33 do texto + 1 no aviso de copyright dentro do JS).
+- Páginas públicas: **0 travessões visíveis, 0 lidos pelo Google, 0 no código**.
+  (index, guia-pais-filhos, livro04, livro05, livro06, livro07, livro09, livro11,
+  livro12, anestesia-mental, trilogia-da-alma, mural, obrigado.)
+- `gerar_estatisticas.py`: 42 → **0**. Nomes de livros passaram a usar dois-pontos
+  («Livro 04: Um Segundo com Deus»); os travessões que serviam de placeholder
+  viraram palavras («sem data», «sem registro», «nenhum»). Compila OK.
+- **Descrição do Google do livro07 corrigida:** saiu «sabedoria oculta, fé e
+  autoconhecimento», entrou «a Palavra de Deus, vida interior e o encontro mais
+  íntimo com Cristo».
+
+### Metadados com marca de IA
+- O **site público está limpo**: nenhuma menção a IA nos HTML.
+  A única ocorrência é em `livro09.html` («a inteligência artificial não pode
+  simular a paz»), que é conteúdo do autor, não marca. **Manter.**
+- **O repositório sidneyrma/instalador é PÚBLICO.** Estes arquivos citam
+  Claude/OpenAI e aparecem para qualquer pessoa: `CLAUDE.md`,
+  `analise/links_para_claude.md`, `analise/prompt_claude.md`,
+  `analise/prompt_varredura.md`, `analise/chatbot/mensagens_iniciais_humanizadas.md`,
+  `analise/auditoria_preview.py`, `MEMORIA_PROJETO.md`.
+  **Decisão pendente do autor** (não apagados ainda porque `CLAUDE.md` é a
+  configuração da ferramenta que ele mesmo usa).
