@@ -1,3 +1,6 @@
+> Espelho de `MEMORIA_PROJETO.md` (raiz do repositório). Se os dois divergirem, **a raiz manda**.
+> Atualizado em 02/09/2026.
+
 # MEMÓRIA DO PROJETO — MISSÃO COM DEUS
 ## Atualizado em: 02/09/2026 (Brasília)
 ## Site vivo: https://missaocomdeus.com.br
