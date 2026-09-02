@@ -224,22 +224,34 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 
 ---
 
-## STATS v4 — ORIGEM (feito em 02/09/2026)
+## STATS v5 — ORIGEM COM MEDIÇÃO HONESTA (correção de 02/09/2026)
 
-- Script: `site-contabo/gerar_estatisticas.py` · cópia em `consultoria-redes/gerar_estatisticas.py`
-- Bloco novo no painel: **De onde vêm os nossos irmãos** (6 cards + 5 tabelas).
-- Lê o `Referer` do log do site NOVO → Google/SEO, Bing e outros buscadores, compraoseu, IG/FB, TikTok, YouTube, WhatsApp, e-mail, outros sites, direto.
-- Lê também o log do site ANTIGO (`/www/wwwlogs/compraoseu.com.log`): cada 301 é uma visita que veio do endereço antigo, e o log guarda de onde ela vinha antes (Google? direto? redes?).
-- **NÃO SOMAR os dois blocos:** o navegador preserva o referer original através do 301, então quem vem do compraoseu já está contado dentro de SEO/Direto. O bloco do site antigo responde outra pergunta.
-- Conta CHEGADAS: só o 1º acesso da visita. Navegar de um livro para outro não conta como origem.
-- UTM: se a URL traz `utm_source=`, ele manda na classificação. Links prontos em `consultoria-redes/LINKS_COM_UTM.md`.
-- Nada de cookie, nada de JS, nada de Analytics. Só o log do servidor. Não mexe no site.
-- Env opcionais: `STATS_LOG_ANTIGO` (log do compraoseu), `STATS_LOG_EXTRA` (globs de logs rotacionados), além de `STATS_LOG`, `STATS_OUT`, `STATS_LEITURAS`.
-- `consultoria-redes/APLICAR_CANONICAL.py`: insere `rel=canonical` nas páginas públicas (faz `.bak` antes, é idempotente, não toca no player). Só é necessário se o autor usar os links com UTM.
-- Instalar: enviar o `.py` para `/home/deploy/` e rodar `python3 /home/deploy/gerar_estatisticas.py` (2 linhas no Terminal). Cron existente não precisa ser mexido.
-- Se aparecer «Não achei o log do site antigo»: `ls /www/wwwlogs/ | grep -i compraoseu` e, se o nome for outro, passar em `STATS_LOG_ANTIGO`.
-- `consultoria-redes/exemplo/NAO_SUBIR-stats-origem-exemplo.html` = só demonstração visual, com dados fictícios. **Nunca subir para o servidor.**
-- Marcar o 301 com `utm_source=compraoseu` no Nginx: **opcional**. Se o 301 está saudável, não mexer (passo 7 de `COMO_ATIVAR_ORIGEM.md`).
+**A v4 errou e foi corrigida no mesmo dia. O que a v4 fazia de errado:**
+
+- Mostrava «266% entraram pelo site antigo»: dividia o log do compraoseu.com (10139 requisições, período 11/08–02/09) pelo total de chegadas do site novo (3806, outra base). **Nunca misturar bases nem períodos.**
+- Contava cada **requisição** como visita. No site antigo, como o 301 responde para qualquer endereço, cada varredura de robô (/.env, /wp-login.php, /xmlrpc.php) ganhava um 301 e virava «visita de irmão». Resultado: 10139 «visitas» para 1129 IPs, sendo 93,6% «direto».
+- O `/stats` (o próprio autor abrindo o painel, 337 vezes) entrava como visita de irmão.
+
+**Regras que a v5 obedece (guardar como lei da casa):**
+
+1. Unidade = **visita (sessão de 30 min sem atividade)**. Padrão do Google Analytics. Navegar entre livros é a mesma visita.
+2. **Origem da visita = origem do primeiro acesso dela.** Uma visita, uma origem: as linhas somam o total.
+3. **Pessoas = IPs distintos.** É aproximação (IP de celular é compartilhado e muda). Dizer isso no painel.
+4. **Fora da conta de visita:** robôs, varreduras, ataques, erros, endpoints `.php`, e as páginas internas `/stats`, `/palavra`, `/mural`. Seguem no ranking de páginas vistas (honestidade: mostra, mas não mistura).
+5. **Cada bloco com período e base próprios.** Percentual só dentro do mesmo bloco. O bloco do site antigo mostra o **funil inteiro**: requisições → robôs → ataques → varredura → requisições de gente → visitas → pessoas.
+6. Ordenação dos dias por data de verdade (a v4 ordenava como texto e errava na virada do mês).
+
+**Arquivos:**
+
+- Script: `site-contabo/gerar_estatisticas.py` · cópia `consultoria-redes/gerar_estatisticas.py`
+- Guia: `consultoria-redes/COMO_ATIVAR_ORIGEM.md` (seção 0 explica a correção)
+- Links marcados: `consultoria-redes/LINKS_COM_UTM.md`
+- Canonical (opcional): `consultoria-redes/APLICAR_CANONICAL.py`
+- Exemplo visual (dados fictícios): `consultoria-redes/exemplo/NAO_SUBIR-stats-origem-exemplo.html` — **nunca subir**
+
+**Env vars:** `STATS_LOG`, `STATS_OUT`, `STATS_LEITURAS`, `STATS_LOG_ANTIGO`, `STATS_LOG_EXTRA` (globs de logs rotacionados), `STATS_SESSAO_MIN` (padrão 30), `STATS_IPS_IGNORAR` (IPs do autor, desconta os próprios acessos).
+
+**Como ler os resultados reais do site (02/09):** «Direto» é grande porque WhatsApp/Instagram/TikTok abrem o link sem enviar referer. Não é, necessariamente, gente digitando o endereço. A saída é o `utm_source` dos links compartilhados.
 
 ---
 
@@ -253,6 +265,9 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 - Não overlay YouTube. Não publicar Eu Sou.
 - Não apagar apioficial / app / api compraoseu.
 - Não zerar enquete_dados.json para limpar spam.
+- **Nunca misturar bases:** percentual de um bloco só vale dentro dele (site novo × site antigo têm logs e períodos diferentes).
+- Não contar requisição como visita. Visita = sessão de 30 min.
+- Não subir `NAO_SUBIR-stats-origem-exemplo.html` para o servidor (é só demonstração com dados fictícios).
 - Não subir `NAO_SUBIR-stats-origem-exemplo.html` para o servidor (é só demonstração com dados fictícios).
 
 ---
@@ -266,7 +281,8 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 5. Mural só com nome real + «pode publicar».
 6. Share nas pontes / obrigado: ideia boa, **depois**. Um lugar de cada vez.
 7. GitHub ≠ servidor. Espelho quando o autor puder, sem apagar o vivo.
-8. Subir o `gerar_estatisticas.py` v4 para `/home/deploy/`, rodar e conferir se o bloco «De onde vêm os nossos irmãos» aparece em `/stats`. Se o log do compraoseu.com não existir, o painel avisa (não é erro).
+8. Subir o `gerar_estatisticas.py` **v5** (medição honesta) para `/home/deploy/` e rodar. Os números vão **cair** em relação à v4 (antes contava requisição como visita e robô como gente). Conferir o funil do bloco do site antigo.
+9. O autor procurou os arquivos na `main` do GitHub e não achou: eles estão no branch da sessão `arena/01a061ac-instalador`. Sempre avisar o caminho do branch, ou abrir PR.
 
 ---
 
