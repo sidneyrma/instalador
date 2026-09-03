@@ -131,18 +131,20 @@ PDF_MAP = {
     '/ebooks/um-segundo-com-deus-vol-01.pdf': '/dl:devocional-quiz',
     '/ebooks/jesus-quer-falar.pdf': '/dl:jesus-quiz',
     '/ebooks/jesus-quer-falar-com-seu-filho.pdf': '/dl:jesus-livro',
-    '/ebooks/livro11-onovotestamenento.pdf': '/dl:brinde-nt',
+    '/ebooks/livro11-o-n-t.pdf': '/dl:brinde-nt',
+    '/ebooks/livro12-a-d-o.pdf': '/dl:afirmacoes',
     '/ebooks/livro11.pdf': '/dl:chute-pdf',
     '/ebooks/livro10.pdf': '/dl:chute-pdf',
 }
 
 DL_NOMES = OrderedDict([
-    ('/dl:brinde-nt', 'Brinde extra · PDF do NT (página de obrigado)'),
+    ('/dl:brinde-nt', 'Bônus 1: PDF do NT (página de obrigado)'),
     ('/dl:evolucao', 'PDF Evolução da Alma (evalma + nome antigo)'),
     ('/dl:anestesia', 'PDF Anestesia Mental (evalma + nome antigo)'),
-    ('/dl:devocional-quiz', 'PDF Devocional Vol. 01 (quiz, livre)'),
+    ('/dl:devocional-quiz', 'Bônus 2: PDF Devocional Um Segundo com Deus (30 dias)'),
     ('/dl:jesus-quiz', 'PDF Jesus Quer Falar (quiz, livre)'),
-    ('/dl:jesus-livro', 'PDF Jesus Quer Falar com Seu Filho (outro arquivo)'),
+    ('/dl:jesus-livro', 'Bônus 3: PDF Jesus Quer Falar com Seu Filho'),
+    ('/dl:afirmacoes', 'Bônus 4: PDF Afirmações, Declarações e Orações'),
     ('/dl:chute-pdf', 'PDF com nome chutado (livro10 / livro11 sem evalma)'),
     ('/q-palavra-play', 'Palavra de hoje (plays no botão)'),
     ('/q-palavra-share', 'Palavra compartilhada'),
@@ -1265,8 +1267,8 @@ def montar_html(res, antigo):
       </table>
       <p class="nota">Semeador e Colaborador = clique no link da Kiwify (a compra acontece lá fora).
       WhatsApp = rascunho aberto, ainda precisa a pessoa Enviar. Aulas grátis = toques nos
-      módulos livres 1 a 3. Página de obrigado ≠ download: o brinde é o arquivo
-      livro11-onovotestamenento.pdf.</p>
+      módulos livres 1 a 3. Página de obrigado ≠ download: bônus 1 é o arquivo
+      livro11-o-n-t.pdf. Bônus 4 é o guia livro12-a-d-o.pdf.</p>
     </div>
   </details>
 

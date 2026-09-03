@@ -7,9 +7,9 @@ A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O G
 
 ## ATUALIZAÇÃO URGENTE — 03/09/2026 (consultoria)
 
-- Brinde do NT no ar: **`/ebooks/livro11-o-n-t.pdf`** (existe). O nome `livro11-onovotestamenento.pdf` da memória antiga **retorna 404**. Não usar.
-- Brinde do guia Afirmações no obrigado: **`/ebooks/livro12-a-d-o.pdf`** (existe e está no ar).
-- Home / FAQ antiga dizia "As quatro aulas no site" e a casa "reserva um presente" sem nome. Ajustado no espelho para: **módulos 1 a 3 grátis** e presente nomeado (PDF do NT).
+- Bônus 1 e 4 no ar: **`/ebooks/livro11-o-n-t.pdf`** (NT) e **`/ebooks/livro12-a-d-o.pdf`** (Afirmações). O nome antigo `livro11-onovotestamenento.pdf` **retorna 404**. Não usar.
+- Bônus 4 (Afirmações) no obrigado: **`/ebooks/livro12-a-d-o.pdf`** (existe e está no ar).
+- Home / FAQ e oferta ajustadas no espelho para **4 bônus**: NT, Devocional 30 dias, Jesus e Afirmações em PDF. Módulos 1 a 3 grátis.
 - Banner fixo da Home NÃO deve mais prometer "código de acesso grátis à Laura" nem pedir "código grátis". O convite certo é sobre o acesso completo.
 - Caixa de código das pontes: dizer **"Liberar os módulos restantes (4 a 7)"**, não "Liberar Módulos 5, 6 e 7".
 - O `/stats` vivo hoje é **v6** e NÃO é o `site-contabo/gerar_estatisticas.py` do GitHub (que é v3). Antes de atualizar/sobrescrever, retirar o script v6 do servidor, senão o painel volta.
@@ -84,8 +84,8 @@ A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O G
 - Botão dourado: Começar o Devocional de 30 dias → `/livro04`
 - Botão quieto: Ler as Afirmações → `/livro12`
 - Arte: `https://i.ibb.co/zhH6FV9X/hero.jpg` · CSS `--navy` `#0e1a2e`
-- Título oferta: Seja um Semeador da Missão e ganhe um Brinde Extra
-- Brinde extra na lista: PDF O Novo Testamento como nunca lido (para guardar)
+- Título oferta: Seja um Semeador da Missão e ganhe 4 bônus
+- 4 bônus no acesso completo: NT, Devocional 30 dias, Jesus e Afirmações em PDF
 - FAQ: «O que eu recebo no acesso completo?» · «Isso é doação?» (não)
 - Banner `#cta-cursos`: ~45% scroll / mouseleave; `VALIDADE_HORAS = 6`; só Trilogia na Home
 - Seção `#missao`: fé e a mente; Laura não é carne; Mt 18:20
@@ -152,7 +152,7 @@ Roteiros: `consultoria-redes/ROTEIRO_PALAVRA_30_DIAS.txt`
 - Motivo: 4 livres é mais da metade (filha de 13 anos). Autor concordou 3.
 - Texto: isto é prévia; área de membros Kiwify tem explicações e exercícios.
 - Um botão: **Quero o acesso completo — R$ 37,00** → iVfp2bi
-- Linha dourada visível: brinde extra PDF NT
+- Linha dourada visível: 4 bônus (NT, Devocional, Jesus e Afirmações)
 - Modal: um preço. «Já tenho código de acesso»
 - Caixa de código: «Liberar os módulos restantes (4 a 7)». Não usar «Liberar Módulos 5, 6 e 7».
 - Mural vazio `display:none`. `/mural.html` no servidor, noindex, **sem link**
@@ -189,7 +189,7 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 - Proteção pypdf (`permissions_flag`). Script `PROTEGER_PDFS.py`
 - **LIVRES (sem evalma, quiz):** `Um-Segundo-com-Deus-Vol-01.pdf` · `jesus-quer-falar.pdf`
 - **Com evalma (chute difícil):** `Anestesia-mental-evalma.pdf` · `Evolucao-da-alma-evalma.pdf`
-- **Brinde NT (nome real no ar):** `livro11-o-n-t.pdf`
+- **Bônus 1 (nome real no ar):** `livro11-o-n-t.pdf`
 - Dois «Jesus Quer Falar» no log antigo = dois arquivos (quiz curto × nome longo do livro). Não é duplicata.
 
 ---
@@ -224,13 +224,13 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 - Script vivo do cron: `/home/deploy/gerar_estatisticas.py`
 - Cópia nova (29/08) em `consultoria-redes/gerar_estatisticas.py`:
   - Aula grátis = soma dos plays módulos **1 a 3** (não o pixel morto `/q-aula-gratis`)
-  - Tabela Downloads: evalma + nome antigo no mesmo balde; brinde NT; quiz livres; Palavra tocada
+  - Tabela Downloads: evalma + nome antigo no mesmo balde; bônus NT; quiz livres; Palavra tocada
   - `/obrigado` e `/palavra` no ranking
   - `/trilogia` e `/anestesia` (1 hit) = URL curta, não as pontes. Alias para as pontes de verdade
   - `.well-known` (SSL) some da lista
 - Se o card «Aula grátis» ainda mostrar 0 no ar, o `/home/deploy/` ainda não recebeu essa cópia. Enviar e rodar `python3 /home/deploy/gerar_estatisticas.py`
 - Conversão 1,5% = clique/pessoas, não Pix. Conferir vendas reais na Kiwify.
-- `/obrigado` ≠ PDF baixado. O brinde é o GET de `livro11-o-n-t.pdf`
+- `/obrigado` ≠ PDF baixado. O bônus 1 é o GET de `livro11-o-n-t.pdf`
 
 ---
 
@@ -244,7 +244,7 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 - Não overlay YouTube. Não publicar Eu Sou.
 - Não apagar apioficial / app / api compraoseu.
 - Não zerar enquete_dados.json para limpar spam.
-- Não usar `/ebooks/livro11-onovotestamenento.pdf` (404 no ar). O brinde do NT é `/ebooks/livro11-o-n-t.pdf`.
+- Não usar `/ebooks/livro11-onovotestamenento.pdf` (404 no ar). O bônus 1 do NT é `/ebooks/livro11-o-n-t.pdf`.
 - Não dizer "as quatro aulas no site", nem "código de acesso grátis à Laura", nem "Liberar Módulos 5, 6 e 7". O ar é: módulos 1 a 3 grátis, um acesso R$ 37, código libera módulos 4 a 7.
 
 ---
@@ -336,8 +336,8 @@ A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O G
 - Botão dourado: Começar o Devocional de 30 dias → `/livro04`
 - Botão quieto: Ler as Afirmações → `/livro12`
 - Arte: `https://i.ibb.co/zhH6FV9X/hero.jpg` · CSS `--navy` `#0e1a2e`
-- Título oferta: Seja um Semeador da Missão e ganhe um Brinde Extra
-- Brinde extra na lista: PDF O Novo Testamento como nunca lido (para guardar)
+- Título oferta: Seja um Semeador da Missão e ganhe 4 bônus
+- 4 bônus no acesso completo: NT, Devocional 30 dias, Jesus e Afirmações em PDF
 - FAQ: «O que eu recebo no acesso completo?» · «Isso é doação?» (não)
 - Banner `#cta-cursos`: ~45% scroll / mouseleave; `VALIDADE_HORAS = 6`; só Trilogia na Home
 - Seção `#missao`: fé e a mente; Laura não é carne; Mt 18:20
@@ -404,7 +404,7 @@ Roteiros: `consultoria-redes/ROTEIRO_PALAVRA_30_DIAS.txt`
 - Motivo: 4 livres é mais da metade (filha de 13 anos). Autor concordou 3.
 - Texto: isto é prévia; área de membros Kiwify tem explicações e exercícios.
 - Um botão: **Quero o acesso completo — R$ 37,00** → iVfp2bi
-- Linha dourada visível: brinde extra PDF NT
+- Linha dourada visível: 4 bônus (NT, Devocional, Jesus e Afirmações)
 - Modal: um preço. «Já tenho código de acesso»
 - Mural vazio `display:none`. `/mural.html` no servidor, noindex, **sem link**
 - Plays: `tocarVideo` faz `fetch('/q-trilogia-m0N')` ou `/q-anestesia-m0N`
@@ -440,7 +440,7 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 - Proteção pypdf (`permissions_flag`). Script `PROTEGER_PDFS.py`
 - **LIVRES (sem evalma, quiz):** `Um-Segundo-com-Deus-Vol-01.pdf` · `jesus-quer-falar.pdf`
 - **Com evalma (chute difícil):** `Anestesia-mental-evalma.pdf` · `Evolucao-da-alma-evalma.pdf`
-- **Brinde NT (nome real no ar):** `livro11-o-n-t.pdf`
+- **Bônus 1 (nome real no ar):** `livro11-o-n-t.pdf`
 - Dois «Jesus Quer Falar» no log antigo = dois arquivos (quiz curto × nome longo do livro). Não é duplicata.
 
 ---
@@ -475,13 +475,13 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 - Script vivo do cron: `/home/deploy/gerar_estatisticas.py`
 - Cópia nova (29/08) em `consultoria-redes/gerar_estatisticas.py`:
   - Aula grátis = soma dos plays módulos **1 a 3** (não o pixel morto `/q-aula-gratis`)
-  - Tabela Downloads: evalma + nome antigo no mesmo balde; brinde NT; quiz livres; Palavra tocada
+  - Tabela Downloads: evalma + nome antigo no mesmo balde; bônus NT; quiz livres; Palavra tocada
   - `/obrigado` e `/palavra` no ranking
   - `/trilogia` e `/anestesia` (1 hit) = URL curta, não as pontes. Alias para as pontes de verdade
   - `.well-known` (SSL) some da lista
 - Se o card «Aula grátis» ainda mostrar 0 no ar, o `/home/deploy/` ainda não recebeu essa cópia. Enviar e rodar `python3 /home/deploy/gerar_estatisticas.py`
 - Conversão 1,5% = clique/pessoas, não Pix. Conferir vendas reais na Kiwify.
-- `/obrigado` ≠ PDF baixado. O brinde é o GET de `livro11-o-n-t.pdf`
+- `/obrigado` ≠ PDF baixado. O bônus 1 é o GET de `livro11-o-n-t.pdf`
 
 ---
 
@@ -522,13 +522,13 @@ A memória de 21/08 que falava «compraoseu = site principal», «DNS aguardando
 - Script vivo do cron: `/home/deploy/gerar_estatisticas.py`
 - Cópia nova (29/08) em `consultoria-redes/gerar_estatisticas.py`:
   - Aula grátis = soma dos plays módulos **1 a 3** (não o pixel morto `/q-aula-gratis`)
-  - Tabela Downloads: evalma + nome antigo no mesmo balde; brinde NT; quiz livres; Palavra tocada
+  - Tabela Downloads: evalma + nome antigo no mesmo balde; bônus NT; quiz livres; Palavra tocada
   - `/obrigado` e `/palavra` no ranking
   - `/trilogia` e `/anestesia` (1 hit) = URL curta, não as pontes. Alias para as pontes de verdade
   - `.well-known` (SSL) some da lista
 - Se o card «Aula grátis» ainda mostrar 0 no ar, o `/home/deploy/` ainda não recebeu essa cópia. Enviar e rodar `python3 /home/deploy/gerar_estatisticas.py`
 - Conversão 1,5% = clique/pessoas, não Pix. Conferir vendas reais na Kiwify.
-- `/obrigado` ≠ PDF baixado. O brinde é o GET de `livro11-o-n-t.pdf`
+- `/obrigado` ≠ PDF baixado. O bônus 1 é o GET de `livro11-o-n-t.pdf`
 
 ## PONTES `/trilogia-da-alma` e `/anestesia-mental`
 
@@ -536,7 +536,7 @@ A memória de 21/08 que falava «compraoseu = site principal», «DNS aguardando
 - Motivo: 4 livres é mais da metade (filha de 13 anos). Autor concordou 3.
 - Texto: isto é prévia; área de membros Kiwify tem explicações e exercícios.
 - Um botão: **Quero o acesso completo — R$ 37,00** → iVfp2bi
-- Linha dourada visível: brinde extra PDF NT
+- Linha dourada visível: 4 bônus (NT, Devocional, Jesus e Afirmações)
 - Modal: um preço. «Já tenho código de acesso»
 - Mural vazio `display:none`. `/mural.html` no servidor, noindex, **sem link**
 - Plays: `tocarVideo` faz `fetch('/q-trilogia-m0N')` ou `/q-anestesia-m0N`
