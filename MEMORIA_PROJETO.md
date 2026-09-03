@@ -18,6 +18,35 @@ A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O G
 - Importante: os livros 05 e 09 mostravam "Aula grátis" no **Módulo 04** (travado). Corrigido no espelho e no script para **Módulo 03** (livre). Nao reabrir o Módulo 04 como aula grátis.
 - `APLICAR_IDENTIDADE_MISSAO.py` aplica marca + correcoes de confianca + modulo 03 nos livros 05/09.
 
+## CONFIRMAÇÕES DO AUTOR — 03/09/2026
+
+- `/palavra` é só o caderno do autor para ver os temas e acompanhar. Não é página pública. Só quem souber o endereço acessa, igual `/stats` e `enquete.php`. Todos com `noindex, nofollow` e **fora do sitemap**. Não colocar link no menu nem no footer. Não indexar.
+- Os PDFs antigos que eram referência no log **não existem mais no aaPanel**. A única referência boa do Bônus 1 é **`/ebooks/livro11-o-n-t.pdf`** (é esse que está no ar na página de obrigado).
+- PDFs que existem hoje no aaPanel na pasta do site (conferido pelo autor em 03/09):
+  - `Anestesia-mental-evalma.pdf`
+  - `Evolucao-da-alma-evalma.pdf`
+  - `jesus-quer-falar-com-seu-filho.pdf`
+  - `jesus-quer-falar.pdf`
+  - `livro05-evalma.pdf`
+  - `livro07-ocdespertar.pdf`
+  - `livro09-amental.pdf`
+  - `livro11-o-n-t.pdf`
+  - `livro12-a-d-o.pdf`
+  - `Um-Segundo-com-Deus-Vol-01.pdf`
+- **Mural eliminado.** Não existe mais projeto de mural, nem privilégio de "Colaborador(a)" (era o único privilégio do Semeador no plano antigo em que todos recebiam todos os livros). Não recriar. Não voltar com "área do semeador/colaborador" nem com mural.
+- `PROMPT_LAURA_V11_CASA.txt` **já foi colado no FlowOpenAi (chatbox)**. Não precisa mais ficar na lista de pendência do prompt.
+- Redes: Instagram e Facebook atuais foram banidos mais de uma vez, inclusive a página de campanha. Hoje **não há conta de Instagram ativa**. O autor vai usar outro aparelho/notebook com outro e-mail para não tomar banimento; não quer comprar/usar outro número. Não depender de IG/FB para o que sustenta a Missão até isso estar estabilizado.
+- Checkout oficial em uso (guardar como referência): **`https://pay.kiwify.com.br/iVfp2bi`** — "🕊️ MISSÃO COM DEUS | ACESSO IMEDIATO E VITALÍCIO À ÁREA DE MEMBROS DE ALUNOS", R$ 37,00 pagamento único, cartão em até 4x e Pix, garantia de 7 dias. Contempla Evolução da Alma + Anestesia Mental (livros digitais completos + 7 módulos em vídeo de cada) + acesso vitalício à área de membros + 4 bônus (NT, Devocional 30 dias, Jesus Quer Falar com Seu Filho e Afirmações em PDF).
+
+## GOOGLE SEARCH CONSOLE E SITEMAP (estado em 03/09/2026)
+
+- Sitemap enviado: **`https://missaocomdeus.com.br/sitemap.xml`**.
+- No painel aparece **Sucesso**, última leitura **02/09/2026**, **9 páginas** enviadas, **90 páginas descobertas**.
+- As 9 páginas do `sitemap.xml` são: `/`, `/livro04`, `/livro05`, `/livro06`, `/livro07`, `/livro09`, `/livro11`, `/livro12`, `/guia-pais-filhos`.
+- `/palavra`, `/stats` e `enquete.php` **não estão** no sitemap e têm `noindex, nofollow`. Mantê-los assim.
+- Depois que `APLICAR_IDENTIDADE_MISSAO.py` rodar no servidor: submeter o sitemap de novo, usar **Inspecionar URL** nas 9 páginas para pedir indexação, e usar **Remoções** só para URLs antigas que realmente saíram (ex.: `/livro01` … `/livro12` antigos, páginas-ponte antigas, etc.).
+- Não remover do índice sem necessidade. Para páginas que sumiram de verdade, o Google entende 404/301 sozinho; a remoção manual é só quando for urgente.
+
 ## ATUALIZAÇÃO URGENTE — 03/09/2026 (consultoria)
 
 - Bônus 1 e 4 no ar: **`/ebooks/livro11-o-n-t.pdf`** (NT) e **`/ebooks/livro12-a-d-o.pdf`** (Afirmações). O nome antigo `livro11-onovotestamenento.pdf` **retorna 404**. Não usar.
@@ -168,7 +197,7 @@ Roteiros: `consultoria-redes/ROTEIRO_PALAVRA_30_DIAS.txt`
 - Linha dourada visível: 4 bônus (NT, Devocional, Jesus e Afirmações)
 - Modal: um preço. «Já tenho código de acesso»
 - Caixa de código: «Liberar os módulos restantes (4 a 7)». Não usar «Liberar Módulos 5, 6 e 7».
-- Mural vazio `display:none`. `/mural.html` no servidor, noindex, **sem link**
+- Mural **eliminado**. Não existe mais funcionalidade pública de mural; não recriar, não colocar link.
 - Plays: `tocarVideo` faz `fetch('/q-trilogia-m0N')` ou `/q-anestesia-m0N`
 - Anestesia WhatsApp → `/q-codigo`; Kiwify → `/q-semeador`
 
@@ -199,9 +228,10 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 
 ## PDF / ebooks/
 
+- **Fonte de verdade:** conferir a lista real do aaPanel no topo (03/09/2026). `livro11-onovotestamenento.pdf` **não existe** e nunca deve ser usado.
 - Proteção pypdf (`permissions_flag`). Script `PROTEGER_PDFS.py`
-- **LIVRES (sem evalma, quiz):** `Um-Segundo-com-Deus-Vol-01.pdf` · `jesus-quer-falar.pdf`
-- **Com evalma (chute difícil):** `Anestesia-mental-evalma.pdf` · `Evolucao-da-alma-evalma.pdf`
+- **LIVRES (sem evalma, quiz):** `Um-Segundo-com-Deus-Vol-01.pdf` · `jesus-quer-falar.pdf` · `jesus-quer-falar-com-seu-filho.pdf`
+- **Com evalma (chute difícil):** `Anestesia-mental-evalma.pdf` · `Evolucao-da-alma-evalma.pdf` · `livro05-evalma.pdf` · `livro07-ocdespertar.pdf` · `livro09-amental.pdf` · `livro12-a-d-o.pdf`
 - **Bônus 1 (nome real no ar):** `livro11-o-n-t.pdf`
 - Dois «Jesus Quer Falar» no log antigo = dois arquivos (quiz curto × nome longo do livro). Não é duplicata.
 
@@ -264,13 +294,14 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 
 ## ABERTO (não é urgente nesta noite)
 
-1. Confirmar se `palavra.html` e o `gerar_estatisticas.py` novo já estão no servidor.
-2. Colar `PROMPT_LAURA_V11_CASA.txt` no OpenAI do FlowOpenAi. Encerrar tickets do autor. Testar só com número novo.
+1. Confirmar se `palavra.html` e o `gerar_estatisticas.py` novo já estão no servidor. O autor já confirmou: `/palavra` é só para ele ver os temas, noindex, sem menu.
+2. **PROMPT_LAURA_V11_CASA.txt já foi colado no FlowOpenAi.** Pendência só: encerrar tickets do autor e testar com número novo.
 3. Conferir Pix real na Kiwify vs cliques Semeador / obrigado.
-4. Ads só com pixel no domínio missaocomdeus. Destino Home ou `/livro11`. Sem carrossel de preço.
-5. Mural só com nome real + «pode publicar».
-6. Share nas pontes / obrigado: ideia boa, **depois**. Um lugar de cada vez.
+4. **Pixel de conversão:** planejar e ativar na Kiwify (Pixels de Conversão). Google Ads + GA4 são os mais seguros sem IG/FB. Meta só depois com conta nova em outro aparelho/notebook e outro e-mail.
+5. **Google Search Console:** depois da identidade no ar, atualizar/subscrever `sitemap.xml` (9 páginas), pedir reindexação das páginas vivas e remoção das páginas saídas.
+6. Share nas pontes / obrigado: ideia boa, depois. Um lugar de cada vez.
 7. GitHub ≠ servidor. Espelho quando o autor puder, sem apagar o vivo.
+8. Redes sociais: não depender de IG/FB enquanto as contas estiverem banidas. Voltar só com aparelho novo, e-mail novo e sem reutilizar número que já caiu.
 
 ---
 
@@ -419,7 +450,7 @@ Roteiros: `consultoria-redes/ROTEIRO_PALAVRA_30_DIAS.txt`
 - Um botão: **Quero o acesso completo — R$ 37,00** → iVfp2bi
 - Linha dourada visível: 4 bônus (NT, Devocional, Jesus e Afirmações)
 - Modal: um preço. «Já tenho código de acesso»
-- Mural vazio `display:none`. `/mural.html` no servidor, noindex, **sem link**
+- Mural **eliminado**. Não existe mais funcionalidade pública de mural; não recriar, não colocar link.
 - Plays: `tocarVideo` faz `fetch('/q-trilogia-m0N')` ou `/q-anestesia-m0N`
 - Anestesia WhatsApp → `/q-codigo`; Kiwify → `/q-semeador`
 
@@ -450,9 +481,10 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 
 ## PDF / ebooks/
 
+- **Fonte de verdade:** conferir a lista real do aaPanel no topo (03/09/2026). `livro11-onovotestamenento.pdf` **não existe** e nunca deve ser usado.
 - Proteção pypdf (`permissions_flag`). Script `PROTEGER_PDFS.py`
-- **LIVRES (sem evalma, quiz):** `Um-Segundo-com-Deus-Vol-01.pdf` · `jesus-quer-falar.pdf`
-- **Com evalma (chute difícil):** `Anestesia-mental-evalma.pdf` · `Evolucao-da-alma-evalma.pdf`
+- **LIVRES (sem evalma, quiz):** `Um-Segundo-com-Deus-Vol-01.pdf` · `jesus-quer-falar.pdf` · `jesus-quer-falar-com-seu-filho.pdf`
+- **Com evalma (chute difícil):** `Anestesia-mental-evalma.pdf` · `Evolucao-da-alma-evalma.pdf` · `livro05-evalma.pdf` · `livro07-ocdespertar.pdf` · `livro09-amental.pdf` · `livro12-a-d-o.pdf`
 - **Bônus 1 (nome real no ar):** `livro11-o-n-t.pdf`
 - Dois «Jesus Quer Falar» no log antigo = dois arquivos (quiz curto × nome longo do livro). Não é duplicata.
 
@@ -513,13 +545,14 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 
 ## ABERTO (não é urgente nesta noite)
 
-1. Confirmar se `palavra.html` e o `gerar_estatisticas.py` novo já estão no servidor.
-2. Colar `PROMPT_LAURA_V11_CASA.txt` no OpenAI do FlowOpenAi. Encerrar tickets do autor. Testar só com número novo.
+1. Confirmar se `palavra.html` e o `gerar_estatisticas.py` novo já estão no servidor. O autor já confirmou: `/palavra` é só para ele ver os temas, noindex, sem menu.
+2. **PROMPT_LAURA_V11_CASA.txt já foi colado no FlowOpenAi.** Pendência só: encerrar tickets do autor e testar com número novo.
 3. Conferir Pix real na Kiwify vs cliques Semeador / obrigado.
-4. Ads só com pixel no domínio missaocomdeus. Destino Home ou `/livro11`. Sem carrossel de preço.
-5. Mural só com nome real + «pode publicar».
-6. Share nas pontes / obrigado: ideia boa, **depois**. Um lugar de cada vez.
+4. **Pixel de conversão:** planejar e ativar na Kiwify (Pixels de Conversão). Google Ads + GA4 são os mais seguros sem IG/FB. Meta só depois com conta nova em outro aparelho/notebook e outro e-mail.
+5. **Google Search Console:** depois da identidade no ar, atualizar/subscrever `sitemap.xml` (9 páginas), pedir reindexação das páginas vivas e remoção das páginas saídas.
+6. Share nas pontes / obrigado: ideia boa, depois. Um lugar de cada vez.
 7. GitHub ≠ servidor. Espelho quando o autor puder, sem apagar o vivo.
+8. Redes sociais: não depender de IG/FB enquanto as contas estiverem banidas. Voltar só com aparelho novo, e-mail novo e sem reutilizar número que já caiu.
 
 ---
 
@@ -551,7 +584,7 @@ A memória de 21/08 que falava «compraoseu = site principal», «DNS aguardando
 - Um botão: **Quero o acesso completo — R$ 37,00** → iVfp2bi
 - Linha dourada visível: 4 bônus (NT, Devocional, Jesus e Afirmações)
 - Modal: um preço. «Já tenho código de acesso»
-- Mural vazio `display:none`. `/mural.html` no servidor, noindex, **sem link**
+- Mural **eliminado**. Não existe mais funcionalidade pública de mural; não recriar, não colocar link.
 - Plays: `tocarVideo` faz `fetch('/q-trilogia-m0N')` ou `/q-anestesia-m0N`
 - Anestesia WhatsApp → `/q-codigo`; Kiwify → `/q-semeador`
 
