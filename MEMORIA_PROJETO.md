@@ -1,9 +1,18 @@
 # MEMÓRIA DO PROJETO — MISSÃO COM DEUS
-## Atualizado em: 29/08/2026 (Brasília)
+## Atualizado em: 03/09/2026 (Brasília)
 ## Site vivo: https://missaocomdeus.com.br
 ## Próximo chat: «Continuar a Missão com Deus. Site vivo missaocomdeus.com.br. Leia consultoria-redes/MEMORIA_PROJETO.md»
 
 A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O GitHub (sidneyrma/instalador) está ATRÁS do servidor. Nunca trate o GitHub como verdade.
+
+## ATUALIZAÇÃO URGENTE — 03/09/2026 (consultoria)
+
+- Brinde do NT no ar: **`/ebooks/livro11-o-n-t.pdf`** (existe). O nome `livro11-onovotestamenento.pdf` da memória antiga **retorna 404**. Não usar.
+- Brinde do guia Afirmações no obrigado: **`/ebooks/livro12-a-d-o.pdf`** (existe e está no ar).
+- Home / FAQ antiga dizia "As quatro aulas no site" e a casa "reserva um presente" sem nome. Ajustado no espelho para: **módulos 1 a 3 grátis** e presente nomeado (PDF do NT).
+- Banner fixo da Home NÃO deve mais prometer "código de acesso grátis à Laura" nem pedir "código grátis". O convite certo é sobre o acesso completo.
+- Caixa de código das pontes: dizer **"Liberar os módulos restantes (4 a 7)"**, não "Liberar Módulos 5, 6 e 7".
+- O `/stats` vivo hoje é **v6** e NÃO é o `site-contabo/gerar_estatisticas.py` do GitHub (que é v3). Antes de atualizar/sobrescrever, retirar o script v6 do servidor, senão o painel volta.
 
 ## INFRA
 
@@ -61,7 +70,7 @@ A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O G
 - Produtos Kiwify antigos ainda Ativos (não usar na Home): Devocional R$ 9,90; Anestesia avulsa; Evolução avulsa.
 - Página de obrigado da casa: `https://missaocomdeus.com.br/obrigado`
   Colar na Kiwify em **Cartão ou Pix aprovado** (iVfp2bi e NCAEVtO). Boleto/pix gerado = página padrão Kiwify.
-- Presente no obrigado = **Baixar PDF** `/ebooks/livro11-onovotestamenento.pdf` (typo no nome, proposital).
+- Presente no obrigado = **Baixar PDF** `/ebooks/livro11-o-n-t.pdf` (confirmado no ar em 03/09. O nome antigo `livro11-onovotestamenento.pdf` retorna 404 e nao deve ser usado).
   Não é link `/livro11` (isso já é grátis).
 - Não listar o NT como leitura exclusiva. Dois cursos no pacote R$ 37.
 
@@ -145,6 +154,7 @@ Roteiros: `consultoria-redes/ROTEIRO_PALAVRA_30_DIAS.txt`
 - Um botão: **Quero o acesso completo — R$ 37,00** → iVfp2bi
 - Linha dourada visível: brinde extra PDF NT
 - Modal: um preço. «Já tenho código de acesso»
+- Caixa de código: «Liberar os módulos restantes (4 a 7)». Não usar «Liberar Módulos 5, 6 e 7».
 - Mural vazio `display:none`. `/mural.html` no servidor, noindex, **sem link**
 - Plays: `tocarVideo` faz `fetch('/q-trilogia-m0N')` ou `/q-anestesia-m0N`
 - Anestesia WhatsApp → `/q-codigo`; Kiwify → `/q-semeador`
@@ -179,7 +189,7 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 - Proteção pypdf (`permissions_flag`). Script `PROTEGER_PDFS.py`
 - **LIVRES (sem evalma, quiz):** `Um-Segundo-com-Deus-Vol-01.pdf` · `jesus-quer-falar.pdf`
 - **Com evalma (chute difícil):** `Anestesia-mental-evalma.pdf` · `Evolucao-da-alma-evalma.pdf`
-- **Brinde NT (typo proposital, sem evalma):** `livro11-onovotestamenento.pdf`
+- **Brinde NT (nome real no ar):** `livro11-o-n-t.pdf`
 - Dois «Jesus Quer Falar» no log antigo = dois arquivos (quiz curto × nome longo do livro). Não é duplicata.
 
 ---
@@ -220,7 +230,7 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
   - `.well-known` (SSL) some da lista
 - Se o card «Aula grátis» ainda mostrar 0 no ar, o `/home/deploy/` ainda não recebeu essa cópia. Enviar e rodar `python3 /home/deploy/gerar_estatisticas.py`
 - Conversão 1,5% = clique/pessoas, não Pix. Conferir vendas reais na Kiwify.
-- `/obrigado` ≠ PDF baixado. O brinde é o GET de `livro11-onovotestamenento.pdf`
+- `/obrigado` ≠ PDF baixado. O brinde é o GET de `livro11-o-n-t.pdf`
 
 ---
 
@@ -234,6 +244,8 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 - Não overlay YouTube. Não publicar Eu Sou.
 - Não apagar apioficial / app / api compraoseu.
 - Não zerar enquete_dados.json para limpar spam.
+- Não usar `/ebooks/livro11-onovotestamenento.pdf` (404 no ar). O brinde do NT é `/ebooks/livro11-o-n-t.pdf`.
+- Não dizer "as quatro aulas no site", nem "código de acesso grátis à Laura", nem "Liberar Módulos 5, 6 e 7". O ar é: módulos 1 a 3 grátis, um acesso R$ 37, código libera módulos 4 a 7.
 
 ---
 
@@ -310,7 +322,7 @@ A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O G
 - Produtos Kiwify antigos ainda Ativos (não usar na Home): Devocional R$ 9,90; Anestesia avulsa; Evolução avulsa.
 - Página de obrigado da casa: `https://missaocomdeus.com.br/obrigado`
   Colar na Kiwify em **Cartão ou Pix aprovado** (iVfp2bi e NCAEVtO). Boleto/pix gerado = página padrão Kiwify.
-- Presente no obrigado = **Baixar PDF** `/ebooks/livro11-onovotestamenento.pdf` (typo no nome, proposital).
+- Presente no obrigado = **Baixar PDF** `/ebooks/livro11-o-n-t.pdf` (confirmado no ar em 03/09. O nome antigo `livro11-onovotestamenento.pdf` retorna 404 e nao deve ser usado).
   Não é link `/livro11` (isso já é grátis).
 - Não listar o NT como leitura exclusiva. Dois cursos no pacote R$ 37.
 
@@ -428,7 +440,7 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
 - Proteção pypdf (`permissions_flag`). Script `PROTEGER_PDFS.py`
 - **LIVRES (sem evalma, quiz):** `Um-Segundo-com-Deus-Vol-01.pdf` · `jesus-quer-falar.pdf`
 - **Com evalma (chute difícil):** `Anestesia-mental-evalma.pdf` · `Evolucao-da-alma-evalma.pdf`
-- **Brinde NT (typo proposital, sem evalma):** `livro11-onovotestamenento.pdf`
+- **Brinde NT (nome real no ar):** `livro11-o-n-t.pdf`
 - Dois «Jesus Quer Falar» no log antigo = dois arquivos (quiz curto × nome longo do livro). Não é duplicata.
 
 ---
@@ -469,7 +481,7 @@ HTML: selecionar sim; copiar/imprimir/botão direito não. Script `APLICAR_PROTE
   - `.well-known` (SSL) some da lista
 - Se o card «Aula grátis» ainda mostrar 0 no ar, o `/home/deploy/` ainda não recebeu essa cópia. Enviar e rodar `python3 /home/deploy/gerar_estatisticas.py`
 - Conversão 1,5% = clique/pessoas, não Pix. Conferir vendas reais na Kiwify.
-- `/obrigado` ≠ PDF baixado. O brinde é o GET de `livro11-onovotestamenento.pdf`
+- `/obrigado` ≠ PDF baixado. O brinde é o GET de `livro11-o-n-t.pdf`
 
 ---
 
@@ -516,7 +528,7 @@ A memória de 21/08 que falava «compraoseu = site principal», «DNS aguardando
   - `.well-known` (SSL) some da lista
 - Se o card «Aula grátis» ainda mostrar 0 no ar, o `/home/deploy/` ainda não recebeu essa cópia. Enviar e rodar `python3 /home/deploy/gerar_estatisticas.py`
 - Conversão 1,5% = clique/pessoas, não Pix. Conferir vendas reais na Kiwify.
-- `/obrigado` ≠ PDF baixado. O brinde é o GET de `livro11-onovotestamenento.pdf`
+- `/obrigado` ≠ PDF baixado. O brinde é o GET de `livro11-o-n-t.pdf`
 
 ## PONTES `/trilogia-da-alma` e `/anestesia-mental`
 
