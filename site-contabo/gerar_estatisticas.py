@@ -60,8 +60,6 @@ CONVERSAO = OrderedDict([
     ('/q-colaborador', ('🌱', 'Colaborador (R$ 19,90)')),
     ('/q-codigo', ('💬', 'Solicitar Código (WhatsApp)')),
     ('/q-whats', ('📱', 'Cliques no WhatsApp')),
-    ('/q-palavra-play', ('🎧', 'Palavra de hoje (play)')),
-    ('/q-palavra-share', ('📤', 'Palavra compartilhada')),
 ])
 
 MODULOS_LIVRES = (
@@ -98,8 +96,7 @@ DL_NOMES = OrderedDict([
     ('/dl:jesus-quiz', 'PDF Jesus Quer Falar (quiz, livre)'),
     ('/dl:jesus-livro', 'PDF Jesus Quer Falar com Seu Filho (outro arquivo)'),
     ('/dl:chute-pdf', 'PDF com nome chutado (livro10 / livro11 sem evalma)'),
-    ('/q-palavra-play', 'Palavra de hoje (plays no botão)'),
-    ('/q-palavra-share', 'Palavra compartilhada'),
+    ('/dl:palavra', 'Palavra de hoje (áudios tocados)'),
 ])
 
 RE_COMPLETA = re.compile(
@@ -116,8 +113,7 @@ RE_BOT = re.compile(
 
 def garantir_pixels():
     for nome in ('q-semeador', 'q-colaborador', 'q-colaborador19',
-                 'q-colaborador19-anestesia', 'q-codigo', 'q-whats', 'q-aula-gratis',
-                 'q-palavra-play', 'q-palavra-share'):
+                 'q-colaborador19-anestesia', 'q-codigo', 'q-whats', 'q-aula-gratis'):
         p = os.path.join(SITE, nome)
         if not os.path.isfile(p):
             try:
@@ -217,6 +213,14 @@ def analisar():
                 continue
 
             if path_l.startswith('/audio/palavra-dia-') and path_l.endswith('.mp3'):
+                contagens['/dl:palavra'] += 1
+                if chave_dia == hoje_str:
+                    contagens_hoje['/dl:palavra'] += 1
+                total_geral += 1
+                if dt is not None:
+                    por_dia[chave_dia] += 1
+                    visitantes_por_dia[chave_dia].add(ip)
+                    visitantes_total.add(ip)
                 continue
 
             if path in CONVERSAO:
@@ -383,14 +387,9 @@ def montar_html(res):
         for path, (emoji, nome) in CONVERSAO.items()
     ) or '<tr><td colspan="3">Sem cliques de conversão ainda</td></tr>'
 
-    def _dl_n(k):
-        if k.startswith('/q-'):
-            return conv.get(k, 0), conv_hoje.get(k, 0)
-        return contagens.get(k, 0), contagens_hoje.get(k, 0)
-
     linhas_dl = '\n'.join(
-        f'<tr><td>{html.escape(nome)}</td><td class="num">{_dl_n(k)[0]}</td>'
-        f'<td class="num" style="color:#7fe0a3">{_dl_n(k)[1]}</td></tr>'
+        f'<tr><td>{html.escape(nome)}</td><td class="num">{contagens.get(k, 0)}</td>'
+        f'<td class="num" style="color:#7fe0a3">{contagens_hoje.get(k, 0)}</td></tr>'
         for k, nome in DL_NOMES.items()
     )
 

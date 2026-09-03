@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Anestesia Mental — Portal O Despertar</title>
+<title>Trilogia da Alma — Portal O Despertar</title>
 <meta name="robots" content="noindex, nofollow">
 <style>
 :root{--navy:#0e1a2e;--gold:#c9a24b;--cream:#faf6ee;--green:#7fe0a3;--red:#e07b6b;}
@@ -46,12 +46,12 @@ textarea{resize:vertical;min-height:90px;}
   .codigo-input{font-size:1rem;}
 }
 
-/* --- módulo bloqueado (5, 6, 7) --- */
+/* --- NOVO: módulo bloqueado (5, 6, 7) --- */
 .modulo.bloqueado{cursor:pointer;opacity:.7;}
 .modulo.bloqueado .num{background:#3a4d68;color:#9fb0c8;}
 .modulo .cadeado{margin-left:auto;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;}.modulo.bloqueado .cadeado svg{display:block;}
 
-/* --- modal de oferta em 2 níveis --- */
+/* --- NOVO: modal de oferta em 2 níveis --- */
 #modal-oferta{position:fixed;inset:0;background:rgba(14,26,46,.85);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:200;padding:20px;}
 #modal-oferta.aberto{display:flex;}
 #modal-oferta .caixa{background:linear-gradient(160deg,#0e1a2e,#1a2c47);border:1px solid rgba(201,162,75,.4);border-radius:18px;max-width:480px;width:100%;padding:30px 26px;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.5);max-height:90vh;overflow-y:auto;}
@@ -72,7 +72,7 @@ textarea{resize:vertical;min-height:90px;}
 .oferta-ja-tenho{font-size:.82rem;color:#7f92ad;margin-top:6px;text-decoration:underline;background:none;border:none;cursor:pointer;}
 .oferta-garantia{font-size:.75rem;color:#7f92ad;margin-top:14px;}
 
-/* --- Mural de Semeadores --- */
+/* --- NOVO: Mural de Semeadores --- */
 .mural{margin-top:14px;}
 .mural-lista{display:flex;flex-wrap:wrap;gap:8px;}
 .mural-lista span{background:rgba(201,162,75,.12);border:1px solid rgba(201,162,75,.25);color:var(--gold);font-size:.82rem;padding:6px 12px;border-radius:999px;}
@@ -81,24 +81,24 @@ textarea{resize:vertical;min-height:90px;}
 <body>
 <div class="wrap">
 
-<div class="emoji-grande">🧠</div>
-<h1>Anestesia Mental</h1>
+<div class="emoji-grande">🕊️</div>
+<h1>Trilogia da Alma</h1>
 <p class="sub">
-Você chegou aqui porque sua mente não para. Os pensamentos aceleram, o celular rouba horas que você nem percebe, e o silêncio com Deus parece cada vez mais distante.<br>
-Mas eu tenho uma boa notícia: o trono da sua mente não precisa ficar ocupado pelo algoritmo. Ele pertence a Cristo.
+Você chegou aqui porque algo dentro de você sabe que é hora de curar.<br>
+Não é fraqueza buscar ajuda, é coragem de quem decidiu que a dor não vai mais governar a sua vida.
 </p>
 
 <div class="card">
-<h3>🔓 Uma Palavra Antes de Começar</h3>
+<h3>💛 Uma Palavra Antes de Começar</h3>
 <p>
-Anestesia Mental não é um curso sobre "força de vontade". É um resgate. É sobre entender como os algoritmos, as distrações e os padrões subconscientes sequestraram a sua atenção e te impedem de ouvir a voz mansa e suave do Espírito Santo.<br><br>
+A Trilogia da Alma não é apenas um curso. É um caminho de encontros com o Deus que te conhece pelo nome e que nunca desistiu de você, mesmo nos dias em que você desistiu de si mesmo(a).<br><br>
 As três primeiras aulas estão livres, abertas para você, agora mesmo. Assista com o coração disposto, o restante da jornada continua logo abaixo.
 </p>
 </div>
 
 <div class="versiculo">
-"Sede sóbrios e vigilantes. O vosso adversário, o diabo, anda em derredor, rugindo como leão e procurando a quem possa tragar."<br>
-<strong>— 1 Pedro 5:8</strong>
+"Vinde a mim, todos os que estais cansados e sobrecarregados, e eu vos aliviarei."<br>
+<strong>— Mateus 11:28</strong>
 </div>
 
 <!-- PLAYER + MÓDULOS (aberto por padrão — módulos 1-4 livres) -->
@@ -106,23 +106,24 @@ As três primeiras aulas estão livres, abertas para você, agora mesmo. Assista
   <div class="card" style="background:#1a2c47;border-color:var(--gold);">
     <h3 style="text-align:center;margin-bottom:12px;">🎥 Assistir Videoaulas</h3>
     <div class="player-container">
-      <iframe id="video-player" src="https://www.youtube-nocookie.com/embed/yVv_BKMJ4DE?rel=0" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
+      <iframe id="video-player" src="https://www.youtube-nocookie.com/embed/_zRVlsh9T9E?rel=0" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
     </div>
     <h4 id="aula-titulo-atual" style="text-align:center;color:var(--gold);">Módulo 1: Bem-vindo(a) ao nosso Portal</h4>
   </div>
 
   <h3 style="color:var(--gold);margin:24px 0 12px;text-align:center;">📚 Módulos:</h3>
   <div class="modulos">
-    <div class="modulo ativo" data-modulo="1" onclick="tocarVideo('Módulo 1: Bem-vindo(a) ao nosso Portal', 'yVv_BKMJ4DE', this)"><span class="num">1</span><span class="txt">Bem-vindo(a) ao nosso Portal</span></div>
-    <div class="modulo" data-modulo="2" onclick="tocarVideo('Módulo 2: A Anestesia Mental', 'YSw_MY8NNZI', this)"><span class="num">2</span><span class="txt">A Anestesia Mental</span></div>
-    <div class="modulo" data-modulo="3" onclick="tocarVideo('Módulo 3: O Governo da Mente', '4IwyK4pmaJI', this)"><span class="num">3</span><span class="txt">O Governo da Mente</span></div>
-    <div class="modulo bloqueado" data-modulo="4" data-titulo="Módulo 4: O Impulso sem Consciência" data-yt="f_GxlRva2CQ" onclick="cliqueModulo(this)"><span class="num">4</span><span class="txt">O Impulso sem Consciência</span><span class="cadeado" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#e3c877" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span></div>
+    <div class="modulo ativo" data-modulo="1" onclick="tocarVideo('Módulo 1: Bem-vindo(a) ao nosso Portal', '_zRVlsh9T9E', this)"><span class="num">1</span><span class="txt">Bem-vindo(a) ao nosso Portal</span></div>
+    <div class="modulo" data-modulo="2" onclick="tocarVideo('Módulo 2: O Despertar da Alma', 'ZwBDxpnFV6s', this)"><span class="num">2</span><span class="txt">O Despertar da Alma</span></div>
+    <div class="modulo" data-modulo="3" onclick="tocarVideo('Módulo 3: A Superação das dificuldades emocionais', '4UmQlRiirXs', this)"><span class="num">3</span><span class="txt">A Superação das dificuldades emocionais</span></div>
+    <div class="modulo bloqueado" data-modulo="4" data-titulo="Módulo 4: O Perdão como libertação da alma" data-yt="fO5RIdrFzMw" onclick="cliqueModulo(this)"><span class="num">4</span><span class="txt">O Perdão como libertação da alma</span><span class="cadeado" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#e3c877" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span></div>
 
-    <div class="modulo bloqueado" data-modulo="5" data-titulo="Módulo 5: O Despertar da Consciência" data-yt="Fw4RE6ld_UU" onclick="cliqueModulo(this)"><span class="num">5</span><span class="txt">O Despertar da Consciência</span><span class="cadeado" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#e3c877" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span></div>
-    <div class="modulo bloqueado" data-modulo="6" data-titulo="Módulo 6: O Reset do Shabat" data-yt="31XPvz6DSeY" onclick="cliqueModulo(this)"><span class="num">6</span><span class="txt">O Reset do Shabat</span><span class="cadeado" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#e3c877" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span></div>
-    <div class="modulo bloqueado" data-modulo="7" data-titulo="Módulo 7: A Liberdade da Alma" data-yt="dYwYB9uDhnI" onclick="cliqueModulo(this)"><span class="num">7</span><span class="txt">A Liberdade da Alma</span><span class="cadeado" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#e3c877" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span></div>
+    <div class="modulo bloqueado" data-modulo="5" data-titulo="Módulo 5: O Propósito em ação" data-yt="pL2rd8sm-rk" onclick="cliqueModulo(this)"><span class="num">5</span><span class="txt">O Propósito em ação</span><span class="cadeado" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#e3c877" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span></div>
+    <div class="modulo bloqueado" data-modulo="6" data-titulo="Módulo 6: A Persistência na evolução constante" data-yt="ycGZ4Vjv2MY" onclick="cliqueModulo(this)"><span class="num">6</span><span class="txt">A Persistência na evolução constante</span><span class="cadeado" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#e3c877" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span></div>
+    <div class="modulo bloqueado" data-modulo="7" data-titulo="Módulo 7: Vivendo em Luz, Propósito e Liberdade" data-yt="9IfeARq38UA" onclick="cliqueModulo(this)"><span class="num">7</span><span class="txt">Vivendo em Luz, Propósito e Liberdade</span><span class="cadeado" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#e3c877" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span></div>
   </div>
 
+  <!-- Card curto — sempre visível, sem competir com o modal -->
   <div class="card" id="card-cta-permanente">
     <h3 style="text-align:center;">🕊️ Quer continuar a jornada até o fim?</h3>
     <p style="text-align:center;color:#9fb0c8;font-size:.88rem;margin:0 0 12px;">Isto é uma prévia: 3 aulas de presente, sem cadastro. Na área de membros da Kiwify o curso completo tem explicações e exercícios práticos. Aqui você prova. Lá você desenvolve.</p>
@@ -147,7 +148,7 @@ As três primeiras aulas estão livres, abertas para você, agora mesmo. Assista
   <!-- Mural de Semeadores — reconhecimento público -->
   <div class="card mural" style="display:none">
     <h3 style="text-align:center;margin-bottom:12px;">🌟 Mural de Semeadores da Missão</h3>
-    <p style="text-align:center;margin-bottom:14px;">Gratidão a quem ajuda a manter os livros gratuitos da Missão vivos para milhares de irmãos:</p>
+    <p style="text-align:center;margin-bottom:14px;">Gratidão a quem ajuda a manter 12 livros gratuitos vivos para milhares de irmãos:</p>
     <div class="mural-lista" id="mural-lista">
       <!-- ⚠️ ADMIN: adicione aqui os nomes reais confirmados pelos Semeadores, um <span> por nome -->
       <!-- <span>Nome do Semeador</span> -->
@@ -179,8 +180,8 @@ As três primeiras aulas estão livres, abertas para você, agora mesmo. Assista
 <div id="modal-oferta" role="dialog" aria-live="polite" aria-label="Oferta de acesso completo">
   <div class="caixa">
     <button class="fechar-modal" onclick="fecharModal()" aria-label="Fechar">✕</button>
-    <div class="selo">🧠</div>
-    <h3>Sua mente já começou a despertar.<br>Não pare na Aula 3.</h3>
+    <div class="selo">🕊️</div>
+    <h3>Você já começou o despertar.<br>Não pare na Aula 3.</h3>
         <p class="intro">Você já fez 3 das 7 aulas livres. O acesso completo chega por e-mail, na área de membros.</p>
     <div class="barra-prog" style="background:#0e1a2e;border-radius:8px;height:10px;overflow:hidden;margin:0 auto 14px;max-width:280px;"><div style="width:43%;height:100%;background:linear-gradient(90deg,#c9a24b,#e3c877);"></div></div>
     <p style="color:#9fb0c8;font-size:.8rem;margin:-8px 0 16px;">3 de 7</p>
@@ -202,11 +203,11 @@ As três primeiras aulas estão livres, abertas para você, agora mesmo. Assista
 </div>
 
 <script>
-var CHAVE_EXTRA = "despertar_anestesia_modulos_5a7_liberados";
-var CODIGO_OFICIAL = "NSTMNT26";
+var CHAVE_EXTRA = "despertar_modulos_5a7_liberados";
+var CODIGO_OFICIAL = "EVLTRLAM26";
 
 document.addEventListener("DOMContentLoaded", function() {
-  if (localStorage.getItem(CHAVE_EXTRA) === "liberado" || localStorage.getItem("despertar_anestesia_acesso_ok") === "liberado") {
+  if (localStorage.getItem(CHAVE_EXTRA) === "liberado" || localStorage.getItem("despertar_trilogia_acesso_ok") === "liberado") {
     desbloquearModulosExtras();
   }
   var input = document.getElementById("codigo");
@@ -229,7 +230,12 @@ function tocarVideo(titulo, youtubeId, elemento) {
   }
   window.scrollTo({ top: document.querySelector('.player-container').offsetTop - 20, behavior: 'smooth' });
 
+  // Gatilho da oferta: ao abrir o Módulo 4, prepara o disparo automático ao fim
   if (elemento.getAttribute('data-modulo') === '3') {
+    var player = document.getElementById('video-player');
+    // Como é iframe do YouTube (sem evento nativo "ended" acessível sem API JS),
+    // usamos um tempo estimado de segurança: abre a oferta 60s após iniciar o Módulo 4.
+    // Ajuste o tempo abaixo para a duração real da sua Aula 4, se souber.
     setTimeout(function(){
       if (localStorage.getItem(CHAVE_EXTRA) !== "liberado") { abrirModal(); }
     }, 60000);
@@ -285,7 +291,7 @@ function verificarCodigo() {
 </script>
 
 <script>
-var NOME_CURSO = 'Anestesia Mental';
+var NOME_CURSO = 'Trilogia da Alma';
 
 function mostrarSucesso(){
   var c = document.getElementById('com-aviso');

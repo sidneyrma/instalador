@@ -129,7 +129,13 @@ function resultado_json($dados) {
         $res['opcoes'][$chave] = array('rotulo' => $rotulo, 'votos' => $n);
         $res['percentuais'][$chave] = $tot > 0 ? round($n / $tot * 100) : 0;
     }
-    $res['comentarios'] = isset($dados['comentarios']) ? array_slice(array_reverse($dados['comentarios']), 0, 20) : array();
+    $comentarios_publicos = isset($dados['comentarios']) ? array_slice(array_reverse($dados['comentarios']), 0, 20) : array();
+    $res['comentarios'] = array_map(function ($c) {
+        return array(
+            'texto' => isset($c['texto']) ? $c['texto'] : '',
+            'data' => isset($c['data']) ? $c['data'] : '',
+        );
+    }, $comentarios_publicos);
     return $res;
 }
 

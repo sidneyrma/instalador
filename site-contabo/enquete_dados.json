@@ -1,21 +1,16 @@
 {
-    "votos": 247,
+    "votos": 252,
     "opcoes": {
         "amei": 6,
         "gostei": 9,
         "util": 6,
         "nao_usei": 6,
         "magoas": 30,
-        "ansiedade": 32,
-        "medo": 12,
-        "paz": 146
+        "ansiedade": 33,
+        "medo": 13,
+        "paz": 149
     },
     "comentarios": [
-        {
-            "texto": "Fui traída e tenho medo de me relacionar novamente.",
-            "data": "18\/08\/2026 11:05",
-            "email": "lauramvni@gmail.com"
-        },
         {
             "texto": "Estou lendo um dos livros aqui q me identifiquei com ele.",
             "data": "18\/08\/2026 11:07",

@@ -355,6 +355,10 @@
 
 
   /* ===== Botão Instalar app (PWA) ===== */
+  
+  #baixar-app-casa.link-app{background:none;border:none;padding:0;color:var(--gold);font:inherit;font-weight:700;cursor:pointer;text-decoration:underline;}
+  #baixar-app-casa.link-app:hover{color:var(--gold-light);}
+
   #instalar-app{
     display:none; position:fixed; right:16px; bottom:84px; z-index:65;
     background:linear-gradient(135deg,var(--gold-light),var(--gold-dark)); color:var(--navy);
@@ -886,9 +890,10 @@
       <div class="product" style="padding:28px;">
         <h3 style="margin-bottom:10px;">📖 Leitura no portal</h3>
         <ul class="obra-itens">
-          <li>12 livros online</li>
+          <li>7 livros online</li>
           <li>Sem cadastro e sem custo</li>
           <li>Você lê no seu ritmo</li>
+          <li><button type="button" id="baixar-app-casa" class="link-app">Instalar o app no celular</button></li>
         </ul>
       </div>
       <div class="product" style="padding:28px;border:2px solid var(--gold-dark);">
@@ -923,23 +928,16 @@
       <div class="bib-card">
         <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/9myJ3XXb/livro01.jpg" alt="O Novo Testamento como nunca lido - capa"></div>
         <div class="bib-corpo">
-          <span class="bib-num">Livro 01 · Em breve</span>
+          <span class="bib-num">Livro 01 · Disponível</span>
           <h3>O Novo Testamento como nunca lido</h3>
           <p class="bib-desc">Uma jornada simples pelas Boas Novas de Cristo, com as passagens mais faladas, as parábolas e os sermões explicados para despertar a fé.</p>
           <div class="bib-badges">
             <span class="bib-badge bib-missao">Da Missão</span>
             <span class="bib-badge">20 capítulos</span>
-            <span class="bib-badge">✨ Em breve</span>
-          </div>
-          <p class="cd-titulo">📅 Lançamento em 27 de agosto, 20h</p>
-          <div class="countdown" id="countdown-livro11">
-            <div class="cd-item"><div class="cd-num" id="cd-dias">--</div><div class="cd-lab">dias</div></div>
-            <div class="cd-item"><div class="cd-num" id="cd-horas">--</div><div class="cd-lab">horas</div></div>
-            <div class="cd-item"><div class="cd-num" id="cd-min">--</div><div class="cd-lab">min</div></div>
-            <div class="cd-item"><div class="cd-num" id="cd-seg">--</div><div class="cd-lab">seg</div></div>
+            <span class="bib-badge">Disponível</span>
           </div>
           <div class="bib-ctas">
-            <a class="btn" href="#" style="pointer-events:none;opacity:.75;">Em breve</a>
+            <a class="btn" href="/livro11">Ler grátis</a>
             <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
           </div>
         </div>
@@ -1020,47 +1018,11 @@
 
 <!-- LIVRO 06 -->
       <div class="bib-card">
-        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/23CJFpyq/livro06.jpg" alt="O Verbo que Transforma - capa"></div>
-        <div class="bib-corpo">
-          <span class="bib-num">Livro 06 · Disponível</span>
-          <h3>O Verbo que Transforma</h3>
-          <p class="bib-desc">O Poder Criador da Palavra e da Fé, uma obra original sobre a palavra, a mente profunda e a fé para a saúde, a abundância e a superação.</p>
-          <div class="bib-badges">
-            <span class="bib-badge">10 capítulos</span>
-            <span class="bib-badge">🔒 Protegido</span>
-          </div>
-          <div class="bib-ctas">
-            <a class="btn" href="/livro01">Ler grátis</a>
-            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
-          </div>
-        </div>
-      </div>
-
-<!-- LIVRO 07 -->
-      <div class="bib-card">
-        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/TB1L9fv9/livro07.jpg" alt="A Mente Renovada - capa"></div>
-        <div class="bib-corpo">
-          <span class="bib-num">Livro 07 · Disponível</span>
-          <h3>A Mente Renovada</h3>
-          <p class="bib-desc">O pensar com Cristo que transforma a vida, 17 capítulos sobre a renovação da mente, o governo do pensamento, a oração, a gratidão e a unidade com Deus.</p>
-          <div class="bib-badges">
-            <span class="bib-badge">17 capítulos</span>
-            <span class="bib-badge">🔒 Protegido</span>
-          </div>
-          <div class="bib-ctas">
-            <a class="btn" href="/livro03">Ler grátis</a>
-            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
-          </div>
-        </div>
-      </div>
-
-<!-- LIVRO 08 -->
-      <div class="bib-card">
         <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/Gf7WWL6H/livro08.jpg" alt="O Caminho do Despertar - capa"></div>
         <div class="bib-corpo">
-          <span class="bib-num">Livro 08 · Disponível</span>
+          <span class="bib-num">Livro 06 · Disponível</span>
           <h3>O Caminho do Despertar</h3>
-          <p class="bib-desc">A Jornada Solitária da Alma, uma obra que reúne a sabedoria dos ensinamentos ocultos, a profundidade da fé e o conhecimento da alma humana.</p>
+          <p class="bib-desc">A Jornada Solitária da Alma, uma obra que reúne a sabedoria dos ensinamentos de Jesus, que revela a profundidade da fé e o conhecimento da alma humana.</p>
           <div class="bib-badges">
             <span class="bib-badge">12 capítulos</span>
             <span class="bib-badge">🔒 Protegido</span>
@@ -1072,65 +1034,11 @@
         </div>
       </div>
 
-<!-- LIVRO 09 -->
-      <div class="bib-card">
-        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/vCz5jKND/livro09.jpg" alt="O Arquiteto da Realidade - capa"></div>
-        <div class="bib-corpo">
-          <span class="bib-num">Livro 09 · Disponível</span>
-          <h3>O Arquiteto da Realidade</h3>
-          <p class="bib-desc">O Poder da Mente que Cria o Mundo que Você Vive, uma obra original sobre crenças, mente profunda e o estado do criador.</p>
-          <div class="bib-badges">
-            <span class="bib-badge">12 capítulos</span>
-            <span class="bib-badge">🔒 Protegido</span>
-          </div>
-          <div class="bib-ctas">
-            <a class="btn" href="/livro08">Ler grátis</a>
-            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
-          </div>
-        </div>
-      </div>
-
-<!-- LIVRO 10 -->
-      <div class="bib-card">
-        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/ZRXwG60f/livro10.jpg" alt="O Despertar do Observador - capa"></div>
-        <div class="bib-corpo">
-          <span class="bib-num">Livro 10 · Disponível</span>
-          <h3>O Despertar do Observador</h3>
-          <p class="bib-desc">As Leis Invisíveis que Moldam a Realidade, uma obra original que une sabedoria ancestral, metafísica, o poder do pensamento e práticas para o despertar da consciência.</p>
-          <div class="bib-badges">
-            <span class="bib-badge">32 capítulos</span>
-            <span class="bib-badge">🔒 Protegido</span>
-          </div>
-          <div class="bib-ctas">
-            <a class="btn" href="/livro10">Ler grátis</a>
-            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
-          </div>
-        </div>
-      </div>
-
-<!-- LIVRO 11 -->
-      <div class="bib-card">
-        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/0jS3KGHc/livro11.jpg" alt="A Sabedoria dos Mestres - capa"></div>
-        <div class="bib-corpo">
-          <span class="bib-num">Livro 11 · Disponível</span>
-          <h3>A Sabedoria dos Mestres</h3>
-          <p class="bib-desc">O Despertar do Conhecimento que Liberta a Alma, uma obra original sobre as leis da vibração, a linguagem do universo e o mestre interior.</p>
-          <div class="bib-badges">
-            <span class="bib-badge">10 capítulos</span>
-            <span class="bib-badge">🔒 Protegido</span>
-          </div>
-          <div class="bib-ctas">
-            <a class="btn" href="/livro02">Ler grátis</a>
-            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- LIVRO 12 -->
+<!-- LIVRO 07 -->
       <div class="bib-card">
         <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/rG9XwdqC/livro12.png" alt="Comece o dia com Afirmações, Declarações e Orações - capa"></div>
         <div class="bib-corpo">
-          <span class="bib-num">Livro 12 · Disponível</span>
+          <span class="bib-num">Livro 07 · Disponível</span>
           <h3>Comece o dia com Afirmações, Declarações e Orações</h3>
           <p class="bib-desc">Mensagens diárias para o seu dia a dia: versículos de declaração, gratidão, afirmações e orações no Nome de Jesus para começar cada manhã na presença de Deus.</p>
           <div class="bib-badges">
@@ -1899,6 +1807,24 @@ function quizEnviar(ev) {
   btn.innerHTML = '📲 Instalar app';
   document.body.appendChild(btn);
   var evento = null;
+  function marcarInstalado(){
+    btn.style.display = "none";
+    try{ localStorage.setItem("despertar_app_instalado", "1"); }catch(err){}
+  }
+  function tentarInstalar(){
+    if(evento){
+      evento.prompt();
+      evento.userChoice.then(function(escolha){
+        if(escolha.outcome === "accepted"){ marcarInstalado(); }
+      });
+      return;
+    }
+    var ios = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    var msg = ios
+      ? "No iPhone: toque em Compartilhar e depois em Adicionar à Tela de Início."
+      : "No Chrome: use o ícone de instalar na barra do navegador, ou abra o site no celular.";
+    alert(msg);
+  }
   window.addEventListener("beforeinstallprompt", function(e){
     e.preventDefault();
     evento = e;
@@ -1907,20 +1833,10 @@ function quizEnviar(ev) {
     }catch(err){}
     btn.style.display = "flex";
   });
-  btn.addEventListener("click", function(){
-    if(!evento){ return; }
-    evento.prompt();
-    evento.userChoice.then(function(escolha){
-      if(escolha.outcome === "accepted"){
-        btn.style.display = "none";
-        try{ localStorage.setItem("despertar_app_instalado", "1"); }catch(err){}
-      }
-    });
-  });
-  window.addEventListener("appinstalled", function(){
-    btn.style.display = "none";
-    try{ localStorage.setItem("despertar_app_instalado", "1"); }catch(err){}
-  });
+  btn.addEventListener("click", tentarInstalar);
+  var casa = document.getElementById("baixar-app-casa");
+  if(casa){ casa.addEventListener("click", function(ev){ ev.preventDefault(); tentarInstalar(); }); }
+  window.addEventListener("appinstalled", marcarInstalado);
 })();
 </script>
 

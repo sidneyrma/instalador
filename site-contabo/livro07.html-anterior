@@ -281,15 +281,15 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <li id="li-cap-tulo-5-a-alquimia-das-emo-es"><a href="#cap-tulo-5-a-alquimia-das-emo-es">CAPÍTULO 5: A Alquimia das Emoções</a><span class="marca"></span></li>
 <li id="li-cap-tulo-6-a-palavra-que-desperta"><a href="#cap-tulo-6-a-palavra-que-desperta">CAPÍTULO 6: A Palavra que Desperta</a><span class="marca"></span></li>
 <li class="toc-parte">PARTE III: A JORNADA</li>
-<li id="li-cap-tulo-7-as-camadas-do-esquecimento"><a href="#portao-acesso">CAPÍTULO 7: As Camadas do Esquecimento</a><span class="marca"></span></li>
-<li id="li-cap-tulo-8-o-mapa-da-alma"><a href="#portao-acesso">CAPÍTULO 8: O Mapa da Alma</a><span class="marca"></span></li>
-<li id="li-cap-tulo-9-a-vibra-o-do-encontro"><a href="#portao-acesso">CAPÍTULO 9: A Vibração do Encontro</a><span class="marca"></span></li>
+<li id="li-cap-tulo-7-as-camadas-do-esquecimento"><a href="#cap-tulo-7-as-camadas-do-esquecimento">CAPÍTULO 7: As Camadas do Esquecimento</a><span class="marca"></span></li>
+<li id="li-cap-tulo-8-o-mapa-da-alma"><a href="#cap-tulo-8-o-mapa-da-alma">CAPÍTULO 8: O Mapa da Alma</a><span class="marca"></span></li>
+<li id="li-cap-tulo-9-a-vibra-o-do-encontro"><a href="#cap-tulo-9-a-vibra-o-do-encontro">CAPÍTULO 9: A Vibração do Encontro</a><span class="marca"></span></li>
 <li class="toc-parte">PARTE IV: O DESPERTAR</li>
-<li id="li-cap-tulo-10-o-ritual-di-rio"><a href="#portao-acesso">CAPÍTULO 10: O Ritual Diário</a><span class="marca"></span></li>
-<li id="li-cap-tulo-11-a-luz-que-permanece"><a href="#portao-acesso">CAPÍTULO 11: A Luz que Permanece</a><span class="marca"></span></li>
-<li id="li-cap-tulo-12-o-retorno-do-mestre"><a href="#portao-acesso">CAPÍTULO 12: O Retorno do Mestre</a><span class="marca"></span></li>
-<li id="li-b-nus-pr-ticas-di-rias-do-despertar"><a href="#portao-acesso">BÔNUS: PRÁTICAS DIÁRIAS DO DESPERTAR</a><span class="marca"></span></li>
-<li id="li-ep-logo-a-jornada-cont-nua"><a href="#portao-acesso">EPÍLOGO: A Jornada Contínua</a><span class="marca"></span></li>
+<li id="li-cap-tulo-10-o-ritual-di-rio"><a href="#cap-tulo-10-o-ritual-di-rio">CAPÍTULO 10: O Ritual Diário</a><span class="marca"></span></li>
+<li id="li-cap-tulo-11-a-luz-que-permanece"><a href="#cap-tulo-11-a-luz-que-permanece">CAPÍTULO 11: A Luz que Permanece</a><span class="marca"></span></li>
+<li id="li-cap-tulo-12-o-retorno-do-mestre"><a href="#cap-tulo-12-o-retorno-do-mestre">CAPÍTULO 12: O Retorno do Mestre</a><span class="marca"></span></li>
+<li id="li-b-nus-pr-ticas-di-rias-do-despertar"><a href="#b-nus-pr-ticas-di-rias-do-despertar">BÔNUS: PRÁTICAS DIÁRIAS DO DESPERTAR</a><span class="marca"></span></li>
+<li id="li-ep-logo-a-jornada-cont-nua"><a href="#ep-logo-a-jornada-cont-nua">EPÍLOGO: A Jornada Contínua</a><span class="marca"></span></li>
   </ul>
 </section>
 
@@ -563,21 +563,9 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <nav class="cap-nav">
 <a href="#cap-tulo-5-a-alquimia-das-emo-es">← Anterior</a>
 <a href="#sumario">Sumário</a>
-<a href="#portao-acesso">Próximo →</a>
+<a href="#cap-tulo-7-as-camadas-do-esquecimento">Próximo →</a>
 </nav></section>
-
-<section id="portao-acesso" class="portao-acesso">
-  <div class="portao-caixa">
-    <p class="portao-eyebrow">Acesso completo</p>
-    <h2>A leitura livre chega até aqui</h2>
-    <p>Você leu a primeira metade desta obra, de graça, sem cadastro. O restante do livro, as aulas e a comunidade ficam no acesso completo da Missão.</p>
-    <p>Não prometemos cura pronta. Oferecemos um caminho, no seu ritmo. O conhecimento sem a prática é apenas teoria: é inútil.</p>
-    <p class="portao-verso">"Sejam praticantes da palavra, e não apenas ouvintes." (Tg 1:22)</p>
-    <a class="portao-botao" href="https://pay.kiwify.com.br/iVfp2bi">🕊️ QUERO ACESSO COMPLETO DA MISSÃO</a>
-    <p class="portao-preco">Pagamento único · Acesso vitalício · Pix imediato · Cartão até 4x · menos de R$ 1,25/dia</p>
-  </div>
-</section>
-<section class="cap-fechado capitulo" id="cap-tulo-7-as-camadas-do-esquecimento">
+<section class="capitulo" id="cap-tulo-7-as-camadas-do-esquecimento">
 <h2 class="cap-titulo">CAPÍTULO 7: As Camadas do Esquecimento</h2>
 <p>Os véus que cobrem a alma</p>
 <p>Quando a alma encarna na matéria, ela não chega vazia. Chega vestida, vestida de camadas que a protegem e, ao mesmo tempo, a escondem de si mesma.</p>
@@ -624,9 +612,9 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <nav class="cap-nav">
 <a href="#cap-tulo-6-a-palavra-que-desperta">← Anterior</a>
 <a href="#sumario">Sumário</a>
-<a href="#portao-acesso">Próximo →</a>
+<a href="#cap-tulo-8-o-mapa-da-alma">Próximo →</a>
 </nav></section>
-<section class="cap-fechado capitulo" id="cap-tulo-8-o-mapa-da-alma">
+<section class="capitulo" id="cap-tulo-8-o-mapa-da-alma">
 <h2 class="cap-titulo">CAPÍTULO 8: O Mapa da Alma</h2>
 <p>O desenho invisível</p>
 <p>Os antigos diziam que cada alma chega à Terra carregando um mapa, um desenho invisível, mais preciso que qualquer carta náutica, onde estão traçados os seus dons, as suas feridas, os seus encontros e a sua missão.</p>
@@ -657,11 +645,11 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <h3 class="secao-titulo">Reflexão do Capítulo 8</h3>
 <p>Quais são os seus dons mais naturais? O que você faz como se já soubesse? Quais feridas se repetem, e que mensagem elas carregam? Qual é o fio que une as suas experiências, o possível sussurro da sua missão?</p>
 <nav class="cap-nav">
-<a href="#portao-acesso">← Anterior</a>
+<a href="#cap-tulo-7-as-camadas-do-esquecimento">← Anterior</a>
 <a href="#sumario">Sumário</a>
-<a href="#portao-acesso">Próximo →</a>
+<a href="#cap-tulo-9-a-vibra-o-do-encontro">Próximo →</a>
 </nav></section>
-<section class="cap-fechado capitulo" id="cap-tulo-9-a-vibra-o-do-encontro">
+<section class="capitulo" id="cap-tulo-9-a-vibra-o-do-encontro">
 <h2 class="cap-titulo">CAPÍTULO 9: A Vibração do Encontro</h2>
 <p>A frequência que une</p>
 <p>Há um mistério nos encontros humanos que a razão não explica: por que algumas pessoas entram na nossa vida e transformam tudo, enquanto outras passam sem deixar marca?</p>
@@ -700,11 +688,11 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <h2 class="cap-titulo parte-titulo">PARTE IV: O DESPERTAR</h2>
 <p>Toda a jornada converge para um instante que não é um fim, mas um começo. O despertar não é algo que acontece com você, é algo que você se torna. E, como toda verdadeira transformação, não se conquista num arroubo, constrói-se dia após dia, segundo após segundo, na constância do ritual e na fidelidade do coração.</p>
 <nav class="cap-nav">
-<a href="#portao-acesso">← Anterior</a>
+<a href="#cap-tulo-8-o-mapa-da-alma">← Anterior</a>
 <a href="#sumario">Sumário</a>
-<a href="#portao-acesso">Próximo →</a>
+<a href="#cap-tulo-10-o-ritual-di-rio">Próximo →</a>
 </nav></section>
-<section class="cap-fechado capitulo" id="cap-tulo-10-o-ritual-di-rio">
+<section class="capitulo" id="cap-tulo-10-o-ritual-di-rio">
 <h2 class="cap-titulo">CAPÍTULO 10: O Ritual Diário</h2>
 <p>A constância que desperta</p>
 <p>Os antigos guardavam um segredo que os modernos esqueceram: não é a intensidade que transforma, é a constância.</p>
@@ -740,11 +728,11 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <h3 class="secao-titulo">Reflexão do Capítulo 10</h3>
 <p>Qual dos três portais do dia você sente que mais precisa fortalecer? Que frase de verdade você vai plantar durante os próximos 30 dias? O que seria diferente se você tratasse o seu ritual como pacto, e não como tarefa?</p>
 <nav class="cap-nav">
-<a href="#portao-acesso">← Anterior</a>
+<a href="#cap-tulo-9-a-vibra-o-do-encontro">← Anterior</a>
 <a href="#sumario">Sumário</a>
-<a href="#portao-acesso">Próximo →</a>
+<a href="#cap-tulo-11-a-luz-que-permanece">Próximo →</a>
 </nav></section>
-<section class="cap-fechado capitulo" id="cap-tulo-11-a-luz-que-permanece">
+<section class="capitulo" id="cap-tulo-11-a-luz-que-permanece">
 <h2 class="cap-titulo">CAPÍTULO 11: A Luz que Permanece</h2>
 <p>O que fica quando tudo passa</p>
 <p>A jornada do despertar conduz a uma descoberta que os mestres guardavam para o final: o que permanece quando tudo o mais passa.</p>
@@ -774,11 +762,11 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <h3 class="secao-titulo">Reflexão do Capítulo 11</h3>
 <p>Onde a sua luz está colocada hoje, no alto ou debaixo do cesto? Que virtude, fé, esperança ou amor, você precisa cultivar para que ela permaneça? Como você pode transmitir a sua luz àqueles que você ama, especialmente às crianças?</p>
 <nav class="cap-nav">
-<a href="#portao-acesso">← Anterior</a>
+<a href="#cap-tulo-10-o-ritual-di-rio">← Anterior</a>
 <a href="#sumario">Sumário</a>
-<a href="#portao-acesso">Próximo →</a>
+<a href="#cap-tulo-12-o-retorno-do-mestre">Próximo →</a>
 </nav></section>
-<section class="cap-fechado capitulo" id="cap-tulo-12-o-retorno-do-mestre">
+<section class="capitulo" id="cap-tulo-12-o-retorno-do-mestre">
 <h2 class="cap-titulo">CAPÍTULO 12: O Retorno do Mestre</h2>
 <p>O segredo final</p>
 <p>E chegamos ao fim, que é, na verdade, o começo.</p>
@@ -814,11 +802,11 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <h3 class="secao-titulo">Reflexão do Capítulo 12 e da obra</h3>
 <p>Que mestre você buscava fora, e que sempre esteve dentro? Quais são os três sinais do mestre interior que você já percebe em si? Se a jornada termina em começo, que novo começo a sua alma está pronta para viver?</p>
 <nav class="cap-nav">
-<a href="#portao-acesso">← Anterior</a>
+<a href="#cap-tulo-11-a-luz-que-permanece">← Anterior</a>
 <a href="#sumario">Sumário</a>
-<a href="#portao-acesso">Próximo →</a>
+<a href="#b-nus-pr-ticas-di-rias-do-despertar">Próximo →</a>
 </nav></section>
-<section class="cap-fechado capitulo" id="b-nus-pr-ticas-di-rias-do-despertar">
+<section class="capitulo" id="b-nus-pr-ticas-di-rias-do-despertar">
 <h2 class="cap-titulo">BÔNUS: PRÁTICAS DIÁRIAS DO DESPERTAR</h2>
 <p>Para quem quer levar a obra para a vida, um ritual completo de 30 dias.</p>
 <p>As Três Âncoras do Dia</p>
@@ -836,11 +824,11 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <p>Dias 1-10 (Corpo e saúde: frases de vitalidade e cura. Dias 11-20) Abundância e trabalho: decretos de provisão e propósito. Dias 21-30, Relacionamentos e expansão: bênçãos para os vínculos e para o despertar.</p>
 <p>Ao final de cada dezena: revise, celebre, agradeça.</p>
 <nav class="cap-nav">
-<a href="#portao-acesso">← Anterior</a>
+<a href="#cap-tulo-12-o-retorno-do-mestre">← Anterior</a>
 <a href="#sumario">Sumário</a>
-<a href="#portao-acesso">Próximo →</a>
+<a href="#ep-logo-a-jornada-cont-nua">Próximo →</a>
 </nav></section>
-<section class="cap-fechado capitulo" id="ep-logo-a-jornada-cont-nua">
+<section class="capitulo" id="ep-logo-a-jornada-cont-nua">
 <h2 class="cap-titulo">EPÍLOGO: A Jornada Contínua</h2>
 <p>Aqui termina esta obra. Mas a sua jornada, essa começa agora.</p>
 <p>Você recebeu as chaves: os princípios, o laboratório, a palavra, os véus, o mapa, a vibração, o ritual, a luz e o mestre interior. Nenhuma delas tem valor se não for usada. Todas elas têm poder se forem praticadas.</p>
@@ -853,13 +841,13 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 <p>Missão com Deus · Coleção do Despertar</p>
 <p>O Caminho do Despertar: A Jornada Solitária da Alma</p>
 <nav class="cap-nav">
-<a href="#portao-acesso">← Anterior</a>
+<a href="#b-nus-pr-ticas-di-rias-do-despertar">← Anterior</a>
 <a href="#sumario">Sumário</a>
 </nav></section>
   </div>
 </main>
 
-<section id="fim" class="cap-fechado">
+<section id="fim">
   <h2>A Jornada Contínua</h2>
   <p>Que a Luz do Divino Criador ilumine os seus passos. E que o mestre interior, agora desperto, guie cada escolha.</p>
   <p class="cred">© Coleção do Despertar · Todos os direitos reservados.<br>Leitura protegida, não é permitido copiar, imprimir ou distribuir este conteúdo.</p>
@@ -1238,70 +1226,6 @@ document.addEventListener('keydown', function(e){
   window.addEventListener('scroll', tentar, { passive: true });
   setTimeout(function(){ if(!jaMostrou){ mostrar(); } }, 90000);
   if(fechar){ fechar.addEventListener('click', esconder); }
-})();
-</script>
-
-
-<style id="css-portao-missao">
-.portao-acesso{margin:2.4rem 0 1rem;padding:0}
-.portao-caixa{background:linear-gradient(165deg,#0e1a2e,#16283f);color:#f6f1e7;border:1px solid rgba(201,162,75,.45);border-radius:14px;padding:1.8rem 1.4rem 1.6rem;text-align:center;box-shadow:0 12px 32px rgba(0,0,0,.18)}
-.portao-eyebrow{margin:0 0 .6rem;letter-spacing:.18em;text-transform:uppercase;font-size:.72rem;color:#e3c877;font-family:system-ui,sans-serif}
-.portao-caixa h2{margin:0 0 1rem;color:#fff;font-size:1.45rem;line-height:1.25}
-.portao-caixa p{margin:0 0 .85rem;color:rgba(246,241,231,.88);font-size:1rem;line-height:1.6;text-align:center}
-.portao-verso{font-style:italic;color:#e3c877 !important}
-.portao-botao{display:inline-block;margin:.4rem 0 .8rem;background:linear-gradient(180deg,#d4a83f,#b8860b);color:#fff;font-weight:700;text-decoration:none;padding:14px 22px;border-radius:8px;font-family:system-ui,sans-serif;font-size:.95rem}
-.portao-botao:hover{filter:brightness(1.06)}
-.portao-preco{font-size:.78rem !important;color:rgba(246,241,231,.65) !important;margin:0 !important;font-family:system-ui,sans-serif}
-.capitulo.cap-fechado,#fim.cap-fechado{display:none !important}
-#sumario a[href="#portao-acesso"]{opacity:.78}
-#sumario a[href="#portao-acesso"]::after{content:" · acesso completo";font-size:.72em;color:#e3c877;letter-spacing:.02em;text-transform:none}
-</style>
-<script id="js-portao-missao">
-(function(){
-  function irAoPortao(){
-    var p = document.getElementById("portao-acesso");
-    if(!p) return;
-    var topo = p.getBoundingClientRect().top + window.scrollY - 72;
-    window.scrollTo({ top: Math.max(0, topo), behavior: "smooth" });
-  }
-  function alvoFechado(href){
-    if(!href) return false;
-    var id = (href.charAt(0) === "#") ? href.slice(1) : "";
-    if(!id || id === "portao-acesso" || id === "sumario" || id === "capa") return false;
-    var el = document.getElementById(id);
-    return !!(el && el.classList.contains("cap-fechado"));
-  }
-  document.addEventListener("click", function(e){
-    var a = e.target.closest ? e.target.closest("a") : null;
-    if(!a) return;
-    var href = a.getAttribute("href") || "";
-    if(href === "#portao-acesso"){
-      e.preventDefault();
-      irAoPortao();
-      return;
-    }
-    if(alvoFechado(href)){
-      e.preventDefault();
-      irAoPortao();
-    }
-  }, true);
-  document.querySelectorAll("#trilha .ponto").forEach(function(pt, i){
-    var caps = document.querySelectorAll(".capitulo");
-    if(caps[i] && caps[i].classList.contains("cap-fechado")){
-      pt.style.display = "none";
-    }
-  });
-  function hashFechado(){
-    var h = (location.hash || "").replace("#", "");
-    if(!h) return;
-    var el = document.getElementById(h);
-    if(el && el.classList.contains("cap-fechado")){
-      if(history.replaceState) history.replaceState(null, "", location.pathname + location.search + "#portao-acesso");
-      setTimeout(irAoPortao, 50);
-    }
-  }
-  hashFechado();
-  window.addEventListener("hashchange", hashFechado);
 })();
 </script>
 
