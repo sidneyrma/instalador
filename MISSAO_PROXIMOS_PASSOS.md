@@ -8,38 +8,39 @@ Este documento é a lista prática do que falta. É só seguir por ordem, com ca
 
 ## 1) O QUE JÁ ESTÁ CONFERIDO E SALVO
 
-- Identidade única: **Missão com Deus** marcada no espelho e no script `APLICAR_IDENTIDADE_MISSAO.py`.
+- Identidade única: **Missão com Deus** já aplicada no servidor. Home no ar já com a marca nova (autor confirmou).
 - Aulas grátis corrigidas: `livro05` e `livro09` agora mostram **Módulo 03** (livre), não o Módulo 04.
 - `ATUALIZAR_4_BONUS.py` já rodou no servidor.
 - `PROMPT_LAURA_V11_CASA.txt` já foi colado no FlowOpenAi.
 - Mural **eliminado** de vez. Não recriar.
+- `gerar_estatisticas.py` ajustado: **Colaborador não conta mais como sustento**. Sustento = acesso completo R$ 37.
 - `/palavra`, `/stats` e `enquete.php` são só do administrador: `noindex, nofollow`, fora do sitemap, sem link no menu.
 - PDFs reais do aaPanel confirmados: a referência do Bônus 1 é **`/ebooks/livro11-o-n-t.pdf`**. O nome antigo não existe mais.
 
 ---
 
-## 2) PRÓXIMO PASSO: IDENTIDADE NO SERVIDOR
+## 2) IDENTIDADE: JÁ APLICADA
 
-1. Enviar para `/www/wwwroot/missaocomdeus.com.br/`:
-   - `APLICAR_IDENTIDADE_MISSAO.py`
-   - `livro05.html`
-   - `livro09.html`
+- Autor confirmou que os comandos rodaram e a marca **Missão com Deus** já está no ar.
+- Conferir em aba anônima se não aparece mais **Portal O Despertar** nem **Coleção do Despertar** como marca.
+
+## 2B) AJUSTE DO /STATS (JÁ PRONTO NO ESPELHO)
+
+O `/stats` no ar ainda dizia **"Sustento (Semeador + Colaborador)"** e mostrava **Colaborador R$ 19,90**. Como o Colaborador foi eliminado, o gerador já foi ajustado para:
+- Sustento = somente **acesso completo R$ 37** (`/q-semeador`).
+- Remover a linha de Colaborador dos cards ativos.
+- Deixar nota de que Colaborador saiu do ar.
+
+Para aplicar:
+1. Subir o `site-contabo/gerar_estatisticas.py` atualizado para `/home/deploy/gerar_estatisticas.py`.
 2. No Terminal do aaPanel, rodar:
 
 ```
-cd /www/wwwroot/missaocomdeus.com.br
-python3 APLICAR_IDENTIDADE_MISSAO.py
+cd /home/deploy
+python3 gerar_estatisticas.py
 ```
 
-3. Conferir em aba anônima:
-   - `https://missaocomdeus.com.br/`
-   - `/trilogia-da-alma`
-   - `/anestesia-mental`
-   - `/livro05`
-   - `/livro09`
-   - `/obrigado`
-
-Regra: não deve aparecer mais **Portal O Despertar** nem **Coleção do Despertar** como marca.
+3. Abrir `https://missaocomdeus.com.br/stats` e confirmar que não aparece mais Colaborador no sustento.
 
 ---
 

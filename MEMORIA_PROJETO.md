@@ -20,6 +20,8 @@ A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O G
 
 ## CONFIRMAÇÕES DO AUTOR — 03/09/2026
 
+- **Identidade já aplicada no servidor** (autor confirmou): Home no ar já com **Missão com Deus** e sem a marca antiga. Conferido também por fetch em 03/09.
+- **`gerar_estatisticas.py` ajustado**: Colaborador R$ 19,90 saiu do ar e **não conta mais como sustento**. Sustento agora é só o acesso completo R$ 37 (`/q-semeador`). Ainda precisa subir essa cópia para `/home/deploy/gerar_estatisticas.py` e rodar `python3 /home/deploy/gerar_estatisticas.py`.
 - `/palavra` é só o caderno do autor para ver os temas e acompanhar. Não é página pública. Só quem souber o endereço acessa, igual `/stats` e `enquete.php`. Todos com `noindex, nofollow` e **fora do sitemap**. Não colocar link no menu nem no footer. Não indexar.
 - Os PDFs antigos que eram referência no log **não existem mais no aaPanel**. A única referência boa do Bônus 1 é **`/ebooks/livro11-o-n-t.pdf`** (é esse que está no ar na página de obrigado).
 - PDFs que existem hoje no aaPanel na pasta do site (conferido pelo autor em 03/09):
