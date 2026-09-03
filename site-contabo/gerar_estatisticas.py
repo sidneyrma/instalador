@@ -95,8 +95,7 @@ PAGINAS = OrderedDict([
 ])
 
 CONVERSAO = OrderedDict([
-    ('/q-semeador', ('🎯', 'Quero Ser Semeador (R$ 37)')),
-    ('/q-colaborador', ('🌱', 'Colaborador (R$ 19,90)')),
+    ('/q-semeador', ('🎯', 'Acesso completo R$ 37')),
     ('/q-codigo', ('💬', 'Solicitar Código (WhatsApp)')),
     ('/q-whats', ('📱', 'Cliques no WhatsApp')),
     ('/q-palavra-play', ('🎧', 'Palavra de hoje (play)')),
@@ -131,18 +130,20 @@ PDF_MAP = {
     '/ebooks/um-segundo-com-deus-vol-01.pdf': '/dl:devocional-quiz',
     '/ebooks/jesus-quer-falar.pdf': '/dl:jesus-quiz',
     '/ebooks/jesus-quer-falar-com-seu-filho.pdf': '/dl:jesus-livro',
-    '/ebooks/livro11-onovotestamenento.pdf': '/dl:brinde-nt',
+    '/ebooks/livro11-o-n-t.pdf': '/dl:brinde-nt',
+    '/ebooks/livro12-a-d-o.pdf': '/dl:afirmacoes',
     '/ebooks/livro11.pdf': '/dl:chute-pdf',
     '/ebooks/livro10.pdf': '/dl:chute-pdf',
 }
 
 DL_NOMES = OrderedDict([
-    ('/dl:brinde-nt', 'Brinde extra · PDF do NT (página de obrigado)'),
+    ('/dl:brinde-nt', 'Bônus 1: PDF do NT (página de obrigado)'),
     ('/dl:evolucao', 'PDF Evolução da Alma (evalma + nome antigo)'),
     ('/dl:anestesia', 'PDF Anestesia Mental (evalma + nome antigo)'),
-    ('/dl:devocional-quiz', 'PDF Devocional Vol. 01 (quiz, livre)'),
+    ('/dl:devocional-quiz', 'Bônus 2: PDF Devocional Um Segundo com Deus (30 dias)'),
     ('/dl:jesus-quiz', 'PDF Jesus Quer Falar (quiz, livre)'),
-    ('/dl:jesus-livro', 'PDF Jesus Quer Falar com Seu Filho (outro arquivo)'),
+    ('/dl:jesus-livro', 'Bônus 3: PDF Jesus Quer Falar com Seu Filho'),
+    ('/dl:afirmacoes', 'Bônus 4: PDF Afirmações, Declarações e Orações'),
     ('/dl:chute-pdf', 'PDF com nome chutado (livro10 / livro11 sem evalma)'),
     ('/q-palavra-play', 'Palavra de hoje (plays no botão)'),
     ('/q-palavra-share', 'Palavra compartilhada'),
@@ -833,7 +834,7 @@ def bloco_termometro_html(res, livros_total, livros_hoje, pdfs, pdfs_hoje,
         f'{pdfs}', '⬇️ PDFs baixados',
         f'{pdfs_hoje} hoje', ''))
     cards.append(_card_term(
-        f'{sementes}', '🎯 Sustento (Semeador + Colaborador)',
+        f'{sementes}', '🎯 Sustento (acesso completo R$ 37)',
         f'{sementes_hoje} hoje', 'conv'))
     return ''.join(cards)
 
@@ -991,8 +992,8 @@ def montar_html(res, antigo):
     livros_hoje = sum(contagens_hoje.get(p, 0) for p in LIVROS_NO_AR)
     pdfs = sum(contagens.get(k, 0) for k in DL_NOMES if k.startswith('/dl:'))
     pdfs_hoje = sum(contagens_hoje.get(k, 0) for k in DL_NOMES if k.startswith('/dl:'))
-    sementes = conv.get('/q-semeador', 0) + conv.get('/q-colaborador', 0)
-    sementes_hoje = conv_hoje.get('/q-semeador', 0) + conv_hoje.get('/q-colaborador', 0)
+    sementes = conv.get('/q-semeador', 0)
+    sementes_hoje = conv_hoje.get('/q-semeador', 0)
     palavra = conv.get('/q-palavra-play', 0)
     palavra_hoje = conv_hoje.get('/q-palavra-play', 0)
     cards_termo = bloco_termometro_html(res, livros_total, livros_hoje,
@@ -1063,7 +1064,6 @@ def montar_html(res, antigo):
 
     # ---------------------------------------------------------- conversao
     n_sem = conv.get('/q-semeador', 0)
-    n_col = conv.get('/q-colaborador', 0)
     aula_gratis = sum(contagens.get(p, 0) for p in MODULOS_LIVRES)
     aula_hoje = sum(contagens_hoje.get(p, 0) for p in MODULOS_LIVRES)
     brinde_nt = contagens.get('/dl:brinde-nt', 0)
@@ -1072,12 +1072,8 @@ def montar_html(res, antigo):
     cards_conv = []
     cards_conv.append(
         f'<div class="card conv"><div class="v">{n_sem}</div>'
-        f'<div class="l">🎯 Semeador R$ 37</div>'
+        f'<div class="l">🎯 Acesso completo R$ 37</div>'
         f'<div class="h">{conv_hoje.get("/q-semeador", 0)} hoje</div></div>')
-    cards_conv.append(
-        f'<div class="card conv"><div class="v">{n_col}</div>'
-        f'<div class="l">🌱 Colaborador R$ 19,90</div>'
-        f'<div class="h">{conv_hoje.get("/q-colaborador", 0)} hoje</div></div>')
     cards_conv.append(
         f'<div class="card conv"><div class="v">{aula_gratis}</div>'
         f'<div class="l">🎬 Aulas grátis (módulos livres)</div>'
@@ -1195,7 +1191,7 @@ def montar_html(res, antigo):
         <td>É o coração da casa. Se cai enquanto as visitas sobem, a pessoa entra e não lê.</td></tr>
     <tr><td>⬇️ PDFs baixados</td><td>Arquivos que saíram da casa</td>
         <td>Semente que a pessoa leva consigo e pode repassar.</td></tr>
-    <tr><td>🎯 Sustento</td><td>Cliques em Semeador e Colaborador</td>
+    <tr><td>🎯 Sustento</td><td>Cliques no link do acesso completo R$ 37</td>
         <td>O que mantém a missão de pé. Clique não é compra: a venda acontece na Kiwify.</td></tr>
   </table>
 
@@ -1263,10 +1259,11 @@ def montar_html(res, antigo):
         <tr><th>Ação</th><th>Total</th><th>Hoje</th></tr>
         {linhas_conv}
       </table>
-      <p class="nota">Semeador e Colaborador = clique no link da Kiwify (a compra acontece lá fora).
+      <p class="nota">Acesso completo R$ 37 = clique no link da Kiwify (a compra acontece lá fora).
       WhatsApp = rascunho aberto, ainda precisa a pessoa Enviar. Aulas grátis = toques nos
-      módulos livres 1 a 3. Página de obrigado ≠ download: o brinde é o arquivo
-      livro11-onovotestamenento.pdf.</p>
+      módulos livres 1 a 3. Página de obrigado ≠ download: bônus 1 é o arquivo
+      livro11-o-n-t.pdf. Bônus 4 é o guia livro12-a-d-o.pdf. Colaborador R$ 19,90 saiu do
+      ar e não conta mais no sustento.</p>
     </div>
   </details>
 

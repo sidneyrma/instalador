@@ -1,6 +1,6 @@
 <?php
 /**
- * enquete.php — Endpoint de votação da enquete do Portal O Despertar
+ * enquete.php — Endpoint de votação da enquete da Missão com Deus
  *
  * GET  -> página bonita de resultado (navegador) ou JSON (fetch/API)
  * POST -> registra um voto (+ comentário opcional) e retorna resultados
@@ -162,7 +162,7 @@ function pagina_resultado($res) {
     return '<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8">'
          . '<meta name="viewport" content="width=device-width, initial-scale=1">'
          . '<meta name="robots" content="noindex, nofollow">'
-         . '<title>📊 Enquete — Portal O Despertar</title>'
+         . '<title>📊 Enquete — Missão com Deus</title>'
          . '<style>'
          . 'body{margin:0;font-family:Georgia,serif;background:#0e1a2e;color:#e8ecf3;padding:28px 16px}'
          . '.wrap{max-width:640px;margin:0 auto}'
@@ -185,14 +185,14 @@ function pagina_resultado($res) {
          . '.voltar:hover{opacity:.92}'
          . '.rodape{text-align:center;color:#7f8ca1;font-size:.75rem;margin-top:16px}'
          . '</style></head><body><div class="wrap">'
-         . '<div class="topo"><div class="selo">Portal O Despertar</div><h1>📊 Enquete de participação</h1><p>Qual é a maior batalha da sua mente hoje?</p></div>'
+         . '<div class="topo"><div class="selo">Missão com Deus</div><h1>📊 Enquete de participação</h1><p>Qual é a maior batalha da sua mente hoje?</p></div>'
          . '<div class="card">'
          . $linhas
          . '<div class="tot"><b>' . $tot . '</b> ' . ($tot === 1 ? 'voto' : 'votos') . ' até agora</div>'
          . $com
          . '</div>'
          . '<a class="voltar" href="https://missaocomdeus.com.br/#enquete">← Voltar para o site</a>'
-         . '<div class="rodape">Missão com Deus · Missão com Deus · missaocomdeus.com.br</div>'
+         . '<div class="rodape">Missão com Deus · missaocomdeus.com.br</div>'
          . '</div></body></html>';
 }
 
