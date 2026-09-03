@@ -5,6 +5,19 @@
 
 A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O GitHub (sidneyrma/instalador) está ATRÁS do servidor. Nunca trate o GitHub como verdade.
 
+## IDENTIDADE ÚNICA — MISSÃO COM DEUS (03/09/2026)
+
+- A casa passa a ter UMA marca publica e de busca: **Missão com Deus**.
+- Fora do ar: `Portal O Despertar`, `Portal O <b>Despertar</b>`, `Leitor do Despertar`.
+- "Coleção do Despertar" vira **"Coleção Missão com Deus"** nos livros, capas e créditos.
+- PWA: manifest `name`/`short_name`/`id` e sw `CACHE` ajustados.
+- Aplicar no servidor com `APLICAR_IDENTIDADE_MISSAO.py` (backup em `.bak`).
+- Não apagar/alterar `enquete_dados.json`, `enquete_ips.json`, `leituras.json`.
+- Conteúdo/inspiração que usa "despertar" como tema (ex.: "O Despertar da Alma", "despertar a fé") permanece normal. Só a MARCA muda.
+- Restos ainda possíveis no ar: "Liberar Módulos 5, 6 e 7" em Trilogia/Anestesia e banner Home "código grátis à Laura". O script também corrige.
+- Importante: os livros 05 e 09 mostravam "Aula grátis" no **Módulo 04** (travado). Corrigido no espelho e no script para **Módulo 03** (livre). Nao reabrir o Módulo 04 como aula grátis.
+- `APLICAR_IDENTIDADE_MISSAO.py` aplica marca + correcoes de confianca + modulo 03 nos livros 05/09.
+
 ## ATUALIZAÇÃO URGENTE — 03/09/2026 (consultoria)
 
 - Bônus 1 e 4 no ar: **`/ebooks/livro11-o-n-t.pdf`** (NT) e **`/ebooks/livro12-a-d-o.pdf`** (Afirmações). O nome antigo `livro11-onovotestamenento.pdf` **retorna 404**. Não usar.
@@ -12,7 +25,7 @@ A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O G
 - Home / FAQ e oferta ajustadas no espelho para **4 bônus**: NT, Devocional 30 dias, Jesus e Afirmações em PDF. Módulos 1 a 3 grátis.
 - Banner fixo da Home NÃO deve mais prometer "código de acesso grátis à Laura" nem pedir "código grátis". O convite certo é sobre o acesso completo.
 - Caixa de código das pontes: dizer **"Liberar os módulos restantes (4 a 7)"**, não "Liberar Módulos 5, 6 e 7".
-- O `/stats` vivo hoje é **v6** e NÃO é o `site-contabo/gerar_estatisticas.py` do GitHub (que é v3). Antes de atualizar/sobrescrever, retirar o script v6 do servidor, senão o painel volta.
+- O `gerar_estatisticas.py` do GitHub já foi sincronizado com o do servidor (v4/v6, inclui Origem e Termômetro). Se aparecer diferença, conferir no `/home/deploy/` antes de substituir. Não subir a versão v3 antiga em cima do v6.
 
 ## INFRA
 

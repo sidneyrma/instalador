@@ -1,8 +1,8 @@
 {
-  "name": "Portal O Despertar — Missão com Deus",
-  "short_name": "Portal O Despertar",
+  "name": "Missão com Deus — Portal de leitura",
+  "short_name": "Missão com Deus",
   "description": "Livros online gratuitos, devocional e portal de estudos para despertar sua mente, fortalecer sua fé e transformar sua vida.",
-  "id": "portal-o-despertar",
+  "id": "missao-com-deus",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
