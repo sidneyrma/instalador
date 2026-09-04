@@ -603,11 +603,50 @@ Banners nos livros: 90s OU 10%; descanso 12h. Evolução (maioria) → `/trilogi
 - Não apagar apioficial / app / api compraoseu.
 - Não zerar enquete_dados.json para limpar spam.
 
+## RASTREIO DO BANNER (03/09/2026, correção)
+
+- **Causa do teste não aparecer:** o banner da Home (CTAs de cursos) abria o WhatsApp e era contado como `/q-whats` ("Cliques no WhatsApp"). A linha `/q-codigo` ("Solicitar Código") só era contada nas páginas de área de alunos. Por isso um clique no banner da Home não aparecia na linha que o autor esperava.
+- **Correção aplicada no espelho `index.html` e no servidor:**
+  - Link do banner "Falar com a Laura sobre o acesso" agora dispara **`/q-laura`**.
+  - Qualquer outro WhatsApp da Home continua em **`/q-whats`**.
+  - **`APLICAR_RASTREIO_LAURA.py` rodou no servidor**: `Backup criado index-antes-rastreio-20260903-203031.bak`, `Trecho de rastreio trocado com sucesso`, `Pixels criados: q-laura`.
+  - **Teste do autor confirmado no /stats:** `🕊️ Falar com a Laura (banner da Home): 1`.
+- **Correção no `gerar_estatisticas.py` (aplicada no servidor):**
+  - Nova linha na conversão: **`/q-laura`** = "Falar com a Laura (banner da Home)".
+  - Nova linha: **`/q-livro-share`** = "Livros compartilhados".
+  - `/q-codigo` foi renomeado para refletir a realidade: **"Fale com a Laura (área de alunos)"** (não é mais "Solicitar Código").
+  - `/q-colaborador` e `/q-aula-gratis` **saíram do painel**: continuam ignorados, não contam mais.
+  - No /stats ao vivo aparece: Acesso completo R$ 37 · Fale com a Laura (área de alunos) · Falar com a Laura (banner da Home) · Cliques no WhatsApp · Palavra · Livros compartilhados. **Colaborador ausente.**
+- **Comando que resolveu: `ATUALIZAR_STATS_SIMPLES.py`** faz backup e troca só os trechos do painel, depois já roda `gerar_estatisticas.py`. Resposta no servidor: `Trocas aplicadas: 8 de 8`.
+
+## LEITURA DA CASA — 03/09/2026 (números reais do /stats)
+
+- **Hoje (03/09), até a geração do painel:** 109 pessoas · 134 visitas · 411 páginas de gente. É dia pela metade/fim de dia, então não comparar com o dia completo de ontem.
+- **Ontem (02/09):** 196 pessoas · 239 visitas · 497 páginas.
+- **Casa viva:** hoje ~3,8 páginas por pessoa (411/109). Acima de 3 = pessoa lê, não só passa. Esse é o sinal mais importante para o nosso cenário (espiritualidade, não religião).
+- **Origem hoje:** Google/SEO 23 · site antigo 29 · direto 74 · redes 0. A busca orgânica hoje (23) ficou acima de ontem (11). Ainda é minoria, mas cresceu.
+- **Sustento:** 26 cliques no acesso completo R$ 37 no total; 4 hoje. Taxa geral 1,9% sobre pessoas. Hoje a proporção ficou maior porque o dia ainda não fechou.
+- **Downloads:** Bônus 1 (NT) 2 hoje · Bônus 4 (Afirmações) 2 hoje · Devocional 1 hoje · Jesus 1 hoje.
+- **Conversão hoje vs dia anterior:** não confundir clique com compra. Compra real só a Kiwify mostra.
+- **Leitura honesta para o nicho:** mais de 70% das visitas ainda são "direto" (link colado, WhatsApp, favorito, app) e o site antigo continua trazendo gente. SEO ainda é pequeno. Isso é normal no começo; a marca única e o sitemap novo são o caminho para o Google entender a casa.
+
+## GOOGLE SEARCH CONSOLE E SITEMAP (estado em 03/09/2026)
+
+- Sitemap enviado: **`https://missaocomdeus.com.br/sitemap.xml`**.
+- No painel aparece **Sucesso**, última leitura **02/09/2026**, **9 páginas** enviadas, **90 páginas descobertas**.
+- As 9 páginas do `sitemap.xml` são: `/`, `/livro04`, `/livro05`, `/livro06`, `/livro07`, `/livro09`, `/livro11`, `/livro12`, `/guia-pais-filhos`.
+- `/palavra`, `/stats` e `enquete.php` **não estão** no sitemap e têm `noindex, nofollow`. Mantê-los assim.
+- Depois que `APLICAR_IDENTIDADE_MISSAO.py` rodar no servidor: submeter o sitemap de novo, usar **Inspecionar URL** nas 9 páginas para pedir indexação, e usar **Remoções** só para URLs antigas que realmente saíram (ex.: `/livro01` … `/livro12` antigos, páginas-ponte antigas, etc.).
+- Não remover do índice sem necessidade. Para páginas que sumiram de verdade, o Google entende 404/301 sozinho; a remoção manual é só quando for urgente.
+
+## ATUALIZAÇÃO URGENTE — 03/09/2026 (consultoria)
+
+- Bônus 1 e 4 no ar: **`/ebooks/livro11-o-n-t.pdf`** (NT) e **`/ebooks/livro12-a-d-o.pdf`** (Afirmações). O nome antigo `livro11-onovotestamenento.pdf` **retorna 404**. Não usar.
+- Bônus 4 (Afirmações) no obrigado: **`/ebooks/livro12-a-d-o.pdf`** (existe e está no ar).
+- Home / FAQ e oferta ajustadas no espelho para **4 bônus**: NT, Devocional 30 dias, Jesus e Afirmações em PDF. Módulos 1 a 3 grátis.
+- Banner fixo da Home NÃO deve mais prometer "código de acesso grátis à Laura" nem pedir "código grátis". O convite certo é sobre o acesso completo.
+- Caixa de código das pontes: dizer **"Liberar os módulos restantes (4 a 7)"**, não "Liberar Módulos 5, 6 e 7".
+- O `gerar_estatisticas.py` do GitHub já foi sincronizado com o do servidor (v4/v6, inclui Origem e Termômetro). Se aparecer diferença, conferir no `/home/deploy/` antes de substituir. Não subir a versão v3 antiga em cima do v6.
+- 
 «Lâmpada para os meus pés é a tua palavra, e luz para o meu caminho.» (Salmo 119:105)
-
-Tudo o que fizerem, seja em palavra seja em ação, façam-no em nome do Senhor Jesus, dando por meio dele graças a Deus Pai. (Cl 3:17)
-
-
-«Lâmpada para os meus pés é a tua palavra, e luz para o meu caminho.» (Salmo 119:105)
-
 Tudo o que fizerem, seja em palavra seja em ação, façam-no em nome do Senhor Jesus, dando por meio dele graças a Deus Pai. (Cl 3:17)
