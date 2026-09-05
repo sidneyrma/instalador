@@ -105,7 +105,10 @@
   @media(max-width:880px){
     .hero-visual img{min-height:300px;object-position:center center;}
   }
-  .hero-badge{position:absolute;bottom:-18px;left:-18px;background:var(--cream-2);color:var(--navy);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow);font-size:13px;font-weight:600;max-width:200px;}
+  .hero-badge{position:absolute;bottom:-18px;left:-18px;background:var(--cream-2);color:var(--navy);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow);font-size:13px;font-weight:600;max-width:210px;display:flex;flex-direction:column;gap:9px;}
+  .hero-app-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 14px;border:1px solid var(--gold-dark,#b8860b);background:linear-gradient(180deg,#f3d27a,#dfb250);color:var(--navy,#0e1a2e);border-radius:9px;font-size:13px;font-weight:800;letter-spacing:.02em;cursor:pointer;font-family:inherit;box-shadow:0 4px 14px rgba(201,162,75,.35);transition:transform .15s ease,box-shadow .15s ease;}
+  .hero-app-btn:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(201,162,75,.45);}
+  .hero-app-btn:active{transform:translateY(0);}
   @media(max-width:880px){ .hero-grid{grid-template-columns:1fr;} .hero h1{font-size:32px;} .hero{padding:60px 0 52px;} }
 
   /* TRUST BAR */
@@ -472,6 +475,7 @@
       <a href="#faq">Dúvidas</a>
       <a href="/trilogia-da-alma">🎓 Trilogia da Alma</a>
       <a href="/anestesia-mental">🎓 Anestesia Mental</a>
+      <a href="/guia-pais-filhos">👨‍👩‍👧 Pais e Filhos</a>
       <a class="btn btn-gold nav-cta" href="https://dashboard.kiwify.com.br/courses">🔓 Entrar no Portal</a>
       <div class="nav-rodape">✝️ "Confia ao Senhor o teu caminho."<br>Salmos 37:5</div>
     </nav>
@@ -505,7 +509,11 @@
   @media(max-width:880px){#palavra-hoje{max-width:100%}}
   #ph-share{display:none;margin:10px 0 0;padding:8px 18px;border-radius:999px;border:1px solid rgba(227,200,119,.55);background:transparent;color:#e3c877;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.02em}
   #ph-share.show{display:inline-block}
-  #ph-share:hover{border-color:#e3c877;background:rgba(201,162,75,.12);color:#fffaf0}
+    #ph-share:hover{border-color:#e3c877;background:rgba(201,162,75,.12);color:#fffaf0}
+  #ph-download{display:none;margin:10px 0 0 8px;padding:8px 16px;border-radius:999px;border:1px solid rgba(227,200,119,.45);background:transparent;color:#e3c877;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;letter-spacing:.02em;text-decoration:none}
+  #ph-download.show{display:inline-block}
+  #ph-download:hover{border-color:#e3c877;background:rgba(201,162,75,.12);color:#fffaf0}
+  @media(max-width:520px){#ph-download{margin:10px 0 0}}
 
 </style>
 
@@ -519,12 +527,13 @@
         </div>
         <div class="ph-bar" id="ph-bar"><i id="ph-fill"></i></div>
         <button type="button" id="ph-share">Compartilha com quem você ama</button>
+        <a id="ph-download" href="#" download>Baixar áudio</a>
       </div>
       <script>
       (function(){
-        var refs=["Salmo 23","João 14:27","Isaías 41:10","Filipenses 4:6-7","Mateus 11:28","Salmo 91","Josué 1:9","Romanos 8:28","Salmo 46","João 3:16","Provérbios 3:5-6","Isaías 40:31","Mateus 6:33","Salmo 121","2 Timóteo 1:7","Lamentações 3:22","João 8:32","Salmo 27:1","Romanos 8:38","Mateus 5:14","Salmo 34","Jeremias 29:11","João 16:33","Hebreus 13:5","Salmo 139","Gálatas 5:22","1 Pedro 5:7","Efésios 2:8","Apocalipse 21:4","Números 6:24"];
+        var refs=["Salmo 23","João 14:27","Isaías 41:10","Filipenses 4:6-7","Mateus 11:28","Salmo 91","Josué 1:9","Romanos 8:28","Salmo 46","João 3:16","Provérbios 3:5-6","Isaías 40:31","Mateus 6:33","Salmo 121","2 Timóteo 1:7","Lamentações 3:22","João 8:32","Salmo 27:1","Romanos 8:38","Mateus 5:14","Salmo 34","Jeremias 29:11","João 16:33","Hebreus 13:5","Salmo 139","Gálatas 5:22","1 Pedro 5:7","Efésios 2:8","Apocalipse 21:4","Números 6:24","Salmo 23","Filipenses 1:6","Isaías 43:2","2 Coríntios 12:9","Mateus 7:7","Salmo 37:4","João 15:5","Filipenses 4:8","Salmo 56:8","Mateus 18:20","1 Coríntios 13:4","Romanos 12:2","Salmo 42:1","2 Coríntios 5:17","Salmo 30:5","Isaías 41:10","Colossenses 3:23","Salmo 16:11","Provérbios 18:10","Mateus 12:20","João 14:27","Salmo 51:10","1 João 1:9","Filipenses 3:13","1 Pedro 1:3","Miquéias 6:8","Mateus 5:9","Salmo 90:12","1 Tessalonicenses 5:16","João 14:2"];
         var day=parseInt(new Intl.DateTimeFormat("en-US",{timeZone:"America/Sao_Paulo",day:"numeric"}).format(new Date()),10);
-        if(day===31) day=30;
+        if(day > 60) day = 30;
         var n=String(day).padStart(2,"0");
         var box=document.getElementById("palavra-hoje");
         var ref=document.getElementById("ph-ref");
@@ -536,6 +545,8 @@
         var a=new Audio("/audio/palavra-dia-"+n+".mp3");
         a.preload="none";
         a.addEventListener("error",function(){ if(box) box.style.display="none"; });
+        var dl=document.getElementById("ph-download");
+        if(dl){ dl.href="/audio/palavra-dia-"+n+".mp3"; dl.setAttribute("download","palavra-dia-"+n+".mp3"); }
         var playPath="M8 5v14l11-7z";
         var pausePath="M6 5h4v14H6zm8 0h4v14h-4z";
         function setOn(on){
@@ -546,9 +557,9 @@
         a.addEventListener("timeupdate",function(){
           if(a.duration) fill.style.width=(100*a.currentTime/a.duration)+"%";
         });
-        a.addEventListener("ended",function(){ setOn(false); fill.style.width="100%"; var x=document.getElementById("ph-share"); if(x) x.classList.add("show"); });
+        a.addEventListener("ended",function(){ setOn(false); fill.style.width="100%"; var x=document.getElementById("ph-share"); if(x) x.classList.add("show"); if(dl) dl.classList.add("show"); });
         btn.addEventListener("click",function(){
-          if(a.paused){ a.play(); setOn(true); }
+          if(a.paused){ a.play(); setOn(true); if(dl) dl.classList.remove("show"); }
           else { a.pause(); setOn(false); }
         });
       })();
@@ -557,6 +568,7 @@
 (function(){
   var sh=document.getElementById("ph-share");
   if(!sh) return;
+  var url="https://missaocomdeus.com.br/";
   function copiarVelho(full, ok){
     var ta=document.createElement("textarea");
     ta.value=full; ta.setAttribute("readonly","");
@@ -570,22 +582,42 @@
     var refEl=document.getElementById("ph-ref");
     var ref=(refEl && refEl.textContent) ? refEl.textContent.split("·")[0].trim() : "Palavra de hoje";
     var txt="Ouvi a Palavra de hoje na Missão com Deus. "+ref+". Compartilha com quem você ama.";
-    var url="https://missaocomdeus.com.br/";
+    var txtLink=txt+" "+url;
     var old=sh.textContent;
     function ok(){
       sh.textContent="Copiado. Cole onde você ama.";
       setTimeout(function(){ sh.textContent=old; }, 2800);
     }
     function copiar(){
-      var full=txt+" "+url;
       if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(full).then(ok).catch(function(){ copiarVelho(full, ok); });
-      } else { copiarVelho(full, ok); }
+        navigator.clipboard.writeText(txtLink).then(ok).catch(function(){ copiarVelho(txtLink, ok); });
+      } else { copiarVelho(txtLink, ok); }
     }
-    var noCelular = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if(noCelular && navigator.share){
-      navigator.share({title:"Palavra de hoje", text:txt, url:url}).catch(copiar);
-    } else { copiar(); }
+    function compartilharLink(){
+      var noCelular = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if(noCelular && navigator.share){
+        navigator.share({title:"Palavra de hoje", text:txt, url:url}).catch(copiar);
+      } else { copiar(); }
+    }
+    function tentarAudio(){
+      var noCelular = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if(!noCelular || !navigator.share || !navigator.canShare ||
+         typeof File === "undefined" || typeof Blob === "undefined"){ compartilharLink(); return; }
+      var day=parseInt(new Intl.DateTimeFormat("en-US",{timeZone:"America/Sao_Paulo",day:"numeric"}).format(new Date()),10);
+      if(day > 60) day = 30;
+      var nn=String(day).padStart(2,"0");
+      var audioUrl="/audio/palavra-dia-"+nn+".mp3";
+      fetch(audioUrl,{cache:"no-store"})
+        .then(function(r){ if(!r.ok) throw new Error("sem audio"); return r.blob(); })
+        .then(function(blob){
+          var file=new File([blob], "palavra-dia-"+nn+".mp3", {type:"audio/mpeg"});
+          if(!navigator.canShare({files:[file]})){ compartilharLink(); return; }
+          navigator.share({title:"Palavra de hoje", text:txtLink, files:[file]})
+            .catch(function(e){ if(e && e.name==="AbortError") return; compartilharLink(); });
+        })
+        .catch(function(){ compartilharLink(); });
+    }
+    tentarAudio();
   });
 })();
 </script>
@@ -613,7 +645,10 @@
     </div>
     <div class="hero-visual">
       <img src="https://i.ibb.co/zhH6FV9X/hero.jpg" alt="Evolução da Alma, Novo Testamento e Anestesia Mental — leitura gratuita">
-      <div class="hero-badge">✨ Leia de graça, continue de onde parou</div>
+      <div class="hero-badge">
+          <span>✨ Leia de graça, continue de onde parou</span>
+          <button type="button" id="instalar-app-hero" class="hero-app-btn" aria-label="Baixar o app da Missão com Deus">📲 Baixar App</button>
+        </div>
     </div>
   </div>
 </section>
@@ -838,7 +873,7 @@
       </div>
     
       <div class="product">
-        <img src="https://i.ibb.co/9myJ3XXb/livro01.jpg" alt="O Novo Testamento como nunca lido">
+        <img src="https://i.ibb.co/sJWVKDqB/livro11.jpg" alt="O Novo Testamento como nunca lido">
         <div class="pbody">
           <span class="tag">📖 O Novo Testamento</span> <span class="tag tag-missao">Da Missão</span>
           <h3>O Novo Testamento como nunca lido</h3>
@@ -848,6 +883,20 @@
             <li>✅ 20 capítulos em leitura limpa</li>
             <li>✅ Leitura gratuita no portal</li>
             <li>✅ PDF de bônus no acesso completo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product">
+        <img src="https://i.ibb.co/YF5sWbp7/livro07.jpg" alt="O Caminho do Despertar">
+        <div class="pbody">
+          <span class="tag">🕊️🗺️ O Caminho do Despertar</span> <span class="tag tag-missao">Da Missão</span>
+          <h3>O Caminho do Despertar</h3>
+          <p>Uma jornada de fé e autoconhecimento: 12 capítulos que revelam a sabedoria dos ensinamentos de Jesus e conduzem a alma a um encontro mais profundo com Deus.</p>
+          <ul class="obra-itens">
+            <li>✅ 12 capítulos em leitura limpa</li>
+            <li>✅ Sabedoria dos ensinamentos de Jesus</li>
+            <li>✅ Reflexão sobre fé, propósito e alma</li>
+            <li>✅ Leitura gratuita no portal</li>
           </ul>
         </div>
       </div>
@@ -935,7 +984,7 @@
 
       <!-- LIVRO 01 -->
       <div class="bib-card">
-        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/9myJ3XXb/livro01.jpg" alt="O Novo Testamento como nunca lido - capa"></div>
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/sJWVKDqB/livro11.jpg" alt="O Novo Testamento como nunca lido - capa"></div>
         <div class="bib-corpo">
           <span class="bib-num">Livro 01 · Disponível</span>
           <h3>O Novo Testamento como nunca lido</h3>
@@ -1027,7 +1076,7 @@
 
 <!-- LIVRO 06 -->
       <div class="bib-card">
-        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/Gf7WWL6H/livro08.jpg" alt="O Caminho do Despertar - capa"></div>
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/YF5sWbp7/livro07.jpg" alt="O Caminho do Despertar - capa"></div>
         <div class="bib-corpo">
           <span class="bib-num">Livro 06 · Disponível</span>
           <h3>O Caminho do Despertar</h3>
@@ -1344,7 +1393,7 @@
       </div>
       <div class="faq-item">
         <div class="faq-q"><span>O que eu recebo no acesso completo?</span><span class="plus">+</span></div>
-        <div class="faq-a"><p>Por R$ 37,00, pagamento único: os dois cursos em vídeo (14 módulos), os livros digitais completos Evolução da Alma e Anestesia Mental, a área de membros e a comunidade, vitalícios, por e-mail na Kiwify. Os módulos 1 a 3 já estão grátis no site, para você conhecer antes de decidir. Além disso, a casa envia 4 bônus: o Novo Testamento como nunca lido, o Devocional Um Segundo com Deus, o e-book Jesus Quer Falar com Seu Filho e o guia diário Afirmações, Declarações e Orações em PDF.</p></div>
+        <div class="faq-a"><p>Por R$ 37,00, pagamento único: os dois cursos em vídeo (14 módulos), os livros digitais Evolução da Alma e Anestesia Mental, o Devocional de 30 dias, o e-book Jesus Quer Falar com Seu Filho e a comunidade, vitalício, por e-mail na Kiwify. Os módulos 1 a 3 já estão grátis no site, para você conhecer antes de decidir. Além disso, a casa envia 4 bônus: o Novo Testamento como nunca lido, o Devocional Um Segundo com Deus, o e-book Jesus Quer Falar com Seu Filho e o guia diário Afirmações, Declarações e Orações em PDF.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><span>Isso é doação?</span><span class="plus">+</span></div>
@@ -1845,7 +1894,19 @@ function quizEnviar(ev) {
   btn.addEventListener("click", tentarInstalar);
   var casa = document.getElementById("baixar-app-casa");
   if(casa){ casa.addEventListener("click", function(ev){ ev.preventDefault(); tentarInstalar(); }); }
-  window.addEventListener("appinstalled", marcarInstalado);
+  var hero = document.getElementById("instalar-app-hero");
+  if(hero){
+    hero.addEventListener("click", function(ev){ ev.preventDefault(); ev.stopPropagation(); tentarInstalar(); });
+    try{
+      if(localStorage.getItem("despertar_app_instalado") === "1"){
+        hero.style.display = "none";
+      }
+    }catch(err){}
+  }
+  window.addEventListener("appinstalled", function(){
+    marcarInstalado();
+    if(hero){ hero.style.display = "none"; }
+  });
 })();
 </script>
 
@@ -2135,9 +2196,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var a = e.target.closest ? e.target.closest("a") : null;
     if(!a){ return; }
     var href = a.getAttribute("href") || "";
-    if(href.indexOf("NCAEVtO")!==-1){ rastrear("/q-colaborador"); }
-    else if(href.indexOf("pay.kiwify")!==-1){ rastrear("/q-semeador"); }
-    if(href.indexOf("wa.me/5528999111493")!==-1){ rastrear("/q-whats"); }
+    if(href.indexOf("pay.kiwify")!==-1){ rastrear("/q-semeador"); }
+    if(href.indexOf("wa.me/5528999111493")!==-1){
+      if(href.indexOf("pela%20Home")!==-1 || href.indexOf("acesso%20completo")!==-1){ rastrear("/q-laura"); }
+      rastrear("/q-whats");
+    }
   }
   document.addEventListener("click", onClick, true);
 })();
@@ -2169,7 +2232,7 @@ body.cta-cursos-ativo{padding-bottom:96px}
     </div>
     <div class="cta-btns">
       <a class="btn btn-gold" href="/trilogia-da-alma">🎬 Quero assistir</a>
-      <a class="btn btn-ghost-light" href="https://wa.me/5528999111493?text=Ol%C3%A1%20Laura%2C%20vim%20pela%20Home%20e%20quero%20entender%20o%20acesso%20completo%20%F0%9F%95%8A%EF%B8%8F" target="_blank" rel="noopener">💛 Falar com a Laura sobre o acesso</a>
+      <a class="btn btn-ghost-light" href="https://wa.me/5528999111493?text=Ol%C3%A1%20Laura%2C%20vim%20pela%20Home%20e%20quero%20pedir%20meu%20c%C3%B3digo%20de%20acesso%20%F0%9F%99%8F" target="_blank" rel="noopener">💛 Falar com a Laura sobre o acesso</a>
     </div>
     <button class="cta-fechar" id="cta-fechar" aria-label="Fechar convite">✕</button>
   </div>

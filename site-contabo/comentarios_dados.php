@@ -40,4 +40,24 @@ return array (
     'pagina' => '/trilogia-da-alma',
     'email' => '',
   ),
+  4 => 
+  array (
+    'id' => 'c_6a99d791e9a7e2.88669936',
+    'data' => '2026-09-04 04:24:49',
+    'curso' => 'Trilogia da Alma',
+    'nome' => 'Sidneyvni@gmail.com',
+    'comentario' => 'Como faço',
+    'pagina' => '/trilogia-da-alma',
+    'email' => '',
+  ),
+  5 => 
+  array (
+    'id' => 'c_6a99d79608a5e5.91090756',
+    'data' => '2026-09-04 04:24:54',
+    'curso' => 'Trilogia da Alma',
+    'nome' => 'Sidneyvni@gmail.com',
+    'comentario' => 'Como faço',
+    'pagina' => '/trilogia-da-alma',
+    'email' => '',
+  ),
 );
