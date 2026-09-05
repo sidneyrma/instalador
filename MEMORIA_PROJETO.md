@@ -647,6 +647,72 @@ Banners nos livros: 90s OU 10%; descanso 12h. Evolução (maioria) → `/trilogi
 - Banner fixo da Home NÃO deve mais prometer "código de acesso grátis à Laura" nem pedir "código grátis". O convite certo é sobre o acesso completo.
 - Caixa de código das pontes: dizer **"Liberar os módulos restantes (4 a 7)"**, não "Liberar Módulos 5, 6 e 7".
 - O `gerar_estatisticas.py` do GitHub já foi sincronizado com o do servidor (v4/v6, inclui Origem e Termômetro). Se aparecer diferença, conferir no `/home/deploy/` antes de substituir. Não subir a versão v3 antiga em cima do v6.
+
+- # RESUMO — O QUE FOI FEITO DESDE A ÚLTIMA MEMÓRIA (para colar no MEMORIA_PROJETO.md)
+
+## 1) Página /guia-pais-filhos + menu da Home
+- **CTA no guia:** caixa azul dourada "Responder o Quiz" logo abaixo do topo, com botão para `https://missaocomdeus.com.br/#enquete`.
+- **Rodapé do guia:** "Missão com Deus · missaocomdeus.com.br · Compartilhe com amor" virou **link** para a Home.
+- **Menu da Home:** adicionado `👨‍👩‍👧 Pais e Filhos` (curto, sem "(Conversas que Protegem)") apontando para `/guia-pais-filhos`.
+- **Script:** `site-contabo/APLICAR_PAIS_FILHOS_QUIZ.py` (backup + aplica CTA/rodapé/menu; não duplica). Commit `370e9b9`, `c9434e1`.
+
+## 2) Geração de áudio (TTS no terminal)
+- **Ferramenta:** `edge-tts`, gratuito, vozes pt-BR.
+- **Instalação (uma vez):** `apt install -y python3.10-venv` → `python3 -m venv /root/tts/venv` → `. /root/tts/venv/bin/activate` → `pip install edge-tts`.
+- **Ambiente fica em `/root/tts` (fora da pasta pública do site).**
+- **Vozes:** feminina `pt-BR-FranciscaNeural` (padrão); masculina `pt-BR-AntonioNeural` (principal). Outras: Brenda, Elza, Giovanna, Thalita, Yara; Humberto, Julio, Fabio.
+- **Gerar o áudio (todo dia):**
+  ```
+  cd /root/tts
+  . venv/bin/activate
+  nano palavra-dia-05.txt          # cola a mensagem → Ctrl+O, Enter, Ctrl+X
+  edge-tts --file palavra-dia-05.txt --voice pt-BR-FranciscaNeural --write-media palavra-dia-05.mp3
+  cp palavra-dia-05.mp3 /www/wwwroot/missaocomdeus.com.br/audio/
+  ```
+- **Arquivos:** `site-contabo/GERAR_PALAVRA_DO_DIA.sh` (opcional), `site-contabo/COMO_GERAR_PALAVRA_DO_DIA.md`, `site-contabo/palavra-dia-05.txt`.
+
+## 3) 30 mensagens novas (dia 31 a 60) — CICLO DE 60 COMPLETO
+- **Arquivo:** `PALAVRA_AGENDA_31_60.md` (30 mensagens, mesma teologia, indo mais fundo).
+- **Novo formato das 31–60:** após o convite ao site, cada uma tem **"Vamos orar. Pai, em nome de Jesus, te pedimos..."** (oração curta de bênção conforme o tema) e fecha com **"Fiquem na paz de Cristo nosso Senhor e Salvador, e tenham todos um dia abençoado!"**.
+- Temas: Salmo 23 (31), Fp 1:6 (32), Is 43:2 (33), 2Co 12:9 (34), Mt 7:7 (35), Sl 37:4 (36), Jo 15:5 (37), Fp 4:8 (38), Sl 56:8 (39), Mt 18:20 (40), 1Co 13 (41), Rm 12:2 (42), Sl 42:1 (43), 2Co 5:17 (44), Sl 30:5 (45), Is 41:10 (46), Cl 3:23 (47), Sl 16:11 (48), Pv 18:10 (49), Mt 12:20 (50), Jo 14:27 (51), Sl 51:10 (52), 1Jo 1:9 (53), Fp 3:13-14 (54), 1Pe 1:3 (55), Mq 6:8 (56), Mt 5:9 (57), Sl 90:12 (58), 1Ts 5:16-18 (59), Jo 14:2-3 (60).
+- **TXT por dia:** `site-contabo/palavras_31_60/palavra-dia-31.txt` ... `palavra-dia-60.txt` (média ~300–340 palavras, ~2 min). Commit `ad29c52`.
+
+## 4) Página de controle `/palavra` (palavra.html)
+- Lista agora até o **dia 60**, ícone de som em todos.
+- Dias **31 a 60** usam placeholder:
+  ```
+  var AUDIOS = { "31":"[cole aqui o link do audio 31]", ... "60":"[cole aqui o link do audio 60]" };
+  ```
+- Ao tocar num dia sem link → **"🔧 Áudio em breve — cole o link no código (dia NN)"**.
+- Removido `if(day===31) day=30;` → agora usa `if(day > 60) day = 30;`.
+
+## 5) Home (index.html) — Palavra de hoje + compartilhamento
+- `refs` estendida até o **dia 60**; `if(day===31) day=30;` → `if(day > 60) day = 30;`.
+- **Compartilhar:** no fim do áudio aparece **"Compartilha com quem você ama"**.
+  - **Android:** tenta compartilhar o **MP3 + mensagem + link** (Web Share). Se o app não aceitar, volta ao link.
+  - **iPhone/notebook:** volta ao comportamento antigo (compartilhar/copiar **link + mensagem**); não fica baixando sem mensagem.
+- **Botão "Baixar áudio"** ao lado de "Compartilha": aponta para `/audio/palavra-dia-NN.mp3` (com `download`), para guardar/repassar o MP3 em qualquer dispositivo.
+- **Ajuste final:** removido o ícone 📥 do botão — ficou **só "Baixar áudio"** (mesmo visual/texto da primeira opção). Nada mais mudou.
+- Não altera o resto do site.
+
+## 6) Scripts para aaPanel (aplicados no servidor com sucesso)
+- **`APLICAR_ATUALIZACAO_PALAVRA_SHARE.py`** — atualiza Home + palavra.html (60 dias, compartilhar MP3, baixar áudio). Backup automático, não duplica. **RODADO → saída "OK" em tudo + HTML parse OK.**
+- **`APLICAR_SEM_ICONE_BAIXAR_AUDIO.py`** — remove o ícone 📥 do botão "Baixar áudio" (deixa só a palavra). Backups criados. **RODADO → OK.**
+
+## 7) Como preencher os áudios 31–60 depois (sem refazer tudo)
+```
+cp /root/tts/palavra-dia-31.mp3 /www/wwwroot/missaocomdeus.com.br/audio/
+```
+e em `palavra.html` trocar o placeholder:
+```
+"31":"/audio/palavra-dia-31.mp3",
+```
+
+## Commits desta sequência
+`370e9b9`, `c9434e1`, `6295481`, `c45aa08`, `853ddac`, `e8af28e`, `ad29c52`, `8f14284`, `4f55f8a`, `16dce13`, `0afb6af`.
+
+## Para ver no navegador
+- Home e `/palavra`: **Ctrl+F5** (computador) / fechar e reabrir o site (celular).
 - 
 «Lâmpada para os meus pés é a tua palavra, e luz para o meu caminho.» (Salmo 119:105)
 Tudo o que fizerem, seja em palavra seja em ação, façam-no em nome do Senhor Jesus, dando por meio dele graças a Deus Pai. (Cl 3:17)
