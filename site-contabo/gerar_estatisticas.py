@@ -96,11 +96,16 @@ PAGINAS = OrderedDict([
 
 CONVERSAO = OrderedDict([
     ('/q-semeador', ('🎯', 'Acesso completo R$ 37')),
-    ('/q-codigo', ('💬', 'Solicitar Código (WhatsApp)')),
+    ('/q-codigo', ('💬', 'Fale com a Laura (área de alunos)')),
+    ('/q-laura', ('🕊️', 'Falar com a Laura (banner da Home)')),
     ('/q-whats', ('📱', 'Cliques no WhatsApp')),
     ('/q-palavra-play', ('🎧', 'Palavra de hoje (play)')),
     ('/q-palavra-share', ('📤', 'Palavra compartilhada')),
+    ('/q-livro-share', ('📖', 'Livros compartilhados')),
 ])
+
+# Acoes que sairam do ar. Nao contam mais no painel.
+CONVERSAO_REMOVIDA = ('/q-colaborador', '/q-aula-gratis')
 
 # Biblioteca depois da limpeza de 02/09/2026 (so o que e autoria da casa).
 # Os livros sairam por risco de direito autoral (textos de outros autores).
@@ -115,8 +120,6 @@ MODULOS_LIVRES = (
 )
 
 ALIAS_CONV = {
-    '/q-colaborador19': '/q-colaborador',
-    '/q-colaborador19-anestesia': '/q-colaborador',
     '/q-semeador-anestesia': '/q-semeador',
     '/trilogia': '/trilogia-da-alma',
     '/anestesia': '/anestesia-mental',
@@ -316,9 +319,8 @@ def lista_logs():
 
 
 def garantir_pixels():
-    for nome in ('q-semeador', 'q-colaborador', 'q-colaborador19',
-                 'q-colaborador19-anestesia', 'q-codigo', 'q-whats', 'q-aula-gratis',
-                 'q-palavra-play', 'q-palavra-share'):
+    for nome in ('q-semeador', 'q-codigo', 'q-laura', 'q-whats',
+                 'q-palavra-play', 'q-palavra-share', 'q-livro-share'):
         p = os.path.join(SITE, nome)
         if not os.path.isfile(p):
             try:
@@ -422,6 +424,10 @@ def analisar():
                     path = '/'
             path = ALIAS_CONV.get(path, path)
             path_l = path.lower()
+
+            # Acoes que sairam do ar: ignorar por completo (cache, pagina velha).
+            if path in CONVERSAO_REMOVIDA or path_l in CONVERSAO_REMOVIDA:
+                continue
 
             if path.startswith('/.well-known'):
                 continue
@@ -1069,11 +1075,21 @@ def montar_html(res, antigo):
     brinde_nt = contagens.get('/dl:brinde-nt', 0)
     taxa = (sementes / unicos_total * 100) if unicos_total else 0
 
+    n_laura = conv.get('/q-laura', 0)
+    n_share_livro = conv.get('/q-livro-share', 0)
     cards_conv = []
     cards_conv.append(
         f'<div class="card conv"><div class="v">{n_sem}</div>'
         f'<div class="l">🎯 Acesso completo R$ 37</div>'
         f'<div class="h">{conv_hoje.get("/q-semeador", 0)} hoje</div></div>')
+    cards_conv.append(
+        f'<div class="card conv"><div class="v">{n_laura}</div>'
+        f'<div class="l">🕊️ Falar com a Laura (banner)</div>'
+        f'<div class="h">{conv_hoje.get("/q-laura", 0)} hoje</div></div>')
+    cards_conv.append(
+        f'<div class="card conv"><div class="v">{n_share_livro}</div>'
+        f'<div class="l">📖 Livros compartilhados</div>'
+        f'<div class="h">{conv_hoje.get("/q-livro-share", 0)} hoje</div></div>')
     cards_conv.append(
         f'<div class="card conv"><div class="v">{aula_gratis}</div>'
         f'<div class="l">🎬 Aulas grátis (módulos livres)</div>'
@@ -1179,23 +1195,7 @@ def montar_html(res, antigo):
   <h2>O que olhar sempre</h2>
   <div class="cards">{cards_termo}</div>
 
-  <table>
-    <tr><th>Indicador</th><th>O que é</th><th>O que observar</th></tr>
-    <tr><td>👥 Pessoas alcançadas</td><td>IPs distintos que abriram a casa no período</td>
-        <td>É o tamanho da nossa roda. Deve crescer semana a semana. Aproximação: IP de celular é compartilhado e muda ao longo do dia.</td></tr>
-    <tr><td>🚪 Visitas</td><td>Cada vez que alguém chega. {SESSAO_MINUTOS} minutos parado = nova visita</td>
-        <td>Compare <b>hoje</b> com <b>ontem no mesmo horário</b>. Comparar dia cheio com dia pela metade engana.</td></tr>
-    <tr><td>📊 Páginas por visita</td><td>Quantas páginas a pessoa abre antes de ir embora</td>
-        <td>Entre 2 e 3 é comum na internet. <b>Acima de 3 é sinal de casa viva</b>: a pessoa está lendo, não só passando.</td></tr>
-    <tr><td>📖 Leituras</td><td>Páginas de livro abertas (só os 7 que ficaram)</td>
-        <td>É o coração da casa. Se cai enquanto as visitas sobem, a pessoa entra e não lê.</td></tr>
-    <tr><td>⬇️ PDFs baixados</td><td>Arquivos que saíram da casa</td>
-        <td>Semente que a pessoa leva consigo e pode repassar.</td></tr>
-    <tr><td>🎯 Sustento</td><td>Cliques no link do acesso completo R$ 37</td>
-        <td>O que mantém a missão de pé. Clique não é compra: a venda acontece na Kiwify.</td></tr>
-  </table>
-
-  <h2>Hoje e ontem</h2>
+    <h2>Hoje e ontem</h2>
   <div class="hoje">
     <div class="bloco"><div class="rot">Ontem completo</div><div class="val">{total_ontem}</div></div>
     <div class="bloco"><div class="rot">Hoje até agora</div><div class="val gold">{total_hoje}</div></div>
@@ -1205,8 +1205,43 @@ def montar_html(res, antigo):
   </div>
   <p class="nota" style="margin:0 0 6px;">Páginas vistas por gente. Pessoas únicas: <b>{unicos_hoje}</b> hoje · <b>{unicos_ontem}</b> ontem.</p>
 
+  <h2>🎯 Conversão (o que move a missão)</h2>
+  <div class="cards">{''.join(cards_conv)}</div>
+  <table>
+  <tr><th>Ação</th><th>Total</th><th>Hoje</th></tr>
+  {linhas_conv}
+  </table>
+  <p class="nota">Acesso completo R$ 37 = clique no link da Kiwify (a compra acontece lá fora).
+  "Falar com a Laura (banner)" = clique no convite da Home. "Área de alunos" = clique na
+  área de alunos. WhatsApp = rascunho aberto, ainda precisa a pessoa Enviar. Aulas grátis
+  = toques nos módulos livres 1 a 3. Página de obrigado ≠ download: bônus 1 é o arquivo
+  livro11-o-n-t.pdf. Bônus 4 é o guia livro12-a-d-o.pdf. Colaborador R$ 19,90 saiu do ar
+  e não conta mais no sustento.</p>
+
   {bloco_origem}
 
+  
+
+  <details>
+    <summary>📊 Indicador · O que é · O que observar</summary>
+    <div class="dbody">
+      <table>
+      <tr><th>Indicador</th><th>O que é</th><th>O que observar</th></tr>
+      <tr><td>👥 Pessoas alcançadas</td><td>IPs distintos que abriram a casa no período</td>
+      <td>É o tamanho da nossa roda. Deve crescer semana a semana. Aproximação: IP de celular é compartilhado e muda ao longo do dia.</td></tr>
+      <tr><td>🚪 Visitas</td><td>Cada vez que alguém chega. {SESSAO_MINUTOS} minutos parado = nova visita</td>
+      <td>Compare <b>hoje</b> com <b>ontem no mesmo horário</b>. Comparar dia cheio com dia pela metade engana.</td></tr>
+      <tr><td>📊 Páginas por visita</td><td>Quantas páginas a pessoa abre antes de ir embora</td>
+      <td>Entre 2 e 3 é comum na internet. <b>Acima de 3 é sinal de casa viva</b>: a pessoa está lendo, não só passando.</td></tr>
+      <tr><td>📖 Leituras</td><td>Páginas de livro abertas (só os 7 que ficaram)</td>
+      <td>É o coração da casa. Se cai enquanto as visitas sobem, a pessoa entra e não lê.</td></tr>
+      <tr><td>⬇️ PDFs baixados</td><td>Arquivos que saíram da casa</td>
+      <td>Semente que a pessoa leva consigo e pode repassar.</td></tr>
+      <tr><td>🎯 Sustento</td><td>Cliques no link do acesso completo R$ 37</td>
+      <td>O que mantém a missão de pé. Clique não é compra: a venda acontece na Kiwify.</td></tr>
+      </table>
+    </div>
+  </details>
   <h2>Detalhes <span class="selo-filtro">abre o que quiser</span></h2>
 
   <details>
@@ -1251,23 +1286,7 @@ def montar_html(res, antigo):
     </div>
   </details>
 
-  <details>
-    <summary>🎯 Conversão (o que move a missão)</summary>
-    <div class="dbody">
-      <div class="cards">{''.join(cards_conv)}</div>
-      <table>
-        <tr><th>Ação</th><th>Total</th><th>Hoje</th></tr>
-        {linhas_conv}
-      </table>
-      <p class="nota">Acesso completo R$ 37 = clique no link da Kiwify (a compra acontece lá fora).
-      WhatsApp = rascunho aberto, ainda precisa a pessoa Enviar. Aulas grátis = toques nos
-      módulos livres 1 a 3. Página de obrigado ≠ download: bônus 1 é o arquivo
-      livro11-o-n-t.pdf. Bônus 4 é o guia livro12-a-d-o.pdf. Colaborador R$ 19,90 saiu do
-      ar e não conta mais no sustento.</p>
-    </div>
-  </details>
-
-  <details>
+    <details>
     <summary>⬇️ Downloads detalhados</summary>
     <div class="dbody">
       <table>
