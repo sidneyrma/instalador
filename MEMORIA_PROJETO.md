@@ -322,6 +322,28 @@ A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O G
 
 ---
 
+O que ficou registrado na memória do projeto
+1. Segundo quiz dos pais (aprovado e no ar)
+
+/guia-pais-filhos-espelho é um quiz interativo, como o primeiro.
+Emoji da família 👨‍👩‍👧 no topo (sem aquele 🪞 vertical estranho).
+Resposta obrigatória em todas as perguntas, nos dois quizzes. Ninguém mais pula nem pega o brinde sem responder.
+Ao final, 📖 Baixar o Devocional (Um-Segundo-com-Deus-Vol-01.pdf) para os pais.
+Envio da página completa por e-mail funcionando (enviar_guia_espelho.php).
+2. Home final
+
+Voltou à originalidade: bloco "Para famílias" com um card.
+A segunda chamada para o Espelho aparece só no final do quiz dos filhos.
+Registrar que o script de dois cards não deve ser usado como referência.
+3. Janela de leitura livre (18/09 00:00)
+
+Confirmada no servidor: os 4 livros abertos, com navegação funcionando.
+Banner na Home: 📖 Comece hoje sua leitura, sem urgência, com convite carinhoso.
+Após a data, os quatro voltam a abrir a primeira metade automaticamente.
+Backup e reversão prontos: python3 ABRIR_JANELA_LIVROS.py --reverter.
+Observação que deixei na memória
+O resultado desse período livre (se as pessoas vão sentir o conteúdo e depois querer o acesso completo) ainda não sabemos. Vamos observar com calma e oração, como você disse. Se surgir algo bom ou negativo, a memória já está pronta para registrar a próxima decisão.
+
 ## ABERTO (não é urgente nesta noite)
 
 1. Confirmar se `palavra.html` e o `gerar_estatisticas.py` novo já estão no servidor.
