@@ -91,7 +91,7 @@ PAGINAS = OrderedDict([
     ('/q-anestesia-m05', 'Anestesia, Módulo 05 (plays)'),
     ('/q-anestesia-m06', 'Anestesia, Módulo 06 (plays)'),
     ('/q-anestesia-m07', 'Anestesia, Módulo 07 (plays)'),
-    ('/guia-pais-filhos', 'Guia Pais e Filhos (Quiz)'),
+    ('/guia-pais-filhos', 'Guia Pais e Filhos \u2014 Quiz'),
 ])
 
 CONVERSAO = OrderedDict([
@@ -1073,6 +1073,8 @@ def montar_html(res, antigo):
     aula_gratis = sum(contagens.get(p, 0) for p in MODULOS_LIVRES)
     aula_hoje = sum(contagens_hoje.get(p, 0) for p in MODULOS_LIVRES)
     brinde_nt = contagens.get('/dl:brinde-nt', 0)
+    n_pais = contagens.get('/guia-pais-filhos', 0)
+    n_pais_hoje = contagens_hoje.get('/guia-pais-filhos', 0)
     taxa = (sementes / unicos_total * 100) if unicos_total else 0
 
     n_laura = conv.get('/q-laura', 0)
@@ -1106,13 +1108,21 @@ def montar_html(res, antigo):
         f'<div class="card conv destaque"><div class="v">{taxa:.1f}%</div>'
         f'<div class="l">📈 Sustento / pessoas</div>'
         f'<div class="h">{unicos_total} pessoas</div></div>')
-
+    cards_conv.append(
+        f'<div class="card conv"><div class="v">{n_pais}</div>'
+        f'<div class="l">👨‍👩‍👧 Resultado real do Quiz (acessos)</div>'
+        f'<div class="h">{n_pais_hoje} hoje</div></div>')
     linhas_conv = '\n'.join(
         f'<tr><td>{emoji} {html.escape(nome)}</td><td class="num">{conv.get(path, 0)}</td>'
         f'<td class="num" style="color:#7fe0a3">{conv_hoje.get(path, 0)}</td></tr>'
         for path, (emoji, nome) in CONVERSAO.items()
     ) or '<tr><td colspan="3">Sem cliques de conversão ainda</td></tr>'
 
+    linhas_conv = linhas_conv + (
+        f'<tr><td>👨‍👩‍👧 Resultado real do Quiz (acessos)</td>'
+        f'<td class="num">{contagens.get("/guia-pais-filhos", 0)}</td>'
+        f'<td class="num" style="color:#7fe0a3">{contagens_hoje.get("/guia-pais-filhos", 0)}</td></tr>'
+    )
     def _dl_n(k):
         if k.startswith('/q-'):
             return conv.get(k, 0), conv_hoje.get(k, 0)

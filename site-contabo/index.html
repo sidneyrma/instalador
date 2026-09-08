@@ -417,6 +417,10 @@
   .pais-sec{background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%);padding:80px 0;position:relative;overflow:hidden;}
   .pais-sec::before{content:"";position:absolute;top:-90px;left:-70px;width:340px;height:340px;background:radial-gradient(circle,rgba(201,162,75,.16),transparent 65%);}
   .pf-cartao{max-width:720px;margin:0 auto;background:#fff;border:1px solid rgba(201,162,75,.35);border-radius:16px;padding:28px;box-shadow:var(--shadow);position:relative;z-index:1;}
+  .pf-aviso-obrigatorio{color:#c0392b;font-size:.87rem;font-weight:700;margin:10px 0 0;display:none;}
+  .pf-proximo{background:#fdf6e3;border:1px solid var(--ouro);border-radius:12px;padding:18px 22px;margin-top:18px;text-align:center;}
+  .pf-proximo h3{color:var(--navy);font-size:1.05rem;margin:0 0 8px;}
+  .pf-proximo p{color:var(--muted);font-size:.92rem;margin:0 0 14px;line-height:1.6;}
   .pf-convite{text-align:center;padding:10px 6px;}
   .pf-convite p{color:var(--muted);font-size:1rem;margin:0 0 18px;max-width:34rem;margin-left:auto;margin-right:auto;}
   .pf-aviso{background:#fdecea;border-left:5px solid #c0392b;border-radius:8px;padding:14px 16px;font-size:.88rem;color:#7b241c;margin-bottom:16px;line-height:1.6;}
@@ -510,7 +514,7 @@
   @media(max-width:880px){#palavra-hoje{max-width:100%}}
   #ph-share{display:none;margin:10px 0 0;padding:8px 18px;border-radius:999px;border:1px solid rgba(227,200,119,.55);background:transparent;color:#e3c877;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.02em}
   #ph-share.show{display:inline-block}
-    #ph-share:hover{border-color:#e3c877;background:rgba(201,162,75,.12);color:#fffaf0}
+  #ph-share:hover{border-color:#e3c877;background:rgba(201,162,75,.12);color:#fffaf0}
   #ph-download{display:none;margin:10px 0 0 8px;padding:8px 16px;border-radius:999px;border:1px solid rgba(227,200,119,.45);background:transparent;color:#e3c877;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;letter-spacing:.02em;text-decoration:none}
   #ph-download.show{display:inline-block}
   #ph-download:hover{border-color:#e3c877;background:rgba(201,162,75,.12);color:#fffaf0}
@@ -545,9 +549,9 @@
         if(ref) ref.textContent=refs[day-1]+" · uma bênção para o seu dia";
         var a=new Audio("/audio/palavra-dia-"+n+".mp3");
         a.preload="none";
-        a.addEventListener("error",function(){ if(box) box.style.display="none"; });
         var dl=document.getElementById("ph-download");
         if(dl){ dl.href="/audio/palavra-dia-"+n+".mp3"; dl.setAttribute("download","palavra-dia-"+n+".mp3"); }
+        a.addEventListener("error",function(){ if(box) box.style.display="none"; });
         var playPath="M8 5v14l11-7z";
         var pausePath="M6 5h4v14H6zm8 0h4v14h-4z";
         function setOn(on){
@@ -558,7 +562,11 @@
         a.addEventListener("timeupdate",function(){
           if(a.duration) fill.style.width=(100*a.currentTime/a.duration)+"%";
         });
-        a.addEventListener("ended",function(){ setOn(false); fill.style.width="100%"; var x=document.getElementById("ph-share"); if(x) x.classList.add("show"); if(dl) dl.classList.add("show"); });
+        a.addEventListener("ended",function(){
+          setOn(false); fill.style.width="100%";
+          var x=document.getElementById("ph-share"); if(x) x.classList.add("show");
+          if(dl) dl.classList.add("show");
+        });
         btn.addEventListener("click",function(){
           if(a.paused){ a.play(); setOn(true); if(dl) dl.classList.remove("show"); }
           else { a.pause(); setOn(false); }
@@ -601,6 +609,8 @@
       } else { copiar(); }
     }
     function tentarAudio(){
+      // Tenta compartilhar o próprio MP3 (o áudio já carrega a marca Missão com Deus).
+      // Se o navegador não suportar arquivos, volta para o compartilhamento do link.
       var noCelular = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
       if(!noCelular || !navigator.share || !navigator.canShare ||
          typeof File === "undefined" || typeof Blob === "undefined"){ compartilharLink(); return; }
@@ -644,13 +654,13 @@
 
       <small class="note">Comece o seu dia com uma palavra de Jesus para a sua vida. Ao descer, a biblioteca inteira está aberta.</small>
     </div>
-    <div class="hero-visual">
-      <img src="https://i.ibb.co/zhH6FV9X/hero.jpg" alt="Evolução da Alma, Novo Testamento e Anestesia Mental — leitura gratuita">
-      <div class="hero-badge">
+      <div class="hero-visual">
+        <img src="https://i.ibb.co/zhH6FV9X/hero.jpg" alt="Evolução da Alma, Novo Testamento e Anestesia Mental — leitura gratuita">
+        <div class="hero-badge">
           <span>✨ Leia de graça, continue de onde parou</span>
           <button type="button" id="instalar-app-hero" class="hero-app-btn" aria-label="Baixar o app da Missão com Deus">📲 Baixar App</button>
         </div>
-    </div>
+      </div>
   </div>
 </section>
 
@@ -908,7 +918,7 @@
     <div class="offer" style="margin-top:44px;">
       <div>
         <span class="eyebrow" style="color:var(--gold-light);">Acesso completo</span>
-        <h2>🕊️ Se você chegou até aqui, continue</h2>
+        <h2>🕊️ Seja um Semeador da Missão e ganhe 4 bônus</h2>
         <p style="color:rgba(246,241,231,.8);">Se a leitura tocar o coração, o passo seguinte é ir mais fundo: aulas, exercícios práticos e uma comunidade para não caminhar sozinho. Não prometemos cura pronta. Oferecemos um caminho, no seu ritmo. O conhecimento sem a prática é apenas teoria: é inútil. Quem entra no acesso completo leva o estudo para viver, não só para saber.</p>
         <ul>
           <li>✅ Livro digital completo: Evolução da Alma</li>
@@ -929,7 +939,6 @@
         <small class="note" style="color:rgba(246,241,231,.65);margin-bottom:18px;">Pagamento único · Acesso vitalício · Pix imediato · Cartão até 4x · menos de R$ 1,25/dia</small>
         <a class="btn btn-gold btn-block" href="https://pay.kiwify.com.br/iVfp2bi" aria-label="Quero acesso completo da Missão">🕊️ QUERO ACESSO COMPLETO DA MISSÃO</a>
         <small class="note" style="color:rgba(246,241,231,.65);">🛡️ Garantia incondicional de 7 dias</small>
-        <small class="note" style="color:rgba(246,241,231,.55);font-style:italic;display:block;margin-top:6px;">Ao entrar, você passa a fazer parte da semeadura desta Missão.</small>
       </div>
     </div>
 
@@ -989,7 +998,7 @@
             <span class="bib-badge">🔓 Primeira metade grátis</span>
           </div>
           <div class="bib-ctas">
-            <a class="btn" href="/livro11">Ler prévia grátis</a>
+            <a class="btn" href="/livro11">📖 Ler a prévia grátis</a>
             <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">🕊️ Acesso completo</a>
           </div>
         </div>
@@ -1008,7 +1017,7 @@
             <span class="bib-badge">🔓 Primeira metade grátis</span>
           </div>
           <div class="bib-ctas">
-            <a class="btn" href="/livro05">Ler prévia grátis</a>
+            <a class="btn" href="/livro05">📖 Ler a prévia grátis</a>
             <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">🕊️ Acesso completo</a>
           </div>
         </div>
@@ -1027,7 +1036,7 @@
             <span class="bib-badge">🔓 Primeira metade grátis</span>
           </div>
           <div class="bib-ctas">
-            <a class="btn" href="/livro09">Ler prévia grátis</a>
+            <a class="btn" href="/livro09">📖 Ler a prévia grátis</a>
             <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">🕊️ Acesso completo</a>
           </div>
         </div>
@@ -1084,7 +1093,7 @@
             <span class="bib-badge">🔓 Primeira metade grátis</span>
           </div>
           <div class="bib-ctas">
-            <a class="btn" href="/livro07">Ler prévia grátis</a>
+            <a class="btn" href="/livro07">📖 Ler a prévia grátis</a>
             <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">🕊️ Acesso completo</a>
           </div>
         </div>
@@ -1120,8 +1129,8 @@
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Para famílias</span>
-      <h2>👨‍👩‍👧 Pais e Filhos: Conversas que Protegem</h2>
-      <p>Um roteiro amoroso de 7 perguntas para abrir o diálogo com seu filho(a) sobre os desafios da nova geração, sempre com acolhimento e sem julgamento. Nenhuma resposta é registrada no site: é um momento entre vocês.</p>
+      <h2>👨‍👩‍👧 Pais e Filhos &amp; Filhos e Pais</h2>
+      <p>Dois roteiros, uma conversa. Um guia para o filho(a) se abrir com os pais, e outro para os filhos conhecerem a história de quem os criou. Nenhuma resposta é registrada no site: é um momento entre vocês.</p>
     </div>
     <div class="pf-cartao" id="pf-cartao">
       <div class="pf-convite" id="pf-convite">
@@ -1217,6 +1226,7 @@
           <button class="btn pf-voltar" id="pf-voltar" onclick="pfVoltar()" type="button" style="visibility:hidden;">← Voltar</button>
           <button class="btn pf-avancar" id="pf-prox" onclick="pfAvancar()" type="button">Avançar</button>
         </div>
+        <p id="pf-aviso" class="pf-aviso-obrigatorio"></p>
 
         <div class="pf-fim" id="pf-fim" hidden>
           <div class="pf-encerramento">"Obrigado por confiar em nós. Não importa o que você respondeu: você é amado(a), você é importante, e nós estamos aqui para caminhar com você, sempre. Que Deus nos ajude a nos amarmos cada dia mais."</div>
@@ -1241,10 +1251,14 @@
             </div>
             <p id="guia-msg" class="guia-msg"></p>
           </div>
+          <div class="pf-proximo">
+            <h3>👨‍👩‍👧 Agora é a vez dos seus pais</h3>
+            <p>Que tal dar aos seus pais o mesmo presente? Sete perguntas carinhosas para conhecer a história de quem te criou, com a mesma paz e o mesmo respeito.</p>
+            <a class="btn btn-gold" href="/guia-pais-filhos-espelho">💬 Conhecer o segundo roteiro</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </section>
 
 <section class="enquete-sec" id="enquete">
@@ -1316,7 +1330,7 @@
       </div>
     </div>
     <div style="text-align:center;margin-top:40px;">
-      <a class="btn btn-gold btn-block" href="https://pay.kiwify.com.br/iVfp2bi" style="margin-top:20px; font-size:16px;">🕊️ QUERO CONTINUAR ESSA JORNADA — R$ 37,00</a>
+      <a class="btn btn-gold btn-block" href="https://pay.kiwify.com.br/iVfp2bi" style="margin-top:20px; font-size:16px;">🕊️ QUERO SEMEAR E INICIAR MINHA JORNADA — R$ 37,00</a>
     </div>
   </div>
 </section>
@@ -1392,7 +1406,7 @@
       </div>
       <div class="faq-item">
         <div class="faq-q"><span>O que eu recebo no acesso completo?</span><span class="plus">+</span></div>
-        <div class="faq-a"><p>Por R$ 37,00, pagamento único: os dois cursos em vídeo (14 módulos), os livros digitais Evolução da Alma e Anestesia Mental, o Devocional de 30 dias, o e-book Jesus Quer Falar com Seu Filho e a comunidade, vitalício, por e-mail na Kiwify. Os módulos 1 a 3 já estão grátis no site, para você conhecer antes de decidir. Além disso, a casa envia 4 bônus: o Novo Testamento como nunca lido, o Devocional Um Segundo com Deus, o e-book Jesus Quer Falar com Seu Filho e o guia diário Afirmações, Declarações e Orações em PDF.</p></div>
+        <div class="faq-a"><p>Por R$ 37,00, pagamento único: os dois cursos em vídeo (14 módulos), os livros digitais completos Evolução da Alma e Anestesia Mental, a área de membros e a comunidade, vitalícios, por e-mail na Kiwify. Os módulos 1 a 3 já estão grátis no site, para você conhecer antes de decidir. Além disso, a casa envia 4 bônus: o Novo Testamento como nunca lido, o Devocional Um Segundo com Deus, o e-book Jesus Quer Falar com Seu Filho e o guia diário Afirmações, Declarações e Orações em PDF.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><span>Isso é doação?</span><span class="plus">+</span></div>
@@ -1465,13 +1479,13 @@
     <div class="footer-grid">
       <div>
         <div class="logo" style="margin-bottom:8px;">Missão com <b>Deus</b></div>
-        <p style="max-width:280px;">Desperte sua Alma, fortaleça sua fé, transforme sua vida.</p>
+        <p style="max-width:280px;">Desperte sua mente, fortaleça sua fé, transforme sua vida.</p>
       </div>
       <div class="foot-links">
         <a href="/nossa-missao">Nossa Missão</a>
         <a href="mailto:portalmissaocomdeus@gmail.com">Fale conosco</a>
         <a href="https://wa.me/5528999111493">WhatsApp</a>
-        <a href="https://www.tiktok.com/@portalmissaocomdeus" target="_blank" rel="noopener">TikTok da Missão</a>
+        <a href="https://www.tiktok.com/@laura.marual" target="_blank" rel="noopener">TikTok da Missão</a>
       </div>
     </div>
     <div class="foot-bottom">© 2024-2026 Missão com Deus. Todos os direitos reservados. Resultados variam conforme dedicação individual.</div>
@@ -1519,8 +1533,19 @@
     if (barra) { barra.style.width = Math.round(((n + 1) / pfTotal) * 100) + '%'; }
     var rotulo = document.getElementById('pf-rotulo');
     if (rotulo) { rotulo.textContent = 'Pergunta ' + (n + 1) + ' de ' + pfTotal; }
+    var aviso = document.getElementById('pf-aviso');
+    if (aviso) { aviso.style.display = 'none'; }
+  }
+  function pfRespostaMarcada(){
+    var atual = document.querySelector('.pf-perg.ativa');
+    return atual ? !!atual.querySelector('input[type="radio"]:checked') : false;
+  }
+  function pfAviso(texto){
+    var aviso = document.getElementById('pf-aviso');
+    if (aviso) { aviso.textContent = texto; aviso.style.display = 'block'; }
   }
   function pfAvancar(){
+    if (!pfRespostaMarcada()) { pfAviso('🙏 Escolha uma opção para continuar.'); return; }
     if (pfAtual < pfTotal - 1) { pfAtual++; pfMostrar(pfAtual); }
     else { pfConcluir(); }
   }
@@ -1711,7 +1736,7 @@ function quizEnviar(ev) {
         var cd = card.querySelector('.countdown');
         if(cd) cd.style.display = 'none';
         var a = card.querySelector('.bib-ctas a.btn');
-        if(a){ a.href='/livro11'; a.style.pointerEvents='auto'; a.style.opacity='1'; a.textContent='Ler prévia grátis'; }
+        if(a){ a.href='/livro11'; a.style.pointerEvents='auto'; a.style.opacity='1'; a.textContent='Ler grátis'; }
       }
       return;
     }
@@ -2224,13 +2249,14 @@ body.cta-cursos-ativo{padding-bottom:96px}
     <span class="cta-emoji">🎬</span>
     <div class="cta-txt">
       <strong>Isso é só uma prévia 👀</strong>
-      <span>A Trilogia completa da Evolução da Alma (7 módulos) está te esperando. Os módulos 1 a 3 são grátis. Para conhecer o acesso completo, fale com a Laura. 🕊️</span>
+      <span>A Trilogia completa da Evolução da Alma (7 módulos) está te esperando. Os módulos 1 a 3 são grátis. Para conhecer o acesso completo da Missão, fale com a Laura. 🕊️</span>
     </div>
     <div class="cta-btns">
       <a class="btn btn-gold" href="/trilogia-da-alma">🎬 Quero assistir</a>
       <a class="btn btn-ghost-light" href="https://wa.me/5528999111493?text=Ol%C3%A1%20Laura%2C%20vim%20pela%20Home%20e%20quero%20conhecer%20o%20acesso%20completo%20da%20Miss%C3%A3o%20%F0%9F%95%8A%EF%B8%8F" target="_blank" rel="noopener">💛 Falar com a Laura sobre o acesso</a>
     </div>
     <span class="cta-ajuda">💬 Em caso de dúvida, fale com a Laura.</span>
+
 
     <button class="cta-fechar" id="cta-fechar" aria-label="Fechar convite">✕</button>
   </div>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filhos e Pais: O Espelho | Missão com Deus</title>
+<meta name="description" content="Quiz em família: 7 perguntas carinhosas para você fazer aos seus pais e conhecer a história de quem te criou. Missão com Deus.">
+<meta name="robots" content="index, follow">
+<style>
+:root{--navy:#0e1a2e;--navy2:#16283f;--ouro:#c9a24b;--ouro-claro:#e3c877;--ouro-escuro:#b8860b;--papel:#faf6ee;--tinta:#2b2620;--linha:#e4dccb;--mudo:#6b6255;--creme2:#f5efe6;--sombra:0 10px 28px rgba(14,26,46,.08)}
+*{box-sizing:border-box}
+body{margin:0;font-family:Georgia,'Times New Roman',serif;background:var(--papel);color:var(--tinta);line-height:1.75;padding:0 0 60px}
+.topo{background:linear-gradient(170deg,var(--navy),var(--navy2));color:#fff;text-align:center;padding:48px 20px 40px;border-bottom:4px solid var(--ouro)}
+.topo .selo{color:var(--ouro-claro);font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;margin-bottom:14px}
+.topo h1{font-size:1.8rem;margin:0 0 8px;color:var(--ouro-claro)}
+.topo p{color:#c4cdda;margin:0 auto;max-width:36rem;font-size:1rem}
+.wrap{max-width:44rem;margin:0 auto;padding:0 20px}
+.box{background:#fff;border:1px solid var(--linha);border-radius:12px;padding:22px 24px;margin-top:26px;box-shadow:var(--sombra)}
+.box h2{color:var(--navy);font-size:1.25rem;margin:0 0 12px;border-bottom:2px solid var(--ouro);padding-bottom:8px}
+.box h3{color:var(--navy);font-size:1.05rem;margin:22px 0 6px}
+.aviso{background:#fdecea;border-left:5px solid #c0392b;border-radius:8px;padding:14px 16px;font-size:.9rem;color:#7b241c;margin-bottom:16px;line-height:1.6}
+.abertura{background:#fdf6e3;border-left:5px solid var(--ouro);border-radius:8px;padding:14px 16px;font-style:italic;font-size:.98rem;color:var(--navy);margin-bottom:20px;line-height:1.7}
+.rodape{text-align:center;color:#8a7f6d;font-size:.8rem;margin-top:36px}
+.rodape a{color:var(--ouro);text-decoration:none;font-weight:700}
+.rodape a:hover{text-decoration:underline}
+
+/* ===== QUIZ ===== */
+.quiz-card{background:#fff;border:1px solid rgba(201,162,75,.35);border-radius:16px;padding:28px;box-shadow:var(--sombra);margin-top:8px}
+.quiz-convite{text-align:center;padding:10px 6px}
+.quiz-convite .icone{font-size:2.4rem;margin-bottom:8px}
+.quiz-convite h2{color:var(--navy);border-bottom:none;padding-bottom:0;margin:0 0 10px;font-size:1.3rem}
+.quiz-convite p{color:var(--mudo);font-size:1rem;margin:0 0 18px;max-width:34rem;margin-left:auto;margin-right:auto}
+.btn-gold{display:inline-block;background:linear-gradient(180deg,var(--ouro-claro,#e3c877),var(--ouro-escuro,#b8860b));color:#fff;font-weight:700;font-size:.95rem;padding:12px 26px;border:none;border-radius:8px;cursor:pointer;text-decoration:none;box-shadow:0 8px 20px rgba(184,134,11,.35);transition:transform .15s ease, box-shadow .15s ease}
+.btn-gold:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(184,134,11,.45)}
+.quiz-roteiro[hidden]{display:none}
+.quiz-progresso{margin:18px 0 14px}
+.quiz-rotulo{display:flex;justify-content:space-between;gap:10px;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro-escuro);font-weight:700;margin-bottom:8px}
+.quiz-trilha{height:6px;background:rgba(201,162,75,.18);border-radius:6px;overflow:hidden}
+.quiz-trilha i{display:block;height:100%;width:14%;background:linear-gradient(90deg,var(--ouro-claro),var(--ouro-escuro));transition:width .3s ease;border-radius:6px}
+.quiz-perg{display:none}
+.quiz-perg.ativa{display:block}
+.quiz-num{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ouro-escuro);font-weight:700;margin-bottom:8px}
+.quiz-titulo{font-size:1.12rem;color:var(--navy);margin:0 0 14px;line-height:1.4}
+.quiz-opcoes label{display:flex;align-items:flex-start;gap:10px;border:1px solid rgba(201,162,75,.35);border-radius:10px;padding:12px 14px;margin-bottom:9px;cursor:pointer;font-size:.95rem;color:var(--tinta);transition:.15s}
+.quiz-opcoes label:hover{border-color:var(--ouro);background:#fffdf5}
+.quiz-opcoes input{margin-top:4px}
+.quiz-dica{font-size:.85rem;color:#6b6255;font-style:italic;background:var(--creme-2,#f5efe6);border-left:3px solid var(--ouro);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0 0;line-height:1.6}
+.quiz-nav{display:flex;justify-content:space-between;gap:12px;margin-top:20px}
+.quiz-nav .btn{padding:12px 24px;font-size:.95rem;border:none;cursor:pointer;border-radius:8px}
+.quiz-voltar{background:transparent;border:1px solid var(--ouro);color:var(--ouro-escuro,#b8860b)}
+.quiz-avancar{background:linear-gradient(180deg,#d4a83f,#b8860b);color:#fff;font-weight:700}
+.quiz-fim[hidden]{display:none}
+.quiz-encerramento{background:#fdf6e3;border-left:5px solid var(--ouro);border-radius:8px;padding:16px 18px;font-style:italic;font-size:1rem;color:var(--navy);margin-bottom:16px;line-height:1.7}
+.quiz-biblia{background:var(--navy);color:#e8ecf3;border-radius:12px;padding:18px 22px;margin-bottom:18px}
+.quiz-biblia h3{color:var(--ouro-claro);font-size:1rem;margin:0 0 10px}
+.quiz-biblia p{margin:0 0 8px;font-size:.9rem;color:#c4cdda;line-height:1.6}
+.quiz-biblia .ref{color:var(--ouro-claro);font-style:italic}
+.quiz-frase{background:var(--navy);color:var(--ouro-claro);border:1px solid var(--ouro);border-radius:12px;padding:18px 22px;margin-bottom:18px;text-align:center;font-style:italic;font-size:1rem;line-height:1.7}
+.quiz-form{border:1px solid rgba(201,162,75,.4);background:#fffdf5;border-radius:10px;padding:16px}
+.quiz-form .titulo{margin:0 0 10px;font-weight:700;color:var(--navy);font-size:.95rem}
+.quiz-linha{display:flex;gap:8px;flex-wrap:wrap}
+.quiz-linha input{flex:1;min-width:180px;padding:10px 12px;border:1px solid var(--ouro);border-radius:8px;font-family:inherit;font-size:.92rem}
+.quiz-linha .btn-guia{background:linear-gradient(135deg,var(--ouro-claro,#e3c877),var(--ouro-escuro,#b8860b));color:#fff;border:none;border-radius:8px;padding:10px 18px;font-weight:700;font-size:.9rem;cursor:pointer}
+.quiz-msg{margin:10px 0 0;font-size:.85rem;display:none}
+.quiz-aviso-obrigatorio{color:#c0392b;font-size:.87rem;font-weight:700;margin:10px 0 0;display:none}
+.quiz-voltar-link{text-align:center;margin-top:26px}
+@media(max-width:600px){
+  .quiz-nav{flex-wrap:wrap}
+  .quiz-nav .btn{flex:1;text-align:center}
+  .quiz-card{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="topo">
+  <div class="selo">Missão com Deus</div>
+  <h1>👨‍👩‍👧 Filhos e Pais: O Espelho</h1>
+  <p>Um quiz carinhoso para você conhecer a história, os silêncios e os conselhos de quem te criou.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="box aviso" style="margin-top:26px;">
+    <h3>⚠️ Antes de começar (um cuidado importante)</h3>
+    <p>Este espelho não é instrumento de diagnóstico. É um ponto de partida para ouvir e se aproximar. Se alguma pergunta tocar em uma dor real (mágoa, luto, doença, vício, brigas antigas), isto não é hora de resolver tudo de uma vez, e sim de cuidar. Vocês podem falar um pouco, respirar, ou guardar a pergunta para outro momento. Se a conversa causar sofrimento grande, procurar psicólogo, psiquiatra ou pastor é um passo de amor, não de fraqueza.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-convite" id="quiz-convite">
+      <div class="icone">👨‍👩‍👧</div>
+      <h2>Filhos e Pais: O Espelho</h2>
+      <p>Sete perguntas carinhosas para fazer aos seus pais, uma de cada vez. O quiz fica guardado aqui, pronto para quando quiserem. Clique e conduza a conversa no ritmo do coração de vocês.</p>
+      <button class="btn-gold" id="quiz-abrir" type="button">💬 Iniciar o quiz</button>
+    </div>
+
+    <div class="quiz-roteiro" id="quiz-roteiro" hidden>
+      <div class="aviso">⚠️ Aviso: este quiz não é um teste e nenhuma resposta é registrada no site. É um ponto de partida para a conversa em família. Se alguma pergunta tocar em uma dor real, acolha com cuidado e procure apoio profissional se for necessário. Orar e buscar ajuda caminham juntos, não são opostos.</div>
+      <div class="abertura">"Pai, mãe, eu não quero que isto seja uma entrevista. Quero só conhecer você um pouco melhor. E quero que você saiba: aqui também é espaço seu para falar, para sentir e para desabafar no seu tempo. Se alguma pergunta doer, a gente pode pular, respirar e voltar quando for bom para nós. Vou começar com algo simples."</div>
+      <p style="font-size:.92rem;color:var(--mudo);margin:-6px 0 18px;"><strong>🔁 Duas direções, uma conversa.</strong> As perguntas abertas que existem no guia dos filhos também aparecem aqui, do outro lado. É o mesmo espaço de diálogo, agora invertido: o pai e a mãe também podem se abrir, contar o que guardam e dizer o que gostariam de ser ouvidos. Ninguém está sozinho nessa conversa.</p>
+
+      <div class="quiz-progresso">
+        <div class="quiz-rotulo"><span id="quiz-rotulo">Pergunta 1 de 7</span><span>👨‍👩‍👧 Momento em família</span></div>
+        <div class="quiz-trilha"><i id="quiz-barra" style="width:14%;"></i></div>
+      </div>
+
+      <div class="quiz-perg ativa" data-esp="0">
+        <p class="quiz-num">Pergunta 1 de 7</p>
+        <p class="quiz-titulo">Se você pudesse me pedir uma coisa que me aproximasse mais de você, o que seria?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="esp0" value="1"><span>⏳ Mais tempo de qualidade</span></label>
+          <label><input type="radio" name="esp0" value="2"><span>💬 Mais paciência para conversar</span></label>
+          <label><input type="radio" name="esp0" value="3"><span>🤝 Mais presença e cuidado</span></label>
+          <label><input type="radio" name="esp0" value="4"><span>🧭 Mais respeito com seus limites</span></label>
+          <label><input type="radio" name="esp0" value="5"><span>✍️ Quero dizer com minhas palavras (opcional)</span></label>
+        </div>
+        <p class="quiz-dica">Por quê: abre a conversa com um pedido que pode ser atendido. Mostra que aproximação não é só frase bonita. É algo que o filho pode realmente fazer.</p>
+      </div>
+
+      <div class="quiz-perg" data-esp="1">
+        <p class="quiz-num">Pergunta 2 de 7</p>
+        <p class="quiz-titulo">Quando você tinha a minha idade, como era um dia comum na sua casa? E onde guardava seus medos e alegrias?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="esp1" value="1"><span>🤸 Eu era bem livre e brincava muito</span></label>
+          <label><input type="radio" name="esp1" value="2"><span>📚 Eu era mais estudioso(a) do que brincalhão</span></label>
+          <label><input type="radio" name="esp1" value="3"><span>💼 Eu já ajudava em casa ou no trabalho</span></label>
+          <label><input type="radio" name="esp1" value="4"><span>🙏 Eu cresci perto da igreja, da oração e da fé</span></label>
+          <label><input type="radio" name="esp1" value="5"><span>✍️ Quero contar à minha maneira (opcional)</span></label>
+        </div>
+        <p class="quiz-dica">Por quê: resgata a pessoa que o pai e a mãe foram antes de virar pai ou mãe. Entender a infância deles ajuda o filho a compreender silêncios, reações e carinhos que hoje parecem estranhos.</p>
+      </div>
+
+      <div class="quiz-perg" data-esp="2">
+        <p class="quiz-num">Pergunta 3 de 7</p>
+        <p class="quiz-titulo">Na sua época, como era o assunto bebida, cigarro e droga? O que você aprendeu, e o que me aconselharia hoje?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="esp2" value="1"><span>🤐 Era tabu, quase não se falava em casa</span></label>
+          <label><input type="radio" name="esp2" value="2"><span>😰 Vi de perto alguém sofrer com o vício</span></label>
+          <label><input type="radio" name="esp2" value="3"><span>🧠 Hoje eu entendo como isso prejudica o corpo e a mente</span></label>
+          <label><input type="radio" name="esp2" value="4"><span>💪 Se alguém oferecer, agradeça e não aceite. A recusa também é força</span></label>
+          <label><input type="radio" name="esp2" value="5"><span>✍️ Quero contar como foi na minha época (opcional)</span></label>
+        </div>
+        <p class="quiz-dica">Por quê: aqui o pai ou a mãe volta ao assunto e aconselha de verdade. Não é só proibição: é contar o que viu, o que sente e por que não quer que o filho aceite o que pode virar vício. Se o pai ou a mãe também fuma ou bebe, pode dizer com honestidade: "eu sei como isso pesa, e não quero que você repita o meu caminho". Isso é exemplo, não hipocrisia.</p>
+      </div>
+
+      <div class="quiz-perg" data-esp="3">
+        <p class="quiz-num">Pergunta 4 de 7</p>
+        <p class="quiz-titulo">O que foi mais difícil e o que foi mais bonito em me criar até aqui?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="esp3" value="1"><span>✍️ Resposta livre</span></label>
+        </div>
+        <p class="quiz-dica">Por quê: são duas condições opostas (o difícil e o bonito) e cada uma merece espaço próprio. Deixar livre permite que o pai ou a mãe fale com as próprias palavras, sem se sentir enquadrado numa resposta pronta.</p>
+      </div>
+
+      <div class="quiz-perg" data-esp="4">
+        <p class="quiz-num">Pergunta 5 de 7</p>
+        <p class="quiz-titulo">Tem algo que você guarda e que gostaria de desabafar comigo ou já tentou e não conseguiu se abrir?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="esp4" value="1"><span>🫂 Às vezes fico em silêncio para não preocupar</span></label>
+          <label><input type="radio" name="esp4" value="2"><span>😔 Carrego coisas que nunca falei</span></label>
+          <label><input type="radio" name="esp4" value="3"><span>🛡️ Aprendi que fraqueza não era permitida</span></label>
+          <label><input type="radio" name="esp4" value="4"><span>🙏 Oro, mas ainda gostaria que alguém ouvisse</span></label>
+          <label><input type="radio" name="esp4" value="5"><span>✍️ Quero abrir o coração (opcional)</span></label>
+        </div>
+        <p class="quiz-dica">Por quê: aqui a conversa deixa de ser só "perguntas sobre o pai". O pai e a mãe também são autorizados a sentir, a carregar e a pedir abrigo. Quem guarda tudo sozinho adoece por dentro. Abrir um pedacinho não é desmoronar; é deixar o filho entrar.</p>
+      </div>
+
+      <div class="quiz-perg" data-esp="5">
+        <p class="quiz-num">Pergunta 6 de 7</p>
+        <p class="quiz-titulo">O que você acha que a minha geração não entende sobre o que você já enfrentou? O que gostaria que eu soubesse?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="esp5" value="1"><span>🗣️ Que muitas vezes o silêncio era falta de espaço, não falta de amor</span></label>
+          <label><input type="radio" name="esp5" value="2"><span>💼 O peso do trabalho e das responsabilidades</span></label>
+          <label><input type="radio" name="esp5" value="3"><span>😔 As dores que eu carreguei sem poder mostrar</span></label>
+          <label><input type="radio" name="esp5" value="4"><span>🙏 Como a fé me sustentou nos dias difíceis</span></label>
+          <label><input type="radio" name="esp5" value="5"><span>✍️ Quero contar algo mais (opcional)</span></label>
+        </div>
+        <p class="quiz-dica">Por quê: é a mesma pergunta aberta do guia dos filhos, mas invertida. O filho abre espaço para a história do pai e da mãe, e descobre que o que parece distância às vezes foi proteção.</p>
+      </div>
+
+      <div class="quiz-perg" data-esp="6">
+        <p class="quiz-num">Pergunta 7 de 7</p>
+        <p class="quiz-titulo">Se você pudesse me contar uma coisa da sua vida que ainda não contou, ou me dizer o que gostaria de ter ouvido quando era jovem, o que seria?</p>
+        <div class="quiz-opcoes">
+          <label><input type="radio" name="esp6" value="1"><span>💛 Algo da sua infância</span></label>
+          <label><input type="radio" name="esp6" value="2"><span>🕊️ Um sonho que ficou guardado</span></label>
+          <label><input type="radio" name="esp6" value="3"><span>😔 Uma dor que nunca disse em voz alta</span></label>
+          <label><input type="radio" name="esp6" value="4"><span>🧭 Algo que gostaria que eu soubesse sobre a nossa história</span></label>
+          <label><input type="radio" name="esp6" value="5"><span>✍️ Prefiro guardar ainda hoje, e está tudo bem (opcional)</span></label>
+        </div>
+        <p class="quiz-dica">Por quê: é o fechamento com espaço de cura. O pai e a mãe podem escolher o que abrir e o que guardar. Até o silêncio, aqui, é tratado com respeito. Porque confiança não se força, se constrói.</p>
+      </div>
+
+      <div class="quiz-nav">
+        <button class="btn quiz-voltar" id="quiz-voltar" onclick="espVoltar()" type="button" style="visibility:hidden;">← Voltar</button>
+        <button class="btn quiz-avancar" id="quiz-prox" onclick="espAvancar()" type="button">Avançar</button>
+      </div>
+      <p id="esp-aviso" class="quiz-aviso-obrigatorio"></p>
+
+      <div class="quiz-fim" id="quiz-fim" hidden>
+        <div class="quiz-encerramento">"Obrigado por abrir a porta um pouco mais. Nenhum pai e nenhuma mãe termina de aprender. E nenhum filho termina de entender. Mas quem escolhe se aproximar, mesmo com medo, já está construindo uma casa mais firme. Que Deus ajude cada um de nós a ouvir com o coração, e a deixar de carregar tudo sozinho."</div>
+        <div class="quiz-biblia">
+          <h3>📖 Fundamento bíblico</h3>
+          <p>"Honra teu pai e tua mãe, para que os teus dias se prolonguem na terra que o Senhor teu Deus te dá." <span class="ref">(Êxodo 20:12)</span></p>
+          <p>"Assim como um pai se compadece de seus filhos, assim o Senhor se compadece daqueles que o temem." <span class="ref">(Salmo 103:13)</span></p>
+          <p>"E estas palavras que hoje te ordeno estarão no teu coração; e as ensinarás a teus filhos." <span class="ref">(Deuteronômio 6:6-7)</span></p>
+        </div>
+        <div class="quiz-frase">🕊️ "Ser pai e mãe vai além de ser melhor amigo. Ser pai e mãe é plantar, segurar, soltar e confiar. E nenhum pai ainda terminou de aprender."</div>
+        <div class="quiz-form">
+          <p class="titulo">📩 Receba a página completa do Espelho no seu e-mail, para ter sempre à mão:</p>
+          <div class="quiz-linha">
+            <input type="email" id="esp-email" placeholder="Seu e-mail">
+            <button type="button" class="btn-guia" onclick="enviarEspelho()">Receber o Espelho</button>
+          </div>
+          <p id="esp-msg" class="quiz-msg"></p>
+        </div>
+        <div class="quiz-voltar-link">
+          <p style="font-size:.9rem;color:var(--mudo);margin-top:14px;">🎁 Obrigado por fazer o quiz com seus pais. Como presente, aqui está o Devocional <strong>Um Segundo com Deus</strong>.</p>
+          <a class="btn-gold" href="/ebooks/Um-Segundo-com-Deus-Vol-01.pdf" target="_blank" rel="noopener" style="box-shadow:none;">📖 Baixar o Devocional</a>
+          <p style="font-size:.9rem;color:var(--mudo);margin-top:14px;">Se quiser, você pode voltar para o guia dos filhos ou para a leitura gratuita da casa.</p>
+          <p style="font-size:.9rem;margin-top:4px;">
+            <a href="/guia-pais-filhos" style="color:var(--ouro);font-weight:700;">👨‍👩‍👧 Voltar ao guia dos filhos</a> ·
+            <a href="/#biblioteca" style="color:var(--ouro);font-weight:700;">📖 Ir para a leitura gratuita</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rodape">Missão com Deus · <a href="https://missaocomdeus.com.br/">missaocomdeus.com.br</a> · <a href="https://missaocomdeus.com.br/">Compartilhe com amor</a></div>
+</div>
+
+<script>
+/* ===== QUIZ ESPELHO: avança pergunta a pergunta ===== */
+var espAtual = 0;
+var espTotal = 7;
+
+var espAbrirBtn = document.getElementById('quiz-abrir');
+if (espAbrirBtn) {
+  espAbrirBtn.addEventListener('click', function(){
+    var roteiro = document.getElementById('quiz-roteiro');
+    if (roteiro) {
+      roteiro.hidden = false;
+      espAbrirBtn.style.display = 'none';
+      fetch('/quiz-pais-filhos-espelho').catch(function(){});
+      if (typeof roteiro.scrollIntoView === 'function') { roteiro.scrollIntoView({behavior:'smooth', block:'start'}); }
+    }
+  });
+}
+
+function espMostrar(n){
+  var perguntas = document.querySelectorAll('.quiz-perg');
+  perguntas.forEach(function(p, i){ p.classList.toggle('ativa', i === n); });
+  var bv = document.getElementById('quiz-voltar');
+  if (bv) { bv.style.visibility = n === 0 ? 'hidden' : 'visible'; }
+  var bp = document.getElementById('quiz-prox');
+  if (bp) { bp.textContent = n === espTotal - 1 ? 'Concluir 👨‍👩‍👧' : 'Avançar'; }
+  var barra = document.getElementById('quiz-barra');
+  if (barra) { barra.style.width = Math.round(((n + 1) / espTotal) * 100) + '%'; }
+  var rotulo = document.getElementById('quiz-rotulo');
+  if (rotulo) { rotulo.textContent = 'Pergunta ' + (n + 1) + ' de ' + espTotal; }
+  var aviso = document.getElementById('esp-aviso');
+  if (aviso) { aviso.style.display = 'none'; }
+}
+
+function espRespostaMarcada(){
+  var atual = document.querySelector('.quiz-perg.ativa');
+  return atual ? !!atual.querySelector('input[type="radio"]:checked') : false;
+}
+
+function espAviso(texto){
+  var aviso = document.getElementById('esp-aviso');
+  if (aviso) { aviso.textContent = texto; aviso.style.display = 'block'; }
+}
+
+function espAvancar(){
+  if (!espRespostaMarcada()) { espAviso('🙏 Escolha uma opção para continuar.'); return; }
+  if (espAtual < espTotal - 1) { espAtual++; espMostrar(espAtual); }
+  else { espConcluir(); }
+}
+
+function espVoltar(){
+  if (espAtual > 0) { espAtual--; espMostrar(espAtual); }
+}
+
+function espConcluir(){
+  document.querySelectorAll('.quiz-perg').forEach(function(p){ p.style.display = 'none'; });
+  var nav = document.querySelector('.quiz-nav');
+  if (nav) { nav.style.display = 'none'; }
+  var fim = document.getElementById('quiz-fim');
+  if (fim) {
+    fim.hidden = false;
+    if (typeof fim.scrollIntoView === 'function') { fim.scrollIntoView({behavior:'smooth', block:'start'}); }
+  }
+}
+
+function enviarEspelho(){
+  var email = document.getElementById('esp-email').value.trim();
+  var msg = document.getElementById('esp-msg');
+  if(!email || email.indexOf('@') < 1){
+    msg.style.color = '#c0392b';
+    msg.textContent = '🙏 Por favor, informe um e-mail válido.';
+    msg.style.display = 'block';
+    return;
+  }
+  fetch('enviar_guia_espelho.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email })
+  })
+  .then(function(r){ return r.json().then(function(d){ return {ok:r.ok, d:d}; }); })
+  .then(function(res){
+    msg.style.color = '#2e7d32';
+    msg.textContent = res.ok ? '💛 ' + res.d.msg + ' Verifique sua caixa de entrada (e o spam).' : '🙏 ' + (res.d.erro || 'Tente novamente.');
+    msg.style.display = 'block';
+  })
+  .catch(function(){
+    msg.style.color = '#c0392b';
+    msg.textContent = '🙏 Não foi possível enviar agora. Tente novamente em instantes.';
+    msg.style.display = 'block';
+  });
+}
+</script>
+</body>
+</html>
