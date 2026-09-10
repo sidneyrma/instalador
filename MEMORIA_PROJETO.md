@@ -1,10 +1,30 @@
 # MEMÓRIA DO PROJETO — MISSÃO COM DEUS
 ## Atualizado em: 29/08/2026 (Brasília)
-## Atualizado em: 07/09/2026 (Brasília)
+## Atualizado em: 09/09/2026 (Brasília)
 ## Site vivo: https://missaocomdeus.com.br
 ## Próximo chat: «Continuar a Missão com Deus. Site vivo missaocomdeus.com.br. Leia consultoria-redes/MEMORIA_PROJETO.md»
 
 A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O GitHub (sidneyrma/instalador) está ATRÁS do servidor. Nunca trate o GitHub como verdade.
+
+## ESTADO DA ARCA — 09/09/2026 (LOCALIZAÇÃO REAL NO PAINEL: VITÓRIA CONFIRMADA)
+
+- **O `/stats` agora mostra estado e cidade REAIS dos visitantes, resolvidos por IP no servidor.** Confirmado ao vivo: painel marcava 1 registro (teste de instalação); o autor abriu o site de novo em janela anônima e o contador subiu para **2 · Espirito Santo / Venda Nova do Imigrante**. Ponta a ponta funcionando.
+- **Como funciona (3 peças):**
+  1. **`geo.php`** na pasta do site (`/www/wwwroot/missaocomdeus.com.br/geo.php`): pega o IP real do visitante pelo header `CF-Connecting-IP` (Cloudflare), resolve com **ipwho.is** (fallback **ip-api.com**) e grava SOMENTE `"PAIS|UF|CIDADE" → contagem` em `geo_visitas.json` ao lado. **Nunca guarda IP, sem cookie.** Bloqueia robô por user-agent (`bot|crawl|spider|curl...` → `nao`). Endpoints: `?ping=1` (vida), `?auto=1` (coleta e responde `ok`/`nao`), `?json=1` (estado atual do arquivo).
+  2. **Coleta em TODAS as páginas públicas** (Home, livro04/05/06/07/09/11/12, trilogia-da-alma, anestesia-mental, guia-pais-filhos, nossa-missao, obrigado): snippet antes do `</body>` chama `/geo.php?auto=1` **1x por sessão** (`sessionStorage.geo_real_ok`). Same-origin → imune a adblock. NÁO colocar em stats/404/502/palavra/leitor/marcadores `q-*`.
+  3. **`/home/deploy/gerar_estatisticas.py`**: seção «De onde veem nossos irmãos» lê `geo_visitas.json` em **3 caminhos e soma** (`GEO_VISITAS` = pasta do site, `GEO_VISITAS_ALT1` = `/home/deploy/geo_visitas.json`, `ALT2` vazio; todos com override por env). Foi exatamente aqui o último bug: o geo.php gravava na pasta do site e o painel lia só `/home/deploy` → "ainda sem registros" com dados existindo.
+- **Contagem vale DA INSTALAÇÃO (09/09/2026) PARA FRENTE.** Visitas antigas são irrecuperáveis (o log antigo do Nginx só tem IP de data center do Cloudflare). GEO ≠ total de visitas do log: GEO conta gente com JS, 1 por sessão; robôs/atacantes ficam fora.
+- **Cron: JÁ EXISTE um de 30 min rodando o `gerar_estatisticas.py`** — NÃO adicionar outro. O padrão `( crontab -l; echo ... ) | crontab -` **acrescenta** linha, não substitui. Para mudar 30→15: `crontab -e` e editar o `*/30` da linha existente. Conferir: `crontab -l | grep -n gerar_estatisticas`.
+- **Blocos de terminal (testados localmente, em `site-contabo/`):**
+  - `COLAR_NO_TERMINAL_GEO.txt` — cria `geo.php` + conserta index.html + roda painel (JÁ EXECUTADO com sucesso no servidor).
+  - `COLAR_NO_TERMINAL_LEITURA_GEO.txt` — corrige a leitura dos 3 caminhos no `gerar_estatisticas.py` (JÁ EXECUTADO com sucesso; backup `gerar_estatisticas-antes-leitura-*.bak`).
+  - `COLAR_NO_TERMINAL_GEO_PAGINAS.txt` — espalha a coleta para todas as páginas públicas (script `APLICAR_GEO_TODAS_PAGINAS.py` embutido; backups `*.html-antes-geo-paginas-*.bak`; reverso: `--reverter`).
+  - `COLAR_NO_TERMINAL_DIAGNOSTICO_GEO.txt` — só LÊ: quais páginas têm coleta, contador, vida do geo.php, atualização do painel.
+  - `APLICAR_GEO_SERVIDOR.py` — versão completa unificada (validada `py_compile`, aplica/idempotente/reverte em ambiente simulado).
+- **Aprendizados aplicados:** herdoc grande no Terminal pode EMENDAR linhas (visto 2x); manter blocos com linhas curtas e validar sintaxe no próprio bloco (o dos livros imprimiu `sintaxe OK`). `APLICAR_*.py` colado no servidor pegou conteúdo errado 1x (virou script do quiz) — na dúvida, pedir `head -5` do arquivo ANTES de rodar, ou usar bloco de terminal direto.
+- **NÃO REFAZER / NÃO USAR:** geo do Nginx por `geo_cache.json` (rejeitado pelo autor: dados de data centers); chamada direta do navegador ao `ipwho.is` (bloqueada por adblock/CORS — por isso o snippet chama o geo.php same-origin); `alert()` (rejeitado).
+- **Workspace local em sincronia:** `site-contabo/gerar_estatisticas.py` já tem a leitura de 3 caminhos; `index.html` local já chama `/geo.php?auto=1`. Commit local `4098988` (sessão encerrada no GitHub não permite push; conteúdo preservado no repo).
+- **Reversão (se um dia precisar):** `cd /home/deploy && cp "$(ls -t gerar_estatisticas-antes-leitura-*.bak | head -1)" gerar_estatisticas.py` (painel) e `python3 /home/deploy/APLICAR_GEO_TODAS_PAGINAS.py --reverter` (páginas). Apagar `geo.php` + `geo_visitas.json` da pasta do site remove a coleta inteira sem tocar no resto do painel.
 
 ## ESTADO DA ARCA — 07/09/2026 (o que está no ar, na ordem)
 
@@ -255,6 +275,26 @@ A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O G
 ## INFRA
 
 - VPS Contabo `212.28.182.86` Ubuntu 22.04.5, Nginx, PHP 8.1.32, aaPanel, ~15 GB RAM.
+- Não publicar «Poder do Eu Sou». Se nascer livro novo: *A paz que o mundo não dá* (Jo 14:27), depois do NT.
+- Material público: só missaocomdeus.com.br. compraoseu.com = 301 + SSL. Exceção servidor: app/api/apioficial.compraoseu.com = Laura. Não apagar.
+- Sem depoimento fictício. Sem travessão (—) em copy nova. Sem Semeador(a)/Colaborador(a).
+- **REGRA PERMANENTE DE ESCRITA HUMANA:** nunca usar travessão cumprido (—) nem travessão curto (–) em página, pergunta, explicação "Por quê", script ou mensagem. Usar vírgula, ponto ou dois pontos. Escrever como conversa franca e carinhosa. Arquivo que guarda essa regra: `REGRA_ESCRITA_HUMANA.md`.
+- **Correção do quiz já no ar:** `site-contabo/CORRIGIR_TRAVESSOES_QUIZ_E_STATS.py` tira os travessões da página `/guia-pais-filhos` (e do espelho se já existir) e do rótulo do Guia no `/stats`. Não mexe em ranking nem em números.
+- **NÃO trocar o nome do Guia no /stats.** O autor não pediu e não quer isso. O rótulo deve ficar como estava (`Guia Pais e Filhos — Quiz`). O script `ADICIONAR_CARD_QUIZ_STATS.py` restaura o nome e coloca o resultado real do quiz como último quadro. `CORRIGIR_TRAVESSOES_QUIZ_E_STATS.py` agora NÃO altera o nome no gerador.
+- **0 no card e 277 na linha (resolvido na versão nova):** o bug era colocar `/guia-pais-filhos` na lista `CONVERSAO`; nesse gerador a página parava de contar no `contagens`, por isso o card vinha 0. A versão nova **remove** o quiz de `CONVERSAO` e usa `contagens` no card e na linha. O ranking continua contando normalmente.
+- **Home (APLICADO E APROVADO em 08/09):** bloco "Para famílias" voltou à **originalidade** com UM card "Pais e Filhos &amp; Filhos e Pais". O **segundo card "Filhos e Pais: O Espelho" foi REMOVIDO da Home** (o autor pediu). A **segunda chamada para o Espelho aparece apenas no FINAL do quiz dos filhos** ("Agora é a vez dos seus pais", botão `💬 Conhecer o segundo roteiro` → `/guia-pais-filhos-espelho`). Script: `APLICAR_AJUSTES_FAMILIA.py`.
+- **Espelho é QUIZ interativo (APLICADO E APROVADO em 08/09):** página `/guia-pais-filhos-espelho` com as 7 perguntas **uma a uma**, botão Avançar/Voltar, barra de progresso, e ao concluir envia a página completa por e-mail (`enviar_guia_espelho.php`, mesmo formato do primeiro). **Não considerar a versão estática (tudo aberto) como correta.**
+- **SEGUNDO QUIZ DOS PAIS (final e aprovado):**
+  - Emoji da família `👨‍👩‍👧` no topo/título do Espelho (trocado o `🪞`, que ficava vertical estranho).
+  - **Resposta obrigatória em TODAS as perguntas** nos dois quizzes (filhos e pais): se tentar Avançar/Concluir sem marcar, aparece `🙏 Escolha uma opção para continuar.` Isso fechou a "torneira" da Arca: ninguém mais chega ao brinde sem responder.
+  - **Devocional para os pais:** no final do Espelho, o botão "Refazer o quiz" foi substituído por **`📖 Baixar o Devocional`** → `/ebooks/Um-Segundo-com-Deus-Vol-01.pdf`.
+  - Mantido o campo `📩 Receba a página completa do Espelho no seu e-mail` e os links de voltar.
+  - Textos do Espelho já foram humanizados (sem travessão) e com P4 somente `✍️ Resposta livre`.
+  - Scripts: `APLICAR_AJUSTES_FAMILIA.py` (Home + Espelho + resposta obrigatória + Devocional) e `APLICAR_QUIZ_ESPELHO_INTERATIVO.py` (regenerado com a versão lapidada).
+- **JANELA LIVROS 18/09/2026 (APLICADA E CONFIRMADA no servidor em 08/09):** os 4 livros (`livro05`, `livro07`, `livro09`, `livro11`) estão com **todos os capítulos liberados até 18/09/2026 00:00 (Brasília)**. O autor testou um a um e confirmou: todos abrem e a navegação (Sumário, Anterior e Próximo) funciona. **Como voltar:** `python3 ABRIR_JANELA_LIVROS.py --reverter`. Backups: `*-antes-janela-nova-20260908-184602.bak` (e o mais recente `*-antes-janela-nova-{ts}.bak` ao mexer no index). Versão limpa mapeia a navegação pelo **Sumário** (não por padrão `sec-`), por isso funciona nos 4. Banner da Home: **`📖 Comece hoje sua leitura`**, texto sem urgência: "Uma oportunidade carinhosa para conhecer melhor a coleção... estão com a leitura completa até 18/09/2026 às 00:00 (horário de Brasília). Depois, os quatro livros voltam a abrir a primeira metade, como de costume." **Ainda não se sabe o resultado comercial desse período livre; observar com calma.**
+- Não vender a Palavra no primeiro toque. Leitura grátis primeiro.
+- Laura **não é pessoa de carne**. Figura da Missão + tecnologia.
+- Sem overlay no YouTube para tapar canal. Vídeo do NT = MP4 na casa.
 - Produtos Kiwify antigos ainda Ativos (não usar na Home): Devocional R$ 9,90; Anestesia avulsa; Evolução avulsa.
 - Página de obrigado da casa: `https://missaocomdeus.com.br/obrigado`
   Colar na Kiwify em **Cartão ou Pix aprovado** (iVfp2bi e NCAEVtO). Boleto/pix gerado = página padrão Kiwify.
@@ -299,7 +339,12 @@ A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O G
 - Dois «Jesus Quer Falar» no log antigo = dois arquivos (quiz curto × nome longo do livro). Não é duplicata.
 
 ---
+## STATS
+
+- Painel: https://missaocomdeus.com.br/stats (noindex)
 - Script vivo do cron: `/home/deploy/gerar_estatisticas.py`
+- Script vivo do cron: `/home/deploy/gerar_estatisticas.py` (cron de 30 em 30 min — já existe, não duplicar)
+- **Seção «De onde veem nossos irmãos» (09/09/2026):** estado/cidade reais via `/geo.php` (IP resolvido no servidor) → `geo_visitas.json` na pasta do site; o `gerar` lê 3 caminhos e soma. Detalhe completo na seção ESTADO DA ARCA — 09/09/2026, no topo do arquivo.
 - Cópia nova (29/08) em `consultoria-redes/gerar_estatisticas.py`:
   - Aula grátis = soma dos plays módulos **1 a 3** (não o pixel morto `/q-aula-gratis`)
   - Tabela Downloads: evalma + nome antigo no mesmo balde; brinde NT; quiz livres; Palavra tocada
@@ -321,28 +366,6 @@ A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O G
 - Não dizer "as quatro aulas no site", nem "código de acesso grátis à Laura", nem "Liberar Módulos 5, 6 e 7". O ar é: módulos 1 a 3 grátis, um acesso R$ 37, código libera módulos 4 a 7.
 
 ---
-
-O que ficou registrado na memória do projeto
-1. Segundo quiz dos pais (aprovado e no ar)
-
-/guia-pais-filhos-espelho é um quiz interativo, como o primeiro.
-Emoji da família 👨‍👩‍👧 no topo (sem aquele 🪞 vertical estranho).
-Resposta obrigatória em todas as perguntas, nos dois quizzes. Ninguém mais pula nem pega o brinde sem responder.
-Ao final, 📖 Baixar o Devocional (Um-Segundo-com-Deus-Vol-01.pdf) para os pais.
-Envio da página completa por e-mail funcionando (enviar_guia_espelho.php).
-2. Home final
-
-Voltou à originalidade: bloco "Para famílias" com um card.
-A segunda chamada para o Espelho aparece só no final do quiz dos filhos.
-Registrar que o script de dois cards não deve ser usado como referência.
-3. Janela de leitura livre (18/09 00:00)
-
-Confirmada no servidor: os 4 livros abertos, com navegação funcionando.
-Banner na Home: 📖 Comece hoje sua leitura, sem urgência, com convite carinhoso.
-Após a data, os quatro voltam a abrir a primeira metade automaticamente.
-Backup e reversão prontos: python3 ABRIR_JANELA_LIVROS.py --reverter.
-Observação que deixei na memória
-O resultado desse período livre (se as pessoas vão sentir o conteúdo e depois querer o acesso completo) ainda não sabemos. Vamos observar com calma e oração, como você disse. Se surgir algo bom ou negativo, a memória já está pronta para registrar a próxima decisão.
 
 ## ABERTO (não é urgente nesta noite)
 
