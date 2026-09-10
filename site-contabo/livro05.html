@@ -10,7 +10,7 @@
   "@type": "Book",
   "name": "Evolução da Alma: Caminhos para o Autoconhecimento, Fé e Transformação Pessoal",
   "alternateName": "Evolução da Alma",
-  "url": "https://missaocomdeus.com.br/{'titulo': 'Evolução da Alma', 'subtitulo': 'Caminhos para o Autoconhecimento, Fé e Transformação Pessoal', 'desc': 'Caminhos para o autoconhecimento, a fé e a transformação pessoal, com preces e ensinamentos bíblicos.', 'capa': 'https://i.ibb.co/sJ9KTLwN/livro05jpg.png', 'num': 5}",
+  "url": "https://missaocomdeus.com.br/livro05",
   "image": "https://i.ibb.co/sJ9KTLwN/livro05jpg.png",
   "description": "Caminhos para o autoconhecimento, a fé e a transformação pessoal, com preces e ensinamentos bíblicos.",
   "inLanguage": "pt-BR",
@@ -28,7 +28,7 @@
   "numberOfPages": null,
   "offers": {
     "@type": "Offer",
-    "url": "https://missaocomdeus.com.br/{'titulo': 'Evolução da Alma', 'subtitulo': 'Caminhos para o Autoconhecimento, Fé e Transformação Pessoal', 'desc': 'Caminhos para o autoconhecimento, a fé e a transformação pessoal, com preces e ensinamentos bíblicos.', 'capa': 'https://i.ibb.co/sJ9KTLwN/livro05jpg.png', 'num': 5}",
+    "url": "https://missaocomdeus.com.br/livro05",
     "availability": "https://schema.org/InStock",
     "price": "0",
     "priceCurrency": "BRL"
@@ -1106,54 +1106,127 @@ document.addEventListener('keydown', function(e){
 #sumario a[href="#portao-acesso"]{opacity:.78}
 #sumario a[href="#portao-acesso"]::after{content:" · acesso completo";font-size:.72em;color:#e3c877;letter-spacing:.02em;text-transform:none}
 </style>
-<script id="js-portao-missao">
+
+<script id="js-janela-livros">
 (function(){
-  function irAoPortao(){
-    var p = document.getElementById("portao-acesso");
-    if(!p) return;
-    var topo = p.getBoundingClientRect().top + window.scrollY - 72;
-    window.scrollTo({ top: Math.max(0, topo), behavior: "smooth" });
-  }
-  function alvoFechado(href){
-    if(!href) return false;
-    var id = (href.charAt(0) === "#") ? href.slice(1) : "";
-    if(!id || id === "portao-acesso" || id === "sumario" || id === "capa") return false;
+  "use strict";
+  var FIM = new Date("2026-09-18T00:00:00-03:00").getTime();
+  if (isNaN(FIM)) FIM = Date.UTC(2026, 8, 18, 3, 0, 0);
+  var aberto = Date.now() < FIM;
+
+  function rolar(id){
     var el = document.getElementById(id);
-    return !!(el && el.classList.contains("cap-fechado"));
+    if (!el) return;
+    if (typeof el.scrollIntoView === "function") el.scrollIntoView({behavior:"smooth", block:"start"});
+    if (typeof history.replaceState === "function") history.replaceState(null, "", location.pathname + location.search + "#" + id);
   }
-  document.addEventListener("click", function(e){
-    var a = e.target.closest ? e.target.closest("a") : null;
-    if(!a) return;
-    var href = a.getAttribute("href") || "";
-    if(href === "#portao-acesso"){
-      e.preventDefault();
-      irAoPortao();
-      return;
-    }
-    if(alvoFechado(href)){
-      e.preventDefault();
-      irAoPortao();
-    }
-  }, true);
-  document.querySelectorAll("#trilha .ponto").forEach(function(pt, i){
-    var caps = document.querySelectorAll(".capitulo");
-    if(caps[i] && caps[i].classList.contains("cap-fechado")){
-      pt.style.display = "none";
-    }
+
+  // Lista real de secoes na ordem do Sumario (funciona para livro05,07,09,11)
+  var lista = [];
+  document.querySelectorAll("#sumario li[id^='li-']").forEach(function(li){
+    var sid = li.id.slice(3);
+    if (sid === "aula-gratis") return;
+    var el = document.getElementById(sid);
+    if (el && el.tagName === "SECTION" && sid !== "fim" && sid !== "portao-acesso") lista.push(sid);
   });
-  function hashFechado(){
-    var h = (location.hash || "").replace("#", "");
-    if(!h) return;
-    var el = document.getElementById(h);
-    if(el && el.classList.contains("cap-fechado")){
-      if(history.replaceState) history.replaceState(null, "", location.pathname + location.search + "#portao-acesso");
-      setTimeout(irAoPortao, 50);
-    }
+
+  function fixPontos(){
+    var pontos = document.querySelectorAll("#trilha .ponto");
+    var caps = document.querySelectorAll(".capitulo, .mandamento");
+    pontos.forEach(function(pt, i){
+      if (caps[i] && caps[i].classList.contains("cap-fechado")) {
+        pt.style.display = aberto ? "" : "none";
+      }
+    });
   }
-  hashFechado();
-  window.addEventListener("hashchange", hashFechado);
+
+  if (aberto) {
+    document.documentElement.classList.add("janela-livros-aberta");
+    var css = document.createElement("style");
+    css.id = "css-janela-livros-ativa";
+    css.textContent = ".janela-livros-aberta .capitulo.cap-fechado,.janela-livros-aberta #fim.cap-fechado{display:block !important;} .janela-livros-aberta #portao-acesso{display:none !important;} .janela-livros-aberta #sumario a[href='#portao-acesso']{opacity:1;} .janela-livros-aberta #sumario a[href='#portao-acesso']::after{content:'';}";
+    document.head.appendChild(css);
+    fixPontos();
+
+    document.addEventListener("click", function(e){
+      var a = e.target.closest ? e.target.closest("a") : null;
+      if (!a) return;
+      var href = a.getAttribute("href") || "";
+      var li = a.closest("li");
+
+      // Sumario: item bloqueado deve abrir a secao real
+      if (li && li.id && li.id.indexOf("li-") === 0 && href === "#portao-acesso") {
+        var sid = li.id.slice(3);
+        if (document.getElementById(sid)) { e.preventDefault(); rolar(sid); return; }
+      }
+
+      // Navegacao Anterior / Proximo dentro de uma secao
+      var sec = a.closest("section");
+      if (sec && sec.id && sec.id !== "portao-acesso" && href === "#portao-acesso") {
+        e.preventDefault();
+        var idx = lista.indexOf(sec.id);
+        var tx = (a.textContent || "").trim();
+        if (tx.indexOf("\u2190") === 0) {
+          if (idx > 0) rolar(lista[idx - 1]); else rolar("sumario");
+        } else {
+          if (idx >= 0 && idx < lista.length - 1) rolar(lista[idx + 1]); else rolar("fim");
+        }
+        return;
+      }
+    }, true);
+
+    if (location.hash === "#portao-acesso" && lista.length) {
+      if (typeof history.replaceState === "function") history.replaceState(null, "", location.pathname + location.search + "#" + lista[0]);
+      setTimeout(function(){ rolar(lista[0]); }, 50);
+    }
+  } else {
+    // Fora da janela: mantem exatamente o bloqueio original
+    fixPontos();
+    document.addEventListener("click", function(e){
+      var a = e.target.closest ? e.target.closest("a") : null;
+      if (!a) return;
+      var href = a.getAttribute("href") || "";
+      var li = a.closest("li");
+      if (li && li.id && li.id.indexOf("li-") === 0 && href === "#portao-acesso") {
+        e.preventDefault(); rolar("portao-acesso"); return;
+      }
+      var sec = a.closest("section");
+      if (sec && sec.id && sec.id !== "portao-acesso" && href === "#portao-acesso") {
+        e.preventDefault(); rolar("portao-acesso"); return;
+      }
+    }, true);
+
+    function hashFechado(){
+      var h = (location.hash || "").replace("#", "");
+      if (!h) return;
+      var el = document.getElementById(h);
+      if (el && el.classList && el.classList.contains("cap-fechado")) {
+        if (typeof history.replaceState === "function") history.replaceState(null, "", location.pathname + location.search + "#portao-acesso");
+        setTimeout(function(){ rolar("portao-acesso"); }, 50);
+      }
+    }
+    hashFechado();
+    window.addEventListener("hashchange", hashFechado);
+  }
 })();
 </script>
 
+
+<script>
+/* Localizacao real (sem IP, sem cookie). Uma vez por sessao. */
+(function(){
+  if (sessionStorage.getItem('geo_real_ok')) return;
+  var x = new XMLHttpRequest();
+  x.open('GET','/geo.php?auto=1&_=' + Date.now(),true);
+  x.timeout = 15000;
+  x.onreadystatechange = function(){
+    if (x.readyState !== 4) return;
+    if (x.status === 200 && x.responseText === 'ok') {
+      sessionStorage.setItem('geo_real_ok','1');
+    }
+  };
+  x.send();
+})();
+</script>
 </body>
 </html>

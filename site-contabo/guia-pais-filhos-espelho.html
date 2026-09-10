@@ -155,7 +155,7 @@ body{margin:0;font-family:Georgia,'Times New Roman',serif;background:var(--papel
         <p class="quiz-num">Pergunta 5 de 7</p>
         <p class="quiz-titulo">Tem algo que você guarda e que gostaria de desabafar comigo ou já tentou e não conseguiu se abrir?</p>
         <div class="quiz-opcoes">
-          <label><input type="radio" name="esp4" value="1"><span>🫂 Às vezes fico em silêncio para não preocupar</span></label>
+          <label><input type="radio" name="esp4" value="1"><span>🙄 Às vezes fico em silêncio para não preocupar</span></label>
           <label><input type="radio" name="esp4" value="2"><span>😔 Carrego coisas que nunca falei</span></label>
           <label><input type="radio" name="esp4" value="3"><span>🛡️ Aprendi que fraqueza não era permitida</span></label>
           <label><input type="radio" name="esp4" value="4"><span>🙏 Oro, mas ainda gostaria que alguém ouvisse</span></label>
@@ -198,6 +198,7 @@ body{margin:0;font-family:Georgia,'Times New Roman',serif;background:var(--papel
 
       <div class="quiz-fim" id="quiz-fim" hidden>
         <div class="quiz-encerramento">"Obrigado por abrir a porta um pouco mais. Nenhum pai e nenhuma mãe termina de aprender. E nenhum filho termina de entender. Mas quem escolhe se aproximar, mesmo com medo, já está construindo uma casa mais firme. Que Deus ajude cada um de nós a ouvir com o coração, e a deixar de carregar tudo sozinho."</div>
+        <div class="quiz-encerramento" style="margin-top:14px;"><strong>Agora é sua vez.</strong> Antes de fechar essa conversa, conte para eles o que você sentiu ouvindo tudo isso. Não precisa ser um discurso. Uma frase já basta.</div>
         <div class="quiz-biblia">
           <h3>📖 Fundamento bíblico</h3>
           <p>"Honra teu pai e tua mãe, para que os teus dias se prolonguem na terra que o Senhor teu Deus te dá." <span class="ref">(Êxodo 20:12)</span></p>
@@ -319,6 +320,23 @@ function enviarEspelho(){
     msg.style.display = 'block';
   });
 }
+</script>
+
+<script>
+/* Localizacao real (sem IP, sem cookie). Uma vez por sessao. */
+(function(){
+  if (sessionStorage.getItem('geo_real_ok')) return;
+  var x = new XMLHttpRequest();
+  x.open('GET','/geo.php?auto=1&_=' + Date.now(),true);
+  x.timeout = 15000;
+  x.onreadystatechange = function(){
+    if (x.readyState !== 4) return;
+    if (x.status === 200 && x.responseText === 'ok') {
+      sessionStorage.setItem('geo_real_ok','1');
+    }
+  };
+  x.send();
+})();
 </script>
 </body>
 </html>

@@ -107,5 +107,22 @@ a{color:var(--ouro)}
   </div>
 
 </div>
+
+<script>
+/* Localizacao real (sem IP, sem cookie). Uma vez por sessao. */
+(function(){
+  if (sessionStorage.getItem('geo_real_ok')) return;
+  var x = new XMLHttpRequest();
+  x.open('GET','/geo.php?auto=1&_=' + Date.now(),true);
+  x.timeout = 15000;
+  x.onreadystatechange = function(){
+    if (x.readyState !== 4) return;
+    if (x.status === 200 && x.responseText === 'ok') {
+      sessionStorage.setItem('geo_real_ok','1');
+    }
+  };
+  x.send();
+})();
+</script>
 </body>
 </html>

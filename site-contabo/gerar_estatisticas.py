@@ -29,6 +29,9 @@ import re
 import json
 import glob
 import html
+import time
+import urllib.request
+import urllib.error
 from collections import Counter, OrderedDict, defaultdict
 from datetime import datetime, timedelta
 from urllib.parse import parse_qs
@@ -40,6 +43,20 @@ EXTRA_LOGS = os.environ.get('STATS_LOG_EXTRA', '').strip()
 OUT = os.environ.get('STATS_OUT', '/www/wwwroot/missaocomdeus.com.br/stats.html')
 LEITURAS = os.environ.get('STATS_LEITURAS', '/www/wwwroot/missaocomdeus.com.br/leituras.json')
 SITE = '/www/wwwroot/missaocomdeus.com.br'
+
+# --- GEO: Estados e Cidades (futuras campanhas patrocinadas) ------------------
+# Fonte publica gratis da ip-api.com (batch ate ~100 IPs por chamada).
+# O cache evita consultar o mesmo IP de novo a cada geracao.
+GEO_CACHE = os.environ.get('GEO_CACHE', '/home/deploy/geo_cache.json')
+GEO_VISITAS = os.environ.get('GEO_VISITAS', '/www/wwwroot/missaocomdeus.com.br/geo_visitas.json')
+GEO_VISITAS_ALT1 = os.environ.get('GEO_VISITAS_ALT1', '/home/deploy/geo_visitas.json')
+GEO_VISITAS_ALT2 = os.environ.get('GEO_VISITAS_ALT2', '')
+GEO_API = os.environ.get(
+    'GEO_API',
+    'http://ip-api.com/batch?fields=status,countryCode,regionName,city&lang=pt-BR')
+GEO_MAX_IP = int(os.environ.get('GEO_MAX_IP', '600'))
+GEO_MAX_POR_LOTE = 100
+
 
 # Log do site antigo (so 301). Se nao existir, o painel avisa e segue sem ele.
 LOG_ANTIGO = os.environ.get(
@@ -771,6 +788,132 @@ def analisar_antigo(hoje_str):
     }
 
 
+
+
+# ============================================================ GEO (UF e cidade)
+def geo_carregar():
+    try:
+        with open(GEO_CACHE, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def geo_guardar(cache):
+    try:
+        os.makedirs(os.path.dirname(GEO_CACHE), exist_ok=True)
+        with open(GEO_CACHE, 'w', encoding='utf-8') as f:
+            json.dump(cache, f, ensure_ascii=False, indent=0)
+    except Exception as e:
+        print('  AVISO: nao consegui gravar geo_cache:', e)
+
+
+def geo_ips_de(res):
+    """Junta todos os IPs humanos do periodo (res[16] = {dia: set(ip)})."""
+    ips = set()
+    for v in res[16].values():
+        if isinstance(v, set):
+            ips |= v
+    return ips
+
+
+def geo_consultar(ips):
+    """Consulta a API em lotes de 100 e devolve {ip: {uf, cidade, pais}}."""
+    ips = sorted(ips)
+    achados = {}
+    total = 0
+    for i in range(0, len(ips), GEO_MAX_POR_LOTE):
+        lote = ips[i:i + GEO_MAX_POR_LOTE]
+        if not lote:
+            break
+        body = json.dumps(lote).encode('utf-8')
+        req = urllib.request.Request(GEO_API, data=body,
+                                     headers={'Content-Type': 'application/json'})
+        try:
+            with urllib.request.urlopen(req, timeout=20) as r:
+                dados = json.loads(r.read().decode('utf-8'))
+        except Exception as e:
+            print('  AVISO geo: falha na chamada (%s). Fica para a proxima geracao.' % e)
+            break
+        if not isinstance(dados, list):
+            break
+        for ip, d in zip(lote, dados):
+            if not isinstance(d, dict):
+                continue
+            if d.get('status') != 'success':
+                continue
+            uf = (d.get('regionName') or '').strip()
+            cidade = (d.get('city') or '').strip()
+            pais = (d.get('countryCode') or '').strip()
+            if uf or cidade:
+                achados[ip] = {'uf': uf, 'cidade': cidade, 'pais': pais}
+                total += 1
+        if i + GEO_MAX_POR_LOTE < len(ips):
+            time.sleep(1.2)
+    return achados, total
+
+
+def geo_processar(res):
+    """Localizacao REAL: enviada pelo navegador (geo.php) para geo_visitas.json.
+
+    O mapa por IP do log mistura data centers (Cloudflare, Amazon, Google,
+    Franfurt, Singapura...). Com o site atras de Cloudflare, o log do Nginx
+    guarda o IP do edge, nao o da pessoa. Por isso a medicao boa agora e a
+    do proprio navegador: a API ipwho.is enxerga o IP publico real do visitante
+    e devolve cidade/UF. O geo.php grava SOMENTE UF/cidade (sem IP) em
+    /www/wwwroot/missaocomdeus.com.br/geo_visitas.json, fora da pasta publica.
+    """
+    uf = Counter()
+    cidade = Counter()
+    # Le em TODOS os lugares possiveis e soma o que achar.
+    visitas = {}
+    for _caminho in (GEO_VISITAS, GEO_VISITAS_ALT1, GEO_VISITAS_ALT2):
+        if not _caminho:
+            continue
+        try:
+            with open(_caminho, 'r', encoding='utf-8') as f:
+                _dados = json.load(f)
+        except Exception:
+            continue
+        if isinstance(_dados, dict):
+            for _k, _v in _dados.items():
+                try:
+                    visitas[_k] = visitas.get(_k, 0) + int(_v)
+                except Exception:
+                    pass
+
+    if visitas:
+        for chave, n in visitas.items():
+            partes = str(chave).split('|')
+            if len(partes) >= 3:
+                pais, estado, mun = partes[0], partes[1], partes[2]
+                try:
+                    n = int(n)
+                except Exception:
+                    n = 1
+                if estado:
+                    uf[estado] += n
+                if mun:
+                    cidade[mun] += n
+        msg = 'Localizacao real coletada pelo navegador: %d registro(s). Os data centers foram deixados de fora.' % sum(int(v) for v in visitas.values() if isinstance(v, (int, float)))
+    else:
+        msg = 'Localizacao real: ainda sem registros. Ela comeca a ser coletada ao abrir qualquer pagina no navegador (1 registro por sessao).'
+
+    return {}, uf, cidade, msg
+
+
+def geo_tabela(count, rotulo):
+    linhas = []
+    for i, (nome, n) in enumerate(count.most_common(20), 1):
+        medalha = {1: '🥇', 2: '🥈', 3: '🥉'}.get(i, '')
+        linhas.append(
+            '<tr><td class="num">%s%s</td><td>%s</td><td class="num">%d</td></tr>'
+            % (medalha, i, html.escape(nome), n))
+    if not linhas:
+        return '<tr><td colspan="2">%s ainda sem dados.</td></tr>' % rotulo
+    return '\n'.join(linhas)
+
+
 def gravar_leituras(contagens):
     livros = {}
     for p in LIVROS_NO_AR:
@@ -977,7 +1120,7 @@ def bloco_antigo_html(antigo):
 """
 
 
-def montar_html(res, antigo):
+def montar_html(res, antigo, geo=None):
     (contagens, total_geral, data_inicio, data_fim, por_dia,
      contagens_hoje, total_hoje, total_ontem, variacao, hoje_str, ontem,
      ontem_mesmo_horario, projecao,
@@ -985,7 +1128,13 @@ def montar_html(res, antigo):
      descartados_robos, descartados_erros, robos_por_dia, erros_por_dia,
      conv, conv_hoje, conv_por_dia, origem, ignorados) = res
 
+    geo = geo or {}
+    linhas_uf = geo_tabela(geo.get('uf', Counter()), 'Estados')
+    linhas_cidades = geo_tabela(geo.get('cidade', Counter()), 'Cidades')
+    geo_msg = geo.get('msg', 'Sem dados geograficos ainda.')
+
     seta = '📈' if variacao > 0 else ('📉' if variacao < 0 else '➖')
+
 
     # ---------------------------------------------------------- periodo
     periodo = 'sem registro'
@@ -1232,8 +1381,29 @@ def montar_html(res, antigo):
 
   
 
+  
+  <details>
+    <summary>📍 De onde veem nossos irmaos · <span style="color:#7fe0a3">Estados e Cidades</span></summary>
+    <div class="dbody">
+      <p class="nota">{geo_msg}</p>
+      <h3 style="color:#e3c877;font-size:.95rem;margin:4px 0 8px;">Estados (UF) · pessoas no periodo</h3>
+      <table>
+        <tr><th>#</th><th>UF / pais</th><th>Pessoas</th></tr>
+        {linhas_uf}
+      </table>
+      <h3 style="color:#e3c877;font-size:.95rem;margin:18px 0 8px;">Cidades · pessoas no periodo</h3>
+      <table>
+        <tr><th>#</th><th>Cidade</th><th>Pessoas</th></tr>
+        {linhas_cidades}
+      </table>
+      <p class="nota">Fonte: <b>IP real do visitante resolvido no servidor</b> (geo.php -> ipwho.is -> geo_visitas.json). Nao guarda IP e descarta data centers.</p>
+
+    </div>
+  </details>
+
   <details>
     <summary>📊 Indicador · O que é · O que observar</summary>
+
     <div class="dbody">
       <table>
       <tr><th>Indicador</th><th>O que é</th><th>O que observar</th></tr>
@@ -1371,7 +1541,12 @@ def main():
     if len(arquivos) > 1:
         print('lendo %d arquivos de log (atual + rotacionados)' % len(arquivos))
     gravar_leituras(res[0])
-    doc = montar_html(res, antigo)
+    cache, uf, cidade, geo_msg = geo_processar(res)
+    geo = {'uf': uf, 'cidade': cidade, 'msg': geo_msg}
+    if geo_msg:
+        print('GEO:', geo_msg)
+    doc = montar_html(res, antigo, geo=geo)
+
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, 'w', encoding='utf-8') as f:
         f.write(doc)

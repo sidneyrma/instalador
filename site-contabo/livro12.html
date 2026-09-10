@@ -890,5 +890,22 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
 })();
 </script>
 
+
+<script>
+/* Localizacao real (sem IP, sem cookie). Uma vez por sessao. */
+(function(){
+  if (sessionStorage.getItem('geo_real_ok')) return;
+  var x = new XMLHttpRequest();
+  x.open('GET','/geo.php?auto=1&_=' + Date.now(),true);
+  x.timeout = 15000;
+  x.onreadystatechange = function(){
+    if (x.readyState !== 4) return;
+    if (x.status === 200 && x.responseText === 'ok') {
+      sessionStorage.setItem('geo_real_ok','1');
+    }
+  };
+  x.send();
+})();
+</script>
 </body>
 </html>
