@@ -30,6 +30,7 @@ import json
 import glob
 import html
 import time
+import unicodedata
 import urllib.request
 import urllib.error
 from collections import Counter, OrderedDict, defaultdict
@@ -853,54 +854,77 @@ def geo_consultar(ips):
     return achados, total
 
 
-def geo_processar(res):
-    """Localizacao REAL: enviada pelo navegador (geo.php) para geo_visitas.json.
-
-    O mapa por IP do log mistura data centers (Cloudflare, Amazon, Google,
-    Franfurt, Singapura...). Com o site atras de Cloudflare, o log do Nginx
-    guarda o IP do edge, nao o da pessoa. Por isso a medicao boa agora e a
-    do proprio navegador: a API ipwho.is enxerga o IP publico real do visitante
-    e devolve cidade/UF. O geo.php grava SOMENTE UF/cidade (sem IP) em
-    /www/wwwroot/missaocomdeus.com.br/geo_visitas.json, fora da pasta publica.
+def _geo_norm(txt):
+    """Chave estavel (minuscula, sem acento) + nome como veio p/ exibir."""
+    txt = ' '.join(str(txt or '').split())
+    if not txt:
+        return '', ''
+    sem = unicodedata.normalize('NFKD', txt).encode('ascii', 'ignore').decode('ascii')
+    return sem.strip().lower(), txt
+def geo_processar(res):  # GEO-V3
+    """Localizacao REAL: geo.php -> geo_visitas.json (so UF/cidade, sem IP).
+    v3 (11/09/2026): junta grafias diferentes do mesmo lugar, conta estado
+    sozinho, descarta zero/negativo, e le apenas o PRIMEIRO arquivo com
+    dados (sem somar copia em dobro).
     """
-    uf = Counter()
-    cidade = Counter()
-    # Le em TODOS os lugares possiveis e soma o que achar.
     visitas = {}
     for _caminho in (GEO_VISITAS, GEO_VISITAS_ALT1, GEO_VISITAS_ALT2):
         if not _caminho:
             continue
         try:
-            with open(_caminho, 'r', encoding='utf-8') as f:
-                _dados = json.load(f)
+            with open(_caminho, 'r', encoding='utf-8') as _f:
+                _dados = json.load(_f)
         except Exception:
             continue
-        if isinstance(_dados, dict):
+        if isinstance(_dados, dict) and _dados:
             for _k, _v in _dados.items():
                 try:
                     visitas[_k] = visitas.get(_k, 0) + int(_v)
                 except Exception:
                     pass
-
-    if visitas:
-        for chave, n in visitas.items():
-            partes = str(chave).split('|')
-            if len(partes) >= 3:
-                pais, estado, mun = partes[0], partes[1], partes[2]
-                try:
-                    n = int(n)
-                except Exception:
-                    n = 1
-                if estado:
-                    uf[estado] += n
-                if mun:
-                    cidade[mun] += n
-        msg = 'Localizacao real coletada pelo navegador: %d registro(s). Os data centers foram deixados de fora.' % sum(int(v) for v in visitas.values() if isinstance(v, (int, float)))
+            if visitas:
+                break
+    uf_soma = Counter()
+    cid_soma = Counter()
+    uf_nome = defaultdict(Counter)
+    cid_nome = defaultdict(Counter)
+    validos = 0
+    lixo = 0
+    for chave, n in visitas.items():
+        partes = str(chave).split('|')
+        estado = partes[1].strip() if len(partes) >= 2 else ''
+        mun = partes[2].strip() if len(partes) >= 3 else ''
+        try:
+            n = int(n)
+        except Exception:
+            n = 0
+        if n <= 0 or (not estado and not mun):
+            lixo += 1
+            continue
+        validos += n
+        k, nome = _geo_norm(estado)
+        if k:
+            uf_soma[k] += n
+            uf_nome[k][nome] += n
+        k, nome = _geo_norm(mun)
+        if k:
+            cid_soma[k] += n
+            cid_nome[k][nome] += n
+    if validos:
+        msg = ('Localizacao real coletada pelo navegador: %d registro(s) '
+               'validos. Os data centers foram deixados de fora.' % validos)
+        if lixo:
+            msg += ' %d registro(s) zerados ou corrompidos ignorados.' % lixo
     else:
-        msg = 'Localizacao real: ainda sem registros. Ela comeca a ser coletada ao abrir qualquer pagina no navegador (1 registro por sessao).'
-
+        msg = ('Localizacao real: ainda sem registros. Ela comeca a ser '
+               'coletada ao abrir qualquer pagina no navegador (1 por sessao).')
+    uf = Counter()
+    for k, n in uf_soma.items():
+        uf[uf_nome[k].most_common(1)[0][0]] += n
+    cidade = Counter()
+    for k, n in cid_soma.items():
+        cidade[cid_nome[k].most_common(1)[0][0]] += n
     return {}, uf, cidade, msg
-
 
 def geo_tabela(count, rotulo):
     linhas = []
@@ -910,7 +934,7 @@ def geo_tabela(count, rotulo):
             '<tr><td class="num">%s%s</td><td>%s</td><td class="num">%d</td></tr>'
             % (medalha, i, html.escape(nome), n))
     if not linhas:
-        return '<tr><td colspan="2">%s ainda sem dados.</td></tr>' % rotulo
+        return '<tr><td colspan="3">%s ainda sem dados.</td></tr>' % rotulo
     return '\n'.join(linhas)
 
 
@@ -968,7 +992,7 @@ def bloco_termometro_html(res, livros_total, livros_hoje, pdfs, pdfs_hoje,
 
     cards = []
     cards.append(_card_term(
-        f'{unicos_total}', '👥 Pessoas alcançadas',
+        f'{unicos_total}', '👥 Conexões no log (aprox.)',
         f'{unicos_hoje} hoje · IPs distintos', 'humano destaque'))
     cards.append(_card_term(
         f'{visitas}', '🚪 Visitas',
@@ -1102,7 +1126,7 @@ def bloco_antigo_html(antigo):
     <tr><td>&nbsp;&nbsp;− IPs em modo varredura (muitos endereços diferentes, quase nenhum conhecido)</td><td class="num">{antigo['descart_scanner']}</td></tr>
     <tr style="background:rgba(201,162,75,.08)"><td><b>= requisições de gente</b></td><td class="num"><b>{antigo['requisicoes_gente']}</b></td></tr>
     <tr style="background:rgba(127,224,163,.10)"><td><b>= visitas</b> (sessões de {SESSAO_MINUTOS} min)</td><td class="num"><b>{antigo['visitas']}</b></td></tr>
-    <tr><td><b>= pessoas</b> (IPs distintos no período)</td><td class="num"><b>{antigo['pessoas']}</b></td></tr>
+    <tr><td><b>= conexões</b> (IPs distintos no log; robôs contam)</td><td class="num"><b>{antigo['pessoas']}</b></td></tr>
   </table>
 
   <h3 style="color:#e3c877;font-size:.95rem;margin:20px 0 8px;">Dessas visitas, onde a pessoa estava antes:</h3>
@@ -1255,8 +1279,8 @@ def montar_html(res, antigo, geo=None):
         f'<div class="h">{palavra_hoje} hoje · {conv.get("/q-palavra-share", 0)} compart.</div></div>')
     cards_conv.append(
         f'<div class="card conv destaque"><div class="v">{taxa:.1f}%</div>'
-        f'<div class="l">📈 Sustento / pessoas</div>'
-        f'<div class="h">{unicos_total} pessoas</div></div>')
+        f'<div class="l">📈 Sustento / conexões</div>'
+        f'<div class="h">{unicos_total} conexões</div></div>')
     cards_conv.append(
         f'<div class="card conv"><div class="v">{n_pais}</div>'
         f'<div class="l">👨‍👩‍👧 Resultado real do Quiz (acessos)</div>'
@@ -1362,7 +1386,7 @@ def montar_html(res, antigo, geo=None):
     <div class="bloco"><div class="rot">Variação (justa)</div><div class="val gold">{seta} {variacao:+.1f}%</div></div>
     <div class="bloco"><div class="rot">Projeção do dia</div><div class="val gold">~{projecao}</div></div>
   </div>
-  <p class="nota" style="margin:0 0 6px;">Páginas vistas por gente. Pessoas únicas: <b>{unicos_hoje}</b> hoje · <b>{unicos_ontem}</b> ontem.</p>
+  <p class="nota" style="margin:0 0 6px;">Movimento medido no log. Conexões (IPs distintos): <b>{unicos_hoje}</b> hoje · <b>{unicos_ontem}</b> ontem. Inclui varredura que bate direto no IP da VPS; gente de verdade contada é a do card 📍 abaixo.</p>
 
   <h2>🎯 Conversão (o que move a missão)</h2>
   <div class="cards">{''.join(cards_conv)}</div>
@@ -1407,7 +1431,7 @@ def montar_html(res, antigo, geo=None):
     <div class="dbody">
       <table>
       <tr><th>Indicador</th><th>O que é</th><th>O que observar</th></tr>
-      <tr><td>👥 Pessoas alcançadas</td><td>IPs distintos que abriram a casa no período</td>
+      <tr><td>👥 Conexões no log (aprox.)</td><td>IPs distintos que pediram a casa no período. Inclui robôs de varredura e não enxerga quem a Cloudflare serve do cache: NÃO é censo de gente.</td>
       <td>É o tamanho da nossa roda. Deve crescer semana a semana. Aproximação: IP de celular é compartilhado e muda ao longo do dia.</td></tr>
       <tr><td>🚪 Visitas</td><td>Cada vez que alguém chega. {SESSAO_MINUTOS} minutos parado = nova visita</td>
       <td>Compare <b>hoje</b> com <b>ontem no mesmo horário</b>. Comparar dia cheio com dia pela metade engana.</td></tr>
@@ -1504,7 +1528,7 @@ def montar_html(res, antigo, geo=None):
         <tr><td>Páginas internas da casa (/stats, /palavra, /mural) fora da conta</td><td class="num">{origem['vistas_internas']}</td></tr>
         <tr style="background:rgba(201,162,75,.08)"><td><b>= páginas vistas por gente</b></td><td class="num"><b>{total_geral}</b></td></tr>
         <tr style="background:rgba(127,224,163,.10)"><td><b>= visitas</b> (sessões de {SESSAO_MINUTOS} min)</td><td class="num"><b>{origem['total_visitas']}</b></td></tr>
-        <tr><td><b>= pessoas</b> (IPs distintos no período)</td><td class="num"><b>{unicos_total}</b></td></tr>
+        <tr><td><b>= conexões</b> (IPs distintos no log; robôs contam)</td><td class="num"><b>{unicos_total}</b></td></tr>
         {('<tr><td>Acessos descontados por IP ignorado (o senhor mesmo)</td><td class="num">' + str(ignorados) + '</td></tr>') if ignorados else ''}
       </table>
       <p class="nota" style="margin-top:12px;">
