@@ -373,19 +373,28 @@ function enviarComentario(){
 </script>
 
 <script>
-/* Localizacao real (sem IP, sem cookie). Uma vez por sessao. */
+/* Localizacao real v3 (12/09/2026): pede o selo de sessao antes de
+   registrar, entao varredura que bate na URL crua fica de fora.
+   Sem cookie, sem IP no navegador, 1x por sessao. */
 (function(){
-  if (sessionStorage.getItem('geo_real_ok')) return;
-  var x = new XMLHttpRequest();
-  x.open('GET','/geo.php?auto=1&_=' + Date.now(),true);
-  x.timeout = 15000;
-  x.onreadystatechange = function(){
-    if (x.readyState !== 4) return;
-    if (x.status === 200 && x.responseText === 'ok') {
-      sessionStorage.setItem('geo_real_ok','1');
+  var SEL='geo_selo_v3';
+  try { if (sessionStorage.getItem('geo_real_ok')) return; } catch(e){}
+  function ir(selo){
+    var u='/geo.php?auto=1'+(selo?('&s='+selo):'')+'&_='+Date.now();
+    try { fetch(u,{keepalive:true,cache:'no-store'}); sessionStorage.setItem('geo_real_ok','1'); }
+    catch(e){
+      try { var x=new XMLHttpRequest(); x.open('GET',u,true); x.send(); sessionStorage.setItem('geo_real_ok','1'); } catch(e2){}
     }
-  };
-  x.send();
+  }
+  try {
+    var s0 = sessionStorage.getItem(SEL);
+    if (s0) { ir(s0); return; }
+    fetch('/geo.php?token=1',{cache:'no-store'}).then(function(r){return r.text();}).then(function(t){
+      t=(t||'').trim(); if(!/^[0-9a-f]{6,32}$/.test(t)){ ir(''); return; }
+      try { sessionStorage.setItem(SEL,t); } catch(e){}
+      ir(t);
+    }).catch(function(){ ir(''); });
+  } catch(e){ ir(''); }
 })();
 </script>
 </body>

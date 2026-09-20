@@ -383,11 +383,11 @@ footer{background:#0a1322; color:#7f8ca1; text-align:center; padding:1.6rem 1.2r
           <div class="mand-num">2</div>
           <div class="mand-corpo">
             <h3 class="mand-titulo">Adore somente a Deus</h3>
-            <p>Explicação amorosa Deus é único! Ele é o Criador de tudo o que existe: o céu, o mar, os animais, as estrelas e até você! Ele quer que nosso coração esteja inteirinho com Ele. Por isso, não devemos adorar imagens, brinquedos, celulares, super-heróis ou qualquer outra coisa mais do que a Ele. Só Deus merece o nosso amor mais forte e sincero.</p>
+            <p>Explicação amorosa Deus é único! Ele é o Criador de tudo o que existe: o céu, o mar, os animais, as estrelas e até você! Ele quer que nosso coração esteja inteirinho com Ele. Por isso, não devemos deixar nada tomar o lugar que só pertence a Ele: nem brinquedos, nem celular, nem super-heróis, nem nenhuma outra coisa.</p>
 <p>Versículo para o coração: "Adorem somente o Senhor, seu Deus." (Deuteronômio 6:13 3 adaptado) História encantada para inspirar Sofia e a Boneca de Ouro Sofia ganhou uma boneca muito linda, com vestido brilhante e cabelinho dourado. Ela gostava tanto da boneca que até esquecia de orar e conversar com Deus. Um dia, sua vovó disse: Sofia, o seu coraçãozinho ainda tem espaço para Deus? Sofia pensou, e naquela noite orou pedindo perdão e dizendo: Deus, o Senhor é mais importante que qualquer brinquedo! Ela continuou amando sua boneca, mas agora dava o primeiro lugar em tudo para Deus! Lição: Nada é mais importante que Deus. Ele deve ser o primeiro no nosso coração.</p>
 <p>História Bíblica adaptada O Bezerro de Ouro Quando Moisés subiu ao monte para falar com Deus, o povo ficou impaciente e fez um bezerro de ouro para adorar. Deus ficou muito triste, pois eles se esqueceram do Seu amor e poder.</p>
 <p>Mas Moisés voltou com as tábuas da Lei e ensinou o povo a amar e adorar somente o verdadeiro Deus.</p>
-<p>Versículo especial: "Não façam ídolos nem imagens para adorar." (Êxodo 20:4 3 adaptado)</p>
+<p>Versículo especial: "Não terás outros deuses diante de mim." (Êxodo 20:3 – adaptado)</p>
           </div>
         </div>
 
@@ -858,11 +858,11 @@ document.addEventListener('keydown', function(e){
   <div class="wrap">
     <span class="cta-emoji">🎬</span>
     <div class="cta-txt">
-      <strong>Quer assistir as videoaulas do Livro Evolução da Alma? 👀</strong>
-      <span>Módulos 1 a 3 já estão liberados no Portal. Uma prévia resumida te aguarda.</span>
+      <strong>A Laura quer te mostrar algo 💛</strong>
+      <span>Os módulos 1 a 3 do Evolução da Alma já estão liberados no Portal. Deseja que ela te leve até lá agora?</span>
     </div>
     <div class="cta-btns">
-      <a class="cta-gold" href="/trilogia-da-alma">🎬 Quero assistir</a>
+      <a class="cta-gold" href="/trilogia-da-alma">💛 Sim, me leve até lá</a>
     </div>
     <button class="cta-fechar" id="cta-fechar-l05" type="button" aria-label="Fechar convite">✕</button>
   </div>
@@ -912,19 +912,28 @@ document.addEventListener('keydown', function(e){
 
 
 <script>
-/* Localizacao real (sem IP, sem cookie). Uma vez por sessao. */
+/* Localizacao real v3 (12/09/2026): pede o selo de sessao antes de
+   registrar, entao varredura que bate na URL crua fica de fora.
+   Sem cookie, sem IP no navegador, 1x por sessao. */
 (function(){
-  if (sessionStorage.getItem('geo_real_ok')) return;
-  var x = new XMLHttpRequest();
-  x.open('GET','/geo.php?auto=1&_=' + Date.now(),true);
-  x.timeout = 15000;
-  x.onreadystatechange = function(){
-    if (x.readyState !== 4) return;
-    if (x.status === 200 && x.responseText === 'ok') {
-      sessionStorage.setItem('geo_real_ok','1');
+  var SEL='geo_selo_v3';
+  try { if (sessionStorage.getItem('geo_real_ok')) return; } catch(e){}
+  function ir(selo){
+    var u='/geo.php?auto=1'+(selo?('&s='+selo):'')+'&_='+Date.now();
+    try { fetch(u,{keepalive:true,cache:'no-store'}); sessionStorage.setItem('geo_real_ok','1'); }
+    catch(e){
+      try { var x=new XMLHttpRequest(); x.open('GET',u,true); x.send(); sessionStorage.setItem('geo_real_ok','1'); } catch(e2){}
     }
-  };
-  x.send();
+  }
+  try {
+    var s0 = sessionStorage.getItem(SEL);
+    if (s0) { ir(s0); return; }
+    fetch('/geo.php?token=1',{cache:'no-store'}).then(function(r){return r.text();}).then(function(t){
+      t=(t||'').trim(); if(!/^[0-9a-f]{6,32}$/.test(t)){ ir(''); return; }
+      try { sessionStorage.setItem(SEL,t); } catch(e){}
+      ir(t);
+    }).catch(function(){ ir(''); });
+  } catch(e){ ir(''); }
 })();
 </script>
 </body>
