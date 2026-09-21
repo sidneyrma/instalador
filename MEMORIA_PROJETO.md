@@ -487,3 +487,130 @@ A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O G
 - Mural **eliminado**. Não existe mais funcionalidade pública de mural; não recriar, não colocar link.
 - Plays: `tocarVideo` faz `fetch('/q-trilogia-m0N')` ou `/q-anestesia-m0N`
 - Anestesia WhatsApp → `/q-codigo`; Kiwify → `/q-semeador`
+
+- MEMÓRIA DO PROJETO — MISSÃO COM DEUS
+Atualizado em: 21/09/2026 (Brasília)
+Site vivo: https://missaocomdeus.com.br
+GitHub (sidneyrma/instalador) está ATRÁS do servidor. Verdade = aaPanel /www/wwwroot/missaocomdeus.com.br/
+A honra é do Senhor. Este arquivo é o chão do próximo chat.
+
+COMO SERVIR ESTE AUTOR
+Português do Brasil. Irmão em Cristo. Calma. Um caminho só.
+Autor não é técnico avançado. aaPanel Terminal: 2 linhas. Digite o nome do .py. Nunca clique se o Terminal mostrar colchete/link azul (APLICAR_[ARQUIVO.py]). Isso gera Errno 2.
+Nunca cat >> em HTML.
+Não pedir senha/token do GitHub.
+Não substituir index.html / livros inteiros no servidor (apaga banner, quiz, enquete, player).
+Script: backup; se a string não achar, não gravar; idempotente (Ja estava).
+Enviar o .py e os HTML que ele copia antes de rodar.
+Antes de reload Nginx: nginx -t.
+Sem depoimento fictício. Sem travessão (—) em copy nova. Sem Semeador(a)/Colaborador(a) no texto público.
+Não vender a Palavra no primeiro toque. Leitura grátis primeiro.
+Laura não é pessoa de carne. Figura da Missão + tecnologia.
+Língua pública: Missão com Deus. Não usar no texto que o irmão lê: casa, arca, prateleira (gíria interna). Versículo e quiz da família (“minha casa”) permanecem.
+Filha 13 anos: 3 aulas livres (não 4). Sexualidade no quiz: pingo, sem catálogo, sem ato.
+INFRA
+VPS Contabo 212.28.182.86 Ubuntu 22.04.5, Nginx, PHP 8.1.32, aaPanel.
+Vivo: missaocomdeus.com.br → /www/wwwroot/missaocomdeus.com.br/
+compraoseu.com: só 301 + SSL. Não desligar.
+PM2: conectai-apioficial :6000, conectai-backend :4000, conectai-frontend :3000.
+apioficial.compraoseu.com = Laura. Não apagar.
+FormSubmit: portalmissaocomdeus@gmail.com. Deixar compraoseu.com@gmail.com se ainda for login.
+Stats cron: python3 /home/deploy/gerar_estatisticas.py → stats.html + leituras.json
+Não sobrescrever o v6 do deploy com rascunho v3.
+PWA: name Missão com Deus. Ícone antigo “Portal O Despertar” não renomeia sozinho.
+CONTATOS E REDES (21/09)
+WhatsApp: 5528999111493
+YouTube: @portal.o.despertar
+Instagram vivo (rodapé): https://www.instagram.com/vivamissaocomdeus
+Instagram morto: portalmissaocomdeus (Meta desativou). Não reabrir no mesmo celular/e-mail.
+Não colocar Instagram no hero. Só rodapé. Não mudar bio/e-mail dessa conta todo dia.
+TikTok: Home aponta @portalmissaocomdeus. Conta antiga da figura: @laura.marual (~4k). Não misturar.
+E-mail: portalmissaocomdeus@gmail.com
+KIWIFY E FUNIL (21/09)
+Um preço: R$ 37, pagamento único, vitalício. https://pay.kiwify.com.br/iVfp2bi
+Não assinatura anual.
+NCAEVtO R$ 19,90 existe na Kiwify, saiu das páginas. Não ressuscitar.
+Códigos no site: Trilogia EVLTRLAM26 · Anestesia NSTMNT26. Sem GRACA37.
+Obrigado: https://missaocomdeus.com.br/obrigado
+PDF NT no obrigado: /ebooks/livro11-o-n-t.pdf (typo onovotestamenento é nome velho; se ainda existir no disco, é apelido de stats, não link público).
+Funil
+Home / livros: Palavra e leitura.
+CTA ouro → /guardar (página da Missão: tira dúvida).
+Botão de /guardar → Kiwify iVfp2bi (só pagar).
+Não receber cartão na Missão.
+Copy da oferta (Home, 21/09):
+
+H2: Se a leitura tocou o coração, dê o próximo passo
+Lista antiga de 6 tópicos saiu. Frase: Todos os livros da Missão com Deus. Sem exceção. Os de hoje e cada lançamento que ainda vai nascer, no mesmo acesso.
+Botão ouro: Quero todos os livros → /guardar
+Cartão segundo: Todos os livros. Um pagamento. Botão: Ver o que entra por R$ 37 → /guardar
+Tiago 1.22 permanece. Sem cura pronta. Sem timer. Sem 19,90.
+Na Kiwify: enxugar texto do produto (título, uma imagem, pagar).
+
+HOME E BIBLIOTECA (21/09)
+Hero: despertar; Devocional /livro04; segundo botão Pais e Filhos /guia-pais-filhos.
+Player Palavra: círculo 36px, sem autoplay. Não rodar 
+APLICAR_PLAYER_SHARE_BOTAO.py
+.
+Uma prateleira só: #biblioteca (id interno; o irmão lê “livros” / Missão).
+Janela até 30/09/2026 00:00 Brasília: Evolução, Anestesia, NT, Caminho leitura completa. Depois voltam à primeira metade.
+Cards públicos (ordem da grade): NT, Evolução, Anestesia, Devocional, Jesus, Caminho, Afirmações, Livro 08 Em breve.
+Livro 08: Guia Pais e Filhos: Construindo um Futuro. Capa https://i.ibb.co/b5XXwH4M/livro08.jpg. Botão Em breve fica na Home (#aviso-livro-pais-filhos). Não abrir /livro08 (404). Segundo botão: Conversas #pais-filhos. Livro inteiro ainda na oficina.
+Inteiros sempre: 04, 06, 12. Prévia após a janela: 05, 07, 09, 11.
+Fora da Home (HTML no disco, sem card): 01, 02, 03, 10. O Arquiteto não é o Livro 08 público.
+PAIS E FILHOS
+Conversa: /guia-pais-filhos → Home #pais-filhos (8 perguntas) → Espelho /guia-pais-filhos-espelho (8).
+E-mail do guia: enviar_guia.php e enviar_guia_espelho.php devem ter as 8 perguntas (pingo do coração = pergunta 7).
+Livro-mapa (oficina): 
+GUIA_PAIS_E_FILHOS_CONSTRUINDO_UM_FUTURO.md
+. Não é o quiz. Não publicar o corpo ainda.
+Quiz Home Termômetro da Alma: 6 perguntas, outra peça.
+AULAS
+3 livres (1–3). 4–7 cadeado. Filha 13 anos.
+Trilogia /trilogia-da-alma · Anestesia /anestesia-mental.
+CTA das pontes também deve ir a /guardar (não direto à Kiwify), se o script de CTAs já rodou no HTML.
+STATS (Termômetro v6)
+Cron: /home/deploy/gerar_estatisticas.py (v6). Não colar v3 por cima.
+Ranking ignora LIVROS_REMOVIDOS. Causa do 08 sumido: /livro08 estava nessa lista (Arquiteto). Tem de sair dos removidos e entrar em LIVROS_NO_AR.
+Cliques de /livro08 antes de 02/09/2026 = Arquiteto (histórico). Depois = Pais e Filhos.
+Outras páginas: não listar mp3/mp4, stats_teste, geo.php, enquete.php, %2f, URL quebrada. /guardar e Espelho no Ranking.
+Se o painel quebrar com SyntaxError ',,' na linha do PDF: vírgula dupla. Consertar e python3 /home/deploy/gerar_estatisticas.py.
+LAURA
+FlowOpenAi Início → OpenAI Permanente. Temp 0,7. Tokens 800.
+Colar V12 Casa se ainda não estiver (
+PROMPT_LAURA_V12_CASA.txt
+): 7 livros públicos; nunca 01/02/03/08-Arquiteto/10; 07 e 11 metade após a janela; aulas 1–3 código, 4–7 com R$ 37; sem NCAEVtO; sem IG antigo; “grátis”+ler = biblioteca.
+GitHub 03/09 dizia V11 colado. Conferir no Flow se já é V12.
+Encerrar tickets. Não testar no chip do dono.
+CERCAS FIXAS
+Não overlay YouTube. NT na Missão = capa + áudio / MP4 local, sem embed Ot6CRgd_nYY.
+Não publicar Poder do Eu Sou.
+Não Pix a cada 2–3 capítulos.
+Token Conectaí já vazou num chat: não repetir; regenerar se ainda válido.
+Não se apresentar como anjo.
+ARQUIVOS-CHAVE DESTA TEMPORADA
+
+guardar.html
+ · 
+APLICAR_PAGINA_GUARDAR.py
+
+APLICAR_CARD_LIVRO08.py
+ · 
+livro08.html
+ (só Em breve, se existir)
+
+APLICAR_CTA_COLECAO.py
+ (Em breve na Home + frase da coleção)
+
+APLICAR_PUBLICO_E_IG.py
+ (Instagram vivo + língua pública)
+
+APLICAR_STATS_LIVRO08_NO_AR.py
+ (Ranking)
+
+APLICAR_STATS_LIMPO.py
+ · 
+APLICAR_STATS_CONSERTA.py
+
+PROMPT_LAURA_V12_CASA.txt
+Próximo chat: «Continuar a Missão com Deus. Site vivo missaocomdeus.com.br. Leia MEMORIA_PROJETO.md de 21/09/2026.»
