@@ -105,7 +105,10 @@
   @media(max-width:880px){
     .hero-visual img{min-height:300px;object-position:center center;}
   }
-  .hero-badge{position:absolute;bottom:-18px;left:-18px;background:var(--cream-2);color:var(--navy);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow);font-size:13px;font-weight:600;max-width:200px;}
+  .hero-badge{position:absolute;bottom:-18px;left:-18px;background:var(--cream-2);color:var(--navy);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow);font-size:13px;font-weight:600;max-width:210px;display:flex;flex-direction:column;gap:9px;}
+  .hero-app-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 14px;border:1px solid var(--gold-dark,#b8860b);background:linear-gradient(180deg,#f3d27a,#dfb250);color:var(--navy,#0e1a2e);border-radius:9px;font-size:13px;font-weight:800;letter-spacing:.02em;cursor:pointer;font-family:inherit;box-shadow:0 4px 14px rgba(201,162,75,.35);transition:transform .15s ease,box-shadow .15s ease;}
+  .hero-app-btn:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(201,162,75,.45);}
+  .hero-app-btn:active{transform:translateY(0);}
   @media(max-width:880px){ .hero-grid{grid-template-columns:1fr;} .hero h1{font-size:32px;} .hero{padding:60px 0 52px;} }
 
   /* TRUST BAR */
@@ -179,9 +182,14 @@
   .offer h2{color:var(--gold-light);font-size:28px;}
   .offer ul{list-style:none;margin:18px 0;padding:0;display:grid;gap:10px;}
   .offer ul li{display:flex;gap:10px;font-size:15px;color:rgba(246,241,231,.92);}
-  .offer-price{background:rgba(246,241,231,.06);border:1px solid rgba(201,162,75,.35);border-radius:16px;padding:28px;text-align:center;}
-  .offer-price .old{color:rgba(246,241,231,.6);text-decoration:line-through;font-size:15px;}
-  .offer-price .new{font-family:var(--serif);font-size:44px;color:var(--gold-light);margin:4px 0 18px;}
+  .card .ic-svg{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;margin-bottom:12px;color:#b8860b;}
+  .card .ic-svg svg{display:block;}
+  .offer-price{background:linear-gradient(180deg,#fffef8,#f3e6c4);border:1px solid rgba(201,162,75,.6);border-radius:16px;padding:28px;text-align:center;color:#0e1a2e;box-shadow:0 18px 36px rgba(0,0,0,.22);}
+  .offer-price .old{color:#8a8174;text-decoration:line-through;font-size:15px;}
+  .offer-price .new{font-family:var(--serif);font-size:44px;color:#0e1a2e;margin:8px 0 12px;}
+  .offer-price .note{color:#5a5146;}
+  .offer-price .topo-preco{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:#6b6255;line-height:1.45;margin-bottom:6px;}
+  .offer-price .topo-preco strong{display:block;margin-top:2px;font-size:1.02rem;letter-spacing:0;text-transform:none;color:#0e1a2e;}
   @media(max-width:880px){ .offer{grid-template-columns:1fr;padding:30px;} }
 
   /* GUARANTEE */
@@ -218,6 +226,14 @@
   .foot-bottom{border-top:1px solid rgba(246,241,231,.12);padding-top:20px;text-align:center;color:rgba(246,241,231,.5);}
 
   .wa-float{position:fixed;bottom:22px;right:22px;z-index:60;background:#25D366;color:#fff;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 10px 24px -6px rgba(0,0,0,.35);}
+  .wa-float{position:fixed}
+  .wa-float::before{content:'';position:absolute;inset:0;border-radius:50%;background:#25D366;opacity:.55;animation:waPing 2.2s cubic-bezier(0,0,.2,1) infinite;z-index:-1;}
+  @keyframes waPing{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.9);opacity:0}}
+  .wa-balao{position:fixed;bottom:92px;right:20px;z-index:59;max-width:230px;background:#fdf6e3;color:#2b2620;font-family:Georgia,'Times New Roman',serif;font-size:.86rem;line-height:1.4;padding:10px 26px 10px 14px;border-radius:12px;border:1px solid #e3c877;box-shadow:0 8px 20px rgba(14,26,46,.18);text-decoration:none;display:block;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .4s ease,transform .4s ease;}
+  .wa-balao.mostrar{opacity:1;transform:translateY(0);pointer-events:auto;}
+  .wa-balao::after{content:'';position:absolute;bottom:-7px;right:26px;width:12px;height:12px;background:#fdf6e3;border-right:1px solid #e3c877;border-bottom:1px solid #e3c877;transform:rotate(45deg);}
+  .wa-balao-fechar{position:absolute;top:4px;right:8px;font-size:.9rem;line-height:1;color:#8a7f6d;cursor:pointer;}
+  @media(max-width:420px){.wa-balao{right:14px;max-width:200px;}}
 
   .divider{display:flex;align-items:center;gap:14px;justify-content:center;color:var(--gold-dark);margin:0 auto 44px;max-width:200px;}
   .divider::before,.divider::after{content:"";height:1px;flex:1;background:rgba(201,162,75,.4);}
@@ -242,6 +258,11 @@
   .bib-capa .capa-emoji{font-size:3.4rem;display:block;}
   .bib-card.em-breve .capa-img{filter:grayscale(.5);opacity:.7;}
   .bib-corpo{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1;}
+  
+  .bib-tag svg{vertical-align:-3px;margin-right:6px;}
+  .bib-ctas .btn svg{margin-right:6px;vertical-align:-3px;}
+  .bib-corpo .obra-convite{color:rgba(246,241,231,.78);font-size:.88rem;font-style:italic;margin:4px 0 10px;}
+  .bib-num{display:inline;}
   .bib-num{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light,#e3c877);font-weight:700;margin-bottom:6px;text-shadow:0 1px 3px rgba(0,0,0,.5);}
   .bib-corpo h3{font-family:var(--serif,Georgia,serif);font-size:1.22rem;margin:0 0 8px;line-height:1.25;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.55);}
   .bib-corpo .bib-desc{font-size:.9rem;color:rgba(246,241,231,.92);flex:1;margin-bottom:16px;line-height:1.55;text-shadow:0 1px 3px rgba(0,0,0,.4);}
@@ -414,6 +435,10 @@
   .pais-sec{background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%);padding:80px 0;position:relative;overflow:hidden;}
   .pais-sec::before{content:"";position:absolute;top:-90px;left:-70px;width:340px;height:340px;background:radial-gradient(circle,rgba(201,162,75,.16),transparent 65%);}
   .pf-cartao{max-width:720px;margin:0 auto;background:#fff;border:1px solid rgba(201,162,75,.35);border-radius:16px;padding:28px;box-shadow:var(--shadow);position:relative;z-index:1;}
+  .pf-aviso-obrigatorio{color:#c0392b;font-size:.87rem;font-weight:700;margin:10px 0 0;display:none;}
+  .pf-proximo{background:#fdf6e3;border:1px solid var(--ouro);border-radius:12px;padding:18px 22px;margin-top:18px;text-align:center;}
+  .pf-proximo h3{color:var(--navy);font-size:1.05rem;margin:0 0 8px;}
+  .pf-proximo p{color:var(--muted);font-size:.92rem;margin:0 0 14px;line-height:1.6;}
   .pf-convite{text-align:center;padding:10px 6px;}
   .pf-convite p{color:var(--muted);font-size:1rem;margin:0 0 18px;max-width:34rem;margin-left:auto;margin-right:auto;}
   .pf-aviso{background:#fdecea;border-left:5px solid #c0392b;border-radius:8px;padding:14px 16px;font-size:.88rem;color:#7b241c;margin-bottom:16px;line-height:1.6;}
@@ -465,13 +490,15 @@
         <button class="nav-fechar" id="nav-fechar" aria-label="Fechar menu">✕</button>
       </div>
       <a href="#portal">O Portal</a>
-      <a href="#livros">Livros</a>
+      <a href="#biblioteca">Livros</a>
       <a href="#biblioteca">Biblioteca gratuita</a>
       <a href="#trilogia">Trilogia</a>
       <a href="#missao">A Missão</a>
       <a href="#faq">Dúvidas</a>
       <a href="/trilogia-da-alma">🎓 Trilogia da Alma</a>
       <a href="/anestesia-mental">🎓 Anestesia Mental</a>
+      <a href="/guia-pais-filhos">👨‍👩‍👧 Pais e Filhos</a>
+      <a href="/nossa-missao">🕊️ Nossa Missão</a>
       <a class="btn btn-gold nav-cta" href="https://dashboard.kiwify.com.br/courses">🔓 Entrar no Portal</a>
       <div class="nav-rodape">✝️ "Confia ao Senhor o teu caminho."<br>Salmos 37:5</div>
     </nav>
@@ -487,9 +514,13 @@
       <h1>Chegou a hora do seu <em>despertar</em></h1>
       <p class="lead">Uma palavra para a sua Alma. Livros online, de graça, sem cadastro e você continua exatamente de onde parou.</p>
       <div class="hero-ctas">
-        <a class="btn btn-gold" href="/livro04">📖 Começar o Devocional de 30 dias</a>
-        <a class="btn btn-ghost-light" href="/livro12">Ler as Afirmações</a>
+        <a class="btn btn-gold" href="/livro04"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Começar o Devocional de 30 dias</a>
+        <a class="btn btn-ghost-light" href="/guia-pais-filhos"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.86 0c1.08 1.06 1.05 2.78 0 3.83L12 19"/></svg> Pais e Filhos</a>
       </div>
+<style id="css-hero-svg">
+  .hero-ctas .btn{display:inline-flex;align-items:center;gap:8px;}
+  .hero-ctas .btn svg{flex-shrink:0;display:block;}
+</style>
 
 <style id="css-palavra-hoje">
   #palavra-hoje{display:flex;align-items:center;gap:12px;max-width:420px;margin:14px 0 4px;padding:10px 0 2px;border-top:1px solid rgba(201,162,75,.22)}
@@ -506,6 +537,10 @@
   #ph-share{display:none;margin:10px 0 0;padding:8px 18px;border-radius:999px;border:1px solid rgba(227,200,119,.55);background:transparent;color:#e3c877;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.02em}
   #ph-share.show{display:inline-block}
   #ph-share:hover{border-color:#e3c877;background:rgba(201,162,75,.12);color:#fffaf0}
+  #ph-download{display:none;margin:10px 0 0 8px;padding:8px 16px;border-radius:999px;border:1px solid rgba(227,200,119,.45);background:transparent;color:#e3c877;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;letter-spacing:.02em;text-decoration:none}
+  #ph-download.show{display:inline-block}
+  #ph-download:hover{border-color:#e3c877;background:rgba(201,162,75,.12);color:#fffaf0}
+  @media(max-width:520px){#ph-download{margin:10px 0 0}}
 
 </style>
 
@@ -519,12 +554,13 @@
         </div>
         <div class="ph-bar" id="ph-bar"><i id="ph-fill"></i></div>
         <button type="button" id="ph-share">Compartilha com quem você ama</button>
+        <a id="ph-download" href="#" download>Baixar áudio</a>
       </div>
       <script>
       (function(){
-        var refs=["Salmo 23","João 14:27","Isaías 41:10","Filipenses 4:6-7","Mateus 11:28","Salmo 91","Josué 1:9","Romanos 8:28","Salmo 46","João 3:16","Provérbios 3:5-6","Isaías 40:31","Mateus 6:33","Salmo 121","2 Timóteo 1:7","Lamentações 3:22","João 8:32","Salmo 27:1","Romanos 8:38","Mateus 5:14","Salmo 34","Jeremias 29:11","João 16:33","Hebreus 13:5","Salmo 139","Gálatas 5:22","1 Pedro 5:7","Efésios 2:8","Apocalipse 21:4","Números 6:24"];
+        var refs=["Salmo 23","João 14:27","Isaías 41:10","Filipenses 4:6-7","Mateus 11:28","Salmo 91","Josué 1:9","Romanos 8:28","Salmo 46","João 3:16","Provérbios 3:5-6","Isaías 40:31","Mateus 6:33","Salmo 121","2 Timóteo 1:7","Lamentações 3:22","João 8:32","Salmo 27:1","Romanos 8:38","Mateus 5:14","Salmo 34","Jeremias 29:11","João 16:33","Hebreus 13:5","Salmo 139","Gálatas 5:22","1 Pedro 5:7","Efésios 2:8","Apocalipse 21:4","Números 6:24","Salmo 23","Filipenses 1:6","Isaías 43:2","2 Coríntios 12:9","Mateus 7:7","Salmo 37:4","João 15:5","Filipenses 4:8","Salmo 56:8","Mateus 18:20","1 Coríntios 13:4","Romanos 12:2","Salmo 42:1","2 Coríntios 5:17","Salmo 30:5","Isaías 41:10","Colossenses 3:23","Salmo 16:11","Provérbios 18:10","Mateus 12:20","João 14:27","Salmo 51:10","1 João 1:9","Filipenses 3:13","1 Pedro 1:3","Miquéias 6:8","Mateus 5:9","Salmo 90:12","1 Tessalonicenses 5:16","João 14:2"];
         var day=parseInt(new Intl.DateTimeFormat("en-US",{timeZone:"America/Sao_Paulo",day:"numeric"}).format(new Date()),10);
-        if(day===31) day=30;
+        if(day > 60) day = 30;
         var n=String(day).padStart(2,"0");
         var box=document.getElementById("palavra-hoje");
         var ref=document.getElementById("ph-ref");
@@ -535,6 +571,8 @@
         if(ref) ref.textContent=refs[day-1]+" · uma bênção para o seu dia";
         var a=new Audio("/audio/palavra-dia-"+n+".mp3");
         a.preload="none";
+        var dl=document.getElementById("ph-download");
+        if(dl){ dl.href="/audio/palavra-dia-"+n+".mp3"; dl.setAttribute("download","palavra-dia-"+n+".mp3"); }
         a.addEventListener("error",function(){ if(box) box.style.display="none"; });
         var playPath="M8 5v14l11-7z";
         var pausePath="M6 5h4v14H6zm8 0h4v14h-4z";
@@ -546,9 +584,13 @@
         a.addEventListener("timeupdate",function(){
           if(a.duration) fill.style.width=(100*a.currentTime/a.duration)+"%";
         });
-        a.addEventListener("ended",function(){ setOn(false); fill.style.width="100%"; var x=document.getElementById("ph-share"); if(x) x.classList.add("show"); });
+        a.addEventListener("ended",function(){
+          setOn(false); fill.style.width="100%";
+          var x=document.getElementById("ph-share"); if(x) x.classList.add("show");
+          if(dl) dl.classList.add("show");
+        });
         btn.addEventListener("click",function(){
-          if(a.paused){ a.play(); setOn(true); }
+          if(a.paused){ a.play(); setOn(true); if(dl) dl.classList.remove("show"); }
           else { a.pause(); setOn(false); }
         });
       })();
@@ -557,6 +599,7 @@
 (function(){
   var sh=document.getElementById("ph-share");
   if(!sh) return;
+  var url="https://missaocomdeus.com.br/";
   function copiarVelho(full, ok){
     var ta=document.createElement("textarea");
     ta.value=full; ta.setAttribute("readonly","");
@@ -570,22 +613,44 @@
     var refEl=document.getElementById("ph-ref");
     var ref=(refEl && refEl.textContent) ? refEl.textContent.split("·")[0].trim() : "Palavra de hoje";
     var txt="Ouvi a Palavra de hoje na Missão com Deus. "+ref+". Compartilha com quem você ama.";
-    var url="https://missaocomdeus.com.br/";
+    var txtLink=txt+" "+url;
     var old=sh.textContent;
     function ok(){
       sh.textContent="Copiado. Cole onde você ama.";
       setTimeout(function(){ sh.textContent=old; }, 2800);
     }
     function copiar(){
-      var full=txt+" "+url;
       if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(full).then(ok).catch(function(){ copiarVelho(full, ok); });
-      } else { copiarVelho(full, ok); }
+        navigator.clipboard.writeText(txtLink).then(ok).catch(function(){ copiarVelho(txtLink, ok); });
+      } else { copiarVelho(txtLink, ok); }
     }
-    var noCelular = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if(noCelular && navigator.share){
-      navigator.share({title:"Palavra de hoje", text:txt, url:url}).catch(copiar);
-    } else { copiar(); }
+    function compartilharLink(){
+      var noCelular = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if(noCelular && navigator.share){
+        navigator.share({title:"Palavra de hoje", text:txt, url:url}).catch(copiar);
+      } else { copiar(); }
+    }
+    function tentarAudio(){
+      // Tenta compartilhar o próprio MP3 (o áudio já carrega a marca Missão com Deus).
+      // Se o navegador não suportar arquivos, volta para o compartilhamento do link.
+      var noCelular = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if(!noCelular || !navigator.share || !navigator.canShare ||
+         typeof File === "undefined" || typeof Blob === "undefined"){ compartilharLink(); return; }
+      var day=parseInt(new Intl.DateTimeFormat("en-US",{timeZone:"America/Sao_Paulo",day:"numeric"}).format(new Date()),10);
+      if(day > 60) day = 30;
+      var nn=String(day).padStart(2,"0");
+      var audioUrl="/audio/palavra-dia-"+nn+".mp3";
+      fetch(audioUrl,{cache:"no-store"})
+        .then(function(r){ if(!r.ok) throw new Error("sem audio"); return r.blob(); })
+        .then(function(blob){
+          var file=new File([blob], "palavra-dia-"+nn+".mp3", {type:"audio/mpeg"});
+          if(!navigator.canShare({files:[file]})){ compartilharLink(); return; }
+          navigator.share({title:"Palavra de hoje", text:txtLink, files:[file]})
+            .catch(function(e){ if(e && e.name==="AbortError") return; compartilharLink(); });
+        })
+        .catch(function(){ compartilharLink(); });
+    }
+    tentarAudio();
   });
 })();
 </script>
@@ -611,10 +676,13 @@
 
       <small class="note">Comece o seu dia com uma palavra de Jesus para a sua vida. Ao descer, a biblioteca inteira está aberta.</small>
     </div>
-    <div class="hero-visual">
-      <img src="https://i.ibb.co/zhH6FV9X/hero.jpg" alt="Evolução da Alma, Novo Testamento e Anestesia Mental — leitura gratuita">
-      <div class="hero-badge">✨ Leia de graça, continue de onde parou</div>
-    </div>
+      <div class="hero-visual">
+        <img src="https://i.ibb.co/zhH6FV9X/hero.jpg" alt="Evolução da Alma, Novo Testamento e Anestesia Mental — leitura gratuita">
+        <div class="hero-badge">
+          <span>✨ Leia de graça, continue de onde parou</span>
+          <button type="button" id="instalar-app-hero" class="hero-app-btn" aria-label="Baixar o app da Missão com Deus">📲 Baixar App</button>
+        </div>
+      </div>
   </div>
 </section>
 
@@ -623,7 +691,6 @@
     <ul>
       <li>⚡ Acesso imediato</li>
       <li>📱 Leia no celular, tablet ou PC</li>
-      <li>🛡️ Garantia incondicional de 7 dias</li>
     </ul>
   </div>
 </div>
@@ -655,7 +722,7 @@
       <div class="card-destaque">
         <div class="cd-txt">
           <h3>Livros online e gratuitos</h3>
-          <p>Leia as obras da Coleção Missão com Deus gratuitamente, direto no seu navegador, sem custo, sem cadastro e com leitura protegida. Uma porta aberta para o seu despertar.</p>
+          <p>Comece a leitura das obras da Coleção Missão com Deus gratuitamente, sem cadastro e com leitura protegida. Você estará a um passo de recomeçar uma vida com paz e propósito, e a porta do conhecimento se abre para você agora.</p>
           <p class="cd-convite">💬 Qual é a maior batalha da sua mente hoje? Responda em 1 minuto e descubra que você não está sozinho.</p>
         </div>
         <div class="cd-acoes">
@@ -663,10 +730,10 @@
           <a class="btn btn-enquete" href="#enquete">💬 Participar da enquete</a>
         </div>
       </div>
-      <div class="card"><span class="ic">🎥</span><h3>Videoaulas guiadas</h3><p>Imersão teórica e prática com ensinamentos profundos de fácil linguagem que tocam a alma.</p></div>
-      <div class="card"><span class="ic">📚</span><h3>Livros e materiais</h3><p>Trilogia Evolução da Alma + Anestesia Mental + Um Segundo com Deus e Jesus quer falar com seu filho, para ler e baixar.</p></div>
-      <div class="card"><span class="ic">👥</span><h3>Comunidade de estudos</h3><p>Caminhe ao lado de outras pessoas e fortaleça sua fé em um ambiente de constante aprendizado.</p></div>
-      <div class="card"><span class="ic">♾️</span><h3>Acesso vitalício</h3><p>Conteúdo disponível por tempo ilimitado para você evoluir no seu próprio tempo.</div>
+      <div class="card"><span class="ic ic-svg" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><polygon points="10 8 16 12 10 16 10 8"/></svg></span><h3>Videoaulas guiadas</h3><p>Imersão teórica e prática com ensinamentos profundos de fácil linguagem que tocam a alma.</p></div>
+      <div class="card"><span class="ic ic-svg" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg></span><h3>Livros e materiais</h3><p>Trilogia Evolução da Alma + Anestesia Mental + Um Segundo com Deus e Jesus quer falar com seu filho, para ler e baixar.</p></div>
+      <div class="card"><span class="ic ic-svg" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><h3>Comunidade de estudos</h3><p>Caminhe ao lado de outras pessoas e fortaleça sua fé em um ambiente de constante aprendizado.</p></div>
+      <div class="card"><span class="ic ic-svg" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8"/></svg></span><h3>Acesso vitalício</h3><p>Conteúdo disponível por tempo ilimitado para você evoluir no seu próprio tempo.</p></div>
     </div> 
   </div>
 </section>
@@ -676,80 +743,80 @@
     <div class="section-head text-center" style="text-align:center;max-width:700px;margin:0 auto 36px;">
       <span class="eyebrow" style="color:var(--gold-dark,#b8860b);font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:1.5px;">🌿 Diagnóstico Espiritual Gratuito</span>
       <h2 style="font-size:2rem;color:var(--navy,#0e1a2e);margin:10px 0;">🕊️ Termômetro da Alma: Como está seu coração hoje?</h2>
-      <p style="color:var(--muted,#666);font-size:1.05rem;line-height:1.6;">3 perguntas rápidas (menos de 30 segundos). Descubra o que pode estar travando sua paz e receba a direção espiritual ideal para o seu momento.</p>
+      <p style="color:var(--muted,#666);font-size:1.05rem;line-height:1.6;">6 perguntas rápidas (menos de 2 minutos). Descubra o que está pesando no seu coração e receba a direção espiritual ideal para o seu momento.</p>
     </div>
 
     <div class="quiz-card" style="max-width:680px;margin:0 auto;background:#fff;border:1px solid rgba(201,162,75,.35);border-radius:16px;padding:32px 24px;box-shadow:0 10px 30px rgba(0,0,0,.06);">
       
       <!-- PERGUNTA 1 -->
       <div class="quiz-perg ativa" data-q="0">
-        <div style="font-size:.82rem;color:var(--gold-dark,#b8860b);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Pergunta 1 de 3 · O Desejo do Coração</div>
-        <h3 style="font-size:1.28rem;color:var(--navy,#0e1a2e);margin:0 0 20px;">Se você pudesse transformar UMA coisa na sua vida hoje, seria:</h3>
+        <div style="font-size:.82rem;color:var(--gold-dark,#b8860b);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Pergunta 1 de 6 </div>
+        <h3 style="font-size:1.28rem;color:var(--navy,#0e1a2e);margin:0 0 20px;">Qual dessas frases mais descreve como você se sente hoje?</h3>
         <div class="quiz-opcoes" style="display:flex;flex-direction:column;gap:12px;">
-          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;">
-            <input type="radio" name="q0" value="paz" style="accent-color:#b8860b;width:18px;height:18px;">
-            <span style="font-size:1rem;color:#2c3e50;">🕊️ Minha paz interior e silenciar a ansiedade</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;">
-            <input type="radio" name="q0" value="mente" style="accent-color:#b8860b;width:18px;height:18px;">
-            <span style="font-size:1rem;color:#2c3e50;">🧠 O controle da minha mente e pensamentos acelerados</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;">
-            <input type="radio" name="q0" value="relacionamentos" style="accent-color:#b8860b;width:18px;height:18px;">
-            <span style="font-size:1rem;color:#2c3e50;">💛 Meus relacionamentos e curar mágoas do passado</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;">
-            <input type="radio" name="q0" value="proposito" style="accent-color:#b8860b;width:18px;height:18px;">
-            <span style="font-size:1rem;color:#2c3e50;">🌱 Meu propósito de vida e clareza de direção espiritual</span>
-          </label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q0" value="sozinho" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">😶 Sinto que estou cansada(o) de carregar tudo sozinha(o).</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q0" value="estagnado" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">⏳ Tenho a sensação de que a minha vida está estagnada enquanto a dos outros anda.</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q0" value="mascara" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">🎭 Acho que a maioria das pessoas nem imagina o que eu passo quando fico em silêncio.</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q0" value="energia" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">🔋 Acordo sem energia e chego ao fim do dia sentindo que não fiz o suficiente.</span></label>
         </div>
       </div>
 
       <!-- PERGUNTA 2 -->
       <div class="quiz-perg" data-q="1" style="display:none;">
-        <div style="font-size:.82rem;color:var(--gold-dark,#b8860b);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Pergunta 2 de 3 · O Sentimento Diário</div>
-        <h3 style="font-size:1.28rem;color:var(--navy,#0e1a2e);margin:0 0 20px;">Quando você acorda de manhã, o primeiro sentimento que surge é:</h3>
+        <div style="font-size:.82rem;color:var(--gold-dark,#b8860b);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Pergunta 2 de 6 · Conexão Intensa</div>
+        <h3 style="font-size:1.28rem;color:var(--navy,#0e1a2e);margin:0 0 20px;">Quando você encosta a cabeça no travesseiro à noite, qual é o pensamento que mais tira o seu sono?</h3>
         <div class="quiz-opcoes" style="display:flex;flex-direction:column;gap:12px;">
-          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;">
-            <input type="radio" name="q1" value="ansioso" style="accent-color:#b8860b;width:18px;height:18px;">
-            <span style="font-size:1rem;color:#2c3e50;">😰 Ansiedade ou preocupação com o que vem pela frente</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;">
-            <input type="radio" name="q1" value="pesado" style="accent-color:#b8860b;width:18px;height:18px;">
-            <span style="font-size:1rem;color:#2c3e50;">😔 Cansaço mental, como se a mente nunca descansasse</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;">
-            <input type="radio" name="q1" value="distante" style="accent-color:#b8860b;width:18px;height:18px;">
-            <span style="font-size:1rem;color:#2c3e50;">🌫️ Sensação de estar distante de Deus pela correria</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;">
-            <input type="radio" name="q1" value="esperancoso" style="accent-color:#b8860b;width:18px;height:18px;">
-            <span style="font-size:1rem;color:#2c3e50;">✨ Desejo ardente de evoluir e viver algo mais profundo</span>
-          </label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q1" value="esperanca" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">💭 Será que um dia as coisas realmente vão melhorar?</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q1" value="medo" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">📉 O medo do futuro e de não dar conta do que está por vir.</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q1" value="distancia" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">💔 A sensação de estar distante de quem eu gostaria de ter por perto.</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q1" value="decisoes" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">🧩 A dúvida sobre se estou tomando as decisões certas na vida.</span></label>
         </div>
       </div>
 
       <!-- PERGUNTA 3 -->
       <div class="quiz-perg" data-q="2" style="display:none;">
-        <div style="font-size:.82rem;color:var(--gold-dark,#b8860b);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Pergunta 3 de 3 · A Voz da Fé</div>
-        <h3 style="font-size:1.28rem;color:var(--navy,#0e1a2e);margin:0 0 20px;">Se Deus falasse ao seu coração agora, você mais precisaria ouvir:</h3>
+        <div style="font-size:.82rem;color:var(--gold-dark,#b8860b);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Pergunta 3 de 6 · Transição e Diagnóstico</div>
+        <h3 style="font-size:1.28rem;color:var(--navy,#0e1a2e);margin:0 0 20px;">Qual destas situações mais tem consumido sua energia nos últimos meses?</h3>
         <div class="quiz-opcoes" style="display:flex;flex-direction:column;gap:12px;">
-          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;">
-            <input type="radio" name="q2" value="descanso" style="accent-color:#b8860b;width:18px;height:18px;">
-            <span style="font-size:1rem;color:#2c3e50;">🕊️ Filho(a), aquieta-te e descansa. Eu cuido de tudo.</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;">
-            <input type="radio" name="q2" value="liberdade" style="accent-color:#b8860b;width:18px;height:18px;">
-            <span style="font-size:1rem;color:#2c3e50;">🔓 Quebra essas correntes da mente e retoma o governo.</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;">
-            <input type="radio" name="q2" value="cura" style="accent-color:#b8860b;width:18px;height:18px;">
-            <span style="font-size:1rem;color:#2c3e50;">💛 Perdoa e liberta o passado. Há um novo recomeço para sua vida.</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;">
-            <input type="radio" name="q2" value="direcao" style="accent-color:#b8860b;width:18px;height:18px;">
-            <span style="font-size:1rem;color:#2c3e50;">🌱 Desperta a tua alma e caminha com firmeza no teu propósito.</span>
-          </label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q2" value="agradar" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">🌧️ Tentar agradar todo mundo e esquecer de cuidar de mim.</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q2" value="ciclos" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">🔄 Repetir os mesmos ciclos e erros do passado sem saber como mudar.</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q2" value="guardar" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">🔒 Guardar sentimentos e sufocar emoções para não incomodar os outros.</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q2" value="vazio" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">🧭 Sentir um vazio no peito mesmo estando cercada(o) de pessoas.</span></label>
+        </div>
+      </div>
+
+      <!-- PERGUNTA 4 -->
+      <div class="quiz-perg" data-q="3" style="display:none;">
+        <div style="font-size:.82rem;color:var(--gold-dark,#b8860b);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Pergunta 4 de 6 · Aquilo que mais pesa</div>
+        <h3 style="font-size:1.28rem;color:var(--navy,#0e1a2e);margin:0 0 20px;">Se você pudesse mudar HOJE uma única coisa na sua vida, o que seria?</h3>
+        <div class="quiz-opcoes" style="display:flex;flex-direction:column;gap:12px;">
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q3" value="passado" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">💔 Resolver uma história do passado com alguém que ainda mexe comigo</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q3" value="dor" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">😔 Me libertar de uma dor pesada que venho carregando em silêncio</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q3" value="financeiro" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">💰 Mudar minha vida financeira e me livrar do medo do futuro</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q3" value="familia" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">👨‍👩‍👧 Restaurar a paz e o clima dentro da minha família</span></label>
+        </div>
+      </div>
+
+      <!-- PERGUNTA 5 -->
+      <div class="quiz-perg" data-q="4" style="display:none;">
+        <div style="font-size:.82rem;color:var(--gold-dark,#b8860b);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Pergunta 5 de 6 · O invisível</div>
+        <h3 style="font-size:1.28rem;color:var(--navy,#0e1a2e);margin:0 0 20px;">Olhando para o seu momento atual, o que mais tem roubado a SUA paz?</h3>
+        <div class="quiz-opcoes" style="display:flex;flex-direction:column;gap:12px;">
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q4" value="mente" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">🧠 Pensar demais, remoer o passado e não conseguir desligar a mente</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q4" value="magoas" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">💔 Guardar mágoas, ressentimentos e coisas que ficaram sem resposta</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q4" value="mascara2" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">😶 Colocar um sorriso no rosto por fora enquanto desabo por dentro</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q4" value="comparar" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">📱 Me comparar com a vida dos outros e me sentir pra trás</span></label>
+        </div>
+      </div>
+
+      <!-- PERGUNTA 6 -->
+      <div class="quiz-perg" data-q="5" style="display:none;">
+        <div style="font-size:.82rem;color:var(--gold-dark,#b8860b);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Pergunta 6 de 6 · A resposta que você precisa</div>
+        <h3 style="font-size:1.28rem;color:var(--navy,#0e1a2e);margin:0 0 20px;">Se Deus fosse te dar uma resposta clara sobre uma dessas áreas HOJE, qual você escolheria?</h3>
+        <div class="quiz-opcoes" style="display:flex;flex-direction:column;gap:12px;">
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q5" value="mente" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">🕊️ Minha mente: ter paz, clareza e parar de viver ansiosa(o)</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q5" value="coracao" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">💛 Meu coração: curar minhas emoções e meus relacionamentos</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q5" value="casa" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">👨‍👩‍👧 Minha casa: trazer proteção e união para a minha família</span></label>
+          <label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#faf8f5;border:1px solid #e8decb;border-radius:10px;cursor:pointer;"><input type="radio" name="q5" value="destino" style="accent-color:#b8860b;width:18px;height:18px;"><span style="font-size:1rem;color:#2c3e50;">🌱 Meu destino: entender meu propósito e o próximo passo que devo dar</span></label>
         </div>
       </div>
 
@@ -758,6 +825,7 @@
         <button type="button" id="quiz-voltar" onclick="quizVoltar()" class="btn" style="background:#e8decb;color:#2c3e50;padding:10px 20px;border-radius:8px;font-size:.9rem;visibility:hidden;">← Voltar</button>
         <button type="button" id="quiz-prox" onclick="quizProx()" class="btn btn-gold" style="padding:12px 28px;font-size:1rem;font-weight:700;border-radius:8px;">Avançar →</button>
       </div>
+      <p id="quiz-aviso" style="display:none;margin:12px 0 0;padding:10px 14px;border-radius:8px;background:rgba(192,57,43,.10);border:1px solid rgba(192,57,43,.35);color:#c0392b;font-size:.9rem;font-weight:600;">🙏 Escolha uma opção para continuar.</p>
 
       <!-- TELA DE RESULTADO PERSONALIZADO -->
       <div id="quiz-resultado" style="display:none;text-align:center;padding:10px 0;">
@@ -786,168 +854,52 @@
   </div>
 </section>
 
-<section id="livros" style="background:var(--cream-2);">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Nossas obras</span>
-      <h2>Nossas Obras</h2>
-      <p>Tudo o que você precisa para o seu despertar espiritual em um único acesso.</p>
-    </div>
-    <div class="grid grid-3">
-      <div class="product">
-        <img src="https://i.ibb.co/sJ9KTLwN/livro05jpg.png" alt="Livro Evolução da Alma">
-        <div class="pbody">
-          <span class="tag">📖🎓 Evolução da Alma</span> <span class="tag tag-missao">Da Missão</span>
-          <h3>Evolução da Alma</h3>
-          <p>Aprenda a reconhecer e governar as emoções que tomam conta da sua vida: ansiedade, medo, mágoas e dúvidas. Um caminho de leitura, oração e prática para acalmar a mente e despertar a alma em Deus.</p>
-          <ul class="obra-itens">
-            <li>✅ Livro completo para ler em casa</li>
-            <li>✅ 7 videoaulas guiadas pela Palavra</li>
-            <li>✅ Oração e prática em cada capítulo</li>
-            <li>✅ Acesso à comunidade vitalícia</li>
-          </ul>
-        </div>
-      </div>
-      <div class="product">
-        <img src="https://i.ibb.co/mF2Hyq7z/livro-09.jpg" alt="Livro Anestesia Mental">
-        <div class="pbody">
-          <span class="tag">🧠🔓 Anestesia Mental</span> <span class="tag tag-missao">Da Missão</span>
-          <h3>Anestesia Mental</h3>
-          <p>Entenda como os pensamentos acelerados, os algoritmos e os padrões invisíveis roubam a sua paz, e aprenda em Cristo a retomar o governo da sua mente.</p>
-          <ul class="obra-itens">
-            <li>✅ Livro completo para ler em casa</li>
-            <li>✅ 7 videoaulas guiadas pela Palavra</li>
-            <li>✅ Estratégias práticas de sobriedade mental</li>
-            <li>✅ Acesso à comunidade vitalícia</li>
-          </ul>
-        </div>
-      </div>
-      <div class="product" id="devocional">
-        <img src="https://i.ibb.co/LdbL0QdH/livro04jpg.jpg" alt="Devocional Um Segundo com Deus">
-        <div class="pbody">
-          <span class="tag">🕊️🌱 Um Segundo com Deus</span> <span class="tag tag-missao">Da Missão</span>
-          <h3>Um Segundo com Deus</h3>
-          <p>30 dias de oração, reflexão e prática para começar cada manhã na presença de Deus, mesmo em meio à correria. Trinta dias para criar um novo ritmo de fé.</p>
-          <ul class="obra-itens">
-            <li>✅ Devocional de 30 dias</li>
-            <li>✅ Oração e prática para o seu dia</li>
-            <li>✅ E-book infantil Jesus quer falar com seu filho</li>
-            <li>✅ Acesso à comunidade vitalícia</li>
-          </ul>
-        </div>
-      </div>
-    
-      <div class="product">
-        <img src="https://i.ibb.co/9myJ3XXb/livro01.jpg" alt="O Novo Testamento como nunca lido">
-        <div class="pbody">
-          <span class="tag">📖 O Novo Testamento</span> <span class="tag tag-missao">Da Missão</span>
-          <h3>O Novo Testamento como nunca lido</h3>
-          <p>As Boas Novas de Cristo em linguagem simples: evangelhos, parábolas, sermões, cartas e esperança. Uma jornada clara para quem quer entender a fé e despertar.</p>
-          <ul class="obra-itens">
-            <li>✅ Obra da Missão</li>
-            <li>✅ 20 capítulos em leitura limpa</li>
-            <li>✅ Leitura gratuita no portal</li>
-            <li>✅ PDF de bônus no acesso completo</li>
-          </ul>
-        </div>
-      </div>
-      <div class="product">
-        <img src="https://i.ibb.co/3yJsHjnn/livro06.jpg" alt="Jesus Quer Falar com Seu Filho">
-        <div class="pbody">
-          <span class="tag">💛 Jesus Quer Falar com Seu Filho</span> <span class="tag tag-missao">Da Missão</span>
-          <h3>Jesus Quer Falar com Seu Filho</h3>
-          <p>Uma obra para a família: os Mandamentos, os valores bíblicos e o amor de Jesus explicados para as crianças, com atividades para ler, pintar e fazer juntos.</p>
-          <ul class="obra-itens">
-            <li>✅ Obra infantil da Missão</li>
-            <li>✅ Histórias e versículos para conversar</li>
-            <li>✅ Atividades para pintar e desenhar</li>
-            <li>✅ Leitura gratuita no portal</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="offer" style="margin-top:44px;">
-      <div>
-        <span class="eyebrow" style="color:var(--gold-light);">Acesso completo</span>
-        <h2>🕊️ Seja um Semeador da Missão e ganhe 4 bônus</h2>
-        <p style="color:rgba(246,241,231,.8);">Se a leitura tocar o coração, o passo seguinte é ir mais fundo: aulas, exercícios práticos e uma comunidade para não caminhar sozinho. Não prometemos cura pronta. Oferecemos um caminho, no seu ritmo. O conhecimento sem a prática é apenas teoria: é inútil. Quem entra no acesso completo leva o estudo para viver, não só para saber.</p>
-        <ul>
-          <li>✅ Livro digital completo: Evolução da Alma</li>
-          <li>✅ Livro digital completo: Anestesia Mental</li>
-          <li>✅ 7 módulos em vídeo: Evolução da Alma</li>
-          <li>✅ 7 módulos em vídeo: Anestesia Mental</li>
-          <li>✅ Acesso vitalício à Área de Membros e à Comunidade</li>
-          <li>🎁 Bônus 1: O Novo Testamento como nunca lido</li>
-          <li>🎁 Bônus 2: Devocional Um Segundo com Deus, 30 dias</li>
-          <li>🎁 Bônus 3: Jesus Quer Falar com Seu Filho</li>
-          <li>🎁 Bônus 4: Afirmações, Declarações e Orações, guia diário em PDF</li>
-
-        </ul>
-        <p style="color:rgba(246,241,231,.75);font-style:italic;margin-top:18px;">"Sejam praticantes da palavra, e não apenas ouvintes." (Tg 1:22)</p>
-      </div>
-      <div class="offer-price">
-        <div class="new" style="margin-top:0;">R$ 37,00</div>
-        <small class="note" style="color:rgba(246,241,231,.65);margin-bottom:18px;">Pagamento único · Acesso vitalício · Pix imediato · Cartão até 4x · menos de R$ 1,25/dia</small>
-        <a class="btn btn-gold btn-block" href="https://pay.kiwify.com.br/iVfp2bi" aria-label="Quero acesso completo da Missão">🕊️ QUERO ACESSO COMPLETO DA MISSÃO</a>
-        <small class="note" style="color:rgba(246,241,231,.65);">🛡️ Garantia incondicional de 7 dias</small>
-      </div>
-    </div>
-
-    <div class="grid grid-2" style="margin-top:32px;">
-      <div class="product" style="padding:28px;">
-        <h3 style="margin-bottom:10px;">📖 Leitura no portal</h3>
-        <ul class="obra-itens">
-          <li>7 livros online</li>
-          <li>Sem cadastro e sem custo</li>
-          <li>Você lê no seu ritmo</li>
-          <li><button type="button" id="baixar-app-casa" class="link-app">Instalar o app no celular</button></li>
-        </ul>
-      </div>
-      <div class="product" style="padding:28px;border:2px solid var(--gold-dark);">
-        <h3 style="margin-bottom:10px;">🕊️ Acesso completo</h3>
-        <ul class="obra-itens">
-          <li>2 livros digitais completos</li>
-          <li>14 módulos em vídeo</li>
-          <li>Exercícios, comunidade e 4 bônus</li>
-          <li>R$ 37,00 pagamento único</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-
 <section class="biblioteca" id="biblioteca">
   <div class="wrap">
     <div class="bib-head">
-      <span class="bib-tag">📖 Biblioteca de leitura gratuita</span>
-      <h2>Leia antes de comprar</h2>
-      <p style="font-size:.92rem;opacity:.9;">Onde você ver Da Missão, a casa assume a obra. Os outros títulos são leitura gratuita para o despertar.</p>
+      <span class="bib-tag"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Biblioteca</span>
+      <h2>Conheça nossos Livros</h2>
+      <p>Todos os títulos abaixo são da Missão com Deus. Alguns abrem inteiros de graça; outros abrem a primeira metade, e o restante fica no acesso completo.</p>
       <p>Conheça o conteúdo das nossas obras antes de adquiri-las. Leitura online protegida, sem cópia e sem impressão.</p>
       <p>Agora você pode ler nossos livros online e, sempre que abrir novamente, continuar exatamente do ponto em que parou. Letras no seu tamanho, tela confortável e fita dourada para marcar o lugar.</p>
     </div>
-    <div class="bib-grid">
+    
+  
+</div>
+
+<div id="janela-livros" style="max-width:1000px;margin:0 auto 26px;padding:16px 20px;background:linear-gradient(135deg,#0e1a2e,#16283f);color:#f6f1e7;border:1px solid rgba(201,162,75,.45);border-radius:14px;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;text-align:center;box-shadow:0 10px 26px rgba(14,26,46,.12);position:relative;z-index:1;">
+  <strong style="display:inline-flex;align-items:center;gap:8px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Comece hoje sua leitura</strong>
+  <p style="margin:7px 0 5px;font-size:.95rem;line-height:1.55;">Uma oportunidade carinhosa para conhecer melhor a coleção. <strong>Evolução da Alma</strong>, <strong>Anestesia Mental</strong>, <strong>O Novo Testamento</strong> e <strong>O Caminho do Despertar</strong> estão com a leitura completa até <strong>30/09/2026 às 00:00</strong> (horário de Brasília). Depois, os quatro livros voltam a abrir a primeira metade, como de costume.</p>
+  <div id="janela-contagem" style="font-size:1.05rem;font-weight:700;color:#e3c877;letter-spacing:.04em;margin-top:2px;"></div>
+  <script id="js-janela-hora">(function(){var el=document.getElementById("janela-contagem");if(!el)return;var fim=new Date("2026-09-30T00:00:00-03:00").getTime();if(isNaN(fim))fim=Date.UTC(2026,8,30,3,0,0);function z2(n){return n<10?"0"+n:n;}function tt(){var r=fim-Date.now();if(r<=0){el.textContent="Janela encerrada";var bl=document.getElementById("janela-livros");if(bl)bl.style.display="none";return;}var d=Math.floor(r/86400000);var h=Math.floor(r%86400000/3600000);var m=Math.floor(r%3600000/60000);var s=Math.floor(r%60000/1000);el.textContent=d+"d "+z2(h)+"h "+z2(m)+"m "+z2(s)+"s";}tt();setInterval(tt,1000);})();</script>
+</div>
+
+<div id="aviso-livro-pais-filhos" style="max-width:820px;margin:0 auto 22px;padding:16px 20px;background:linear-gradient(135deg,#0e1a2e,#16283f);color:#f6f1e7;border:1px solid rgba(201,162,75,.45);border-radius:14px;text-align:center;box-shadow:0 10px 26px rgba(14,26,46,.12);">
+  <p style="margin:0 0 4px;color:#e3c877;font-weight:700;font-size:.95rem;">Em breve</p>
+  <p style="margin:0 0 6px;color:#f6f1e7;font-weight:700;font-size:1.02rem;">Guia Pais e Filhos: Construindo um Futuro</p>
+  <p style="margin:0 0 10px;color:rgba(246,241,231,.8);font-size:.88rem;">Um livro completo para acompanhar cada fase do seu filho, construindo intimidade com amor e respeito.</p>
+  <a href="#pais-filhos" style="color:#e3c877;font-size:.88rem;font-weight:700;text-decoration:none;">Ainda nao fez o nosso quiz? Descubra o nivel de intimidade com seu filho &#8594;</a>
+</div>
+
+<div class="bib-grid">
 
 
 
       <!-- LIVRO 01 -->
       <div class="bib-card">
-        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/9myJ3XXb/livro01.jpg" alt="O Novo Testamento como nunca lido - capa"></div>
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/sJWVKDqB/livro11.jpg" alt="O Novo Testamento como nunca lido - capa"></div>
         <div class="bib-corpo">
-          <span class="bib-num">Livro 01 · Disponível</span>
+          <span class="bib-num">Livro 01</span>
           <h3>O Novo Testamento como nunca lido</h3>
-          <p class="bib-desc">Uma jornada simples pelas Boas Novas de Cristo, com as passagens mais faladas, as parábolas e os sermões explicados para despertar a fé.</p>
+          <p class="bib-desc">As Boas Novas de Cristo em linguagem simples: evangelhos, parábolas, sermões, cartas e esperança. Uma jornada clara para quem quer entender a fé e despertar.</p>
+          <p class="obra-convite">Comece pela leitura livre; a segunda metade e o PDF de bônus ficam no acesso completo.</p>
           <div class="bib-badges">
-            <span class="bib-badge bib-missao">Da Missão</span>
             <span class="bib-badge">20 capítulos</span>
-            <span class="bib-badge">Disponível</span>
+            <span class="bib-badge">🔓 Primeira metade grátis</span>
           </div>
           <div class="bib-ctas">
-            <a class="btn" href="/livro11">Ler grátis</a>
-            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
+            <a class="btn" href="/livro11"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Ler a prévia grátis</a>
+            <a class="btn btn-sec" href="/guardar">🕊️ Acesso completo</a>
           </div>
         </div>
       </div>
@@ -956,34 +908,36 @@
       <div class="bib-card">
         <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/sJ9KTLwN/livro05jpg.png" alt="Evolução da Alma - capa"></div>
         <div class="bib-corpo">
-          <span class="bib-num">Livro 02 · Disponível</span>
+          <span class="bib-num">Livro 02</span>
           <h3>Evolução da Alma</h3>
-          <p class="bib-desc">Cure sua alma, retome a consciência e domine suas emoções, com preces, orações e ensinamentos bíblicos.</p>
+          <p class="bib-desc">Aprenda a reconhecer e governar as emoções que tomam conta da sua vida: ansiedade, medo, mágoas e dúvidas. Um caminho de leitura, oração e prática para acalmar a mente e despertar a alma em Deus.</p>
+          <p class="obra-convite">Comece pela leitura livre e veja se este é o seu caminho.</p>
           <div class="bib-badges">
             <span class="bib-badge">11 capítulos</span>
-            <span class="bib-badge">🔒 Protegido</span>
+            <span class="bib-badge">🔓 Primeira metade grátis</span>
           </div>
           <div class="bib-ctas">
-            <a class="btn" href="/livro05">Ler grátis</a>
-            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Comprar</a>
+            <a class="btn" href="/livro05"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Ler a prévia grátis</a>
+            <a class="btn btn-sec" href="/guardar">🕊️ Acesso completo</a>
           </div>
         </div>
       </div>
 
 <!-- LIVRO 03 -->
       <div class="bib-card">
-        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/mF2Hyq7z/livro-09.jpg" alt="Anestesia Mental e seus Algoritmos da Escravidão - capa"></div>
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/mF2Hyq7z/livro-09.jpg" alt="Anestesia Mental - capa"></div>
         <div class="bib-corpo">
-          <span class="bib-num">Livro 03 · Disponível</span>
+          <span class="bib-num">Livro 03</span>
           <h3>Anestesia Mental</h3>
-          <p class="bib-desc">e seus Algoritmos da Escravidão, 16 capítulos sobre as correntes invisíveis que controlam sua mente e como se libertar em Cristo.</p>
+          <p class="bib-desc">Entenda como os pensamentos acelerados, os algoritmos e os padrões invisíveis roubam a sua paz, e aprenda em Cristo a retomar o governo da sua mente.</p>
+          <p class="obra-convite">Comece pela leitura livre e sinta se é hora de ir mais fundo.</p>
           <div class="bib-badges">
             <span class="bib-badge">16 capítulos</span>
-            <span class="bib-badge">🔒 Protegido</span>
+            <span class="bib-badge">🔓 Primeira metade grátis</span>
           </div>
           <div class="bib-ctas">
-            <a class="btn" href="/livro09">Ler grátis</a>
-            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Comprar</a>
+            <a class="btn" href="/livro09"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Ler a prévia grátis</a>
+            <a class="btn btn-sec" href="/guardar">🕊️ Acesso completo</a>
           </div>
         </div>
       </div>
@@ -992,16 +946,17 @@
       <div class="bib-card">
         <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/LdbL0QdH/livro04jpg.jpg" alt="Um Segundo com Deus - Devocional"></div>
         <div class="bib-corpo">
-          <span class="bib-num">Livro 04 · Disponível</span>
+          <span class="bib-num">Livro 04</span>
           <h3>Um Segundo com Deus</h3>
-          <p class="bib-desc">30 dias de conexão diária, reflexões, orações e versículos para renovar sua fé. O E-book original contém imagens inspiradoras e um visual profissional.</p>
+          <p class="bib-desc">30 dias de oração, reflexão e prática para começar cada manhã na presença de Deus, mesmo em meio à correria. Trinta dias para criar um novo ritmo de fé.</p>
+          <p class="obra-convite">Trinta dias, um de cada vez. Comece hoje, sem custo.</p>
           <div class="bib-badges">
             <span class="bib-badge">30 dias</span>
-            <span class="bib-badge">🔒 Protegido</span>
+            <span class="bib-badge">📖 Leitura completa</span>
           </div>
           <div class="bib-ctas">
-            <a class="btn" href="/livro04">Ler grátis</a>
-            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Comprar</a>
+            <a class="btn" href="/livro04"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Ler grátis</a>
+            <a class="btn btn-sec" href="/guardar">🕊️ Acesso completo</a>
           </div>
         </div>
       </div>
@@ -1010,35 +965,36 @@
       <div class="bib-card">
         <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/3yJsHjnn/livro06.jpg" alt="Jesus Quer Falar com Seu Filho - capa"></div>
         <div class="bib-corpo">
-          <span class="bib-num">Livro 05 · Disponível</span>
+          <span class="bib-num">Livro 05</span>
           <h3>Jesus Quer Falar com Seu Filho</h3>
-          <p class="bib-desc">Uma obra infantil cristã que ensina os Mandamentos, valores bíblicos e o amor de Jesus às crianças. O E-book original contém imagens inspiradoras e atividades para o seu filho fazer, pintar e desenhar.</p>
+          <p class="bib-desc">Uma obra para a família: os Mandamentos, os valores bíblicos e o amor de Jesus explicados para as crianças, com atividades para ler, pintar e fazer juntos.</p>
+          <p class="obra-convite">Uma obra para ler em família, do começo ao fim, sem custo.</p>
           <div class="bib-badges">
-            <span class="bib-badge bib-missao">Da Missão</span>
             <span class="bib-badge">10 Mandamentos</span>
-            <span class="bib-badge">🔒 Protegido</span>
+            <span class="bib-badge">📖 Leitura completa</span>
           </div>
           <div class="bib-ctas">
-            <a class="btn" href="/livro06">Ler grátis</a>
-            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
+            <a class="btn" href="/livro06"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Ler grátis</a>
+            <a class="btn btn-sec" href="/guardar">🕊️ Acesso completo</a>
           </div>
         </div>
       </div>
 
 <!-- LIVRO 06 -->
       <div class="bib-card">
-        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/Gf7WWL6H/livro08.jpg" alt="O Caminho do Despertar - capa"></div>
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/YF5sWbp7/livro07.jpg" alt="O Caminho do Despertar - capa"></div>
         <div class="bib-corpo">
-          <span class="bib-num">Livro 06 · Disponível</span>
+          <span class="bib-num">Livro 06</span>
           <h3>O Caminho do Despertar</h3>
-          <p class="bib-desc">A Jornada Solitária da Alma, uma obra que reúne a sabedoria dos ensinamentos de Jesus, que revela a profundidade da fé e o conhecimento da alma humana.</p>
+          <p class="bib-desc">Uma jornada de fé e autoconhecimento: 12 capítulos que revelam a sabedoria dos ensinamentos de Jesus e conduzem a alma a um encontro mais profundo com Deus.</p>
+          <p class="obra-convite">Uma jornada para quem busca sentido. Comece pela leitura livre.</p>
           <div class="bib-badges">
             <span class="bib-badge">12 capítulos</span>
-            <span class="bib-badge">🔒 Protegido</span>
+            <span class="bib-badge">🔓 Primeira metade grátis</span>
           </div>
           <div class="bib-ctas">
-            <a class="btn" href="/livro07">Ler grátis</a>
-            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
+            <a class="btn" href="/livro07"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Ler a prévia grátis</a>
+            <a class="btn btn-sec" href="/guardar">🕊️ Acesso completo</a>
           </div>
         </div>
       </div>
@@ -1047,33 +1003,89 @@
       <div class="bib-card">
         <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/rG9XwdqC/livro12.png" alt="Comece o dia com Afirmações, Declarações e Orações - capa"></div>
         <div class="bib-corpo">
-          <span class="bib-num">Livro 07 · Disponível</span>
+          <span class="bib-num">Livro 07</span>
           <h3>Comece o dia com Afirmações, Declarações e Orações</h3>
           <p class="bib-desc">Mensagens diárias para o seu dia a dia: versículos de declaração, gratidão, afirmações e orações no Nome de Jesus para começar cada manhã na presença de Deus.</p>
+          <p class="obra-convite">Comece o dia na Palavra, sem custo.</p>
           <div class="bib-badges">
             <span class="bib-badge">Mensagens diárias</span>
-            <span class="bib-badge">🔒 Protegido</span>
+            <span class="bib-badge">📖 Leitura completa</span>
           </div>
           <div class="bib-ctas">
-            <a class="btn" href="/livro12">Ler grátis</a>
-            <a class="btn btn-sec" href="https://pay.kiwify.com.br/iVfp2bi">Portal</a>
+            <a class="btn" href="/livro12"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Ler grátis</a>
+            <a class="btn btn-sec" href="/guardar">🕊️ Acesso completo</a>
           </div>
         </div>
       </div>
 
-    <p class="bib-foot">🔒 Todas as leituras são protegidas: <a href="#biblioteca">sem cópia, sem impressão</a>. Os livros estão disponíveis no <a href="https://pay.kiwify.com.br/iVfp2bi">Portal Missão com Deus</a>.</p>
+    
   </div>
   </div>
 </section>
 
+<section id="livros" style="background:var(--cream-2);padding:24px 0 40px;">
+  <div class="wrap">
+    <div class="offer" style="margin-top:12px;">
+      <div>
+        <span class="eyebrow" style="color:var(--gold-light);">Acesso completo</span>
+        <h2>🕊️ Se a leitura tocou o coração, dê o próximo passo</h2>
+        <p style="color:rgba(246,241,231,.8);">Se você busca direção, este pode ser um lugar para continuar. O Senhor conhece cada passo da sua caminhada. O próximo pode ser ir mais fundo: aulas, exercícios e uma comunidade para você não caminhar sozinho. Não prometemos uma cura pronta. Oferecemos um caminho de aprendizado e prática, no seu ritmo. Porque conhecimento sem prática permanece apenas na teoria. Aqui, o propósito é levar o que você aprende para a vida, não apenas para o saber.</p>
+        <ul>
+          <li>✅ Livro digital completo: Evolução da Alma</li>
+          <li>✅ Livro digital completo: Anestesia Mental</li>
+          <li>✅ 7 módulos em vídeo: Evolução da Alma</li>
+          <li>✅ 7 módulos em vídeo: Anestesia Mental</li>
+          <li>✅ Acesso vitalício à Área de Membros e à Comunidade</li>
+          <li>🎁 4 bônus exclusivos para você, detalhados no checkout</li>
 
+        </ul>
+        <p style="color:rgba(246,241,231,.75);font-style:italic;margin-top:18px;">"Sejam praticantes da palavra, e não apenas ouvintes." (Tg 1:22)</p>
+      </div>
+      <div class="offer-price">
+        <div class="topo-preco">Pagamento único<strong>Acesso vitalício</strong></div>
+        <div class="new">R$ 37,00</div>
+        <small class="note" style="margin-bottom:10px;">Pix imediato · Cartão até 4x · menos de R$ 1,25/dia</small>
+        <small class="note" style="display:block;margin-bottom:14px;">🛡️ Garantia incondicional de 7 dias</small>
+        <p style="margin:0 0 14px;font-size:.95rem;color:#2b2620;font-style:italic;">Você sente que já é hora de ir mais fundo?</p>
+        <a class="btn btn-gold btn-block" href="/guardar" aria-label="Sim, eu quero esse caminho">🕊️ Sim, eu quero ir mais fundo</a>
+      </div>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:32px;">
+      <div class="product" style="padding:28px;">
+        <h3 style="margin-bottom:10px;">📖 Comece agora, sem custo</h3>
+        <ul class="obra-itens">
+          <li>7 obras da Missão</li>
+          <li>3 abrem inteiras; 4 abrem a primeira metade</li>
+          <li>Sem cadastro, sem cópia, sem impressão</li>
+          <li>Leia no navegador ou no app do celular</li>
+        </ul>
+        <a class="btn" href="#biblioteca" style="align-self:flex-start;background:linear-gradient(180deg,#d4a83f,#b8860b);color:#fff;font-weight:700;font-size:.88rem;padding:11px 18px;border-radius:8px;text-decoration:none;display:inline-block;margin-top:14px;">📖 Ir para os livros</a>
+        <button type="button" id="baixar-app-casa" class="link-app" style="align-self:flex-start;margin-top:10px;">Instalar o app no celular</button>
+      </div>
+      <div class="product" style="padding:28px;border:2px solid var(--gold-dark);">
+        <h3 style="margin-bottom:10px;">🕊️ Um caminho para continuar</h3>
+        <p style="font-size:.92rem;margin:0 0 14px;opacity:.85;">Você pode continuar sua caminhada com acesso aos livros completos, às aulas em vídeo, aos exercícios e à comunidade. Um espaço para aprofundar o que foi lido e seguir aprendendo, um passo de cada vez.</p>
+        <ul class="obra-itens">
+          <li>Os livros digitais completos</li>
+          <li>14 módulos em vídeo (2 cursos)</li>
+          <li>Exercícios, comunidade e 4 bônus</li>
+          <li>R$ 37 pagamento único · acesso vitalício</li>
+        </ul>
+        <a class="btn btn-gold" href="/guardar" style="align-self:flex-start;padding:11px 18px;font-size:.88rem;border-radius:8px;margin-top:14px;white-space:nowrap;">🕊️ Conhecer o acesso completo</a>
+      </div>
+<p class="comparativo-nota" style="flex:1 1 100%;color:rgba(246,241,231,.7);font-size:.8rem;text-align:center;margin:2px 0 0;font-family:system-ui,sans-serif;">Em Evolução da Alma, Anestesia Mental, O Novo Testamento e O Caminho do Despertar, a leitura livre é a primeira metade; a segunda parte está no acesso completo.</p>
+    </div>
+
+  </div>
+</section>
 
 <section id="pais-filhos" class="pais-sec">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Para famílias</span>
-      <h2>👨‍👩‍👧 Pais e Filhos: Conversas que Protegem</h2>
-      <p>Um roteiro amoroso de 7 perguntas para abrir o diálogo com seu filho(a) sobre os desafios da nova geração, sempre com acolhimento e sem julgamento. Nenhuma resposta é registrada no site: é um momento entre vocês.</p>
+      <h2>👨‍👩‍👧 Pais e Filhos &amp; Filhos e Pais</h2>
+      <p>Dois roteiros, uma conversa. Um guia para o filho(a) se abrir com os pais, e outro para os filhos conhecerem a história de quem os criou. Nenhuma resposta é registrada no site: é um momento entre vocês.</p>
     </div>
     <div class="pf-cartao" id="pf-cartao">
       <div class="pf-convite" id="pf-convite">
@@ -1086,12 +1098,12 @@
         <div class="pf-abertura">"Filho(a), estas perguntas não são um teste e não têm resposta errada. São um convite para nos conhecermos melhor, com amor e respeito. Responda com o coração: o que você sentir, eu quero ouvir. E se não quiser responder alguma agora, tudo bem, isso também é uma resposta válida."</div>
 
         <div class="pf-progresso">
-          <div class="pf-rotulo"><span id="pf-rotulo">Pergunta 1 de 7</span><span>💛 Momento em família</span></div>
+          <div class="pf-rotulo"><span id="pf-rotulo">Pergunta 1 de 8</span><span>💛 Momento em família</span></div>
           <div class="pf-trilha"><i id="pf-barra" style="width:14%;"></i></div>
         </div>
 
       <div class="pf-perg ativa" data-pf="0">
-        <p class="pf-num">Pergunta 1 de 7</p>
+        <p class="pf-num">Pergunta 1 de 8</p>
         <p class="pf-titulo">O que mais te impede de abrir o coração com a gente?</p>
         <div class="pf-opcoes">
           <label><input type="radio" name="pf0" value="1"><span>😔 Medo de bronca</span></label>
@@ -1103,7 +1115,7 @@
       </div>
 
       <div class="pf-perg" data-pf="1">
-        <p class="pf-num">Pergunta 2 de 7</p>
+        <p class="pf-num">Pergunta 2 de 8</p>
         <p class="pf-titulo">Entre seus amigos, isso é uma coisa comum? Alguém já te ofereceu vape, bebida ou outra coisa assim?</p>
         <div class="pf-opcoes">
           <label><input type="radio" name="pf1" value="1"><span>🙅 Nunca vi isso rolar</span></label>
@@ -1115,7 +1127,7 @@
       </div>
 
       <div class="pf-perg" data-pf="2">
-        <p class="pf-num">Pergunta 3 de 7</p>
+        <p class="pf-num">Pergunta 3 de 8</p>
         <p class="pf-titulo">O que você acha que os adultos não entendem sobre o que os jovens enfrentam hoje?</p>
         <div class="pf-opcoes">
           <label><input type="radio" name="pf2" value="1"><span>✍️ Resposta livre</span></label>
@@ -1124,7 +1136,7 @@
       </div>
 
       <div class="pf-perg" data-pf="3">
-        <p class="pf-num">Pergunta 4 de 7</p>
+        <p class="pf-num">Pergunta 4 de 8</p>
         <p class="pf-titulo">Se você pudesse pedir uma coisa para se sentir mais amado e ouvido, o que seria?</p>
         <div class="pf-opcoes">
           <label><input type="radio" name="pf3" value="1"><span>⏳ Mais tempo juntos</span></label>
@@ -1136,7 +1148,7 @@
       </div>
 
       <div class="pf-perg" data-pf="4">
-        <p class="pf-num">Pergunta 5 de 7</p>
+        <p class="pf-num">Pergunta 5 de 8</p>
         <p class="pf-titulo">Você percebe os esforços e sacrifícios que fazemos por você? O que mais você nota?</p>
         <div class="pf-opcoes">
           <label><input type="radio" name="pf4" value="1"><span>✍️ Resposta livre</span></label>
@@ -1145,7 +1157,7 @@
       </div>
 
       <div class="pf-perg" data-pf="5">
-        <p class="pf-num">Pergunta 6 de 7</p>
+        <p class="pf-num">Pergunta 6 de 8</p>
         <p class="pf-titulo">Quando algo dá errado, você se sente seguro(a) para contar para a gente?</p>
         <div class="pf-opcoes">
           <label><input type="radio" name="pf5" value="1"><span>💛 Sempre</span></label>
@@ -1156,11 +1168,24 @@
         <p class="pf-dica">💡 Dica para os pais: mostra o nível de confiança real, e vocês entendem onde precisam melhorar, sem bronca. Se for difícil dizer em voz alta, vale escrever num papel.</p>
       </div>
 
+      
       <div class="pf-perg" data-pf="6">
-        <p class="pf-num">Pergunta 7 de 7</p>
+        <p class="pf-num">Pergunta 7 de 8</p>
+        <p class="pf-titulo">Quando o assunto é gostar de alguém, amizade que virou confusão, ou o coração que não sabe se é carinho, paixão ou solidão, você se sente seguro para falar com a gente, ou teme a nossa reação?</p>
+        <div class="pf-opcoes">
+          <label><input type="radio" name="pf6" value="1"><span>💛 Me sinto seguro para falar</span></label>
+          <label><input type="radio" name="pf6" value="2"><span>😟 Temo a reação</span></label>
+          <label><input type="radio" name="pf6" value="3"><span>🌫️ Nem sei nomear o que sinto</span></label>
+          <label><input type="radio" name="pf6" value="4"><span>🕊️ Prefiro não responder agora</span></label>
+        </div>
+        <p class="pf-dica">💡 Dica para os pais: ouça até o fim. Não exponha. Não expulse. Acolha a pessoa. A Palavra continua de pé. O diálogo também.</p>
+      </div>
+
+      <div class="pf-perg" data-pf="7">
+        <p class="pf-num">Pergunta 8 de 8</p>
         <p class="pf-titulo">Se você pudesse nos contar uma coisa sobre você que ainda não contou, o que seria?</p>
         <div class="pf-opcoes">
-          <label><input type="radio" name="pf6" value="1"><span>✍️ Resposta livre (totalmente opcional)</span></label>
+          <label><input type="radio" name="pf7" value="1"><span>✍️ Resposta livre (totalmente opcional)</span></label>
         </div>
         <p class="pf-dica">💡 Dica para os pais: o fechamento perfeito, um convite à intimidade. O filho escolhe o que quer compartilhar, no tempo dele.</p>
       </div>
@@ -1169,6 +1194,7 @@
           <button class="btn pf-voltar" id="pf-voltar" onclick="pfVoltar()" type="button" style="visibility:hidden;">← Voltar</button>
           <button class="btn pf-avancar" id="pf-prox" onclick="pfAvancar()" type="button">Avançar</button>
         </div>
+        <p id="pf-aviso" class="pf-aviso-obrigatorio"></p>
 
         <div class="pf-fim" id="pf-fim" hidden>
           <div class="pf-encerramento">"Obrigado por confiar em nós. Não importa o que você respondeu: você é amado(a), você é importante, e nós estamos aqui para caminhar com você, sempre. Que Deus nos ajude a nos amarmos cada dia mais."</div>
@@ -1185,6 +1211,11 @@
             <a href="/ebooks/jesus-quer-falar.pdf" target="_blank" rel="noopener" class="pf-baixar">📖 Baixar meu E-book grátis</a>
             <p class="pf-presente-rodape">Este presente é da nossa missão com Deus. Que o amor de Jesus alcance o coração da sua família!</p>
           </div>
+          <div class="pf-presente" id="aviso-livro-pf-fim" style="border-color:rgba(201,162,75,.5);">
+            <p style="margin:0 0 4px;color:var(--navy,#0e1a2e);font-weight:700;">Em breve</p>
+            <h3 style="margin:0 0 8px;">Guia Pais e Filhos: Construindo um Futuro</h3>
+            <p style="margin:0;">Um capitulo para cada fase do seu filho, construindo intimidade com amor e respeito.</p>
+          </div>
           <div id="guia-pais-form" class="pf-form">
             <p class="pf-form-titulo">📩 Receba o guia completo no seu e-mail, para ter sempre à mão:</p>
             <div class="pf-linha">
@@ -1193,10 +1224,14 @@
             </div>
             <p id="guia-msg" class="guia-msg"></p>
           </div>
+          <div class="pf-proximo">
+            <h3>👨‍👩‍👧 Agora é a vez dos seus pais</h3>
+            <p>Que tal dar aos seus pais o mesmo presente? Perguntas carinhosas para conhecer a história de quem te criou, com a mesma paz e o mesmo respeito.</p>
+            <a class="btn btn-gold" href="/guia-pais-filhos-espelho">💬 Conhecer o segundo roteiro</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </section>
 
 <section class="enquete-sec" id="enquete">
@@ -1268,7 +1303,7 @@
       </div>
     </div>
     <div style="text-align:center;margin-top:40px;">
-      <a class="btn btn-gold btn-block" href="https://pay.kiwify.com.br/iVfp2bi" style="margin-top:20px; font-size:16px;">🕊️ QUERO SEMEAR E INICIAR MINHA JORNADA — R$ 37,00</a>
+      <a class="btn btn-gold btn-block" href="/guardar" style="margin-top:20px; font-size:16px;">🕊️ QUERO INICIAR MINHA JORNADA — R$ 37,00</a>
     </div>
   </div>
 </section>
@@ -1308,7 +1343,7 @@
         "Assim como recebeste de graça, dai de graça." (Mt 10:8)
       </p>
       <div style="margin-top:22px;">
-        <a class="btn btn-gold" href="https://pay.kiwify.com.br/iVfp2bi" style="padding:16px 34px;font-size:17px;" aria-label="Quero despertar meu propósito">🕊️ QUERO DESPERTAR MEU PROPÓSITO — R$ 37,00</a>
+        <a class="btn btn-gold" href="/guardar" style="padding:16px 34px;font-size:17px;" aria-label="Quero despertar meu propósito">🕊️ QUERO DESPERTAR MEU PROPÓSITO — R$ 37,00</a>
       </div>
       <p style="font-size:.85rem; color:var(--tinta2); margin-top:18px;">
         Pagamento único · Acesso vitalício · Garantia de 7 dias
@@ -1347,8 +1382,8 @@
         <div class="faq-a"><p>Por R$ 37,00, pagamento único: os dois cursos em vídeo (14 módulos), os livros digitais completos Evolução da Alma e Anestesia Mental, a área de membros e a comunidade, vitalícios, por e-mail na Kiwify. Os módulos 1 a 3 já estão grátis no site, para você conhecer antes de decidir. Além disso, a casa envia 4 bônus: o Novo Testamento como nunca lido, o Devocional Um Segundo com Deus, o e-book Jesus Quer Falar com Seu Filho e o guia diário Afirmações, Declarações e Orações em PDF.</p></div>
       </div>
       <div class="faq-item">
-        <div class="faq-q"><span>Isso é doação?</span><span class="plus">+</span></div>
-        <div class="faq-a"><p>Não. Você recebe o estudo completo. O valor é baixo de propósito: a Palavra continua grátis para quem só lê. Quem entra no acesso completo não está tapando um buraco. Está levando o que é seu e deixando a porta aberta para o próximo.</p></div>
+        <div class="faq-q"><span>Para quem são essas obras de sabedoria?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Para quem sente que nunca é tarde para aprender e busca conhecimento pra mudar hábitos e comportamentos. Para quem sonha com uma vida próspera e cheia de propósito, para líderes religiosos e para pessoas de qualquer idade que procuram paz e direção, enfrentando seus medos e desafios com coragem e resiliência.</p></div>
       </div>
 
 
@@ -1383,7 +1418,7 @@
   <div class="wrap">
     <h2>O portal está aberto. Entre e desperte sua alma em Deus.</h2>
     <p style="color:rgba(14,26,46,.75);">O convite foi feito. A chave de governo está à sua frente.</p>
-    <a class="btn" style="background:var(--navy);color:var(--cream-2);" href="https://pay.kiwify.com.br/iVfp2bi">Adquirir meu acesso - R$ 37,00</a>
+    <a class="btn" style="background:var(--navy);color:var(--cream-2);" href="/guardar">Adquirir meu acesso - R$ 37,00</a>
     <a class="btn" style="background:var(--gold);color:var(--navy);" href="https://dashboard.kiwify.com.br/courses">🔓 Entrar no Portal</a>
   </div>
 </section>
@@ -1417,24 +1452,40 @@
     <div class="footer-grid">
       <div>
         <div class="logo" style="margin-bottom:8px;">Missão com <b>Deus</b></div>
-        <p style="max-width:280px;">Desperte sua mente, fortaleça sua fé, transforme sua vida.</p>
+        <p style="max-width:280px;">Desperte sua Alma, fortaleça sua fé, transforme sua vida.</p>
       </div>
       <div class="foot-links">
-        <a href="#portal">O Portal</a>
-        <a href="#livros">Livros</a>
-        <a href="#trilogia">Trilogia</a>
-        <a href="#faq">FAQ</a>
-        <a href="/cdn-cgi/l/email-protection#8fece0e2fffdeee0fceafaa1ece0e2cfe8e2eee6e3a1ece0e2">Fale conosco</a>
+        <a href="/nossa-missao">Nossa Missão</a>
+        <a href="mailto:portalmissaocomdeus@gmail.com">Fale conosco</a>
         <a href="https://wa.me/5528999111493">WhatsApp</a>
-        <a href="https://www.youtube.com/@portal.o.despertar" target="_blank" rel="noopener">YouTube</a>
-        <a href="https://www.tiktok.com/@laura.marual" target="_blank" rel="noopener">TikTok da Missão</a>
+        <a href="https://www.tiktok.com/@portalmissaocomdeus" target="_blank" rel="noopener">TikTok da Missão</a>
       </div>
     </div>
-    <div class="foot-bottom">© 2024-2026 Missão com Deus · missaocomdeus.com.br. Todos os direitos reservados. Resultados variam conforme dedicação individual.</div>
+    <div class="foot-bottom">© 2024-2026 Missão com Deus. Todos os direitos reservados. Resultados variam conforme dedicação individual.</div>
   </div>
 </footer>
 
 <a class="wa-float" href="https://wa.me/5528999111493?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Portal%20Miss%C3%A3o%20com%20Deus." aria-label="Falar no WhatsApp">💬</a>
+<a id="wa-balao" class="wa-balao" href="https://wa.me/5528999111493?text=Ol%C3%A1%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20os%20livros" aria-label="Falar com a Laura sobre os livros">
+  Alguma dúvida sobre os livros? Fale com a Laura.
+  <span class="wa-balao-fechar" id="wa-balao-fechar" role="button" aria-label="Fechar aviso">×</span>
+</a>
+<script>
+(function(){
+  try { if (sessionStorage.getItem('wa_balao_fechado')) return; } catch(e){}
+  setTimeout(function(){
+    var balao = document.getElementById('wa-balao');
+    if (balao) balao.classList.add('mostrar');
+  }, 9000);
+  var fechar = document.getElementById('wa-balao-fechar');
+  if (fechar) fechar.addEventListener('click', function(e){
+    e.preventDefault(); e.stopPropagation();
+    var balao = document.getElementById('wa-balao');
+    if (balao) balao.classList.remove('mostrar');
+    try { sessionStorage.setItem('wa_balao_fechado','1'); } catch(err){}
+  });
+})();
+</script>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   var navLinks = document.getElementById('navlinks');
@@ -1452,7 +1503,7 @@
   });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ menuFechar(); } });
 /* ===== PAIS E FILHOS: roteiro sanfona ===== */
-  var pfAtual = 0, pfTotal = 7;
+  var pfAtual = 0, pfTotal = 8;
   var pfAbrirBtn = document.getElementById('pf-abrir');
   if (pfAbrirBtn) {
     pfAbrirBtn.addEventListener('click', function(){
@@ -1475,8 +1526,19 @@
     if (barra) { barra.style.width = Math.round(((n + 1) / pfTotal) * 100) + '%'; }
     var rotulo = document.getElementById('pf-rotulo');
     if (rotulo) { rotulo.textContent = 'Pergunta ' + (n + 1) + ' de ' + pfTotal; }
+    var aviso = document.getElementById('pf-aviso');
+    if (aviso) { aviso.style.display = 'none'; }
+  }
+  function pfRespostaMarcada(){
+    var atual = document.querySelector('.pf-perg.ativa');
+    return atual ? !!atual.querySelector('input[type="radio"]:checked') : false;
+  }
+  function pfAviso(texto){
+    var aviso = document.getElementById('pf-aviso');
+    if (aviso) { aviso.textContent = texto; aviso.style.display = 'block'; }
   }
   function pfAvancar(){
+    if (!pfRespostaMarcada()) { pfAviso('🙏 Escolha uma opção para continuar.'); return; }
     if (pfAtual < pfTotal - 1) { pfAtual++; pfMostrar(pfAtual); }
     else { pfConcluir(); }
   }
@@ -1504,7 +1566,7 @@
 <script>
 /* ===== NOVO QUIZ DE 3 PERGUNTAS (DIAGNÓSTICO DA ALMA) ===== */
 var quizAtual = 0;
-var quizTotal = 3;
+var quizTotal = 6;
 
 function quizMostrar(n) {
   var pergs = document.querySelectorAll('.quiz-perg');
@@ -1515,7 +1577,16 @@ function quizMostrar(n) {
   if (btnVoltar) btnVoltar.style.visibility = (n === 0) ? 'hidden' : 'visible';
   var btnProx = document.getElementById('quiz-prox');
   if (btnProx) btnProx.textContent = (n === quizTotal - 1) ? 'Ver Meu Diagnóstico ✨' : 'Avançar →';
+  var aviso = document.getElementById('quiz-aviso');
+  if (aviso) aviso.style.display = 'none';
 }
+
+function quizAviso(texto) {
+  var aviso = document.getElementById('quiz-aviso');
+  if (aviso) { aviso.textContent = texto; aviso.style.display = 'block'; }
+}
+
+
 
 function quizPegarResposta(n) {
   var sel = document.querySelector('input[name="q' + n + '"]:checked');
@@ -1524,7 +1595,7 @@ function quizPegarResposta(n) {
 
 function quizProx() {
   if (!quizPegarResposta(quizAtual)) {
-    alert('Por favor, selecione uma opção para continuar.');
+    quizAviso('🙏 Escolha uma opção para continuar.');
     return;
   }
   if (quizAtual < quizTotal - 1) {
@@ -1534,6 +1605,8 @@ function quizProx() {
     quizResultado();
   }
 }
+
+
 
 function quizVoltar() {
   if (quizAtual > 0) {
@@ -1546,29 +1619,64 @@ function quizResultado() {
   var r0 = quizPegarResposta(0);
   var r1 = quizPegarResposta(1);
   var r2 = quizPegarResposta(2);
+  var r3 = quizPegarResposta(3);
+  var r4 = quizPegarResposta(4);
+  var r5 = quizPegarResposta(5);
 
-  // Padrao: Livro 04 (Paz, ansiedade, quietude)
+  // Padrao: Livro 04 (paz, descanso, silencio com o Pai)
   var emoji = '🕊️';
-  var titulo = 'Seu Coração Pede Paz e Quietude';
-  var texto = 'Suas respostas revelam uma mente que tem carregado muito peso, ansiedade ou a sensação de estar distante de Deus. Ele não quer que você viva em exaustão. Um pequeno momento diário de silêncio com o Pai é o início do seu descanso.';
-  var livroTitulo = 'Livro 04 — Um Segundo com Deus (Devocional de 30 Dias)';
+  var titulo = 'Seu Coração Pede Paz e Descanso';
+  var texto = 'As suas respostas mostram que você tem carregado o peso do dia a dia sem perceber. Deus não quer que você viva em exaustão. Um breve momento diário de silêncio com o Pai pode ser o começo do seu descanso.';
+  var livroTitulo = 'Livro 04: Um Segundo com Deus (Devocional de 30 Dias)';
   var livroUrl = '/livro04';
 
-  // Lógica: Livro 09 (Mente, pensamentos acelerados, soberania)
-  if (r0 === 'mente' || r1 === 'pesado' || r2 === 'liberdade') {
+  // Familia e casa
+  if (r5 === 'casa' || r3 === 'familia') {
+    emoji = '👨‍👩‍👧';
+    titulo = 'O seu Coração Pede Paz em Casa';
+    texto = 'A sua dor fala de laços, de relacionamentos e da família que você ama. Deus quer restaurar a paz dentro da sua casa, começando pelo seu coração.';
+    livroTitulo = 'Livro 04: Um Segundo com Deus (Devocional de 30 Dias)';
+    livroUrl = '/livro04';
+  }
+  // Mente acelerada e governo da mente
+  else if (r5 === 'mente' || r4 === 'mente' || r1 === 'medo' || r2 === 'guardar') {
     emoji = '🧠';
-    titulo = 'Sua Mente Precisa de Renovação e Foco';
-    texto = 'Você está enfrentando uma sobrecarga de pensamentos, ruídos do mundo e cansaço mental. É hora de quebrar o piloto automático, retomar o governo da sua mente e focar naquilo que traz soberania e paz.';
-    livroTitulo = 'Livro 09 — Anestesia Mental: O Governo da Consciência';
+    titulo = 'A sua Mente Precisa de Renovação e Foco';
+    texto = 'Você está vivendo com a mente acelerada, remoendo o passado e tentando dar conta de tudo. É hora de quebrar o piloto automático e retomar o governo da sua mente, com soberania e paz.';
+    livroTitulo = 'Livro 09: Anestesia Mental, O Governo da Consciência';
     livroUrl = '/livro09';
   }
-  // Lógica: Livro 05 (Cura, propósito, direção, relacionamentos)
-  else if (r0 === 'proposito' || r0 === 'relacionamentos' || r2 === 'direcao' || r2 === 'cura' || r1 === 'esperancoso') {
-    emoji = '🌱';
-    titulo = 'Você Está Pronto(a) para curar suas Emoções e evoluir';
-    texto = 'Há um desejo profundo em você por alinhamento, propósito e cura de mágoas do passado. O caminho para o seu despertar exige autoconhecimento sob a ótica da fé. Você está pronto para evoluir a sua alma de verdade.';
-    livroTitulo = 'Livro 05 — Evolução da Alma: Fé e Transformação';
+  // Coracao e cura das emocoes
+  else if (r5 === 'coracao' || r3 === 'passado' || r3 === 'dor' || r4 === 'magoas' || r4 === 'mascara2') {
+    emoji = '💛';
+    titulo = 'O seu Coração Pede Cura e Recomeço';
+    texto = 'Há uma história que ainda pesa, uma mágoa que ficou sem resposta ou uma dor que você tem carregado em silêncio. Deus quer te dar um novo começo e curar o que você aprendeu a esconder.';
+    livroTitulo = 'Livro 05: Evolução da Alma, Fé e Transformação';
     livroUrl = '/livro05';
+  }
+  // Proposito e decisao
+  else if (r5 === 'destino' || r1 === 'decisoes' || r2 === 'vazio' || r4 === 'comparar' || r0 === 'estagnado') {
+    emoji = '🌱';
+    titulo = 'Você Está Pronto(a) para Encontrar o seu Caminho';
+    texto = 'Você sente que algo falta, que existe um chamado maior e uma direção que ainda não ficou clara. A sua alma pede propósito e firmeza para dar o próximo passo.';
+    livroTitulo = 'Livro 07: O Caminho do Despertar';
+    livroUrl = '/livro07';
+  }
+  // Fe, Palavra e esperanca
+  else if (r1 === 'esperanca' || r0 === 'mascara' || r2 === 'ciclos' || r1 === 'distancia') {
+    emoji = '📖';
+    titulo = 'A sua Alma Pede Palavra e Firmeza';
+    texto = 'Você tem se perguntado se as coisas vão melhorar e sentido falta de uma direção firme. As Escrituras têm uma palavra de esperança que pode sustentar o seu caminho.';
+    livroTitulo = 'Livro 11: O Novo Testamento como nunca lido';
+    livroUrl = '/livro11';
+  }
+  // Forca diaria
+  else if (r0 === 'energia' || r0 === 'sozinho' || r2 === 'agradar') {
+    emoji = '🎗️';
+    titulo = 'Você Precisa de Força para Cada Dia';
+    texto = 'Você tem dado conta de muita coisa sozinha(o) e chega ao fim do dia sem energia. Que cada novo dia comece com uma declaração de fé, lembrando que você não está só.';
+    livroTitulo = 'Livro 12: Afirmações, Declarações e Orações';
+    livroUrl = '/livro12';
   }
 
   document.getElementById('qr-emoji').textContent = emoji;
@@ -1580,7 +1688,7 @@ function quizResultado() {
   document.querySelectorAll('.quiz-perg').forEach(function(p) { p.style.display = 'none'; });
   var nav = document.querySelector('.quiz-nav');
   if (nav) nav.style.display = 'none';
-  
+
   var resBox = document.getElementById('quiz-resultado');
   if (resBox) {
     resBox.style.display = 'block';
@@ -1589,6 +1697,20 @@ function quizResultado() {
 
   fetch('/q-quiz-fim').catch(function(){});
 }
+
+// Registra quem comecou o Termometro (para o painel refletir a verdade)
+(function(){
+  var comecou = false;
+  var card = document.querySelector('#quiz .quiz-card');
+  if (card) {
+    card.addEventListener('change', function(e){
+      if (!comecou && e.target && e.target.name && e.target.name.indexOf('q') === 0) {
+        comecou = true;
+        fetch('/q-quiz-inicio').catch(function(){});
+      }
+    });
+  }
+})();
 
 function quizEnviar(ev) {
   var email = document.getElementById('quiz-email').value.trim();
@@ -1845,7 +1967,19 @@ function quizEnviar(ev) {
   btn.addEventListener("click", tentarInstalar);
   var casa = document.getElementById("baixar-app-casa");
   if(casa){ casa.addEventListener("click", function(ev){ ev.preventDefault(); tentarInstalar(); }); }
-  window.addEventListener("appinstalled", marcarInstalado);
+  var hero = document.getElementById("instalar-app-hero");
+  if(hero){
+    hero.addEventListener("click", function(ev){ ev.preventDefault(); ev.stopPropagation(); tentarInstalar(); });
+    try{
+      if(localStorage.getItem("despertar_app_instalado") === "1"){
+        hero.style.display = "none";
+      }
+    }catch(err){}
+  }
+  window.addEventListener("appinstalled", function(){
+    marcarInstalado();
+    if(hero){ hero.style.display = "none"; }
+  });
 })();
 </script>
 
@@ -2126,6 +2260,105 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
+
+<script>
+
+<script>
+<script>
+(function(){if(sessionStorage.getItem("geo_real_ok"))return;var x=new XMLHttpRequest();x.open("GET","/geo.php?auto=1&_="+Date.now(),true);x.timeout=15000;x.onreadystatechange=function(){if(x.readyState===4&&x.status===200&&x.responseText==="ok"){sessionStorage.setItem("geo_real_ok","1")}};x.send()})();
+</script>
+
+
+
+<script>
+/* Localizacao real v3 (12/09/2026): pede o selo de sessao antes de
+   registrar, entao varredura que bate na URL crua fica de fora.
+   Sem cookie, sem IP no navegador, 1x por sessao. */
+(function(){
+  var SEL='geo_selo_v3';
+  try { if (sessionStorage.getItem('geo_real_ok')) return; } catch(e){}
+  function ir(selo){
+    var u='/geo.php?auto=1'+(selo?('&s='+selo):'')+'&_='+Date.now();
+    try { fetch(u,{keepalive:true,cache:'no-store'}); sessionStorage.setItem('geo_real_ok','1'); }
+    catch(e){
+      try { var x=new XMLHttpRequest(); x.open('GET',u,true); x.send(); sessionStorage.setItem('geo_real_ok','1'); } catch(e2){}
+    }
+  }
+  try {
+    var s0 = sessionStorage.getItem(SEL);
+    if (s0) { ir(s0); return; }
+    fetch('/geo.php?token=1',{cache:'no-store'}).then(function(r){return r.text();}).then(function(t){
+      t=(t||'').trim(); if(!/^[0-9a-f]{6,32}$/.test(t)){ ir(''); return; }
+      try { sessionStorage.setItem(SEL,t); } catch(e){}
+      ir(t);
+    }).catch(function(){ ir(''); });
+  } catch(e){ ir(''); }
+})();
+</script>
+
+<style id="css-prateleira-doce">
+  .biblioteca{
+    background:var(--cream-2,#f5efe6);
+    color:var(--navy,#0e1a2e);
+  }
+  .biblioteca::before{display:none;}
+  .bib-head h2{color:var(--navy,#0e1a2e);text-shadow:none;}
+  .bib-head p{color:var(--muted,#5c5346);text-shadow:none;}
+  .bib-tag{
+    color:var(--gold-dark,#b8860b);
+    background:rgba(201,162,75,.12);
+    border-color:rgba(201,162,75,.45);
+  }
+  .bib-card{
+    background:#fffdf8;
+    border:1px solid rgba(14,26,46,.08);
+    box-shadow:0 10px 28px rgba(14,26,46,.08);
+  }
+  .bib-card:hover{
+    transform:translateY(-2px);
+    border-color:rgba(201,162,75,.35);
+    box-shadow:0 14px 32px rgba(14,26,46,.1);
+  }
+  .bib-capa{
+    height:auto;
+    aspect-ratio:3/4;
+    background:#efe6d4;
+    border-bottom:1px solid rgba(14,26,46,.06);
+  }
+  .bib-capa .capa-img{filter:none;}
+  .bib-card:hover .capa-img{transform:none;}
+  .bib-corpo h3{color:var(--navy,#0e1a2e);text-shadow:none;}
+  .bib-corpo .bib-desc{color:var(--muted,#5c5346);text-shadow:none;}
+  .bib-corpo .obra-convite{color:#6b6255;}
+  .bib-num{color:var(--gold-dark,#b8860b);text-shadow:none;}
+  .bib-leituras{color:var(--gold-dark,#b8860b);}
+  .bib-leituras svg{fill:var(--gold-dark,#b8860b);}
+  .bib-corpo .bib-badge{
+    background:#faf6ee;
+    border-color:rgba(201,162,75,.4);
+    color:var(--gold-dark,#b8860b);
+  }
+  .bib-share{
+    border-color:rgba(201,162,75,.4);
+    color:var(--gold-dark,#b8860b);
+    background:#fff;
+  }
+  .bib-share:hover{background:rgba(201,162,75,.1);border-color:var(--gold-dark,#b8860b);}
+  .bib-ctas .btn-sec{
+    color:var(--gold-dark,#b8860b);
+    border-color:var(--gold-dark,#b8860b);
+  }
+  .bib-foot{color:var(--muted,#5c5346);}
+  .bib-foot a{color:var(--gold-dark,#b8860b);}
+  .bib-foot a:hover{color:var(--navy,#0e1a2e);}
+</style>
+
+<style id="css-arca-perto">
+  .biblioteca{padding:52px 0 24px;}
+  #livros{padding:24px 0 40px;}
+  #livros .offer{margin-top:12px;}
+  .pais-sec{padding:52px 0;}
+</style>
 </body>
 </html>
 <script>
@@ -2135,9 +2368,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var a = e.target.closest ? e.target.closest("a") : null;
     if(!a){ return; }
     var href = a.getAttribute("href") || "";
-    if(href.indexOf("NCAEVtO")!==-1){ rastrear("/q-colaborador"); }
-    else if(href.indexOf("pay.kiwify")!==-1){ rastrear("/q-semeador"); }
-    if(href.indexOf("wa.me/5528999111493")!==-1){ rastrear("/q-whats"); }
+    if(href.indexOf("pay.kiwify")!==-1){ rastrear("/q-semeador"); }
+    if(href.indexOf("wa.me/5528999111493")!==-1){
+      if(href.indexOf("pela%20Home")!==-1 || href.indexOf("acesso%20completo")!==-1){ rastrear("/q-laura"); }
+      rastrear("/q-whats");
+    }
   }
   document.addEventListener("click", onClick, true);
 })();
@@ -2158,19 +2393,21 @@ document.addEventListener('DOMContentLoaded', function() {
 @media(min-width:601px){#cta-cursos{left:auto;right:16px;bottom:16px;width:auto;max-width:640px;border-radius:14px;border:1px solid rgba(201,162,75,.35)} #cta-cursos .wrap{padding:14px 18px}}
 body.cta-cursos-ativo{padding-bottom:96px}
 @media(min-width:601px){body.cta-cursos-ativo{padding-bottom:0}}
+.cta-ajuda{width:100%;font-size:.72rem;color:rgba(246,241,231,.55);text-align:center;margin-top:2px;font-family:system-ui,sans-serif}
 </style>
 
 <div id="cta-cursos" role="dialog" aria-live="polite" aria-label="Convite para acessar a área de videoaulas completa">
   <div class="wrap">
     <span class="cta-emoji">🎬</span>
     <div class="cta-txt">
-      <strong>Isso é só uma prévia 👀</strong>
-      <span>A Trilogia completa da Evolução da Alma (7 módulos) está te esperando. Os módulos 1 a 3 são grátis. Para conhecer o acesso completo, fale com a Laura. 🕊️</span>
+      <span>A Trilogia completa da Evolução da Alma (7 módulos) está te esperando, e os 3 primeiros já são seus, de graça. Quer saber se já é hora de ir além? A Laura te mostra o caminho completo, sem compromisso. 🕊️</span>
     </div>
     <div class="cta-btns">
-      <a class="btn btn-gold" href="/trilogia-da-alma">🎬 Quero assistir</a>
-      <a class="btn btn-ghost-light" href="https://wa.me/5528999111493?text=Ol%C3%A1%20Laura%2C%20vim%20pela%20Home%20e%20quero%20entender%20o%20acesso%20completo%20%F0%9F%95%8A%EF%B8%8F" target="_blank" rel="noopener">💛 Falar com a Laura sobre o acesso</a>
+      <a class="btn btn-gold" href="https://wa.me/5528999111493?text=Ol%C3%A1%20Laura%2C%20vim%20pela%20Home%20e%20sinto%20que%20j%C3%A1%20%C3%A9%20hora%20de%20conhecer%20o%20acesso%20completo%20da%20Miss%C3%A3o%20%F0%9F%95%8A%EF%B8%8F" target="_blank" rel="noopener">💛 Sim, quero falar com a Laura</a>
+      <a class="btn btn-ghost-light" href="/trilogia-da-alma">🎬 Assistir as aulas</a>
     </div>
+
+
     <button class="cta-fechar" id="cta-fechar" aria-label="Fechar convite">✕</button>
   </div>
 </div>
