@@ -29,6 +29,10 @@ import re
 import json
 import glob
 import html
+import time
+import unicodedata
+import urllib.request
+import urllib.error
 from collections import Counter, OrderedDict, defaultdict
 from datetime import datetime, timedelta
 from urllib.parse import parse_qs
@@ -40,6 +44,20 @@ EXTRA_LOGS = os.environ.get('STATS_LOG_EXTRA', '').strip()
 OUT = os.environ.get('STATS_OUT', '/www/wwwroot/missaocomdeus.com.br/stats.html')
 LEITURAS = os.environ.get('STATS_LEITURAS', '/www/wwwroot/missaocomdeus.com.br/leituras.json')
 SITE = '/www/wwwroot/missaocomdeus.com.br'
+
+# --- GEO: Estados e Cidades (futuras campanhas patrocinadas) ------------------
+# Fonte publica gratis da ip-api.com (batch ate ~100 IPs por chamada).
+# O cache evita consultar o mesmo IP de novo a cada geracao.
+GEO_CACHE = os.environ.get('GEO_CACHE', '/home/deploy/geo_cache.json')
+GEO_VISITAS = os.environ.get('GEO_VISITAS', '/www/wwwroot/missaocomdeus.com.br/geo_visitas.json')
+GEO_VISITAS_ALT1 = os.environ.get('GEO_VISITAS_ALT1', '/home/deploy/geo_visitas.json')
+GEO_VISITAS_ALT2 = os.environ.get('GEO_VISITAS_ALT2', '')
+GEO_API = os.environ.get(
+    'GEO_API',
+    'http://ip-api.com/batch?fields=status,countryCode,regionName,city&lang=pt-BR')
+GEO_MAX_IP = int(os.environ.get('GEO_MAX_IP', '600'))
+GEO_MAX_POR_LOTE = 100
+
 
 # Log do site antigo (so 301). Se nao existir, o painel avisa e segue sem ele.
 LOG_ANTIGO = os.environ.get(
@@ -66,7 +84,7 @@ PAGINAS = OrderedDict([
     ('/livro05', 'Livro 05: Evolução da Alma'),
     ('/livro06', 'Livro 06: Jesus Quer Falar com Seu Filho'),
     ('/livro07', 'Livro 07: O Caminho do Despertar'),
-    ('/livro08', 'Livro 08: O Arquiteto da Realidade'),
+    ('/livro08', 'Livro 08: Pais e Filhos: Construindo um Futuro'),
     ('/livro09', 'Livro 09: Anestesia Mental'),
     ('/livro10', 'Livro 10: O Despertar do Observador'),
     ('/livro11', 'Livro 11: O Novo Testamento como nunca lido'),
@@ -74,7 +92,7 @@ PAGINAS = OrderedDict([
     ('/trilogia-da-alma', 'Trilogia da Alma, área de alunos'),
     ('/anestesia-mental', 'Anestesia Mental, área de alunos'),
     ('/obrigado', 'Página de obrigado (Kiwify)'),
-    ('/palavra', 'Caderno Palavra de hoje (casa)'),
+    ('/palavra', 'Palavra de hoje'),
     ('/q-quiz-inicio', 'Quiz Home: iniciaram'),
     ('/q-quiz-fim', 'Quiz Home: concluíram'),
     ('/q-trilogia-m01', 'Trilogia, Módulo 01 (plays)'),
@@ -91,16 +109,21 @@ PAGINAS = OrderedDict([
     ('/q-anestesia-m05', 'Anestesia, Módulo 05 (plays)'),
     ('/q-anestesia-m06', 'Anestesia, Módulo 06 (plays)'),
     ('/q-anestesia-m07', 'Anestesia, Módulo 07 (plays)'),
-    ('/guia-pais-filhos', 'Guia Pais e Filhos (Quiz)'),
+    ('/guia-pais-filhos', 'Guia Pais e Filhos \u2014 Quiz'),
 ])
 
 CONVERSAO = OrderedDict([
     ('/q-semeador', ('🎯', 'Acesso completo R$ 37')),
-    ('/q-codigo', ('💬', 'Solicitar Código (WhatsApp)')),
+    ('/q-codigo', ('💬', 'Fale com a Laura (área de alunos)')),
+    ('/q-laura', ('🕊️', 'Falar com a Laura (banner da Home)')),
     ('/q-whats', ('📱', 'Cliques no WhatsApp')),
     ('/q-palavra-play', ('🎧', 'Palavra de hoje (play)')),
     ('/q-palavra-share', ('📤', 'Palavra compartilhada')),
+    ('/q-livro-share', ('📖', 'Livros compartilhados')),
 ])
+
+# Acoes que sairam do ar. Nao contam mais no painel.
+CONVERSAO_REMOVIDA = ('/q-colaborador', '/q-aula-gratis')
 
 # Biblioteca depois da limpeza de 02/09/2026 (so o que e autoria da casa).
 # Os livros sairam por risco de direito autoral (textos de outros autores).
@@ -115,14 +138,17 @@ MODULOS_LIVRES = (
 )
 
 ALIAS_CONV = {
-    '/q-colaborador19': '/q-colaborador',
-    '/q-colaborador19-anestesia': '/q-colaborador',
     '/q-semeador-anestesia': '/q-semeador',
     '/trilogia': '/trilogia-da-alma',
     '/anestesia': '/anestesia-mental',
 }
 
 PDF_MAP = {
+    '/ebooks/livro05-evalma.pdf': '/dl:evolucao',
+    '/ebooks/livro07-o-c-d.pdf': '/dl:caminho',
+    '/ebooks/livro09-amental.pdf': '/dl:anestesia',
+    '/ebooks/Um-Segundo-com-Deus-Vol-01.pdf': '/dl:devocional-quiz',
+
     '/ebooks/evolucao-da-alma.pdf': '/dl:evolucao',
     '/ebooks/evolucao-da-alma-evalma.pdf': '/dl:evolucao',
     '/ebooks/anestesia-mental.pdf': '/dl:anestesia',
@@ -218,7 +244,7 @@ RE_EXT = re.compile(
 RE_BOT = re.compile(
     r'bot|crawl|spider|slurp|scan|monitor|probe|python|curl|wget|httpclient|'
     r'go-http|libwww|java/|okhttp|headless|lighthouse|pingdom|uptime|'
-    r'facebookexternalhit|whatsapp|telegrambot|twitterbot|linkedinbot|'
+    r'facebookexternalhit|telegrambot|twitterbot|linkedinbot|'
     r'semrush|ahrefs|mj12|dotbot|petalbot|bytespider|zgrab|masscan|nuclei', re.I)
 RE_HOST = re.compile(r'^[a-zA-Z][a-zA-Z0-9+.-]*://([^/]+)')
 
@@ -316,9 +342,8 @@ def lista_logs():
 
 
 def garantir_pixels():
-    for nome in ('q-semeador', 'q-colaborador', 'q-colaborador19',
-                 'q-colaborador19-anestesia', 'q-codigo', 'q-whats', 'q-aula-gratis',
-                 'q-palavra-play', 'q-palavra-share'):
+    for nome in ('q-semeador', 'q-codigo', 'q-laura', 'q-whats',
+                 'q-palavra-play', 'q-palavra-share', 'q-livro-share', 'q-guardar', 'q-guardar-kiwify'):
         p = os.path.join(SITE, nome)
         if not os.path.isfile(p):
             try:
@@ -422,6 +447,10 @@ def analisar():
                     path = '/'
             path = ALIAS_CONV.get(path, path)
             path_l = path.lower()
+
+            # Acoes que sairam do ar: ignorar por completo (cache, pagina velha).
+            if path in CONVERSAO_REMOVIDA or path_l in CONVERSAO_REMOVIDA:
+                continue
 
             if path.startswith('/.well-known'):
                 continue
@@ -765,6 +794,164 @@ def analisar_antigo(hoje_str):
     }
 
 
+
+
+# ============================================================ GEO (UF e cidade)
+def geo_carregar():
+    try:
+        with open(GEO_CACHE, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def geo_guardar(cache):
+    try:
+        os.makedirs(os.path.dirname(GEO_CACHE), exist_ok=True)
+        with open(GEO_CACHE, 'w', encoding='utf-8') as f:
+            json.dump(cache, f, ensure_ascii=False, indent=0)
+    except Exception as e:
+        print('  AVISO: nao consegui gravar geo_cache:', e)
+
+
+def geo_ips_de(res):
+    """Junta todos os IPs humanos do periodo (res[16] = {dia: set(ip)})."""
+    ips = set()
+    for v in res[16].values():
+        if isinstance(v, set):
+            ips |= v
+    return ips
+
+
+def geo_consultar(ips):
+    """Consulta a API em lotes de 100 e devolve {ip: {uf, cidade, pais}}."""
+    ips = sorted(ips)
+    achados = {}
+    total = 0
+    for i in range(0, len(ips), GEO_MAX_POR_LOTE):
+        lote = ips[i:i + GEO_MAX_POR_LOTE]
+        if not lote:
+            break
+        body = json.dumps(lote).encode('utf-8')
+        req = urllib.request.Request(GEO_API, data=body,
+                                     headers={'Content-Type': 'application/json'})
+        try:
+            with urllib.request.urlopen(req, timeout=20) as r:
+                dados = json.loads(r.read().decode('utf-8'))
+        except Exception as e:
+            print('  AVISO geo: falha na chamada (%s). Fica para a proxima geracao.' % e)
+            break
+        if not isinstance(dados, list):
+            break
+        for ip, d in zip(lote, dados):
+            if not isinstance(d, dict):
+                continue
+            if d.get('status') != 'success':
+                continue
+            uf = (d.get('regionName') or '').strip()
+            cidade = (d.get('city') or '').strip()
+            pais = (d.get('countryCode') or '').strip()
+            if uf or cidade:
+                achados[ip] = {'uf': uf, 'cidade': cidade, 'pais': pais}
+                total += 1
+        if i + GEO_MAX_POR_LOTE < len(ips):
+            time.sleep(1.2)
+    return achados, total
+
+
+def _geo_norm(txt):
+    """Chave estavel (minuscula, sem acento) + nome como veio p/ exibir."""
+    txt = ' '.join(str(txt or '').split())
+    if not txt:
+        return '', ''
+    sem = unicodedata.normalize('NFKD', txt).encode('ascii', 'ignore').decode('ascii')
+    return sem.strip().lower(), txt
+def geo_processar(res):  # GEO-V4
+    """Localizacao REAL: geo.php -> geo_visitas.json (so UF/cidade, sem IP).
+    v4 (12/09/2026): so o Brasil entra nas tabelas de Estado e Cidade. De
+    fora do Brasil e mostrado so como numero, para nao sumir escondido.
+    """
+    visitas = {}
+    for _caminho in (GEO_VISITAS, GEO_VISITAS_ALT1, GEO_VISITAS_ALT2):
+        if not _caminho:
+            continue
+        try:
+            with open(_caminho, 'r', encoding='utf-8') as _f:
+                _dados = json.load(_f)
+        except Exception:
+            continue
+        if isinstance(_dados, dict) and _dados:
+            for _k, _v in _dados.items():
+                try:
+                    visitas[_k] = visitas.get(_k, 0) + int(_v)
+                except Exception:
+                    pass
+            if visitas:
+                break
+    uf_soma = Counter()
+    cid_soma = Counter()
+    uf_nome = defaultdict(Counter)
+    cid_nome = defaultdict(Counter)
+    validos = 0
+    fora = 0
+    lixo = 0
+    for chave, n in visitas.items():
+        partes = str(chave).split('|')
+        pais = partes[0].strip().upper() if len(partes) >= 1 else ''
+        estado = partes[1].strip() if len(partes) >= 2 else ''
+        mun = partes[2].strip() if len(partes) >= 3 else ''
+        try:
+            n = int(n)
+        except Exception:
+            n = 0
+        if n <= 0:
+            lixo += 1
+            continue
+        if pais and pais != 'BR':
+            fora += n
+            continue
+        if not estado and not mun:
+            lixo += 1
+            continue
+        validos += n
+        k, nome = _geo_norm(estado)
+        if k:
+            uf_soma[k] += n
+            uf_nome[k][nome] += n
+        k, nome = _geo_norm(mun)
+        if k:
+            cid_soma[k] += n
+            cid_nome[k][nome] += n
+    if validos:
+        msg = ('Localizacao real coletada pelo navegador: %d registro(s) '
+               'validos do Brasil.' % validos)
+        if fora:
+            msg += ' %d de fora do Brasil (nao entram na tabela).' % fora
+        if lixo:
+            msg += ' %d registro(s) zerados ou corrompidos ignorados.' % lixo
+    else:
+        msg = ('Localizacao real: ainda sem registros do Brasil. Ela comeca a ser '
+               'coletada ao abrir qualquer pagina no navegador (1 por sessao).')
+    uf = Counter()
+    for k, n in uf_soma.items():
+        uf[uf_nome[k].most_common(1)[0][0]] += n
+    cidade = Counter()
+    for k, n in cid_soma.items():
+        cidade[cid_nome[k].most_common(1)[0][0]] += n
+    return {}, uf, cidade, msg
+
+def geo_tabela(count, rotulo):
+    linhas = []
+    for i, (nome, n) in enumerate(count.most_common(20), 1):
+        medalha = {1: '🥇', 2: '🥈', 3: '🥉'}.get(i, '')
+        linhas.append(
+            '<tr><td class="num">%s%s</td><td>%s</td><td class="num">%d</td></tr>'
+            % (medalha, i, html.escape(nome), n))
+    if not linhas:
+        return '<tr><td colspan="3">%s ainda sem dados.</td></tr>' % rotulo
+    return '\n'.join(linhas)
+
+
 def gravar_leituras(contagens):
     livros = {}
     for p in LIVROS_NO_AR:
@@ -819,7 +1006,7 @@ def bloco_termometro_html(res, livros_total, livros_hoje, pdfs, pdfs_hoje,
 
     cards = []
     cards.append(_card_term(
-        f'{unicos_total}', '👥 Pessoas alcançadas',
+        f'{unicos_total}', '👥 Conexões no log (aprox.)',
         f'{unicos_hoje} hoje · IPs distintos', 'humano destaque'))
     cards.append(_card_term(
         f'{visitas}', '🚪 Visitas',
@@ -953,7 +1140,7 @@ def bloco_antigo_html(antigo):
     <tr><td>&nbsp;&nbsp;− IPs em modo varredura (muitos endereços diferentes, quase nenhum conhecido)</td><td class="num">{antigo['descart_scanner']}</td></tr>
     <tr style="background:rgba(201,162,75,.08)"><td><b>= requisições de gente</b></td><td class="num"><b>{antigo['requisicoes_gente']}</b></td></tr>
     <tr style="background:rgba(127,224,163,.10)"><td><b>= visitas</b> (sessões de {SESSAO_MINUTOS} min)</td><td class="num"><b>{antigo['visitas']}</b></td></tr>
-    <tr><td><b>= pessoas</b> (IPs distintos no período)</td><td class="num"><b>{antigo['pessoas']}</b></td></tr>
+    <tr><td><b>= conexões</b> (IPs distintos no log; robôs contam)</td><td class="num"><b>{antigo['pessoas']}</b></td></tr>
   </table>
 
   <h3 style="color:#e3c877;font-size:.95rem;margin:20px 0 8px;">Dessas visitas, onde a pessoa estava antes:</h3>
@@ -971,7 +1158,7 @@ def bloco_antigo_html(antigo):
 """
 
 
-def montar_html(res, antigo):
+def montar_html(res, antigo, geo=None):
     (contagens, total_geral, data_inicio, data_fim, por_dia,
      contagens_hoje, total_hoje, total_ontem, variacao, hoje_str, ontem,
      ontem_mesmo_horario, projecao,
@@ -979,7 +1166,13 @@ def montar_html(res, antigo):
      descartados_robos, descartados_erros, robos_por_dia, erros_por_dia,
      conv, conv_hoje, conv_por_dia, origem, ignorados) = res
 
+    geo = geo or {}
+    linhas_uf = geo_tabela(geo.get('uf', Counter()), 'Estados')
+    linhas_cidades = geo_tabela(geo.get('cidade', Counter()), 'Cidades')
+    geo_msg = geo.get('msg', 'Sem dados geograficos ainda.')
+
     seta = '📈' if variacao > 0 else ('📉' if variacao < 0 else '➖')
+
 
     # ---------------------------------------------------------- periodo
     periodo = 'sem registro'
@@ -1067,13 +1260,25 @@ def montar_html(res, antigo):
     aula_gratis = sum(contagens.get(p, 0) for p in MODULOS_LIVRES)
     aula_hoje = sum(contagens_hoje.get(p, 0) for p in MODULOS_LIVRES)
     brinde_nt = contagens.get('/dl:brinde-nt', 0)
+    n_pais = contagens.get('/guia-pais-filhos', 0)
+    n_pais_hoje = contagens_hoje.get('/guia-pais-filhos', 0)
     taxa = (sementes / unicos_total * 100) if unicos_total else 0
 
+    n_laura = conv.get('/q-laura', 0)
+    n_share_livro = conv.get('/q-livro-share', 0)
     cards_conv = []
     cards_conv.append(
         f'<div class="card conv"><div class="v">{n_sem}</div>'
         f'<div class="l">🎯 Acesso completo R$ 37</div>'
         f'<div class="h">{conv_hoje.get("/q-semeador", 0)} hoje</div></div>')
+    cards_conv.append(
+        f'<div class="card conv"><div class="v">{n_laura}</div>'
+        f'<div class="l">🕊️ Falar com a Laura (banner)</div>'
+        f'<div class="h">{conv_hoje.get("/q-laura", 0)} hoje</div></div>')
+    cards_conv.append(
+        f'<div class="card conv"><div class="v">{n_share_livro}</div>'
+        f'<div class="l">📖 Livros compartilhados</div>'
+        f'<div class="h">{conv_hoje.get("/q-livro-share", 0)} hoje</div></div>')
     cards_conv.append(
         f'<div class="card conv"><div class="v">{aula_gratis}</div>'
         f'<div class="l">🎬 Aulas grátis (módulos livres)</div>'
@@ -1088,15 +1293,23 @@ def montar_html(res, antigo):
         f'<div class="h">{palavra_hoje} hoje · {conv.get("/q-palavra-share", 0)} compart.</div></div>')
     cards_conv.append(
         f'<div class="card conv destaque"><div class="v">{taxa:.1f}%</div>'
-        f'<div class="l">📈 Sustento / pessoas</div>'
-        f'<div class="h">{unicos_total} pessoas</div></div>')
-
+        f'<div class="l">📈 Sustento / conexões</div>'
+        f'<div class="h">{unicos_total} conexões</div></div>')
+    cards_conv.append(
+        f'<div class="card conv"><div class="v">{n_pais}</div>'
+        f'<div class="l">👨‍👩‍👧 Resultado real do Quiz (acessos)</div>'
+        f'<div class="h">{n_pais_hoje} hoje</div></div>')
     linhas_conv = '\n'.join(
         f'<tr><td>{emoji} {html.escape(nome)}</td><td class="num">{conv.get(path, 0)}</td>'
         f'<td class="num" style="color:#7fe0a3">{conv_hoje.get(path, 0)}</td></tr>'
         for path, (emoji, nome) in CONVERSAO.items()
     ) or '<tr><td colspan="3">Sem cliques de conversão ainda</td></tr>'
 
+    linhas_conv = linhas_conv + (
+        f'<tr><td>👨‍👩‍👧 Resultado real do Quiz (acessos)</td>'
+        f'<td class="num">{contagens.get("/guia-pais-filhos", 0)}</td>'
+        f'<td class="num" style="color:#7fe0a3">{contagens_hoje.get("/guia-pais-filhos", 0)}</td></tr>'
+    )
     def _dl_n(k):
         if k.startswith('/q-'):
             return conv.get(k, 0), conv_hoje.get(k, 0)
@@ -1179,23 +1392,7 @@ def montar_html(res, antigo):
   <h2>O que olhar sempre</h2>
   <div class="cards">{cards_termo}</div>
 
-  <table>
-    <tr><th>Indicador</th><th>O que é</th><th>O que observar</th></tr>
-    <tr><td>👥 Pessoas alcançadas</td><td>IPs distintos que abriram a casa no período</td>
-        <td>É o tamanho da nossa roda. Deve crescer semana a semana. Aproximação: IP de celular é compartilhado e muda ao longo do dia.</td></tr>
-    <tr><td>🚪 Visitas</td><td>Cada vez que alguém chega. {SESSAO_MINUTOS} minutos parado = nova visita</td>
-        <td>Compare <b>hoje</b> com <b>ontem no mesmo horário</b>. Comparar dia cheio com dia pela metade engana.</td></tr>
-    <tr><td>📊 Páginas por visita</td><td>Quantas páginas a pessoa abre antes de ir embora</td>
-        <td>Entre 2 e 3 é comum na internet. <b>Acima de 3 é sinal de casa viva</b>: a pessoa está lendo, não só passando.</td></tr>
-    <tr><td>📖 Leituras</td><td>Páginas de livro abertas (só os 7 que ficaram)</td>
-        <td>É o coração da casa. Se cai enquanto as visitas sobem, a pessoa entra e não lê.</td></tr>
-    <tr><td>⬇️ PDFs baixados</td><td>Arquivos que saíram da casa</td>
-        <td>Semente que a pessoa leva consigo e pode repassar.</td></tr>
-    <tr><td>🎯 Sustento</td><td>Cliques no link do acesso completo R$ 37</td>
-        <td>O que mantém a missão de pé. Clique não é compra: a venda acontece na Kiwify.</td></tr>
-  </table>
-
-  <h2>Hoje e ontem</h2>
+    <h2>Hoje e ontem</h2>
   <div class="hoje">
     <div class="bloco"><div class="rot">Ontem completo</div><div class="val">{total_ontem}</div></div>
     <div class="bloco"><div class="rot">Hoje até agora</div><div class="val gold">{total_hoje}</div></div>
@@ -1203,10 +1400,66 @@ def montar_html(res, antigo):
     <div class="bloco"><div class="rot">Variação (justa)</div><div class="val gold">{seta} {variacao:+.1f}%</div></div>
     <div class="bloco"><div class="rot">Projeção do dia</div><div class="val gold">~{projecao}</div></div>
   </div>
-  <p class="nota" style="margin:0 0 6px;">Páginas vistas por gente. Pessoas únicas: <b>{unicos_hoje}</b> hoje · <b>{unicos_ontem}</b> ontem.</p>
+  <p class="nota" style="margin:0 0 6px;">Movimento medido no log. Conexões (IPs distintos): <b>{unicos_hoje}</b> hoje · <b>{unicos_ontem}</b> ontem. Inclui varredura que bate direto no IP da VPS; gente de verdade contada é a do card 📍 abaixo.</p>
+
+  <h2>🎯 Conversão (o que move a missão)</h2>
+  <div class="cards">{''.join(cards_conv)}</div>
+  <table>
+  <tr><th>Ação</th><th>Total</th><th>Hoje</th></tr>
+  {linhas_conv}
+  </table>
+  <p class="nota">Acesso completo R$ 37 = clique no link da Kiwify (a compra acontece lá fora).
+  "Falar com a Laura (banner)" = clique no convite da Home. "Área de alunos" = clique na
+  área de alunos. WhatsApp = rascunho aberto, ainda precisa a pessoa Enviar. Aulas grátis
+  = toques nos módulos livres 1 a 3. Página de obrigado ≠ download: bônus 1 é o arquivo
+  livro11-o-n-t.pdf. Bônus 4 é o guia livro12-a-d-o.pdf. Histórico R$ 19,90 saiu do ar
+  e não conta mais no sustento.</p>
 
   {bloco_origem}
 
+  
+
+  
+  <details>
+    <summary>📍 De onde veem nossos irmaos · <span style="color:#7fe0a3">Estados e Cidades</span></summary>
+    <div class="dbody">
+      <p class="nota">{geo_msg}</p>
+      <h3 style="color:#e3c877;font-size:.95rem;margin:4px 0 8px;">Estados (UF) · pessoas no periodo</h3>
+      <table>
+        <tr><th>#</th><th>UF / pais</th><th>Pessoas</th></tr>
+        {linhas_uf}
+      </table>
+      <h3 style="color:#e3c877;font-size:.95rem;margin:18px 0 8px;">Cidades · pessoas no periodo</h3>
+      <table>
+        <tr><th>#</th><th>Cidade</th><th>Pessoas</th></tr>
+        {linhas_cidades}
+      </table>
+      <p class="nota">Fonte: <b>IP real do visitante resolvido no servidor</b> (geo.php -> ipwho.is -> geo_visitas.json). Nao guarda IP e descarta data centers.</p>
+
+    </div>
+  </details>
+
+  <details>
+    <summary>📊 Indicador · O que é · O que observar</summary>
+
+    <div class="dbody">
+      <table>
+      <tr><th>Indicador</th><th>O que é</th><th>O que observar</th></tr>
+      <tr><td>👥 Conexões no log (aprox.)</td><td>IPs distintos que pediram a casa no período. Inclui robôs de varredura e não enxerga quem a Cloudflare serve do cache: NÃO é censo de gente.</td>
+      <td>É o tamanho da nossa roda. Deve crescer semana a semana. Aproximação: IP de celular é compartilhado e muda ao longo do dia.</td></tr>
+      <tr><td>🚪 Visitas</td><td>Cada vez que alguém chega. {SESSAO_MINUTOS} minutos parado = nova visita</td>
+      <td>Compare <b>hoje</b> com <b>ontem no mesmo horário</b>. Comparar dia cheio com dia pela metade engana.</td></tr>
+      <tr><td>📊 Páginas por visita</td><td>Quantas páginas a pessoa abre antes de ir embora</td>
+      <td>Entre 2 e 3 é comum na internet. <b>Acima de 3 é sinal de casa viva</b>: a pessoa está lendo, não só passando.</td></tr>
+      <tr><td>📖 Leituras</td><td>Páginas de livro abertas (só os 7 que ficaram)</td>
+      <td>É o coração da casa. Se cai enquanto as visitas sobem, a pessoa entra e não lê.</td></tr>
+      <tr><td>⬇️ PDFs baixados</td><td>Arquivos que saíram da casa</td>
+      <td>Semente que a pessoa leva consigo e pode repassar.</td></tr>
+      <tr><td>🎯 Sustento</td><td>Cliques no link do acesso completo R$ 37</td>
+      <td>O que mantém a missão de pé. Clique não é compra: a venda acontece na Kiwify.</td></tr>
+      </table>
+    </div>
+  </details>
   <h2>Detalhes <span class="selo-filtro">abre o que quiser</span></h2>
 
   <details>
@@ -1242,7 +1495,7 @@ def montar_html(res, antigo):
         <tr><th>#</th><th>Página</th><th>Acessos</th><th>%</th></tr>
         {''.join(linhas)}
       </table>
-      {'<p class="nota">🚫 Fora do ar desde 02/09/2026 (histórico, não contam nos totais): ' + hist_removidos + '. Saíram por não serem de autoria da casa.</p>' if hist_removidos else ''}
+      {'<p class="nota">🚫 Fora do ar desde 02/09/2026 (histórico, não contam nos totais): ' + hist_removidos + '. Saíram por não serem de autoria da Missão. O endereço /livro08 hoje é Pais e Filhos (em breve); os 288 de antes de 02/09 eram o Arquiteto.</p>' if hist_removidos else ''}
       <h3 style="color:#e3c877;font-size:.95rem;margin:18px 0 8px;">Outras páginas</h3>
       <table>
         <tr><th>Página</th><th>Acessos</th></tr>
@@ -1251,23 +1504,7 @@ def montar_html(res, antigo):
     </div>
   </details>
 
-  <details>
-    <summary>🎯 Conversão (o que move a missão)</summary>
-    <div class="dbody">
-      <div class="cards">{''.join(cards_conv)}</div>
-      <table>
-        <tr><th>Ação</th><th>Total</th><th>Hoje</th></tr>
-        {linhas_conv}
-      </table>
-      <p class="nota">Acesso completo R$ 37 = clique no link da Kiwify (a compra acontece lá fora).
-      WhatsApp = rascunho aberto, ainda precisa a pessoa Enviar. Aulas grátis = toques nos
-      módulos livres 1 a 3. Página de obrigado ≠ download: bônus 1 é o arquivo
-      livro11-o-n-t.pdf. Bônus 4 é o guia livro12-a-d-o.pdf. Colaborador R$ 19,90 saiu do
-      ar e não conta mais no sustento.</p>
-    </div>
-  </details>
-
-  <details>
+    <details>
     <summary>⬇️ Downloads detalhados</summary>
     <div class="dbody">
       <table>
@@ -1305,7 +1542,7 @@ def montar_html(res, antigo):
         <tr><td>Páginas internas da casa (/stats, /palavra, /mural) fora da conta</td><td class="num">{origem['vistas_internas']}</td></tr>
         <tr style="background:rgba(201,162,75,.08)"><td><b>= páginas vistas por gente</b></td><td class="num"><b>{total_geral}</b></td></tr>
         <tr style="background:rgba(127,224,163,.10)"><td><b>= visitas</b> (sessões de {SESSAO_MINUTOS} min)</td><td class="num"><b>{origem['total_visitas']}</b></td></tr>
-        <tr><td><b>= pessoas</b> (IPs distintos no período)</td><td class="num"><b>{unicos_total}</b></td></tr>
+        <tr><td><b>= conexões</b> (IPs distintos no log; robôs contam)</td><td class="num"><b>{unicos_total}</b></td></tr>
         {('<tr><td>Acessos descontados por IP ignorado (o senhor mesmo)</td><td class="num">' + str(ignorados) + '</td></tr>') if ignorados else ''}
       </table>
       <p class="nota" style="margin-top:12px;">
@@ -1342,7 +1579,12 @@ def main():
     if len(arquivos) > 1:
         print('lendo %d arquivos de log (atual + rotacionados)' % len(arquivos))
     gravar_leituras(res[0])
-    doc = montar_html(res, antigo)
+    cache, uf, cidade, geo_msg = geo_processar(res)
+    geo = {'uf': uf, 'cidade': cidade, 'msg': geo_msg}
+    if geo_msg:
+        print('GEO:', geo_msg)
+    doc = montar_html(res, antigo, geo=geo)
+
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, 'w', encoding='utf-8') as f:
         f.write(doc)
