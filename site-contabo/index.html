@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Missão com Deus | Desperte sua Alma, fortaleça sua fé, transforme sua vida</title>
 <meta name="google-site-verification" content="Yh_W9CiUPnt9wUiY47QzfjOBOjgAj15XwtTIa1eB3mk" />
-<meta name="description" content="Missão com Deus: videoaulas, livros e uma comunidade de estudos que une fé cristã e neurociência do comportamento. Trilogia Evolução da Alma + Anestesia Mental por R$ 37,00.">
+<meta name="description" content="Missão com Deus: videoaulas, livros e uma comunidade de estudos que une fé cristã e neurociência do comportamento. Trilogia Evolução da Alma + Anestesia Mental por R$ 57,00.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia&display=swap" rel="stylesheet">
@@ -377,7 +377,14 @@
 
   /* ===== Botão Instalar app (PWA) ===== */
   
-  #baixar-app-casa.link-app{background:none;border:none;padding:0;color:var(--gold);font:inherit;font-weight:700;cursor:pointer;text-decoration:underline;}
+  .bib-app{margin:16px 0 0;text-align:center;}
+  #baixar-app-casa.link-app{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:none;border:none;padding:0;color:var(--gold-dark,#b8860b);
+    font:inherit;font-weight:700;cursor:pointer;text-decoration:none;
+  }
+  #baixar-app-casa.link-app svg{flex:0 0 18px;}
+  #baixar-app-casa.link-app:hover{color:var(--gold,#c9a24b);}
   #baixar-app-casa.link-app:hover{color:var(--gold-light);}
 
   #instalar-app{
@@ -522,6 +529,33 @@
   .hero-ctas .btn svg{flex-shrink:0;display:block;}
 </style>
 
+
+<style id="css-ph-dica">
+  #palavra-hoje .ph-play.ph-chama{
+    animation:phPulso 2.2s ease-in-out infinite;
+  }
+  @keyframes phPulso{
+    0%,100%{box-shadow:0 0 0 0 rgba(227,200,119,0);border-color:rgba(227,200,119,.55)}
+    50%{box-shadow:0 0 0 7px rgba(227,200,119,.22);border-color:#e3c877;background:rgba(201,162,75,.16)}
+  }
+  #ph-dica{
+    display:none;max-width:340px;margin:8px 0 2px;padding:8px 10px 8px 12px;
+    background:rgba(14,26,46,.94);border:1px solid rgba(227,200,119,.4);
+    border-radius:10px;color:#f6f1e7;font-family:system-ui,sans-serif;font-size:12px;line-height:1.4;
+    align-items:center;gap:8px;
+  }
+  #ph-dica.show{display:flex}
+  #ph-dica button{
+    background:none;border:none;color:rgba(246,241,231,.55);font-size:16px;line-height:1;
+    cursor:pointer;padding:2px 4px;flex:0 0 auto;
+  }
+  #ph-dica button:hover{color:#e3c877}
+  #ph-dica .ph-dica-txt{flex:1;margin:0;cursor:pointer}
+  @media (prefers-reduced-motion:reduce){
+    #palavra-hoje .ph-play.ph-chama{animation:none}
+  }
+</style>
+
 <style id="css-palavra-hoje">
   #palavra-hoje{display:flex;align-items:center;gap:12px;max-width:420px;margin:14px 0 4px;padding:10px 0 2px;border-top:1px solid rgba(201,162,75,.22)}
   #palavra-hoje .ph-play{flex:0 0 36px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(227,200,119,.55);background:transparent;color:#e3c877;display:grid;place-items:center;cursor:pointer;padding:0}
@@ -556,6 +590,30 @@
         <button type="button" id="ph-share">Compartilha com quem você ama</button>
         <a id="ph-download" href="#" download>Baixar áudio</a>
       </div>
+      <div id="ph-dica" role="status">
+        <p class="ph-dica-txt">Clique no player e ouça a Palavra de hoje.</p>
+        <button type="button" id="ph-dica-x" aria-label="Fechar">×</button>
+      </div>
+
+<script id="js-ph-dica">
+(function(){
+  var play = document.getElementById("ph-play");
+  var box = document.getElementById("ph-dica");
+  var x = document.getElementById("ph-dica-x");
+  if(!play || !box) return;
+  function someBalao(){ box.classList.remove("show"); }
+  function paraTudo(){
+    box.classList.remove("show");
+    play.classList.remove("ph-chama");
+  }
+  box.classList.add("show");
+  play.classList.add("ph-chama");
+  if(x) x.addEventListener("click", function(ev){ ev.preventDefault(); ev.stopPropagation(); someBalao(); });
+  var txt = box.querySelector(".ph-dica-txt");
+  if(txt) txt.addEventListener("click", function(){ paraTudo(); play.click(); });
+  play.addEventListener("click", function(){ paraTudo(); }, {once:true});
+})();
+</script>
       <script>
       (function(){
         var refs=["Salmo 23","João 14:27","Isaías 41:10","Filipenses 4:6-7","Mateus 11:28","Salmo 91","Josué 1:9","Romanos 8:28","Salmo 46","João 3:16","Provérbios 3:5-6","Isaías 40:31","Mateus 6:33","Salmo 121","2 Timóteo 1:7","Lamentações 3:22","João 8:32","Salmo 27:1","Romanos 8:38","Mateus 5:14","Salmo 34","Jeremias 29:11","João 16:33","Hebreus 13:5","Salmo 139","Gálatas 5:22","1 Pedro 5:7","Efésios 2:8","Apocalipse 21:4","Números 6:24","Salmo 23","Filipenses 1:6","Isaías 43:2","2 Coríntios 12:9","Mateus 7:7","Salmo 37:4","João 15:5","Filipenses 4:8","Salmo 56:8","Mateus 18:20","1 Coríntios 13:4","Romanos 12:2","Salmo 42:1","2 Coríntios 5:17","Salmo 30:5","Isaías 41:10","Colossenses 3:23","Salmo 16:11","Provérbios 18:10","Mateus 12:20","João 14:27","Salmo 51:10","1 João 1:9","Filipenses 3:13","1 Pedro 1:3","Miquéias 6:8","Mateus 5:9","Salmo 90:12","1 Tessalonicenses 5:16","João 14:2"];
@@ -731,7 +789,8 @@
         </div>
       </div>
       <div class="card"><span class="ic ic-svg" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><polygon points="10 8 16 12 10 16 10 8"/></svg></span><h3>Videoaulas guiadas</h3><p>Imersão teórica e prática com ensinamentos profundos de fácil linguagem que tocam a alma.</p></div>
-      <div class="card"><span class="ic ic-svg" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg></span><h3>Livros e materiais</h3><p>Trilogia Evolução da Alma + Anestesia Mental + Um Segundo com Deus e Jesus quer falar com seu filho, para ler e baixar.</p></div>
+      <div class="card"><span class="ic ic-svg" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg></span><h3>Livros e materiais</h3><p>Tenha acesso completo aos nossos livros, materiais e conteúdos para ler, estudar e baixar.
+Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir e guardar suas mensagens.</p></div>
       <div class="card"><span class="ic ic-svg" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><h3>Comunidade de estudos</h3><p>Caminhe ao lado de outras pessoas e fortaleça sua fé em um ambiente de constante aprendizado.</p></div>
       <div class="card"><span class="ic ic-svg" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8"/></svg></span><h3>Acesso vitalício</h3><p>Conteúdo disponível por tempo ilimitado para você evoluir no seu próprio tempo.</p></div>
     </div> 
@@ -862,7 +921,12 @@
       <p>Todos os títulos abaixo são da Missão com Deus. Alguns abrem inteiros de graça; outros abrem a primeira metade, e o restante fica no acesso completo.</p>
       <p>Conheça o conteúdo das nossas obras antes de adquiri-las. Leitura online protegida, sem cópia e sem impressão.</p>
       <p>Agora você pode ler nossos livros online e, sempre que abrir novamente, continuar exatamente do ponto em que parou. Letras no seu tamanho, tela confortável e fita dourada para marcar o lugar.</p>
-      <p style="margin:12px 0 0"><button type="button" id="baixar-app-casa" class="link-app">Instalar o app no celular</button></p>
+      <p class="bib-app">
+        <button type="button" id="baixar-app-casa" class="link-app">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+          Instalar o app no celular
+        </button>
+      </p>
 
     </div>
     
@@ -1015,18 +1079,18 @@
 
 <!-- LIVRO 08 -->
       <div class="bib-card">
-        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/b5XXwH4M/livro08.jpg" alt="Pais e Filhos: Construindo um Futuro - capa"></div>
+        <div class="bib-capa"><img class="capa-img" src="https://i.ibb.co/Xfqhw0j2/livro08.jpg" alt="Pais e Filhos: Construindo um Futuro - capa"></div>
         <div class="bib-corpo">
           <span class="bib-num">Livro 08</span>
           <h3>Guia Pais e Filhos: Construindo um Futuro</h3>
           <p class="bib-desc">Um mapa para a família: fase por fase, do planejamento até o filho encontrar o próprio caminho. A Palavra primeiro. Sem técnica de loja.</p>
-          <p class="obra-convite">Estamos preparando. Em breve na Missão com Deus.</p>
+          <p class="obra-convite">Comece pela leitura livre. Até 30/09 a obra inteira.</p>
           <div class="bib-badges">
-            <span class="bib-badge">Em breve</span>
             <span class="bib-badge">Família</span>
+            <span class="bib-badge">📖 Leitura</span>
           </div>
           <div class="bib-ctas">
-            <a class="btn" href="#biblioteca">Em breve</a>
+            <a class="btn" href="/livro08"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Ler a prévia grátis</a>
             <a class="btn btn-sec" href="/#pais-filhos">👨‍👩‍👧 Conversas</a>
           </div>
         </div>
@@ -1049,8 +1113,8 @@
       </div>
       <div class="offer-price">
         <div class="topo-preco">Pagamento único<strong>Acesso vitalício</strong></div>
-        <div class="new">R$ 37,00</div>
-        <small class="note" style="margin-bottom:10px;">Pix imediato · Cartão até 4x · menos de R$ 1,25/dia</small>
+        <div class="new">R$ 57,00</div>
+        <small class="note" style="margin-bottom:10px;">Pix imediato · Cartão até 4x · cerca de R$ 0,16 por dia</small>
         <small class="note" style="display:block;margin-bottom:14px;">🛡️ Garantia incondicional de 7 dias</small>
         <p style="margin:0 0 14px;font-size:.95rem;color:#2b2620;font-weight:700;">A coleção inteira. Um pagamento.</p>
         <a class="btn btn-gold btn-block" href="/guardar" aria-label="Quero todos os livros">🕊️ Quero todos os livros</a>
@@ -1284,7 +1348,7 @@
       </div>
     </div>
     <div style="text-align:center;margin-top:40px;">
-      <a class="btn btn-gold btn-block" href="/guardar" style="margin-top:20px; font-size:16px;">🕊️ QUERO INICIAR MINHA JORNADA — R$ 37,00</a>
+      <a class="btn btn-gold btn-block" href="/guardar" style="margin-top:20px; font-size:16px;">🕊️ QUERO INICIAR MINHA JORNADA — R$ 57,00</a>
     </div>
   </div>
 </section>
@@ -1324,7 +1388,7 @@
         "Assim como recebeste de graça, dai de graça." (Mt 10:8)
       </p>
       <div style="margin-top:22px;">
-        <a class="btn btn-gold" href="/guardar" style="padding:16px 34px;font-size:17px;" aria-label="Quero despertar meu propósito">🕊️ QUERO DESPERTAR MEU PROPÓSITO — R$ 37,00</a>
+        <a class="btn btn-gold" href="/guardar" style="padding:16px 34px;font-size:17px;" aria-label="Quero despertar meu propósito">🕊️ QUERO DESPERTAR MEU PROPÓSITO — R$ 57,00</a>
       </div>
       <p style="font-size:.85rem; color:var(--tinta2); margin-top:18px;">
         Pagamento único · Acesso vitalício · Garantia de 7 dias
@@ -1360,7 +1424,7 @@
       </div>
       <div class="faq-item">
         <div class="faq-q"><span>O que eu recebo no acesso completo?</span><span class="plus">+</span></div>
-        <div class="faq-a"><p>Por R$ 37,00, pagamento único: os dois cursos em vídeo (14 módulos), os livros digitais completos Evolução da Alma e Anestesia Mental, a área de membros e a comunidade, vitalícios, por e-mail na Kiwify. Os módulos 1 a 3 já estão grátis no site, para você conhecer antes de decidir. Completam o acesso: O Novo Testamento como nunca lido, o Devocional Um Segundo com Deus, o e-book Jesus Quer Falar com Seu Filho e o guia diário Afirmações, Declarações e Orações. E todo lançamento futuro da Missão entra no mesmo acesso, sem cobrar de novo.</p></div>
+        <div class="faq-a"><p>Por R$ 57,00, pagamento único: os dois cursos em vídeo (14 módulos), os livros digitais completos Evolução da Alma e Anestesia Mental, a área de membros e a comunidade, vitalícios, por e-mail na Kiwify. Os módulos 1 a 3 já estão grátis no site, para você conhecer antes de decidir. Completam o acesso: O Novo Testamento como nunca lido, o Devocional Um Segundo com Deus, o e-book Jesus Quer Falar com Seu Filho e o guia diário Afirmações, Declarações e Orações. E todo lançamento futuro da Missão entra no mesmo acesso, sem cobrar de novo.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><span>Para quem são essas obras de sabedoria?</span><span class="plus">+</span></div>
@@ -1399,7 +1463,7 @@
   <div class="wrap">
     <h2>O portal está aberto. Entre e desperte sua alma em Deus.</h2>
     <p style="color:rgba(14,26,46,.75);">O convite foi feito. A chave de governo está à sua frente.</p>
-    <a class="btn" style="background:var(--navy);color:var(--cream-2);" href="/guardar">Adquirir meu acesso - R$ 37,00</a>
+    <a class="btn" style="background:var(--navy);color:var(--cream-2);" href="/guardar">Adquirir meu acesso - R$ 57,00</a>
     <a class="btn" style="background:var(--gold);color:var(--navy);" href="https://dashboard.kiwify.com.br/courses">🔓 Entrar no Portal</a>
   </div>
 </section>
@@ -1801,7 +1865,7 @@ function quizEnviar(ev) {
     livro05:{url:"/livro05",titulo:"Evolução da Alma"},
     livro06:{url:"/livro06",titulo:"Jesus Quer Falar com Seu Filho"},
     livro07:{url:"/livro07",titulo:"O Caminho do Despertar"},
-    livro08:{url:"/livro08",titulo:"O Arquiteto da Realidade"},
+    livro08:{url:"/livro08",titulo:"Pais e Filhos: Construindo um Futuro"},
     livro09:{url:"/livro09",titulo:"Anestesia Mental"},
     livro10:{url:"/livro10",titulo:"O Despertar do Observador"},
     livro11:{url:"/livro11",titulo:"O Novo Testamento como nunca lido"},
