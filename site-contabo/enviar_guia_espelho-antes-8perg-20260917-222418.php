@@ -3,7 +3,7 @@
  * enviar_guia_espelho.php - Envia o quiz "Filhos e Pais: O Espelho"
  *
  * Recebe o e-mail de quem concluiu o quiz e envia:
- *   1) A pagina completa do Espelho (abertura, 8 perguntas, encerramento,
+ *   1) A pagina completa do Espelho (abertura, 7 perguntas, encerramento,
  *      versiculos e frase para guardar) para a pessoa que pediu.
  *   2) Notificacao para o autor (portalmissaocomdeus@gmail.com).
  *
@@ -57,7 +57,7 @@ if ($metodo === 'POST') {
     $corpo_pai = <<<TXT
 Paz e graça, querido(a) irmão(ã)!
 
-Obrigado por fazer o quiz "Filhos e Pais: O Espelho". Segue a página completa, com as 8 perguntas para você fazer aos seus pais e conhecer a história, os silêncios e os conselhos de quem te criou.
+Obrigado por fazer o quiz "Filhos e Pais: O Espelho". Segue a página completa, com as 7 perguntas para você fazer aos seus pais e conhecer a história, os silêncios e os conselhos de quem te criou.
 
 Para ver a versão ilustrada na página, acesse o link:
 $LINK_GUIA
@@ -68,7 +68,7 @@ ABERTURA CARINHOSA
 "Pai, mãe, eu não quero que isto seja uma entrevista. Quero só conhecer você um pouco melhor. E quero que você saiba: aqui também é espaço seu para falar, para sentir e para desabafar no seu tempo. Se alguma pergunta doer, a gente pode pular, respirar e voltar quando for bom para nós. Vou começar com algo simples."
 
 ============================================
-AS 8 PERGUNTAS
+AS 7 PERGUNTAS
 ============================================
 
 Pergunta 1: Se você pudesse me pedir uma coisa que me aproximasse mais de você, o que seria?
@@ -95,11 +95,7 @@ Pergunta 6: O que você acha que a minha geração não entende sobre o que voc�
 Opções de exemplo: O silêncio era falta de espaço, O peso do trabalho e das responsabilidades, As dores que carreguei sem poder mostrar, Como a fé me sustentou, ou contar algo mais.
 Por quê: o filho abre espaço para a história do pai e da mãe, e descobre que o que parece distância às vezes foi proteção.
 
-Pergunta 7: Na sua adolescência, houve algo do coração que você escondeu de seus pais por medo? Como você gostaria de ter sido ouvido, sem ser expulso e sem ser envergonhado?
-Opções de exemplo: Sim, escondi por medo, Queria ter sido ouvido sem vergonha, Nunca pensei nisso, Prefiro não responder agora.
-Por quê: antes de ouvir o filho, o pai se lembra de como gostaria de ter sido tratado. Não pede que a Palavra mude. Pede que a cana rachada não seja quebrada.
-
-Pergunta 8: Se você pudesse me contar uma coisa da sua vida que ainda não contou, ou me dizer o que gostaria de ter ouvido quando era jovem, o que seria?
+Pergunta 7: Se você pudesse me contar uma coisa da sua vida que ainda não contou, ou me dizer o que gostaria de ter ouvido quando era jovem, o que seria?
 Opções de exemplo: Algo da sua infância, Um sonho que ficou guardado, Uma dor que nunca disse em voz alta, Algo que gostaria que eu soubesse, ou preferir guardar ainda hoje.
 Por quê: é o fechamento com espaço de cura. Confiança não se força, se constrói.
 

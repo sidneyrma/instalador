@@ -3,7 +3,7 @@
  * enviar_guia.php — Envia o Guia "Pais e Filhos: Conversas que Protegem"
  *
  * Recebe o e-mail do pai/mãe, envia:
- *   1) O guia COMPLETO (abertura, 8 perguntas, encerramento, versículos)
+ *   1) O guia COMPLETO (abertura, 7 perguntas, encerramento, versículos)
  *      + o link da página, para o pai/mãe (agradecimento)
  *   2) Notificação para o autor (portalmissaocomdeus@gmail.com)
  *
@@ -14,7 +14,7 @@ header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 
 $DESTINO = 'portalmissaocomdeus@gmail.com';
-$LINK_GUIA = 'https://missaocomdeus.com.br/#pais-filhos';
+$LINK_GUIA = 'https://missaocomdeus.com.br/guia-pais-filhos.html';
 
 $metodo = $_SERVER['REQUEST_METHOD'];
 
@@ -57,7 +57,7 @@ if ($metodo === 'POST') {
     $corpo_pai = <<<TXT
 Paz e graça, querido(a) irmão(ã)!
 
-Obrigado por se importar com o diálogo em família. Segue o guia completo "Pais e Filhos: Conversas que Protegem", com as 8 perguntas para conversar com seu filho(a) com amor, respeito e a presença de Deus.
+Obrigado por se importar com o diálogo em família. Segue o guia completo "Pais e Filhos: Conversas que Protegem", com as 7 perguntas para conversar com seu filho(a) com amor, respeito e a presença de Deus.
 
 Para ver a versão ilustrada na página, acesse o link:
 $LINK_GUIA
@@ -68,7 +68,7 @@ ABERTURA AMOROSA (leia para o seu filho(a))
 "Filho(a), estas perguntas não são um teste e não têm resposta errada. São um convite para nos conhecermos melhor, com amor e respeito. Responda com o coração: o que você sentir, eu quero ouvir. E se não quiser responder alguma agora, tudo bem, isso também é uma resposta válida."
 
 ============================================
-AS 8 PERGUNTAS
+AS 7 PERGUNTAS
 ============================================
 
 Pergunta 1: O que mais te impede de abrir o coração com a gente?
@@ -95,11 +95,7 @@ Pergunta 6: Quando algo dá errado, você se sente seguro(a) para contar para a 
 Opções de exemplo: Sempre, Às vezes, Quase nunca, Tenho medo da reação.
 Dica para os pais: mostra o nível de confiança real, e vocês entendem onde precisam melhorar, sem bronca. Se for difícil dizer em voz alta, vale escrever num papel.
 
-Pergunta 7: Quando o assunto é gostar de alguém, amizade que virou confusão, ou o coração que não sabe se é carinho, paixão ou solidão, você se sente seguro para falar com a gente, ou teme a nossa reação?
-Opções de exemplo: Me sinto seguro para falar, Temo a reação, Nem sei nomear o que sinto, Prefiro não responder agora.
-Dica para os pais: ouça até o fim. Não exponha. Não expulse. Acolha a pessoa. A Palavra continua de pé. O diálogo também.
-
-Pergunta 8: Se você pudesse nos contar uma coisa sobre você que ainda não contou, o que seria?
+Pergunta 7: Se você pudesse nos contar uma coisa sobre você que ainda não contou, o que seria?
 Resposta livre (totalmente opcional).
 Dica para os pais: o fechamento perfeito, um convite à intimidade. O filho escolhe o que quer compartilhar, no tempo dele.
 
