@@ -1,616 +1,272 @@
-# MEMÓRIA DO PROJETO — MISSÃO COM DEUS
-## Atualizado em: 29/08/2026 (Brasília)
-## Atualizado em: 09/09/2026 (Brasília)
-## Site vivo: https://missaocomdeus.com.br
-## Próximo chat: «Continuar a Missão com Deus. Site vivo missaocomdeus.com.br. Leia consultoria-redes/MEMORIA_PROJETO.md»
-
-A Arca anda sobre as águas. O que está neste arquivo é o que está no ar. O GitHub (sidneyrma/instalador) está ATRÁS do servidor. Nunca trate o GitHub como verdade.
-
-## ESTADO DA ARCA — 09/09/2026 (LOCALIZAÇÃO REAL NO PAINEL: VITÓRIA CONFIRMADA)
-
-- **O `/stats` agora mostra estado e cidade REAIS dos visitantes, resolvidos por IP no servidor.** Confirmado ao vivo: painel marcava 1 registro (teste de instalação); o autor abriu o site de novo em janela anônima e o contador subiu para **2 · Espirito Santo / Venda Nova do Imigrante**. Ponta a ponta funcionando.
-- **Como funciona (3 peças):**
-  1. **`geo.php`** na pasta do site (`/www/wwwroot/missaocomdeus.com.br/geo.php`): pega o IP real do visitante pelo header `CF-Connecting-IP` (Cloudflare), resolve com **ipwho.is** (fallback **ip-api.com**) e grava SOMENTE `"PAIS|UF|CIDADE" → contagem` em `geo_visitas.json` ao lado. **Nunca guarda IP, sem cookie.** Bloqueia robô por user-agent (`bot|crawl|spider|curl...` → `nao`). Endpoints: `?ping=1` (vida), `?auto=1` (coleta e responde `ok`/`nao`), `?json=1` (estado atual do arquivo).
-  2. **Coleta em TODAS as páginas públicas** (Home, livro04/05/06/07/09/11/12, trilogia-da-alma, anestesia-mental, guia-pais-filhos, nossa-missao, obrigado): snippet antes do `</body>` chama `/geo.php?auto=1` **1x por sessão** (`sessionStorage.geo_real_ok`). Same-origin → imune a adblock. NÁO colocar em stats/404/502/palavra/leitor/marcadores `q-*`.
-  3. **`/home/deploy/gerar_estatisticas.py`**: seção «De onde veem nossos irmãos» lê `geo_visitas.json` em **3 caminhos e soma** (`GEO_VISITAS` = pasta do site, `GEO_VISITAS_ALT1` = `/home/deploy/geo_visitas.json`, `ALT2` vazio; todos com override por env). Foi exatamente aqui o último bug: o geo.php gravava na pasta do site e o painel lia só `/home/deploy` → "ainda sem registros" com dados existindo.
-- **Contagem vale DA INSTALAÇÃO (09/09/2026) PARA FRENTE.** Visitas antigas são irrecuperáveis (o log antigo do Nginx só tem IP de data center do Cloudflare). GEO ≠ total de visitas do log: GEO conta gente com JS, 1 por sessão; robôs/atacantes ficam fora.
-- **Cron: JÁ EXISTE um de 30 min rodando o `gerar_estatisticas.py`** — NÃO adicionar outro. O padrão `( crontab -l; echo ... ) | crontab -` **acrescenta** linha, não substitui. Para mudar 30→15: `crontab -e` e editar o `*/30` da linha existente. Conferir: `crontab -l | grep -n gerar_estatisticas`.
-- **Blocos de terminal (testados localmente, em `site-contabo/`):**
-  - `COLAR_NO_TERMINAL_GEO.txt` — cria `geo.php` + conserta index.html + roda painel (JÁ EXECUTADO com sucesso no servidor).
-  - `COLAR_NO_TERMINAL_LEITURA_GEO.txt` — corrige a leitura dos 3 caminhos no `gerar_estatisticas.py` (JÁ EXECUTADO com sucesso; backup `gerar_estatisticas-antes-leitura-*.bak`).
-  - `COLAR_NO_TERMINAL_GEO_PAGINAS.txt` — espalha a coleta para todas as páginas públicas (script `APLICAR_GEO_TODAS_PAGINAS.py` embutido; backups `*.html-antes-geo-paginas-*.bak`; reverso: `--reverter`).
-  - `COLAR_NO_TERMINAL_DIAGNOSTICO_GEO.txt` — só LÊ: quais páginas têm coleta, contador, vida do geo.php, atualização do painel.
-  - `APLICAR_GEO_SERVIDOR.py` — versão completa unificada (validada `py_compile`, aplica/idempotente/reverte em ambiente simulado).
-- **Aprendizados aplicados:** herdoc grande no Terminal pode EMENDAR linhas (visto 2x); manter blocos com linhas curtas e validar sintaxe no próprio bloco (o dos livros imprimiu `sintaxe OK`). `APLICAR_*.py` colado no servidor pegou conteúdo errado 1x (virou script do quiz) — na dúvida, pedir `head -5` do arquivo ANTES de rodar, ou usar bloco de terminal direto.
-- **NÃO REFAZER / NÃO USAR:** geo do Nginx por `geo_cache.json` (rejeitado pelo autor: dados de data centers); chamada direta do navegador ao `ipwho.is` (bloqueada por adblock/CORS — por isso o snippet chama o geo.php same-origin); `alert()` (rejeitado).
-- **Workspace local em sincronia:** `site-contabo/gerar_estatisticas.py` já tem a leitura de 3 caminhos; `index.html` local já chama `/geo.php?auto=1`. Commit local `4098988` (sessão encerrada no GitHub não permite push; conteúdo preservado no repo).
-- **Reversão (se um dia precisar):** `cd /home/deploy && cp "$(ls -t gerar_estatisticas-antes-leitura-*.bak | head -1)" gerar_estatisticas.py` (painel) e `python3 /home/deploy/APLICAR_GEO_TODAS_PAGINAS.py --reverter` (páginas). Apagar `geo.php` + `geo_visitas.json` da pasta do site remove a coleta inteira sem tocar no resto do painel.
-
-## ESTADO DA ARCA — 07/09/2026 (o que está no ar, na ordem)
-
-- **Página `/nossa-missao` CRIADA E CONFIRMADA NO AR.** Texto aprovado, escrita humana, sem travessão. Selos bíblicos: **Salmo 119:105** e **Filipenses 1:6**. Botões no fim: **Voltar para a Home** e **Ir para a leitura gratuita**. Autor testou em aba anônima e está tudo visível.
-- **Home confirmada na entrega final pelo terminal do servidor** (`curl`): `curl -s https://missaocomdeus.com.br/ | grep -c "Nossa Missão"` retornou **2** (menu + rodapé). Ou seja, a Home pública JÁ está com a versão nova, mesmo que um cache intermediário já tenha mostrado antiga antes.
-- **Menu da Home** ganhou **`🕊️ Nossa Missão`**.
-- **Rodapé da Home LIMPO:**
-  - removido o link do YouTube (não expor videoaulas);
-  - removidas repetições internas (Portal, Livros, Trilogia, FAQ);
-  - copyright simplificado (sem repetir o domínio);
-  - link **`Nossa Missão`** no rodapé;
-  - **`Fale conosco`** apontando para `mailto:portalmissaocomdeus@gmail.com`.
-- **Arquivo de aplicação:** `site-contabo/APLICAR_NOSSA_MISSAO.py`. Já embute a página nova (com Filipenses 1:6) e o rodapé com `mailto`. Idempotente, faz backup `.bak` por arquivo alterado.
-- **Workspace local sincronizado** com o servidor: `nossa-missao.html` tem os 2 versículos; `index.html` local tem `mailto` no rodapé; 0 link YouTube.
-- **NÃO mexer no sitemap.xml** (regra do autor: não reenviar sitemap novo; o Google descobre `/nossa-missao` pelos links do menu/rodapé).
-
-## CACHE DA HOME (explicação e como resolver)
-
-- Se a Home mostrar versão antiga (YouTube / sem menu Nossa Missão) mas a página `/nossa-missao` já abrir nova, **não é erro do script**: é cache (Cloudflare / aaPanel / navegador). O arquivo no servidor já está certo.
-- **Como limpar:**
-  1. No **Cloudflare** (se existir): cache > **Purge Everything** / **Limpar Cache**. Se preferir só a Home, pode purgar `https://missaocomdeus.com.br/`.
-  2. No **aaPanel**: conferir se existe cache do site (Nginx cache, cache de página) e limpar. Também pode reiniciar Nginx depois da limpeza.
-  3. No navegador: janela **anônima + Ctrl+F5** (ou Ctrl+Shift+R). Repetir em alguns minutos se necessário.
-  4. Comprovar pelo terminal (sem depender do navegador):
-     ```bash
-     curl -sI https://missaocomdeus.com.br/ | grep -i "cf-cache-status\|cache-control"
-     curl -s https://missaocomdeus.com.br/ | grep -c "Nossa Missão"
-     ```
-     - O retorno de `grep -c "Nossa Missão"` deve ser **≥ 1**.
-     - Se ainda for 0, a entrega da vitrine (cache) ainda não atualizou; repetir purgar cache.
-- **Importante:** o `mailto:` local pode virar `/cdn-cgi/l/email-protection...` na entrega. Isso é a **Obfuscação de e-mail do Cloudflare**, não é bug. O destinatário continua `portalmissaocomdeus@gmail.com`.
-
-## IDENTIDADE ÚNICA — MISSÃO COM DEUS (03/09/2026)
-
-- A casa passa a ter UMA marca publica e de busca: **Missão com Deus**.
-- Fora do ar: `Portal O Despertar`, `Portal O <b>Despertar</b>`, `Leitor do Despertar`.
-- "Coleção do Despertar" vira **"Coleção Missão com Deus"** nos livros, capas e créditos.
-- PWA: manifest `name`/`short_name`/`id` e sw `CACHE` ajustados.
-- Aplicar no servidor com `APLICAR_IDENTIDADE_MISSAO.py` (backup em `.bak`).
-- Não apagar/alterar `enquete_dados.json`, `enquete_ips.json`, `leituras.json`.
-- Conteúdo/inspiração que usa "despertar" como tema (ex.: "O Despertar da Alma", "despertar a fé") permanece normal. Só a MARCA muda.
-- Restos ainda possíveis no ar: "Liberar Módulos 5, 6 e 7" em Trilogia/Anestesia e banner Home "código grátis à Laura". O script também corrige.
-- Importante: os livros 05 e 09 mostravam "Aula grátis" no **Módulo 04** (travado). Corrigido no espelho e no script para **Módulo 03** (livre). Nao reabrir o Módulo 04 como aula grátis.
-- `APLICAR_IDENTIDADE_MISSAO.py` aplica marca + correcoes de confianca + modulo 03 nos livros 05/09.
-
-## CONFIRMAÇÕES DO AUTOR — 03/09/2026
-
-- **Identidade já aplicada no servidor** (autor confirmou): Home no ar já com **Missão com Deus** e sem a marca antiga. Conferido também por fetch em 03/09.
-- **Rastreio do banner confirmado no ar:** autor testou o banner da Home e o painel mostrou **`🕊️ Falar com a Laura (banner da Home): 1`**. Ou seja, o clique caiu no lugar certo.
-- **`ATUALIZAR_STATS_SIMPLES.py` RODOU NO SERVIDOR**: `Trocas aplicadas: 8 de 8`, gerou `stats.html` novo. Confirmado no /stats em 03/09.
-- **Backup do site já ativo:** autor confirmou que roda backup diário programado às **03:30**. Tranquilo para qualquer ajuste futuro.
-- **Foco combinado:** parar de mexer no servidor sem necessidade; usar o **Gerenciador de Arquivos do aaPanel** (upload) em vez de copiar/colar; GitHub fica como espelho/segurança, não como caminho do dia a dia.
-- **`gerar_estatisticas.py` ajustado**: Colaborador R$ 19,90 saiu do ar e **não conta mais como sustento**. Sustento agora é só o acesso completo R$ 37 (`/q-semeador`). **JÁ APLICADO no servidor**.
-- `/palavra` é só o caderno do autor para ver os temas e acompanhar. Não é página pública. Só quem souber o endereço acessa, igual `/stats` e `enquete.php`. Todos com `noindex, nofollow` e **fora do sitemap**. Não colocar link no menu nem no footer. Não indexar.
-- Os PDFs antigos que eram referência no log **não existem mais no aaPanel**. A única referência boa do Bônus 1 é **`/ebooks/livro11-o-n-t.pdf`** (é esse que está no ar na página de obrigado).
-- PDFs que existem hoje no aaPanel na pasta do site (conferido pelo autor em 03/09):
-  - `Anestesia-mental-evalma.pdf`
-  - `Evolucao-da-alma-evalma.pdf`
-  - `jesus-quer-falar-com-seu-filho.pdf`
-  - `jesus-quer-falar.pdf`
-  - `livro05-evalma.pdf`
-  - `livro07-ocdespertar.pdf`
-  - `livro09-amental.pdf`
-  - `livro11-o-n-t.pdf`
-  - `livro12-a-d-o.pdf`
-  - `Um-Segundo-com-Deus-Vol-01.pdf`
-- **Mural eliminado.** Não existe mais projeto de mural, nem privilégio de "Colaborador(a)" (era o único privilégio do Semeador no plano antigo em que todos recebiam todos os livros). Não recriar. Não voltar com "área do semeador/colaborador" nem com mural.
-- `PROMPT_LAURA_V11_CASA.txt` **já foi colado no FlowOpenAi (chatbox)**. Não precisa mais ficar na lista de pendência do prompt.
-- Redes: Instagram e Facebook atuais foram banidos mais de uma vez, inclusive a página de campanha. Hoje **não há conta de Instagram ativa**. O autor vai usar outro aparelho/notebook com outro e-mail para não tomar banimento; não quer comprar/usar outro número. Não depender de IG/FB para o que sustenta a Missão até isso estar estabilizado.
-- **Sessão GitHub encerrada após o merge/fechamento da PR #7.** O trabalho local continua no workspace, mas `git push`/`gh` desta sessão não está mais disponível. Para sincronizar um novo commit, usar uma nova sessão do Arena.
-- Checkout oficial em uso (guardar como referência): **`https://pay.kiwify.com.br/iVfp2bi`** — "🕊️ MISSÃO COM DEUS | ACESSO IMEDIATO E VITALÍCIO À ÁREA DE MEMBROS DE ALUNOS", R$ 37,00 pagamento único, cartão em até 4x e Pix, garantia de 7 dias. Contempla Evolução da Alma + Anestesia Mental (livros digitais completos + 7 módulos em vídeo de cada) + acesso vitalício à área de membros + 4 bônus (NT, Devocional 30 dias, Jesus Quer Falar com Seu Filho e Afirmações em PDF).
-
-## PROBLEMA COM O ATUALIZAR_STATS NO SERVIDOR (03/09/2026)
-
-- O autor salvou `ATUALIZAR_STATS_V2.py` mas o arquivo acabou com conteúdo HTML do site (por isso `SyntaxError: invalid character '·'`). Também o nome ficou com marcação de link (`ATUALIZAR_STATS_[V2.py](http://V2.py)`).
-- Para evitar isso foi criado **`ATUALIZAR_STATS_AGORA.py`**: script menor, com verificação no início, que só troca os trechos do painel, faz backup e já roda `gerar_estatisticas.py`.
-- **Regra para o autor:** salvar com nome exato `ATUALIZAR_STATS_AGORA.py`, sem colchetes/parênteses/.txt; a primeira linha do arquivo deve ser `# -*- coding: utf-8 -*-`.
-- Antes de rodar, conferir com: `head -1 /home/deploy/ATUALIZAR_STATS_AGORA.py`.
-- Arquivo de referência: `site-contabo/ATUALIZAR_STATS_AGORA.py`. Pacote: `AAAPANEL_STATS_AGORA.zip`.
-- Se o autor preferir não usar o arquivo do site, a alternativa segura é subir o `gerar_estatisticas.py` completo para `/home/deploy/` pelo Gerenciador de Arquivos do aaPanel (Upload), sem copiar/colar.
-
-## RASTREIO DO BANNER (03/09/2026, correção)
-
-- **Causa do teste não aparecer:** o banner da Home (CTAs de cursos) abria o WhatsApp e era contado como `/q-whats` ("Cliques no WhatsApp"). A linha `/q-codigo` ("Solicitar Código") só era contada nas páginas de área de alunos. Por isso um clique no banner da Home não aparecia na linha que o autor esperava.
-- **Correção aplicada no espelho `index.html` e no servidor:**
-  - Link do banner "Falar com a Laura sobre o acesso" agora dispara **`/q-laura`**.
-  - Qualquer outro WhatsApp da Home continua em **`/q-whats`**.
-  - **`APLICAR_RASTREIO_LAURA.py` rodou no servidor**: `Backup criado index-antes-rastreio-20260903-203031.bak`, `Trecho de rastreio trocado com sucesso`, `Pixels criados: q-laura`.
-  - **Teste do autor confirmado no /stats:** `🕊️ Falar com a Laura (banner da Home): 1`.
-- **Correção no `gerar_estatisticas.py` (aplicada no servidor):**
-  - Nova linha na conversão: **`/q-laura`** = "Falar com a Laura (banner da Home)".
-  - Nova linha: **`/q-livro-share`** = "Livros compartilhados".
-  - `/q-codigo` foi renomeado para refletir a realidade: **"Fale com a Laura (área de alunos)"** (não é mais "Solicitar Código").
-  - `/q-colaborador` e `/q-aula-gratis` **saíram do painel**: continuam ignorados, não contam mais.
-  - No /stats ao vivo aparece: Acesso completo R$ 37 · Fale com a Laura (área de alunos) · Falar com a Laura (banner da Home) · Cliques no WhatsApp · Palavra · Livros compartilhados. **Colaborador ausente.**
-- **Comando que resolveu: `ATUALIZAR_STATS_SIMPLES.py`** faz backup e troca só os trechos do painel, depois já roda `gerar_estatisticas.py`. Resposta no servidor: `Trocas aplicadas: 8 de 8`.
-
-## LEITURA DA CASA — 03/09/2026 (números reais do /stats)
-
-- **Hoje (03/09), até a geração do painel:** 109 pessoas · 134 visitas · 411 páginas de gente. É dia pela metade/fim de dia, então não comparar com o dia completo de ontem.
-- **Ontem (02/09):** 196 pessoas · 239 visitas · 497 páginas.
-- **Casa viva:** hoje ~3,8 páginas por pessoa (411/109). Acima de 3 = pessoa lê, não só passa. Esse é o sinal mais importante para o nosso cenário (espiritualidade, não religião).
-- **Origem hoje:** Google/SEO 23 · site antigo 29 · direto 74 · redes 0. A busca orgânica hoje (23) ficou acima de ontem (11). Ainda é minoria, mas cresceu.
-- **Sustento:** 26 cliques no acesso completo R$ 37 no total; 4 hoje. Taxa geral 1,9% sobre pessoas. Hoje a proporção ficou maior porque o dia ainda não fechou.
-- **Downloads:** Bônus 1 (NT) 2 hoje · Bônus 4 (Afirmações) 2 hoje · Devocional 1 hoje · Jesus 1 hoje.
-- **Conversão hoje vs dia anterior:** não confundir clique com compra. Compra real só a Kiwify mostra.
-- **Leitura honesta para o nicho:** mais de 70% das visitas ainda são "direto" (link colado, WhatsApp, favorito, app) e o site antigo continua trazendo gente. SEO ainda é pequeno. Isso é normal no começo; a marca única e o sitemap novo são o caminho para o Google entender a casa.
-
-## PALAVRA DO DIA — PÁGINA DE CONTROLE + SHARE DE ÁUDIO (05/09/2026)
-
-- **`site-contabo/palavra.html`** (página de controle /palavra): lista agora até o **dia 60**, com os títulos/versículos das novas mensagens 31–60.
-- Cada dia mantém o ícone de som. Os dias **31 a 60** usam **placeholder** no código: `var AUDIOS = { "31":"[cole aqui o link do audio 31]", ... }`. Quando o áudio estiver pronto no terminal, trocar o texto entre aspas pelo caminho real, ex.: `"/audio/palavra-dia-31.mp3"` ou `"https://..."`.
-- Ao tocar num dia sem link, aparece: `🔧 Áudio em breve — cole o link no código (dia NN)`.
-- **Home (`index.html`):** lista de referências (`refs`) estendida até o dia 60; removido o `if(day===31) day=30;` (agora dia 31 usa a mensagem 31).
-- **Compartilhamento (Home):** o botão `Compartilha com quem você ama` agora tenta **compartilhar o MP3** no celular (Web Share com arquivo). O áudio já carrega a marca "Missão com Deus". A mensagem anexada inclui o texto e o link. Se o navegador/app não suportar compartilhar arquivo, cai no comportamento antigo (compartilhar/copiar o link + mensagem).
-- **Novo botão opcional:** após ouvir, também aparece **`📥 Baixar áudio`** ao lado do botão Compartilha. Aponta para `/audio/palavra-dia-NN.mp3` com `download`; cobre iPhone/notebook/desktop, onde o compartilhamento nativo de arquivo pode não estar disponível. Assim o irmão pode guardar/repassar o MP3 (que já tem a marca e o convite ao site) mesmo quando o app não abre a folha de compartilhamento direto.
-- **Limitação honesta:** compartilhar arquivo funciona melhor no Android Chrome. No iPhone/desktop, o navegador pode não apresentar o áudio — por isso os dois caminhos: Compartilhar (tenta áudio, cai no link) e Baixar áudio (para repassar manualmente).
-- **Fluxo atual no fim do áudio:** botão `Compartilha com quem você ama` + `📥 Baixar áudio`.
-
-## PALAVRA DO DIA — CICLO COMPLETO 1 A 60 (04/09/2026)
-
-- **04–30:** arquivo `PALAVRA_AGENDA_04_30.md` (27 mensagens, fonte original; sem oração no final, desfecho "Fiquem na paz do Senhor!").
-- **31–60 (novo):** arquivo `PALAVRA_AGENDA_31_60.md` com **30 mensagens novas** para fechar exatamente 60. Mantém a mesma toada teológica e vai mais fundo: pastor (23), obra aperfeiçoada (Fp 1:6), águas (Is 43:2), graça na fraqueza (2Co 12:9), pedir/buscar/bater (Mt 7:7), deleite (Sl 37:4), permanecer (Jo 15:5), mente (Fp 4:8), lágrimas (Sl 56:8), comunidade (Mt 18:20), amor (1Co 13), mente (Rm 12:2), sede (Sl 42:1), nova criatura (2Co 5:17), alegria de manhã (Sl 30:5), não temas (Is 41:10), trabalho (Cl 3:23), alegria na presença (Sl 16:11), torre forte (Pv 18:10), caniço rachado (Mt 12:20), paz (Jo 14:27), coração puro (Sl 51:10), confissão (1Jo 1:9), prosseguir (Fp 3:13-14), viva esperança (1Pe 1:3), justiça/misericórdia (Mq 6:8), pacificadores (Mt 5:9), dias (Sl 90:12), alegria/oração/gratidão (1Ts 5:16-18), lugar preparado (Jo 14:2-3).
-- **Formato novo das 31–60:** após o convite ao site, cada mensagem tem **"Vamos orar. Pai, em nome de Jesus, te pedimos..." (oração curta de bênção conforme o tema)** e fecha com **"Fiquem na paz de Cristo nosso Senhor e Salvador, e tenham todos um dia abençoado!"**.
-- **Arquivos .txt prontos por dia:** `site-contabo/palavras_31_60/palavra-dia-31.txt` … `palavra-dia-60.txt` (300–340 palavras, ~2 min) para gerar direto no `edge-tts`.
-- **Como aplicar:** gerar no `/root/tts` (venv ativo): `edge-tts --file palavra-dia-31.txt --voice pt-BR-FranciscaNeural --write-media palavra-dia-31.mp3` e `cp` para `/www/wwwroot/missaocomdeus.com.br/audio/`. Alternar com `pt-BR-AntonioNeural` nos dias ímpares/pares.
-
-## PAIS E FILHOS — CTA + RODAPÉ + MENU (04/09/2026)
-
-- **Página `guia-pais-filhos.html`:** adicionado um CTA **"📝 Responder o Quiz"** logo abaixo do topo, com botão para `https://missaocomdeus.com.br/#enquete`. A ideia: quem chega pelo link convidado pode ir direto à enquete da Home (o quiz já está acima).
-- **Rodapé do guia:** `Missão com Deus · missaocomdeus.com.br · Compartilhe com amor` virou link (o "missaocomdeus.com.br" e o "Compartilhe com amor" são links para a Home).
-- **Menu da Home (`index.html`):** adicionado `👨‍👩‍👧 Pais e Filhos` apontando para `/guia-pais-filhos`. Texto curto (sem "(Conversas que Protegem)") para não quebrar/quebrar o menu no celular.
-- **Script:** `site-contabo/APLICAR_PAIS_FILHOS_QUIZ.py` — backup dos 2 arquivos, aplica CSS/CTA/rodapé no guia e item no menu da Home; idempotente (segunda execução: "CSS ja presente / CTA ja presente / Menu ja presente").
-- **Teste:** aplicado em cópia com estado antigo (guia sem CTA/rodapé link, index sem menu) e rodado de novo sem duplicar. `HTML_PARSER_OK`.
-- **Observação de UX:** o autor pediu opinião sobre colocar "Pais e Filhos: (Conversas que Protegem)" no menu; recomendei o título curto **"👨‍👩‍👧 Pais e Filhos"** no menu (o parentesítico fica só na página / título interno), para não ficar longo.
-
-## GA4 — DOMÍNIO ANTIGO (04/09/2026)
-
-- **Já existe:** conta Analytics `365993734` com a propriedade `502120214` para `compraoseu.com`.
-- **Recomendação:** NÃO excluir a antiga. Ela não atrapalha a `missaocomdeus.com.br`; é só o histórico do domínio antigo.
-- **Criar uma NOVA propriedade GA4 para `missaocomdeus.com.br`** (pode ser na MESMA conta 365993734, ou em conta nova). O ideal é uma propriedade nova com o Data Stream do domínio novo, para não misturar métricas dos dois domínios.
-- O `compraoseu.com` redireciona 301 para a Missão; a medição de quem chega lá já está no log/site novo. A GA4 antiga pode ficar guardada/dormindo sem problema.
-
-## GOOGLE ADS + GA4 — ORIENTAÇÃO JÁ EXPLICADA AO AUTOR (04/09/2026)
-
-- **DUAS coisas diferentes:**
-  - Medir conversão (GA4 + Google Ads): só configuração/pixel, NÃO precisa vídeo/imagem/carrossel/copy.
-  - Rodar campanha paga: precisa de copy (texto) + palavras-chave + orçamento; para **Search** NÃO precisa imagem/vídeo; para **Display/Performance Max** precisa imagem (e vídeo no PMax/Demand Gen).
-- **Para começar:** campanha **Search (Busca)** com Responsive Search Ads (títulos + descrições), sem vídeo/imagem.
-- **NÃO é "só domínio + palavra-chave"**: precisa conta Google Ads, campanha Busca, grupo de anúncios, palavras-chave, copy curta, orçamento e conversão na Kiwify.
-- **Ordem:** 1) GA4 no site 2) criar campo de conversão no Google Ads 3) colar Pixels de Conversão na Kiwify (Compra R$ 37) 4) campanha de Busca com palavras-chave + copy + orçamento pequeno 5) avaliar 1 a 2 semanas 6) só depois Performance Max/Display.
-- **Guia criado:** `GOOGLE_ADS_GA4_GUIA.md` (com exemplos de palavras-chave, títulos e descrições de anúncio).
-
-## SITEMAP — /guia-pais-filhos INDEXÁVEL (04/09/2026)
-
-- **O link `/guia-pais-filhos` já estava no sitemap no servidor** (verificado no ar 04/09). Não foi adicionado por mim. O Google recusou a indexação apenas porque a página tinha `noindex, nofollow`; o sitemap pedia indexar, a página pedia não indexar, e o Google obedeceu a página.
-- **Decisão final:** manter `/guia-pais-filhos` **no sitemap (9 URLs)** e trocar a etiqueta da página para `index, follow`. A página fica indexável, porém **sem link público** (é acessada pelo link do e-mail do quiz Pai e Filhos).
-- **Arquivo alterado:** `site-contabo/guia-pais-filhos.html` linha do `robots` agora `index, follow`.
-- **Script:** `site-contabo/APLICAR_INDEXAR_GUIA.py` — backup do guia + troca segura `noindex, nofollow` → `index, follow`. Testado: backup criado, troca aplicada, segunda execução "Ja estava index, follow. Nada duplicado.", HTML ok.
-- **Sitemap do workspace:** mantido com **9 URLs** (voltou a incluir `/guia-pais-filhos`). O script anterior `ATUALIZAR_SITEMAP_8.py` foi **removido** (não usar; o sitemap não precisa sair com guia).
-- **Remoções já feitas pelo autor em 02/09/2026:** `/livro01`, `02`, `03`, `08`, `10` e `/ebooks/livro01-03-08-10-evalma.pdf` → "Temporariamente removido". **Não refazer.**
-- **Indexação:** 9 URLs, uma por uma (Inspecionar URL → Solicitar indexação). Não existe botão de indexar todas de uma vez no GSC.
-- **Ficam noindex de propósito:** `/palavra`, `/stats`, `enquete.php` (não indexar).
-
-## NOVA ORDEM DO PAINEL /STATS (06/09/2026)
-
-- **Objetivo:** dar mais visão ao stats, deixando os números que importam abertos e o que é "explicação" em abas (como os FAQs).
-- **Nova ordem confirmada pelo autor:**
-  1. **O que olhar sempre** (aberto)
-  2. **Hoje e ontem** (aberto)
-  3. **Páginas vistas por gente** (aberto)
-  4. **🎯 Conversão (o que move a missão)** — agora **ABERTO** (subiu), cards + tabela de ações
-  5. **De onde vêm / Origem da visita** (aberto)
-  6. **📊 Indicador · O que é · O que observar** — agora **aba fechada** (abre com clique)
-  7. **Detalhes** (restante, nas abas como antes)
-- **Arquivo:** `site-contabo/ATUALIZAR_STATS_ORDEM.py` — modifica `/home/deploy/gerar_estatisticas.py`, faz backup `.bak-AAAAMMDD-HHMMSS`, reordena o template, e já roda o gerador para atualizar o `stats.html`. Idempotente (segunda execução: "Ja estava aplicado. Nada duplicado.").
-- **Teste:** usado o **original exato do aaPanel** fornecido pelo autor (`gerar_estatisticas_origem_servidor.py`), depois rodado num log de teste. Resultado: `HTML_PARSER_OK`, ordem das seções correta, backup criado, sem duplicar.
-- **OBS:** não mexe em números nem em leitura de log; só reordena o template HTML do gerador.
-- **Como aplicar (aaPanel):** salvar `ATUALIZAR_STATS_ORDEM.py` em `/home/deploy/` e rodar `python3 ATUALIZAR_STATS_ORDEM.py`; conferir `https://missaocomdeus.com.br/stats`.
-
-## REVERSO DO PROTEGER_PDFS.PY (04/09/2026)
-
-- **Arquivo:** `site-contabo/DESPROTEGER_PDFS.py` (reverso testado do `PROTEGER_PDFS.py`).
-- **O que faz:** abre cada PDF travado com a senha de dono `MissaoComDeus2026`, guarda uma cópia `NOME.pdf.protegido.bak` (apenas no primeiro revert) e reescreve o PDF **sem senha** e **sem proteção** (copiar/colar e imprimir liberados).
-- **Teste real:** protegeu um PDF com a mesma lógica do autor (`permissions_flag=0`, AES-256), confirmou `is_encrypted=True`, rodou o reverso → `is_encrypted=False`, página intacta; segunda execução → `ABERTO`, sem nova alteração.
-- **Segurança:** não mexe em PDF já aberto; não mexe em PDF cuja senha de dono não abra; salva em `.tmp` e só então substitui.
-- Dependência igual ao PROTEGER: `pip3 install pypdf` (chamar `cryptography` também se AES-256 falhar no ambiente do aaPanel).
-- Instalação de teste no sandbox: `pip3 install --break-system-packages pypdf cryptography`.
-
-## BOTÃO "BAIXAR APP" NA PRIMEIRA DOBRA (04/09/2026)
-
-- **Decisão de UX:** usar **"📲 Baixar App"** (curto) dentro do selo hero `✨ Leia de graça, continue de onde parou`. Não usar "Baixar App leitura grátis" (grande e desnecessário; a leitura grátis já está no texto acima).
-- **Posição:** primeiro impacto da Home, no card sobre a imagem hero (`hero-badge`), logo abaixo do texto "Leia de graça, continue de onde parou".
-- **Implementação no `index.html`:**
-  - Novo botão `#instalar-app-hero` com classe `.hero-app-btn` (dourado, discreto).
-  - CSS: `.hero-badge` agora em coluna com gap 9px; novo `.hero-app-btn`.
-  - JS: ligado à função já existente `tentarInstalar()`; some se o app já estiver instalado; usa `beforeinstallprompt` (Android/Chrome) e orienta no iPhone/desktop.
-- **Não substituir `index.html` inteiro.** Usar script `APLICAR_APP_HERO.py` (backup `.bak`, idempotente). Testado no estado antigo: CSS, HTML e JS aplicados; segunda execução "Botao ja aplicado, sem duplicar"; HTML parser OK.
-- **Observação:** o botão flutuante `#instalar-app` continua existindo junto; são dois pontos de instalação (herói + canto), o que está alinhado com o pedido de mais visibilidade.
-
-## VITRINE "NOSSAS OBRAS" — O CAMINHO DO DESPERTAR (04/09/2026)
-
-- **Capa do Novo Testamento corrigida:** `i.ibb.co/9myJ3XXb/livro01.jpg` → `i.ibb.co/sJWVKDqB/livro11.jpg` (o nome do arquivo agora corresponde ao livro11; a imagem antiga livro01.jpg era do livro08 e não fazia referência certa).
-- **Capa do Caminho do Despertar corrigida:** `i.ibb.co/Gf7WWL6H/livro08.jpg` → `i.ibb.co/YF5sWbp7/livro07.jpg` (o livro07 usa o arquivo livro07.jpg, não livro08.jpg).
-- **Livro 07 adicionado à vitrine "Nossas Obras"**, antes do card Jesus Quer Falar com Seu Filho (que continua último), com descrição no mesmo padrão dos demais:
-  - Título: O Caminho do Despertar
-  - Descrição: "Uma jornada de fé e autoconhecimento: 12 capítulos que revelam a sabedoria dos ensinamentos de Jesus e conduzem a alma a um encontro mais profundo com Deus."
-  - Itens: 12 capítulos em leitura limpa · Sabedoria dos ensinamentos de Jesus · Reflexão sobre fé, propósito e alma · Leitura gratuita no portal.
-- **Aplicação segura:** script `APLICAR_VITRINE_LIVRO07.py` (backup `.bak`, trocas simples, não duplica o card). Testado em cópia com estado antigo: `capa NT 2 trocas · capa Caminho 1 troca · card Livro 07 inserido`.
-- **Não substituir `index.html` inteiro no servidor.** Usar o script ou upload do Gerenciador de Arquivos se houver.
-
-## PALAVRA DE HOJE — NOVA METODOLOGIA E AGENDA 04 A 30 (03/09/2026)
-
-- O autor sentiu os áudios atuais "vazios, sem unção, sem força e autoridade". Decidiu substituir, um por dia, mantendo o ciclo automático de 00:00 (fuso Brasília) na Home e em `/palavra`.
-- **Novo padrão aprovado pelo autor (03/09):**
-  - Abertura: **"A paz de Cristo seja com todos, meus irmãos e minhas irmãs!"** (o autor escreveu "sejam"; acertei para "seja" por concordância com "a paz", que é singular. Mantém a força e soa mais firme).
-  - Corpo: versículo + "Sabe..." + aplicação prática para a vida real + bênção.
-  - Compartilhamento: "Se essa mensagem abençoou a sua vida, compartilha esse áudio com quem você ama..."
-  - Convite final: **"E para começar todos os seus dias fortalecido na fé, venha ouvir uma nova palavra de esperança diariamente no nosso site: missaocomdeus.com.br"**.
-  - Fecho: **"Fiquem na paz do Senhor!"**.
-- **Arquivo criado:** `PALAVRA_AGENDA_04_30.md` com os textos prontos dos dias **04 a 30** (Filipenses 4:6-7 até Números 6:24), todos no novo padrão, **27 dias**. O convite ao site foi inserido nos 27 fechamentos.
-- Os arquivos de áudio continuam sendo `/audio/palavra-dia-01.mp3` … `palavra-dia-30.mp3`. O site já troca sozinho à meia-noite; não precisa mudar código da Home.
-- **Avaliação honesta:** a nova fórmula está pronta e com bons ritmo/unção. Os únicos refinos que fiz foram a concordância "seja" e manter "Fiquem na paz do Senhor!" como fecho depois do convite, para não terminar a gravação no link. A partir daqui é só gravar e escutar.
-- **Ferramenta de voz (autora buscou gratuita para clonar a voice da Laura e gerar 1:00+):**
-  - Quasar Voice (`https://qwen3-tts.ai`) é uma opção online gratuita de clonagem e TTS (Qwen3-TTS), com clonagem a partir de 3 a 10 segundos, controles de emoção e narração longa; pede conta/sign in. **Atenção:** o plano gratuito geralmente tem limite mensal de caracteres (aprox. 10k), então para 27 áudios de ~1:50 convém gerar um por dia e acompanhar o limite. Verificar no site antes de adotar.
-  - Alternativas locais gratuitas e sem limite de caracteres: OmniVoice Studio e Voicebox (rodam no computador, sem conta/API; exigem instalação, chance menor de o autor conseguir sozinho).
-  - Se o limite dificultar, o autor pode usar a voz masculina que já usou hoje, ou contratar um plano pequeno da ferramenta que mais gostar.
-- **Não tentar usar site que não esteja mais funcionando. Não depender de outro número/celular para a voz.**
-
-## GOOGLE SEARCH CONSOLE E SITEMAP (estado em 03/09/2026)
-
-- Sitemap enviado: **`https://missaocomdeus.com.br/sitemap.xml`**.
-- No painel aparece **Sucesso**, última leitura **02/09/2026**, **9 páginas** enviadas, **90 páginas descobertas**.
-- As 9 páginas do `sitemap.xml` são: `/`, `/livro04`, `/livro05`, `/livro06`, `/livro07`, `/livro09`, `/livro11`, `/livro12`, `/guia-pais-filhos`.
-- `/palavra`, `/stats` e `enquete.php` **não estão** no sitemap e têm `noindex, nofollow`. Mantê-los assim.
-- Depois que `APLICAR_IDENTIDADE_MISSAO.py` rodar no servidor: submeter o sitemap de novo, usar **Inspecionar URL** nas 9 páginas para pedir indexação, e usar **Remoções** só para URLs antigas que realmente saíram (ex.: `/livro01` … `/livro12` antigos, páginas-ponte antigas, etc.).
-- Não remover do índice sem necessidade. Para páginas que sumiram de verdade, o Google entende 404/301 sozinho; a remoção manual é só quando for urgente.
-
-## ATUALIZAÇÃO URGENTE — 03/09/2026 (consultoria)
-
-- Bônus 1 e 4 no ar: **`/ebooks/livro11-o-n-t.pdf`** (NT) e **`/ebooks/livro12-a-d-o.pdf`** (Afirmações). O nome antigo `livro11-onovotestamenento.pdf` **retorna 404**. Não usar.
-- Bônus 4 (Afirmações) no obrigado: **`/ebooks/livro12-a-d-o.pdf`** (existe e está no ar).
-- Home / FAQ e oferta ajustadas no espelho para **4 bônus**: NT, Devocional 30 dias, Jesus e Afirmações em PDF. Módulos 1 a 3 grátis.
-- Banner fixo da Home NÃO deve mais prometer "código de acesso grátis à Laura" nem pedir "código grátis". O convite certo é sobre o acesso completo.
-- Caixa de código das pontes: dizer **"Liberar os módulos restantes (4 a 7)"**, não "Liberar Módulos 5, 6 e 7".
-- O `gerar_estatisticas.py` do GitHub já foi sincronizado com o do servidor (v4/v6, inclui Origem e Termômetro). Se aparecer diferença, conferir no `/home/deploy/` antes de substituir. Não subir a versão v3 antiga em cima do v6.
-
 ## INFRA
 
 - VPS Contabo `212.28.182.86` Ubuntu 22.04.5, Nginx, PHP 8.1.32, aaPanel, ~15 GB RAM.
-- Não publicar «Poder do Eu Sou». Se nascer livro novo: *A paz que o mundo não dá* (Jo 14:27), depois do NT.
-- Material público: só missaocomdeus.com.br. compraoseu.com = 301 + SSL. Exceção servidor: app/api/apioficial.compraoseu.com = Laura. Não apagar.
-- Sem depoimento fictício. Sem travessão (—) em copy nova. Sem Semeador(a)/Colaborador(a).
-- **REGRA PERMANENTE DE ESCRITA HUMANA:** nunca usar travessão cumprido (—) nem travessão curto (–) em página, pergunta, explicação "Por quê", script ou mensagem. Usar vírgula, ponto ou dois pontos. Escrever como conversa franca e carinhosa. Arquivo que guarda essa regra: `REGRA_ESCRITA_HUMANA.md`.
-- **Correção do quiz já no ar:** `site-contabo/CORRIGIR_TRAVESSOES_QUIZ_E_STATS.py` tira os travessões da página `/guia-pais-filhos` (e do espelho se já existir) e do rótulo do Guia no `/stats`. Não mexe em ranking nem em números.
-- **NÃO trocar o nome do Guia no /stats.** O autor não pediu e não quer isso. O rótulo deve ficar como estava (`Guia Pais e Filhos — Quiz`). O script `ADICIONAR_CARD_QUIZ_STATS.py` restaura o nome e coloca o resultado real do quiz como último quadro. `CORRIGIR_TRAVESSOES_QUIZ_E_STATS.py` agora NÃO altera o nome no gerador.
-- **0 no card e 277 na linha (resolvido na versão nova):** o bug era colocar `/guia-pais-filhos` na lista `CONVERSAO`; nesse gerador a página parava de contar no `contagens`, por isso o card vinha 0. A versão nova **remove** o quiz de `CONVERSAO` e usa `contagens` no card e na linha. O ranking continua contando normalmente.
-- **Home (APLICADO E APROVADO em 08/09):** bloco "Para famílias" voltou à **originalidade** com UM card "Pais e Filhos &amp; Filhos e Pais". O **segundo card "Filhos e Pais: O Espelho" foi REMOVIDO da Home** (o autor pediu). A **segunda chamada para o Espelho aparece apenas no FINAL do quiz dos filhos** ("Agora é a vez dos seus pais", botão `💬 Conhecer o segundo roteiro` → `/guia-pais-filhos-espelho`). Script: `APLICAR_AJUSTES_FAMILIA.py`.
-- **Espelho é QUIZ interativo (APLICADO E APROVADO em 08/09):** página `/guia-pais-filhos-espelho` com as 7 perguntas **uma a uma**, botão Avançar/Voltar, barra de progresso, e ao concluir envia a página completa por e-mail (`enviar_guia_espelho.php`, mesmo formato do primeiro). **Não considerar a versão estática (tudo aberto) como correta.**
-- **SEGUNDO QUIZ DOS PAIS (final e aprovado):**
-  - Emoji da família `👨‍👩‍👧` no topo/título do Espelho (trocado o `🪞`, que ficava vertical estranho).
-  - **Resposta obrigatória em TODAS as perguntas** nos dois quizzes (filhos e pais): se tentar Avançar/Concluir sem marcar, aparece `🙏 Escolha uma opção para continuar.` Isso fechou a "torneira" da Arca: ninguém mais chega ao brinde sem responder.
-  - **Devocional para os pais:** no final do Espelho, o botão "Refazer o quiz" foi substituído por **`📖 Baixar o Devocional`** → `/ebooks/Um-Segundo-com-Deus-Vol-01.pdf`.
-  - Mantido o campo `📩 Receba a página completa do Espelho no seu e-mail` e os links de voltar.
-  - Textos do Espelho já foram humanizados (sem travessão) e com P4 somente `✍️ Resposta livre`.
-  - Scripts: `APLICAR_AJUSTES_FAMILIA.py` (Home + Espelho + resposta obrigatória + Devocional) e `APLICAR_QUIZ_ESPELHO_INTERATIVO.py` (regenerado com a versão lapidada).
-- **JANELA LIVROS 18/09/2026 (APLICADA E CONFIRMADA no servidor em 08/09):** os 4 livros (`livro05`, `livro07`, `livro09`, `livro11`) estão com **todos os capítulos liberados até 18/09/2026 00:00 (Brasília)**. O autor testou um a um e confirmou: todos abrem e a navegação (Sumário, Anterior e Próximo) funciona. **Como voltar:** `python3 ABRIR_JANELA_LIVROS.py --reverter`. Backups: `*-antes-janela-nova-20260908-184602.bak` (e o mais recente `*-antes-janela-nova-{ts}.bak` ao mexer no index). Versão limpa mapeia a navegação pelo **Sumário** (não por padrão `sec-`), por isso funciona nos 4. Banner da Home: **`📖 Comece hoje sua leitura`**, texto sem urgência: "Uma oportunidade carinhosa para conhecer melhor a coleção... estão com a leitura completa até 18/09/2026 às 00:00 (horário de Brasília). Depois, os quatro livros voltam a abrir a primeira metade, como de costume." **Ainda não se sabe o resultado comercial desse período livre; observar com calma.**
-- Não vender a Palavra no primeiro toque. Leitura grátis primeiro.
-- Laura **não é pessoa de carne**. Figura da Missão + tecnologia.
-- Sem overlay no YouTube para tapar canal. Vídeo do NT = MP4 na casa.
-- Produtos Kiwify antigos ainda Ativos (não usar na Home): Devocional R$ 9,90; Anestesia avulsa; Evolução avulsa.
-- Página de obrigado da casa: `https://missaocomdeus.com.br/obrigado`
-  Colar na Kiwify em **Cartão ou Pix aprovado** (iVfp2bi e NCAEVtO). Boleto/pix gerado = página padrão Kiwify.
-- Presente no obrigado = **Baixar PDF** `/ebooks/livro11-onovotestamenento.pdf` (typo no nome, proposital).
-- Presente no obrigado = **Baixar PDF** `/ebooks/livro11-o-n-t.pdf` (confirmado no ar em 03/09. O nome antigo `livro11-onovotestamenento.pdf` retorna 404 e nao deve ser usado).
-  Não é link `/livro11` (isso já é grátis).
-- Não listar o NT como leitura exclusiva. Dois cursos no pacote R$ 37.
-
-- Botão dourado: Começar o Devocional de 30 dias → `/livro04`
-- Botão quieto: Ler as Afirmações → `/livro12`
-- Arte: `https://i.ibb.co/zhH6FV9X/hero.jpg` · CSS `--navy` `#0e1a2e`
-- Título oferta: Seja um Semeador da Missão e ganhe um Brinde Extra
-- Brinde extra na lista: PDF O Novo Testamento como nunca lido (para guardar)
-- Título oferta: Seja um Semeador da Missão e ganhe 4 bônus
-- 4 bônus no acesso completo: NT, Devocional 30 dias, Jesus e Afirmações em PDF
-- FAQ: «O que eu recebo no acesso completo?» · «Isso é doação?» (não)
-- Banner `#cta-cursos`: ~45% scroll / mouseleave; `VALIDADE_HORAS = 6`; só Trilogia na Home
-- Seção `#missao`: fé e a mente; Laura não é carne; Mt 18:20
-- Motivo: 4 livres é mais da metade (filha de 13 anos). Autor concordou 3.
-- Texto: isto é prévia; área de membros Kiwify tem explicações e exercícios.
-- Um botão: **Quero o acesso completo — R$ 37,00** → iVfp2bi
-- Linha dourada visível: brinde extra PDF NT
-- Linha dourada visível: 4 bônus (NT, Devocional, Jesus e Afirmações)
-- Modal: um preço. «Já tenho código de acesso»
-- Mural vazio `display:none`. `/mural.html` no servidor, noindex, **sem link**
-- Caixa de código: «Liberar os módulos restantes (4 a 7)». Não usar «Liberar Módulos 5, 6 e 7».
-- Mural **eliminado**. Não existe mais funcionalidade pública de mural; não recriar, não colocar link.
-- Plays: `tocarVideo` faz `fetch('/q-trilogia-m0N')` ou `/q-anestesia-m0N`
-- Anestesia WhatsApp → `/q-codigo`; Kiwify → `/q-semeador`
-
-
-## PDF / ebooks/
-
-- **Fonte de verdade:** conferir a lista real do aaPanel no topo (03/09/2026). `livro11-onovotestamenento.pdf` **não existe** e nunca deve ser usado.
-- Proteção pypdf (`permissions_flag`). Script `PROTEGER_PDFS.py`
-- **LIVRES (sem evalma, quiz):** `Um-Segundo-com-Deus-Vol-01.pdf` · `jesus-quer-falar.pdf`
-- **Com evalma (chute difícil):** `Anestesia-mental-evalma.pdf` · `Evolucao-da-alma-evalma.pdf`
-- **Brinde NT (typo proposital, sem evalma):** `livro11-onovotestamenento.pdf`
-- **LIVRES (sem evalma, quiz):** `Um-Segundo-com-Deus-Vol-01.pdf` · `jesus-quer-falar.pdf` · `jesus-quer-falar-com-seu-filho.pdf`
-- **Com evalma (chute difícil):** `Anestesia-mental-evalma.pdf` · `Evolucao-da-alma-evalma.pdf` · `livro05-evalma.pdf` · `livro07-ocdespertar.pdf` · `livro09-amental.pdf` · `livro12-a-d-o.pdf`
-- **Bônus 1 (nome real no ar):** `livro11-o-n-t.pdf`
-- Dois «Jesus Quer Falar» no log antigo = dois arquivos (quiz curto × nome longo do livro). Não é duplicata.
-
+- Vivo: `missaocomdeus.com.br` → `/www/wwwroot/missaocomdeus.com.br/`
+- compraoseu.com: só 301 + SSL (GSC mudança de endereço aprovada 21/08). Não desligar. Não esvaziar o 301.
+- PM2: `conectai-apioficial` :6000, `conectai-backend` :4000, `conectai-frontend` :3000.
+- FormSubmit: `portalmissaocomdeus@gmail.com.
+- Stats cron: `python3 /home/deploy/gerar_estatisticas.py` → `stats.html` + `leituras.json`
 ---
-## STATS
+## CONTATOS E REDES (público)
+- WhatsApp: `5528999111493`
+- YouTube: `@vivaamissaocomdeus
+- Instagram: https://www.instagram.com/vivaamissaocomdeus/ 
+- TikTok da Missão: https://www.tiktok.com/@vivaamissaocomdeus (~4k)
+- E-mail casa: portalmissaocomdeus@gmail.com
 
-- Painel: https://missaocomdeus.com.br/stats (noindex)
-- Script vivo do cron: `/home/deploy/gerar_estatisticas.py`
-- Script vivo do cron: `/home/deploy/gerar_estatisticas.py` (cron de 30 em 30 min — já existe, não duplicar)
-- **Seção «De onde veem nossos irmãos» (09/09/2026):** estado/cidade reais via `/geo.php` (IP resolvido no servidor) → `geo_visitas.json` na pasta do site; o `gerar` lê 3 caminhos e soma. Detalhe completo na seção ESTADO DA ARCA — 09/09/2026, no topo do arquivo.
-- Cópia nova (29/08) em `consultoria-redes/gerar_estatisticas.py`:
-  - Aula grátis = soma dos plays módulos **1 a 3** (não o pixel morto `/q-aula-gratis`)
-  - Tabela Downloads: evalma + nome antigo no mesmo balde; brinde NT; quiz livres; Palavra tocada
-  - Tabela Downloads: evalma + nome antigo no mesmo balde; bônus NT; quiz livres; Palavra tocada
-  - `/obrigado` e `/palavra` no ranking
-  - `/trilogia` e `/anestesia` (1 hit) = URL curta, não as pontes. Alias para as pontes de verdade
-  - `.well-known` (SSL) some da lista
-- Se o card «Aula grátis» ainda mostrar 0 no ar, o `/home/deploy/` ainda não recebeu essa cópia. Enviar e rodar `python3 /home/deploy/gerar_estatisticas.py`
-- Conversão 1,5% = clique/pessoas, não Pix. Conferir vendas reais na Kiwify.
-- `/obrigado` ≠ PDF baixado. O brinde é o GET de `livro11-onovotestamenento.pdf`
-- `/obrigado` ≠ PDF baixado. O bônus 1 é o GET de `livro11-o-n-t.pdf`
+- # Memória da Missão com Deus
 
----
+Atualizado em 24 de setembro de 2026, Brasília.
 
-- Não overlay YouTube. Não publicar Eu Sou.
-- Não apagar apioficial / app / api compraoseu.
-- Não zerar enquete_dados.json para limpar spam.
-- Não usar `/ebooks/livro11-onovotestamenento.pdf` (404 no ar). O bônus 1 do NT é `/ebooks/livro11-o-n-t.pdf`.
-- Não dizer "as quatro aulas no site", nem "código de acesso grátis à Laura", nem "Liberar Módulos 5, 6 e 7". O ar é: módulos 1 a 3 grátis, um acesso R$ 37, código libera módulos 4 a 7.
-
----
-
-## ABERTO (não é urgente nesta noite)
-
-1. Confirmar se `palavra.html` e o `gerar_estatisticas.py` novo já estão no servidor.
-2. Colar `PROMPT_LAURA_V11_CASA.txt` no OpenAI do FlowOpenAi. Encerrar tickets do autor. Testar só com número novo.
-1. Confirmar se `palavra.html` e o `gerar_estatisticas.py` novo já estão no servidor. O autor já confirmou: `/palavra` é só para ele ver os temas, noindex, sem menu.
-2. **PROMPT_LAURA_V11_CASA.txt já foi colado no FlowOpenAi.** Pendência só: encerrar tickets do autor e testar com número novo.
-3. Conferir Pix real na Kiwify vs cliques Semeador / obrigado.
-4. Ads só com pixel no domínio missaocomdeus. Destino Home ou `/livro11`. Sem carrossel de preço.
-5. Mural só com nome real + «pode publicar».
-6. Share nas pontes / obrigado: ideia boa, **depois**. Um lugar de cada vez.
-4. **Pixel de conversão:** planejar e ativar na Kiwify (Pixels de Conversão). Google Ads + GA4 são os mais seguros sem IG/FB. Meta só depois com conta nova em outro aparelho/notebook e outro e-mail.
-5. **Google Search Console:** depois da identidade no ar, atualizar/subscrever `sitemap.xml` (9 páginas), pedir reindexação das páginas vivas e remoção das páginas saídas.
-6. Share nas pontes / obrigado: ideia boa, depois. Um lugar de cada vez.
-7. GitHub ≠ servidor. Espelho quando o autor puder, sem apagar o vivo.
-8. Redes sociais: não depender de IG/FB enquanto as contas estiverem banidas. Voltar só com aparelho novo, e-mail novo e sem reutilizar número que já caiu.
-
----
-
-- Produtos Kiwify antigos ainda Ativos (não usar na Home): Devocional R$ 9,90; Anestesia avulsa; Evolução avulsa.
-- Página de obrigado da casa: `https://missaocomdeus.com.br/obrigado`
-  Colar na Kiwify em **Cartão ou Pix aprovado** (iVfp2bi e NCAEVtO). Boleto/pix gerado = página padrão Kiwify.
-- Presente no obrigado = **Baixar PDF** `/ebooks/livro11-onovotestamenento.pdf` (typo no nome, proposital).
-- Presente no obrigado = **Baixar PDF** `/ebooks/livro11-o-n-t.pdf` (confirmado no ar em 03/09. O nome antigo `livro11-onovotestamenento.pdf` retorna 404 e nao deve ser usado).
-  Não é link `/livro11` (isso já é grátis).
-- Não listar o NT como leitura exclusiva. Dois cursos no pacote R$ 37.
-
-- Botão dourado: Começar o Devocional de 30 dias → `/livro04`
-- Botão quieto: Ler as Afirmações → `/livro12`
-- Arte: `https://i.ibb.co/zhH6FV9X/hero.jpg` · CSS `--navy` `#0e1a2e`
-- Título oferta: Seja um Semeador da Missão e ganhe um Brinde Extra
-- Brinde extra na lista: PDF O Novo Testamento como nunca lido (para guardar)
-- Título oferta: Seja um Semeador da Missão e ganhe 4 bônus
-- 4 bônus no acesso completo: NT, Devocional 30 dias, Jesus e Afirmações em PDF
-- FAQ: «O que eu recebo no acesso completo?» · «Isso é doação?» (não)
-- Banner `#cta-cursos`: ~45% scroll / mouseleave; `VALIDADE_HORAS = 6`; só Trilogia na Home
-- Seção `#missao`: fé e a mente; Laura não é carne; Mt 18:20
-- Motivo: 4 livres é mais da metade (filha de 13 anos). Autor concordou 3.
-- Texto: isto é prévia; área de membros Kiwify tem explicações e exercícios.
-- Um botão: **Quero o acesso completo — R$ 37,00** → iVfp2bi
-- Linha dourada visível: brinde extra PDF NT
-- Linha dourada visível: 4 bônus (NT, Devocional, Jesus e Afirmações)
-- Modal: um preço. «Já tenho código de acesso»
-- Mural vazio `display:none`. `/mural.html` no servidor, noindex, **sem link**
-- Mural **eliminado**. Não existe mais funcionalidade pública de mural; não recriar, não colocar link.
-- Plays: `tocarVideo` faz `fetch('/q-trilogia-m0N')` ou `/q-anestesia-m0N`
-- Anestesia WhatsApp → `/q-codigo`; Kiwify → `/q-semeador`
-
-
-## PDF / ebooks/
-
-- **Fonte de verdade:** conferir a lista real do aaPanel no topo (03/09/2026). `livro11-onovotestamenento.pdf` **não existe** e nunca deve ser usado.
-- Proteção pypdf (`permissions_flag`). Script `PROTEGER_PDFS.py`
-- **LIVRES (sem evalma, quiz):** `Um-Segundo-com-Deus-Vol-01.pdf` · `jesus-quer-falar.pdf`
-- **Com evalma (chute difícil):** `Anestesia-mental-evalma.pdf` · `Evolucao-da-alma-evalma.pdf`
-- **Brinde NT (typo proposital, sem evalma):** `livro11-onovotestamenento.pdf`
-- **LIVRES (sem evalma, quiz):** `Um-Segundo-com-Deus-Vol-01.pdf` · `jesus-quer-falar.pdf` · `jesus-quer-falar-com-seu-filho.pdf`
-- **Com evalma (chute difícil):** `Anestesia-mental-evalma.pdf` · `Evolucao-da-alma-evalma.pdf` · `livro05-evalma.pdf` · `livro07-ocdespertar.pdf` · `livro09-amental.pdf` · `livro12-a-d-o.pdf`
-- **Bônus 1 (nome real no ar):** `livro11-o-n-t.pdf`
-- Dois «Jesus Quer Falar» no log antigo = dois arquivos (quiz curto × nome longo do livro). Não é duplicata.
-
----
-- Script vivo do cron: `/home/deploy/gerar_estatisticas.py`
-- Cópia nova (29/08) em `consultoria-redes/gerar_estatisticas.py`:
-  - Aula grátis = soma dos plays módulos **1 a 3** (não o pixel morto `/q-aula-gratis`)
-  - Tabela Downloads: evalma + nome antigo no mesmo balde; brinde NT; quiz livres; Palavra tocada
-  - Tabela Downloads: evalma + nome antigo no mesmo balde; bônus NT; quiz livres; Palavra tocada
-  - `/obrigado` e `/palavra` no ranking
-  - `/trilogia` e `/anestesia` (1 hit) = URL curta, não as pontes. Alias para as pontes de verdade
-  - `.well-known` (SSL) some da lista
-- Se o card «Aula grátis» ainda mostrar 0 no ar, o `/home/deploy/` ainda não recebeu essa cópia. Enviar e rodar `python3 /home/deploy/gerar_estatisticas.py`
-- Conversão 1,5% = clique/pessoas, não Pix. Conferir vendas reais na Kiwify.
-- `/obrigado` ≠ PDF baixado. O brinde é o GET de `livro11-onovotestamenento.pdf`
-- `/obrigado` ≠ PDF baixado. O bônus 1 é o GET de `livro11-o-n-t.pdf`
-
----
-
-
-## ABERTO (não é urgente nesta noite)
-
-1. Confirmar se `palavra.html` e o `gerar_estatisticas.py` novo já estão no servidor.
-2. Colar `PROMPT_LAURA_V11_CASA.txt` no OpenAI do FlowOpenAi. Encerrar tickets do autor. Testar só com número novo.
-1. Confirmar se `palavra.html` e o `gerar_estatisticas.py` novo já estão no servidor. O autor já confirmou: `/palavra` é só para ele ver os temas, noindex, sem menu.
-2. **PROMPT_LAURA_V11_CASA.txt já foi colado no FlowOpenAi.** Pendência só: encerrar tickets do autor e testar com número novo.
-3. Conferir Pix real na Kiwify vs cliques Semeador / obrigado.
-4. Ads só com pixel no domínio missaocomdeus. Destino Home ou `/livro11`. Sem carrossel de preço.
-5. Mural só com nome real + «pode publicar».
-6. Share nas pontes / obrigado: ideia boa, **depois**. Um lugar de cada vez.
-4. **Pixel de conversão:** planejar e ativar na Kiwify (Pixels de Conversão). Google Ads + GA4 são os mais seguros sem IG/FB. Meta só depois com conta nova em outro aparelho/notebook e outro e-mail.
-5. **Google Search Console:** depois da identidade no ar, atualizar/subscrever `sitemap.xml` (9 páginas), pedir reindexação das páginas vivas e remoção das páginas saídas.
-6. Share nas pontes / obrigado: ideia boa, depois. Um lugar de cada vez.
-7. GitHub ≠ servidor. Espelho quando o autor puder, sem apagar o vivo.
-8. Redes sociais: não depender de IG/FB enquanto as contas estiverem banidas. Voltar só com aparelho novo, e-mail novo e sem reutilizar número que já caiu.
-
----
-
-- Script vivo do cron: `/home/deploy/gerar_estatisticas.py`
-- Cópia nova (29/08) em `consultoria-redes/gerar_estatisticas.py`:
-  - Aula grátis = soma dos plays módulos **1 a 3** (não o pixel morto `/q-aula-gratis`)
-  - Tabela Downloads: evalma + nome antigo no mesmo balde; brinde NT; quiz livres; Palavra tocada
-  - Tabela Downloads: evalma + nome antigo no mesmo balde; bônus NT; quiz livres; Palavra tocada
-  - `/obrigado` e `/palavra` no ranking
-  - `/trilogia` e `/anestesia` (1 hit) = URL curta, não as pontes. Alias para as pontes de verdade
-  - `.well-known` (SSL) some da lista
-- Se o card «Aula grátis» ainda mostrar 0 no ar, o `/home/deploy/` ainda não recebeu essa cópia. Enviar e rodar `python3 /home/deploy/gerar_estatisticas.py`
-- Conversão 1,5% = clique/pessoas, não Pix. Conferir vendas reais na Kiwify.
-- `/obrigado` ≠ PDF baixado. O brinde é o GET de `livro11-onovotestamenento.pdf`
-- `/obrigado` ≠ PDF baixado. O bônus 1 é o GET de `livro11-o-n-t.pdf`
-
-## PONTES `/trilogia-da-alma` e `/anestesia-mental`
-
-- Motivo: 4 livres é mais da metade (filha de 13 anos). Autor concordou 3.
-- Texto: isto é prévia; área de membros Kiwify tem explicações e exercícios.
-- Um botão: **Quero o acesso completo — R$ 37,00** → iVfp2bi
-- Linha dourada visível: brinde extra PDF NT
-- Linha dourada visível: 4 bônus (NT, Devocional, Jesus e Afirmações)
-- Modal: um preço. «Já tenho código de acesso»
-- Mural vazio `display:none`. `/mural.html` no servidor, noindex, **sem link**
-- Mural **eliminado**. Não existe mais funcionalidade pública de mural; não recriar, não colocar link.
-- Plays: `tocarVideo` faz `fetch('/q-trilogia-m0N')` ou `/q-anestesia-m0N`
-- Anestesia WhatsApp → `/q-codigo`; Kiwify → `/q-semeador`
-
-- MEMÓRIA DO PROJETO — MISSÃO COM DEUS
-Atualizado em: 21/09/2026 (Brasília)
 Site vivo: https://missaocomdeus.com.br
-GitHub (sidneyrma/instalador) está ATRÁS do servidor. Verdade = aaPanel /www/wwwroot/missaocomdeus.com.br/
-A honra é do Senhor. Este arquivo é o chão do próximo chat.
 
-COMO SERVIR ESTE AUTOR
-Português do Brasil. Irmão em Cristo. Calma. Um caminho só.
-Autor não é técnico avançado. aaPanel Terminal: 2 linhas. Digite o nome do .py. Nunca clique se o Terminal mostrar colchete/link azul (APLICAR_[ARQUIVO.py]). Isso gera Errno 2.
-Nunca cat >> em HTML.
-Não pedir senha/token do GitHub.
-Não substituir index.html / livros inteiros no servidor (apaga banner, quiz, enquete, player).
-Script: backup; se a string não achar, não gravar; idempotente (Ja estava).
-Enviar o .py e os HTML que ele copia antes de rodar.
-Antes de reload Nginx: nginx -t.
-Sem depoimento fictício. Sem travessão (—) em copy nova. Sem Semeador(a)/Colaborador(a) no texto público.
-Não vender a Palavra no primeiro toque. Leitura grátis primeiro.
-Laura não é pessoa de carne. Figura da Missão + tecnologia.
-Língua pública: Missão com Deus. Não usar no texto que o irmão lê: casa, arca, prateleira (gíria interna). Versículo e quiz da família (“minha casa”) permanecem.
-Filha 13 anos: 3 aulas livres (não 4). Sexualidade no quiz: pingo, sem catálogo, sem ato.
-INFRA
-VPS Contabo 212.28.182.86 Ubuntu 22.04.5, Nginx, PHP 8.1.32, aaPanel.
-Vivo: missaocomdeus.com.br → /www/wwwroot/missaocomdeus.com.br/
-compraoseu.com: só 301 + SSL. Não desligar.
-PM2: conectai-apioficial :6000, conectai-backend :4000, conectai-frontend :3000.
-apioficial.compraoseu.com = Laura. Não apagar.
-FormSubmit: portalmissaocomdeus@gmail.com. Deixar compraoseu.com@gmail.com se ainda for login.
-Stats cron: python3 /home/deploy/gerar_estatisticas.py → stats.html + leituras.json
-Não sobrescrever o v6 do deploy com rascunho v3.
-PWA: name Missão com Deus. Ícone antigo “Portal O Despertar” não renomeia sozinho.
-CONTATOS E REDES (21/09)
-WhatsApp: 5528999111493
-YouTube: @portal.o.despertar
-Instagram vivo (rodapé): https://www.instagram.com/vivamissaocomdeus
-Instagram morto: portalmissaocomdeus (Meta desativou). Não reabrir no mesmo celular/e-mail.
-Não colocar Instagram no hero. Só rodapé. Não mudar bio/e-mail dessa conta todo dia.
-TikTok: Home aponta @portalmissaocomdeus. Conta antiga da figura: @laura.marual (~4k). Não misturar.
-E-mail: portalmissaocomdeus@gmail.com
-KIWIFY E FUNIL (21/09)
-Um preço: R$ 37, pagamento único, vitalício. https://pay.kiwify.com.br/iVfp2bi
-Não assinatura anual.
-NCAEVtO R$ 19,90 existe na Kiwify, saiu das páginas. Não ressuscitar.
-Códigos no site: Trilogia EVLTRLAM26 · Anestesia NSTMNT26. Sem GRACA37.
-Obrigado: https://missaocomdeus.com.br/obrigado
-PDF NT no obrigado: /ebooks/livro11-o-n-t.pdf (typo onovotestamenento é nome velho; se ainda existir no disco, é apelido de stats, não link público).
-Funil
-Home / livros: Palavra e leitura.
-CTA ouro → /guardar (página da Missão: tira dúvida).
-Botão de /guardar → Kiwify iVfp2bi (só pagar).
-Não receber cartão na Missão.
-Copy da oferta (Home, 21/09):
+Este arquivo é o chão do próximo chat. Leia inteiro antes de escrever ou mexer no site. O que está aqui é o que está no ar hoje. Se um nome, um preço ou um produto não aparece neste texto, não use.
 
-H2: Se a leitura tocou o coração, dê o próximo passo
-Lista antiga de 6 tópicos saiu. Frase: Todos os livros da Missão com Deus. Sem exceção. Os de hoje e cada lançamento que ainda vai nascer, no mesmo acesso.
-Botão ouro: Quero todos os livros → /guardar
-Cartão segundo: Todos os livros. Um pagamento. Botão: Ver o que entra por R$ 37 → /guardar
-Tiago 1.22 permanece. Sem cura pronta. Sem timer. Sem 19,90.
-Na Kiwify: enxugar texto do produto (título, uma imagem, pagar).
+A honra é do Senhor.
 
-HOME E BIBLIOTECA (21/09)
-Hero: despertar; Devocional /livro04; segundo botão Pais e Filhos /guia-pais-filhos.
-Player Palavra: círculo 36px, sem autoplay. Não rodar 
-APLICAR_PLAYER_SHARE_BOTAO.py
-.
-Uma prateleira só: #biblioteca (id interno; o irmão lê “livros” / Missão).
-Janela até 30/09/2026 00:00 Brasília: Evolução, Anestesia, NT, Caminho leitura completa. Depois voltam à primeira metade.
-Cards públicos (ordem da grade): NT, Evolução, Anestesia, Devocional, Jesus, Caminho, Afirmações, Livro 08 Em breve.
-Livro 08: Guia Pais e Filhos: Construindo um Futuro. Capa https://i.ibb.co/b5XXwH4M/livro08.jpg. Botão Em breve fica na Home (#aviso-livro-pais-filhos). Não abrir /livro08 (404). Segundo botão: Conversas #pais-filhos. Livro inteiro ainda na oficina.
-Inteiros sempre: 04, 06, 12. Prévia após a janela: 05, 07, 09, 11.
-Fora da Home (HTML no disco, sem card): 01, 02, 03, 10. O Arquiteto não é o Livro 08 público.
-PAIS E FILHOS
-Conversa: /guia-pais-filhos → Home #pais-filhos (8 perguntas) → Espelho /guia-pais-filhos-espelho (8).
-E-mail do guia: enviar_guia.php e enviar_guia_espelho.php devem ter as 8 perguntas (pingo do coração = pergunta 7).
-Livro-mapa (oficina): 
-GUIA_PAIS_E_FILHOS_CONSTRUINDO_UM_FUTURO.md
-. Não é o quiz. Não publicar o corpo ainda.
-Quiz Home Termômetro da Alma: 6 perguntas, outra peça.
-AULAS
-3 livres (1–3). 4–7 cadeado. Filha 13 anos.
-Trilogia /trilogia-da-alma · Anestesia /anestesia-mental.
-CTA das pontes também deve ir a /guardar (não direto à Kiwify), se o script de CTAs já rodou no HTML.
-STATS (Termômetro v6)
-Cron: /home/deploy/gerar_estatisticas.py (v6). Não colar v3 por cima.
-Ranking ignora LIVROS_REMOVIDOS. Causa do 08 sumido: /livro08 estava nessa lista (Arquiteto). Tem de sair dos removidos e entrar em LIVROS_NO_AR.
-Cliques de /livro08 antes de 02/09/2026 = Arquiteto (histórico). Depois = Pais e Filhos.
-Outras páginas: não listar mp3/mp4, stats_teste, geo.php, enquete.php, %2f, URL quebrada. /guardar e Espelho no Ranking.
-Se o painel quebrar com SyntaxError ',,' na linha do PDF: vírgula dupla. Consertar e python3 /home/deploy/gerar_estatisticas.py.
-LAURA
-FlowOpenAi Início → OpenAI Permanente. Temp 0,7. Tokens 800.
-Colar V12 Casa se ainda não estiver (
-PROMPT_LAURA_V12_CASA.txt
-): 7 livros públicos; nunca 01/02/03/08-Arquiteto/10; 07 e 11 metade após a janela; aulas 1–3 código, 4–7 com R$ 37; sem NCAEVtO; sem IG antigo; “grátis”+ler = biblioteca.
-GitHub 03/09 dizia V11 colado. Conferir no Flow se já é V12.
-Encerrar tickets. Não testar no chip do dono.
-CERCAS FIXAS
-Não overlay YouTube. NT na Missão = capa + áudio / MP4 local, sem embed Ot6CRgd_nYY.
-Não publicar Poder do Eu Sou.
-Não Pix a cada 2–3 capítulos.
-Token Conectaí já vazou num chat: não repetir; regenerar se ainda válido.
-Não se apresentar como anjo.
-ARQUIVOS-CHAVE DESTA TEMPORADA
+Como começar o próximo chat:
 
-guardar.html
- · 
-APLICAR_PAGINA_GUARDAR.py
+Continuar a Missão com Deus. Site vivo missaocomdeus.com.br. Leia MEMORIA_PROJETO.md de 24/09/2026.
 
-APLICAR_CARD_LIVRO08.py
- · 
-livro08.html
- (só Em breve, se existir)
+A verdade do site está no servidor, pasta `/www/wwwroot/missaocomdeus.com.br/`. O GitHub (sidneyrma/instalador) é espelho atrasado. Não trate o GitHub como o ar.
 
-APLICAR_CTA_COLECAO.py
- (Em breve na Home + frase da coleção)
+---
 
-APLICAR_PUBLICO_E_IG.py
- (Instagram vivo + língua pública)
+## 1. Quem é o autor e como servir
 
-APLICAR_STATS_LIVRO08_NO_AR.py
- (Ranking)
+O autor é irmão em Cristo, dono da Missão. Não é técnico avançado. Fale em português do Brasil, com calma, um passo de cada vez. Trate-o por amado irmão, irmão em Cristo Jesus. Não se apresente como anjo. Você é servo que ajuda no site e nos textos.
 
-APLICAR_STATS_LIMPO.py
- · 
-APLICAR_STATS_CONSERTA.py
+Um pedido, um passo. Não empilhe tarefas. Não peça senha, token ou acesso ao GitHub.
 
-PROMPT_LAURA_V12_CASA.txt
-Próximo chat: «Continuar a Missão com Deus. Site vivo missaocomdeus.com.br. Leia MEMORIA_PROJETO.md de 21/09/2026.»
+No aaPanel, Terminal: só 2 linhas, digitadas. Se o Terminal mostrar o nome do script entre colchetes azuis, não clique. Isso gera `can't open file ... Errno 2`. Digite o nome do `.py`.
+
+Nunca use `cat >>` em HTML. Envie o `.py` e os HTML que o script precisa antes de pedir para rodar. Script faz backup sozinho. Se a string não achar, não grava. Segunda execução diz que já estava.
+
+Não substitua `index.html` nem o miolo de um livro inteiro no servidor. Isso apaga banner, quiz, enquete e player.
+
+Antes de recarregar Nginx: `nginx -t`.
+
+---
+
+## 2. Padrão de linguagem da Missão
+
+Isto não é “regra interna”. É o jeito de escrever para o público e para o autor.
+
+- Português do Brasil, com acentos.
+- Frase de gente. Curta. Clara. Como conversa franca.
+- Não use travessão (o traço longo nem o médio) em copy nova, FAQ, botão, carrossel, WhatsApp ou explicação. Use vírgula, ponto ou dois pontos.
+- Prefira “você”. Não use “sincera(o)”, “bem-vind(o)a”, nem pares com barra de gênero em texto novo.
+- Sem depoimento inventado.
+- Sem cura pronta. A Missão oferece caminho, no ritmo de cada um.
+- A Palavra primeiro. Leitura grátis antes de falar de pagamento.
+- A marca pública é **Missão com Deus**. O irmão lê “Missão”, “portal”, “livros”, “acesso completo”. Não use gíria de bastidor no texto que ele lê.
+- No quiz da família, a frase “minha casa” (versículo e pergunta) permanece, porque é da Palavra e do roteiro.
+- Sexualidade no quiz da família: um pingo. Ouça. Sem catálogo. Sem ato. Sem perguntar “você é o quê?”.
+
+Se uma IA anterior usou outro vocabulário, ignore. Use só o deste arquivo.
+
+---
+
+## 3. O que a Missão é
+
+A Missão com Deus oferece leitura cristã, áudio da Palavra, videoaulas e um caminho de estudo. Fé cristã no centro. A mente e o coração entram como cuidado, não como espetáculo.
+
+Laura é figura criada para a Missão, com apoio de tecnologia. Não é pessoa de carne. Não é mentora humana. Não é anjo. Quando perguntarem quem ela é: a honra é do Senhor. História: https://missaocomdeus.com.br/nossa-missao
+
+Não publicar a obra “Poder do Eu Sou”.
+
+---
+
+## 4. Funil e preço (o que está no ar)
+
+1. Home e livros: Palavra e leitura.
+2. Quem quer o conjunto vai para https://missaocomdeus.com.br/guardar
+3. Quem confirma o pagamento vai para a Kiwify: https://pay.kiwify.com.br/iVfp2bi
+
+Um pagamento: **R$ 57,00**. Pix na hora ou cartão em até 4x. Garantia de 7 dias pela Kiwify. Acesso vitalício. Chega por e-mail da Kiwify. Sem mensalidade.
+
+O acesso completo reúne:
+
+- as 8 obras em arquivos digitais
+- 14 módulos em vídeo (7 da Trilogia, 7 da Anestesia)
+- exercícios e comunidade
+- 30 áudios das mensagens diárias
+- conteúdos para Pais e Filhos
+- novos conteúdos digitais no mesmo acesso, sem cobrança nova
+
+Valores de referência na página `/guardar` (não são preço de venda avulso): Evolução 47, Anestesia 47, Um Segundo 19, Jesus Filho 19, Caminho 47, NT 49, Afirmações 19, Guia Pais e Filhos 37, cada curso 47, exercícios 15, comunidade 15, 30 áudios 27, lançamento futuro incluso. Soma de referência 435. Pagamento 57.
+
+Códigos das aulas 1 a 3:
+
+- Trilogia: `EVLTRLAM26` · https://missaocomdeus.com.br/trilogia-da-alma
+- Anestesia: `NSTMNT26` · https://missaocomdeus.com.br/anestesia-mental
+
+O código não abre os módulos 4 a 7. Esses ficam no acesso completo.
+
+Página de obrigado: https://missaocomdeus.com.br/obrigado  
+PDF do NT nessa página: `/ebooks/livro11-o-n-t.pdf`
+
+Não receba cartão no site da Missão. Checkout só na Kiwify.
+
+---
+
+## 5. As oito obras
+
+Ordem da biblioteca na Home:
+
+| Rota | Obra | Leitura no site |
+|---|---|---|
+| `/livro11` | O Novo Testamento como nunca lido | janela (veja §6) |
+| `/livro05` | Evolução da Alma | janela |
+| `/livro09` | Anestesia Mental | janela |
+| `/livro04` | Um Segundo com Deus | inteiro sempre |
+| `/livro06` | Jesus Quer Falar com Seu Filho | inteiro sempre |
+| `/livro07` | O Caminho do Despertar | janela |
+| `/livro12` | Afirmações, Declarações e Orações | inteiro sempre |
+| `/livro08` | Guia Pais e Filhos: Construindo um Futuro | janela, já no ar |
+
+Capa pedida do 08: `https://i.ibb.co/b5XXwH4M/livro08.jpg`
+
+O 08 público é o Guia Pais e Filhos. Não trate essa rota como outro título antigo.
+
+Fora da Home (HTML pode existir no disco, sem card): 01, 02, 03, 10.
+
+Não adulterar o miolo original do livro 08 sem pedido explícito do autor. Vestimenta (sumário, nav, proteção, trava, leitor) sim.
+
+---
+
+## 6. Leitura aberta e janela
+
+A leitura gratuita continua. A quantidade aberta pode variar conforme o período.
+
+Até 30/09/2026 00:00 Brasília, estas obras abrem por inteiro no site: Evolução da Alma, Anestesia Mental, O Caminho do Despertar, O Novo Testamento, Guia Pais e Filhos.
+
+Quando a janela termina, voltam ao formato habitual: cerca de 40% livres, o restante no acesso completo. 04, 06 e 12 continuam inteiros.
+
+Na copy pública, explique a regra de forma genérica (abertura temporária, retorno a cerca de 40%). A data da campanha atual pode aparecer no banner com a contagem. Não escreva “estão abertos agora” em texto que vai envelhecer sozinho. Não diga que a leitura gratuita some. Ela continua, em parte.
+
+O acesso completo não depende dessas datas.
+
+---
+
+## 7. Home (como está)
+
+Hero: “Começar o Devocional de 30 dias” (`/livro04`) e “Conhecer Pais e Filhos” (`/guia-pais-filhos`). Sem botão de preço na primeira dobra.
+
+Player da Palavra de hoje: círculo 36px, anéis, sem autoplay. Não rodar `APLICAR_PLAYER_SHARE_BOTAO.py`.
+
+WhatsApp flutuante: ícone próprio, ondas. Número `5528999111493`.
+
+Biblioteca: uma grade, 8 cards, números de leitura via `/leituras.json` (só no ar, precisa de internet). Botões: Ler grátis ou Ler a prévia grátis, e Acesso completo por R$ 57 (`/guardar`). Card 08: Conversas vai para `#pais-filhos`.
+
+Menu: sem o item duplicado “Livros”. Fica Biblioteca gratuita. Já tenho acesso: entrar no Portal (painel Kiwify). Ainda não tem acesso → `/guardar`. Ícones SVG.
+
+FAQ próprio: diferença entre leitura gratuita e acesso completo.
+
+Banner de cursos (`#cta-cursos`): texto curto, botão ouro para `/guardar`, aulas, Falar com a Laura. Não é o único caminho de compra.
+
+Rodapé: Nossa Missão, e-mail, WhatsApp, TikTok `@portalmissaocomdeus`, Instagram https://www.instagram.com/vivamissaocomdeus, Facebook https://www.facebook.com/livrosmissaocomdeus
+
+Página da Missão no Facebook: 60 dias sem anúncio. Link no rodapé pode ficar. Campanha paga, por agora, no Instagram.
+
+Não turbinar post pelo app do Instagram com destino WhatsApp: a arte e a legenda grudam na conversa e a Laura não lê a pergunta. Anúncio de mensagem: Gerenciador de Anúncios, quebra-gelo em texto limpo.
+
+Termômetro da Alma: 6 perguntas na Home (diagnóstico). Outra peça, não confundir com o quiz da família.
+
+Enquete: `#enquete`. Não apagar `enquete_dados.json`.
+
+---
+
+## 8. Página /guardar
+
+Preço 57. Checkout `iVfp2bi`. Animação do preço usa 57.
+
+Oito cards de obras. Grade: 4 colunas no computador, 2 no celular.
+
+Leitura aberta temporária explicada no FAQ e no aviso após os cards grátis e vitalício. Lista das obras que podem participar de período integral, em linguagem que não envelhece.
+
+Perto do 57: o acesso completo permanece quando uma abertura temporária termina.
+
+Último fecho: um só parágrafo no valor de referência (sem repetir embaixo). CTAs com chave SVG.
+
+---
+
+## 9. Pais e Filhos
+
+Roteiro dos filhos: https://missaocomdeus.com.br/guia-pais-filhos e bloco na Home `#pais-filhos` (8 perguntas).
+
+Espelho (pais): `/guia-pais-filhos-espelho` (8 perguntas, uma a uma).
+
+Livro: `/livro08` já no ar, com leitor, sumário, trilha, trava 30/09/2026 00:00 Brasília (livre até o capítulo 4; do 5 em diante o portão leva a `/guardar` quando a janela fecha).
+
+Quiz da Home para o guia: botão na capa do livro, linha no sumário, banner da Laura.
+
+Não reescrever o texto original do autor no miolo do 08.
+
+---
+
+## 10. Laura (WhatsApp)
+
+Número: 5528999111493
+
+Flow: Início → OpenAI Permanente. Sem bloco “um momento” no meio. Sem Transferir / Setor por dúvida. Temp 0,7. Tokens 800.
+
+Prompt no ar a usar: **V19** (`PROMPT_LAURA_V19.txt`). Encerrar tickets ao colar. Teste em conversa nova:
+
+1. “Olá, quero saber mais sobre o Portal Missão com Deus.” → uma pergunta (já leu ou chegou agora). Sem panfleto.
+2. “Sobre o guia pais e filhos Laura pode me dizer alguma coisa” → os dois links (`/guia-pais-filhos` e `/livro08`). Sem transferir.
+
+Instagram que chega no WhatsApp com imagem: a pergunta vem presa na arte. A Laura muitas vezes não dispara. Abrir a conversa e responder o tema do post (quiz e Guia), não o panfleto do portal.
+
+Não transfere por livro, guia, pais e filhos, preço, oração ou “pode me dizer”. Transfere só se pediram gente de carne, xingamento grave, CNPJ, ou três tentativas concretas e ainda pedem uma pessoa.
+
+Bolhas curtas. Sem travessão. “Você”. Nome só se a pessoa disse o nome.
+
+---
+
+## 11. Contatos e redes
+
+- WhatsApp: 5528999111493
+- E-mail: portalmissaocomdeus@gmail.com
+- Instagram: https://www.instagram.com/vivamissaocomdeus
+- TikTok: https://www.tiktok.com/@portalmissaocomdeus
+- YouTube: @portal.o.despertar (não embutir o vídeo `Ot6CRgd_nYY`)
+- Facebook: https://www.facebook.com/livrosmissaocomdeus (página quieta para anúncio por 60 dias)
+
+FormSubmit público: portalmissaocomdeus@gmail.com
+
+---
+
+## 12. Como aplicar mudança no site
+
+A pasta pública do site é `/www/wwwroot/missaocomdeus.com.br/`. O GitHub não é o ar.
+
+1. Backup automático no script.
+2. Subir o `.py` e o HTML necessário.
+3. Duas linhas no Terminal:
+
+```
+cd /www/wwwroot/missaocomdeus.com.br
+python3 NOME_DO_SCRIPT.py
+```
+
+4. Conferir no ar (celular e notebook), não só no painel sem internet.
+
+Não apague a enquete. Não mude URL de API ou webhook da Laura. Não publique overlay no YouTube.
+
+Painel de números: https://missaocomdeus.com.br/stats.html  
+`/palavra`, `/stats` e `enquete.php` ficam sem índice e sem menu.
+
+---
+
+## 13. Carrossel e anúncio
+
+Copy de campanha: 8 obras, R$ 57, leitura grátis primeiro, Laura não é mentora de carne. Acentos. CTA ouro.
+
+Arquivo de referência do carrossel Anestesia: `CARROSSEL_ANESTESIA_CORRIGIDO.md`
+
+---
+
+## 15. Frase de ouro da oferta
+
+A leitura gratuita continua disponível. Em alguns períodos, determinadas obras podem ser abertas integralmente. Essa liberação é temporária. Quando ela termina, a leitura aberta volta a cerca de 40%. O acesso completo, por R$ 57, garante as oito obras inteiras, os módulos, os exercícios, os áudios, os conteúdos para Pais e Filhos e a comunidade, sem depender dessas datas.
