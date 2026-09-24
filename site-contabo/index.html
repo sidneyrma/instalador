@@ -3,7 +3,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Missão com Deus | Desperte sua Alma, fortaleça sua fé, transforme sua vida</title>
 <meta name="google-site-verification" content="Yh_W9CiUPnt9wUiY47QzfjOBOjgAj15XwtTIa1eB3mk" />
-<meta name="description" content="Missão com Deus: videoaulas, livros e uma comunidade de estudos que une fé cristã e neurociência do comportamento. Trilogia Evolução da Alma + Anestesia Mental por R$ 57,00.">
+<meta name="description" content="Missão com Deus: 8 obras completas, 14 módulos em vídeo, exercícios, áudios, comunidade e novos conteúdos digitais por R$ 57 em pagamento único. Acesso vitalício e garantia de 7 dias.">
+<link rel="canonical" href="https://missaocomdeus.com.br/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia&display=swap" rel="stylesheet">
@@ -41,7 +42,7 @@
   .wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
   section{padding:88px 0;}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--gold-dark);margin-bottom:16px;}
-  .eyebrow::before{content:"🔑";font-size:14px;}
+  .eyebrow::before{content:none;}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 30px;border-radius:999px;font-weight:700;font-size:16px;cursor:pointer;border:2px solid transparent;transition:transform .15s ease, box-shadow .15s ease;}
   .btn:hover{transform:translateY(-2px);}
   .btn-gold{background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:var(--navy);box-shadow:0 12px 28px -10px rgba(184,134,11,.55);}
@@ -85,7 +86,7 @@
 
   /* HERO */
   .hero{background:radial-gradient(1200px 600px at 80% -10%, rgba(201,162,75,.18), transparent 60%), linear-gradient(180deg,var(--navy),var(--navy-2));color:var(--cream-2);padding:96px 0 76px;position:relative;overflow:hidden;}
-  .hero::after{content:"🔑";position:absolute;right:-40px;top:20px;font-size:340px;opacity:.045;transform:rotate(18deg);pointer-events:none;}
+  .hero::after{content:none;position:absolute;right:-40px;top:20px;font-size:340px;opacity:.045;transform:rotate(18deg);pointer-events:none;}
   .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative;z-index:1;}
   .hero h1{color:var(--cream-2);font-size:44px;}
   .hero h1 em{color:var(--gold-light);font-style:normal;}
@@ -212,7 +213,7 @@
   .faq-item.open .plus{transform:rotate(45deg);}
   .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;font-size:14.5px;color:var(--muted);}
   .faq-a p{padding-bottom:18px;}
-  .faq-item.open .faq-a{max-height:400px;}
+  .faq-item.open .faq-a{max-height:1200px;}
 
   /* CTA FINAL */
   .cta-final{background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:var(--navy);text-align:center;padding:70px 0;}
@@ -485,28 +486,98 @@
   .pf-presente .pf-baixar:hover{transform:translateY(-1px);box-shadow:0 10px 22px -8px rgba(184,134,11,.6);}
   .pf-presente .pf-presente-rodape{font-size:.8rem;color:#8a7f6d;margin:12px 0 0;}
 </style>
+
+<style id="css-home-lapida">
+  .btn-ico{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(14,26,46,.12);flex:0 0 26px}
+  .btn-gold .btn-ico{background:rgba(14,26,46,.14)}
+  .btn-sec .btn-ico,.btn-gold .btn-ico svg{stroke:currentColor}
+  .hero-ctas{flex-wrap:wrap}
+</style>
+
+
+<style id="css-home-ajuste">
+  .eyebrow::before{content:none !important;display:none !important}
+  .eyebrow .ico-svg, h2 .ico-svg{flex:0 0 18px;width:18px;height:18px;stroke:currentColor}
+  .eyebrow{gap:8px}
+  .btn-ico{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(14,26,46,.12);flex:0 0 26px}
+  .btn-gold .btn-ico{background:rgba(14,26,46,.14)}
+  .bib-leituras{display:inline-flex !important;align-items:center;gap:4px;margin-left:8px;font-size:.78rem;color:#8a6a2a;background:rgba(201,162,75,.16);border-radius:999px;padding:2px 9px;font-weight:700;letter-spacing:.02em;vertical-align:middle}
+  .bib-leituras svg{width:12px;height:12px;fill:#8a6a2a}
+  .faq-item.open .faq-a{max-height:1200px}
+  #palavra-hoje .ph-play{position:relative;overflow:visible}
+  #palavra-hoje .ph-play::before,
+  #palavra-hoje .ph-play::after{
+    content:"";position:absolute;inset:-3px;border-radius:50%;
+    border:1px solid rgba(227,200,119,.5);pointer-events:none;
+    animation:phAnel 2.4s ease-out infinite;
+  }
+  #palavra-hoje .ph-play::after{animation-delay:1.2s}
+  @keyframes phAnel{
+    0%{transform:scale(.92);opacity:.65}
+    100%{transform:scale(1.95);opacity:0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    #palavra-hoje .ph-play::before,#palavra-hoje .ph-play::after{animation:none;opacity:0}
+  }
+</style>
+
+
+<style id="css-home-icones">
+  .btn-ico{background:rgba(201,162,75,.22)}
+  .btn-ico svg{stroke:#c9a24b !important}
+  .btn-gold .btn-ico{background:rgba(14,26,46,.22)}
+  .btn-gold .btn-ico svg{stroke:#e3c877 !important}
+  .bib-badge{display:inline-flex;align-items:center;gap:5px}
+  .bib-badge .ico-svg{width:13px;height:13px;flex:0 0 13px}
+  .cta-emoji{display:inline-flex;align-items:center;justify-content:center;color:#e3c877}
+  .cta-emoji .ico-svg{width:28px;height:28px}
+  .wa-float{font-size:0}
+  .wa-float .wa-ico{display:block;color:#fff}
+  .eq-aviso .ico-svg,.eq-mensagem .ico-svg{width:15px;height:15px;vertical-align:-3px;margin-right:4px}
+  .module-col h4{display:flex;align-items:center;gap:8px}
+  .nav-cta .ico-svg{width:16px;height:16px;flex:0 0 16px;stroke:currentColor}
+</style>
+
+
+<style id="css-home-menu">
+  .navlinks a .nav-ico{
+    flex:0 0 18px;width:18px;height:18px;stroke:#e3c877;color:#e3c877;
+    filter:drop-shadow(0 0 6px rgba(227,200,119,.45));
+  }
+  .navlinks a:hover .nav-ico{stroke:#f6e7b2;filter:drop-shadow(0 0 8px rgba(227,200,119,.7))}
+  .nav-cta{white-space:normal;line-height:1.25;text-align:center;gap:8px}
+  .nav-cta .nav-ico{stroke:#0e1a2e;filter:none}
+  .nav-cta-guardar{
+    margin:8px 18px 0;justify-content:center;padding:11px 14px;font-size:14px;
+    border-radius:999px;border:1px solid rgba(227,200,119,.7);
+    background:transparent;color:#e3c877;font-weight:700;
+  }
+  .nav-cta-guardar .nav-ico{stroke:#e3c877;filter:drop-shadow(0 0 6px rgba(227,200,119,.55))}
+  .nav-cta-guardar:hover{background:rgba(201,162,75,.16);color:#f6e7b2}
+</style>
+
 </head><body>
 <div id="popup-dicas" aria-live="polite"></div>
 
 <header class="site">
   <div class="nav">
-    <a href="#" class="logo">Missão com <b>Deus</b></a>
+    <a href="/" class="logo">Missão com <b>Deus</b></a>
     <nav class="navlinks" id="navlinks" aria-label="Menu principal">
       <div class="nav-cabecalho">
         <span>☰ &nbsp;Menu</span>
         <button class="nav-fechar" id="nav-fechar" aria-label="Fechar menu">✕</button>
       </div>
-      <a href="#portal">O Portal</a>
-      <a href="#biblioteca">Livros</a>
-      <a href="#biblioteca">Biblioteca gratuita</a>
-      <a href="#trilogia">Trilogia</a>
-      <a href="#missao">A Missão</a>
-      <a href="#faq">Dúvidas</a>
-      <a href="/trilogia-da-alma">🎓 Trilogia da Alma</a>
-      <a href="/anestesia-mental">🎓 Anestesia Mental</a>
-      <a href="/guia-pais-filhos">👨‍👩‍👧 Pais e Filhos</a>
-      <a href="/nossa-missao">🕊️ Nossa Missão</a>
-      <a class="btn btn-gold nav-cta" href="https://dashboard.kiwify.com.br/courses">🔓 Entrar no Portal</a>
+      <a href="#portal"><svg class="nav-ico" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg> O Portal</a>
+      <a href="#biblioteca"><svg class="nav-ico" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Biblioteca gratuita</a>
+      <a href="#trilogia"><svg class="nav-ico" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg> Trilogia</a>
+      <a href="#missao"><svg class="nav-ico" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg> A Missão</a>
+      <a href="#faq"><svg class="nav-ico" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg> Dúvidas</a>
+      <a href="/trilogia-da-alma"><svg class="nav-ico" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg> Trilogia da Alma</a>
+      <a href="/anestesia-mental"><svg class="nav-ico" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/></svg> Anestesia Mental</a>
+      <a href="/guia-pais-filhos"><svg class="nav-ico" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Conhecer Pais e Filhos</a>
+      <a href="/nossa-missao"><svg class="nav-ico" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Nossa Missão</a>
+      <a class="btn btn-gold nav-cta" href="https://dashboard.kiwify.com.br/courses"><svg class="nav-ico" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg> Já tenho acesso: entrar no Portal</a>
+      <a class="btn nav-cta nav-cta-guardar" href="/guardar"><svg class="nav-ico" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg> Ainda não tem acesso</a>
       <div class="nav-rodape">✝️ "Confia ao Senhor o teu caminho."<br>Salmos 37:5</div>
     </nav>
     <button class="burger" id="burger" aria-label="Abrir menu">☰</button>
@@ -522,7 +593,7 @@
       <p class="lead">Uma palavra para a sua Alma. Livros online, de graça, sem cadastro e você continua exatamente de onde parou.</p>
       <div class="hero-ctas">
         <a class="btn btn-gold" href="/livro04"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Começar o Devocional de 30 dias</a>
-        <a class="btn btn-ghost-light" href="/guia-pais-filhos"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.86 0c1.08 1.06 1.05 2.78 0 3.83L12 19"/></svg> Pais e Filhos</a>
+        <a class="btn btn-ghost-light" href="/guia-pais-filhos"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.86 0c1.08 1.06 1.05 2.78 0 3.83L12 19"/></svg> Conhecer Pais e Filhos</a>
       </div>
 <style id="css-hero-svg">
   .hero-ctas .btn{display:inline-flex;align-items:center;gap:8px;}
@@ -774,18 +845,18 @@
     <div class="section-head">
       <span class="eyebrow">O que é o portal</span>
       <h2>O Portal Missão com Deus</h2>
-      <p>Ao adquirir qualquer uma das nossas obras, você garante acesso ao Portal, com cronograma exclusivo de estudos na área de membros.</p>
+      <p>Ao adquirir o acesso completo, você recebe acesso ao Portal, com cronograma exclusivo de estudos na área de membros.</p>
     </div>
     <div class="grid grid-4">
       <div class="card-destaque">
         <div class="cd-txt">
           <h3>Livros online e gratuitos</h3>
           <p>Comece a leitura das obras da Coleção Missão com Deus gratuitamente, sem cadastro e com leitura protegida. Você estará a um passo de recomeçar uma vida com paz e propósito, e a porta do conhecimento se abre para você agora.</p>
-          <p class="cd-convite">💬 Qual é a maior batalha da sua mente hoje? Responda em 1 minuto e descubra que você não está sozinho.</p>
+          <p class="cd-convite"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg> Qual é a maior batalha da sua mente hoje? Responda em 1 minuto e descubra que você não está sozinho.</p>
         </div>
         <div class="cd-acoes">
           <a class="btn btn-gold" href="#biblioteca">Ir para os livros</a>
-          <a class="btn btn-enquete" href="#enquete">💬 Participar da enquete</a>
+          <a class="btn btn-enquete" href="#enquete"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg> Participar da enquete</a>
         </div>
       </div>
       <div class="card"><span class="ic ic-svg" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><polygon points="10 8 16 12 10 16 10 8"/></svg></span><h3>Videoaulas guiadas</h3><p>Imersão teórica e prática com ensinamentos profundos de fácil linguagem que tocam a alma.</p></div>
@@ -800,8 +871,8 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
 <section id="quiz" class="quiz-sec" style="background:var(--cream-2,#f5efe6);padding:70px 0;">
   <div class="wrap">
     <div class="section-head text-center" style="text-align:center;max-width:700px;margin:0 auto 36px;">
-      <span class="eyebrow" style="color:var(--gold-dark,#b8860b);font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:1.5px;">🌿 Diagnóstico Espiritual Gratuito</span>
-      <h2 style="font-size:2rem;color:var(--navy,#0e1a2e);margin:10px 0;">🕊️ Termômetro da Alma: Como está seu coração hoje?</h2>
+      <span class="eyebrow" style="color:var(--gold-dark,#b8860b);font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:1.5px;"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg> Diagnóstico Espiritual Gratuito</span>
+      <h2 style="font-size:2rem;color:var(--navy,#0e1a2e);margin:10px 0;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Termômetro da Alma: Como está seu coração hoje?</h2>
       <p style="color:var(--muted,#666);font-size:1.05rem;line-height:1.6;">6 perguntas rápidas (menos de 2 minutos). Descubra o que está pesando no seu coração e receba a direção espiritual ideal para o seu momento.</p>
     </div>
 
@@ -918,7 +989,7 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
     <div class="bib-head">
       <span class="bib-tag"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Biblioteca</span>
       <h2>Conheça nossos Livros</h2>
-      <p>Todos os títulos abaixo são da Missão com Deus. Alguns abrem inteiros de graça; outros abrem a primeira metade, e o restante fica no acesso completo.</p>
+      <p>Todos os títulos abaixo são da Missão com Deus. A leitura gratuita continua. Em alguns períodos, determinadas obras abrem por inteiro. Quando a abertura termina, voltam ao formato habitual, com cerca de 40% livres. O acesso completo garante as oito obras inteiras.</p>
       <p>Conheça o conteúdo das nossas obras antes de adquiri-las. Leitura online protegida, sem cópia e sem impressão.</p>
       <p>Agora você pode ler nossos livros online e, sempre que abrir novamente, continuar exatamente do ponto em que parou. Letras no seu tamanho, tela confortável e fita dourada para marcar o lugar.</p>
       <p class="bib-app">
@@ -935,7 +1006,7 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
 
 <div id="janela-livros" style="max-width:1000px;margin:0 auto 26px;padding:16px 20px;background:linear-gradient(135deg,#0e1a2e,#16283f);color:#f6f1e7;border:1px solid rgba(201,162,75,.45);border-radius:14px;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;text-align:center;box-shadow:0 10px 26px rgba(14,26,46,.12);position:relative;z-index:1;">
   <strong style="display:inline-flex;align-items:center;gap:8px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Comece hoje sua leitura</strong>
-  <p style="margin:7px 0 5px;font-size:.95rem;line-height:1.55;">Uma oportunidade carinhosa para conhecer melhor a coleção. <strong>Evolução da Alma</strong>, <strong>Anestesia Mental</strong>, <strong>O Novo Testamento</strong> e <strong>O Caminho do Despertar</strong> estão com a leitura completa até <strong>30/09/2026 às 00:00</strong> (horário de Brasília). Depois, os quatro livros voltam a abrir a primeira metade, como de costume.</p>
+  <p style="margin:7px 0 5px;font-size:.95rem;line-height:1.55;">Uma oportunidade carinhosa para conhecer melhor a coleção. <strong>Evolução da Alma</strong>, <strong>Anestesia Mental</strong>, <strong>O Caminho do Despertar</strong>, <strong>O Novo Testamento</strong> e <strong>Guia Pais e Filhos: Construindo um Futuro</strong> estão com a leitura completa até <strong>30/09/2026 às 00:00</strong> (horário de Brasília). Depois, essas obras voltam ao formato gratuito habitual, com cerca de 40% da leitura aberta.</p>
   <div id="janela-contagem" style="font-size:1.05rem;font-weight:700;color:#e3c877;letter-spacing:.04em;margin-top:2px;"></div>
   <script id="js-janela-hora">(function(){var el=document.getElementById("janela-contagem");if(!el)return;var fim=new Date("2026-09-30T00:00:00-03:00").getTime();if(isNaN(fim))fim=Date.UTC(2026,8,30,3,0,0);function z2(n){return n<10?"0"+n:n;}function tt(){var r=fim-Date.now();if(r<=0){el.textContent="Janela encerrada";var bl=document.getElementById("janela-livros");if(bl)bl.style.display="none";return;}var d=Math.floor(r/86400000);var h=Math.floor(r%86400000/3600000);var m=Math.floor(r%3600000/60000);var s=Math.floor(r%60000/1000);el.textContent=d+"d "+z2(h)+"h "+z2(m)+"m "+z2(s)+"s";}tt();setInterval(tt,1000);})();</script>
 </div>
@@ -954,11 +1025,11 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
           <p class="obra-convite">Comece pela leitura livre; a segunda metade e o arquivo para guardar ficam no acesso completo.</p>
           <div class="bib-badges">
             <span class="bib-badge">20 capítulos</span>
-            <span class="bib-badge">🔓 Primeira metade grátis</span>
+            <span class="bib-badge"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg> Primeira metade grátis</span>
           </div>
           <div class="bib-ctas">
             <a class="btn" href="/livro11"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Ler a prévia grátis</a>
-            <a class="btn btn-sec" href="/guardar">🕊️ Acesso completo</a>
+            <a class="btn btn-sec" href="/guardar"><span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Acesso completo por R$ 57</a>
           </div>
         </div>
       </div>
@@ -973,11 +1044,11 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
           <p class="obra-convite">Comece pela leitura livre e veja se este é o seu caminho.</p>
           <div class="bib-badges">
             <span class="bib-badge">11 capítulos</span>
-            <span class="bib-badge">🔓 Primeira metade grátis</span>
+            <span class="bib-badge"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg> Primeira metade grátis</span>
           </div>
           <div class="bib-ctas">
             <a class="btn" href="/livro05"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Ler a prévia grátis</a>
-            <a class="btn btn-sec" href="/guardar">🕊️ Acesso completo</a>
+            <a class="btn btn-sec" href="/guardar"><span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Acesso completo por R$ 57</a>
           </div>
         </div>
       </div>
@@ -992,11 +1063,11 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
           <p class="obra-convite">Comece pela leitura livre e sinta se é hora de ir mais fundo.</p>
           <div class="bib-badges">
             <span class="bib-badge">16 capítulos</span>
-            <span class="bib-badge">🔓 Primeira metade grátis</span>
+            <span class="bib-badge"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg> Primeira metade grátis</span>
           </div>
           <div class="bib-ctas">
             <a class="btn" href="/livro09"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Ler a prévia grátis</a>
-            <a class="btn btn-sec" href="/guardar">🕊️ Acesso completo</a>
+            <a class="btn btn-sec" href="/guardar"><span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Acesso completo por R$ 57</a>
           </div>
         </div>
       </div>
@@ -1015,7 +1086,7 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
           </div>
           <div class="bib-ctas">
             <a class="btn" href="/livro04"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Ler grátis</a>
-            <a class="btn btn-sec" href="/guardar">🕊️ Acesso completo</a>
+            <a class="btn btn-sec" href="/guardar"><span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Acesso completo por R$ 57</a>
           </div>
         </div>
       </div>
@@ -1034,7 +1105,7 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
           </div>
           <div class="bib-ctas">
             <a class="btn" href="/livro06"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Ler grátis</a>
-            <a class="btn btn-sec" href="/guardar">🕊️ Acesso completo</a>
+            <a class="btn btn-sec" href="/guardar"><span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Acesso completo por R$ 57</a>
           </div>
         </div>
       </div>
@@ -1049,11 +1120,11 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
           <p class="obra-convite">Uma jornada para quem busca sentido. Comece pela leitura livre.</p>
           <div class="bib-badges">
             <span class="bib-badge">12 capítulos</span>
-            <span class="bib-badge">🔓 Primeira metade grátis</span>
+            <span class="bib-badge"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg> Primeira metade grátis</span>
           </div>
           <div class="bib-ctas">
             <a class="btn" href="/livro07"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Ler a prévia grátis</a>
-            <a class="btn btn-sec" href="/guardar">🕊️ Acesso completo</a>
+            <a class="btn btn-sec" href="/guardar"><span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Acesso completo por R$ 57</a>
           </div>
         </div>
       </div>
@@ -1072,7 +1143,7 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
           </div>
           <div class="bib-ctas">
             <a class="btn" href="/livro12"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Ler grátis</a>
-            <a class="btn btn-sec" href="/guardar">🕊️ Acesso completo</a>
+            <a class="btn btn-sec" href="/guardar"><span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Acesso completo por R$ 57</a>
           </div>
         </div>
       </div>
@@ -1084,14 +1155,14 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
           <span class="bib-num">Livro 08</span>
           <h3>Guia Pais e Filhos: Construindo um Futuro</h3>
           <p class="bib-desc">Um mapa para a família: fase por fase, do planejamento até o filho encontrar o próprio caminho. A Palavra primeiro. Sem técnica de loja.</p>
-          <p class="obra-convite">Comece pela leitura livre. Até 30/09 a obra inteira.</p>
+          <p class="obra-convite">Leitura aberta conforme o período. O acesso completo garante a obra inteira.</p>
           <div class="bib-badges">
             <span class="bib-badge">Família</span>
             <span class="bib-badge">📖 Leitura</span>
           </div>
           <div class="bib-ctas">
             <a class="btn" href="/livro08"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg> Ler a prévia grátis</a>
-            <a class="btn btn-sec" href="/#pais-filhos">👨‍👩‍👧 Conversas</a>
+            <a class="btn btn-sec" href="/#pais-filhos"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Conversas</a>
           </div>
         </div>
       </div>
@@ -1106,7 +1177,7 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
     <div class="offer" style="margin-top:12px;">
       <div>
         <span class="eyebrow" style="color:var(--gold-light);">Acesso completo</span>
-        <h2>🕊️ Se a leitura tocou o coração, dê o próximo passo</h2>
+        <h2 style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Se a leitura tocou o coração, dê o próximo passo</h2>
         <p style="color:rgba(246,241,231,.8);">Se você busca direção, este pode ser um lugar para continuar. O Senhor conhece cada passo da sua caminhada. O próximo pode ser ir mais fundo: aulas, exercícios e uma comunidade para você não caminhar sozinho. Não prometemos uma cura pronta. Oferecemos um caminho de aprendizado e prática, no seu ritmo. Porque conhecimento sem prática permanece apenas na teoria. Aqui, o propósito é levar o que você aprende para a vida, não apenas para o saber.</p>
         <p style="color:rgba(246,241,231,.95);font-size:1.12rem;font-weight:700;margin:18px 0 6px;line-height:1.45;">Todos os livros da Missão com Deus. Sem exceção. Os de hoje e cada lançamento que ainda vai nascer, no mesmo acesso.</p>
         <p style="color:rgba(246,241,231,.75);font-style:italic;margin-top:18px;">"Sejam praticantes da palavra, e não apenas ouvintes." (Tg 1:22)</p>
@@ -1115,9 +1186,9 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
         <div class="topo-preco">Pagamento único<strong>Acesso vitalício</strong></div>
         <div class="new">R$ 57,00</div>
         <small class="note" style="margin-bottom:10px;">Pix imediato · Cartão até 4x · cerca de R$ 0,16 por dia</small>
-        <small class="note" style="display:block;margin-bottom:14px;">🛡️ Garantia incondicional de 7 dias</small>
+        <small class="note" style="display:block;margin-bottom:14px;">🛡️ Garantia de 7 dias</small>
         <p style="margin:0 0 14px;font-size:.95rem;color:#2b2620;font-weight:700;">A coleção inteira. Um pagamento.</p>
-        <a class="btn btn-gold btn-block" href="/guardar" aria-label="Quero todos os livros">🕊️ Quero todos os livros</a>
+        <a class="btn btn-gold btn-block" href="/guardar" aria-label="Quero meu acesso completo por R$ 57"><span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Quero meu acesso completo por R$ 57</a>
       </div>
     </div>
 
@@ -1129,13 +1200,13 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Para famílias</span>
-      <h2>👨‍👩‍👧 Pais e Filhos &amp; Filhos e Pais</h2>
+      <h2 style="display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Pais e Filhos &amp; Filhos e Pais</h2>
       <p>Dois roteiros, uma conversa. Um guia para o filho(a) se abrir com os pais, e outro para os filhos conhecerem a história de quem os criou. Nenhuma resposta é registrada no site: é um momento entre vocês.</p>
     </div>
     <div class="pf-cartao" id="pf-cartao">
       <div class="pf-convite" id="pf-convite">
         <p>O roteiro fica guardado aqui, pronto para quando quiserem. Clique e conduza a conversa pergunta a pergunta, no ritmo do coração de vocês.</p>
-        <button class="btn btn-gold" id="pf-abrir" type="button">💬 Iniciar o roteiro de conversa</button>
+        <button class="btn btn-gold" id="pf-abrir" type="button"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg> Iniciar o roteiro de conversa</button>
       </div>
 
       <div class="pf-roteiro" id="pf-roteiro" hidden>
@@ -1257,12 +1328,12 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
             <p class="pf-presente-rodape">Este presente é da nossa missão com Deus. Que o amor de Jesus alcance o coração da sua família!</p>
           </div>
           <div class="pf-presente" id="aviso-livro-pf-fim" style="border-color:rgba(201,162,75,.5);">
-            <p style="margin:0 0 4px;color:var(--navy,#0e1a2e);font-weight:700;">Em breve</p>
+            <p style="margin:0 0 4px;color:var(--navy,#0e1a2e);font-weight:700;">Já disponível no acesso completo</p>
             <h3 style="margin:0 0 8px;">Guia Pais e Filhos: Construindo um Futuro</h3>
-            <p style="margin:0;">Um capitulo para cada fase do seu filho, construindo intimidade com amor e respeito.</p>
+            <p style="margin:0;">Um capítulo para cada fase do seu filho, construindo intimidade com amor e respeito. <a href="/livro08" style="color:var(--gold-dark);font-weight:700;">Ler a prévia grátis</a>.</p>
           </div>
           <div id="guia-pais-form" class="pf-form">
-            <p class="pf-form-titulo">📩 Receba o guia completo no seu e-mail, para ter sempre à mão:</p>
+            <p class="pf-form-titulo">O Guia já está no ar. Se quiser o arquivo e os avisos da Missão, deixe seu e-mail:</p>
             <div class="pf-linha">
               <input type="email" id="guia-email" placeholder="Seu e-mail">
               <button type="button" class="btn-guia" onclick="enviarGuia()">Receber o Guia</button>
@@ -1282,7 +1353,7 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
 <section class="enquete-sec" id="enquete">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">📊 Participe</span>
+      <span class="eyebrow"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16v-7"/><path d="M12 16V8"/><path d="M17 16v-4"/></svg> Participe</span>
       <h2>Sua opinião faz a diferença</h2>
       <p>Leva menos de um minuto e ajuda a melhorar a experiência de todos os leitores.</p>
     </div>
@@ -1309,7 +1380,7 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
       <div class="eq-mensagem" id="eq-mensagem"></div>
       <div class="eq-resultado" id="eq-resultado"></div>
       <div class="eq-comentarios" id="eq-comentarios"></div>
-      <p class="eq-aviso">🔒 Votação anônima. Quem deixar o e-mail recebe resposta. Para conversar na hora, fale conosco no <a href="https://wa.me/5528999111493?text=Ol%C3%A1%2C%20escrevi%20na%20enquete%20do%20Portal%20e%20quero%20tirar%20uma%20d%C3%BAvida" style="color:var(--gold-dark);font-weight:700;text-decoration:underline">WhatsApp 💬</a>.</p>
+      <p class="eq-aviso"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Votação anônima. Quem deixar o e-mail recebe resposta. Para conversar na hora, fale conosco no <a href="https://wa.me/5528999111493?text=Ol%C3%A1%2C%20escrevi%20na%20enquete%20do%20Portal%20e%20quero%20tirar%20uma%20d%C3%BAvida" style="color:var(--gold-dark);font-weight:700;text-decoration:underline">WhatsApp</a>.</p>
     </div>
   </div>
 </section>
@@ -1323,7 +1394,7 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
     </div>
     <div class="grid grid-2">
       <div class="module-col">
-        <h4>🌱 Trilogia Evolução da Alma</h4>
+        <h4><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-2.3-3.8 0-2.3 1.6-3.6 3.2-3.6 1.3 0 2.4.7 2.6 2.2"/><path d="M14.1 6a6 6 0 0 1 5 7c0 2.2-1.4 3.5-3 3.5-1.2 0-2.2-.6-2.4-2"/></svg> Trilogia Evolução da Alma</h4>
         <ol>
           <li>Bem-vindo(a) ao nosso Portal</li>
           <li>O Despertar da Alma</li>
@@ -1335,7 +1406,7 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
         </ol>
       </div>
       <div class="module-col">
-        <h4>🧠 Anestesia Mental</h4>
+        <h4><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/></svg> Anestesia Mental</h4>
         <ol>
           <li>Bem-vindo(a) ao nosso Portal</li>
           <li>A Anestesia Mental</li>
@@ -1348,7 +1419,7 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
       </div>
     </div>
     <div style="text-align:center;margin-top:40px;">
-      <a class="btn btn-gold btn-block" href="/guardar" style="margin-top:20px; font-size:16px;">🕊️ QUERO INICIAR MINHA JORNADA — R$ 57,00</a>
+      <a class="btn btn-gold btn-block" href="/guardar" style="margin-top:20px; font-size:16px;"><span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Quero o acesso completo por R$ 57</a>
     </div>
   </div>
 </section>
@@ -1372,7 +1443,7 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
 <section style="background:var(--cream-2);">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Uma palavra ao seu coração</span>
+      <span class="eyebrow"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Uma palavra ao seu coração</span>
       <h2>Se você chegou até aqui, há algo dentro de você pedindo para despertar</h2>
     </div>
     <div style="max-width:720px; margin:0 auto; text-align:center;">
@@ -1388,7 +1459,7 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
         "Assim como recebeste de graça, dai de graça." (Mt 10:8)
       </p>
       <div style="margin-top:22px;">
-        <a class="btn btn-gold" href="/guardar" style="padding:16px 34px;font-size:17px;" aria-label="Quero despertar meu propósito">🕊️ QUERO DESPERTAR MEU PROPÓSITO — R$ 57,00</a>
+        <a class="btn btn-gold" href="/guardar" style="padding:16px 34px;font-size:17px;" aria-label="Quero despertar meu propósito"><span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Quero meu acesso completo por R$ 57</a>
       </div>
       <p style="font-size:.85rem; color:var(--tinta2); margin-top:18px;">
         Pagamento único · Acesso vitalício · Garantia de 7 dias
@@ -1405,7 +1476,7 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
       <div class="seal"><span>7</span><small>DIAS<br>GARANTIA</small></div>
       <div>
         <h3 style="margin-bottom:6px;">Risco zero para o seu despertar</h3>
-        <p style="margin:0;color:var(--muted);">Se em até 7 dias você sentir que o Portal não é para o seu momento, devolvemos 100% do seu investimento, sem perguntas. Nosso compromisso é com a sua evolução.</p>
+        <p style="margin:0;color:var(--muted);">Você tem 7 dias de garantia. Dentro desse prazo, pode solicitar o reembolso pela Kiwify, conforme as regras informadas no checkout.</p>
       </div>
     </div>
   </div>
@@ -1423,8 +1494,12 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
         <div class="faq-a"><p>As aulas são apresentadas por uma figura criada para a Missão, com apoio de tecnologia. Não é uma professora de carne e osso. O mensageiro jamais deve ser maior que a Mensagem. O conteúdo bíblico é da Missão com Deus, revisto por nós. A Palavra continua no centro. A tecnologia só serve. Não substitui a Escritura nem a missão de levar luz, com verdade e clareza.</p></div>
       </div>
       <div class="faq-item">
+        <div class="faq-q"><span>Qual a diferença entre a leitura gratuita e o acesso completo?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>A leitura gratuita continua disponível. Em alguns períodos, determinadas obras podem ficar abertas por inteiro. Essa abertura é temporária. Quando ela termina, a obra volta ao formato habitual, com cerca de 40% da leitura livre e o restante no acesso completo. O acesso completo, por um pagamento único de R$ 57, garante as oito obras inteiras em arquivos digitais, os módulos, os exercícios, os áudios, os conteúdos para Pais e Filhos, a comunidade e os novos conteúdos digitais, sem depender dessas datas.</p></div>
+      </div>
+      <div class="faq-item">
         <div class="faq-q"><span>O que eu recebo no acesso completo?</span><span class="plus">+</span></div>
-        <div class="faq-a"><p>Por R$ 57,00, pagamento único: os dois cursos em vídeo (14 módulos), os livros digitais completos Evolução da Alma e Anestesia Mental, a área de membros e a comunidade, vitalícios, por e-mail na Kiwify. Os módulos 1 a 3 já estão grátis no site, para você conhecer antes de decidir. Completam o acesso: O Novo Testamento como nunca lido, o Devocional Um Segundo com Deus, o e-book Jesus Quer Falar com Seu Filho e o guia diário Afirmações, Declarações e Orações. E todo lançamento futuro da Missão entra no mesmo acesso, sem cobrar de novo.</p></div>
+        <div class="faq-a"><p>Por R$ 57,00, pagamento único, você recebe as oito obras completas em arquivos digitais: Evolução da Alma, Anestesia Mental, Um Segundo com Deus, Jesus Quer Falar com Seu Filho, O Caminho do Despertar, O Novo Testamento como nunca lido, Afirmações, Declarações e Orações e Guia Pais e Filhos: Construindo um Futuro. Também entram os 14 módulos em vídeo, os exercícios, os 30 áudios, os conteúdos para Pais e Filhos, a comunidade, a área de membros e os novos conteúdos digitais, sem cobrança nova. A leitura gratuita continua disponível. Em alguns períodos, determinadas obras podem abrir por inteiro. Quando essa abertura termina, voltam ao formato habitual, com cerca de 40% da leitura livre. O acesso completo não depende dessas datas.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><span>Para quem são essas obras de sabedoria?</span><span class="plus">+</span></div>
@@ -1442,7 +1517,7 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
       </div>
       <div class="faq-item">
         <div class="faq-q"><span>Tenho garantia de satisfação?</span><span class="plus">+</span></div>
-        <div class="faq-a"><p>Sim. Você tem 7 dias de garantia incondicional. Se sentir que não é para o seu momento, devolvemos 100% do investimento, sem perguntas.</p></div>
+        <div class="faq-a"><p>Sim. Você tem 7 dias de garantia. Dentro desse prazo, pode solicitar o reembolso pela Kiwify, conforme as regras informadas no checkout.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><span>Quais são as formas de pagamento?</span><span class="plus">+</span></div>
@@ -1463,8 +1538,8 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
   <div class="wrap">
     <h2>O portal está aberto. Entre e desperte sua alma em Deus.</h2>
     <p style="color:rgba(14,26,46,.75);">O convite foi feito. A chave de governo está à sua frente.</p>
-    <a class="btn" style="background:var(--navy);color:var(--cream-2);" href="/guardar">Adquirir meu acesso - R$ 57,00</a>
-    <a class="btn" style="background:var(--gold);color:var(--navy);" href="https://dashboard.kiwify.com.br/courses">🔓 Entrar no Portal</a>
+    <a class="btn" style="background:var(--navy);color:var(--cream-2);" href="/guardar"><span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Quero meu acesso completo por R$ 57</a>
+    <a class="btn" style="background:var(--gold);color:var(--navy);" href="https://dashboard.kiwify.com.br/courses"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg> Já tenho acesso: entrar no Portal</a>
   </div>
 </section>
 
@@ -1501,10 +1576,11 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
       </div>
       <div class="foot-links">
         <a href="/nossa-missao">Nossa Missão</a>
-        <a href="mailto:portalmissaocomdeus@gmail.com">Fale conosco</a>
+        <a href="/cdn-cgi/l/email-protection#e696899492878a8b8f9595878985898b82839395a6818b878f8ac885898b">Fale conosco</a>
         <a href="https://wa.me/5528999111493">WhatsApp</a>
         <a href="https://www.tiktok.com/@portalmissaocomdeus" target="_blank" rel="noopener">TikTok da Missão</a>
         <a href="https://www.instagram.com/vivamissaocomdeus" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/livrosmissaocomdeus" target="_blank" rel="noopener">Facebook</a>
 
       </div>
     </div>
@@ -1512,12 +1588,12 @@ Você também terá acesso aos áudios da Palavra de Hoje, para ouvir, refletir 
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/5528999111493?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Portal%20Miss%C3%A3o%20com%20Deus." aria-label="Falar no WhatsApp">💬</a>
+<a class="wa-float" href="https://wa.me/5528999111493?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20Portal%20Miss%C3%A3o%20com%20Deus." aria-label="Falar no WhatsApp"><svg class="wa-ico" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.14 6.45 2.14 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91a9.84 9.84 0 0 0-2.9-7.02zm-7 15.24h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 5.83 2.42 8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg></a>
 <a id="wa-balao" class="wa-balao" href="https://wa.me/5528999111493?text=Ol%C3%A1%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20os%20livros" aria-label="Falar com a Laura sobre os livros">
   Alguma dúvida sobre os livros? Fale com a Laura.
   <span class="wa-balao-fechar" id="wa-balao-fechar" role="button" aria-label="Fechar aviso">×</span>
 </a>
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
   try { if (sessionStorage.getItem('wa_balao_fechado')) return; } catch(e){}
   setTimeout(function(){
@@ -2078,7 +2154,7 @@ function quizEnviar(ev) {
       .then(function(){ /* silencioso: só confirma que o endpoint está ativo */ })
       .catch(function(){
         // Fallback honesto: PHP indisponível -> voto segue por e-mail
-        msg.textContent = "📧 A votação ao vivo ainda não está ativa neste momento. Seu voto e comentário podem ser enviados por e-mail normalmente.";
+        msg.innerHTML = '<svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> A votação ao vivo ainda não está ativa neste momento. Seu voto e comentário podem ser enviados por e-mail normalmente.';
         msg.className = "eq-mensagem visivel";
       });
   }
@@ -2303,17 +2379,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-  fetch('/leituras.json', {cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).then(pintar).catch(function(){});
+  fetch('/leituras.json', {cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).then(pintar).catch(function(err){ try{ console.warn('Contagem de leituras indisponivel'); }catch(e){} });
 })();
 </script>
 
 
-<script>
 
-<script>
-<script>
-(function(){if(sessionStorage.getItem("geo_real_ok"))return;var x=new XMLHttpRequest();x.open("GET","/geo.php?auto=1&_="+Date.now(),true);x.timeout=15000;x.onreadystatechange=function(){if(x.readyState===4&&x.status===200&&x.responseText==="ok"){sessionStorage.setItem("geo_real_ok","1")}};x.send()})();
-</script>
 
 
 
@@ -2406,8 +2477,6 @@ document.addEventListener('DOMContentLoaded', function() {
   #livros .offer{margin-top:12px;}
   .pais-sec{padding:52px 0;}
 </style>
-</body>
-</html>
 <script>
 (function(){
   function rastrear(path){ try { fetch(path, {method:"GET", cache:"no-store"}).catch(function(){}); } catch(e){} }
@@ -2445,13 +2514,14 @@ body.cta-cursos-ativo{padding-bottom:96px}
 
 <div id="cta-cursos" role="dialog" aria-live="polite" aria-label="Convite para acessar a área de videoaulas completa">
   <div class="wrap">
-    <span class="cta-emoji">🎬</span>
+    <span class="cta-emoji"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></span>
     <div class="cta-txt">
-      <span>A Trilogia completa da Evolução da Alma (7 módulos) está te esperando, e os 3 primeiros já são seus, de graça. Quer saber se já é hora de ir além? A Laura te mostra o caminho completo, sem compromisso. 🕊️</span>
+      <span>Você já conheceu os primeiros módulos. O acesso completo reúne as oito obras, os 14 módulos, exercícios e a comunidade por R$ 57.</span>
     </div>
     <div class="cta-btns">
-      <a class="btn btn-gold" href="https://wa.me/5528999111493?text=Ol%C3%A1%20Laura%2C%20vim%20pela%20Home%20e%20sinto%20que%20j%C3%A1%20%C3%A9%20hora%20de%20conhecer%20o%20acesso%20completo%20da%20Miss%C3%A3o%20%F0%9F%95%8A%EF%B8%8F" target="_blank" rel="noopener">💛 Sim, quero falar com a Laura</a>
-      <a class="btn btn-ghost-light" href="/trilogia-da-alma">🎬 Assistir as aulas</a>
+      <a class="btn btn-gold" href="/guardar"><span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Quero o acesso completo por R$ 57</a>
+      <a class="btn btn-ghost-light" href="/trilogia-da-alma"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg> Assistir as aulas</a>
+      <a class="btn btn-ghost-light" href="https://wa.me/5528999111493?text=Ol%C3%A1%20Laura%2C%20vim%20pela%20Home%20e%20sinto%20que%20j%C3%A1%20%C3%A9%20hora%20de%20conhecer%20o%20acesso%20completo%20da%20Miss%C3%A3o%20%F0%9F%95%8A%EF%B8%8F" target="_blank" rel="noopener">Falar com a Laura</a>
     </div>
 
 
@@ -2528,3 +2598,6 @@ body.cta-cursos-ativo{padding-bottom:96px}
   }
 })();
 </script>
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3fabd933b01e012',t:'MTc5MDE3ODk5OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
