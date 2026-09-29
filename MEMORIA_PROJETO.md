@@ -31,6 +31,12 @@ Continuar a Missão com Deus. Site vivo missaocomdeus.com.br. Leia MEMORIA_PROJE
 A verdade do site está no servidor, pasta `/www/wwwroot/missaocomdeus.com.br/`. O GitHub (sidneyrma/instalador) é espelho atrasado. Não trate o GitHub como o ar.
 
 ---
+## Seja e acha de forma humanizada
+Siga estas regras estritas:
+Varie o tamanho das frases: misture frases curtas e diretas com frases mais longas para criar um ritmo dinâmico.
+Elimine o padrão robótico: evite estruturas previsíveis (como sujeito + verbo + objeto em todas as frases) e exclua conectivos genéricos (como 'além disso', 'portanto', 'em resumo', 'vale ressaltar').
+Evite marcas de IA: não use travessões longos, aspas desnecessárias, listas excessivas ou tom de comunicado de imprensa.
+Linguagem direta: escreva como se estivesse conversando com um amigo inteligente, mantendo clareza e autenticidade.
 
 ## 1. Quem é o autor e como servir
 
@@ -240,7 +246,6 @@ FormSubmit público: portalmissaocomdeus@gmail.com
 ## 12. Como aplicar mudança no site
 
 A pasta pública do site é `/www/wwwroot/missaocomdeus.com.br/`. O GitHub não é o ar.
-
 1. Backup automático no script.
 2. Subir o `.py` e o HTML necessário.
 3. Duas linhas no Terminal:
@@ -249,24 +254,33 @@ A pasta pública do site é `/www/wwwroot/missaocomdeus.com.br/`. O GitHub não 
 cd /www/wwwroot/missaocomdeus.com.br
 python3 NOME_DO_SCRIPT.py
 ```
-
 4. Conferir no ar (celular e notebook), não só no painel sem internet.
-
 Não apague a enquete. Não mude URL de API ou webhook da Laura. Não publique overlay no YouTube.
-
 Painel de números: https://missaocomdeus.com.br/stats.html  
 `/palavra`, `/stats` e `enquete.php` ficam sem índice e sem menu.
-
----
-
-## 13. Carrossel e anúncio
-
-Copy de campanha: 8 obras, R$ 57, leitura grátis primeiro, Laura não é mentora de carne. Acentos. CTA ouro.
-
-Arquivo de referência do carrossel Anestesia: `CARROSSEL_ANESTESIA_CORRIGIDO.md`
 
 ---
 
 ## 15. Frase de ouro da oferta
 
 A leitura gratuita continua disponível. Em alguns períodos, determinadas obras podem ser abertas integralmente. Essa liberação é temporária. Quando ela termina, a leitura aberta volta a cerca de 40%. O acesso completo, por R$ 57, garante as oito obras inteiras, os módulos, os exercícios, os áudios, os conteúdos para Pais e Filhos e a comunidade, sem depender dessas datas.
+
+## 16. Ultima Atualização 29-09-2026
+Obras: /livro11 NT · /livro05 Evolução · /livro09 Anestesia · /livro04 Um Segundo (inteiro) · /livro06 Jesus Quer Falar (inteiro) · /livro07 Caminho · /livro12 Afirmações (inteiro) · /livro08 Guia Pais e Filhos (capa i.ibb.co/Xfqhw0j2/livro08.jpg). Janela leitura integral 05, 07, 08, 09, 11 até 30/09/2026 00:00 Brasília; depois ~40%. Não altere miolo do 08 sem pedido.
+
+Contatos: WhatsApp 5528999111493 · e-mail portalmissaocomdeus@gmail.com · IG instagram.com/portal.missaocomdeus · TikTok @portalmissaocomdeus · FB facebook.com/livrosmissaocomdeus · YT @portal.o.despertar (não embutir Ot6CRgd_nYY)
+
+Privacidade: /privacidade no rodapé. Sem faixa de cookies. Sem cidade/Estado (geo.php mudo). Pedido de dados pelo e-mail, assunto Meus dados LGPD.
+
+aaPanel Terminal: 2 linhas digitadas. Não clique no nome azul do .py. Sem cat >> em HTML. Script com backup; se a string não achar, não grava. Não substitua index.html nem livro inteiro. Não rode APLICAR_PLAYER_SHARE_BOTAO.py. Termômetro vivo = v6 em /home/deploy/gerar_estatisticas.py. nginx -t antes de reload.
+
+Funil: Home/livros → /guardar → Kiwify https://pay.kiwify.com.br/iVfp2bi
+Preço único R$ 57 (Pix ou cartão 4x). Garantia 7 dias. Acesso vitalício ao que já está no ar. Sem mensalidade. Checkout só na Kiwify.
+
+Acesso completo: 8 obras digitais, 14 módulos (7 Trilogia + 7 Anestesia), exercícios, comunidade, 30 áudios, Pais e Filhos. Obras novas depois podem ser à parte.
+
+Aulas 1–3: Trilogia EVLTRLAM26 /trilogia-da-alma · Anestesia NSTMNT26 /anestesia-mental
+
+Obras: /livro11 NT · /livro05 Evolução · /livro09 Anestesia · /livro04 Um Segundo (inteiro) · /livro06 Jesus Quer Falar (inteiro) · /livro07 Caminho · /livro12 Afirmações (inteiro) · /livro08 Guia Pais e Filhos (capa i.ibb.co/Xfqhw0j2/livro08.jpg). Janela leitura integral 05, 07, 08, 09, 11 até 30/09/2026 00:00 Brasília; depois ~40%. Não altere miolo do 08 sem pedido.
+
+Contatos: WhatsApp 5528999111493 · e-mail portalmissaocomdeus@gmail.com · IG instagram.com/portal.missaocomdeus · TikTok @portalmissaocomdeus · FB facebook.com/livrosmissaocomdeus · YT @portal.o.despertar (não embutir Ot6CRgd_nYY)
