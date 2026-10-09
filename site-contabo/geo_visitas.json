@@ -1,5 +1,5 @@
 {
-    "BR|Espirito Santo|Venda Nova do Imigrante": 68,
+    "BR|Espirito Santo|Venda Nova do Imigrante": 151,
     "US|California|San Jose": 4,
     "US|Iowa|Kane": 3,
     "BR|Paraiba|Queimadas": 1,
@@ -7,7 +7,7 @@
     "TW|Taipei|Taipei": 2,
     "US|District of Columbia|Washington": 4,
     "US|New York|New York City": 1,
-    "SG|Central Singapore|Singapore": 1,
+    "SG|Central Singapore|Singapore": 2,
     "GB|England|London": 3,
     "VN|Dak Lak Province|Buon Ma Thuot": 1,
     "DE|Bavaria|Haßfurt": 3,
@@ -23,8 +23,14 @@
     "US|Texas|Houston": 1,
     "NL|Provincie Noord-Holland|Amsterdam": 4,
     "US|Virginia|Newport News": 1,
-    "US|Nebraska|Springfield": 1,
+    "US|Nebraska|Springfield": 4,
     "NO|Vestfold og Telemark|Sandefjord": 1,
     "BR|Sao Paulo|Sao Jose do Rio Preto": 1,
-    "CN|Henan Sheng|Zhengzhou": 1
+    "CN|Henan Sheng|Zhengzhou": 1,
+    "US|Texas|Fort Worth": 3,
+    "US|Tennessee|Gallatin": 2,
+    "US|Iowa|Altoona": 3,
+    "US|Illinois|DeKalb": 1,
+    "VN|Dak Lak Province|Ea Kar": 1,
+    "BR|Amazonas|Humaita": 1
 }

@@ -47,11 +47,11 @@
   </div>
 
   <ol id="lista"></ol>
-  <footer>Missão com Deus · compartilhe com quem você ama</footer>
+  <footer>Missão com Deus · a mesma voz da Laura em todos os dias · <a href="/privacidade">Privacidade</a></footer>
 </div>
 <script>
 (function(){
-    var DIAS = [
+  var DIAS = [
     ["Salmo 23","O Senhor é o meu pastor"],
     ["João 14:27","A paz que o mundo não dá"],
     ["Isaías 41:10","Não temas, Eu sou contigo"],
@@ -85,69 +85,35 @@
     ["Salmo 23","O Senhor é o meu pastor"],
     ["Filipenses 1:6","Aquele que começou a boa obra"],
     ["Isaías 43:2","Quando passares pelas águas"],
-    ["2 Coríntios 12:9","A minha graça te basta"],
-    ["Mateus 7:7","Pedi, buscai, batei"],
+    ["2 Coríntios 12:9","A graça te basta"],
+    ["Mateus 7:7","Pedi, e dar-se-vos-á"],
     ["Salmo 37:4","Deleita-te no Senhor"],
-    ["João 15:5","Permanecei em mim"],
-    ["Filipenses 4:8","Pensai nessas coisas"],
-    ["Salmo 56:8","Recolhe as minhas lágrimas"],
-    ["Mateus 18:20","Quando dois ou três se reunirem"],
-    ["1 Coríntios 13:4-7","O amor é paciente"],
-    ["Romanos 12:2","Renovai a vossa mente"],
-    ["Salmo 42:1","Como a corça anseia pelas águas"],
+    ["João 15:5","Sem mim nada podeis fazer"],
+    ["Filipenses 4:8","Tudo o que é verdadeiro"],
+    ["Salmo 56:8","Pões as minhas lágrimas no teu odre"],
+    ["Mateus 18:20","Onde estiverem dois ou três"],
+    ["1 Coríntios 13:4","O amor é paciente"],
+    ["Romanos 12:2","Transformai-vos pela renovação"],
+    ["Salmo 42:1","Como o cervo brama"],
     ["2 Coríntios 5:17","Nova criatura"],
-    ["Salmo 30:5","A alegria vem de manhã"],
-    ["Isaías 41:10","Não temas, Eu te fortaleço"],
-    ["Colossenses 3:23","Fazei tudo de coração ao Senhor"],
-    ["Salmo 16:11","Caminhos de vida e alegria"],
+    ["Salmo 30:5","O choro pode durar uma noite"],
+    ["Isaías 41:10","Não temas, Eu sou contigo"],
+    ["Colossenses 3:23","Fazei de coração como ao Senhor"],
+    ["Salmo 16:11","Na tua presença há plenitude"],
     ["Provérbios 18:10","Torre forte é o nome do Senhor"],
-    ["Mateus 12:20","O caniço rachado"],
+    ["Mateus 12:20","Não esmagará a cana quebrada"],
     ["João 14:27","A paz que o mundo não dá"],
     ["Salmo 51:10","Cria em mim um coração puro"],
-    ["1 João 1:9","Se confessarmos os nossos pecados"],
-    ["Filipenses 3:13-14","Prosseguir sem o peso do passado"],
-    ["1 Pedro 1:3","Uma viva esperança"],
-    ["Miquéias 6:8","Justiça, misericórdia e humildade"],
+    ["1 João 1:9","Se confessarmos os pecados"],
+    ["Filipenses 3:13","Uma coisa faço"],
+    ["1 Pedro 1:3","Esperança viva"],
+    ["Miquéias 6:8","Praticar a justiça, amar a misericórdia"],
     ["Mateus 5:9","Bem-aventurados os pacificadores"],
-    ["Salmo 90:12","Contar os nossos dias com sabedoria"],
-    ["1 Tessalonicenses 5:16-18","Alegrai, orai, agradecei"],
-    ["João 14:2-3","Vou preparar-vos lugar"]
+    ["Salmo 90:12","Ensina-nos a contar os nossos dias"],
+    ["1 Tessalonicenses 5:16","Regozijai-vos sempre"],
+    ["João 14:2","Na casa de meu Pai há muitas moradas"]
   ];
-  var AUDIOS = {
-    "31":"[cole aqui o link do audio 31]",
-    "32":"[cole aqui o link do audio 32]",
-    "33":"[cole aqui o link do audio 33]",
-    "34":"[cole aqui o link do audio 34]",
-    "35":"[cole aqui o link do audio 35]",
-    "36":"[cole aqui o link do audio 36]",
-    "37":"[cole aqui o link do audio 37]",
-    "38":"[cole aqui o link do audio 38]",
-    "39":"[cole aqui o link do audio 39]",
-    "40":"[cole aqui o link do audio 40]",
-    "41":"[cole aqui o link do audio 41]",
-    "42":"[cole aqui o link do audio 42]",
-    "43":"[cole aqui o link do audio 43]",
-    "44":"[cole aqui o link do audio 44]",
-    "45":"[cole aqui o link do audio 45]",
-    "46":"[cole aqui o link do audio 46]",
-    "47":"[cole aqui o link do audio 47]",
-    "48":"[cole aqui o link do audio 48]",
-    "49":"[cole aqui o link do audio 49]",
-    "50":"[cole aqui o link do audio 50]",
-    "51":"[cole aqui o link do audio 51]",
-    "52":"[cole aqui o link do audio 52]",
-    "53":"[cole aqui o link do audio 53]",
-    "54":"[cole aqui o link do audio 54]",
-    "55":"[cole aqui o link do audio 55]",
-    "56":"[cole aqui o link do audio 56]",
-    "57":"[cole aqui o link do audio 57]",
-    "58":"[cole aqui o link do audio 58]",
-    "59":"[cole aqui o link do audio 59]",
-    "60":"[cole aqui o link do audio 60]"
-  };
-
-  var day = parseInt(new Intl.DateTimeFormat("en-US",{timeZone:"America/Sao_Paulo",day:"numeric"}).format(new Date()),10);
-  if(day > 60) day = 30;
+  var day=(function(){var s=new Intl.DateTimeFormat("en-CA",{timeZone:"America/Sao_Paulo",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date()).split("-");var start=Date.UTC(2026,8,1);var now=Date.UTC(+s[0],+s[1]-1,+s[2]);var diff=Math.round((now-start)/864e5);return ((diff%60)+60)%60+1;})();
   var n = String(day).padStart(2,"0");
   var info = DIAS[day-1];
   document.getElementById("titulo").textContent = "Dia " + day + " · " + info[0];
@@ -161,12 +127,7 @@
       : '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
   }
   function tocar(nn, btn, label){
-    var pend = AUDIOS[nn] || "";
-    var src = pend || ("/audio/palavra-dia-" + nn + ".mp3");
-    if(pend && pend.indexOf("cole aqui") >= 0){
-      if(label) label.textContent = "🔧 Áudio em breve — cole o link no código (dia " + nn + ")";
-      return;
-    }
+    var src = "/audio/palavra-dia-" + nn + ".mp3";
     if(atual && atual.src.indexOf(src) >= 0 && !atual.paused){
       atual.pause(); ico(btn,false);
       if(label) label.textContent = "Pausado";
@@ -181,10 +142,6 @@
     atual.addEventListener("ended", function(){
       ico(btn,false);
       if(label) label.textContent = "Toque para ouvir";
-    });
-    atual.addEventListener("error", function(){
-      ico(btn,false);
-      if(label) label.textContent = "⚠️ Áudio não encontrado para o dia " + nn;
     });
   }
 
@@ -210,5 +167,6 @@
   });
 })();
 </script>
-</body>
+<script src="/aviso-privacidade.js" defer id="js-aviso-privacidade"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a437e04a6ae16239',t:'MTc5MDgyMDA1MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

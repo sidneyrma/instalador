@@ -129,11 +129,10 @@ As três primeiras aulas estão livres, abertas para você, agora mesmo. Assista
     <p style="text-align:center;color:#9fb0c8;font-size:.88rem;margin:0 0 12px;">Isto é uma prévia: 3 aulas de presente, sem cadastro. Na área de membros da Kiwify o curso completo tem explicações e exercícios práticos. Aqui você prova. Lá você desenvolve.</p>
     <p style="text-align:center;margin-bottom:14px;">Os módulos 4 a 7 estão na área de membros, com explicação e exercício. O acesso completo está a um passo.</p>
         <div class="botoes">
-      <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" class="btn-semeador">Quero o acesso completo — R$ 37,00</a>
+      <a href="/guardar" target="_blank" class="btn-semeador">Quero o acesso completo — R$ 57,00</a>
     </div>
-    <p style="text-align:center;color:#e3c877;font-size:.92rem;margin:10px 0 0;">🎁 E, além do acesso completo, a casa envia 4 bônus:</p>
-    <p style="text-align:center;color:#b0bec5;font-size:.84rem;margin:4px 0 0;">O Novo Testamento, o Devocional 30 dias, o e-book Jesus Quer Falar com Seu Filho e o guia Afirmações, Declarações e Orações em PDF.</p>
-    <p style="text-align:center;color:#9fb0c8;font-size:.82rem;margin:8px 0 0;">Pix ou cartão em até 4x · Garantia de 7 dias. Conteúdo da casa, com apoio de tecnologia nas aulas.</p>
+    <p style="color:#e3c877;font-size:.9rem;margin-top:12px;">As oito obras da Missão com Deus, 14 módulos em vídeo (7 Trilogia e 7 Anestesia), 30 áudios, exercícios e comunidade. Acesso vitalício por apenas R$57,00.</p>
+    <p style="text-align:center;color:#9fb0c8;font-size:.82rem;margin:8px 0 0;">Pix ou cartão em até 4x · Garantia de 7 dias. Conteúdo da Missão, com apoio de tecnologia nas aulas.</p>
 <button type="button" class="oferta-ja-tenho" onclick="abrirCodigo()" style="display:block;margin:14px auto 0;">Já tenho código de acesso</button>
   </div>
 
@@ -188,21 +187,18 @@ As três primeiras aulas estão livres, abertas para você, agora mesmo. Assista
     <p style="color:#9fb0c8;font-size:.8rem;margin:-8px 0 16px;">3 de 7</p>
     <div class="oferta-opcao destaque">
       <h4>Acesso completo</h4>
-      <div class="preco">R$ 37,00</div>
+      <div class="preco">R$ 57,00</div>
       <ul>
-        <li>✅ 2 livros digitais completos</li>
-        <li>✅ 14 módulos em vídeo</li>
-        <li>✅ Acesso vitalício à Área de Membros</li>
-        <li>🎁 Bônus 1: O Novo Testamento como nunca lido</li>
-        <li>🎁 Bônus 2: Devocional Um Segundo com Deus, 30 dias</li>
-        <li>🎁 Bônus 3: Jesus Quer Falar com Seu Filho</li>
-        <li>🎁 Bônus 4: Afirmações, Declarações e Orações, em PDF</li>
+        <li>As oito obras da Missão com Deus</li>
+        <li>14 módulos em vídeo (7 Trilogia e 7 Anestesia)</li>
+        <li>30 áudios, exercícios e comunidade</li>
+        <li>Acesso vitalício por R$ 57,00</li>
       </ul>
-      <a href="https://pay.kiwify.com.br/iVfp2bi" target="_blank" rel="noopener">Quero o acesso completo</a>
+      <a href="/guardar" target="_blank" rel="noopener">Quero o acesso completo</a>
     </div>
 
     <button type="button" class="oferta-ja-tenho" onclick="abrirCodigoNoModal()">Já tenho código de acesso</button>
-    <p class="oferta-garantia">🔒 Pagamento seguro Kiwify · 💳 Pix ou cartão em até 12x · Garantia de 7 dias</p>
+    <p class="oferta-garantia">🔒 Pagamento seguro Kiwify · 💳 Pix ou cartão em até 4x · Garantia de 7 dias</p>
   </div>
 </div>
 
@@ -378,30 +374,7 @@ function enviarComentario(){
 })();
 </script>
 
-<script>
-/* Localizacao real v3 (12/09/2026): pede o selo de sessao antes de
-   registrar, entao varredura que bate na URL crua fica de fora.
-   Sem cookie, sem IP no navegador, 1x por sessao. */
-(function(){
-  var SEL='geo_selo_v3';
-  try { if (sessionStorage.getItem('geo_real_ok')) return; } catch(e){}
-  function ir(selo){
-    var u='/geo.php?auto=1'+(selo?('&s='+selo):'')+'&_='+Date.now();
-    try { fetch(u,{keepalive:true,cache:'no-store'}); sessionStorage.setItem('geo_real_ok','1'); }
-    catch(e){
-      try { var x=new XMLHttpRequest(); x.open('GET',u,true); x.send(); sessionStorage.setItem('geo_real_ok','1'); } catch(e2){}
-    }
-  }
-  try {
-    var s0 = sessionStorage.getItem(SEL);
-    if (s0) { ir(s0); return; }
-    fetch('/geo.php?token=1',{cache:'no-store'}).then(function(r){return r.text();}).then(function(t){
-      t=(t||'').trim(); if(!/^[0-9a-f]{6,32}$/.test(t)){ ir(''); return; }
-      try { sessionStorage.setItem(SEL,t); } catch(e){}
-      ir(t);
-    }).catch(function(){ ir(''); });
-  } catch(e){ ir(''); }
-})();
-</script>
+<p class="missao-legal-priv" style="text-align:center;font-size:.8rem;padding:18px 12px 28px;color:#5c5646;"><a href="/privacidade" style="color:#b8860b;">Privacidade</a></p>
+<script src="/aviso-privacidade.js" defer id="js-aviso-privacidade"></script>
 </body>
 </html>
