@@ -84,7 +84,8 @@ PAGINAS = OrderedDict([
     ('/livro05', 'Livro 05: Evolução da Alma'),
     ('/livro06', 'Livro 06: Jesus Quer Falar com Seu Filho'),
     ('/livro07', 'Livro 07: O Caminho do Despertar'),
-    ('/livro08', 'Livro 08: O Arquiteto da Realidade'),
+    ('/livro08', 'Livro 08: Pais e Filhos: Construindo um Futuro'),
+    ('/livro08-arquiteto', 'Livro 08: O Arquiteto da Realidade'),
     ('/livro09', 'Livro 09: Anestesia Mental'),
     ('/livro10', 'Livro 10: O Despertar do Observador'),
     ('/livro11', 'Livro 11: O Novo Testamento como nunca lido'),
@@ -92,7 +93,7 @@ PAGINAS = OrderedDict([
     ('/trilogia-da-alma', 'Trilogia da Alma, área de alunos'),
     ('/anestesia-mental', 'Anestesia Mental, área de alunos'),
     ('/obrigado', 'Página de obrigado (Kiwify)'),
-    ('/palavra', 'Caderno Palavra de hoje (casa)'),
+    ('/palavra', 'Palavra de hoje'),
     ('/q-quiz-inicio', 'Quiz Home: iniciaram'),
     ('/q-quiz-fim', 'Quiz Home: concluíram'),
     ('/q-trilogia-m01', 'Trilogia, Módulo 01 (plays)'),
@@ -109,11 +110,18 @@ PAGINAS = OrderedDict([
     ('/q-anestesia-m05', 'Anestesia, Módulo 05 (plays)'),
     ('/q-anestesia-m06', 'Anestesia, Módulo 06 (plays)'),
     ('/q-anestesia-m07', 'Anestesia, Módulo 07 (plays)'),
+    ('/biblica', 'Motivação Bíblica'),
+    ('/salmos', 'Salmos'),
     ('/guia-pais-filhos', 'Guia Pais e Filhos \u2014 Quiz'),
+    ('/guardar', 'Acesso completo'),
+    ('/guia-pais-filhos-espelho', 'Filhos e Pais: O Espelho'),
+    ('/nossa-missao', 'Nossa Missão'),
+    ('/q-guardar', 'Acesso: abriram a página'),
+    ('/q-guardar-kiwify', 'Acesso: foram à Kiwify'),
 ])
 
 CONVERSAO = OrderedDict([
-    ('/q-semeador', ('🎯', 'Acesso completo R$ 37')),
+    ('/q-semeador', ('🎯', 'Acesso completo R$ 57')),
     ('/q-codigo', ('💬', 'Fale com a Laura (área de alunos)')),
     ('/q-laura', ('🕊️', 'Falar com a Laura (banner da Home)')),
     ('/q-whats', ('📱', 'Cliques no WhatsApp')),
@@ -128,9 +136,9 @@ CONVERSAO_REMOVIDA = ('/q-colaborador', '/q-aula-gratis')
 # Biblioteca depois da limpeza de 02/09/2026 (so o que e autoria da casa).
 # Os livros sairam por risco de direito autoral (textos de outros autores).
 LIVROS_NO_AR = (
-    '/livro11', '/livro05', '/livro09', '/livro04', '/livro06', '/livro07', '/livro12',
+    '/livro11', '/livro05', '/livro09', '/livro04', '/livro06', '/livro07', '/livro12', '/livro08',
 )
-LIVROS_REMOVIDOS = ('/livro01', '/livro02', '/livro03', '/livro08', '/livro10')
+LIVROS_REMOVIDOS = ('/livro01', '/livro02', '/livro03', '/livro08-arquiteto', '/livro10')
 
 MODULOS_LIVRES = (
     '/q-trilogia-m01', '/q-trilogia-m02', '/q-trilogia-m03',
@@ -144,6 +152,11 @@ ALIAS_CONV = {
 }
 
 PDF_MAP = {
+    '/ebooks/livro05-evalma.pdf': '/dl:evolucao',
+    '/ebooks/livro07-o-c-d.pdf': '/dl:caminho',
+    '/ebooks/livro09-amental.pdf': '/dl:anestesia',
+    '/ebooks/Um-Segundo-com-Deus-Vol-01.pdf': '/dl:devocional-quiz',
+
     '/ebooks/evolucao-da-alma.pdf': '/dl:evolucao',
     '/ebooks/evolucao-da-alma-evalma.pdf': '/dl:evolucao',
     '/ebooks/anestesia-mental.pdf': '/dl:anestesia',
@@ -152,6 +165,7 @@ PDF_MAP = {
     '/ebooks/jesus-quer-falar.pdf': '/dl:jesus-quiz',
     '/ebooks/jesus-quer-falar-com-seu-filho.pdf': '/dl:jesus-livro',
     '/ebooks/livro11-o-n-t.pdf': '/dl:brinde-nt',
+    '/ebooks/livro11-onovotestamenento.pdf': '/dl:brinde-nt',
     '/ebooks/livro12-a-d-o.pdf': '/dl:afirmacoes',
     '/ebooks/livro11.pdf': '/dl:chute-pdf',
     '/ebooks/livro10.pdf': '/dl:chute-pdf',
@@ -235,11 +249,11 @@ RE_COMPLETA = re.compile(
     r'^(\S+) \S+ \S+ \[([^\]]+)\] "GET (\S+) HTTP[^"]*" (\d{3}) \S+ "([^"]*)" "([^"]*)"')
 RE_SIMPLES = re.compile(r'^(\S+) .*?\[([^\]]+)\] "GET (\S+) HTTP')
 RE_EXT = re.compile(
-    r'\.(png|jpg|jpeg|gif|svg|ico|css|js|woff2?|webp|xml|json|txt|webmanifest)$', re.I)
+    r'\.(png|jpg|jpeg|gif|svg|ico|css|js|woff2?|webp|xml|json|txt|webmanifest|mp3|mp4)$', re.I)
 RE_BOT = re.compile(
     r'bot|crawl|spider|slurp|scan|monitor|probe|python|curl|wget|httpclient|'
     r'go-http|libwww|java/|okhttp|headless|lighthouse|pingdom|uptime|'
-    r'facebookexternalhit|whatsapp|telegrambot|twitterbot|linkedinbot|'
+    r'facebookexternalhit|telegrambot|twitterbot|linkedinbot|'
     r'semrush|ahrefs|mj12|dotbot|petalbot|bytespider|zgrab|masscan|nuclei', re.I)
 RE_HOST = re.compile(r'^[a-zA-Z][a-zA-Z0-9+.-]*://([^/]+)')
 
@@ -338,7 +352,7 @@ def lista_logs():
 
 def garantir_pixels():
     for nome in ('q-semeador', 'q-codigo', 'q-laura', 'q-whats',
-                 'q-palavra-play', 'q-palavra-share', 'q-livro-share'):
+                 'q-palavra-play', 'q-palavra-share', 'q-livro-share', 'q-guardar', 'q-guardar-kiwify'):
         p = os.path.join(SITE, nome)
         if not os.path.isfile(p):
             try:
@@ -441,6 +455,8 @@ def analisar():
                 if path == '/index':
                     path = '/'
             path = ALIAS_CONV.get(path, path)
+            if path == '/livro08' and dt is not None and dt < datetime(2026, 9, 2):
+                path = '/livro08-arquiteto'
             path_l = path.lower()
 
             # Acoes que sairam do ar: ignorar por completo (cache, pagina velha).
@@ -448,6 +464,13 @@ def analisar():
                 continue
 
             if path.startswith('/.well-known'):
+                continue
+
+            # Ruido: arquivo, teste, ajax, endereco quebrado. Nao entra em Outras.
+            if (path.endswith('.mp3') or path.endswith('.mp4') or path.endswith('.php')
+                    or path in ('/stats', '/stats_teste', '/geo', '/%2f')
+                    or 'http://' in path or 'https://' in path
+                    or path_l in ('/%2f', '/stats_teste')):
                 continue
 
             dl_key = PDF_MAP.get(path_l)
@@ -861,11 +884,10 @@ def _geo_norm(txt):
         return '', ''
     sem = unicodedata.normalize('NFKD', txt).encode('ascii', 'ignore').decode('ascii')
     return sem.strip().lower(), txt
-def geo_processar(res):  # GEO-V3
+def geo_processar(res):  # GEO-V4
     """Localizacao REAL: geo.php -> geo_visitas.json (so UF/cidade, sem IP).
-    v3 (11/09/2026): junta grafias diferentes do mesmo lugar, conta estado
-    sozinho, descarta zero/negativo, e le apenas o PRIMEIRO arquivo com
-    dados (sem somar copia em dobro).
+    v4 (12/09/2026): so o Brasil entra nas tabelas de Estado e Cidade. De
+    fora do Brasil e mostrado so como numero, para nao sumir escondido.
     """
     visitas = {}
     for _caminho in (GEO_VISITAS, GEO_VISITAS_ALT1, GEO_VISITAS_ALT2):
@@ -889,16 +911,24 @@ def geo_processar(res):  # GEO-V3
     uf_nome = defaultdict(Counter)
     cid_nome = defaultdict(Counter)
     validos = 0
+    fora = 0
     lixo = 0
     for chave, n in visitas.items():
         partes = str(chave).split('|')
+        pais = partes[0].strip().upper() if len(partes) >= 1 else ''
         estado = partes[1].strip() if len(partes) >= 2 else ''
         mun = partes[2].strip() if len(partes) >= 3 else ''
         try:
             n = int(n)
         except Exception:
             n = 0
-        if n <= 0 or (not estado and not mun):
+        if n <= 0:
+            lixo += 1
+            continue
+        if pais and pais != 'BR':
+            fora += n
+            continue
+        if not estado and not mun:
             lixo += 1
             continue
         validos += n
@@ -912,11 +942,13 @@ def geo_processar(res):  # GEO-V3
             cid_nome[k][nome] += n
     if validos:
         msg = ('Localizacao real coletada pelo navegador: %d registro(s) '
-               'validos. Os data centers foram deixados de fora.' % validos)
+               'validos do Brasil.' % validos)
+        if fora:
+            msg += ' %d de fora do Brasil (nao entram na tabela).' % fora
         if lixo:
             msg += ' %d registro(s) zerados ou corrompidos ignorados.' % lixo
     else:
-        msg = ('Localizacao real: ainda sem registros. Ela comeca a ser '
+        msg = ('Localizacao real: ainda sem registros do Brasil. Ela comeca a ser '
                'coletada ao abrir qualquer pagina no navegador (1 por sessao).')
     uf = Counter()
     for k, n in uf_soma.items():
@@ -1007,7 +1039,7 @@ def bloco_termometro_html(res, livros_total, livros_hoje, pdfs, pdfs_hoje,
         f'{pdfs}', '⬇️ PDFs baixados',
         f'{pdfs_hoje} hoje', ''))
     cards.append(_card_term(
-        f'{sementes}', '🎯 Sustento (acesso completo R$ 37)',
+        f'{sementes}', '🎯 Sustento (acesso completo R$ 57)',
         f'{sementes_hoje} hoje', 'conv'))
     return ''.join(cards)
 
@@ -1255,7 +1287,7 @@ def montar_html(res, antigo, geo=None):
     cards_conv = []
     cards_conv.append(
         f'<div class="card conv"><div class="v">{n_sem}</div>'
-        f'<div class="l">🎯 Acesso completo R$ 37</div>'
+        f'<div class="l">🎯 Acesso completo R$ 57</div>'
         f'<div class="h">{conv_hoje.get("/q-semeador", 0)} hoje</div></div>')
     cards_conv.append(
         f'<div class="card conv"><div class="v">{n_laura}</div>'
@@ -1306,8 +1338,14 @@ def montar_html(res, antigo, geo=None):
         f'<td class="num" style="color:#7fe0a3">{_dl_n(k)[1]}</td></tr>'
         for k, nome in DL_NOMES.items())
 
+    _ignorar = (
+        '/enquete.php', '/stats', '/geo.php', '/geo', '/stats_teste',
+        '/comentarios_dados.php', '/audio/', '/video/', '%2f', 'http://', 'https://',
+        '.mp3', '.mp4',
+    )
     outros = sorted([(k, v) for k, v in contagens.items() if k.startswith('/outros:')],
                     key=lambda x: -x[1])
+    outros = [kv for kv in outros if not any(x in kv[0] for x in _ignorar)]
     linhas_outros = '\n'.join(
         f'<tr><td>{html.escape(k.replace("/outros:", "/"))}</td><td class="num">{v}</td></tr>'
         for k, v in outros[:15]) or '<tr><td colspan="2">Nenhum</td></tr>'
@@ -1394,11 +1432,11 @@ def montar_html(res, antigo, geo=None):
   <tr><th>Ação</th><th>Total</th><th>Hoje</th></tr>
   {linhas_conv}
   </table>
-  <p class="nota">Acesso completo R$ 37 = clique no link da Kiwify (a compra acontece lá fora).
+  <p class="nota">Acesso completo R$ 57 = clique no link da Kiwify (a compra acontece lá fora).
   "Falar com a Laura (banner)" = clique no convite da Home. "Área de alunos" = clique na
   área de alunos. WhatsApp = rascunho aberto, ainda precisa a pessoa Enviar. Aulas grátis
   = toques nos módulos livres 1 a 3. Página de obrigado ≠ download: bônus 1 é o arquivo
-  livro11-o-n-t.pdf. Bônus 4 é o guia livro12-a-d-o.pdf. Colaborador R$ 19,90 saiu do ar
+  livro11-o-n-t.pdf. Bônus 4 é o guia livro12-a-d-o.pdf. Histórico R$ 19,90 saiu do ar
   e não conta mais no sustento.</p>
 
   {bloco_origem}
@@ -1406,24 +1444,7 @@ def montar_html(res, antigo, geo=None):
   
 
   
-  <details>
-    <summary>📍 De onde veem nossos irmaos · <span style="color:#7fe0a3">Estados e Cidades</span></summary>
-    <div class="dbody">
-      <p class="nota">{geo_msg}</p>
-      <h3 style="color:#e3c877;font-size:.95rem;margin:4px 0 8px;">Estados (UF) · pessoas no periodo</h3>
-      <table>
-        <tr><th>#</th><th>UF / pais</th><th>Pessoas</th></tr>
-        {linhas_uf}
-      </table>
-      <h3 style="color:#e3c877;font-size:.95rem;margin:18px 0 8px;">Cidades · pessoas no periodo</h3>
-      <table>
-        <tr><th>#</th><th>Cidade</th><th>Pessoas</th></tr>
-        {linhas_cidades}
-      </table>
-      <p class="nota">Fonte: <b>IP real do visitante resolvido no servidor</b> (geo.php -> ipwho.is -> geo_visitas.json). Nao guarda IP e descarta data centers.</p>
-
-    </div>
-  </details>
+  
 
   <details>
     <summary>📊 Indicador · O que é · O que observar</summary>
@@ -1441,7 +1462,7 @@ def montar_html(res, antigo, geo=None):
       <td>É o coração da casa. Se cai enquanto as visitas sobem, a pessoa entra e não lê.</td></tr>
       <tr><td>⬇️ PDFs baixados</td><td>Arquivos que saíram da casa</td>
       <td>Semente que a pessoa leva consigo e pode repassar.</td></tr>
-      <tr><td>🎯 Sustento</td><td>Cliques no link do acesso completo R$ 37</td>
+      <tr><td>🎯 Sustento</td><td>Cliques no link do acesso completo R$ 57</td>
       <td>O que mantém a missão de pé. Clique não é compra: a venda acontece na Kiwify.</td></tr>
       </table>
     </div>
@@ -1481,7 +1502,7 @@ def montar_html(res, antigo, geo=None):
         <tr><th>#</th><th>Página</th><th>Acessos</th><th>%</th></tr>
         {''.join(linhas)}
       </table>
-      {'<p class="nota">🚫 Fora do ar desde 02/09/2026 (histórico, não contam nos totais): ' + hist_removidos + '. Saíram por não serem de autoria da casa.</p>' if hist_removidos else ''}
+      {'<p class="nota">🚫 Fora do ar desde 02/09/2026 (histórico, não contam nos totais): ' + hist_removidos + '. Saíram por não serem de autoria da Missão. O endereço /livro08 hoje é Pais e Filhos (em breve); os 288 de antes de 02/09 eram o Arquiteto.</p>' if hist_removidos else ''}
       <h3 style="color:#e3c877;font-size:.95rem;margin:18px 0 8px;">Outras páginas</h3>
       <table>
         <tr><th>Página</th><th>Acessos</th></tr>
@@ -1587,3 +1608,56 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# SALMOS_BIBLICA_CARD_HOOK
+def _missao_card_salmos_biblica():
+    import re
+    p = "/www/wwwroot/missaocomdeus.com.br/stats.html"
+    try:
+        t = open(p, encoding="utf-8").read()
+    except Exception:
+        return
+
+    def num(html, nome):
+        m = re.search(re.escape(nome) + r".{0,180}?(\d+)", html, re.I | re.S)
+        return m.group(1) if m else "0"
+
+    def card(kid, titulo, n):
+        return (
+            '\n<div class="card" id="' + kid + '">'
+            '<div class="v">' + n + "</div>"
+            '<div class="l">' + titulo + "</div>"
+            "</div>\n"
+        )
+
+    def depois_de(html, marca, bloco):
+        i = html.find(marca)
+        if i < 0:
+            return html
+        pos = i
+        for _ in range(3):
+            nxt = html.find("</div>", pos)
+            if nxt < 0:
+                return html
+            pos = nxt + 6
+        if bloco.strip() in html:
+            return html
+        return html[:pos] + bloco + html[pos:]
+
+    ns = num(t, "Salmos")
+    nb = num(t, "Motivação") 
+    if nb == "0":
+        m2 = re.search(r"/biblica.{0,160}?(\d+)", t, re.I | re.S)
+        if m2:
+            nb = m2.group(1)
+    if 'id="kpi-salmos"' not in t:
+        t = depois_de(t, "Resultado real do Quiz (acessos)", card("kpi-salmos", "Salmos (acessos)", ns))
+    if 'id="kpi-biblica"' not in t:
+        if 'id="kpi-salmos"' in t:
+            t = depois_de(t, 'id="kpi-salmos"', card("kpi-biblica", "Motivação Bíblica (acessos)", nb))
+        else:
+            t = depois_de(t, "Resultado real do Quiz (acessos)", card("kpi-biblica", "Motivação Bíblica (acessos)", nb))
+    open(p, "w", encoding="utf-8").write(t)
+
+if __name__ == "__main__":
+    _missao_card_salmos_biblica()
