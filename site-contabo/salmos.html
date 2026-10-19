@@ -390,5 +390,95 @@ if(m&&m.n!==a){var l=document.getElementById('lim');if(l)l.click();var d=documen
 if(m&&m.n===a)wr(null);else if(a)wr({n:a});pint()});
 pint()})();
 </script>
+
+<script id="js-salmo-hoje-share">
+(function(){
+  if (window.__missaoSalmoHojeShare) return;
+  window.__missaoSalmoHojeShare = true;
+  function nHoje(){
+    var s=new Intl.DateTimeFormat("en-CA",{timeZone:"America/Sao_Paulo",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date()).split("-");
+    var y0=Date.UTC(+s[0],0,0);
+    var now=Date.UTC(+s[0],+s[1]-1,+s[2]);
+    var dia=Math.round((now-y0)/864e5);
+    var n=dia%150; return n?n:150;
+  }
+  var n=nHoje();
+  var d=document.getElementById("s"+n);
+  if(!d) return;
+  if(d.querySelector(".salmo-share")) return;
+  var css=document.createElement("style");
+  css.textContent=".salmo-share{margin:12px 0 14px;text-align:center}.salmo-share-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;border-radius:999px;border:1px solid rgba(201,162,75,.45);background:#0e1a2e;color:#e3c877;font:600 15px/1.2 system-ui,sans-serif;cursor:pointer}.salmo-share-btn:hover{filter:brightness(1.06)}.salmo-share-ok{display:block;margin-top:6px;font-size:.85rem;color:#5c5646;min-height:1.2em}";
+  document.head.appendChild(css);
+  var wrap=document.createElement("p");
+  wrap.className="salmo-share";
+  wrap.innerHTML='<button type="button" class="salmo-share-btn">Compartilha o Salmo de hoje</button><span class="salmo-share-ok" role="status"></span>';
+  var box=d.querySelector(".b")||d;
+  box.insertBefore(wrap, box.firstChild);
+  var btn=wrap.querySelector("button");
+  var okEl=wrap.querySelector(".salmo-share-ok");
+  function titulo(){
+    var b=d.querySelector("summary .t b")||d.querySelector("summary b")||d.querySelector("summary");
+    var t=b?b.textContent.trim():"";
+    return t||("Salmo "+n);
+  }
+  function versos(){
+    var ps=d.querySelectorAll(".txt .v");
+    var linhas=[];
+    if(ps.length){
+      for(var i=0;i<ps.length;i++) linhas.push(ps[i].textContent.replace(/\s+/g," ").trim());
+    } else {
+      var tx=d.querySelector(".txt");
+      if(tx) linhas.push(tx.textContent.replace(/\s+/g," ").trim());
+    }
+    var corpo=linhas.join("\n");
+    if(corpo.length>2200) corpo=corpo.slice(0,2200).replace(/\s+\S*$/,"")+"\n...";
+    return corpo;
+  }
+  function montar(){
+    var url="https://missaocomdeus.com.br/salmos#s"+n;
+    var tit="Salmo "+n;
+    var nome=titulo();
+    if(nome && nome.indexOf("Salmo")!==0) tit=tit+". "+nome;
+    var corpo=versos();
+    var txt="O Salmo de hoje na Missão com Deus.\n\n"+tit+"\n\n"+corpo+"\n\nLeia na Missão com Deus:\n"+url;
+    return {tit:tit, txt:txt, url:url};
+  }
+  function avisar(msg){
+    if(!okEl) return;
+    okEl.textContent=msg;
+    setTimeout(function(){ okEl.textContent=""; }, 2800);
+  }
+  function copiarVelho(s, depois){
+    try{
+      var ta=document.createElement("textarea");
+      ta.value=s; ta.setAttribute("readonly","");
+      ta.style.position="fixed"; ta.style.left="-9999px";
+      document.body.appendChild(ta); ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      if(depois) depois();
+    }catch(e){}
+  }
+  function copiar(s){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(s).then(function(){ avisar("Copiado. Cole onde você ama."); }).catch(function(){ copiarVelho(s, function(){ avisar("Copiado. Cole onde você ama."); }); });
+    } else {
+      copiarVelho(s, function(){ avisar("Copiado. Cole onde você ama."); });
+    }
+  }
+  btn.addEventListener("click", function(){
+    var m=montar();
+    var noCelular=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if(noCelular && navigator.share){
+      navigator.share({title:m.tit, text:m.txt, url:m.url}).catch(function(e){
+        if(e && e.name==="AbortError") return;
+        copiar(m.txt);
+      });
+      return;
+    }
+    copiar(m.txt);
+  });
+})();
+</script>
 </body>
 </html>

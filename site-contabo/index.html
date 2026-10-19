@@ -1189,9 +1189,10 @@ document.getElementById("sdd-n").textContent="Salmo "+n;document.getElementById(
     <div class="offer" style="margin-top:12px;">
       <div>
         <span class="eyebrow" style="color:var(--gold-light);">Acesso completo</span>
-        <h2 style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Se a leitura tocou o coração, dê o próximo passo</h2>
-        <p style="color:rgba(246,241,231,.8);">Se você busca direção, este pode ser um lugar para continuar. O Senhor conhece cada passo da sua caminhada. O próximo pode ser ir mais fundo: aulas, exercícios e uma comunidade para você não caminhar sozinho. Não prometemos uma cura pronta. Oferecemos um caminho de aprendizado e prática, no seu ritmo. Porque conhecimento sem prática permanece apenas na teoria. Aqui, o propósito é levar o que você aprende para a vida, não apenas para o saber.</p>
-        <p style="color:rgba(246,241,231,.95);font-size:1.12rem;font-weight:700;margin:18px 0 6px;line-height:1.45;">As oito obras da Missão com Deus, 14 módulos em vídeo (7 Trilogia e 7 Anestesia), 30 áudios, exercícios e comunidade. Acesso vitalício por apenas R$57,00.</p>
+        <h2 style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><svg class="ico-svg" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Se a leitura tocou seu coração, continue a caminhada</h2>
+        <p style="color:rgba(246,241,231,.8);">Se a leitura gratuita falou com você, o acesso completo reúne estudos e recursos para levar o aprendizado à vida, no seu ritmo. Não prometemos uma cura pronta; oferecemos um caminho de aprendizado e prática.</p>
+        <p style="color:rgba(246,241,231,.95);font-size:1.12rem;font-weight:700;margin:18px 0 6px;line-height:1.45;">Você recebe as oito obras completas da Missão com Deus, 14 módulos em vídeo (7 da Trilogia e 7 da Anestesia), 30 áudios, exercícios e comunidade.</p>
+        <p style="color:rgba(246,241,231,.9);font-size:.98rem;line-height:1.5;margin:12px 0;">Ao escolher o acesso completo, você também ajuda a manter a Missão no ar e os livros gratuitos acessíveis a todos.</p>
         <p style="color:rgba(246,241,231,.75);font-style:italic;margin-top:18px;">"Sejam praticantes da palavra, e não apenas ouvintes." (Tg 1:22)</p>
       </div>
       <div class="offer-price">
@@ -1199,7 +1200,7 @@ document.getElementById("sdd-n").textContent="Salmo "+n;document.getElementById(
         <div class="new">R$ 57,00</div>
         <small class="note" style="margin-bottom:10px;">Pix imediato · Cartão até 4x</small>
         <small class="note" style="display:block;margin-bottom:14px;">🛡️ Garantia de 7 dias</small>
-        <p style="margin:0 0 14px;font-size:.95rem;color:#2b2620;font-weight:700;">Adquira agora a coleção inteira.</p>
+        <p style="margin:0 0 14px;font-size:.95rem;color:#2b2620;font-weight:700;">Continue sua caminhada com a coleção completa.</p>
         <a class="btn btn-gold btn-block" href="/guardar" aria-label="Quero meu acesso completo por R$ 57"><span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Quero meu acesso completo por R$ 57</a>
       </div>
     </div>
@@ -1389,53 +1390,263 @@ document.getElementById("sdd-n").textContent="Salmo "+n;document.getElementById(
 #indicacoes-amazon .ia-preco span{display:block;font-size:.75rem;font-weight:500;color:#766b56;margin-top:3px;}
 #indicacoes-amazon .ia-foot{text-align:center;color:#766b56;font-size:.8rem;line-height:1.5;margin:18px auto 0;max-width:720px;}
 @media(max-width:880px){#indicacoes-amazon .ia-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto;}}
+
+  /* IA-CARDS-5: layout seguro para cinco indicações */
+  #indicacoes-amazon .ia-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    max-width: none;
+    margin: 0;
+    gap: 18px;
+    align-items: stretch;
+  }
+  #indicacoes-amazon .ia-card { grid-column: span 4; }
+  #indicacoes-amazon .ia-card:nth-child(4) { grid-column: 3 / span 4; }
+  #indicacoes-amazon .ia-card:nth-child(5) { grid-column: 7 / span 4; }
+
+  @media (max-width: 880px) {
+    #indicacoes-amazon .ia-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: none;
+      margin: 0;
+    }
+    #indicacoes-amazon .ia-card,
+    #indicacoes-amazon .ia-card:nth-child(4) { grid-column: auto; }
+    #indicacoes-amazon .ia-card:nth-child(5) {
+      grid-column: 1 / -1;
+      width: calc(50% - 9px);
+      justify-self: center;
+    }
+  }
+
+  @media (max-width: 560px) {
+    #indicacoes-amazon .ia-grid { grid-template-columns: 1fr; }
+    #indicacoes-amazon .ia-card,
+    #indicacoes-amazon .ia-card:nth-child(4),
+    #indicacoes-amazon .ia-card:nth-child(5) {
+      grid-column: auto;
+      width: 100%;
+      max-width: 480px;
+      justify-self: center;
+    }
+  }
+
+  /* IA-CARDS-6-SHARE: layout de seis cards e partilha da página da Missão */
+  #indicacoes-amazon .ia-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: none;
+    margin: 0;
+    gap: 18px;
+    align-items: stretch;
+  }
+  #indicacoes-amazon .ia-card,
+  #indicacoes-amazon .ia-card:nth-child(4),
+  #indicacoes-amazon .ia-card:nth-child(5) {
+    grid-column: auto;
+    width: auto;
+    justify-self: stretch;
+  }
+  #indicacoes-amazon .ia-share-row {
+    min-height: 30px;
+    margin-top: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  #indicacoes-amazon .ia-share {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border: 1px solid rgba(201,162,75,.4);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--gold-dark,#b8860b);
+    font: inherit;
+    font-size: .76rem;
+    line-height: 1.25;
+    cursor: pointer;
+  }
+  #indicacoes-amazon .ia-share svg { width: 14px; height: 14px; flex: 0 0 14px; }
+  #indicacoes-amazon .ia-share:hover { background: rgba(201,162,75,.1); border-color: var(--gold-dark,#b8860b); }
+  #indicacoes-amazon .ia-share:focus-visible { outline: 2px solid var(--gold-dark,#b8860b); outline-offset: 2px; }
+  #indicacoes-amazon .ia-share-status { font-size: .7rem; color: #5c5646; }
+
+  @media (max-width: 880px) {
+    #indicacoes-amazon .ia-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; margin: 0; }
+    #indicacoes-amazon .ia-card,
+    #indicacoes-amazon .ia-card:nth-child(4),
+    #indicacoes-amazon .ia-card:nth-child(5) { grid-column: auto; width: auto; justify-self: stretch; }
+  }
+  @media (max-width: 560px) {
+    #indicacoes-amazon .ia-grid { grid-template-columns: 1fr; }
+    #indicacoes-amazon .ia-card,
+    #indicacoes-amazon .ia-card:nth-child(4),
+    #indicacoes-amazon .ia-card:nth-child(5) {
+      grid-column: auto;
+      width: 100%;
+      max-width: 480px;
+      justify-self: center;
+    }
+  }
 </style>
 <section id="indicacoes-amazon" aria-labelledby="ia-title">
   <div class="wrap">
     <header class="ia-head">
       <span class="ia-kicker">Indicações externas</span>
-      <h2 id="ia-title">Indicações de leitura cristã</h2>
-      <p>Três devocionais na Amazon, em seção à parte da biblioteca da Missão.</p>
+      <h2 id="ia-title">Recomendações de leitura</h2>
+      <p>Três devocionais, duas leituras sobre emoções e desenvolvimento pessoal e uma opção de leitura digital, em seção à parte da biblioteca da Missão.</p>
       <p class="ia-disclosure"><strong>Publicidade. Links de afiliado.</strong> Como associado da Amazon, eu ganho com compras qualificadas.</p>
       <div class="ia-autor">
-        <p class="ia-autor-kicker">Autor dos três títulos</p>
+        <p class="ia-autor-kicker">Autor dos três devocionais</p>
         <p class="ia-autor-nome">Junior Rostirola</p>
         <p>A página do autor na Amazon o apresenta como pastor, escritor de Café com Deus Pai, bacharel em Teologia e pós-graduado em Teologia Bíblica.</p>
         <a href="https://www.amazon.com.br/Junior-Rostirola/e/B0D1C91MQ2?tag=missaocomdeus-20" target="_blank" rel="sponsored noopener noreferrer">Ver o autor na Amazon</a>
       </div>
     </header>
+
     <div class="ia-grid">
-      <article class="ia-card">
+      <article id="amazon-cafe-2027" class="ia-card">
         <p class="ia-label">Devocional para o próximo ano</p>
         <h3>Café com Deus Pai Vol. 7 - 2027: Porções diárias de restauração</h3>
-        <p>A página do produto apresenta um devocional diário para 2027, com mensagens ao longo do ano e espaço para reflexão. Confira edição, formato e disponibilidade na Amazon.</p>
+        <p>Em meio à correria, este volume convida você a reservar um instante para buscar paz, direção e restauração em Deus. Uma proposta de leitura diária para acompanhar 2027 e fazer da pausa um momento de reflexão e esperança.</p>
         <p class="ia-preco">R$ 75,04 <span>Preço na Amazon nesta consulta. Pode mudar.</span></p>
-        <div class="ia-cta">
-          <a href="https://link.amazon/B08uZ4N6d" target="_blank" rel="sponsored noopener noreferrer">Ver na Amazon</a>
+        <div class="ia-cta"><a href="https://link.amazon/B08uZ4N6d" target="_blank" rel="sponsored noopener noreferrer">Ver na Amazon</a></div>
+        <div class="ia-share-row">
+          <button class="ia-share" type="button" aria-label="Compartilhar Café com Deus Pai 2027 na página da Missão com Deus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Compartilhe esta indicação</span>
+          </button>
+          <span class="ia-share-status" role="status" aria-live="polite"></span>
         </div>
       </article>
-      <article class="ia-card">
+
+      <article id="amazon-cafe-2026" class="ia-card">
         <p class="ia-label">Ainda disponível</p>
         <h3>Café com Deus Pai Vol. 6 - 2026: Porções Diárias de Amor</h3>
-        <p>A página do produto informa 365 mensagens, espaço para reflexão e anotações, e um plano de leitura bíblica. Confira na Amazon se esta edição ainda atende o que você busca.</p>
+        <p>São 365 mensagens para acompanhar seu encontro diário com Deus ao longo de 2026. As páginas interativas convidam à reflexão e ao registro de inspirações, com frases inspiradoras e plano de leitura bíblica.</p>
         <p class="ia-preco">R$ 28,90 <span>Preço na Amazon nesta consulta. Pode mudar.</span></p>
-        <div class="ia-cta">
-          <a href="https://link.amazon/B00603utT" target="_blank" rel="sponsored noopener noreferrer">Ver na Amazon</a>
+        <div class="ia-cta"><a href="https://link.amazon/B00603utT" target="_blank" rel="sponsored noopener noreferrer">Ver na Amazon</a></div>
+        <div class="ia-share-row">
+          <button class="ia-share" type="button" aria-label="Compartilhar Café com Deus Pai 2026 na página da Missão com Deus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Compartilhe esta indicação</span>
+          </button>
+          <span class="ia-share-status" role="status" aria-live="polite"></span>
         </div>
       </article>
-      <article class="ia-card">
+
+      <article id="amazon-cafe-kids-2027" class="ia-card">
         <p class="ia-label">Infantil</p>
         <h3>Café com Deus Pai Kids - 2027: Tempo de crescer</h3>
-        <p>A página do produto informa que é voltado a crianças de 0 a 7 anos, com linguagem simples. Pais e responsáveis podem conferir o conteúdo e a linguagem antes de escolher.</p>
+        <p>Com linguagem simples e acolhedora, apresenta princípios bíblicos ligados ao universo infantil e a situações do cotidiano, como o convívio familiar, a escola e as amizades. A proposta é incentivar a leitura bíblica, a oração e a conversa diária com Deus. Confira a faixa etária indicada na Amazon.</p>
         <p class="ia-preco">R$ 89,90 <span>Preço na Amazon nesta consulta. Pode mudar.</span></p>
-        <div class="ia-cta">
-          <a href="https://link.amazon/B0ekHxzDW" target="_blank" rel="sponsored noopener noreferrer">Ver na Amazon</a>
+        <div class="ia-cta"><a href="https://link.amazon/B0ekHxzDW" target="_blank" rel="sponsored noopener noreferrer">Ver na Amazon</a></div>
+        <div class="ia-share-row">
+          <button class="ia-share" type="button" aria-label="Compartilhar Café com Deus Pai Kids 2027 na página da Missão com Deus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Compartilhe esta indicação</span>
+          </button>
+          <span class="ia-share-status" role="status" aria-live="polite"></span>
+        </div>
+      </article>
+
+      <article id="amazon-ana-claudia" class="ia-card">
+        <p class="ia-label">Emoções e sentido da vida</p>
+        <h3>A morte é um dia que vale a pena viver</h3>
+        <p>A médica Ana Claudia Quintana Arantes convida a refletir sobre a finitude, as relações e o sentido de aproveitar a vida. Confira a edição e os formatos disponíveis na Amazon.</p>
+        <p class="ia-preco">R$ 35,96 <span>Preço consultado para a edição em capa comum. Pode mudar.</span></p>
+        <div class="ia-cta"><a href="https://www.amazon.com.br/morte-dia-vale-pena-viver/dp/8543107202?tag=missaocomdeus-20" target="_blank" rel="sponsored noopener noreferrer">Ver na Amazon</a></div>
+        <div class="ia-share-row">
+          <button class="ia-share" type="button" aria-label="Compartilhar A morte é um dia que vale a pena viver na página da Missão com Deus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Compartilhe esta indicação</span>
+          </button>
+          <span class="ia-share-status" role="status" aria-live="polite"></span>
+        </div>
+      </article>
+
+      <article id="amazon-brene-brown" class="ia-card">
+        <p class="ia-label">Vulnerabilidade e coragem</p>
+        <h3>A coragem de ser imperfeito</h3>
+        <p>Brené Brown aborda vulnerabilidade, vergonha e coragem, e propõe reflexões sobre como lidar com emoções difíceis e construir relações mais autênticas. Confira a edição e os formatos disponíveis na Amazon.</p>
+        <p class="ia-preco">R$ 36,95 <span>Preço informado para esta edição. Pode mudar.</span></p>
+        <div class="ia-cta"><a href="https://link.amazon/B0jfVqVQc" target="_blank" rel="sponsored noopener noreferrer">Ver na Amazon</a></div>
+        <div class="ia-share-row">
+          <button class="ia-share" type="button" aria-label="Compartilhar A coragem de ser imperfeito na página da Missão com Deus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Compartilhe esta indicação</span>
+          </button>
+          <span class="ia-share-status" role="status" aria-live="polite"></span>
+        </div>
+      </article>
+
+      <article id="amazon-kindle-unlimited" class="ia-card">
+        <p class="ia-label">Leitura digital</p>
+        <h3>Kindle Unlimited</h3>
+        <p>Explore os eBooks disponíveis no Kindle Unlimited e leia pelo aplicativo Kindle no celular, tablet ou computador. O teste grátis depende da elegibilidade da conta.</p>
+        <p class="ia-preco">Teste grátis por 30 dias <span>Para novos assinantes elegíveis. Ao fim do teste, a assinatura passa a ser paga.</span></p>
+        <div class="ia-cta"><a href="https://www.amazon.com.br/kindleunlimited?tag=missaocomdeus-20" target="_blank" rel="sponsored noopener noreferrer">Ver na Amazon</a></div>
+        <div class="ia-share-row">
+          <button class="ia-share" type="button" aria-label="Compartilhar Kindle Unlimited na página da Missão com Deus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>Compartilhe esta indicação</span>
+          </button>
+          <span class="ia-share-status" role="status" aria-live="polite"></span>
         </div>
       </article>
     </div>
-    <p class="ia-foot">Preços desta consulta. Na Amazon podem mudar.</p>
+
+    <p class="ia-foot">Preços, formatos, disponibilidade e condições de teste são definidos pela Amazon e podem mudar. O link de partilha abre esta página da Missão, onde cada pessoa pode consultar a indicação e escolher se quer visitar a Amazon.</p>
   </div>
 </section>
+<script id="ia-share-script">
+(function(){
+  var root = document.getElementById('indicacoes-amazon');
+  if (!root) return;
+  root.addEventListener('click', function(event){
+    var button = event.target.closest('.ia-share');
+    if (!button || !root.contains(button)) return;
+    var card = button.closest('.ia-card');
+    if (!card || !card.id) return;
+    var status = card.querySelector('.ia-share-status');
+    var titleNode = card.querySelector('h3');
+    var title = titleNode ? titleNode.textContent.trim() : 'esta indicação';
+    var url = 'https://missaocomdeus.com.br/#' + encodeURIComponent(card.id);
+    var message = 'Veja esta indicação na Missão com Deus.';
+    function announce(text){ if (status) status.textContent = text; }
+    function legacyCopy(){
+      var area = document.createElement('textarea');
+      area.value = url;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.left = '-9999px';
+      document.body.appendChild(area);
+      area.select();
+      var copied = false;
+      try { copied = document.execCommand('copy'); } catch (error) { copied = false; }
+      document.body.removeChild(area);
+      announce(copied ? 'Link da página copiado.' : 'Não foi possível copiar. Link: ' + url);
+    }
+    function copyLink(){
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function(){
+          announce('Link da página copiado.');
+        }).catch(legacyCopy);
+      } else {
+        legacyCopy();
+      }
+    }
+    if (navigator.share) {
+      navigator.share({title: title, text: message, url: url}).then(function(){
+        announce('Indicação compartilhada.');
+      }).catch(function(error){
+        if (error && error.name === 'AbortError') return;
+        copyLink();
+      });
+    } else {
+      copyLink();
+    }
+  });
+})();
+</script>
 
 <section class="enquete-sec" id="enquete">
   <div class="wrap">
