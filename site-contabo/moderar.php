@@ -4,7 +4,7 @@ header('X-Content-Type-Options: nosniff');
 header('Cache-Control: no-store');
 header('Referrer-Policy: no-referrer');
 
-$CHAVE_SECRETA = ''; (PROTEGIDA FORA DO GIT)
+$CHAVE_SECRETA = ''; // Protegida fora do Git
 
 $DIR = __DIR__ . '/dados';
 $PUB = $DIR . '/avaliacoes.json';
