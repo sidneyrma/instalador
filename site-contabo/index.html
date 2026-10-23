@@ -1986,9 +1986,22 @@ document.getElementById("sdd-n").textContent="Salmo "+n;document.getElementById(
 </script>
 
 <script>
-/* ===== NOVO QUIZ DE 3 PERGUNTAS (DIAGNÓSTICO DA ALMA) ===== */
+/* ===== TERMÔMETRO DE 6 PERGUNTAS (DIAGNÓSTICO DA ALMA) ===== */
 var quizAtual = 0;
 var quizTotal = 6;
+
+// MISSAO_TERMOMETRO_V2: uma tentativa nesta abertura da pagina, sem dados pessoais.
+var quizMedicaoV2 = {iniciou:false, concluiu:false};
+var quizEnviandoV2 = false;
+function quizMarcarV2(path) {
+  try { fetch(path, {method:'GET', cache:'no-store', keepalive:true}).catch(function(){}); } catch(e) {}
+}
+function quizIniciarV2() {
+  if (!quizMedicaoV2.iniciou) {
+    quizMedicaoV2.iniciou = true;
+    quizMarcarV2('/q-termo-v2-inicio');
+  }
+}
 
 function quizMostrar(n) {
   var pergs = document.querySelectorAll('.quiz-perg');
@@ -2016,10 +2029,12 @@ function quizPegarResposta(n) {
 }
 
 function quizProx() {
+  if (quizMedicaoV2.concluiu) return;
   if (!quizPegarResposta(quizAtual)) {
     quizAviso('🙏 Escolha uma opção para continuar.');
     return;
   }
+  quizIniciarV2();
   if (quizAtual < quizTotal - 1) {
     quizAtual++;
     quizMostrar(quizAtual);
@@ -2038,6 +2053,11 @@ function quizVoltar() {
 }
 
 function quizResultado() {
+  if (quizMedicaoV2.concluiu) return;
+  for (var i = 0; i < quizTotal; i++) {
+    if (!quizPegarResposta(i)) { quizAviso('Escolha uma opção em cada pergunta antes de ver o resultado.'); return; }
+  }
+  if (!document.getElementById('quiz-resultado')) return;
   var r0 = quizPegarResposta(0);
   var r1 = quizPegarResposta(1);
   var r2 = quizPegarResposta(2);
@@ -2114,54 +2134,58 @@ function quizResultado() {
   var resBox = document.getElementById('quiz-resultado');
   if (resBox) {
     resBox.style.display = 'block';
-    resBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (typeof resBox.scrollIntoView === 'function') resBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  fetch('/q-quiz-fim').catch(function(){});
+  quizIniciarV2();
+  quizMedicaoV2.concluiu = true;
+  quizMarcarV2('/q-termo-v2-fim');
 }
 
-// Registra quem comecou o Termometro (para o painel refletir a verdade)
+// A mudanca inicia a tentativa; avancar validamente tambem serve de seguranca.
 (function(){
-  var comecou = false;
   var card = document.querySelector('#quiz .quiz-card');
-  if (card) {
-    card.addEventListener('change', function(e){
-      if (!comecou && e.target && e.target.name && e.target.name.indexOf('q') === 0) {
-        comecou = true;
-        fetch('/q-quiz-inicio').catch(function(){});
-      }
-    });
-  }
+  if (card) card.addEventListener('change', function(e){
+    var t = e.target;
+    if (!quizMedicaoV2.concluiu && t && t.type === 'radio' && t.checked && /^q[0-5]$/.test(t.name)) quizIniciarV2();
+  });
 })();
 
 function quizEnviar(ev) {
+  if (quizEnviandoV2) return Promise.resolve();
   var email = document.getElementById('quiz-email').value.trim();
   if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     alert('Por favor, informe um e-mail válido.');
     return;
   }
-  var btn = ev.target;
+  var btn = ev.currentTarget || ev.target;
+  quizEnviandoV2 = true;
   btn.textContent = 'Enviando...';
   btn.disabled = true;
 
   // Envio assíncrono (AJAX) para o FormSubmit para não sair da página nem redirecionar
-  var url = "https://formsubmit.co/ajax/compraoseu.com@gmail.com";
+  var url = "https://formsubmit.co/ajax/portalmissaocomdeus@gmail.com";
   var dados = {
     _subject: "🏆 Termômetro da Alma: Novo Lead captado",
     email: email,
     _captcha: "false"
   };
 
-  fetch(url, {
+  return Promise.resolve().then(function(){ return fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json"
     },
     body: JSON.stringify(dados)
+  }); })
+  .then(function(r) {
+    if (!r.ok) throw new Error('Envio não aceito pelo serviço.');
+    return r.json();
   })
-  .then(function(r) { return r.json(); })
-  .then(function() {
+  .then(function(d) {
+    if (!d || (d.success !== true && d.success !== 'true')) throw new Error('Envio não confirmado.');
+    quizEnviandoV2 = false;
     var box = document.querySelector('.quiz-form');
     if (box) {
       box.innerHTML = '<div style="text-align:center;padding:16px;">' +
@@ -2174,6 +2198,7 @@ function quizEnviar(ev) {
     }
   })
   .catch(function() {
+    quizEnviandoV2 = false;
     btn.textContent = 'Tentar novamente';
     btn.disabled = false;
     alert('Ocorreu um erro temporário ao enviar. Por favor, tente novamente.');
