@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /quiz
+Disallow: /stats.html
+Disallow: /enquete.php
+
+Sitemap: https://missaocomdeus.com.br/sitemap.xml
