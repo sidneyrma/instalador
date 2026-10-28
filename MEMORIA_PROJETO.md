@@ -883,3 +883,9 @@ Usuário confirmou em seguida que a Home e `/indicacoes.html` ficaram perfeitas 
 ## Cabeçalho sticky da página Pais e Filhos aplicado em 28/10/2026
 
 Usuário executou `FIXAR_CABECALHO_GUIA_PF.py --aplicar` e enviou sucesso final `CABECALHO FIXO APLICADO E VERIFICADO`. Backup `/home/deploy/backup_cabecalho_guia_pf_20261028_172014`. Somente `/conhecer-guia-pais-filhos.html` alterado; novo cabeçalho `position:sticky`, offsets desktop/celular para âncoras. Conteúdo, quiz, oferta, links e scripts preservados segundo o instalador. Próximo passo apenas inspeção visual do usuário em desktop/celular durante rolagem e teste de âncoras. Não repetir instalador.
+
+## Redes sociais confirmadas e decisão de pausa em 28/10/2026
+
+O responsável confirmou como corretos os endereços oficiais: TikTok `https://www.tiktok.com/@portalmissaocomdeus`, Instagram `https://www.instagram.com/portal.missaocomdeus` e Facebook `https://www.facebook.com/portalmissaocomdeus`. Esta confirmação atual prevalece sobre referências históricas antigas a outro endereço do Facebook neste arquivo.
+
+Decisão: manter a Home e `/indicacoes.html` como estão. Não priorizar agora OG/prévias sociais, alterações editoriais nos livros, mudança de CTA nem instrumentação adicional da Amazon. Acompanhar os cliques e resultados diretamente no painel Amazon e considerar mudanças futuras apenas se forem relevantes à Missão. Nenhuma alteração de produção solicitada ou executada nesta conversa.
