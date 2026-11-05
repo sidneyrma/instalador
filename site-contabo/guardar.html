@@ -21,6 +21,7 @@
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
   *{box-sizing:border-box}
+  a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--gold-dark);outline-offset:3px}
   html{scroll-behavior:smooth}
   body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.65;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
@@ -36,9 +37,8 @@
   .top a.voltar:hover{color:var(--gold-light)}
   .hero{background:linear-gradient(165deg,var(--navy),var(--navy-2) 55%,#1a2f4a);color:var(--cream-2);padding:64px 0 84px;position:relative;overflow:hidden;text-align:center}
   .orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(2px)}
-  .orb.a{right:-90px;top:-110px;width:340px;height:340px;background:radial-gradient(circle at 35% 35%,rgba(227,200,119,.16),rgba(201,162,75,.05) 60%,transparent 75%);animation:flutua 11s ease-in-out infinite alternate}
-  .orb.b{left:-120px;bottom:-140px;width:420px;height:420px;background:radial-gradient(circle,rgba(30,51,82,.9),transparent 70%);animation:flutua 14s ease-in-out infinite alternate-reverse}
-  @keyframes flutua{from{transform:translateY(-10px)}to{transform:translateY(16px)}}
+  .orb.a{right:-90px;top:-110px;width:340px;height:340px;background:radial-gradient(circle at 35% 35%,rgba(227,200,119,.16),rgba(201,162,75,.05) 60%,transparent 75%)}
+  .orb.b{left:-120px;bottom:-140px;width:420px;height:420px;background:radial-gradient(circle,rgba(30,51,82,.9),transparent 70%)}
   .hero .wrap{position:relative;z-index:1}
   .hero h1{color:var(--cream-2);font-size:clamp(1.95rem,4.6vw,3.1rem);max-width:21ch;margin:0 auto .5em}
   .hero h1 em{font-style:normal;color:var(--gold-light)}
@@ -51,8 +51,6 @@
   .btn-gold{background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:var(--navy);box-shadow:0 14px 34px -10px rgba(184,134,11,.6)}
   .btn-gold:hover{transform:translateY(-2px);box-shadow:0 18px 40px -10px rgba(184,134,11,.7)}
   .btn{transition:transform .25s ease,box-shadow .25s ease}
-  .btn-gold:after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:brilho 3.6s ease-in-out infinite}
-  @keyframes brilho{0%,62%{left:-60%}100%{left:130%}}
   .duas{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:-46px;position:relative;z-index:2}
   .card{background:var(--paper);border:1px solid rgba(201,162,75,.28);border-radius:18px;padding:26px 24px;box-shadow:0 18px 40px -24px rgba(14,26,46,.45)}
   .card h2{font-size:1.22rem}
@@ -124,8 +122,7 @@
   .rodape{background:var(--navy);color:rgba(246,241,231,.7);text-align:center;padding:30px 16px;font-size:.88rem}
   .rodape a{color:var(--gold-light)}
   .rodape .selo{max-width:640px;margin:0 auto 14px;font-size:.84rem;color:rgba(246,241,231,.62)}
-  .rev{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
-  .rev.on{opacity:1;transform:none}
+  .rev{opacity:1}
   @media (max-width:860px){
     .duas,.aulas,.offer{grid-template-columns:1fr}
     .hero{padding:44px 0 76px}
@@ -136,7 +133,6 @@
   }
   @media (prefers-reduced-motion:reduce){
     .rev{opacity:1;transform:none;transition:none}
-    .orb,.btn-gold:after{animation:none}
     html{scroll-behavior:auto}
   }
 
@@ -211,7 +207,31 @@
   .depo-check{display:flex;gap:10px;align-items:flex-start;margin:14px 0;font-size:.9rem;color:var(--muted)}
   .depo-check input{margin-top:4px}
   .depo-msg{margin:10px 0 0;font-size:.9rem}
+
+  .livro .vl,.vs-preco{text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:#8a3a2a;color:#8a8174}
+  .pacote{margin-top:-46px;position:relative;z-index:2;background:var(--paper);border:1px solid rgba(201,162,75,.6);border-radius:20px;padding:30px 28px;box-shadow:0 22px 50px -26px rgba(14,26,46,.5)}
+  .pacote h2{font-size:1.5rem}.pacote>p{color:var(--muted)}
+  .tiles{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .tiles li{background:#fff;border:1px solid rgba(201,162,75,.35);border-radius:14px;padding:16px}
+  .tiles b{display:block;font-family:var(--serif);color:var(--navy);font-size:1.08rem;margin-bottom:4px}
+  .tiles span{color:var(--muted);font-size:.9rem;line-height:1.45}
+  .cta-linha{text-align:center;margin:24px 0 0}
+  .previa{margin:16px auto 0;text-align:center;font-size:.92rem;color:var(--muted);background:#fffef8;border:1px dashed rgba(201,162,75,.6);border-radius:12px;padding:12px 16px}
+  .previa a{color:var(--gold-dark);font-weight:700;text-decoration:underline}
+  .agora{background:linear-gradient(180deg,#efe7d6,var(--cream))}
+  .agora-g{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .agora-c{background:linear-gradient(160deg,var(--navy),var(--navy-3));color:var(--cream-2);border-radius:16px;padding:24px}
+  .agora-c h3{color:var(--gold-light);font-size:1.12rem}.agora-c p{margin:0;font-size:.95rem;color:rgba(246,241,231,.9)}
+  .agora-fim{text-align:center;margin:22px 0 0;color:var(--navy);font-weight:700}
+  @media (max-width:860px){.tiles{grid-template-columns:1fr 1fr}.agora-g{grid-template-columns:1fr}.pacote{padding:24px 18px}}
+  @media (max-width:560px){.tiles{grid-template-columns:1fr}}
   .depo-hp{position:absolute;left:-9999px;height:0;overflow:hidden}
+  .depo:not(.tem) .sec-h{display:none}
+  .depo:not(.tem){padding:28px 0 36px}
+  .depo-det{max-width:760px;margin:0 auto}
+  .depo-det>summary{cursor:pointer;text-align:center;font-weight:700;color:var(--navy);padding:12px 0;list-style:none}
+  .depo-det>summary::-webkit-details-marker{display:none}
+  .depo-det[open]>summary{margin-bottom:10px}
 
 </style>
 </head>
@@ -228,56 +248,34 @@
   <div class="wrap">
     <p class="eyebrow">Acesso completo · um pagamento só</p>
     <h1>A Coleção Missão com Deus inteira. <em>Oito obras, aulas, áudios e comunidade.</em></h1>
-    <p class="lead">São 8 obras completas para ler, guardar e reler. 14 módulos em vídeo: 6 iniciais gratuitos para você conhecer a proposta, 3 em cada curso. Exercícios, comunidade, área de membros vitalícia e 30 áudios das mensagens diárias entram no acesso. Pagamento único de R$ 57.</p>
+    <p class="lead">São 8 obras completas, 14 módulos em vídeo (6 deles gratuitos, para você conhecer), exercícios, 30 áudios, comunidade e área de membros vitalícia. Pagamento único de R$ 57.</p>
     <p class="verso">“Sejam praticantes da palavra, e não apenas ouvintes.”<span>Tiago 1.22</span></p>
     <p><a class="btn btn-gold" href="https://pay.kiwify.com.br/iVfp2bi" id="btn-kiwify-topo"><span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Quero o acesso completo por R$ 57</a></p>
     <p class="confia"><span>Pix libera <b>na hora</b></span><span>Cartão em até <b>4x</b></span><span><b>Garantia</b> de 7 dias</span></p>
   </div>
 </section>
 <div class="wrap">
-  <div class="duas">
-    <article class="card livre rev">
-      <h2>O que a Missão com Deus já te dá, de graça</h2>
-      <p>Sem cadastro, sem pressa, no seu tempo.</p>
-      <ul class="lista-ico">
-        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg><span>Leitura online das obras da Missão</span></li>
-        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg><span>Palavra de hoje em áudio</span></li>
-        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Roteiro gratuito Pais e Filhos</span></li>
-        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg><span>6 módulos iniciais em vídeo, 3 de cada curso</span></li>
-      </ul>
-    </article>
-    <article class="card guardar rev">
-      <h2>O que entra no seu acesso vitalício</h2>
-      <p>Um pagamento único. Sem mensalidade, sem renovação e sem depender de períodos temporários de leitura aberta.</p>
-      <ul class="lista-ico">
-        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>As obras completas em arquivos digitais</span></li>
-        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M8 7h8"/><path d="M8 11h6"/></svg><span>As 8 obras completas da coleção</span></li>
-        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Incluindo o Guia Pais e Filhos: Construindo um Futuro, já disponível no acesso completo</span></li>
-        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/><polygon points="10 12 16 15 10 18 10 12"/></svg><span>Os módulos 4 a 7 de cada curso, exercícios práticos e comunidade</span></li>
-        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg><span>30 áudios das mensagens diárias, incluídos no acesso</span></li>
-      </ul>
-    </article>
-  </div>
-  <aside class="aviso-periodo rev">
-    <h3>A leitura aberta pode variar conforme o período</h3>
-    <p>Algumas obras podem ser liberadas integralmente por tempo determinado. Quando essa abertura termina, elas voltam ao formato gratuito habitual, com aproximadamente 40% da leitura disponível. O acesso completo garante todas as oito obras completas, sem depender dessas liberações temporárias.</p>
-    <p><strong>Obras que podem participar de períodos de leitura integral</strong></p>
-    <ul>
-      <li>Evolução da Alma</li>
-      <li>Anestesia Mental</li>
-      <li>O Caminho do Despertar</li>
-      <li>O Novo Testamento como nunca lido</li>
-      <li>Guia Pais e Filhos: Construindo um Futuro</li>
+  <div class="pacote rev">
+    <h2>O que entra no seu acesso vitalício</h2>
+    <p>Um pagamento único. Sem mensalidade, sem renovação e sem depender de períodos temporários de leitura aberta.</p>
+    <ul class="tiles">
+      <li><b>8 obras completas</b><span>Em arquivos digitais, incluindo o Guia Pais e Filhos: Construindo um Futuro.</span></li>
+      <li><b>14 módulos em vídeo</b><span>Os módulos 4 a 7 de cada curso, além dos 6 iniciais gratuitos.</span></li>
+      <li><b>Exercícios práticos</b><span>De cada módulo, para levar o aprendizado à vida.</span></li>
+      <li><b>30 áudios</b><span>Das mensagens diárias, incluídos no acesso.</span></li>
+      <li><b>Pais e Filhos</b><span>Conteúdos e roteiros para conversar em família.</span></li>
+      <li><b>Comunidade</b><span>Área de membros vitalícia para caminhar junto.</span></li>
     </ul>
-    <p>Após o encerramento de cada período, a leitura aberta retorna ao formato habitual, com cerca de 40% da obra disponível. O acesso completo garante a leitura integral e os arquivos digitais das oito obras, independentemente dessas liberações.</p>
-  </aside>
+    <p class="cta-linha"><a class="btn btn-gold" href="https://pay.kiwify.com.br/iVfp2bi">Quero meu acesso completo por R$ 57</a></p>
+  </div>
+  <p class="previa rev"><b>Prévia gratuita:</b> leitura online de parte das obras, Palavra de hoje em áudio, roteiro gratuito Pais e Filhos e 6 módulos iniciais em vídeo. <a href="/">Continuar a leitura grátis</a></p>
 </div>
 <section>
   <div class="wrap">
     <div class="sec-h rev">
       <p class="eyebrow" style="color:var(--gold-dark)">As oito obras</p>
       <h2>Oito obras completas em um único acesso.</h2>
-      <p>Quem garante o acesso completo leva o acervo inteiro: as oito obras completas em arquivos digitais, para guardar e reler quando quiser. Algumas obras podem ser abertas integralmente em períodos especiais de leitura. Quando esses períodos terminam, a leitura aberta volta a mostrar apenas uma parte da obra. O acesso completo mantém o acervo inteiro disponível para você.</p>
+      <p>Quem garante o acesso completo leva o acervo inteiro em arquivos digitais, para guardar e reler quando quiser, sem depender dos períodos de leitura aberta.</p>
     </div>
     <div class="arca">
       <div class="livro rev"><div class="capa" style="--c1:#274b36;--c2:#12271c"><span class="marca">Missão com Deus</span><span class="tit">Evolução da Alma</span></div><p>Os 7 passos do despertar: da dor que anestesia à liberdade de viver acordado.<span class="vl">R$ 47</span></p></div>
@@ -289,6 +287,7 @@
       <div class="livro rev"><div class="capa" style="--c1:#3d5561;--c2:#1a2a31"><span class="marca">Missão com Deus</span><span class="tit">Afirmações, Declarações e Orações</span></div><p>O guia diário de fala e silêncio, para começar e terminar o dia na Palavra.<span class="vl">R$ 19</span></p></div>
       <div class="livro rev"><div class="capa" style="--c1:#6b3a48;--c2:#2a151c"><span class="marca">Missão com Deus</span><span class="tit">Guia Pais e Filhos</span></div><p>Construindo um Futuro: conversas que aproximam pai, mãe e filho, no tempo de cada um.<span class="vl">R$ 37</span></p></div>
     </div>
+    <p class="aviso-pratica">Valores riscados: referência, caso cada obra fosse vendida separadamente. No acesso completo, todas estão incluídas.</p>
   </div>
 </section>
 <section style="background:linear-gradient(180deg,var(--cream),#efe7d6)">
@@ -341,54 +340,22 @@
       </div>
   </div>
 </section>
-<section class="faq" id="duvidas" style="background:#efe7d6">
+
+<section class="agora" id="agora">
   <div class="wrap">
-    <div class="sec-h">
-      <p class="eyebrow" style="color:var(--gold-dark)">Antes de confirmar</p>
-      <h2>Talvez você esteja se perguntando...</h2>
+    <div class="sec-h rev">
+      <p class="eyebrow" style="color:var(--gold-dark)">Por que garantir agora</p>
+      <h2>A leitura aberta é temporária. O acesso completo é para sempre.</h2>
     </div>
-    <details open>
-      <summary>Eu já posso ler os livros gratuitamente. Por que adquirir o acesso completo?</summary>
-      <p>Porque a leitura gratuita continua disponível, mas a quantidade liberada pode variar conforme o período. Em algumas datas, determinadas obras ficam abertas integralmente para leitura. Essa abertura é temporária. Quando ela termina, as obras retornam ao formato gratuito habitual, com cerca de 40% da leitura aberta e o restante reservado ao acesso completo.</p>
-      <p>O acesso completo não depende dessas liberações temporárias. Ele garante as oito obras completas em arquivos digitais, além dos módulos exclusivos, exercícios, áudios, conteúdos para Pais e Filhos e comunidade.</p>
-      <p style="margin:0 0 14px">Você continua podendo ler gratuitamente. O acesso completo é para quem deseja guardar o acervo inteiro e ter todos os materiais reunidos em um único lugar, independentemente do período de abertura de cada obra.</p>
-    </details>
-    <details>
-      <summary>O Guia Pais e Filhos está incluído?</summary>
-      <p style="margin:0 0 14px">Sim. O <b>Guia Pais e Filhos: Construindo um Futuro</b> já está disponível e faz parte do acesso completo. Ele foi criado para ajudar pais e filhos a conversar, ouvir e construir vínculos com mais intimidade e amor.</p>
-    </details>
-    <details>
-      <summary>É pagamento mensal?</summary>
-      <p>Você paga <b>R$ 57,00 uma única vez</b> e recebe acesso vitalício. Não há mensalidade nem renovação. Você pode pagar por Pix ou cartão em até 4x.</p>
-    </details>
-    <details>
-      <summary>O que acontece quando eu clicar no botão?</summary>
-      <p style="margin:0 0 14px">Você será direcionado para o checkout da Kiwify, onde poderá escolher a forma de pagamento e concluir sua compra. Depois da confirmação, você receberá as orientações para acessar o conteúdo.</p>
-    </details>
-    <details>
-      <summary>E se eu comprar e perceber que não é para mim?</summary>
-      <p style="margin:0 0 14px">Você conta com <b>7 dias de garantia</b>. Dentro desse período, poderá solicitar o reembolso diretamente pela Kiwify, conforme as regras informadas no checkout.</p>
-    </details>
-    <details>
-      <summary>A leitura gratuita vai continuar disponível?</summary>
-      <p>Sim. A leitura gratuita da Missão com Deus continua disponível. Em alguns períodos, determinadas obras também podem ser liberadas integralmente para leitura aberta.</p>
-      <p style="margin:0 0 14px">Essas liberações são temporárias. Quando uma abertura termina, a obra retorna ao formato gratuito habitual, com aproximadamente 40% da leitura disponível. O acesso completo garante as oito obras completas, além dos módulos, exercícios, áudios, conteúdos para Pais e Filhos e comunidade.</p>
-    </details>
-    <details>
-      <summary>Existe algum outro valor depois dos R$ 57,00?</summary>
-      <p style="margin:0 0 14px">Não. É um pagamento único de <b>R$ 57,00</b> pelo acesso completo de hoje: as oito obras, os 14 módulos, exercícios, 30 áudios e a comunidade. Não existe mensalidade. Obras novas que a Missão publicar depois podem ser oferecidas à parte.</p>
-    </details>
-    <details>
-      <summary>O que exatamente está incluído no acesso completo?</summary>
-      <p>Você recebe o conteúdo que faz parte da oferta do acesso completo:</p>
-      <div class="chips">
-        <span>📖 Livros</span><span>🎬 Aulas</span><span>✍️ Exercícios</span><span>🎧 Áudios</span><span>👨‍👩‍👧 Conteúdos Pais e Filhos</span><span>🤝 Comunidade</span>
-      </div>
-      <p style="margin:0 0 14px">Tudo em um único lugar, com pagamento único.</p>
-    </details>
+    <div class="agora-g">
+      <div class="agora-c rev"><h3>A abertura tem fim</h3><p>Algumas obras abrem por inteiro por tempo limitado e depois voltam a mostrar cerca de 40% da leitura.</p></div>
+      <div class="agora-c rev"><h3>O acervo inteiro, de uma vez</h3><p>Um pagamento de R$ 57 garante as oito obras, os 14 módulos, os áudios e a comunidade, sem depender de datas.</p></div>
+      <div class="agora-c rev"><h3>O conjunto de hoje</h3><p>Obras novas que a Missão publicar depois podem ser oferecidas à parte. O acesso de hoje reúne tudo o que já está no ar.</p></div>
+    </div>
+    <p class="agora-fim">Sem risco: 7 dias de garantia pela Kiwify.</p>
+    <p class="cta-linha"><a class="btn btn-gold" href="https://pay.kiwify.com.br/iVfp2bi">Quero meu acesso completo por R$ 57</a></p>
   </div>
 </section>
-
 <section class="valor-stack" id="valor-stack">
   <div class="wrap">
     <div class="sec-h">
@@ -434,11 +401,55 @@
         <div class="new" id="preco">R$ 57,00</div>
         <div class="por-dia">um pagamento único para acessar tudo isso</div>
         <small class="note">Pix imediato · Cartão até 4x</small>
-        <small class="note">🛡️ Garantia de 7 dias</small>
+        <small class="note">Garantia de 7 dias</small>
+        <small class="note">Pagamento seguro na Kiwify. Este site não recebe os dados do seu cartão.</small>
         <a class="btn btn-gold" href="https://pay.kiwify.com.br/iVfp2bi" id="btn-kiwify"><span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Quero meu acesso completo por R$ 57</a>
       </div>
     </div>
     <p class="apoio">Ficou uma pergunta sem resposta? Fale com a Laura da Missão com Deus no <a href="https://wa.me/5528999111493">WhatsApp</a>.</p>
+  </div>
+</section>
+<section class="faq" id="duvidas" style="background:#efe7d6">
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="eyebrow" style="color:var(--gold-dark)">Antes de confirmar</p>
+      <h2>Talvez você esteja se perguntando...</h2>
+    </div>
+    <details open>
+      <summary>Eu já posso ler os livros gratuitamente. Por que adquirir o acesso completo?</summary>
+      <p>Porque a leitura gratuita continua disponível, mas a quantidade liberada pode variar conforme o período. Em algumas datas, determinadas obras ficam abertas integralmente para leitura. Essa abertura é temporária. Quando ela termina, as obras retornam ao formato gratuito habitual, com cerca de 40% da leitura aberta e o restante reservado ao acesso completo.</p>
+      <p>O acesso completo não depende dessas liberações temporárias. Ele garante as oito obras completas em arquivos digitais, além dos módulos exclusivos, exercícios, áudios, conteúdos para Pais e Filhos e comunidade.</p>
+      <p style="margin:0 0 14px">Você continua podendo ler gratuitamente. O acesso completo é para quem deseja guardar o acervo inteiro e ter todos os materiais reunidos em um único lugar, independentemente do período de abertura de cada obra.</p>
+    </details>
+    <details>
+      <summary>O Guia Pais e Filhos está incluído?</summary>
+      <p style="margin:0 0 14px">Sim. O <b>Guia Pais e Filhos: Construindo um Futuro</b> já está disponível e faz parte do acesso completo. Ele foi criado para ajudar pais e filhos a conversar, ouvir e construir vínculos com mais intimidade e amor.</p>
+    </details>
+    <details>
+      <summary>É pagamento mensal?</summary>
+      <p>Você paga <b>R$ 57,00 uma única vez</b> e recebe acesso vitalício. Não há mensalidade nem renovação. Você pode pagar por Pix ou cartão em até 4x.</p>
+    </details>
+    <details>
+      <summary>O que acontece quando eu clicar no botão?</summary>
+      <p style="margin:0 0 14px">Você será direcionado para o checkout da Kiwify, onde poderá escolher a forma de pagamento e concluir sua compra. Depois da confirmação, você receberá as orientações para acessar o conteúdo.</p>
+    </details>
+    <details>
+      <summary>E se eu comprar e perceber que não é para mim?</summary>
+      <p style="margin:0 0 14px">Você conta com <b>7 dias de garantia</b>. Dentro desse período, poderá solicitar o reembolso diretamente pela Kiwify, conforme as regras informadas no checkout.</p>
+    </details>
+    <details>
+      <summary>Existe algum outro valor depois dos R$ 57,00?</summary>
+      <p style="margin:0 0 14px">Não. É um pagamento único de <b>R$ 57,00</b> pelo acesso completo de hoje: as oito obras, os 14 módulos, exercícios, 30 áudios e a comunidade. Não existe mensalidade. Obras novas que a Missão publicar depois podem ser oferecidas à parte.</p>
+    </details>
+    <details>
+      <summary>O que exatamente está incluído no acesso completo?</summary>
+      <p>Você recebe o conteúdo que faz parte da oferta do acesso completo:</p>
+      <div class="chips">
+        <span>Livros</span><span>Aulas</span><span>Exercícios</span><span>Áudios</span><span>Conteúdos Pais e Filhos</span><span>Comunidade</span>
+      </div>
+      <p style="margin:0 0 14px">Tudo em um único lugar, com pagamento único.</p>
+    </details>
+    <p class="cta-linha"><a class="btn btn-gold" href="https://pay.kiwify.com.br/iVfp2bi">Quero meu acesso completo por R$ 57</a></p>
   </div>
 </section>
 <section class="depo" id="depoimentos">
@@ -451,6 +462,7 @@
     <div class="depo-media" id="depo-media" hidden></div>
     <p class="depo-vazio" id="depo-vazio" hidden></p>
     <div class="depo-lista" id="depo-lista"></div>
+    <details class="depo-det" id="depo-det"><summary>Já leu ou tem o acesso? Deixe sua avaliação</summary>
     <form class="depo-form" id="depo-form" autocomplete="on">
       <h3>Sua avaliação</h3>
       <p style="margin:0 0 8px;color:var(--muted);font-size:.92rem">Nome, estrelas e um pouco da sua experiência. Vale a leitura grátis e vale o acesso completo.</p>
@@ -470,6 +482,7 @@
       <button class="btn btn-gold" type="submit" id="depo-enviar">Enviar avaliação</button>
       <p class="depo-msg" id="depo-msg" hidden></p>
     </form>
+    </details>
   </div>
 </section>
 <footer class="rodape">
@@ -511,23 +524,6 @@
         bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
       });
     }, {passive:true});
-  }
-  var preco = document.getElementById('preco');
-  if(preco && !reduce){
-    var po = new IntersectionObserver(function(en){
-      if(en[0].isIntersecting){
-        po.disconnect();
-        var t0 = performance.now(), dur = 900;
-        function tick(t){
-          var k = Math.min(1, (t - t0) / dur);
-          var v = 57 * (1 - Math.pow(1 - k, 3));
-          preco.textContent = 'R$ ' + (k < 1 ? v.toFixed(0) : '57') + ',00';
-          if(k < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-      }
-    }, {threshold:.6});
-    po.observe(preco);
   }
   var barra = document.getElementById('barra');
   if(barra && matchMedia('(max-width: 860px)').matches){
@@ -577,6 +573,8 @@
   function pintar(dados){
     lista.innerHTML = '';
     var itens = (dados && dados.itens) ? dados.itens : [];
+    var sec = document.getElementById('depoimentos');
+    if(sec) sec.classList.toggle('tem', itens.length > 0 || location.hash === '#depoimentos');
     if(!itens.length){
       if(vazio) vazio.hidden = true;
       if(mediaEl) mediaEl.hidden = true;
@@ -656,6 +654,10 @@
       msg.textContent = 'Não foi possível enviar agora.';
     });
   });
+  if(location.hash === '#depoimentos'){
+    var det = document.getElementById('depo-det');
+    if(det) det.open = true;
+  }
   carregar();
 })();
 </script>

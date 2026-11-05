@@ -119,6 +119,12 @@
   document.getElementById("titulo").textContent = "Dia " + day + " · " + info[0];
   document.getElementById("ref").textContent = info[1];
 
+  // Mantenha este token igual ao da Home; troque-o quando uma fala diária mudar.
+  var AUDIO_VERSION = "20261105";
+  function audioUrl(nn){
+    var dia = String(nn).padStart(2, "0");
+    return "/audio/palavra-dia-" + dia + ".mp3?v=" + AUDIO_VERSION;
+  }
   var atual = null;
   function ico(btn, on){
     btn.classList.toggle("is-on", on);
@@ -127,7 +133,7 @@
       : '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
   }
   function tocar(nn, btn, label){
-    var src = "/audio/palavra-dia-" + nn + ".mp3";
+    var src = audioUrl(nn);
     if(atual && atual.src.indexOf(src) >= 0 && !atual.paused){
       atual.pause(); ico(btn,false);
       if(label) label.textContent = "Pausado";

@@ -1,5 +1,5 @@
 /* Service Worker — Missão com Deus (PWA) */
-const CACHE = 'missao-com-deus-v10-seo-offline';
+const CACHE = 'missao-com-deus-v11-audio-versioned';
 const URLS = ['/', '/manifest.json', '/livro04', '/livro05', '/livro06', '/livro07', '/livro09', '/livro11', '/guia-pais-filhos'];
 
 self.addEventListener('install', (e) => {

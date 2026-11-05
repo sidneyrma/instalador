@@ -669,6 +669,14 @@
         <button type="button" id="ph-dica-x" aria-label="Fechar">×</button>
       </div>
 
+      <script id="missao-audio-url-version">
+        // Altere AUDIO_VERSION quando uma fala diária for substituída.
+        window.MISSAO_AUDIO_VERSION = "20261105";
+        window.missaoAudioUrl = function (numero) {
+          var dia = String(numero).padStart(2, "0");
+          return "/audio/palavra-dia-" + dia + ".mp3?v=" + window.MISSAO_AUDIO_VERSION;
+        };
+      </script>
 <script id="js-ph-dica">
 (function(){
   var play = document.getElementById("ph-play");
@@ -700,10 +708,10 @@
         var bar=document.getElementById("ph-bar");
         var fill=document.getElementById("ph-fill");
         if(ref) ref.textContent=refs[day-1]+" · uma bênção para o seu dia";
-        var a=new Audio("/audio/palavra-dia-"+n+".mp3");
+        var a=new Audio(window.missaoAudioUrl(n));
         a.preload="none";
         var dl=document.getElementById("ph-download");
-        if(dl){ dl.href="/audio/palavra-dia-"+n+".mp3"; dl.setAttribute("download","palavra-dia-"+n+".mp3"); }
+        if(dl){ dl.href=window.missaoAudioUrl(n); dl.setAttribute("download","palavra-dia-"+n+".mp3"); }
         a.addEventListener("error",function(){ if(box) box.style.display="none"; });
         var playPath="M8 5v14l11-7z";
         var pausePath="M6 5h4v14H6zm8 0h4v14h-4z";
@@ -769,7 +777,7 @@
          typeof File === "undefined" || typeof Blob === "undefined"){ compartilharLink(); return; }
       var day=(function(){var s=new Intl.DateTimeFormat("en-CA",{timeZone:"America/Sao_Paulo",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date()).split("-");var start=Date.UTC(2026,8,1);var now=Date.UTC(+s[0],+s[1]-1,+s[2]);var diff=Math.round((now-start)/864e5);return ((diff%60)+60)%60+1;})();
       var nn=String(day).padStart(2,"0");
-      var audioUrl="/audio/palavra-dia-"+nn+".mp3";
+      var audioUrl=window.missaoAudioUrl(nn);
       fetch(audioUrl,{cache:"no-store"})
         .then(function(r){ if(!r.ok) throw new Error("sem audio"); return r.blob(); })
         .then(function(blob){
