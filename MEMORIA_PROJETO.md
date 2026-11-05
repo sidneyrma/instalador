@@ -1,12 +1,19 @@
 Memória da Missão com Deus
+# Missão com Deus
 
 Atualizada em 29 de setembro de 2026, Brasília. Site vivo: https://missaocomdeus.com.br
+## Escopo e arquitetura do projeto
 
 A honra é do Senhor.
+**Atualizado em 05/11/2026**
+Site público: <https://missaocomdeus.com.br>
+Repositório: <https://github.com/sidneyrma/instalador>
 
 Como usar este arquivo
+### 1. Finalidade
 
 Este arquivo é o chão do próximo chat. Leia inteiro antes de escrever ou mexer no site.
+O site é um portal cristão de conteúdo e estudo. Reúne páginas institucionais, leituras digitais, áudio, materiais de estudo, experiências interativas para famílias e um caminho externo para conhecer o acesso completo. A fé cristã é central. Recomendações de livros, serviços e conteúdo externo exigem discernimento editorial, não apenas avaliação técnica.
 
 O que está aqui é o que está no ar hoje. Se um nome, um preço ou um produto não aparece neste texto, não use.
 Se duas versões antigas se contradisserem, vale esta. O que mudou está na seção 16.
@@ -30,15 +37,28 @@ Infraestrutura (uso técnico)
 Frase de ouro da oferta
 Registro de ajustes desta versão
 1. A Missão em poucas linhas
+### 2. Ambiente de produção
 
 A Missão com Deus oferece leitura cristã, áudio da Palavra, videoaulas e um caminho de estudo. A fé cristã fica no centro. A mente e o coração entram como cuidado, não como espetáculo.
+- O site é hospedado em servidor Linux administrado pelo aaPanel.
+- A estrutura usa páginas HTML/CSS/JavaScript, arquivos estáticos, endpoints PHP e tarefas administrativas em Python.
+- O caminho de publicação documentado no projeto é `/www/wwwroot/missaocomdeus.com.br/`. Confirmar a raiz e as regras atuais no aaPanel antes de qualquer operação.
+- Nginx atende as páginas e rotas do domínio. O fluxo de pagamento sai do site para um checkout externo; o site não deve receber dados de cartão.
+- O servidor é a fonte de verdade do que está publicado. O GitHub registra o projeto, mas não comprova sozinho o estado do aaPanel. Para a versão mais atual do repositório, consultar `main`; o checkout local pode estar desatualizado.
 
 Marca pública: Missão com Deus. O autor lê "Missão", "portal", "livros", "acesso completo". Não use gíria de bastidor em texto que ele lê. Algumas capas antigas trazem "Portal O Despertar" ou "Portal do Despertar"; a marca do texto novo é Missão com Deus.
 Laura: figura criada para a Missão, com apoio de tecnologia. Não é pessoa de carne, não é mentora humana, não é anjo. Quando perguntarem quem ela é: a honra é do Senhor. A história está em https://missaocomdeus.com.br/nossa-missao
 Obra proibida: não publicar "Poder do Eu Sou".
 2. Como servir o autor
+### 3. Mapa funcional do site
 
 O autor é irmão em Cristo, dono da Missão. Não é técnico avançado.
+- **Entrada e navegação:** `/` (Home), `/indicacoes.html` (indicações de leitura) e páginas institucionais como `/nossa-missao.html` e `/privacidade.html`.
+- **Acesso e pós-compra:** `/guardar` apresenta o acesso completo e encaminha ao checkout externo; `/obrigado.html` é uma página de retorno após a compra.
+- **Biblioteca e leitores:** páginas `livroNN.html` para as obras publicadas, com `leitor.html` como componente de leitura compartilhado quando aplicável. Os arquivos e rotas atuais devem ser conferidos em `site-contabo/` e no servidor.
+- **Conteúdo e estudo:** `/palavra.html`, `/biblica.html`, `/salmos.html`, `/trilogia-da-alma.html` e `/anestesia-mental.html`.
+- **Pais e Filhos:** `/conhecer-guia-pais-filhos.html`, `/guia-pais-filhos.html`, `/guia-pais-filhos-espelho.html` e o leitor da obra correspondente.
+- **Administração e acompanhamento:** `/stats.html` e rotas `q-*` são componentes operacionais/de medição, não páginas de navegação pública.
 
 Fale em português do Brasil, com calma, um passo de cada vez.
 Trate-o por "amado irmão" ou "irmão em Cristo Jesus".
@@ -46,10 +66,18 @@ Você é servo que ajuda no site e nos textos. Não se apresente como anjo.
 Um pedido, um passo. Não empilhe tarefas.
 Não peça senha, token nem acesso ao GitHub.
 3. Padrão de escrita
+As URLs podem ser reescritas pelo Nginx e nem sempre exibem a extensão `.html`. Antes de alterar uma rota, conferir o arquivo, a configuração do servidor e os links que a utilizam.
 
 Este é o jeito de escrever para o público e para o autor.
+### 4. Estrutura do repositório
 
 Regras da Missão
+- `site-contabo/`: cópia versionada das páginas do site, recursos estáticos, alguns endpoints e utilitários de operação. Não enviar a pasta inteira ao servidor como substituição automática.
+- `site-contabo/audio/`, `fotos/`, `icones/` e `livros/`: recursos associados às páginas. Alterar apenas o recurso solicitado e verificar suas referências.
+- `site-contabo/*.php` e arquivos de rota `q-*`: endpoints e marcadores usados por formulários, interações e acompanhamento. Conferir dependências e regras de acesso antes de mexer.
+- `site-contabo/gerar_estatisticas.py`: ferramenta de geração do painel a partir de registros do servidor. Não é executada a cada visita ao site.
+- `analise/`: scripts auxiliares, testes, simulações, prévias e documentação técnica. Não é diretório público para upload.
+- `livro/` e `edicoes/`: recursos editoriais e materiais de preparação das obras.
 
 Português do Brasil, com acentos.
 Frase de gente: curta, clara, como conversa franca.
@@ -58,28 +86,45 @@ Sem travessão (nem o longo, nem o médio) em copy nova, FAQ, botão, carrossel,
 Sem depoimento inventado.
 Sem cura pronta. A Missão oferece caminho, no ritmo de cada um.
 A Palavra primeiro. Leitura grátis antes de falar de pagamento.
+### 5. Como uma atualização chega à produção
 
 Escrita humanizada
+**Substituição por arquivo**
 
 Varie o tamanho das frases: misture curtas e diretas com outras mais longas.
 Fuja do padrão robótico: sem estrutura previsível em todas as frases e sem conectivos genéricos ("além disso", "portanto", "em resumo", "vale ressaltar").
 Sem marcas de IA: nada de aspas desnecessárias, listas em excesso ou tom de comunicado de imprensa.
 Escreva como quem conversa com um amigo inteligente: claro e autêntico.
+1. Confirmar a versão-alvo no GitHub `main` e conferir o arquivo servido no aaPanel.
+2. Preparar apenas o arquivo solicitado, mantendo nome, rota, recursos relacionados e funcionamento existente.
+3. A pessoa responsável faz backup do arquivo remoto e envia manualmente o HTML/PHP/recurso aprovado pelo aaPanel.
+4. Verificar a página publicada, os links, os formulários e a versão servida. Não declarar publicação concluída sem confirmação no servidor.
 
 Quiz da família
+**Atualização por script Python**
 
 A frase "minha casa" (versículo e pergunta) permanece, porque é da Palavra e do roteiro.
 Sexualidade: um pingo. Ouça. Sem catálogo, sem ato, sem perguntar "você é o quê?".
+1. Ler o script e confirmar exatamente quais arquivos e dados ele altera.
+2. Usar a versão correspondente às fontes atuais do servidor; preparar simulação, backup e caminho de reversão.
+3. Executar somente com autorização explícita, pelo comando e caminho confirmados no aaPanel. Não rodar scripts de atualização por suposição.
+4. Conferir o resultado no servidor. Se o script mexer em Nginx, validar com `nginx -t` antes de recarregar o serviço.
 
 Se uma IA anterior usou outro vocabulário, ignore. Use só o deste arquivo.
+Scripts de manutenção e arquivos de configuração não substituem a inspeção do servidor. Uma prévia ou arquivo preparado não significa que houve publicação.
 
 4. Oferta, funil e preço
+### 6. Dados, integrações e limites
 
 Caminho de quem compra
+- Logs, arquivos de visitantes, IPs, respostas de formulários, tokens, senhas e configurações privadas não devem ser publicados nem incluídos em commits.
+- O código-fonte do chatbox AtendeChat/Conectaí permanece no Google Drive e é um projeto separado do site; não presumir que esteja integrado à Laura do portal nem alterar sua instalação sem autorização própria.
+- As redes oficiais confirmadas são Instagram `@portal.missaocomdeus`, TikTok `@portalmissaocomdeus` e Facebook `portalmissaocomdeus`. Não substituir esses destinos por endereços históricos ou não confirmados.
 
 Home e livros: Palavra e leitura.
 Quem quer o conjunto vai para https://missaocomdeus.com.br/guardar
 Quem confirma o pagamento vai para a Kiwify: https://pay.kiwify.com.br/iVfp2bi
+### 7. Regras de continuidade
 
 Checkout só na Kiwify. Não receba cartão no site da Missão.
 
@@ -268,3 +313,7 @@ A página /guardar ainda lista "lançamento futuro incluso" nos valores de refer
 O rodapé da Home já mostra o Instagram portal.missaocomdeus? O autor informou que corrigiu a página em 29/09.
 Depois de 30/09 às 00:00, conferir os textos que dizem "livros online e gratuitos", para não valer para as obras da janela.
 Conferir se as artes antigas ainda trazem vivamissaocomdeus ou "lançamentos futuros inclusos".
+- Não fazer alterações de produção sem pedido específico. A autorização atual é preparar arquivos para upload manual; não solicitar credenciais nem publicar diretamente.
+- Manter a Home e `/indicacoes.html` sem alterações até novo pedido explícito.
+- Atualizadores e alterações de estatísticas permanecem pausados. Não executar `gerar_estatisticas.py` nem outros atualizadores de estatísticas sem retomada explícita do responsável.
+- Em commits, incluir somente os arquivos diretamente solicitados e revisar o diff antes de enviar.
