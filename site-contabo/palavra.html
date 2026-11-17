@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Palavra de hoje · caderno da casa</title>
+<title>Palavra de hoje · Missão com Deus</title>
+<link rel="icon" type="image/png" sizes="192x192" href="/icones/icon-192.png">
 <style>
   :root{--navy:#0e1a2e;--navy2:#16283f;--gold:#c9a24b;--gold2:#e3c877;--cream:#faf6ee;}
   *{box-sizing:border-box}
@@ -26,13 +27,39 @@
   li .d{flex:0 0 52px;color:var(--gold);font-weight:700;}
   li .t{flex:1;color:#e8ecf3;}
   li .mini{width:32px;height:32px;}
+  .topo{position:sticky;top:0;z-index:10;background:rgba(14,26,46,.97);border-bottom:1px solid rgba(201,162,75,.25);backdrop-filter:blur(8px);}
+  .topo nav{max-width:960px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;flex-wrap:wrap;gap:10px 22px;font-family:system-ui,sans-serif;font-size:.9rem;}
+  .marca{flex-basis:100%;color:var(--cream)!important;font-family:Georgia,"Times New Roman",serif;font-size:1.08rem;font-weight:700;}
+  .rodape{background:#091321;border-top:1px solid rgba(201,162,75,.25);padding:30px 16px;color:#c5d0de;font-family:system-ui,sans-serif;font-size:.9rem;}
+  .rodape-inner{max-width:960px;margin:0 auto;text-align:center;}
+  .rodape h2{color:var(--gold2);font:400 1.2rem Georgia,"Times New Roman",serif;margin:0 0 4px;}
+  .rodape p{margin:4px 0 16px;color:#9fb0c8;}
+  .rodape-links{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 20px;margin:10px auto 18px;}
+  .rodape a{color:var(--gold2);text-decoration:none;}
+  .rodape a:hover{text-decoration:underline;}
+  .copyright{border-top:1px solid rgba(201,162,75,.18);padding:14px 8px 0;font-size:.78rem;line-height:1.6;color:#9fb0c8;text-align:center;overflow-wrap:anywhere;}
+  @media(max-width:480px){.rodape{padding:24px 14px;}.rodape-links{gap:12px 16px;font-size:.88rem;}.copyright{font-size:.75rem;}}
+  .topo a{color:var(--gold2);text-decoration:none;}
+  .topo a:hover{text-decoration:underline;}
+  .topo .nav-dia{color:#e8ecf3;}
+  .chamada{font-family:system-ui,sans-serif;color:#c5d0de;font-size:.96rem;line-height:1.65;margin:0 0 22px;}
+  .chamada strong{display:block;color:var(--gold2);font-family:Georgia,"Times New Roman",serif;font-size:1.2rem;font-weight:400;margin-bottom:5px;}
   footer{text-align:center;color:#7f92ad;font-size:.78rem;margin-top:36px;font-family:system-ui,sans-serif;}
 </style>
 </head>
 <body>
+<header class="topo">
+  <nav aria-label="Navegação principal">
+    <a class="marca" href="https://missaocomdeus.com.br/">Missão com Deus</a>
+    <a href="https://missaocomdeus.com.br/#biblioteca">Livro</a>
+    <a href="https://missaocomdeus.com.br/salmos">Salmos</a>
+    <a href="https://missaocomdeus.com.br/biblica">Motivação Bíblica</a>
+    <a href="https://missaocomdeus.com.br/guardar">Acesso</a>
+  </nav>
+</header>
 <div class="wrap">
   <h1>Palavra de hoje</h1>
-  <p class="sub">Caderno da casa · noindex · digite /palavra · o dia segue Brasília</p>
+  <p class="chamada"><strong>Uma pausa para ouvir a voz de Deus</strong>A Palavra de hoje é um convite para aquietar o coração, encontrar direção e caminhar com fé. Separe alguns instantes, ouça com calma e leve essa mensagem com você ao longo do dia.</p>
 
   <div class="hoje" id="caixa">
     <p class="tag">Hoje</p>
@@ -47,8 +74,23 @@
   </div>
 
   <ol id="lista"></ol>
-  <footer>Missão com Deus · a mesma voz da Laura em todos os dias · <a href="/privacidade">Privacidade</a></footer>
 </div>
+<footer class="rodape">
+  <div class="rodape-inner">
+    <h2>Missão com Deus</h2>
+    <p>Desperte sua Alma, fortaleça sua fé, transforme sua vida.</p>
+    <div class="rodape-links">
+      <a href="https://missaocomdeus.com.br/#missao">Nossa Missão</a>
+      <a href="https://missaocomdeus.com.br/#contato">Fale conosco</a>
+      <a href="https://wa.me/5527998867487">WhatsApp</a>
+      <a href="https://www.tiktok.com/@portalmissaocomdeus">TikTok</a>
+      <a href="https://www.instagram.com/portal.missaocomdeus">Instagram</a>
+      <a href="https://www.facebook.com/portalmissaocomdeus">Facebook</a>
+      <a href="https://missaocomdeus.com.br/privacidade">Privacidade</a>
+    </div>
+    <div class="copyright">© 2024-2026 Missão com Deus. Todos os direitos reservados. Resultados variam conforme dedicação individual.</div>
+  </div>
+</footer>
 <script>
 (function(){
   var DIAS = [
@@ -113,15 +155,19 @@
     ["1 Tessalonicenses 5:16","Regozijai-vos sempre"],
     ["João 14:2","Na casa de meu Pai há muitas moradas"]
   ];
-  var day=(function(){var s=new Intl.DateTimeFormat("en-CA",{timeZone:"America/Sao_Paulo",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date()).split("-");var start=Date.UTC(2026,8,1);var now=Date.UTC(+s[0],+s[1]-1,+s[2]);var diff=Math.round((now-start)/864e5);return ((diff%60)+60)%60+1;})();
-  var n = String(day).padStart(2,"0");
-  var info = DIAS[day-1];
-  document.getElementById("titulo").textContent = "Dia " + day + " · " + info[0];
+  var FINADOS = ["Dia de Finados","A saudade permanece, mas em Cristo encontramos esperança"];
+  var ymd=(function(){return new Intl.DateTimeFormat("en-CA",{timeZone:"America/Sao_Paulo",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date()).split("-");})();
+  var ehFinados = (ymd[1]==="11" && ymd[2]==="02");
+  var day=(function(){var start=Date.UTC(2026,8,1);var now=Date.UTC(+ymd[0],+ymd[1]-1,+ymd[2]);var diff=Math.round((now-start)/864e5);return ((diff%60)+60)%60+1;})();
+  var n = ehFinados ? "finados" : String(day).padStart(2,"0");
+  var info = ehFinados ? FINADOS : DIAS[day-1];
+  document.getElementById("titulo").textContent = ehFinados ? FINADOS[0] : ("Dia " + day + " · " + info[0]);
   document.getElementById("ref").textContent = info[1];
 
   // Mantenha este token igual ao da Home; troque-o quando uma fala diária mudar.
   var AUDIO_VERSION = "20261105";
   function audioUrl(nn){
+    if(String(nn)==="finados") return "/audio/palavra-dia-finados.mp3?v=" + AUDIO_VERSION;
     var dia = String(nn).padStart(2, "0");
     return "/audio/palavra-dia-" + dia + ".mp3?v=" + AUDIO_VERSION;
   }
@@ -142,6 +188,7 @@
     if(atual){ atual.pause(); }
     document.querySelectorAll(".play").forEach(function(b){ ico(b,false); });
     atual = new Audio(src);
+    try{ var px=new Image(); px.src="/q-palavra-play?t="+Date.now(); }catch(e){}
     atual.play();
     ico(btn,true);
     if(label) label.textContent = "Ouvindo…";
@@ -160,7 +207,7 @@
     var d = i+1;
     var nn = String(d).padStart(2,"0");
     var li = document.createElement("li");
-    if(d===day) li.className = "hoje-row";
+    if(d===day && !ehFinados) li.className = "hoje-row";
     li.innerHTML = '<span class="d">Dia '+d+'</span><span class="t">'+par[0]+' · '+par[1]+'</span>';
     var b = document.createElement("button");
     b.className = "play mini";
@@ -171,8 +218,19 @@
     li.appendChild(b);
     ol.appendChild(li);
   });
+  var liF = document.createElement("li");
+  if(ehFinados) liF.className = "hoje-row";
+  liF.innerHTML = '<span class="d">Finados</span><span class="t">'+FINADOS[0]+' · '+FINADOS[1]+'</span>';
+  var bF = document.createElement("button");
+  bF.className = "play mini";
+  bF.type = "button";
+  bF.setAttribute("aria-label","Ouvir mensagem de Finados");
+  bF.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+  bF.addEventListener("click", function(){ tocar("finados", bF, null); });
+  liF.appendChild(bF);
+  ol.appendChild(liF);
 })();
 </script>
 <script src="/aviso-privacidade.js" defer id="js-aviso-privacidade"></script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a5beba6608cb5023',t:'MTc5NDkxODQzMQ=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a5beba6608cb5023',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
