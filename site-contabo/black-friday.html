@@ -46,6 +46,11 @@
   .hero .lead{max-width:44em;margin:0 auto 10px;color:rgba(246,241,231,.92);font-size:1.1rem}
   .hero .verso{margin:20px auto 30px;font-family:var(--serif);font-style:italic;color:var(--gold-light);font-size:1.02rem;max-width:34em}
   .hero .verso span{display:block;font-style:normal;font-family:var(--sans);font-size:.78rem;letter-spacing:.06em;color:rgba(246,241,231,.55);margin-top:6px}
+  .hero-apoio{max-width:48em;margin:18px auto 14px;padding:18px 20px;border:1px solid rgba(227,200,119,.38);border-radius:14px;background:rgba(255,255,255,.055);color:rgba(246,241,231,.94);font-size:1rem;line-height:1.65}
+  .hero-apoio strong{color:var(--gold-light)}
+  .apoio-secao{background:linear-gradient(180deg,#efe7d6,var(--cream));padding:48px 0}
+  .apoio-secao .futuro{max-width:900px;margin:0 auto}
+  .apoio-secao .btn{margin-top:8px}
   .confia{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;margin-top:22px;font-size:.9rem;color:rgba(246,241,231,.8)}
   .confia b{color:var(--gold-light);font-weight:700}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:17px 30px;border-radius:999px;font-weight:800;font-size:1.05rem;border:2px solid transparent;cursor:pointer;position:relative;overflow:hidden}
@@ -99,6 +104,7 @@
   .faq summary:after{content:"+";float:right;color:var(--gold-dark);font-weight:400}
   .faq details[open] summary:after{content:"-"}
   .faq details p{color:var(--muted);margin:0 0 14px}
+  .faq details p.faq-apoio{margin:14px 0 0;padding:14px 16px;background:#fffaf0;border-left:4px solid var(--gold);border-radius:8px;color:var(--navy)}
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 14px}
   .chips span{background:#fff;border:1px solid rgba(201,162,75,.55);color:var(--navy);border-radius:999px;padding:6px 13px;font-size:.86rem;font-weight:700}
   .oferta{padding:10px 0 76px}
@@ -149,22 +155,9 @@
 
   .livro{min-width:0}
   .livro .capa{width:100%}
-  .livro .vl{display:block;margin-top:8px;font-weight:800;color:var(--navy);font-size:.82rem}
   @media (max-width:860px){
     .arca{grid-template-columns:repeat(2,1fr);gap:14px}
   }
-  .valor-stack{padding:48px 0;background:#efe7d6}
-  .vs-lista{list-style:none;margin:0 auto;padding:0;max-width:640px;display:grid;gap:0}
-  .vs-lista li{display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(14,26,46,.08);color:var(--muted);font-size:.95rem}
-  .vs-ico{display:flex;color:#b8860b}
-  .vs-nome{line-height:1.35}
-  .vs-preco{font-weight:700;color:var(--navy);white-space:nowrap}
-  .vs-brinde{font-size:.78rem;color:var(--gold-dark);font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-left:6px}
-  .vs-soma{max-width:640px;margin:22px auto 0;display:grid;gap:10px}
-  .vs-risca{display:flex;justify-content:space-between;align-items:baseline;color:var(--muted)}
-  .vs-risca strong{font-size:1.35rem;text-decoration:line-through;color:#8a8174;font-family:var(--serif)}
-  .vs-hoje{display:flex;justify-content:space-between;align-items:baseline;background:linear-gradient(180deg,#fffef8,#f3e6c4);border:1px solid rgba(201,162,75,.55);border-radius:14px;padding:14px 18px;color:var(--navy)}
-  .vs-hoje strong{font-size:2rem;font-family:var(--serif);color:#0e1a2e}
 
 
   .aviso-periodo{margin:22px 0 8px;background:#fffef8;border:1px solid rgba(201,162,75,.4);border-left:4px solid var(--gold);border-radius:14px;padding:20px 22px}
@@ -209,7 +202,6 @@
   .depo-check input{margin-top:4px}
   .depo-msg{margin:10px 0 0;font-size:.9rem}
 
-  .livro .vl,.vs-preco{text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:#8a3a2a;color:#8a8174}
   .pacote{margin-top:-46px;position:relative;z-index:2;background:var(--paper);border:1px solid rgba(201,162,75,.6);border-radius:20px;padding:30px 28px;box-shadow:0 22px 50px -26px rgba(14,26,46,.5)}
   .pacote h2{font-size:1.5rem}.pacote>p{color:var(--muted)}
   .tiles{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -250,7 +242,7 @@
 <body>
 <div id="bf-faixa" style="background:linear-gradient(135deg,#0e1a2e,#16283f);color:#f6f1e7;border-bottom:1px solid rgba(201,162,75,.45);padding:12px 16px;text-align:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;">
   <strong id="bf-titulo" style="display:block;font-size:1rem;">Black Friday Missão com Deus</strong>
-  <span id="bf-texto" style="display:block;margin:4px 0 2px;font-size:.9rem;line-height:1.45;">Acesso completo por R$ 27,90 até 01/12/2026, 00h (Brasília). Depois volta a R$ 57,00.</span>
+  <span id="bf-texto" style="display:block;margin:4px 0 2px;font-size:.9rem;line-height:1.45;">Acesso completo por R$ 27,90 até 01/12/2026, 00h (Brasília). Depois volta ao valor regular de R$ 57,00.</span>
   <span id="bf-contagem" style="display:block;font-size:1.05rem;font-weight:700;color:#e3c877;letter-spacing:.04em;"></span>
 </div>
 <div id="prog" aria-hidden="true"></div>
@@ -265,7 +257,8 @@
   <div class="wrap">
     <p class="eyebrow">Acesso completo · um pagamento só</p>
     <h1>A Coleção Missão com Deus inteira. <em>Nove obras, aulas, áudios e comunidade.</em></h1>
-    <p class="lead">São 9 obras completas, 14 módulos em vídeo (6 deles gratuitos, para você conhecer), exercícios, 60 áudios, comunidade e área de membros vitalícia. Pagamento único de R$ 27,90.</p>
+    <p class="hero-apoio">Em meio à pressa e às responsabilidades, a vida interior também precisa de cuidado. A Missão reúne estudos bíblicos, Salmos, devocionais, aulas, livros e conteúdos para pais, filhos e toda a família, para que você encontre momentos de reflexão e volte à Palavra no ritmo da sua caminhada. <strong>Se esse trabalho fortalece você, sua escolha ajuda a manter a Missão e seus conteúdos disponíveis para outras vidas.</strong></p>
+    <p class="lead">São 9 obras completas, 14 módulos em vídeo (6 gratuitos para você conhecer), exercícios, 60 áudios, comunidade e acesso vitalício. Pelas médias informadas, os vídeos somam cerca de 1h24 e os áudios, com passagem bíblica, reflexão e oração final, cerca de 5h: aproximadamente 6h24 de conteúdo em áudio e vídeo. Nesta Black Friday, pagamento único de R$ 27,90.</p>
     <p class="verso">“Sejam praticantes da palavra, e não apenas ouvintes.”<span>Tiago 1.22</span></p>
     <p><a class="btn btn-gold" href="https://pay.kiwify.com.br/NCAEVtO" id="btn-kiwify-topo"><span class="btn-ico" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span> Quero o acesso completo por R$ 27,90</a></p>
     <p class="confia"><span>Pix libera <b>na hora</b></span><span>Cartão  <b>à vista</b></span><span><b>Garantia</b> de 7 dias</span></p>
@@ -277,9 +270,9 @@
     <p>Um pagamento único. Sem mensalidade, sem renovação e sem depender de períodos temporários de leitura aberta.</p>
     <ul class="tiles">
       <li><b>9 obras completas</b><span>Em arquivos digitais, incluindo o Diário de Orações e o Guia Pais e Filhos.</span></li>
-      <li><b>14 módulos em vídeo</b><span>Os módulos 4 a 7 de cada curso, além dos 6 iniciais gratuitos.</span></li>
+      <li><b>14 módulos em vídeo</b><span>Duração média estimada de 6 minutos cada: cerca de 1h24 no total. Seis módulos são gratuitos para você conhecer.</span></li>
       <li><b>Exercícios práticos</b><span>De cada módulo, para levar o aprendizado à vida.</span></li>
-      <li><b>60 áudios</b><span>Das mensagens diárias, incluídos no acesso.</span></li>
+      <li><b>60 áudios</b><span>Cerca de 5 minutos cada, com passagem bíblica, reflexão e oração final: aproximadamente 5 horas no total.</span></li>
       <li><b>Pais e Filhos</b><span>Conteúdos e roteiros para conversar em família.</span></li>
       <li><b>Comunidade</b><span>Área de membros vitalícia para caminhar junto.</span></li>
     </ul>
@@ -296,7 +289,7 @@
     </ul>
     <p>A Missão com Deus não é só sobre crescer. É sobre se aproximar de Jesus, <b>o caminho, a verdade e a vida</b> (João 14.6).</p>
     <p>Nove obras, 14 módulos em vídeo, exercícios, 60 áudios, o conteúdo Pais e Filhos e a Comunidade em nosso Portal, em um único pagamento de <b>R$ 27,90</b>, para sempre.</p>
-    <p class="chamada-f">Até 01/12, às 00h (Brasília). Depois, volta a R$ 57,00. Não deixe para depois o que o seu coração está pedindo hoje.</p>
+    <p class="chamada-f">Até 01/12, às 00h (Brasília). Depois, volta ao valor regular de R$ 57,00. Se essa caminhada faz sentido para você, dê seu próximo passo com liberdade.</p>
     <p class="cta-linha"><a class="btn btn-gold" href="https://pay.kiwify.com.br/NCAEVtO">Quero entrar na Missão por R$ 27,90</a></p>
   </div>
 </div>
@@ -308,17 +301,17 @@
       <p>Quem garante o acesso completo leva o acervo inteiro em arquivos digitais, para guardar e reler quando quiser, sem depender dos períodos de leitura aberta.</p>
     </div>
     <div class="arca">
-      <div class="livro rev"><div class="capa" style="--c1:#274b36;--c2:#12271c"><span class="marca">Missão com Deus</span><span class="tit">Evolução da Alma</span></div><p>Os 7 passos do despertar: da dor que anestesia à liberdade de viver acordado.<span class="vl">R$ 47</span></p></div>
-      <div class="livro rev"><div class="capa" style="--c1:#1e3352;--c2:#0c1728"><span class="marca">Missão com Deus</span><span class="tit">Anestesia Mental</span></div><p>Por que a alma dorme acordada, e como o Shabat a desperta de novo.<span class="vl">R$ 47</span></p></div>
-      <div class="livro rev"><div class="capa" style="--c1:#7a5a1e;--c2:#3d2c0d"><span class="marca">Missão com Deus</span><span class="tit">Um Segundo com Deus</span></div><p>O devocional de 30 dias: uma pausa curta que reorganiza o dia inteiro.<span class="vl">R$ 19</span></p></div>
-      <div class="livro rev"><div class="capa" style="--c1:#4d2b45;--c2:#251422"><span class="marca">Missão com Deus</span><span class="tit">Jesus Quer Falar com Seu Filho</span></div><p>Histórias, atividades e orações para a fé chegar às crianças com leveza.<span class="vl">R$ 19</span></p></div>
-      <div class="livro rev"><div class="capa" style="--c1:#31465e;--c2:#152238"><span class="marca">Missão com Deus</span><span class="tit">O Caminho do Despertar</span></div><p>O mapa da jornada inteira, num volume para ler de ponta a ponta.<span class="vl">R$ 47</span></p></div>
-      <div class="livro rev"><div class="capa" style="--c1:#5a3b23;--c2:#2b1c0f"><span class="marca">Missão com Deus</span><span class="tit">O Novo Testamento</span></div><p>Os evangelhos contados para quem nunca leu, e para quem já leu mil vezes.<span class="vl">R$ 49</span></p></div>
-      <div class="livro rev"><div class="capa" style="--c1:#3d5561;--c2:#1a2a31"><span class="marca">Missão com Deus</span><span class="tit">Afirmações, Declarações e Orações</span></div><p>O guia diário de fala e silêncio, para começar e terminar o dia na Palavra.<span class="vl">R$ 19</span></p></div>
-      <div class="livro rev"><div class="capa" style="--c1:#6b3a48;--c2:#2a151c"><span class="marca">Missão com Deus</span><span class="tit">Guia Pais e Filhos</span></div><p>Construindo um Futuro: conversas que aproximam pai, mãe e filho, no tempo de cada um.<span class="vl">R$ 37</span></p></div>
-      <div class="livro rev"><div class="capa" style="--c1:#1a2740;--c2:#0e1a2e"><span class="marca">Missão com Deus</span><span class="tit">Diário de Orações</span></div><p>As 60 mensagens da Palavra do dia, agora para ler. Versículo, reflexão e oração, um dia de cada vez.<span class="vl">R$ 19</span></p></div>
+      <div class="livro rev"><div class="capa" style="--c1:#274b36;--c2:#12271c"><span class="marca">Missão com Deus</span><span class="tit">Evolução da Alma</span></div><p>Os 7 passos do despertar: da dor que anestesia à liberdade de viver acordado.</p></div>
+      <div class="livro rev"><div class="capa" style="--c1:#1e3352;--c2:#0c1728"><span class="marca">Missão com Deus</span><span class="tit">Anestesia Mental</span></div><p>Por que a alma dorme acordada, e como o Shabat a desperta de novo.</p></div>
+      <div class="livro rev"><div class="capa" style="--c1:#7a5a1e;--c2:#3d2c0d"><span class="marca">Missão com Deus</span><span class="tit">Um Segundo com Deus</span></div><p>O devocional de 30 dias: uma pausa curta que reorganiza o dia inteiro.</p></div>
+      <div class="livro rev"><div class="capa" style="--c1:#4d2b45;--c2:#251422"><span class="marca">Missão com Deus</span><span class="tit">Jesus Quer Falar com Seu Filho</span></div><p>Histórias, atividades e orações para a fé chegar às crianças com leveza.</p></div>
+      <div class="livro rev"><div class="capa" style="--c1:#31465e;--c2:#152238"><span class="marca">Missão com Deus</span><span class="tit">O Caminho do Despertar</span></div><p>O mapa da jornada inteira, num volume para ler de ponta a ponta.</p></div>
+      <div class="livro rev"><div class="capa" style="--c1:#5a3b23;--c2:#2b1c0f"><span class="marca">Missão com Deus</span><span class="tit">O Novo Testamento</span></div><p>Os evangelhos contados para quem nunca leu, e para quem já leu mil vezes.</p></div>
+      <div class="livro rev"><div class="capa" style="--c1:#3d5561;--c2:#1a2a31"><span class="marca">Missão com Deus</span><span class="tit">Afirmações, Declarações e Orações</span></div><p>O guia diário de fala e silêncio, para começar e terminar o dia na Palavra.</p></div>
+      <div class="livro rev"><div class="capa" style="--c1:#6b3a48;--c2:#2a151c"><span class="marca">Missão com Deus</span><span class="tit">Guia Pais e Filhos</span></div><p>Construindo um Futuro: conversas que aproximam pai, mãe e filho, no tempo de cada um.</p></div>
+      <div class="livro rev"><div class="capa" style="--c1:#1a2740;--c2:#0e1a2e"><span class="marca">Missão com Deus</span><span class="tit">Diário de Orações</span></div><p>As 60 mensagens da Palavra do dia, agora para ler. Versículo, reflexão e oração, um dia de cada vez.</p></div>
     </div>
-    <p class="aviso-pratica">Valores riscados: referência, caso cada obra fosse vendida separadamente. No acesso completo, todas estão incluídas.</p>
+    <p class="aviso-pratica">As obras e os estudos fazem parte do acervo completo. Não atribuímos um preço individual à Palavra ou a cada mensagem; o acesso único reúne os conteúdos descritos nesta página.</p>
   </div>
 </section>
 <section style="background:linear-gradient(180deg,var(--cream),#efe7d6)">
@@ -387,32 +380,15 @@
     <p class="cta-linha"><a class="btn btn-gold" href="https://pay.kiwify.com.br/NCAEVtO">Quero meu acesso completo por R$ 27,90</a></p>
   </div>
 </section>
-<section class="valor-stack" id="valor-stack">
+<section class="apoio-secao" id="apoio-missao">
   <div class="wrap">
-    <div class="sec-h">
-      <p class="eyebrow" style="color:var(--gold-dark)">Valor de referência</p>
-      <h2>O valor dos itens separados e o seu acesso completo</h2>
-      <p>Cada linha abaixo é um valor de referência, para mostrar a composição da oferta. O acesso completo reúne todos esses itens em um único pagamento de R$ 27,90.</p>
-    </div>
-        <ul class="vs-lista">
-      <li><span class="vs-ico"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span><span class="vs-nome">Livro Evolução da Alma, completo</span><span class="vs-preco">R$ 47</span></li>
-      <li><span class="vs-ico"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/></svg></span><span class="vs-nome">Livro Anestesia Mental, completo</span><span class="vs-preco">R$ 47</span></li>
-      <li><span class="vs-ico"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><span class="vs-nome">Devocional Um Segundo com Deus</span><span class="vs-preco">R$ 19</span></li>
-      <li><span class="vs-ico"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="vs-nome">Jesus Quer Falar com Seu Filho</span><span class="vs-preco">R$ 19</span></li>
-      <li><span class="vs-ico"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span><span class="vs-nome">O Caminho do Despertar</span><span class="vs-preco">R$ 47</span></li>
-      <li><span class="vs-ico"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span><span class="vs-nome">O Novo Testamento como nunca lido</span><span class="vs-preco">R$ 49</span></li>
-      <li><span class="vs-ico"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="vs-nome">Afirmações, Declarações e Orações</span><span class="vs-preco">R$ 19</span></li>
-      <li><span class="vs-ico"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span><span class="vs-nome">Guia Pais e Filhos: Construindo um Futuro</span><span class="vs-preco">R$ 37</span></li>
-      <li><span class="vs-ico"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span><span class="vs-nome">Diário de Orações</span><span class="vs-preco">R$ 19</span></li>
-      <li><span class="vs-ico"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/><polygon points="10 12 16 15 10 18 10 12"/></svg></span><span class="vs-nome">Curso em vídeo Evolução da Alma, 7 módulos</span><span class="vs-preco">R$ 47</span></li>
-      <li><span class="vs-ico"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></span><span class="vs-nome">Curso em vídeo Anestesia Mental, 7 módulos</span><span class="vs-preco">R$ 47</span></li>
-      <li><span class="vs-ico"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="vs-nome">Exercícios práticos de cada módulo</span><span class="vs-preco">R$ 15</span></li>
-      <li><span class="vs-ico"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="vs-nome">Área de membros vitalícia e acesso à comunidade da Missão</span><span class="vs-preco">R$ 15</span></li>
-      <li><span class="vs-ico"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span><span class="vs-nome">60 áudios das mensagens diárias <span class="vs-brinde">no acesso</span></span><span class="vs-preco">R$ 27</span></li>
-    </ul>
-        <div class="vs-soma">
-      <div class="vs-risca"><span>Valor de referência do conjunto</span><strong>R$ 454,00</strong></div>
-      <div class="vs-hoje"><span>Seu acesso completo</span><strong>R$ 27,90</strong></div>
+    <div class="futuro">
+      <p class="eyebrow">Uma escolha que também apoia a Missão</p>
+      <h2>A Palavra de Deus não tem preço. O trabalho de compartilhá-la precisa de cuidado e continuidade.</h2>
+      <p>Não estamos atribuindo preço à Palavra. O pagamento é pelo acesso aos materiais digitais e ajuda a sustentar a produção, a organização e a continuidade do trabalho da Missão com Deus.</p>
+      <p>Não é dízimo nem promessa de prosperidade em troca. É uma decisão voluntária: você recebe o acesso completo descrito nesta página e, ao escolher caminhar conosco, também apoia um trabalho que busca servir outras vidas com estudos, oração e orientação para as famílias.</p>
+      <p>Que Deus conduza seus passos e abençoe sua vida segundo a Sua graça. Se este conteúdo faz sentido para você, considere dar esse próximo passo com liberdade e consciência.</p>
+      <p class="cta-linha"><a class="btn btn-gold" href="https://pay.kiwify.com.br/NCAEVtO">Quero apoiar a Missão e garantir meu acesso por R$ 27,90</a></p>
     </div>
   </div>
 </section>
@@ -430,7 +406,6 @@
         <div class="topo">Pagamento único · Acesso vitalício</div>
         <div class="old">9 obras completas, 14 módulos em vídeo, exercícios, 60 áudios e comunidade</div>
         <small class="note">Mesmo quando uma leitura aberta temporária terminar, seu acesso completo às nove obras permanece garantido.</small>
-        <small class="note" style="text-decoration:line-through;opacity:.75">De R$ 57,00</small>
         <div class="new" id="preco">R$ 27,90</div>
         <div class="por-dia">um pagamento único para acessar tudo isso</div>
         <small class="note">Pix imediato · Cartão em 1x</small>
@@ -453,6 +428,7 @@
       <p>Porque a leitura gratuita continua disponível, mas a quantidade liberada pode variar conforme o período. Em algumas datas, determinadas obras ficam abertas integralmente para leitura. Essa abertura é temporária. Quando ela termina, as obras retornam ao formato gratuito habitual, com cerca de 40% da leitura aberta e o restante reservado ao acesso completo.</p>
       <p>O acesso completo não depende dessas liberações temporárias. Ele garante as nove obras completas em arquivos digitais, além dos módulos exclusivos, exercícios, áudios, conteúdos para Pais e Filhos e comunidade.</p>
       <p style="margin:0 0 14px">Você continua podendo ler gratuitamente. O acesso completo é para quem deseja guardar o acervo inteiro e ter todos os materiais reunidos em um único lugar, independentemente do período de abertura de cada obra.</p>
+      <p class="faq-apoio">Ao garantir o acesso completo, você também ajuda a sustentar a Missão com Deus e a continuidade dos conteúdos que ela oferece ao público. É uma forma voluntária de apoiar esse trabalho enquanto recebe os materiais descritos nesta página.</p>
     </details>
     <details>
       <summary>O Guia Pais e Filhos está incluído?</summary>
@@ -472,7 +448,7 @@
     </details>
     <details>
       <summary>Até quando vale o preço de Black Friday?</summary>
-      <p style="margin:0 0 14px">Até 01/12/2026, às 00h (Brasília). Depois, o acesso completo volta a R$ 57,00. É um pagamento único de <b>R$ 27,90</b> pelo acesso completo de hoje: as nove obras, os 14 módulos, exercícios, 60 áudios e a comunidade. Não existe mensalidade. Obras novas que a Missão publicar depois podem ser oferecidas à parte.</p>
+      <p style="margin:0 0 14px">Até 01/12/2026, às 00h (Brasília). Depois, o acesso completo volta ao valor regular de R$ 57,00. É um pagamento único de <b>R$ 27,90</b> pelo acesso completo de hoje: as nove obras, os 14 módulos, exercícios, 60 áudios e a comunidade. Não existe mensalidade. Obras novas que a Missão publicar depois podem ser oferecidas à parte.</p>
     </details>
     <details>
       <summary>O que exatamente está incluído no acesso completo?</summary>
@@ -481,6 +457,10 @@
         <span>Livros</span><span>Aulas</span><span>Exercícios</span><span>Áudios</span><span>Conteúdos Pais e Filhos</span><span>Comunidade</span>
       </div>
       <p style="margin:0 0 14px">Tudo em um único lugar, com pagamento único.</p>
+    </details>
+    <details>
+      <summary>Como meu acesso apoia a Missão com Deus?</summary>
+      <p style="margin:0 0 14px">O pagamento é pelo acesso aos materiais digitais, não pela Palavra. Essa aquisição também ajuda a sustentar a estrutura do portal e a continuidade dos estudos e materiais da Missão. Não é dízimo nem uma doação separada, e não há promessa de prosperidade: é uma escolha voluntária de receber o acervo descrito e apoiar esse trabalho.</p>
     </details>
     <p class="cta-linha"><a class="btn btn-gold" href="https://pay.kiwify.com.br/NCAEVtO">Quero meu acesso completo por R$ 27,90</a></p>
   </div>
