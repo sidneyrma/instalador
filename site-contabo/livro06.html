@@ -960,5 +960,34 @@ document.addEventListener('keydown', function(e){
 
 <p class="missao-legal-priv" style="text-align:center;font-size:.8rem;padding:18px 12px 28px;color:#5c5646;"><a href="/privacidade" style="color:#b8860b;">Privacidade</a></p>
 <script src="/aviso-privacidade.js" defer id="js-aviso-privacidade"></script>
+
+<style id="css-protecao-leitura-missao">
+html,body{-webkit-user-select:text !important;-moz-user-select:text !important;user-select:text !important}
+@media print{
+  body *{visibility:hidden !important}
+  #print-block,#print-block *{visibility:visible !important}
+  #print-block{display:block !important;position:absolute;left:0;top:0;width:100%}
+}
+</style>
+<script id="js-protecao-leitura-missao">
+(function(){
+  var aviso = "© Coleção Missão com Deus. Jesus Quer Falar com Seu Filho. Todos os direitos reservados. Leitura online em missaocomdeus.com.br";
+  function trava(e){
+    e.preventDefault();
+    if (e.clipboardData) e.clipboardData.setData("text/plain", aviso);
+    return false;
+  }
+  document.addEventListener("copy", trava, true);
+  document.addEventListener("cut", trava, true);
+  document.addEventListener("contextmenu", function(e){ e.preventDefault(); }, true);
+  document.addEventListener("dragstart", function(e){ e.preventDefault(); }, true);
+  document.addEventListener("keydown", function(e){
+    var k = String(e.key || "").toLowerCase();
+    if ((e.ctrlKey || e.metaKey) && (k === "c" || k === "x" || k === "p" || k === "s" || k === "u")) {
+      e.preventDefault();
+    }
+  }, true);
+})();
+</script>
 </body>
 </html>

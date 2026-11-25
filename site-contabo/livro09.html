@@ -1720,17 +1720,17 @@ document.addEventListener('keydown', function(e){
 <script id="js-janela-livros">
 (function(){
   "use strict";
-  var INICIO = new Date("2026-10-23T00:00:00-03:00").getTime();
-  if (isNaN(INICIO)) INICIO = Date.UTC(2026, 9, 23, 3, 0, 0);
-  var FIM = new Date("2026-11-09T00:00:00-03:00").getTime();
-  if (isNaN(FIM)) FIM = Date.UTC(2026, 10, 9, 3, 0, 0);
+  var INICIO = new Date("2026-11-27T00:00:00-03:00").getTime();
+  if (isNaN(INICIO)) INICIO = Date.UTC(2026, 10, 27, 3, 0, 0);
+  var FIM = new Date("2026-12-01T00:00:00-03:00").getTime();
+  if (isNaN(FIM)) FIM = Date.UTC(2026, 11, 1, 3, 0, 0);
   var agora = Date.now();
   var aberto = agora >= INICIO && agora < FIM;
   if (!document.getElementById("aviso-janela") && agora < FIM) {
     var bar = document.createElement("p");
     bar.id = "aviso-janela";
     bar.setAttribute("style", "max-width:42rem;margin:12px auto;padding:8px 12px;text-align:center;font-family:system-ui,sans-serif;font-size:.86rem;line-height:1.4;color:#f6f1e7;background:#0e1a2e;border:1px solid rgba(201,162,75,.4);border-radius:10px;");
-    bar.textContent = aberto ? "Leitura completa aberta até 09/11/2026, 00:00 (Brasília)." : "Leitura completa a partir de 23/10/2026, 00:00 (Brasília).";
+    bar.textContent = aberto ? "Black Friday: leitura completa aberta até 01/12/2026, 00:00 (Brasília)." : "Black Friday: leitura completa a partir de 27/11/2026, 00:00 (Brasília).";
     var alvo = document.querySelector(".leitura") || document.querySelector("main");
     if (alvo) alvo.insertBefore(bar, alvo.firstChild);
   }
@@ -1835,5 +1835,34 @@ document.addEventListener('keydown', function(e){
 
 <p class="missao-legal-priv" style="text-align:center;font-size:.8rem;padding:18px 12px 28px;color:#5c5646;"><a href="/privacidade" style="color:#b8860b;">Privacidade</a></p>
 <script src="/aviso-privacidade.js" defer id="js-aviso-privacidade"></script>
+
+<style id="css-protecao-leitura-missao">
+html,body{-webkit-user-select:text !important;-moz-user-select:text !important;user-select:text !important}
+@media print{
+  body *{visibility:hidden !important}
+  #print-block,#print-block *{visibility:visible !important}
+  #print-block{display:block !important;position:absolute;left:0;top:0;width:100%}
+}
+</style>
+<script id="js-protecao-leitura-missao">
+(function(){
+  var aviso = "© Coleção Missão com Deus. Anestesia Mental, e seus Algoritmos da Escravidão, o manual de retorno à sua ver. Todos os direitos reservados. Leitura online em missaocomdeus.com.br";
+  function trava(e){
+    e.preventDefault();
+    if (e.clipboardData) e.clipboardData.setData("text/plain", aviso);
+    return false;
+  }
+  document.addEventListener("copy", trava, true);
+  document.addEventListener("cut", trava, true);
+  document.addEventListener("contextmenu", function(e){ e.preventDefault(); }, true);
+  document.addEventListener("dragstart", function(e){ e.preventDefault(); }, true);
+  document.addEventListener("keydown", function(e){
+    var k = String(e.key || "").toLowerCase();
+    if ((e.ctrlKey || e.metaKey) && (k === "c" || k === "x" || k === "p" || k === "s" || k === "u")) {
+      e.preventDefault();
+    }
+  }, true);
+})();
+</script>
 </body>
 </html>

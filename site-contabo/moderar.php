@@ -1,10 +1,11 @@
 <?php
+header('X-Robots-Tag: noindex, nofollow');
 session_start();
 header('X-Content-Type-Options: nosniff');
 header('Cache-Control: no-store');
 header('Referrer-Policy: no-referrer');
 
-$CHAVE_SECRETA = ''; // Protegida fora do Git
+$CHAVE_SECRETA = 'DEUS2@26';
 
 $DIR = __DIR__ . '/dados';
 $PUB = $DIR . '/avaliacoes.json';
